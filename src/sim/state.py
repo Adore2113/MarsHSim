@@ -7,10 +7,19 @@ class Habitat_State:
     mission_time_s: int
 
     # Atmosphere
-    total_pressure_kpa: float
     o2_kpa: float
     co2_kpa: float
     n2_kpa: float
+
+    @property
+    def total_pressure_kpa(self) -> float:
+        return self.o2_kpa + self.co2_kpa + self.n2_kpa
+
+    @property
+    def o2_percent(self):
+        if self.total_pressure_kpa == 0:
+            return 0
+        return self.o2_kpa / self.total_pressure_kpa
 
     # Thermal
     cabin_temp_c: float
