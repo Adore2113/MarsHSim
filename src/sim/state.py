@@ -3,6 +3,9 @@ from dataclasses import dataclass
 #creating habitat class
 @dataclass
 class Habitat_State:
+    # Time
+    mission_time_s: int
+
     # Atmosphere
     total_pressure_kpa: float
     o2_kpa: float
