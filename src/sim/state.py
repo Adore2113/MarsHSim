@@ -3,6 +3,10 @@ from dataclasses import dataclass
 #creating habitat class
 @dataclass
 class Habitat_State:
+    
+    crew_count: int
+    hab_vol_m3: float
+
     # Time
     mission_time_s: int
 
@@ -40,6 +44,15 @@ class Habitat_State:
         if self.total_pressure_kpa == 0:
             return 0
         return 100 * self.ar_kpa / self.total_pressure_kpa
+
+
+
+
+
+
+
+
+
 
     # Thermal
     cabin_temp_c: float
