@@ -1,6 +1,5 @@
 from src.sim.state import Habitat_State
-from src.sim.engine import step
-
+from src.sim.engine import step, checking_gases
 
 s0 = Habitat_State(
     mission_time_s = 0,
@@ -8,10 +7,17 @@ s0 = Habitat_State(
     crew_count = 30,
     hab_vol_m3 = 2000.0,
 
-    o2_kpa = 21.0,
+    o2_kpa = 20.0,
     co2_kpa = 0.4,
-    n2_kpa = 19.5,
-    ar_kpa = 25.1,   
+    n2_kpa = 18.0,
+    ar_kpa = 21.6,   
+
+    amine_beds = [
+        {"status": "online", "capacity": 3.0, "co2_load": 0.0},
+        {"status": "regenerating", "capacity": 3.0, "co2_load": 1.0},
+        {"status": "standby", "capacity": 3.0, "co2_load": 0.0},
+        {"status": "standby", "capacity": 3.0, "co2_load": 0.0}
+    ],
 
     cabin_temp_c=23.0,
     #from here down these are placeholders
@@ -34,7 +40,7 @@ s0 = Habitat_State(
 def sol_time(seconds):
     # one mars sol is 24h 39min 35sec
     total_sol_seconds = 88775
-    sol_seconds = state.mission_time_s % total_sol_seconds
+    sol_seconds = seconds % total_sol_seconds
 
     hour_24 = sol_seconds // 3600
     # 1h = 60min, 1min = 60 sec, 60*60 = 3600
@@ -53,12 +59,14 @@ def sol_time(seconds):
     return hour_12, minutes, meridiem
 
     
-def print_state(state): 
+def print_state(state, scrubbed_amount): 
     hour, minutes, meridiem = sol_time(state.mission_time_s)
     # LMST = Local Mean Solar Time
     print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
     print(f"Oxygen: {state.o2_kpa}")
+    print(f"Carbon Dioxide Scrubbed: {round(scrubbed_amount, 2)}")
     print(f"Carbon Dioxide: {state.co2_kpa}")
+    print(f"Alert: {alerts}")
     print(f"Nitrogen: {state.n2_kpa}")
     print(f"Argon: {state.ar_kpa}")
     print()
@@ -66,5 +74,6 @@ def print_state(state):
 
 state = s0
 for i in range(12):
-    state = step(state)
-    print_state(state)
+    state, scrubbed_amount = step(state)
+    alerts = checking_gases(state)
+    print_state(state, scrubbed_amount)
