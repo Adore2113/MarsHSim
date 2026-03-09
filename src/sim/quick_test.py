@@ -30,13 +30,41 @@ s0 = Habitat_State(
     radiation_msv_per_day=0.7
 )
 
+
+def sol_time(seconds):
+    # one mars sol is 24h 39min 35sec
+    total_sol_seconds = 88775
+    sol_seconds = state.mission_time_s % total_sol_seconds
+
+    hour_24 = sol_seconds // 3600
+    # 1h = 60min, 1min = 60 sec, 60*60 = 3600
+    minutes = (sol_seconds % 3600) // 60
+    
+    meridiem = "AM"
+    hour_12 = hour_24
+
+    if hour_24 >= 12:
+        meridiem = "PM"
+    if hour_24 > 12:
+        hour_12 = hour_24 - 12
+    if hour_24 == 0:
+        hour_12 = 12
+
+    return hour_12, minutes, meridiem
+
+    
+def print_state(state): 
+    hour, minutes, meridiem = sol_time(state.mission_time_s)
+    # LMST = Local Mean Solar Time
+    print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
+    print(f"Oxygen: {state.o2_kpa}")
+    print(f"Carbon Dioxide: {state.co2_kpa}")
+    print(f"Nitrogen: {state.n2_kpa}")
+    print(f"Argon: {state.ar_kpa}")
+    print()
+
+
 state = s0
-#12 steps = 1 hours b/c each step is 5min
 for i in range(12):
     state = step(state)
-    print(f"mission_time_s: {state.mission_time_s}")
-    print(f"o2_kpa: {state.o2_kpa}")
-    print(f"co2_kpa: {state.co2_kpa}")
-    print(f"n2_kpa: {state.n2_kpa}")
-    print(f"ar_kpa: {state.ar_kpa}")
-    print()
+    print_state(state)
