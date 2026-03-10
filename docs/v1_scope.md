@@ -1,6 +1,6 @@
-# Project name: MarsHSim
+# Project name: MarsHSim (will eventually change this)
 
-## Sim loop: discrete time steps
+## Sim loop: time steps
 
 ### V1 goal: 
     -closed loop ECLSS monitoring, logging, alerts, simple controllers
@@ -20,3 +20,73 @@
     -Adaptive dt allowed during events (automatically reduces the timestep to 1 min, during critical events)
 
     -Track mission time in seconds internally, and converted to Mars sol and local time for display
+
+#### Creation notes: 
+    03/04/2026
+    -Wanting to keep lower pressure (~65kpa target) in habitat to make leaks not as catastrophic, and deciding to add argon as a buffer gas
+
+    -30 crew members to hint at an early colony with a habitat size of 2000 cubic meters (m3)
+
+    -going to be using Dalton's Law
+
+    03/05/2026
+    -considering adding humidity contribution (1-2kPa ppH2O)
+
+    -reasearched net habitat volume per crew member (average minimum of 25m3 pp), and I'm happy with keeping the habitat size at 2000m3 (~66 m3 pp)
+
+    -wanting to keep the habitat temp between 22- 24C ideally
+
+    -taking seasons on Mars into consideration (how many sols, winter lows ~-140C, summer highs ~ 20C, 25% yearly atmosphere pressure changes from CO2 freezing and subliminating at the poles, dune migration, albedo changes from ice/dust, dust storms in the spring/summer while global storms can engluf the whole planet)
+
+    -global dust storms can drop temp averages between 10-20C for a little while
+
+    -N spring/S fall 194 sols, average temp:  
+    -N summer/S winter: 178 sols, average temp:
+    -N fall/S spring 142 sols, average temp:
+    -N winter/S summer 154 sols, average temp: 
+    (I am going off of aproximate surface temp daily averages for mid-latitude from NASA missions)
+
+    03/08/2026
+    -resuming atmosphere creation with more and updated knowledge
+
+    -Tracking partial pressure changes per timestep instead of mass: 
+    
+    -O2 drop: 
+    ~0.0033kPa pp/5min
+    -288 five minute intervals in one day
+    ~0.0033 * 288 = 0.9504kPa pp/day
+    -30 crew members
+    ~0.0033 * 30 = 0.099kPa/5min
+
+    CO2 rise: 
+    ~0.0029kPa pp/5min
+    ~0.0029 * 288 = 0.8352 kPa pp/day
+    ~0.0029 * 30 = 0.087kPa/5min
+
+    -including two amine swing bed scrubbers as part of making energy efficiency and waste reduction/recycling priorites, they aren't too expensive, and this will help with humidity removal
+
+    -including two more beds as backup, deciding to make them a list so when I add more features they will be easier to access
+
+    -co2 was defaulting to zero, need to fix my scrubbing system
+
+    -Today I learned that I needed to get the skeleton figured out and that it's okay to refine the numbers afterwards
+
+    -tomorrow finishing scrubbing function in engine.py
+
+    03/09/2026
+    -continuing where I left off with scrubbing
+
+    - NASA references : crew co2 production is around 1kg pp/day
+
+    -Making seperate functions for managing and checking gases
+
+    -Researched o2 regeneration and electrolysis with focus on Oxygen Generation Assembly (OGA), MOXIE-like Solid Oxide Electrolysis (SOXE), and Sabatier co2 reduction + electrolysis
+
+    -Implementing very basic OGA o2 generation function for now (handling power usage, total pressure updates, hydrogen(h2) production and handling/venting, later)  
+    
+    Pros: reliable, efficient, works well with amine beds and humidity considerations, low power usage at ~5 - 10kw, ~500-800kg hardware
+
+    Cons: requires water (not really a huge con b/c recycling is a main priority), produces hydrogen (could use Sabatier or vent)
+
+    **next session start:**
+    -adding total pressure update tomorrow, remember to add the o2 regen to quick_test and state.py tomorrow, also starting this little part at the end of my notes
