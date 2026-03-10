@@ -6,13 +6,13 @@ default_dt_min = 5
 crew_count = 30
 hab_vol_m3 = 2000.0
 
-scrub_per_bed_kpa = 0.06
+scrub_per_bed_kpa = 0.005
 
 def crew_metabolism(state):
-# o2 drop pp: 0.0033
-# co2 rise pp: 0.0029
-    o2_drop = 0.0033 * state.crew_count
-    co2_rise = 0.0029 * state.crew_count
+# o2 drop for 30p: 0.0033
+# co2 rise for 30p: 0.0029
+    o2_drop = 0.00011 * state.crew_count
+    co2_rise = 0.0000967 * state.crew_count
 
     return o2_drop, co2_rise
 
@@ -24,6 +24,9 @@ def checking_gases(state):
    
     if state.o2_kpa <= 17.0:
         alerts.append("ALERT: Oxygen critical")
+    
+    if state.o2_kpa >= 22.0:
+        alerts.append("ALERT: Oxygen very high | fire risk")
 
     if state.co2_kpa >= 1.0:
         alerts.append("ALERT: Carbon Dioxide high")
@@ -32,6 +35,22 @@ def checking_gases(state):
         alerts.append("ALERT: Carbon Dioxide critical")
 
     return alerts
+
+
+def o2_regen(state, o2_after_crew):
+# future : OGA oxygen generator
+# consumes water -> consumes power -> makes o2 -> makes hydrogen (h2) byproduct
+    target_o2 = 20.0
+    deficit = target_o2 - o2_after_crew
+    #make enough o2 to fill deficit + a bit extra, never negative
+    oga_o2_output = min(0.004, max(0.0, deficit + 0.001))
+    new_o2 = o2_after_crew + oga_o2_output
+
+    return new_o2
+
+
+# add total pressure update next leaving off here (03/09/2026)
+
 
 
 def removing_co2(state, co2_after_crew, next_time_s):  
