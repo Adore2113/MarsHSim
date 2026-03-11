@@ -5,23 +5,32 @@ default_dt_min = 5
 
 crew_count = 30
 hab_vol_m3 = 2000.0
+hab_temp_c = 23
 
-# measured in kPa
-target_pressure = 60.0
-target_o2 = 20.0
-target_co2 = 0.4
-target_nitrogen = 17.0
-target_argon = 22.6
+# converting kelvin to celsius
+kelvin_offset = 273.15
+
+target_pressure_kpa = 60.0
+target_o2_kpa = 20.0
+target_co2_kpa = 0.4
+target_nitrogen_kpa = 17.0
+target_argon_kpa = 22.6
+
+# r: the universal gas constant 
+# 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
+r = 8.314
+pa_per_kpa = 1000
+h2_molar_mass = 2.016 
 
 scrub_per_bed_kpa = 0.0045
 
-def crew_metabolism(state):
+def crew_metabolism_kpa(state):
 # o2 drop for 30p: 0.0033
 # co2 rise for 30p: 0.0029
-    o2_drop = 0.00011 * state.crew_count
-    co2_rise = 0.0000967 * state.crew_count
+    o2_drop_kpa = 0.00011 * state.crew_count
+    co2_rise_kpa = 0.0000967 * state.crew_count
 
-    return o2_drop, co2_rise
+    return o2_drop_kpa, co2_rise_kpa
 
 
 def gas_alert(state):
@@ -44,68 +53,68 @@ def gas_alert(state):
     return alerts
 
 
-def removing_co2(state, co2_after_crew, next_time_s):  
+def removing_co2(state, co2_after_crew_kpa, next_time_s):  
     online_beds = 0
     for bed in state.amine_beds:
         if bed["status"] == "online":
             online_beds += 1
     
-    total_scrub = online_beds * scrub_per_bed_kpa
+    total_scrub_kpa = online_beds * scrub_per_bed_kpa
 
 # every 55min switch beds w. a brief co2 spike
     if state.next_time_s % 3300 == 0 and state.next_time_s != 0:
-        total_scrub *= 0.80
+        total_scrub_kpa *= 0.80
 
-    co2_excess = co2_after_crew - target_co2
-    co2_scrubbed = min(total_scrub, max(0.0, co2_excess))
-    new_co2 = co2_after_crew - co2_scrubbed
+    co2_excess_kpa = co2_after_crew_kpa - target_co2_kpa
+    co2_scrubbed_kpa = min(total_scrub_kpa, max(0.0, co2_excess_kpa))
+    new_co2_kpa = co2_after_crew_kpa - co2_scrubbed_kpa
 
-    return new_co2, co2_scrubbed
+    return new_co2_kpa, co2_scrubbed_kpa
 
 
-def o2_regen(state, o2_after_crew):
+def o2_regen_kpa(state, o2_after_crew_kpa):
 # OGA electrolysis: consumes water -> consumes power -> makes o2 -> makes hydrogen (h2) byproduct
-    o2_deficit = target_o2 - o2_after_crew
+    o2_deficit_kpa = target_o2_kpa - o2_after_crew_kpa
 #make enough o2 to fill deficit + a bit extra, never negative
-    oga_o2_output = min(0.004, max(0.0, o2_deficit + 0.001))
-    new_o2 = o2_after_crew + oga_o2_output
+    oga_o2_output_kpa = min(0.004, max(0.0, o2_deficit_kpa + 0.001))
+    new_o2_kpa = o2_after_crew_kpa + oga_o2_output_kpa
 # venting hydrogen for now
 
-    return new_o2
+    return new_o2_kpa
 
-def oga_byproduct(o2_added):
-# Kelvin conversion: 23C + 273.15 = 296.15K
-    temp_k = 296.15
-# r: the universal gas constant used in the ideal gas law
-    r = 8.314
-# 1kPa = 1000 Pascals (p)
-    o2_added_pa = o2_added * 1000
-# convert the presure increase to hydrogen mass created
-# convert h2 mol to g, convert g to kg 
-    h2_kg = (2 * o2_added_pa * hab_vol_m3 * 2.016) / (r * temp_k * 1000)
+def oga_h2_byproduct(o2_added_kpa):
+# Kelvin conversion: 23C = 296.15K
+    temp_k = hab_temp_c + kelvin_offset
+# convert: 1kPa = 1000 Pascals (p)
+    o2_added_pa = o2_added_kpa * pa_per_kpa
+# ideal gas law: convert pressure increase to moles
+    o2_moles = (o2_added_pa * hab_vol_m3) / (r * temp_k)
+#electrolysis: 1o2 to 2h2
+    h2_moles = o2_moles * 2
+#convert h2 moles to kg
+    h2_kg = (h2_moles * h2_molar_mass) / 1000
 
     return h2_kg
-
 
 def step(state: Habitat_State, dt_min: int = default_dt_min) -> Habitat_State:
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
 
-    o2_drop, co2_rise = crew_metabolism(state)
+    o2_drop_kpa, co2_rise_kpa = crew_metabolism_kpa(state)
 
-    o2_after_crew = state.o2_kpa - o2_drop
-    co2_after_crew = state.co2_kpa + co2_rise
+    o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
+    co2_after_crew_kpa = state.co2_kpa + co2_rise_kpa
 
-    new_o2 = o2_regen(state, o2_after_crew)
-    new_co2, scrubbed_amount = removing_co2(state, co2_after_crew, next_time_s)
+    new_o2_kpa = o2_regen_kpa(state, o2_after_crew_kpa)
+    new_co2_kpa, scrubbed_amount_kpa = removing_co2(state, co2_after_crew_kpa, next_time_s)
 
     new_state = replace(
         state,
         mission_time_s = next_time_s,
-        o2_kpa = round(new_o2, 4),
-        co2_kpa = round(new_co2, 4),
+        o2_kpa = round(new_o2_kpa, 4),
+        co2_kpa = round(new_co2_kpa, 4),
         )
 
-    return new_state, scrubbed_amount
+    return new_state, scrubbed_amount_kpa
 
 
