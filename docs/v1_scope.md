@@ -22,14 +22,17 @@
     -Track mission time in seconds internally, and converted to Mars sol and local time for display
 
 #### Creation notes: 
-    03/04/2026
-    -Wanting to keep lower pressure (~65kpa target) in habitat to make leaks not as catastrophic, and deciding to add argon as a buffer gas
+        
+        03/04/2026
+    -Wanting to keep lower pressure (~65 kiloPascals (kPa) target) in habitat to make leaks not as catastrophic, and deciding to add argon as a buffer gas
 
     -30 crew members to hint at an early colony with a habitat size of 2000 cubic meters (m3)
 
     -going to be using Dalton's Law
 
-    03/05/2026
+
+
+        03/05/2026
     -considering adding humidity contribution (1-2kPa ppH2O)
 
     -reasearched net habitat volume per crew member (average minimum of 25m3 pp), and I'm happy with keeping the habitat size at 2000m3 (~66 m3 pp)
@@ -46,7 +49,9 @@
     -N winter/S summer 154 sols, average temp: 
     (I am going off of aproximate surface temp daily averages for mid-latitude from NASA missions)
 
-    03/08/2026
+
+
+        03/08/2026
     -resuming atmosphere creation with more and updated knowledge
 
     -Tracking partial pressure changes per timestep instead of mass: 
@@ -73,7 +78,9 @@
 
     -tomorrow finishing scrubbing function in engine.py
 
-    03/09/2026
+
+
+        03/09/2026
     -continuing where I left off with scrubbing
 
     - NASA references : crew co2 production is around 1kg pp/day
@@ -88,5 +95,28 @@
 
     Cons: requires water (not really a huge con b/c recycling is a main priority), produces hydrogen (could use Sabatier or vent)
 
-    **next session start:**
+         **next session start:**
     -adding total pressure update tomorrow, remember to add the o2 regen to quick_test and state.py tomorrow, also starting this little part at the end of my notes
+
+
+
+        03/10/2026
+    -renamed checking_gases function to gas_alerts, moved the cs2 removal function to before o2_regen
+
+    -made the scrubber unable to remove more cs2 than exists, and changed the kpa values to move 4 decimal places instead of two, updated target based co2 and oxygen control, added target gases as global variables in engine.py
+
+    -adding in the hydrogen that the OGA electrolysis makes and venting it -FOR NOW- and will do research on how I can use it later on (Sabatier?)
+
+    -adding OGA byproduct function in, first calculating 23C to Kelvin because I read the gas pressure depends on temp (pressure drops if it goes down) 
+
+    -I know that chemistry ratios use moles, but I really wanted to stick to kPa and kilograms(kg) to avoid my code being more complex than, so I'll figure out the conversions to avoid that
+
+    -h2_kg = (2 * o2_added_pa * hab_vol_m3 * 2.016) / (r * temp_k * 1000)
+    
+    -2.016 b/c h2 gas = two h2 atoms bonded, one h2 atom = 1.008 mol, h2 = 1.008 + 1.008 = 2.016mol
+    
+    -convert h2 mol to g, convert g to kg 
+
+       **next session start:**
+    -consider breaking down the long conversion in oga_byproduct into mulitple lines of code with notes explaining each step for easier understanding, vent the h2
+    
