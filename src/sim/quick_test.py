@@ -63,7 +63,8 @@ def print_state(state, scrubbed_amount):
     hour, minutes, meridiem = sol_time(state.mission_time_s)
     # LMST = Local Mean Solar Time
     print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
-    print(f"Oxygen: {state.o2_kpa}")    
+    print(f"Oxygen: {state.o2_kpa}")
+    print(f"Hydrogen stored: {state.h2_stored_kg}")    
     print(f"Carbon Dioxide Scrubbed: {scrubbed_amount:.4f}")
     print(f"Carbon Dioxide: {state.co2_kpa}")
     print(f"Alert: {alerts}")
