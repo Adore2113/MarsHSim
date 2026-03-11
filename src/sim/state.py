@@ -16,9 +16,6 @@ class Habitat_State:
     n2_kpa: float # nitrogen 
     ar_kpa: float # argon
 
-    # Hydogen Byproduct
-    h2_vented_total: float
-
     # CO2 Scrubbers
     amine_beds: list
 
@@ -59,7 +56,6 @@ class Habitat_State:
 
 
 
-
     # Thermal
     cabin_temp_c: float
     relative_humidity: float
@@ -78,3 +74,6 @@ class Habitat_State:
     leak_rate_kpa_per_hr: float
     smoke_ppm: float
     radiation_msv_per_day: float
+
+    # Hydogen Byproduct
+    h2_stored_kg: float = 0.0
