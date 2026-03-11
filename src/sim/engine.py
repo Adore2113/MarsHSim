@@ -6,8 +6,12 @@ default_dt_min = 5
 crew_count = 30
 hab_vol_m3 = 2000.0
 
+# measured in kPa
+target_pressure = 60.0
 target_o2 = 20.0
 target_co2 = 0.4
+target_nitrogen = 17.0
+target_argon = 22.6
 
 scrub_per_bed_kpa = 0.0045
 
@@ -48,7 +52,7 @@ def removing_co2(state, co2_after_crew, next_time_s):
     
     total_scrub = online_beds * scrub_per_bed_kpa
 
-    # every 55min switch beds w. a brief co2 spike
+# every 55min switch beds w. a brief co2 spike
     if state.next_time_s % 3300 == 0 and state.next_time_s != 0:
         total_scrub *= 0.80
 
@@ -60,14 +64,27 @@ def removing_co2(state, co2_after_crew, next_time_s):
 
 
 def o2_regen(state, o2_after_crew):
-# future : OGA oxygen generator
-# consumes water -> consumes power -> makes o2 -> makes hydrogen (h2) byproduct
+# OGA electrolysis: consumes water -> consumes power -> makes o2 -> makes hydrogen (h2) byproduct
     o2_deficit = target_o2 - o2_after_crew
-    #make enough o2 to fill deficit + a bit extra, never negative
+#make enough o2 to fill deficit + a bit extra, never negative
     oga_o2_output = min(0.004, max(0.0, o2_deficit + 0.001))
     new_o2 = o2_after_crew + oga_o2_output
+# venting hydrogen for now
 
     return new_o2
+
+def oga_byproduct(o2_added):
+# Kelvin conversion: 23C + 273.15 = 296.15K
+    temp_k = 296.15
+# r: the universal gas constant used in the ideal gas law
+    r = 8.314
+# 1kPa = 1000 Pascals (p)
+    o2_added_pa = o2_added * 1000
+# convert the presure increase to hydrogen mass created
+# convert h2 mol to g, convert g to kg 
+    h2_kg = (2 * o2_added_pa * hab_vol_m3 * 2.016) / (r * temp_k * 1000)
+
+    return h2_kg
 
 
 def step(state: Habitat_State, dt_min: int = default_dt_min) -> Habitat_State:
