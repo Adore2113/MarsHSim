@@ -16,6 +16,12 @@ class Habitat_State:
     n2_kpa: float # nitrogen 
     ar_kpa: float # argon
 
+    # Hydogen Byproduct
+    h2_vented_total: float
+
+    # CO2 Scrubbers
+    amine_beds: list
+
     # Dalton's Law
     @property
     def total_pressure_kpa(self) -> float:
