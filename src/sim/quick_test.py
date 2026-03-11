@@ -1,5 +1,5 @@
 from src.sim.state import Habitat_State
-from src.sim.engine import step, checking_gases
+from src.sim.engine import step, gas_alert
 
 s0 = Habitat_State(
     mission_time_s = 0,
@@ -63,17 +63,18 @@ def print_state(state, scrubbed_amount):
     hour, minutes, meridiem = sol_time(state.mission_time_s)
     # LMST = Local Mean Solar Time
     print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
-    print(f"Oxygen: {state.o2_kpa}")
-    print(f"Carbon Dioxide Scrubbed: {round(scrubbed_amount, 2)}")
+    print(f"Oxygen: {state.o2_kpa}")    
+    print(f"Carbon Dioxide Scrubbed: {scrubbed_amount:.4f}")
     print(f"Carbon Dioxide: {state.co2_kpa}")
     print(f"Alert: {alerts}")
     print(f"Nitrogen: {state.n2_kpa}")
     print(f"Argon: {state.ar_kpa}")
+    print(f"Total Pressure: {state.total_pressure_kpa}")
     print()
 
 
 state = s0
 for i in range(12):
     state, scrubbed_amount = step(state)
-    alerts = checking_gases(state)
+    alerts = gas_alert(state)
     print_state(state, scrubbed_amount)
