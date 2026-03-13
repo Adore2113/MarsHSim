@@ -23,6 +23,8 @@ s0 = Habitat_State(
     #from here down these are placeholders
     relative_humidity=40.0,
 
+    water_for_oga_kg = 1000.0,
+
     potable_water_l=5000.0,
     grey_water_l=0.0,
     waste_brine_l=0.0,
@@ -70,6 +72,7 @@ def print_state(state, scrubbed_amount, alerts):
     print(f"Nitrogen: {state.n2_kpa}")
     print(f"Argon: {state.ar_kpa}")
     print(f"Total Pressure: {state.total_pressure_kpa}")
+    print(f"Water remaining: {state.water_for_oga_kg}")
     print()
 
 
