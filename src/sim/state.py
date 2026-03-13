@@ -48,7 +48,7 @@ class Habitat_State:
             return 0
         return 100 * self.ar_kpa / self.total_pressure_kpa
 
-
+    water_for_oga_kg: float
 
 
 
