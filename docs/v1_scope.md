@@ -119,4 +119,29 @@
 
        **next session start:**
     -consider breaking down the long conversion in oga_byproduct into mulitple lines of code with notes explaining each step for easier understanding, vent the h2
+
+
+        03/11/2026
+    -learned it's important to document types of measurements as I go for conversions and future better understanding when both using and reading code
+
+    -adding measurements on the end of certain variable names, moved some of the variables from the oga_byproduct function to be global variables for referencing them later
+
+    -oga_byproduct is now oga_h2_byproduct with more lines of code, breaking down the process better
+
+    -going to refine notes later, for now keeping them pretty descriptive, adding some notes beside variables to see if it looks cleaner
+
+    -instead of venting, I'm going to store the h2
+    
+
+         03/13/2026
+    -deciding how much water to have in the simulator to start, it doesn't have to be exact right now it only has to be a placeholder to finish the OGA functions
+
+    -to figure out how much water(H2O) the OGA and water electrolysis uses every time it runs, I'm going to find the fixed reaction ratio instead of a fixed ratio b/c the amount of o2 produced are going to change depending on habitat events
+
+    -ratio in kg is:  1.125kg of H2O per 1kg of O2 produced
+
+    -I'm going to keep the oga functions seperate instead of one big function with a comment to sort of group them together, I feel like that will be better for future readability
+
+    -arranged some comments to be beside the line of code, I find if it's short, it does look cleaner
+
     
