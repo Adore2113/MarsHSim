@@ -9,6 +9,8 @@ hab_temp_c = 23
 
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 
+water_for_oga_kg = 1000.0 #placeholder
+
 target_pressure_kpa = 60.0
 target_o2_kpa = 20.0
 target_co2_kpa = 0.4
@@ -119,7 +121,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_co2_kpa, scrubbed_amount_kpa = removing_co2(state, co2_after_crew_kpa, next_time_s)
     
     water_used_kg = oga_water_consumed(oga_o2_output_kpa)
-
+    new_water_kg = state.water_for_oga_kg - water_used_kg
+    
     new_h2_stored_kg = state.h2_stored_kg + h2_generated_kg
 
 
@@ -128,7 +131,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         mission_time_s = next_time_s,
         o2_kpa = round(new_o2_kpa, 4),
         co2_kpa = round(new_co2_kpa, 4),
-        h2_stored_kg = round(new_h2_stored_kg, 6)
+        h2_stored_kg = round(new_h2_stored_kg, 6),
+        water_for_oga_kg = round(new_water_kg, 3)
     )
 
     return new_state, scrubbed_amount_kpa
