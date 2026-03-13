@@ -19,6 +19,7 @@ target_argon_kpa = 22.6
 r = 8.314   # the universal gas constant
 pa_per_kpa = 1000   # converts kilopascals to pascals
 h2_molar_mass = 2.016   # grams per mole of molecular hydrogen
+o2_molar_mass = 32.0
 
 scrub_per_bed_kpa = 0.0045
 
@@ -69,9 +70,8 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
 
     return new_co2_kpa, co2_scrubbed_kpa
 
-
+# ---functions for OGA and water electrolysis---
 def o2_regen_kpa(state, o2_after_crew_kpa):
-# OGA electrolysis: consumes water -> consumes power -> makes o2 -> makes hydrogen (h2) byproduct
     o2_deficit_kpa = target_o2_kpa - o2_after_crew_kpa
 #make enough o2 to fill deficit + a bit extra, never negative
     oga_o2_output_kpa = min(0.004, max(0.0, o2_deficit_kpa + 0.001))
@@ -81,20 +81,26 @@ def o2_regen_kpa(state, o2_after_crew_kpa):
 
 
 def oga_h2_byproduct(o2_added_kpa):
-# Kelvin conversion: 23C = 296.15K
-    temp_k = hab_temp_c + kelvin_offset
-# convert: 1kPa = 1000 Pascals (p)
-    o2_added_pa = o2_added_kpa * pa_per_kpa
-# ideal gas law: convert pressure increase to moles
-    o2_moles = (o2_added_pa * hab_vol_m3) / (r * temp_k)
-#electrolysis: 1o2 to 2h2
-    h2_moles = o2_moles * 2
-#convert h2 moles to kg
-    h2_generated_kg = (h2_moles * h2_molar_mass) / 1000
+    temp_k = hab_temp_c + kelvin_offset   # Kelvin conversion: 23C = 296.15K
+    o2_added_pa = o2_added_kpa * pa_per_kpa   # convert: 1kPa = 1000 Pascals (p)
+    o2_moles = (o2_added_pa * hab_vol_m3) / (r * temp_k)   # ideal gas law: convert pressure increase to moles
+    h2_moles = o2_moles * 2   #electrolysis: 1o2 to 2h2
+    h2_generated_kg = (h2_moles * h2_molar_mass) / 1000   #convert h2 moles to kg
 
     return h2_generated_kg
 
 # storing hydrogen for now to use it later 
+
+def oga_water_consumed(o2_added_kpa):
+    temp_k = hab_temp_c + kelvin_offset
+    o2_added_pa = o2_added_kpa * pa_per_kpa
+    o2_moles = (o2_added_pa * hab_vol_m3) / (r * temp_k)
+
+    o2_added_kg = (o2_moles * o2_molar_mass) / 1000
+
+    h2o_consumed_kg = o2_added_kg * 1.125    #1.125kg H2O per 1kg of O2 produced
+
+    return h2o_consumed_kg
 
 
 def step(state: Habitat_State, dt_min: int = default_dt_min):
@@ -107,11 +113,15 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     co2_after_crew_kpa = state.co2_kpa + co2_rise_kpa
 
     new_o2_kpa, oga_o2_output_kpa = o2_regen_kpa(state, o2_after_crew_kpa)
+    
     h2_generated_kg = oga_h2_byproduct(oga_o2_output_kpa)
     
     new_co2_kpa, scrubbed_amount_kpa = removing_co2(state, co2_after_crew_kpa, next_time_s)
     
+    water_used_kg = oga_water_consumed(oga_o2_output_kpa)
+
     new_h2_stored_kg = state.h2_stored_kg + h2_generated_kg
+
 
     new_state = replace(
         state,
