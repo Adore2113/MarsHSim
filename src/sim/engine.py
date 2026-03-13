@@ -9,7 +9,7 @@ hab_temp_c = 23
 
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 
-water_for_oga_kg = 1000.0 #placeholder
+water_for_oga_kg = 1000.0 # placeholder name and amount
 
 target_pressure_kpa = 60.0
 target_o2_kpa = 20.0
@@ -72,6 +72,7 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
 
     return new_co2_kpa, co2_scrubbed_kpa
 
+
 # ---functions for OGA and water electrolysis---
 def o2_regen_kpa(state, o2_after_crew_kpa):
     o2_deficit_kpa = target_o2_kpa - o2_after_crew_kpa
@@ -90,8 +91,8 @@ def oga_h2_byproduct(o2_added_kpa):
     h2_generated_kg = (h2_moles * h2_molar_mass) / 1000   #convert h2 moles to kg
 
     return h2_generated_kg
-
 # storing hydrogen for now to use it later 
+
 
 def oga_water_consumed(o2_added_kpa):
     temp_k = hab_temp_c + kelvin_offset
@@ -101,8 +102,25 @@ def oga_water_consumed(o2_added_kpa):
     o2_added_kg = (o2_moles * o2_molar_mass) / 1000
 
     h2o_consumed_kg = o2_added_kg * 1.125    #1.125kg H2O per 1kg of O2 produced
-
+    
     return h2o_consumed_kg
+
+
+def run_oga(state, o2_after_crew_kpa):
+    if state.water_for_oga_kg <= 0:
+        new_o2_kpa = o2_after_crew_kpa
+        oga_o2_output_kpa = 0.0
+        h2_generated_kg = 0.0
+        water_used_kg = 0.0
+
+        return new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg
+
+    new_o2_kpa, oga_o2_output_kpa = o2_regen_kpa(state, o2_after_crew_kpa)
+    h2_generated_kg = oga_h2_byproduct(oga_o2_output_kpa)
+    water_used_kg = oga_water_consumed(oga_o2_output_kpa)
+
+    return new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg
+
 
 
 def step(state: Habitat_State, dt_min: int = default_dt_min):
@@ -114,15 +132,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
     co2_after_crew_kpa = state.co2_kpa + co2_rise_kpa
 
-    new_o2_kpa, oga_o2_output_kpa = o2_regen_kpa(state, o2_after_crew_kpa)
-    
-    h2_generated_kg = oga_h2_byproduct(oga_o2_output_kpa)
-    
+    new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg = run_oga(state, o2_after_crew_kpa)
     new_co2_kpa, scrubbed_amount_kpa = removing_co2(state, co2_after_crew_kpa, next_time_s)
-    
-    water_used_kg = oga_water_consumed(oga_o2_output_kpa)
-    new_water_kg = state.water_for_oga_kg - water_used_kg
-    
+
+    new_water_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
     new_h2_stored_kg = state.h2_stored_kg + h2_generated_kg
 
 
