@@ -7,13 +7,20 @@ crew_count = 30
 hab_vol_m3 = 2000.0
 hab_temp_c = 23
 
+# ---conversions ---
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
+o2_kg_per_kpa = 18.2
+co2_kg_per_kpa = 35.8
+n2_kg_per_kpa = 22.75
+ar_kg_per_kpa = 32.45
+
 
 water_for_oga_kg = 1000.0 # placeholder name and amount
-#n2_stored_kpa = 
-#ar_stored_kpa = 
+n2_stored_kpa = 60.0   # ~1365 kg
+ar_stored_kpa = 30.0   # ~973.5 kg
 #min_pressure_kpa = 
 #max_pressure_kpa = 
+
 
 target_pressure_kpa = 60.0
 target_o2_kpa = 20.0
@@ -21,6 +28,8 @@ target_co2_kpa = 0.4
 target_nitrogen_kpa = 17.0
 target_argon_kpa = 22.6
  
+co2_stored_kg = 0.0   # temporarily putting the co2 that the scrubber removes to here
+
 # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 r = 8.314   # the universal gas constant
 pa_per_kpa = 1000   # converts kilopascals to pascals
