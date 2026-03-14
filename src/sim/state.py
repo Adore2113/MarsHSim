@@ -16,6 +16,11 @@ class Habitat_State:
     n2_kpa: float # nitrogen 
     ar_kpa: float # argon
 
+    n2_stored_kpa: float
+    ar_stored_kpa: float
+    min_pressure_kpa: float
+    max_pressure_kpa: float
+
     # CO2 Scrubbers
     amine_beds: list
 
