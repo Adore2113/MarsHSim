@@ -19,11 +19,15 @@ s0 = Habitat_State(
         {"status": "standby", "capacity": 3.0, "co2_load": 0.0}
     ],
 
-    cabin_temp_c=23.0,
+    n2_stored_kpa = 60.0,   # ~1365 kg
+    ar_stored_kpa = 30.0,   # ~973.5 kg
+    co2_stored_kpa = 0.0,   # temporarily putting the co2 that the scrubber removes to here
+
+    water_for_oga_kg = 1000.0, # placeholder name and amount
+
+    hab_temp_c = 23,
     #from here down these are placeholders
     relative_humidity=40.0,
-
-    water_for_oga_kg = 1000.0,
 
     potable_water_l=5000.0,
     grey_water_l=0.0,
