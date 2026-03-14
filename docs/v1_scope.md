@@ -134,7 +134,7 @@
     
 
          03/13/2026
-    -deciding how much water to have in the simulator to start, it doesn't have to be exact right now it only has to be a placeholder to finish the OGA functions
+    -going to use 1000kg of water to start as a placeholder to finish the OGA functions
 
     -to figure out how much water(H2O) the OGA and water electrolysis uses every time it runs, I'm going to find the fixed reaction ratio instead of a fixed ratio b/c the amount of o2 produced are going to change depending on habitat events
 
@@ -144,4 +144,8 @@
 
     -arranged some comments to be beside the line of code, I find if it's short, it does look cleaner
 
+    -finished oga and water electrolysis for now, moving onto argon and nitrogen 
+
+        **next session start:**
+    -figure out variable numbers for the variables commented out at the top of engine.py, add in when the ar or n2 will be used from storage    
     
