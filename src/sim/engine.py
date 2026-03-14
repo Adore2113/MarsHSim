@@ -5,7 +5,6 @@ default_dt_min = 5
 
 crew_count = 30
 hab_vol_m3 = 2000.0
-hab_temp_c = 23
 
 # ---conversions ---
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
@@ -13,11 +12,6 @@ o2_kg_per_kpa = 18.2
 co2_kg_per_kpa = 35.8
 n2_kg_per_kpa = 22.75
 ar_kg_per_kpa = 32.45
-
-
-water_for_oga_kg = 1000.0 # placeholder name and amount
-n2_stored_kpa = 60.0   # ~1365 kg
-ar_stored_kpa = 30.0   # ~973.5 kg
 
 target_pressure_kpa = 60.0
 min_safe_pressure_kpa = 55.0
@@ -27,8 +21,6 @@ target_o2_kpa = 20.0
 target_co2_kpa = 0.4
 target_n2_kpa = 17.0
 target_ar_kpa = 22.6
- 
-co2_stored_kpa = 0.0   # temporarily putting the co2 that the scrubber removes to here
 
 # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 r = 8.314   # the universal gas constant
@@ -63,23 +55,23 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
     co2_scrubbed_kpa = min(total_scrub_kpa, max(0.0, co2_excess_kpa))
     new_co2_kpa = co2_after_crew_kpa - co2_scrubbed_kpa
 
-    co2_to_storage_kpa = co2_excess_kpa + co2_stored_kpa
+    co2_stored_kpa = co2_scrubbed_kpa + state.co2_stored_kpa
 
-    return new_co2_kpa, co2_scrubbed_kpa, co2_to_storage_kpa
+    return new_co2_kpa, co2_scrubbed_kpa, co2_stored_kpa
 
 
 # ---functions for OGA and water electrolysis---
 def o2_regen_kpa(state, o2_after_crew_kpa):
     o2_deficit_kpa = target_o2_kpa - o2_after_crew_kpa
-#make enough o2 to fill deficit + a bit extra, never negative
+    #make enough o2 to fill deficit + a bit extra, never negative
     oga_o2_output_kpa = min(0.004, max(0.0, o2_deficit_kpa + 0.001))
     new_o2_kpa = o2_after_crew_kpa + oga_o2_output_kpa
 
     return new_o2_kpa, oga_o2_output_kpa
 
 
-def oga_h2_byproduct(o2_added_kpa):
-    temp_k = hab_temp_c + kelvin_offset   # Kelvin conversion: 23C = 296.15K
+def oga_h2_byproduct(state, o2_added_kpa):
+    temp_k = state.hab_temp_c + kelvin_offset   # Kelvin conversion: 23C = 296.15K
     o2_added_pa = o2_added_kpa * pa_per_kpa   # convert: 1kPa = 1000 Pascals (p)
     o2_moles = (o2_added_pa * hab_vol_m3) / (r * temp_k)   # ideal gas law: convert pressure increase to moles
     h2_moles = o2_moles * 2   #electrolysis: 1o2 to 2h2
@@ -89,13 +81,11 @@ def oga_h2_byproduct(o2_added_kpa):
 # storing hydrogen for now to use it later 
 
 
-def oga_water_consumed(o2_added_kpa):
-    temp_k = hab_temp_c + kelvin_offset
+def oga_water_consumed(state, o2_added_kpa):
+    temp_k = state.hab_temp_c + kelvin_offset
     o2_added_pa = o2_added_kpa * pa_per_kpa
     o2_moles = (o2_added_pa * hab_vol_m3) / (r * temp_k)
-
     o2_added_kg = (o2_moles * o2_molar_mass) / 1000
-
     h2o_consumed_kg = o2_added_kg * 1.125    #1.125kg H2O per 1kg of O2 produced
     
     return h2o_consumed_kg
@@ -119,7 +109,7 @@ def run_oga(state, o2_after_crew_kpa):
 
 # ---checking atmosphere gas levels---
 def mca(state):
-    total_pressure_kpa = state.o2_kpa + state.co2_kpa + state.n2_kpa + state.argon_kpa
+    total_pressure_kpa = state.o2_kpa + state.co2_kpa + state.n2_kpa + state.ar_kpa
     
     #if total_pressure drops, add n2 to dilute 
     #add argon to dilute o2 to restore pressure after leak or o2 build up
@@ -144,12 +134,6 @@ def gas_alert(state):
     if state.co2_kpa >= 2.0:
         alerts.append("ALERT: Carbon Dioxide critical")
 
-    if state.min_safe_pressure_kpa <= 55.0:
-        alerts.append("ALERT: Habitat pressure low")
-    
-    if max_safe_pressure_kpa >= 70.0:
-        alerts.append("ALERT: Habitat pressure high")
-
     return alerts
 
 
@@ -163,8 +147,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     co2_after_crew_kpa = state.co2_kpa + co2_rise_kpa
 
     new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg = run_oga(state, o2_after_crew_kpa)
-    new_co2_kpa, scrubbed_amount_kpa = removing_co2(state, co2_after_crew_kpa, next_time_s)
-    new_co2_stored_kpa = state.co2_to_storage_kpa
+    new_co2_kpa, scrubbed_amount_kpa, new_co2_stored_kpa = removing_co2(state, co2_after_crew_kpa, next_time_s)
+    new_co2_stored_kpa = state.co2_stored_kpa
 
     new_water_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
     new_h2_stored_kg = state.h2_stored_kg + h2_generated_kg
@@ -175,6 +159,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         mission_time_s = next_time_s,
         o2_kpa = round(new_o2_kpa, 4),
         co2_kpa = round(new_co2_kpa, 4),
+        co2_stored_kpa = round(state.co2_stored_kpa, 4),
         h2_stored_kg = round(new_h2_stored_kg, 6),
         water_for_oga_kg = round(new_water_kg, 3)
     )
