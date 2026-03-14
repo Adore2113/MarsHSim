@@ -10,6 +10,10 @@ hab_temp_c = 23
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 
 water_for_oga_kg = 1000.0 # placeholder name and amount
+#n2_stored_kpa = 
+#ar_stored_kpa = 
+#min_pressure_kpa = 
+#max_pressure_kpa = 
 
 target_pressure_kpa = 60.0
 target_o2_kpa = 20.0
@@ -34,26 +38,7 @@ def crew_metabolism_kpa(state):
     return o2_drop_kpa, co2_rise_kpa
 
 
-def gas_alert(state):
-    alerts = []
-    if state.o2_kpa <= 19.5:
-        alerts.append("ALERT: Oxygen low")
-   
-    if state.o2_kpa <= 17.0:
-        alerts.append("ALERT: Oxygen critical")
-    
-    if state.o2_kpa >= 22.0:
-        alerts.append("ALERT: Oxygen very high | fire risk")
-
-    if state.co2_kpa >= 1.0:
-        alerts.append("ALERT: Carbon Dioxide high")
-
-    if state.co2_kpa >= 2.0:
-        alerts.append("ALERT: Carbon Dioxide critical")
-
-    return alerts
-
-
+# ---functions for amine beds scrubbing co2---
 def removing_co2(state, co2_after_crew_kpa, next_time_s):  
     online_beds = 0
     for bed in state.amine_beds:
@@ -121,6 +106,35 @@ def run_oga(state, o2_after_crew_kpa):
 
     return new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg
 
+
+# ---checking atmosphere gas levels---
+def mca(state):
+    total_pressure_kpa = state.o2_kpa + state.co2_kpa + state.n2_kpa + state.argon_kpa
+    
+    #if total_pressure drops, add n2 to dilute 
+    #add argon to dilute o2 to restore pressure after leak or o2 build up
+    #run buffer gas control here or seperate function
+
+    return total_pressure_kpa
+
+def gas_alert(state):
+    alerts = []
+    if state.o2_kpa <= 19.5:
+        alerts.append("ALERT: Oxygen low")
+   
+    if state.o2_kpa <= 17.0:
+        alerts.append("ALERT: Oxygen critical")
+    
+    if state.o2_kpa >= 22.0:
+        alerts.append("ALERT: Oxygen very high | fire risk")
+
+    if state.co2_kpa >= 1.0:
+        alerts.append("ALERT: Carbon Dioxide high")
+
+    if state.co2_kpa >= 2.0:
+        alerts.append("ALERT: Carbon Dioxide critical")
+
+    return alerts
 
 
 def step(state: Habitat_State, dt_min: int = default_dt_min):
