@@ -18,17 +18,17 @@ ar_kg_per_kpa = 32.45
 water_for_oga_kg = 1000.0 # placeholder name and amount
 n2_stored_kpa = 60.0   # ~1365 kg
 ar_stored_kpa = 30.0   # ~973.5 kg
-#min_pressure_kpa = 
-#max_pressure_kpa = 
-
 
 target_pressure_kpa = 60.0
+min_safe_pressure_kpa = 55.0
+max_safe_pressure_kpa = 70.0
+
 target_o2_kpa = 20.0
 target_co2_kpa = 0.4
-target_nitrogen_kpa = 17.0
-target_argon_kpa = 22.6
+target_n2_kpa = 17.0
+target_ar_kpa = 22.6
  
-co2_stored_kg = 0.0   # temporarily putting the co2 that the scrubber removes to here
+co2_stored_kpa = 0.0   # temporarily putting the co2 that the scrubber removes to here
 
 # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 r = 8.314   # the universal gas constant
@@ -56,15 +56,16 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
     
     total_scrub_kpa = online_beds * scrub_per_bed_kpa
 
-# every 55min switch beds w. a brief co2 spike
-    if next_time_s % 3300 == 0 and next_time_s != 0:
+    if next_time_s % 3300 == 0 and next_time_s != 0:   # every 55min switch beds w. a brief co2 spike
         total_scrub_kpa *= 0.80
 
     co2_excess_kpa = co2_after_crew_kpa - target_co2_kpa
     co2_scrubbed_kpa = min(total_scrub_kpa, max(0.0, co2_excess_kpa))
     new_co2_kpa = co2_after_crew_kpa - co2_scrubbed_kpa
 
-    return new_co2_kpa, co2_scrubbed_kpa
+    co2_to_storage_kpa = co2_excess_kpa + co2_stored_kpa
+
+    return new_co2_kpa, co2_scrubbed_kpa, co2_to_storage_kpa
 
 
 # ---functions for OGA and water electrolysis---
@@ -143,6 +144,12 @@ def gas_alert(state):
     if state.co2_kpa >= 2.0:
         alerts.append("ALERT: Carbon Dioxide critical")
 
+    if state.min_safe_pressure_kpa <= 55.0:
+        alerts.append("ALERT: Habitat pressure low")
+    
+    if max_safe_pressure_kpa >= 70.0:
+        alerts.append("ALERT: Habitat pressure high")
+
     return alerts
 
 
@@ -157,6 +164,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg = run_oga(state, o2_after_crew_kpa)
     new_co2_kpa, scrubbed_amount_kpa = removing_co2(state, co2_after_crew_kpa, next_time_s)
+    new_co2_stored_kpa = state.co2_to_storage_kpa
 
     new_water_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
     new_h2_stored_kg = state.h2_stored_kg + h2_generated_kg
