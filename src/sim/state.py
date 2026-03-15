@@ -21,7 +21,8 @@ class Habitat_State:
 
     n2_stored_kpa: float
     ar_stored_kpa: float
-    co2_stored_kg: float
+    co2_stored_kpa: float
+    h2_stored_kg : float
 
     # Dalton's Law
     @property
@@ -54,14 +55,9 @@ class Habitat_State:
 
     water_for_oga_kg: float
 
+    hab_temp_c: float
 
-
-
-
-
-
-    # Thermal
-    cabin_temp_c: float
+    # --- these names will probably change
     relative_humidity: float
 
     # Water
