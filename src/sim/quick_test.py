@@ -1,5 +1,5 @@
 from src.sim.state import Habitat_State
-from src.sim.engine import step, gas_alert
+from src.sim.engine import step, gas_alert, mca
 
 s0 = Habitat_State(
     mission_time_s = 0,
@@ -22,6 +22,7 @@ s0 = Habitat_State(
     n2_stored_kpa = 60.0,   # ~1365 kg
     ar_stored_kpa = 30.0,   # ~973.5 kg
     co2_stored_kpa = 0.0,   # temporarily putting the co2 that the scrubber removes to here
+    h2_stored_kg = 0.0, 
 
     water_for_oga_kg = 1000.0, # placeholder name and amount
 
@@ -75,7 +76,7 @@ def print_state(state, scrubbed_amount, alerts):
     print(f"Alert: {alerts}")
     print(f"Nitrogen: {state.n2_kpa}")
     print(f"Argon: {state.ar_kpa}")
-    print(f"Total Pressure: {state.total_pressure_kpa}")
+    print(f"Total Pressure: {mca(state)}")
     print(f"Water remaining: {state.water_for_oga_kg}")
     print()
 
