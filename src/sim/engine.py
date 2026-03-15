@@ -30,6 +30,8 @@ o2_molar_mass = 32.0
 
 scrub_per_bed_kpa = 0.0045
 
+
+# ----crew metabolism per timestep----
 def crew_metabolism_kpa(state):
 # o2 drop for 30p: 0.0033
 # co2 rise for 30p: 0.0029
@@ -39,7 +41,7 @@ def crew_metabolism_kpa(state):
     return o2_drop_kpa, co2_rise_kpa
 
 
-# ---functions for amine beds scrubbing co2---
+# ----functions for amine beds scrubbing co2----
 def removing_co2(state, co2_after_crew_kpa, next_time_s):  
     online_beds = 0
     for bed in state.amine_beds:
@@ -60,7 +62,7 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
     return new_co2_kpa, co2_scrubbed_kpa, co2_stored_kpa
 
 
-# ---functions for OGA and water electrolysis---
+# ----functions for OGA and water electrolysis----    Oxygen Generation Assembly
 def o2_regen_kpa(state, o2_after_crew_kpa):
     o2_deficit_kpa = target_o2_kpa - o2_after_crew_kpa
     #make enough o2 to fill deficit + a bit extra, never negative
@@ -107,16 +109,29 @@ def run_oga(state, o2_after_crew_kpa):
     return new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg
 
 
-# ---checking atmosphere gas levels---
-def mca(state):
-    total_pressure_kpa = state.o2_kpa + state.co2_kpa + state.n2_kpa + state.ar_kpa
-    
-    #if total_pressure drops, add n2 to dilute 
-    #add argon to dilute o2 to restore pressure after leak or o2 build up
-    #run buffer gas control here or seperate function
-
+# ----checking atmosphere gas levels----    #major constituant analyzer
+def mca(state):  
+    total_pressure_kpa = state.o2_kpa + state.co2_kpa + state.n2_kpa + state.ar_kpa 
     return total_pressure_kpa
 
+
+# ----controlling atmosphere gas levels----
+def run_buffer_gas_control(state):
+    total_pressure_kpa = mca
+
+    if total_pressure_kpa < target_pressure_kpa:
+        n2_amount_to_add_kpa =    target_pressure_kpa - total_pressure_kpa
+        state.n2_kpa += n2_amount_to_add_kpa
+
+    if total_pressure_kpa <= min_safe_pressure_kpa:
+        n2_amount_to_add_kpa = target_pressure_kpa - total_pressure_kpa
+        state.n2_kpa += n2_amount_to_add_kpa
+    
+    return state
+
+
+
+# ----alerts ----
 def gas_alert(state):
     alerts = []
     if state.o2_kpa <= 19.5:
