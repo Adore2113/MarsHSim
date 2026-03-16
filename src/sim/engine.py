@@ -117,28 +117,45 @@ def mca(state):
 
 # ----controlling atmosphere gas levels----
 def run_buffer_gas_control(state):
-    total_pressure_kpa = mca
-
-    if total_pressure_kpa < target_pressure_kpa:
-        n2_amount_to_add_kpa =    target_pressure_kpa - total_pressure_kpa
-        state.n2_kpa += n2_amount_to_add_kpa
+    total_pressure_kpa = mca(state)
 
     if total_pressure_kpa <= min_safe_pressure_kpa:
-        n2_amount_to_add_kpa = target_pressure_kpa - total_pressure_kpa
-        state.n2_kpa += n2_amount_to_add_kpa
+        amount_to_add_kpa = target_pressure_kpa - total_pressure_kpa
+        
+        if state.n2_stored_kpa >= amount_to_add_kpa:    # emergency (pressure recover first)
+            state.n2_kpa += amount_to_add_kpa
+            state.n2_stored_kpa -= amount_to_add_kpa    # capped by avaliable supply
+        
+        else:
+            state.n2_kpa += state.n2_stored_kpa
+            state.n2_stored_kpa = 0.0
+
+    elif total_pressure_kpa < target_pressure_kpa:    # pressure balance first, but capped so it doesn't over-add
+        amount_to_add_kpa = target_pressure_kpa - total_pressure_kpa
+
+        if state.n2_kpa < target_n2_kpa:
+            n2_space_kpa = target_n2_kpa - state.n2_kpa
+            n2_to_add_kpa = min(amount_to_add_kpa, n2_space_kpa)
+            state.n2_kpa += n2_to_add_kpa
+            amount_to_add_kpa -= n2_to_add_kpa
+        
+        if amount_to_add_kpa > 0 and state.ar_kpa < target_ar_kpa:
+            ar_space_kpa = target_ar_kpa - state.ar_kpa
+            ar_to_add_kpa = min(amount_to_add_kpa, ar_space_kpa)
+            state.ar_kpa += ar_to_add_kpa
+            amount_to_add_kpa -= ar_to_add_kpa
     
     return state
-
 
 
 # ----alerts ----
 def gas_alert(state):
     alerts = []
-    if state.o2_kpa <= 19.5:
-        alerts.append("ALERT: Oxygen low")
-   
     if state.o2_kpa <= 17.0:
         alerts.append("ALERT: Oxygen critical")
+    
+    elif state.o2_kpa <= 19.5:
+        alerts.append("ALERT: Oxygen low")
     
     if state.o2_kpa >= 22.0:
         alerts.append("ALERT: Oxygen very high | fire risk")
@@ -148,6 +165,11 @@ def gas_alert(state):
 
     if state.co2_kpa >= 2.0:
         alerts.append("ALERT: Carbon Dioxide critical")
+
+    # later add total pressure, leak detection, when scrubbers are full (saturated)
+    # water supply low, n2 supply low, temp out of range
+    
+    # eventually airlocks humidyity, temp loops
 
     return alerts
 
