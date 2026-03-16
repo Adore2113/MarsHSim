@@ -121,6 +121,7 @@
     -consider breaking down the long conversion in oga_byproduct into mulitple lines of code with notes explaining each step for easier understanding, vent the h2
 
 
+
         03/11/2026
     -learned it's important to document types of measurements as I go for conversions and future better understanding when both using and reading code
 
@@ -132,6 +133,7 @@
 
     -instead of venting, I'm going to store the h2
     
+
 
          03/13/2026
     -going to use 1000kg of water to start as a placeholder to finish the OGA functions
@@ -149,3 +151,24 @@
         **next session start:**
     -figure out variable numbers for the variables commented out at the top of engine.py, add in when the ar or n2 will be used from storage    
     
+
+
+    03/14/2026
+    -I added the variable co2_stored_kpa to collect and temporarily store the co2 the amine bed scrubs until I use it later in my code 
+    
+    -decided on adding kg/kpa as global variables so when I need to access the stored gases, I can convert them more efficiently 
+
+        **next session start:**
+    -continue fixing variables, making sure the files are correct and finish adding Major Consituent Analyzer (mca) function and adding n2 to low pressure
+
+
+
+    03/15/2026
+    - finished maintenance
+
+    - continuing with mca, and adding another function to handle buffer gas
+
+    - I am aware that my alert function in engine.py is going to need more work but I will focus more on that after I have more of my code implemented (I feel like this is a good call)
+
+         **next session start:**
+    - add what I need to add to the other files from the new function I made today to handle the buffer gas
