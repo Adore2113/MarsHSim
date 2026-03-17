@@ -11,6 +11,15 @@ class Habitat_State:
     mission_time_s: int
 
     # Atmosphere
+    target_pressure_kpa: float
+    min_safe_pressure_kpa: float
+    max_safe_pressure_kpa: float
+
+    target_o2_kpa: float
+    target_co2_kpa: float
+    target_n2_kpa: float
+    target_ar_kpa: float
+
     o2_kpa: float # oxygen
     co2_kpa: float # carbon dioxide
     n2_kpa: float # nitrogen 
@@ -18,6 +27,7 @@ class Habitat_State:
 
     # CO2 Scrubbers
     amine_beds: list
+    scrub_per_bed_kpa: float
 
     n2_stored_kpa: float
     ar_stored_kpa: float
