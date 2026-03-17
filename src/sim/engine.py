@@ -67,7 +67,6 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
     co2_excess_kpa = co2_after_crew_kpa - state.target_co2_kpa
     co2_scrubbed_kpa = min(total_scrub_kpa, max(0.0, co2_excess_kpa))
     new_co2_kpa = co2_after_crew_kpa - co2_scrubbed_kpa
-
     co2_stored_kpa = co2_scrubbed_kpa + state.co2_stored_kpa
 
     return new_co2_kpa, co2_scrubbed_kpa, co2_stored_kpa
@@ -76,7 +75,6 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
 # ----functions for OGA and water electrolysis----    Oxygen Generation Assembly
 def o2_regen_kpa(state, o2_after_crew_kpa):
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
-    
     oga_max_o2_output = 0.004
     o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))     # make enough o2 to fill deficit + a bit extra, never negative
     o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
@@ -86,7 +84,6 @@ def o2_regen_kpa(state, o2_after_crew_kpa):
 
 def oga_h2_byproduct(state, o2_added_kpa):
     hab_temp_k = state.hab_temp_c + kelvin_offset
-    
     o2_added_pa = o2_added_kpa * pa_per_kpa
     o2_produced_moles = (o2_added_pa * state.hab_vol_m3) / (r * hab_temp_k)    # ideal gas law: convert o2 pressure increase to moles
   
@@ -98,13 +95,13 @@ def oga_h2_byproduct(state, o2_added_kpa):
 
 
 def oga_water_consumed(state, o2_added_kpa):
-    temp_k = state.hab_temp_c + kelvin_offset
+    hab_temp_k = state.hab_temp_c + kelvin_offset
     o2_added_pa = o2_added_kpa * pa_per_kpa
-    o2_moles = (o2_added_pa * state.hab_vol_m3) / (r * temp_k)
-    o2_added_kg = (o2_moles * o2_molar_mass) / 1000
-    h2o_consumed_kg = o2_added_kg * 1.125    #1.125kg H2O per 1kg of O2 produced
+    o2_produced_moles = (o2_added_pa * state.hab_vol_m3) / (r * hab_temp_k)
+    o2_produced_kg = (o2_produced_moles * o2_molar_mass) / 1000
+    water_used_kg = o2_produced_kg * 1.125    # 1.125kg H2O per 1kg of O2 produced
     
-    return h2o_consumed_kg
+    return water_used_kg
 
 
 def run_oga(state, o2_after_crew_kpa):
