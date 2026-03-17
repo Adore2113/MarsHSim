@@ -7,7 +7,6 @@ default_dt_min = 5
 hours_per_step = 5 / 60
 
 crew_count = 30
-hab_vol_m3 = 2000.0
 
 # ----conversions ----
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
@@ -87,7 +86,7 @@ def o2_regen_kpa(state, o2_after_crew_kpa):
 def oga_h2_byproduct(state, o2_added_kpa):
     temp_k = state.hab_temp_c + kelvin_offset   # Kelvin conversion: 23C = 296.15K
     o2_added_pa = o2_added_kpa * pa_per_kpa   # convert: 1kPa = 1000 Pascals (p)
-    o2_moles = (o2_added_pa * hab_vol_m3) / (r * temp_k)   # ideal gas law: convert pressure increase to moles
+    o2_moles = (o2_added_pa * state.hab_vol_m3) / (r * temp_k)   # ideal gas law: convert pressure increase to moles
     h2_moles = o2_moles * 2   #electrolysis: 1o2 to 2h2
     h2_generated_kg = (h2_moles * h2_molar_mass) / 1000   #convert h2 moles to kg
 
@@ -98,7 +97,7 @@ def oga_h2_byproduct(state, o2_added_kpa):
 def oga_water_consumed(state, o2_added_kpa):
     temp_k = state.hab_temp_c + kelvin_offset
     o2_added_pa = o2_added_kpa * pa_per_kpa
-    o2_moles = (o2_added_pa * hab_vol_m3) / (r * temp_k)
+    o2_moles = (o2_added_pa * state.hab_vol_m3) / (r * temp_k)
     o2_added_kg = (o2_moles * o2_molar_mass) / 1000
     h2o_consumed_kg = o2_added_kg * 1.125    #1.125kg H2O per 1kg of O2 produced
     
@@ -115,8 +114,12 @@ def run_oga(state, o2_after_crew_kpa):
         return new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg
 
     new_o2_kpa, oga_o2_output_kpa = o2_regen_kpa(state, o2_after_crew_kpa)
-    h2_generated_kg = oga_h2_byproduct(oga_o2_output_kpa)
-    water_used_kg = oga_water_consumed(oga_o2_output_kpa)
+    
+    h2_generated_kg = oga_h2_byproduct(state, oga_o2_output_kpa)
+    water_used_kg = oga_water_consumed(state, oga_o2_output_kpa)
+
+    oga_temp_rise_kw = 1.2
+    oga_temp_rise_kwh = oga_temp_rise_kw * hours_per_step
 
     return new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg
 
