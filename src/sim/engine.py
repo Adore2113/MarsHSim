@@ -105,24 +105,32 @@ def oga_water_consumed(state, o2_added_kpa):
 
 
 def run_oga(state, o2_after_crew_kpa):
-    if state.water_for_oga_kg <= 0:
-        new_o2_kpa = o2_after_crew_kpa
-        oga_o2_output_kpa = 0.0
-        h2_generated_kg = 0.0
-        water_used_kg = 0.0
-
-        return new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg
-
-    new_o2_kpa, oga_o2_output_kpa = o2_regen_kpa(state, o2_after_crew_kpa)
+    o2_after_oga_kpa, o2_added_kpa = o2_regen_kpa(state, o2_after_crew_kpa)
+    water_used_kg = oga_water_consumed(state, o2_added_kpa)
     
-    h2_generated_kg = oga_h2_byproduct(state, oga_o2_output_kpa)
-    water_used_kg = oga_water_consumed(state, oga_o2_output_kpa)
+    if state.water_for_oga_kg < water_used_kg:
+        return {
+            "o2_after_oga_kpa": o2_after_crew_kpa,
+            "o2_added_kpa": 0.0,
+            "h2_produced_kg": 0.0,
+            "water_used_kg": 0.0,
+            "oga_heat_kw": 0.0,
+            "oga_heat_kwh": 0.0,
+        }
 
-    oga_temp_rise_kw = 1.2
-    oga_temp_rise_kwh = oga_temp_rise_kw * hours_per_step
+    h2_produced_kg = oga_h2_byproduct(state, o2_added_kpa)
 
-    return new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg
+    oga_heat_kw = 1.2
+    oga_heat_kwh = oga_heat_kw * hours_per_step
 
+    return {
+        "o2_after_oga_kpa": o2_after_oga_kpa,
+        "o2_added_kpa": o2_added_kpa,
+        "h2_produced_kg": h2_produced_kg,
+        "water_used_kg": water_used_kg,
+        "oga_heat_kw": oga_heat_kw,
+        "oga_heat_kwh": oga_heat_kwh,
+    }
 
 # ----checking atmosphere gas levels----    #major constituant analyzer
 def mca(state):  
