@@ -85,13 +85,15 @@ def o2_regen_kpa(state, o2_after_crew_kpa):
 
 
 def oga_h2_byproduct(state, o2_added_kpa):
-    temp_k = state.hab_temp_c + kelvin_offset   # Kelvin conversion: 23C = 296.15K
-    o2_added_pa = o2_added_kpa * pa_per_kpa   # convert: 1kPa = 1000 Pascals (p)
-    o2_moles = (o2_added_pa * state.hab_vol_m3) / (r * temp_k)   # ideal gas law: convert pressure increase to moles
-    h2_moles = o2_moles * 2   #electrolysis: 1o2 to 2h2
-    h2_generated_kg = (h2_moles * h2_molar_mass) / 1000   #convert h2 moles to kg
+    hab_temp_k = state.hab_temp_c + kelvin_offset
+    
+    o2_added_pa = o2_added_kpa * pa_per_kpa
+    o2_produced_moles = (o2_added_pa * state.hab_vol_m3) / (r * hab_temp_k)    # ideal gas law: convert o2 pressure increase to moles
+  
+    h2_produced_moles = o2_produced_moles * 2    # electrolysis makes 2 moles of h2 for every mole of o2
+    h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000 
 
-    return h2_generated_kg
+    return h2_produced_kg
 # storing hydrogen for now to use it later 
 
 
