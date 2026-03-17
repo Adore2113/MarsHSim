@@ -75,12 +75,13 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
 
 # ----functions for OGA and water electrolysis----    Oxygen Generation Assembly
 def o2_regen_kpa(state, o2_after_crew_kpa):
-    o2_deficit_kpa = state.target_o2_kpa - o2_after_crew_kpa
-    #make enough o2 to fill deficit + a bit extra, never negative
-    oga_o2_output_kpa = min(0.004, max(0.0, o2_deficit_kpa + 0.001))
-    new_o2_kpa = o2_after_crew_kpa + oga_o2_output_kpa
+    o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
+    
+    oga_max_o2_output = 0.004
+    o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))     # make enough o2 to fill deficit + a bit extra, never negative
+    o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
 
-    return new_o2_kpa, oga_o2_output_kpa
+    return o2_after_oga_kpa, o2_added_kpa
 
 
 def oga_h2_byproduct(state, o2_added_kpa):
