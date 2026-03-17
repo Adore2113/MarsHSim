@@ -6,6 +6,11 @@ s0 = Habitat_State(
     mission_time_s = 0,
 
     crew_count = 30,
+    crew_activity = "normal",
+    crew_activity = "sleep",
+    crew_activity = "exercise",
+    crew_activity = "intense",
+
     hab_vol_m3 = 2000.0,
 
     # Atmosphere
