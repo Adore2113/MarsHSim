@@ -1,7 +1,10 @@
 from dataclasses import replace
 from .state import Habitat_State
 
+# ----default timestep----
 default_dt_min = 5
+
+hours_per_step = 5 / 60
 
 crew_count = 30
 hab_vol_m3 = 2000.0
@@ -24,14 +27,30 @@ r = 8.314   # the universal gas constant
 h2_molar_mass = 2.016   # grams per mole of molecular hydrogen
 o2_molar_mass = 32.0
 
-# ----crew metabolism per timestep----
+# ----crew metabolism *per default timestep*----
 def crew_metabolism_kpa(state):
-# o2 drop for 30p: 0.0033
-# co2 rise for 30p: 0.0029
-    o2_drop_kpa = 0.00011 * state.crew_count
-    co2_rise_kpa = 0.0000967 * state.crew_count
+# atmosphere gases
+    o2_drop_kpa = 0.00011 * state.crew_count    # =: 0.0033
+    co2_rise_kpa = 0.0000967 * state.crew_count    # = 0.0029
 
-    return o2_drop_kpa, co2_rise_kpa
+# temp in kW
+    if state.crew_activity == "sleep":
+        crew_temp_rise_kw = 0.083 * state.crew_count    # = 2.49
+        crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
+
+    elif state.crew_activity == "exercise":   
+        crew_temp_rise_kw = 0.30 * state.crew_count    # = 9.0
+        crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
+    
+    elif state.crew_activity == "intense":
+        crew_temp_rise_kw = 0.35 * state.crew_count    # = 10.5
+        crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
+    
+    else: 
+        crew_temp_rise_kw = 0.126 * state.crew_count    # = 3.78
+        crew_temp_rise_kwh = crew_temp_rise_kw* hours_per_step
+
+    return o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh
 
 
 # ----functions for amine beds scrubbing co2----
