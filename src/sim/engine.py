@@ -6,30 +6,23 @@ default_dt_min = 5
 crew_count = 30
 hab_vol_m3 = 2000.0
 
-# ---conversions ---
+# ----conversions ----
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 o2_kg_per_kpa = 18.2
 co2_kg_per_kpa = 35.8
 n2_kg_per_kpa = 22.75
 ar_kg_per_kpa = 32.45
+pa_per_kpa = 1000   # converts kilopascals to pascals
 
-target_pressure_kpa = 60.0
-min_safe_pressure_kpa = 55.0
-max_safe_pressure_kpa = 70.0
-
-target_o2_kpa = 20.0
-target_co2_kpa = 0.4
-target_n2_kpa = 17.0
-target_ar_kpa = 22.6
+# ----targets and min/max values----
+target_temp_c = 23.0
+min_temp_c = 20.0
+max_temp_c = 25.0
 
 # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 r = 8.314   # the universal gas constant
-pa_per_kpa = 1000   # converts kilopascals to pascals
 h2_molar_mass = 2.016   # grams per mole of molecular hydrogen
 o2_molar_mass = 32.0
-
-scrub_per_bed_kpa = 0.0045
-
 
 # ----crew metabolism per timestep----
 def crew_metabolism_kpa(state):
@@ -48,12 +41,12 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
         if bed["status"] == "online":
             online_beds += 1
     
-    total_scrub_kpa = online_beds * scrub_per_bed_kpa
+    total_scrub_kpa = online_beds * state.scrub_per_bed_kpa
 
     if next_time_s % 3300 == 0 and next_time_s != 0:   # every 55min switch beds w. a brief co2 spike
         total_scrub_kpa *= 0.80
 
-    co2_excess_kpa = co2_after_crew_kpa - target_co2_kpa
+    co2_excess_kpa = co2_after_crew_kpa - state.target_co2_kpa
     co2_scrubbed_kpa = min(total_scrub_kpa, max(0.0, co2_excess_kpa))
     new_co2_kpa = co2_after_crew_kpa - co2_scrubbed_kpa
 
@@ -64,7 +57,7 @@ def removing_co2(state, co2_after_crew_kpa, next_time_s):
 
 # ----functions for OGA and water electrolysis----    Oxygen Generation Assembly
 def o2_regen_kpa(state, o2_after_crew_kpa):
-    o2_deficit_kpa = target_o2_kpa - o2_after_crew_kpa
+    o2_deficit_kpa = state.target_o2_kpa - o2_after_crew_kpa
     #make enough o2 to fill deficit + a bit extra, never negative
     oga_o2_output_kpa = min(0.004, max(0.0, o2_deficit_kpa + 0.001))
     new_o2_kpa = o2_after_crew_kpa + oga_o2_output_kpa
@@ -119,8 +112,8 @@ def mca(state):
 def run_buffer_gas_control(state):
     total_pressure_kpa = mca(state)
 
-    if total_pressure_kpa <= min_safe_pressure_kpa:
-        amount_to_add_kpa = target_pressure_kpa - total_pressure_kpa
+    if total_pressure_kpa <= state.min_safe_pressure_kpa:
+        amount_to_add_kpa = state.target_pressure_kpa - total_pressure_kpa
         
         if state.n2_stored_kpa >= amount_to_add_kpa:    # emergency (pressure recover first)
             state.n2_kpa += amount_to_add_kpa
@@ -130,17 +123,17 @@ def run_buffer_gas_control(state):
             state.n2_kpa += state.n2_stored_kpa
             state.n2_stored_kpa = 0.0
 
-    elif total_pressure_kpa < target_pressure_kpa:    # pressure balance first, but capped so it doesn't over-add
-        amount_to_add_kpa = target_pressure_kpa - total_pressure_kpa
+    elif total_pressure_kpa < state.target_pressure_kpa:    # pressure balance first, but capped so it doesn't over-add
+        amount_to_add_kpa = state.target_pressure_kpa - total_pressure_kpa
 
-        if state.n2_kpa < target_n2_kpa:
-            n2_space_kpa = target_n2_kpa - state.n2_kpa
+        if state.n2_kpa < state.target_n2_kpa:
+            n2_space_kpa = state.target_n2_kpa - state.n2_kpa
             n2_to_add_kpa = min(amount_to_add_kpa, n2_space_kpa)
             state.n2_kpa += n2_to_add_kpa
             amount_to_add_kpa -= n2_to_add_kpa
         
-        if amount_to_add_kpa > 0 and state.ar_kpa < target_ar_kpa:
-            ar_space_kpa = target_ar_kpa - state.ar_kpa
+        if amount_to_add_kpa > 0 and state.ar_kpa < state.target_ar_kpa:
+            ar_space_kpa = state.target_ar_kpa - state.ar_kpa
             ar_to_add_kpa = min(amount_to_add_kpa, ar_space_kpa)
             state.ar_kpa += ar_to_add_kpa
             amount_to_add_kpa -= ar_to_add_kpa
