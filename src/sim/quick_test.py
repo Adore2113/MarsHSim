@@ -2,27 +2,39 @@ from src.sim.state import Habitat_State
 from src.sim.engine import step, gas_alert, mca
 
 s0 = Habitat_State(
+    # Time
     mission_time_s = 0,
 
     crew_count = 30,
     hab_vol_m3 = 2000.0,
 
+    # Atmosphere
+    target_pressure_kpa = 60.0,
+    min_safe_pressure_kpa = 55.0,
+    max_safe_pressure_kpa = 70.0,
+
+    target_o2_kpa = 20.0,
+    target_co2_kpa = 0.4,
+    target_n2_kpa = 17.0,
+    target_ar_kpa = 22.6,
+
     o2_kpa = 20.0,
     co2_kpa = 0.4,
     n2_kpa = 18.0,
-    ar_kpa = 21.6,   
+    ar_kpa = 21.6, 
 
+    n2_stored_kpa = 60.0,   # ~1365 kg
+    ar_stored_kpa = 30.0,   # ~973.5 kg
+    co2_stored_kpa = 0.0,   # temporarily putting the co2 that the scrubber removes to here
+    h2_stored_kg = 0.0,  
+ 
     amine_beds = [
         {"status": "online", "capacity": 3.0, "co2_load": 0.0},
         {"status": "regenerating", "capacity": 3.0, "co2_load": 1.0},
         {"status": "standby", "capacity": 3.0, "co2_load": 0.0},
         {"status": "standby", "capacity": 3.0, "co2_load": 0.0}
     ],
-
-    n2_stored_kpa = 60.0,   # ~1365 kg
-    ar_stored_kpa = 30.0,   # ~973.5 kg
-    co2_stored_kpa = 0.0,   # temporarily putting the co2 that the scrubber removes to here
-    h2_stored_kg = 0.0, 
+    scrub_per_bed_kpa = 0.0045,
 
     water_for_oga_kg = 1000.0, # placeholder name and amount
 
