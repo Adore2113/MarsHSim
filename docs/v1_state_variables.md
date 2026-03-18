@@ -1,19 +1,46 @@
-#### Atmosphere:
+#### Time:
+-mission_time_s
 
--total_pressure_kpa
+
+#### General Habitat:
+-hab_vol_m3
+
+
+#### Crew:
+-crew_count
+-crew_activity
+
+
+#### Atmosphere:
+-target_pressure_kpa 
+-min_safe_pressure_kpa 
+-max_safe_pressure_kpa
+
+-target_o2_kpa
+-target_co2_kpa
+-target_n2_kpa
+-target_ar_kpa
 
 -o2_kpa
-
 -co2_kpa
+-n2_kpa 
+-ar_kpa
 
--n2_kpa
 
--voc_index
+#### Atmosphere Management:
+-n2_stored_kpa
+-ar_stored_kpa
+-co2_stored_kpa
+-h2_stored_kg 
+
+-amine_bedslist
+-scrub_per_bed_kpa
+
 
 #### Thermal and humidity:
+-hab_temp_c
 
--cabin_temp_c
-
+<!-- placeholders from here -->
 -relative_humidity
 
 #### Water loop:
