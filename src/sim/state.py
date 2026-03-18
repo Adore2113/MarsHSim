@@ -1,18 +1,20 @@
 from dataclasses import dataclass
 
-#creating habitat class
+
 @dataclass
 class Habitat_State:
-    # Time
+    # time
     mission_time_s: int
 
+    # crew
     crew_count: int
     crew_activity: str
 
+    # habitat
     hab_vol_m3: float
+    hab_temp_c: float
 
-
-    # Atmosphere
+    # atmosphere targets and limits
     target_pressure_kpa: float
     min_safe_pressure_kpa: float
     max_safe_pressure_kpa: float
@@ -22,19 +24,24 @@ class Habitat_State:
     target_n2_kpa: float
     target_ar_kpa: float
 
-    o2_kpa: float # oxygen
-    co2_kpa: float # carbon dioxide
-    n2_kpa: float # nitrogen 
-    ar_kpa: float # argon
+    # current atmosphere
+    o2_kpa: float
+    co2_kpa: float
+    n2_kpa: float
+    ar_kpa: float
 
-    # CO2 Scrubbers
-    amine_beds: list
-    scrub_per_bed_kpa: float
-
+    # gas storage
     n2_stored_kpa: float
     ar_stored_kpa: float
     co2_stored_kpa: float
-    h2_stored_kg : float
+    h2_stored_kg: float
+
+    # co2 scrubbers
+    amine_beds: list
+    scrub_per_bed_kpa: float
+
+    # oga water supply
+    water_for_oga_kg: float
 
     # Dalton's Law
     @property
@@ -65,11 +72,12 @@ class Habitat_State:
             return 0
         return 100 * self.ar_kpa / self.total_pressure_kpa
 
-    water_for_oga_kg: float
 
-    hab_temp_c: float
 
-    # --- these names will probably change
+
+
+
+    # ----placeholders from here down----
     relative_humidity: float
 
     # Water
