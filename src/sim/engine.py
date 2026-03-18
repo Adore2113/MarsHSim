@@ -11,17 +11,17 @@ o2_kg_per_kpa = 18.2
 co2_kg_per_kpa = 35.8
 n2_kg_per_kpa = 22.75
 ar_kg_per_kpa = 32.45
-pa_per_kpa = 1000   # converts kilopascals to pascals
-
-# ----targets----
-target_temp_c = 23.0
-min_temp_c = 20.0
-max_temp_c = 25.0
+pa_per_kpa = 1000   # kilopascals to pascals
 
 # ----chemistry constants----
 r = 8.314   # the universal gas constant
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0
+
+# ---- temperature targets----
+target_temp_c = 23.0
+min_temp_c = 20.0
+max_temp_c = 25.0
 
 
 # ----crew metabolism per default timestep----
@@ -146,8 +146,8 @@ def run_oga(state, o2_after_crew_kpa):
         "oga_heat_kwh": oga_heat_kwh,
     }
 
-# ----checking atmosphere gas levels----    #major constituant analyzer
-def mca(state):  
+# ----checking atmosphere gas levels---- 
+def mca(state):     # major constituant analyzer  
     total_pressure_kpa = state.o2_kpa + state.co2_kpa + state.n2_kpa + state.ar_kpa 
     return total_pressure_kpa
 
@@ -158,11 +158,11 @@ def run_buffer_gas_control(state):
 
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
         pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
-        
+
         if state.n2_stored_kpa > 0 and state.n2_stored_kpa >= pressure_needed_kpa:
             state.n2_kpa += pressure_needed_kpa
             state.n2_stored_kpa -= pressure_needed_kpa
-        
+
         else:
             state.n2_kpa += state.n2_stored_kpa
             state.n2_stored_kpa = 0.0
@@ -173,16 +173,23 @@ def run_buffer_gas_control(state):
         if state.n2_kpa < state.target_n2_kpa:
             n2_room_left_kpa = state.target_n2_kpa - state.n2_kpa
             n2_to_add_kpa = min(pressure_needed_kpa, n2_room_left_kpa, state.n2_stored_kpa)
+            
             state.n2_kpa += n2_to_add_kpa
             state.n2_stored_kpa -= n2_to_add_kpa
+            
             pressure_needed_kpa -= n2_to_add_kpa
-        
+
         if pressure_needed_kpa > 0 and state.ar_kpa < state.target_ar_kpa:
             ar_room_left_kpa = state.target_ar_kpa - state.ar_kpa
             ar_to_add_kpa = min(pressure_needed_kpa, ar_room_left_kpa, state.ar_stored_kpa)
+            
             state.ar_kpa += ar_to_add_kpa
             state.ar_stored_kpa -= ar_to_add_kpa
+            
             pressure_needed_kpa -= ar_to_add_kpa
+
+    else:
+        pass
     
 
 # ----alerts ----
@@ -200,11 +207,11 @@ def gas_alert(state):
         gas_alerts.append("ALERT: Oxygen very high | fire risk")
 
     #co2
-    if state.co2_kpa >= 1.0:
-        gas_alerts.append("ALERT: Carbon Dioxide high")
-
-    elif state.co2_kpa >= 2.0:
+    if state.co2_kpa >= 2.0:
         gas_alerts.append("ALERT: Carbon Dioxide critical")
+
+    elif state.co2_kpa >= 1.0:
+        gas_alerts.append("ALERT: Carbon Dioxide high")
 
     # later add total pressure, leak detection, when scrubbers are full (saturated)
     # water supply low, n2 supply low, temp out of range
@@ -217,12 +224,12 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
 
-    o2_drop_kpa, co2_rise_kpa = crew_metabolism_kpa(state)
+    o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh = crew_metabolism_kpa(state, dt_min)
 
     o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
     co2_after_crew_kpa = state.co2_kpa + co2_rise_kpa
 
-    oga_results = run_oga(state, o2_after_crew_kpa)
+    oga_results = run_oga(state, o2_after_crew_kpa, dt_min)
     o2_after_oga_kpa = oga_results["o2_after_oga_kpa"]
     o2_added_kpa = oga_results["o2_added_kpa"]
     h2_produced_kg = oga_results["h2_produced_kg"]
@@ -230,15 +237,14 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     oga_heat_kw = oga_results["oga_heat_kw"]
     oga_heat_kwh = oga_results["oga_heat_kwh"]
 
-    co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa = run_co2_scrub(state, co2_after_crew_kpa, next_time_s)
+    co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa, co2_scrubber_heat_added_kw, co2_scrubber_heat_added_kwh = run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min)
 
     new_water_for_oga_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
     new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
 
-
     new_state = replace(
         state,
-        mission_time_s = next_time_s,
+        mission_time_s=next_time_s,
         o2_kpa=round(o2_after_oga_kpa, 4),
         co2_kpa=round(co2_after_scrub_kpa, 4),
         co2_stored_kpa=round(new_co2_stored_kpa, 4),
