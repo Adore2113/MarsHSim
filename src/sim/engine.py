@@ -3,10 +3,7 @@ from .state import Habitat_State
 
 # ----default timestep----
 default_dt_min = 5
-
-hours_per_step = 5 / 60
-
-crew_count = 30
+hours_per_step = default_dt_min / 60
 
 # ----conversions ----
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
@@ -16,17 +13,18 @@ n2_kg_per_kpa = 22.75
 ar_kg_per_kpa = 32.45
 pa_per_kpa = 1000   # converts kilopascals to pascals
 
-# ----targets and min/max values----
+# ----targets----
 target_temp_c = 23.0
 min_temp_c = 20.0
 max_temp_c = 25.0
 
-# 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
+# ----chemistry constants----
 r = 8.314   # the universal gas constant
-h2_molar_mass = 2.016   # grams per mole of molecular hydrogen
+h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0
 
-# ----crew metabolism *per default timestep*----
+
+# ----crew metabolism per default timestep----
 def crew_metabolism_kpa(state):
     # atmosphere gases
     o2_drop_kpa = 0.00011 * state.crew_count    # =: 0.0033
