@@ -153,7 +153,7 @@
     
 
 
-    03/14/2026
+        03/14/2026
     -I added the variable co2_stored_kpa to collect and temporarily store the co2 the amine bed scrubs until I use it later in my code 
     
     -decided on adding kg/kpa as global variables so when I need to access the stored gases, I can convert them more efficiently 
@@ -163,7 +163,7 @@
 
 
 
-    03/15/2026
+        03/15/2026
     - finished maintenance
 
     - continuing with mca, and adding another function to handle buffer gas
@@ -172,3 +172,27 @@
 
          **next session start:**
     - add what I need to add to the other files from the new function I made today to handle the buffer gas
+
+
+
+        03/17/2026
+    - yesterday I mapped out a better plan for the rest of my simulator, and I decided to clean it up as I go today..I realize I made a lot of mistakes earlier, but I'm noticing them and fixing them now
+
+    - moving to temp management today and thermal control, I decided to get the main ideas down using radiators and do more resesarch into other ideas later on
+
+    - cleaned up my code and moved the variables to the other files where they belong, and referenced them properly in engine.py
+
+    - going to use kilowatts (kW) for heat sources (kW = change) (C = result)
+
+    - while adding the temp variables to run_oga, I decided to rename a few variables to make reading/going over my code later easier and I also decided to make these functions more efficent overall
+
+    - I'm not sure if I already stated this, but the OGA is capped at 0.004 (for now) is so that the OGA has to take it's time to catch back up so that it doesn't run a huge amount of power and it seems unrealistic
+
+    - I decided to use a dictionary in the run_oga function to keep it more managable and neat
+
+    - continuing to fix my code functions, and will remember to stay consistent with the names and structure moving forward
+
+    - really happy with my progress today and will continue implementing thermal control and temp management tomorrow
+
+        **next session start:**
+    - thermal control and temp management
