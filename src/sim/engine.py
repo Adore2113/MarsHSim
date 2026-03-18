@@ -28,11 +28,11 @@ o2_molar_mass = 32.0
 
 # ----crew metabolism *per default timestep*----
 def crew_metabolism_kpa(state):
-# atmosphere gases
+    # atmosphere gases
     o2_drop_kpa = 0.00011 * state.crew_count    # =: 0.0033
     co2_rise_kpa = 0.0000967 * state.crew_count    # = 0.0029
 
-# temp in kW
+    # tempurature
     if state.crew_activity == "sleep":
         crew_temp_rise_kw = 0.083 * state.crew_count    # = 2.49
         crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
@@ -53,23 +53,23 @@ def crew_metabolism_kpa(state):
 
 
 # ----functions for amine beds scrubbing co2----
-def removing_co2(state, co2_after_crew_kpa, next_time_s):  
-    online_beds = 0
+def run_co2_scrub(state, co2_after_crew_kpa, next_time_s):  
+    online_bed_count = 0
     for bed in state.amine_beds:
         if bed["status"] == "online":
-            online_beds += 1
+            online_bed_count += 1
     
-    total_scrub_kpa = online_beds * state.scrub_per_bed_kpa
+    max_scrub_removal_kpa = online_bed_count * state.scrub_per_bed_kpa
 
     if next_time_s % 3300 == 0 and next_time_s != 0:   # every 55min switch beds w. a brief co2 spike
-        total_scrub_kpa *= 0.80
+        max_scrub_removal_kpa *= 0.80
 
-    co2_excess_kpa = co2_after_crew_kpa - state.target_co2_kpa
-    co2_scrubbed_kpa = min(total_scrub_kpa, max(0.0, co2_excess_kpa))
-    new_co2_kpa = co2_after_crew_kpa - co2_scrubbed_kpa
-    co2_stored_kpa = co2_scrubbed_kpa + state.co2_stored_kpa
+    excess_co2_kpa = co2_after_crew_kpa - state.target_co2_kpa
+    co2_removed_kpa = min(max_scrub_removal_kpa, max(0.0, excess_co2_kpa))
+    co2_after_scrub_kpa = co2_after_crew_kpa - co2_removed_kpa
+    new_co2_stored_kpa = co2_removed_kpa + state.co2_stored_kpa
 
-    return new_co2_kpa, co2_scrubbed_kpa, co2_stored_kpa
+    return co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa
 
 
 # ----functions for OGA and water electrolysis----    Oxygen Generation Assembly
@@ -91,7 +91,7 @@ def oga_h2_byproduct(state, o2_added_kpa):
     h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000 
 
     return h2_produced_kg
-# storing hydrogen for now to use it later 
+    # storing hydrogen for now to use it later 
 
 
 def oga_water_consumed(state, o2_added_kpa):
@@ -148,6 +148,7 @@ def run_buffer_gas_control(state):
         if state.n2_stored_kpa > 0 and state.n2_stored_kpa >= pressure_needed_kpa:
             state.n2_kpa += pressure_needed_kpa
             state.n2_stored_kpa -= pressure_needed_kpa
+        
         else:
             state.n2_kpa += state.n2_stored_kpa
             state.n2_stored_kpa = 0.0
@@ -172,28 +173,31 @@ def run_buffer_gas_control(state):
 
 # ----alerts ----
 def gas_alert(state):
-    alerts = []
+    gas_alerts = []
+    
+    #o2
     if state.o2_kpa <= 17.0:
-        alerts.append("ALERT: Oxygen critical")
+        gas_alerts.append("ALERT: Oxygen critical")
     
     elif state.o2_kpa <= 19.5:
-        alerts.append("ALERT: Oxygen low")
+        gas_alerts.append("ALERT: Oxygen low")
     
     if state.o2_kpa >= 22.0:
-        alerts.append("ALERT: Oxygen very high | fire risk")
+        gas_alerts.append("ALERT: Oxygen very high | fire risk")
 
+    #co2
     if state.co2_kpa >= 1.0:
-        alerts.append("ALERT: Carbon Dioxide high")
+        gas_alerts.append("ALERT: Carbon Dioxide high")
 
-    if state.co2_kpa >= 2.0:
-        alerts.append("ALERT: Carbon Dioxide critical")
+    elif state.co2_kpa >= 2.0:
+        gas_alerts.append("ALERT: Carbon Dioxide critical")
 
     # later add total pressure, leak detection, when scrubbers are full (saturated)
     # water supply low, n2 supply low, temp out of range
     
-    # eventually airlocks humidyity, temp loops
+    # eventually airlocks humidity, temp loops
 
-    return alerts
+    return gas_alerts
 
 
 def step(state: Habitat_State, dt_min: int = default_dt_min):
@@ -206,7 +210,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     co2_after_crew_kpa = state.co2_kpa + co2_rise_kpa
 
     new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg = run_oga(state, o2_after_crew_kpa)
-    new_co2_kpa, scrubbed_amount_kpa, new_co2_stored_kpa = removing_co2(state, co2_after_crew_kpa, next_time_s)
+    new_co2_kpa, scrubbed_amount_kpa, new_co2_stored_kpa = run_co2_scrub(state, co2_after_crew_kpa, next_time_s)
     new_co2_stored_kpa = state.co2_stored_kpa
 
     new_water_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
