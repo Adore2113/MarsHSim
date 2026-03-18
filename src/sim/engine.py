@@ -194,7 +194,6 @@ def gas_alert(state):
 
     # later add total pressure, leak detection, when scrubbers are full (saturated)
     # water supply low, n2 supply low, temp out of range
-    
     # eventually airlocks humidity, temp loops
 
     return gas_alerts
@@ -209,24 +208,30 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
     co2_after_crew_kpa = state.co2_kpa + co2_rise_kpa
 
-    new_o2_kpa, oga_o2_output_kpa, h2_generated_kg, water_used_kg = run_oga(state, o2_after_crew_kpa)
-    new_co2_kpa, scrubbed_amount_kpa, new_co2_stored_kpa = run_co2_scrub(state, co2_after_crew_kpa, next_time_s)
-    new_co2_stored_kpa = state.co2_stored_kpa
+    oga_results = run_oga(state, o2_after_crew_kpa)
+    o2_after_oga_kpa = oga_results["o2_after_oga_kpa"]
+    o2_added_kpa = oga_results["o2_added_kpa"]
+    h2_produced_kg = oga_results["h2_produced_kg"]
+    water_used_kg = oga_results["water_used_kg"]
+    oga_heat_kw = oga_results["oga_heat_kw"]
+    oga_heat_kwh = oga_results["oga_heat_kwh"]
 
-    new_water_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
-    new_h2_stored_kg = state.h2_stored_kg + h2_generated_kg
+    co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa = run_co2_scrub(state, co2_after_crew_kpa, next_time_s)
+
+    new_water_for_oga_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
+    new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
 
 
     new_state = replace(
         state,
         mission_time_s = next_time_s,
-        o2_kpa = round(new_o2_kpa, 4),
-        co2_kpa = round(new_co2_kpa, 4),
-        co2_stored_kpa = round(state.co2_stored_kpa, 4),
-        h2_stored_kg = round(new_h2_stored_kg, 6),
-        water_for_oga_kg = round(new_water_kg, 3)
+        o2_kpa=round(o2_after_oga_kpa, 4),
+        co2_kpa=round(co2_after_scrub_kpa, 4),
+        co2_stored_kpa=round(new_co2_stored_kpa, 4),
+        h2_stored_kg=round(new_h2_stored_kg, 6),
+        water_for_oga_kg=round(new_water_for_oga_kg, 3),
     )
 
-    return new_state, scrubbed_amount_kpa
+    return new_state, co2_removed_kpa
 
 
