@@ -15,7 +15,7 @@
 
     -Default timestep: 5 minutes
   
-    -Engine uses configurable delta time(dt) (supperted timesteps will be: 1, 5, 10, 30 min)
+    -Engine uses configurable delta time(dt) (supported timesteps will be: 1, 5, 10, 30 min)
 
     -Adaptive dt allowed during events (automatically reduces the timestep to 1 min, during critical events)
 
@@ -24,7 +24,7 @@
 #### Creation notes: 
         
         03/04/2026
-    -Wanting to keep lower pressure (~65 kiloPascals (kPa) target) in habitat to make leaks not as catastrophic, and deciding to add argon as a buffer gas
+    -Wanting to keep lower pressure (~65 kilopascals (kPa) target) in habitat to make leaks not as catastrophic, and deciding to add argon as a buffer gas
 
     -30 crew members to hint at an early colony with a habitat size of 2000 cubic meters (m3)
 
@@ -35,11 +35,11 @@
         03/05/2026
     -considering adding humidity contribution (1-2kPa ppH2O)
 
-    -reasearched net habitat volume per crew member (average minimum of 25m3 pp), and I'm happy with keeping the habitat size at 2000m3 (~66 m3 pp)
+    -researched net habitat volume per crew member (average minimum of 25m3 pp), and I'm happy with keeping the habitat size at 2000m3 (~66 m3 pp)
 
-    -wanting to keep the habitat temp between 22- 24C ideally
+    -wanting to keep the habitat temp between 22-24C ideally
 
-    -taking seasons on Mars into consideration (how many sols, winter lows ~-140C, summer highs ~ 20C, 25% yearly atmosphere pressure changes from CO2 freezing and subliminating at the poles, dune migration, albedo changes from ice/dust, dust storms in the spring/summer while global storms can engluf the whole planet)
+    -taking seasons on Mars into consideration (how many sols, winter lows ~-140C, summer highs ~20C, 25% yearly atmosphere pressure changes from CO2 freezing and sublimating at the poles, dune migration, albedo changes from ice/dust, dust storms in the spring/summer while global storms can engulf the whole planet)
 
     -global dust storms can drop temp averages between 10-20C for a little while
 
@@ -47,14 +47,14 @@
     -N summer/S winter: 178 sols, average temp:
     -N fall/S spring 142 sols, average temp:
     -N winter/S summer 154 sols, average temp: 
-    (I am going off of aproximate surface temp daily averages for mid-latitude from NASA missions)
+    (I am going off of approximate surface temp daily averages for mid-latitude from NASA missions)
 
 
 
         03/08/2026
     -resuming atmosphere creation with more and updated knowledge
 
-    -Tracking partial pressure changes per timestep instead of mass: 
+    -tracking partial pressure changes per timestep instead of mass: 
     
     -O2 drop: 
     ~0.0033kPa pp/5min
@@ -68,13 +68,13 @@
     ~0.0029 * 288 = 0.8352 kPa pp/day
     ~0.0029 * 30 = 0.087kPa/5min
 
-    -including two amine swing bed scrubbers as part of making energy efficiency and waste reduction/recycling priorites, they aren't too expensive, and this will help with humidity removal
+    -including two amine swing bed scrubbers as part of making energy efficiency and waste reduction/recycling priorities, they aren't too expensive, and this will help with humidity removal
 
     -including two more beds as backup, deciding to make them a list so when I add more features they will be easier to access
 
     -co2 was defaulting to zero, need to fix my scrubbing system
 
-    -Today I learned that I needed to get the skeleton figured out and that it's okay to refine the numbers afterwards
+    -today I learned that I needed to get the skeleton figured out and that it's okay to refine the numbers afterwards
 
     -tomorrow finishing scrubbing function in engine.py
 
@@ -83,15 +83,15 @@
         03/09/2026
     -continuing where I left off with scrubbing
 
-    - NASA references : crew co2 production is around 1kg pp/day
+    -NASA references: crew co2 production is around 1kg pp/day
 
-    -Making seperate functions for managing and checking gases
+    -making separate functions for managing and checking gases
 
-    -Researched o2 regeneration and electrolysis with focus on Oxygen Generation Assembly (OGA), MOXIE-like Solid Oxide Electrolysis (SOXE), and Sabatier co2 reduction + electrolysis
+    -researched o2 regeneration and electrolysis with focus on Oxygen Generation Assembly (OGA), MOXIE-like Solid Oxide Electrolysis (SOXE), and Sabatier co2 reduction + electrolysis
 
-    -Implementing very basic OGA o2 generation function for now (handling power usage, total pressure updates, hydrogen(h2) production and handling/venting, later)  
+    -implementing very basic OGA o2 generation function for now (handling power usage, total pressure updates, hydrogen(h2) production and handling/venting later)  
     
-    Pros: reliable, efficient, works well with amine beds and humidity considerations, low power usage at ~5 - 10kw, ~500-800kg hardware
+    Pros: reliable, efficient, works well with amine beds and humidity considerations, low power usage at ~5-10kW, ~500-800kg hardware
 
     Cons: requires water (not really a huge con b/c recycling is a main priority), produces hydrogen (could use Sabatier or vent)
 
@@ -101,15 +101,15 @@
 
 
         03/10/2026
-    -renamed checking_gases function to gas_alerts, moved the cs2 removal function to before o2_regen
+    -renamed checking_gases function to gas_alerts, moved the co2 removal function to before o2_regen
 
-    -made the scrubber unable to remove more cs2 than exists, and changed the kpa values to move 4 decimal places instead of two, updated target based co2 and oxygen control, added target gases as global variables in engine.py
+    -made the scrubber unable to remove more co2 than exists, and changed the kPa values to move 4 decimal places instead of two, updated target based co2 and oxygen control, added target gases as global variables in engine.py
 
     -adding in the hydrogen that the OGA electrolysis makes and venting it -FOR NOW- and will do research on how I can use it later on (Sabatier?)
 
     -adding OGA byproduct function in, first calculating 23C to Kelvin because I read the gas pressure depends on temp (pressure drops if it goes down) 
 
-    -I know that chemistry ratios use moles, but I really wanted to stick to kPa and kilograms(kg) to avoid my code being more complex than, so I'll figure out the conversions to avoid that
+    -I know that chemistry ratios use moles, but I really wanted to stick to kPa and kilograms (kg) to avoid my code being more complex, so I'll figure out the conversions to avoid that
 
     -h2_kg = (2 * o2_added_pa * hab_vol_m3 * 2.016) / (r * temp_k * 1000)
     
@@ -118,7 +118,7 @@
     -convert h2 mol to g, convert g to kg 
 
        **next session start:**
-    -consider breaking down the long conversion in oga_byproduct into mulitple lines of code with notes explaining each step for easier understanding, vent the h2
+    -consider breaking down the long conversion in oga_byproduct into multiple lines of code with notes explaining each step for easier understanding, vent the h2
 
 
 
@@ -159,40 +159,52 @@
     -decided on adding kg/kpa as global variables so when I need to access the stored gases, I can convert them more efficiently 
 
         **next session start:**
-    -continue fixing variables, making sure the files are correct and finish adding Major Consituent Analyzer (mca) function and adding n2 to low pressure
+    -continue fixing variables, making sure the files are correct and finish adding Major Constituent Analyzer (mca) function and adding n2 to low pressure
 
 
 
         03/15/2026
-    - finished maintenance
+    -finished maintenance
 
-    - continuing with mca, and adding another function to handle buffer gas
+    -continuing with mca, and adding another function to handle buffer gas
 
-    - I am aware that my alert function in engine.py is going to need more work but I will focus more on that after I have more of my code implemented (I feel like this is a good call)
+    -I am aware that my alert function in engine.py is going to need more work but I will focus more on that after I have more of my code implemented (I feel like this is a good call)
 
          **next session start:**
-    - add what I need to add to the other files from the new function I made today to handle the buffer gas
+    -add what I need to add to the other files from the new function I made today to handle the buffer gas
 
 
 
         03/17/2026
-    - yesterday I mapped out a better plan for the rest of my simulator, and I decided to clean it up as I go today..I realize I made a lot of mistakes earlier, but I'm noticing them and fixing them now
+    -yesterday I mapped out a better plan for the rest of my simulator, and I decided to clean it up as I go today..I realize I made a lot of mistakes earlier, but I'm noticing them and fixing them now
 
-    - moving to temp management today and thermal control, I decided to get the main ideas down using radiators and do more resesarch into other ideas later on
+    -moving to temp management today and thermal control, I decided to get the main ideas down using radiators and do more research into other ideas later on
 
-    - cleaned up my code and moved the variables to the other files where they belong, and referenced them properly in engine.py
+    -cleaned up my code and moved the variables to the other files where they belong, and referenced them properly in engine.py
 
-    - going to use kilowatts (kW) for heat sources (kW = change) (C = result)
+    -going to use kilowatts (kW) for heat sources (kW = change) (C = result)
 
-    - while adding the temp variables to run_oga, I decided to rename a few variables to make reading/going over my code later easier and I also decided to make these functions more efficent overall
+    -while adding the temp variables to run_oga, I decided to rename a few variables to make reading/going over my code later easier and I also decided to make these functions more efficient overall
 
-    - I'm not sure if I already stated this, but the OGA is capped at 0.004 (for now) is so that the OGA has to take it's time to catch back up so that it doesn't run a huge amount of power and it seems unrealistic
+    -I'm not sure if I already stated this, but the OGA is capped at 0.004 (for now) so that the OGA has to take its time to catch back up so that it doesn't run a huge amount of power and it seems unrealistic
 
-    - I decided to use a dictionary in the run_oga function to keep it more managable and neat
+    -I decided to use a dictionary in the run_oga function to keep it more manageable and neat
 
-    - continuing to fix my code functions, and will remember to stay consistent with the names and structure moving forward
+    -continuing to fix my code functions, and will remember to stay consistent with the names and structure moving forward
 
-    - really happy with my progress today and will continue implementing thermal control and temp management tomorrow
+    -really happy with my progress today and will continue implementing thermal control and temp management tomorrow
 
         **next session start:**
-    - thermal control and temp management
+    -thermal control and temp management
+
+
+
+        03/17/2026
+    -deciding if I should add heat output into current functions, or have it's own. I'm going to keep adding to the proper functions
+
+    -adding heat produced by amine beds with exothermic absorption (the amine molecules catch the co2 which releases heat), and regeneration
+
+    -wrote a first version of a readme.md file and decided to make my project public today
+
+        **next session start:**
+    -consider turning functions with five or more return variables into dictionary and continue with thermal control and temp management
