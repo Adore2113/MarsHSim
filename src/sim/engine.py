@@ -242,7 +242,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_water_for_oga_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
     new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
 
-    new_state = replace(
+    pre_buffer_state = replace(
         state,
         mission_time_s=next_time_s,
         o2_kpa=round(o2_after_oga_kpa, 4),
@@ -250,6 +250,16 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         co2_stored_kpa=round(new_co2_stored_kpa, 4),
         h2_stored_kg=round(new_h2_stored_kg, 6),
         water_for_oga_kg=round(new_water_for_oga_kg, 3),
+    )
+
+    run_buffer_gas_control(pre_buffer_state)
+
+    new_state = replace(
+        pre_buffer_state,
+        n2_kpa=round(pre_buffer_state.n2_kpa, 4),
+        ar_kpa=round(pre_buffer_state.ar_kpa, 4),
+        n2_stored_kpa=round(pre_buffer_state.n2_stored_kpa, 4),
+        ar_stored_kpa=round(pre_buffer_state.ar_stored_kpa, 4),
     )
 
     return new_state, co2_removed_kpa
