@@ -2,18 +2,22 @@ from src.sim.state import Habitat_State
 from src.sim.engine import step, gas_alert, mca
 
 s0 = Habitat_State(
-    # Time
+    # time
     mission_time_s = 0,
-
+    
+    # crew
     crew_count = 30,
+
+    #later these will be handled properly for schedules and some random events
     crew_activity = "normal",
     crew_activity = "sleep",
     crew_activity = "exercise",
     crew_activity = "intense",
 
     hab_vol_m3 = 2000.0,
+    hab_temp_c = 23,
 
-    # Atmosphere
+    # atmosphere
     target_pressure_kpa = 60.0,
     min_safe_pressure_kpa = 55.0,
     max_safe_pressure_kpa = 70.0,
@@ -39,11 +43,10 @@ s0 = Habitat_State(
         {"status": "standby", "capacity": 3.0, "co2_load": 0.0},
         {"status": "standby", "capacity": 3.0, "co2_load": 0.0}
     ],
-    scrub_per_bed_kpa = 0.0045,
+    scrub_per_bed_kpa = 0.0035,
 
     water_for_oga_kg = 1000.0, # placeholder name and amount
-
-    hab_temp_c = 23,
+        
     #from here down these are placeholders
     relative_humidity=40.0,
 
