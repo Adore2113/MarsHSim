@@ -3,7 +3,7 @@ from .state import Habitat_State
 
 # ----default timestep----
 default_dt_min = 5
-hours_per_step = default_dt_min / 60
+#hours_per_step = dt_min / 60
 
 # ----conversions ----
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
@@ -26,6 +26,7 @@ max_temp_c = 25.0
 
 # ----crew metabolism per default timestep----
 def crew_metabolism_kpa(state, dt_min):
+    hours_per_step = dt_min / 60
     # atmosphere gases
     o2_drop_kpa = 0.00011 * state.crew_count    # =: 0.0033
     co2_rise_kpa = 0.0000967 * state.crew_count    # = 0.0029
@@ -52,6 +53,7 @@ def crew_metabolism_kpa(state, dt_min):
 
 # ----functions for amine beds scrubbing co2----
 def run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min):  
+    hours_per_step = dt_min / 60
     online_bed_count = 0
     for bed in state.amine_beds:
         if bed["status"] == "online":
@@ -119,6 +121,7 @@ def oga_water_consumed(state, o2_added_kpa):
 
 
 def run_oga(state, o2_after_crew_kpa, dt_min):
+    hours_per_step = dt_min / 60
     o2_after_oga_kpa, o2_added_kpa = o2_regen_kpa(state, o2_after_crew_kpa, dt_min)
     water_used_kg = oga_water_consumed(state, o2_added_kpa)
     
@@ -153,44 +156,66 @@ def mca(state):     # major constituant analyzer
 
 
 # ----controlling atmosphere gas levels----
-def run_buffer_gas_control(state):
-    total_pressure_kpa = mca(state)
+def run_buffer_gas_control(state, dt_min):
+    hours_per_step = dt_min / 60
+
+    n2_kpa = state.n2_kpa
+    n2_stored_kpa = state.n2_stored_kpa
+    ar_kpa = state.ar_kpa
+    ar_stored_kpa = state.ar_stored_kpa
+
+    buffer_gas_heat_added_kw = 0.0
+    buffer_gas_heat_added_kWh = 0.0
+
+    total_pressure_kpa = state.o2_kpa + state.co2_kpa + n2_kpa + ar_kpa
 
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
         pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
 
-        if state.n2_stored_kpa > 0 and state.n2_stored_kpa >= pressure_needed_kpa:
-            state.n2_kpa += pressure_needed_kpa
-            state.n2_stored_kpa -= pressure_needed_kpa
+        if n2_stored_kpa > 0 and n2_stored_kpa >= pressure_needed_kpa:
+           n2_kpa += pressure_needed_kpa
+           n2_stored_kpa -= pressure_needed_kpa
 
         else:
-            state.n2_kpa += state.n2_stored_kpa
+            n2_kpa += state.n2_stored_kpa
             state.n2_stored_kpa = 0.0
 
     elif total_pressure_kpa < state.target_pressure_kpa:
         pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
 
-        if state.n2_kpa < state.target_n2_kpa:
-            n2_room_left_kpa = state.target_n2_kpa - state.n2_kpa
-            n2_to_add_kpa = min(pressure_needed_kpa, n2_room_left_kpa, state.n2_stored_kpa)
+        if n2_kpa < state.target_n2_kpa:
+            n2_room_left_kpa = state.target_n2_kpa - n2_kpa
+            n2_to_add_kpa = min(pressure_needed_kpa, n2_room_left_kpa, n2_stored_kpa)
             
-            state.n2_kpa += n2_to_add_kpa
-            state.n2_stored_kpa -= n2_to_add_kpa
+            n2_kpa += n2_to_add_kpa
+            n2_stored_kpa -= n2_to_add_kpa
             
             pressure_needed_kpa -= n2_to_add_kpa
 
-        if pressure_needed_kpa > 0 and state.ar_kpa < state.target_ar_kpa:
-            ar_room_left_kpa = state.target_ar_kpa - state.ar_kpa
-            ar_to_add_kpa = min(pressure_needed_kpa, ar_room_left_kpa, state.ar_stored_kpa)
+        if pressure_needed_kpa > 0 and ar_kpa < state.target_ar_kpa:
+            ar_room_left_kpa = state.target_ar_kpa - ar_kpa
+            ar_to_add_kpa = min(pressure_needed_kpa, ar_room_left_kpa, ar_stored_kpa)
             
-            state.ar_kpa += ar_to_add_kpa
-            state.ar_stored_kpa -= ar_to_add_kpa
+            ar_kpa += ar_to_add_kpa
+            ar_stored_kpa -= ar_to_add_kpa
             
             pressure_needed_kpa -= ar_to_add_kpa
 
     else:
         pass
+
+        buffer_gas_heat_added_kwh = buffer_gas_heat_added_kw * hours_per_step
     
+    return {
+        "n2_kpa" : n2_kpa,
+        "ar_kpa" : ar_kpa,
+        "n2_stored_kpa": n2_stored_kpa,
+        "ar_stored_kpa": ar_stored_kpa,
+        "buffer_gas_heat_added_kw": buffer_gas_heat_added_kw,
+        "buffer_gas_heat_added_kwh": buffer_gas_heat_added_kwh,
+
+    }
+
 
 # ----alerts ----
 def gas_alert(state):
