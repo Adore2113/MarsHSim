@@ -212,6 +212,6 @@
 
 
         03/17/2026
-    - added dt_min to variables that change based on elapsed time in engine.py
+    -added dt_min to variables that change based on elapsed time in engine.py
 
-    - moving onto adding temp management to the OGA
+    -fixing the buffer gas control function so that it doesn't alter things from state directly and turning the return into a dictionary. I will probably end up using dictionaries for most of these as I go 
