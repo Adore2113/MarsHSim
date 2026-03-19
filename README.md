@@ -50,9 +50,9 @@ The focus is on reliability, realism, machine learning integration, reusability,
 
 ## Current Focus:
 
-    This simulator is in active development and still in it's early stages.
+This simulator is in active development and still in it's early stages.
 
-    Right now the focus is building the core systems one at a time and making sure each one behaves clearly and consistently.  
+Right now the focus is building the core systems one at a time and making sure each one behaves clearly and consistently.  
 
 ## Project Structure:
     
