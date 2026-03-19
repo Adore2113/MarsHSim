@@ -10,6 +10,8 @@ class Habitat_State:
     crew_count: int
     crew_activity: str
 
+    amine_beds: list
+
     # habitat
     hab_vol_m3: float
     hab_temp_c: float
@@ -37,8 +39,8 @@ class Habitat_State:
     h2_stored_kg: float
 
     # co2 scrubbers
-    amine_beds: list
-    scrub_per_bed_kpa: float
+    #amine_beds: list
+    #scrub_per_bed_kpa: float
 
     # oga water supply
     water_for_oga_kg: float
@@ -72,9 +74,8 @@ class Habitat_State:
             return 0
         return 100 * self.ar_kpa / self.total_pressure_kpa
 
-
-
-
+    
+    scrub_per_bed_kpa: float
 
 
     # ----placeholders from here down----
@@ -94,6 +95,3 @@ class Habitat_State:
     leak_rate_kpa_per_hr: float
     smoke_ppm: float
     radiation_msv_per_day: float
-
-    # Hydogen Byproduct
-    h2_stored_kg: float = 0.0
