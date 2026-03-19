@@ -25,7 +25,7 @@ max_temp_c = 25.0
 
 
 # ----crew metabolism per default timestep----
-def crew_metabolism_kpa(state):
+def crew_metabolism_kpa(state, dt_min):
     # atmosphere gases
     o2_drop_kpa = 0.00011 * state.crew_count    # =: 0.0033
     co2_rise_kpa = 0.0000967 * state.crew_count    # = 0.0029
@@ -51,7 +51,7 @@ def crew_metabolism_kpa(state):
 
 
 # ----functions for amine beds scrubbing co2----
-def run_co2_scrub(state, co2_after_crew_kpa, next_time_s):  
+def run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min):  
     online_bed_count = 0
     for bed in state.amine_beds:
         if bed["status"] == "online":
@@ -87,7 +87,7 @@ def run_co2_scrub(state, co2_after_crew_kpa, next_time_s):
 
 
 # ----functions for OGA and water electrolysis----    Oxygen Generation Assembly
-def o2_regen_kpa(state, o2_after_crew_kpa):
+def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
     oga_max_o2_output = 0.004
     o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))     # make enough o2 to fill deficit + a bit extra, never negative
@@ -118,8 +118,8 @@ def oga_water_consumed(state, o2_added_kpa):
     return water_used_kg
 
 
-def run_oga(state, o2_after_crew_kpa):
-    o2_after_oga_kpa, o2_added_kpa = o2_regen_kpa(state, o2_after_crew_kpa)
+def run_oga(state, o2_after_crew_kpa, dt_min):
+    o2_after_oga_kpa, o2_added_kpa = o2_regen_kpa(state, o2_after_crew_kpa, dt_min)
     water_used_kg = oga_water_consumed(state, o2_added_kpa)
     
     if state.water_for_oga_kg < water_used_kg:
