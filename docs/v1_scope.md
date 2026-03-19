@@ -199,7 +199,7 @@
 
 
 
-        03/17/2026
+        03/18/2026
     -deciding if I should add heat output into current functions, or have it's own. I'm going to keep adding to the proper functions
 
     -adding heat produced by amine beds with exothermic absorption (the amine molecules catch the co2 which releases heat), and regeneration
@@ -207,4 +207,11 @@
     -wrote a first version of a readme.md file and decided to make my project public today
 
         **next session start:**
-    -consider turning functions with five or more return variables into dictionary and continue with thermal control and temp management
+    -consider turning functions with five or more returns into dictionaries and continue with thermal control and temp management
+
+
+
+        03/17/2026
+    - added dt_min to variables that change based on elapsed time in engine.py
+
+    - moving onto adding temp management to the OGA
