@@ -80,4 +80,4 @@ To run:
 2. Run the simulation file
 
 ```bash
-python quick_test.py
+py -m src.sim.quick_test
