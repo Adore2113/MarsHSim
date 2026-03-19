@@ -165,7 +165,7 @@ def run_buffer_gas_control(state, dt_min):
     ar_stored_kpa = state.ar_stored_kpa
 
     buffer_gas_heat_added_kw = 0.0
-    buffer_gas_heat_added_kWh = 0.0
+    buffer_gas_heat_added_kwh = 0.0
 
     total_pressure_kpa = state.o2_kpa + state.co2_kpa + n2_kpa + ar_kpa
 
@@ -177,8 +177,8 @@ def run_buffer_gas_control(state, dt_min):
            n2_stored_kpa -= pressure_needed_kpa
 
         else:
-            n2_kpa += state.n2_stored_kpa
-            state.n2_stored_kpa = 0.0
+            n2_kpa += n2_stored_kpa
+            n2_stored_kpa = 0.0
 
     elif total_pressure_kpa < state.target_pressure_kpa:
         pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
@@ -204,7 +204,7 @@ def run_buffer_gas_control(state, dt_min):
     else:
         pass
 
-        buffer_gas_heat_added_kwh = buffer_gas_heat_added_kw * hours_per_step
+    buffer_gas_heat_added_kwh = buffer_gas_heat_added_kw * hours_per_step
     
     return {
         "n2_kpa" : n2_kpa,
@@ -277,7 +277,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         water_for_oga_kg=round(new_water_for_oga_kg, 3),
     )
 
-    run_buffer_gas_control(pre_buffer_state)
+    run_buffer_gas_control(pre_buffer_state, dt_min)
 
     new_state = replace(
         pre_buffer_state,
