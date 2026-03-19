@@ -213,7 +213,6 @@ def run_buffer_gas_control(state, dt_min):
         "ar_stored_kpa": ar_stored_kpa,
         "buffer_gas_heat_added_kw": buffer_gas_heat_added_kw,
         "buffer_gas_heat_added_kwh": buffer_gas_heat_added_kwh,
-
     }
 
 
@@ -277,14 +276,14 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         water_for_oga_kg=round(new_water_for_oga_kg, 3),
     )
 
-    run_buffer_gas_control(pre_buffer_state, dt_min)
+    buffer_gas_results = run_buffer_gas_control(pre_buffer_state, dt_min)
 
     new_state = replace(
         pre_buffer_state,
-        n2_kpa=round(pre_buffer_state.n2_kpa, 4),
-        ar_kpa=round(pre_buffer_state.ar_kpa, 4),
-        n2_stored_kpa=round(pre_buffer_state.n2_stored_kpa, 4),
-        ar_stored_kpa=round(pre_buffer_state.ar_stored_kpa, 4),
+        n2_kpa=round(buffer_gas_results["n2_kpa"], 4),
+        ar_kpa=round(buffer_gas_results["ar_kpa"], 4),
+        n2_stored_kpa=round(buffer_gas_results["n2_stored_kpa"], 4),
+        ar_stored_kpa=round(buffer_gas_results["ar_stored_kpa"], 4),
     )
 
     return new_state, co2_removed_kpa
