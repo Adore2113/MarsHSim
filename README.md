@@ -2,8 +2,6 @@
 
 I'm building a Mars habitat simulation where the system tries to keep the crew alive.
 
-A realistic Mars habitat life support simulator.
-
 MarsHSim models a self-sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 people inside a closed 2000 m3 habitat on Mars with no Earth resupply. 
 
 The focus is on reliability, realism, machine learning integration, reusability, and (eventually) cost considerations.
