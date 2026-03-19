@@ -10,9 +10,9 @@ s0 = Habitat_State(
 
     #later these will be handled properly for schedules and some random events
     crew_activity = "normal",
-    crew_activity = "sleep",
-    crew_activity = "exercise",
-    crew_activity = "intense",
+   # crew_activity = "sleep",
+    #crew_activity = "exercise",
+    #crew_activity = "intense",
 
     hab_vol_m3 = 2000.0,
     hab_temp_c = 23,
