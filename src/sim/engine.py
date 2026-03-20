@@ -77,15 +77,15 @@ def run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min):
     new_co2_stored_kpa = co2_removed_kpa + state.co2_stored_kpa
     
     # heat produced, according to removal
-    co2_removal_heat_per_kpa_kw = 1200.0
-    co2_removal_heat_added_kw = co2_removed_kpa * co2_removal_heat_per_kpa_kw / 1000.0
+    co2_scrubber_heat_per_kpa_kw = 1200.0
+    co2_scrubber_heat_added_kw = co2_removed_kpa * co2_scrubber_heat_per_kpa_kw / 1000.0
     
     baseline_bed_heat_added_kw = online_bed_count * 0.4
 
-    co2_scrubber_heat_added_kw = co2_removal_heat_added_kw + baseline_bed_heat_added_kw    
+    co2_scrubber_heat_added_kw = co2_scrubber_heat_added_kw + baseline_bed_heat_added_kw    
     co2_scrubber_heat_added_kwh = co2_scrubber_heat_added_kw * hours_per_step
 
-    return co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa, co2_removal_heat_added_kw, co2_scrubber_heat_added_kwh
+    return co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa, co2_scrubber_heat_added_kw, co2_scrubber_heat_added_kwh
 
 
 # ----functions for OGA and water electrolysis----    Oxygen Generation Assembly
@@ -164,6 +164,10 @@ def run_buffer_gas_control(state, dt_min):
     ar_kpa = state.ar_kpa
     ar_stored_kpa = state.ar_stored_kpa
 
+    total_buffer_gas_added_kpa = 0.0
+
+    buffer_gas_heat_per_kpa_kw = 1.5
+
     buffer_gas_heat_added_kw = 0.0
     buffer_gas_heat_added_kwh = 0.0
 
@@ -175,9 +179,11 @@ def run_buffer_gas_control(state, dt_min):
         if n2_stored_kpa > 0 and n2_stored_kpa >= pressure_needed_kpa:
            n2_kpa += pressure_needed_kpa
            n2_stored_kpa -= pressure_needed_kpa
+           total_buffer_gas_added_kpa += pressure_needed_kpa
 
         else:
             n2_kpa += n2_stored_kpa
+            total_buffer_gas_added_kpa += n2_stored_kpa
             n2_stored_kpa = 0.0
 
     elif total_pressure_kpa < state.target_pressure_kpa:
@@ -189,6 +195,7 @@ def run_buffer_gas_control(state, dt_min):
             
             n2_kpa += n2_to_add_kpa
             n2_stored_kpa -= n2_to_add_kpa
+            total_buffer_gas_added_kpa += n2_to_add_kpa
             
             pressure_needed_kpa -= n2_to_add_kpa
 
@@ -198,12 +205,14 @@ def run_buffer_gas_control(state, dt_min):
             
             ar_kpa += ar_to_add_kpa
             ar_stored_kpa -= ar_to_add_kpa
+            total_buffer_gas_added_kpa += ar_to_add_kpa
             
             pressure_needed_kpa -= ar_to_add_kpa
 
     else:
         pass
 
+    buffer_gas_heat_added_kw = total_buffer_gas_added_kpa * buffer_gas_heat_per_kpa_kw
     buffer_gas_heat_added_kwh = buffer_gas_heat_added_kw * hours_per_step
     
     return {
@@ -279,11 +288,11 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     buffer_gas_results = run_buffer_gas_control(pre_buffer_state, dt_min)
 
     new_state = replace(
-        pre_buffer_state,
-        n2_kpa=round(buffer_gas_results["n2_kpa"], 4),
-        ar_kpa=round(buffer_gas_results["ar_kpa"], 4),
-        n2_stored_kpa=round(buffer_gas_results["n2_stored_kpa"], 4),
-        ar_stored_kpa=round(buffer_gas_results["ar_stored_kpa"], 4),
+    pre_buffer_state,
+    n2_kpa=round(buffer_gas_results["n2_kpa"], 4),
+    ar_kpa=round(buffer_gas_results["ar_kpa"], 4),
+    n2_stored_kpa=round(buffer_gas_results["n2_stored_kpa"], 4),
+    ar_stored_kpa=round(buffer_gas_results["ar_stored_kpa"], 4),
     )
 
     return new_state, co2_removed_kpa
