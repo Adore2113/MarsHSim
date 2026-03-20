@@ -25,7 +25,7 @@ max_temp_c = 25.0
 
 
 # ----crew metabolism per default timestep----
-def crew_metabolism_kpa(state, dt_min):
+def crew_metabolism(state, dt_min):
     hours_per_step = dt_min / 60
     # atmosphere gases
     o2_drop_kpa = 0.00011 * state.crew_count    # =: 0.0033
@@ -248,7 +248,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
 
-    o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh = crew_metabolism_kpa(state, dt_min)
+    o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh = crew_metabolism(state, dt_min)
 
     o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
     co2_after_crew_kpa = state.co2_kpa + co2_rise_kpa
