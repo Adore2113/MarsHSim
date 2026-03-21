@@ -211,7 +211,20 @@
 
 
 
-        03/17/2026
+        03/19/2026
     -added dt_min to variables that change based on elapsed time in engine.py
 
     -fixing the buffer gas control function so that it doesn't alter things from state directly and turning the return into a dictionary. I will probably end up using dictionaries for most of these as I go 
+
+     **next session start:**
+    -consider turning functions with five or more returns into dictionaries and continue with thermal control and temp management in run buffer gas
+
+
+
+        03/20/2026
+    -I'm making the amount of heat added as a fixed amount for now
+
+    -added heat generation to buffer gas control function
+
+        **next session start:**
+    -continue adding heat generation to functions and add radiators, lights, electronics/computers to their own functions
