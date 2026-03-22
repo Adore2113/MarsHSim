@@ -28,7 +28,7 @@ The focus is on reliability, realism, machine learning integration, reusability,
         - Oxygen generation assembly (OGA) and water electrolysis  
         - Major constituent analyzer (MCA)
 
-    -Environmental systems:  
+    - Environmental systems:  
         - Temperature (Celsius)  
         - Power  
         - Water  
