@@ -6,6 +6,9 @@
 -hab_vol_m3
 
 
+#### Lights:
+-light_level
+
 #### Crew:
 -crew_count
 -crew_activity
