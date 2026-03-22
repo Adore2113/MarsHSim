@@ -23,6 +23,14 @@ target_temp_c = 23.0
 min_temp_c = 20.0
 max_temp_c = 25.0
 
+# ----time----
+def get_sol_time(mission_time_s):
+    total_sol_seconds = 88775
+    sol_seconds = mission_time_s % total_sol_seconds
+    hour_24 = sol_seconds // 3600
+    minutes = (sol_seconds % 3600) // 60
+    return hour_24, minutes
+
 
 # ----crew metabolism per default timestep----
 def crew_metabolism(state, dt_min):
@@ -49,6 +57,19 @@ def crew_metabolism(state, dt_min):
         crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
 
     return o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh
+
+
+def lights(state, dt_min):
+    hour_24, minutes = get_sol_time(state.mission_time_s)
+
+    if 6 <= hour_24 < 21 or (hour_24 == 21 and minutes < 30):
+        light_level = 1.0
+    
+    else:
+        light_level = 0.2
+
+    return light_level
+
 
 
 # ----functions for amine beds scrubbing co2----
@@ -278,6 +299,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     pre_buffer_state = replace(
         state,
         mission_time_s=next_time_s,
+        light_level = lights(state, dt_min),
         o2_kpa=round(o2_after_oga_kpa, 4),
         co2_kpa=round(co2_after_scrub_kpa, 4),
         co2_stored_kpa=round(new_co2_stored_kpa, 4),
