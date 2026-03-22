@@ -5,6 +5,9 @@ s0 = Habitat_State(
     # time
     mission_time_s = 0,
     
+    # lights
+    light_level = 0.0,
+
     # crew
     crew_count = 30,
 
@@ -89,6 +92,7 @@ def sol_time(seconds):
 def print_state(state, scrubbed_amount, alerts):
     hour, minutes, meridiem = sol_time(state.mission_time_s)
     print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
+    print(f"Light level: {state.light_level}")
     print(f"Oxygen: {state.o2_kpa}")
     print(f"Hydrogen stored: {state.h2_stored_kg}")
     print(f"Carbon Dioxide Scrubbed: {scrubbed_amount:.4f}")
