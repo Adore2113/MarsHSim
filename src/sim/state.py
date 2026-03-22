@@ -6,6 +6,9 @@ class Habitat_State:
     # time
     mission_time_s: int
 
+    # lights
+    light_level: float
+
     # crew
     crew_count: int
     crew_activity: str
