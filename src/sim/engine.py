@@ -61,14 +61,20 @@ def crew_metabolism(state, dt_min):
 
 def lights(state, dt_min):
     hour_24, minutes = get_sol_time(state.mission_time_s)
+    hours_per_step = dt_min / 60
+    light_heat_added_kw = 0.0
 
     if 6 <= hour_24 < 21 or (hour_24 == 21 and minutes < 30):
         light_level = 1.0
+        light_heat_added_kw = 4.0
+        light_heat_added_kwh = light_heat_added_kw * hours_per_step
     
     else:
         light_level = 0.2
+        light_heat_added_kw = 0.8
+        light_heat_added_kwh = light_heat_added_kw * hours_per_step
 
-    return light_level
+    return light_level, light_heat_added_kw, light_heat_added_kwh
 
 
 
