@@ -142,11 +142,11 @@
 
     -ratio in kg is:  1.125kg of H2O per 1kg of O2 produced
 
-    -I'm going to keep the oga functions seperate instead of one big function with a comment to sort of group them together, I feel like that will be better for future readability
+    -I'm going to keep the OGA functions seperate instead of one big function with a comment to sort of group them together, I feel like that will be better for future readability
 
     -arranged some comments to be beside the line of code, I find if it's short, it does look cleaner
 
-    -finished oga and water electrolysis for now, moving onto argon and nitrogen 
+    -finished OGA and water electrolysis for now, moving onto argon and nitrogen 
 
         **next session start:**
     -figure out variable numbers for the variables commented out at the top of engine.py, add in when the ar or n2 will be used from storage    
@@ -231,7 +231,7 @@
 
 
 
-        03/20/2026
+        03/21/2026
     -hand injury but working past it, going to add a light function where they dim at a certain time at night and also include how much heat the lights generate 
 
     -going to go with the crew getting around 8 hours of sleep/night so lights will dim at 9:30pm (21:30) and they will brighten at 6:00am, usin level of brightness for now
@@ -240,7 +240,19 @@
 
     -considering moving the time conversion logic out of quick_test into engine, or into it's own file to handle all timestep info because eventually it will be interactive
 
-    -considering adding seperate helper files for handling certain things seperately like one for amine scrubbers, oga, ect. after having adding more code
+    -considering adding seperate helper files for handling certain things seperately like one for amine scrubbers, OGA, ect. after having adding more code
 
         **next session start:**
-    - -continue adding heat generation to lights and add electronics/computers, radiatiors to their own functions, reconsider lighting variable names
+    -continue adding heat generation to lights and add electronics/computers, radiatiors to their own functions, reconsider lighting variable names
+
+
+
+        03/24/2026
+    -since I want to have solar, I'm going to need to have a huge battery storage for when there are dust storms and other impacting factors (I still have an injury I am doing small blocks of code at a time) so Ill make the battery capacity 4000.0kWh for now
+
+    -I chose the starting amounts for some power variables and made a seperate file for the OGA and water electrolysis
+
+    -added power consumed to lights function
+
+        **next session start:**
+    - continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiatiors, pumps, solar and need to update step in engine.py to call the run_oga function properly now
