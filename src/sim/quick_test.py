@@ -49,21 +49,22 @@ s0 = Habitat_State(
     scrub_per_bed_kpa = 0.0035,
 
     water_for_oga_kg = 1000.0, # placeholder name and amount
-        
+
+    battery_max_capacity_kwh = 4000.0,
+    battery_stored_kwh = 4000.0,    # starting with max capacity, for now
+    solar_capacity_kw = 120.0,    # placeholder value until I do more research
+    solar_efficiency = 0.8,    # starting with 80% efficiency to start, for now
+
     #from here down these are placeholders
-    relative_humidity=40.0,
+    relative_humidity = 40.0,
 
-    potable_water_l=5000.0,
-    grey_water_l=0.0,
-    waste_brine_l=0.0,
+    potable_water_l = 5000.0,
+    grey_water_l = 0.0,
+    waste_brine_l = 0.0,
 
-    battery_kwh=1000.0,
-    solar_input_kw=50.0,
-    load_kw=20.0,
-
-    leak_rate_kpa_per_hr=0.0,
-    smoke_ppm=0.0,
-    radiation_msv_per_day=0.7
+    leak_rate_kpa_per_hr = 0.0,
+    smoke_ppm = 0.0,
+    radiation_msv_per_day = 0.7
 )
 
 
