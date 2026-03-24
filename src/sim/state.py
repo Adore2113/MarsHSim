@@ -41,10 +41,6 @@ class Habitat_State:
     co2_stored_kpa: float
     h2_stored_kg: float
 
-    # co2 scrubbers
-    #amine_beds: list
-    #scrub_per_bed_kpa: float
-
     # oga water supply
     water_for_oga_kg: float
 
@@ -77,9 +73,16 @@ class Habitat_State:
             return 0
         return 100 * self.ar_kpa / self.total_pressure_kpa
 
-    
+
+    # amine beds 
     scrub_per_bed_kpa: float
 
+    # power
+    battery_max_capacity_kwh: float
+    battery_stored_kwh: float 
+    solar_capacity_kw: float
+    solar_efficiency: float
+#####    dust_level: float
 
     # ----placeholders from here down----
     relative_humidity: float
@@ -88,11 +91,6 @@ class Habitat_State:
     potable_water_l: float
     grey_water_l: float
     waste_brine_l: float
-
-    # Power
-    battery_kwh: float
-    solar_input_kw: float
-    load_kw: float
 
     # Integrity / safety
     leak_rate_kpa_per_hr: float
