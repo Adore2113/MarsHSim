@@ -1,5 +1,6 @@
 from dataclasses import replace
 from .state import Habitat_State
+from .oxygen_system import run_oga
 
 # ----default timestep----
 default_dt_min = 5
@@ -76,6 +77,8 @@ def lights(state, dt_min):
         light_heat_added_kw = 0.5
         light_heat_added_kwh = light_heat_added_kw * hours_per_step
     
+        # make the amount used come out of storage
+
     else:
         light_level = 0.2
         light_power_used_kw = 0.2
@@ -125,65 +128,8 @@ def run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min):
 
 
 # ----functions for OGA and water electrolysis----    Oxygen Generation Assembly
-def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
-    o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
-    oga_max_o2_output = 0.004
-    o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))     # make enough o2 to fill deficit + a bit extra, never negative
-    o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
 
-    return o2_after_oga_kpa, o2_added_kpa
-
-
-def oga_h2_byproduct(state, o2_added_kpa):
-    hab_temp_k = state.hab_temp_c + kelvin_offset
-    o2_added_pa = o2_added_kpa * pa_per_kpa
-    o2_produced_moles = (o2_added_pa * state.hab_vol_m3) / (r * hab_temp_k)    # ideal gas law: convert o2 pressure increase to moles
-  
-    h2_produced_moles = o2_produced_moles * 2    # electrolysis makes 2 moles of h2 for every mole of o2
-    h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000 
-
-    return h2_produced_kg
-    # storing hydrogen for now to use it later 
-
-
-def oga_water_consumed(state, o2_added_kpa):
-    hab_temp_k = state.hab_temp_c + kelvin_offset
-    o2_added_pa = o2_added_kpa * pa_per_kpa
-    o2_produced_moles = (o2_added_pa * state.hab_vol_m3) / (r * hab_temp_k)
-    o2_produced_kg = (o2_produced_moles * o2_molar_mass) / 1000
-    water_used_kg = o2_produced_kg * 1.125    # 1.125kg H2O per 1kg of O2 produced
-    
-    return water_used_kg
-
-
-def run_oga(state, o2_after_crew_kpa, dt_min):
-    hours_per_step = dt_min / 60
-    o2_after_oga_kpa, o2_added_kpa = o2_regen_kpa(state, o2_after_crew_kpa, dt_min)
-    water_used_kg = oga_water_consumed(state, o2_added_kpa)
-    
-    if state.water_for_oga_kg < water_used_kg:
-        return {
-            "o2_after_oga_kpa": o2_after_crew_kpa,
-            "o2_added_kpa": 0.0,
-            "h2_produced_kg": 0.0,
-            "water_used_kg": 0.0,
-            "oga_heat_kw": 0.0,
-            "oga_heat_kwh": 0.0,
-        }
-
-    h2_produced_kg = oga_h2_byproduct(state, o2_added_kpa)
-
-    oga_heat_kw = 1.2
-    oga_heat_kwh = oga_heat_kw * hours_per_step
-
-    return {
-        "o2_after_oga_kpa": o2_after_oga_kpa,
-        "o2_added_kpa": o2_added_kpa,
-        "h2_produced_kg": h2_produced_kg,
-        "water_used_kg": water_used_kg,
-        "oga_heat_kw": oga_heat_kw,
-        "oga_heat_kwh": oga_heat_kwh,
-    }
+# moved to oxygen_system.py
 
 # ----checking atmosphere gas levels---- 
 def mca(state):     # major constituant analyzer  
