@@ -255,4 +255,20 @@
     -added power consumed to lights function
 
         **next session start:**
-    - continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiatiors, pumps, solar and need to update step in engine.py to call the run_oga function properly now
+    -continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiatiors, pumps, solar and need to update step in engine.py to call the run_oga function properly now
+
+
+
+        03/26/2026
+    -added some power consumption variables to oxygen_system.py
+
+    -adding files for seperate logic systems
+
+    -for the mca function, I decided to not use state so I can manage/caluclate both before and after control
+
+    -realizing that the file for the oxygen system has seperate functions and the buffer gas file has one solid function, so I might end up breaking up that long function into a few smaller ones for readability and also b/c I will be adding more to this function
+
+    -broke up one long buffer gas system function into smaller ones for readability, organization and future handling
+
+        **next session start:**
+    -break up co2 scrubber system into different functions to match the other files and then add power usage, eventually continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiatiors, pumps, solar
