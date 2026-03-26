@@ -98,7 +98,8 @@ def print_state(state, scrubbed_amount, alerts):
     print(f"Hydrogen stored: {state.h2_stored_kg}")
     print(f"Carbon Dioxide Scrubbed: {scrubbed_amount:.4f}")
     print(f"Carbon Dioxide: {state.co2_kpa}")
-    print(f"Alert: {alerts}")
+    if alerts:
+        print(f"Alert: {alerts}")
     print(f"Nitrogen: {state.n2_kpa}")
     print(f"Argon: {state.ar_kpa}")
     print(f"Total Pressure: {mca(state)}")
