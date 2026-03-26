@@ -48,10 +48,28 @@ def oga_water_consumed(state, o2_added_kpa):
     return water_used_kg
 
 
-def run_oga(state, o2_after_crew_kpa, dt_min):
+def oga_power_and_heat(o2_added_kpa, dt_min):
     hours_per_step = dt_min / 60
+    
+    if o2_added_kpa > 0:
+        oga_heat_kw = 1.2
+        oga_heat_kwh = oga_heat_kw * hours_per_step
+        oga_power_used_kw = 2.5
+        oga_energy_used_kwh = oga_power_used_kw * hours_per_step
+
+    else:
+        oga_heat_kw = 0.0
+        oga_heat_kwh = 0.0
+        oga_power_used_kw = 0.0
+        oga_energy_used_kwh = 0.0
+
+    return oga_heat_kw, oga_heat_kwh, oga_power_used_kw, oga_energy_used_kwh
+
+
+def run_oga(state, o2_after_crew_kpa, dt_min):
     o2_after_oga_kpa, o2_added_kpa = o2_regen_kpa(state, o2_after_crew_kpa, dt_min)
     water_used_kg = oga_water_consumed(state, o2_added_kpa)
+    oga_heat_kw, oga_heat_kwh, oga_power_used_kw, oga_energy_used_kwh = oga_power_and_heat(o2_added_kpa, dt_min)
     
     if state.water_for_oga_kg < water_used_kg:
         return {
@@ -61,12 +79,11 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
             "water_used_kg": 0.0,
             "oga_heat_kw": 0.0,
             "oga_heat_kwh": 0.0,
+            "oga_power_used_kw": 0.0,
+            "oga_energy_used_kwh": 0.0
         }
 
     h2_produced_kg = oga_h2_byproduct(state, o2_added_kpa)
-
-    oga_heat_kw = 1.2
-    oga_heat_kwh = oga_heat_kw * hours_per_step
 
     return {
         "o2_after_oga_kpa": o2_after_oga_kpa,
@@ -75,4 +92,6 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         "water_used_kg": water_used_kg,
         "oga_heat_kw": oga_heat_kw,
         "oga_heat_kwh": oga_heat_kwh,
+        "oga_power_used_kw": oga_power_used_kw,
+        "oga_energy_used_kwh": oga_energy_used_kwh
     }
