@@ -95,7 +95,7 @@ def print_state(state, scrubbed_amount, alerts):
     print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
     print(f"Light level: {state.light_level:.2f}")
     print(f"Oxygen: {state.o2_kpa} kPa")
-    print(f"Hydrogen stored: {state.h2_stored_kg} kg")
+    print(f"Hydrogen stored: {state.h2_stored_kg:.4f} kg")
     print(f"Carbon Dioxide Scrubbed: {scrubbed_amount:.4f} kPa")
     print(f"Carbon Dioxide: {state.co2_kpa} kPa")
     if alerts:
