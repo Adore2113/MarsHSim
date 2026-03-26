@@ -1,6 +1,7 @@
 from dataclasses import replace
 from .state import Habitat_State
 from .oxygen_system import run_oga
+from .buffer_gas_system import mca, run_buffer_gas_control
 
 # ----default timestep----
 default_dt_min = 5
@@ -127,85 +128,14 @@ def run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min):
     return co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa, co2_scrubber_heat_added_kw, co2_scrubber_heat_added_kwh
 
 
-# ----functions for OGA and water electrolysis----    Oxygen Generation Assembly
-
+# ----OGA and water electrolysis----
 # moved to oxygen_system.py
 
 # ----checking atmosphere gas levels---- 
-def mca(state):     # major constituant analyzer  
-    total_pressure_kpa = state.o2_kpa + state.co2_kpa + state.n2_kpa + state.ar_kpa 
-    return total_pressure_kpa
-
+# moved to buffer_gas_system.py
 
 # ----controlling atmosphere gas levels----
-def run_buffer_gas_control(state, dt_min):
-    hours_per_step = dt_min / 60
-
-    n2_kpa = state.n2_kpa
-    n2_stored_kpa = state.n2_stored_kpa
-    ar_kpa = state.ar_kpa
-    ar_stored_kpa = state.ar_stored_kpa
-
-    total_buffer_gas_added_kpa = 0.0
-
-    buffer_gas_heat_per_kpa_kw = 1.5
-
-    buffer_gas_heat_added_kw = 0.0
-    buffer_gas_heat_added_kwh = 0.0
-
-    total_pressure_kpa = state.o2_kpa + state.co2_kpa + n2_kpa + ar_kpa
-
-    if total_pressure_kpa <= state.min_safe_pressure_kpa:
-        pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
-
-        if n2_stored_kpa > 0 and n2_stored_kpa >= pressure_needed_kpa:
-           n2_kpa += pressure_needed_kpa
-           n2_stored_kpa -= pressure_needed_kpa
-           total_buffer_gas_added_kpa += pressure_needed_kpa
-
-        else:
-            n2_kpa += n2_stored_kpa
-            total_buffer_gas_added_kpa += n2_stored_kpa
-            n2_stored_kpa = 0.0
-
-    elif total_pressure_kpa < state.target_pressure_kpa:
-        pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
-
-        if n2_kpa < state.target_n2_kpa:
-            n2_room_left_kpa = state.target_n2_kpa - n2_kpa
-            n2_to_add_kpa = min(pressure_needed_kpa, n2_room_left_kpa, n2_stored_kpa)
-            
-            n2_kpa += n2_to_add_kpa
-            n2_stored_kpa -= n2_to_add_kpa
-            total_buffer_gas_added_kpa += n2_to_add_kpa
-            
-            pressure_needed_kpa -= n2_to_add_kpa
-
-        if pressure_needed_kpa > 0 and ar_kpa < state.target_ar_kpa:
-            ar_room_left_kpa = state.target_ar_kpa - ar_kpa
-            ar_to_add_kpa = min(pressure_needed_kpa, ar_room_left_kpa, ar_stored_kpa)
-            
-            ar_kpa += ar_to_add_kpa
-            ar_stored_kpa -= ar_to_add_kpa
-            total_buffer_gas_added_kpa += ar_to_add_kpa
-            
-            pressure_needed_kpa -= ar_to_add_kpa
-
-    else:
-        pass
-
-    buffer_gas_heat_added_kw = total_buffer_gas_added_kpa * buffer_gas_heat_per_kpa_kw
-    buffer_gas_heat_added_kwh = buffer_gas_heat_added_kw * hours_per_step
-    
-    return {
-        "n2_kpa" : n2_kpa,
-        "ar_kpa" : ar_kpa,
-        "n2_stored_kpa": n2_stored_kpa,
-        "ar_stored_kpa": ar_stored_kpa,
-        "buffer_gas_heat_added_kw": buffer_gas_heat_added_kw,
-        "buffer_gas_heat_added_kwh": buffer_gas_heat_added_kwh,
-    }
-
+# moved to buffer_gas_system.py
 
 # ----alerts ----
 def gas_alert(state):
@@ -239,6 +169,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
 
+    light_level, light_heat_kw, light_heat_kwh, light_power_kw, light_power_kwh = lights(state, dt_min)
     o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh = crew_metabolism(state, dt_min)
 
     o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
@@ -260,7 +191,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     pre_buffer_state = replace(
         state,
         mission_time_s=next_time_s,
-        light_level = lights(state, dt_min),
+        light_level = light_level,
         o2_kpa=round(o2_after_oga_kpa, 4),
         co2_kpa=round(co2_after_scrub_kpa, 4),
         co2_stored_kpa=round(new_co2_stored_kpa, 4),
