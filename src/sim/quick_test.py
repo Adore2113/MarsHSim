@@ -93,7 +93,7 @@ def sol_time(seconds):
 def print_state(state, scrubbed_amount, alerts):
     hour, minutes, meridiem = sol_time(state.mission_time_s)
     print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
-    print(f"Light level: {state.light_level}")
+    print(f"Light level: {state.light_level:.2f}")
     print(f"Oxygen: {state.o2_kpa}")
     print(f"Hydrogen stored: {state.h2_stored_kg}")
     print(f"Carbon Dioxide Scrubbed: {scrubbed_amount:.4f}")
@@ -102,7 +102,7 @@ def print_state(state, scrubbed_amount, alerts):
         print(f"Alert: {alerts}")
     print(f"Nitrogen: {state.n2_kpa}")
     print(f"Argon: {state.ar_kpa}")
-    print(f"Total Pressure: {mca(state)}")
+    print(f"Total Pressure: {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa)}")
     print(f"Water remaining: {state.water_for_oga_kg}")
     print()
 
