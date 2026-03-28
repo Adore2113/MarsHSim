@@ -13,7 +13,7 @@ def bed_online_count(state):
     return count
 
 
-def co2_scrub_capacity_kpa(state, co2_after_crew_kpa):
+def co2_scrub_capacity_kpa(state, co2_after_crew_kpa, next_time_s):
     beds_online = bed_online_count(state)
     max_scrub_removal_kpa = beds_online * state.scrub_per_bed_kpa
 
@@ -22,35 +22,47 @@ def co2_scrub_capacity_kpa(state, co2_after_crew_kpa):
     elif co2_after_crew_kpa < 0.4:
         max_scrub_removal_kpa *= 0.70
 
-    if state.next_time_s % 3300 == 0 and state.next_time_s != 0:   # every 55min switch beds w. a brief co2 spike
+    if next_time_s % 3300 == 0 and next_time_s != 0:    # every 55min switch beds w. a brief co2 spike
         max_scrub_removal_kpa *= 0.80
 
     return max_scrub_removal_kpa, beds_online
 
 
-def co2_removal_and_storage_update(state, co2_after_crew_kpa, target_co2_kpa, co2_kpa):
-    excess_co2_kpa = co2_after_crew_kpa - state.target_co2_kpa
+def co2_removed_and_storage_update(state, co2_after_crew_kpa, max_scrub_removal_kpa):
+    co2_above_target_kpa = co2_after_crew_kpa - state.target_co2_kpa
 
-    co2_removed_kpa = min(max_scrub_removal_kpa, max(0.0, excess_co2_kpa))
+    co2_removed_kpa = min(max_scrub_removal_kpa, max(0.0, co2_above_target_kpa))
     co2_after_scrub_kpa = co2_after_crew_kpa - co2_removed_kpa
     new_co2_stored_kpa = co2_removed_kpa + state.co2_stored_kpa
     
-    return co2_after_scrub_kpa, co2_removed_kpa
+    return co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa
 
 
-
-
-def run_co2_scrub(co2_removed_kpa, bed_online_count, dt_min):  
+def co2_scrub_gas_power_and_heat(co2_removed_kpa, bed_online_count, dt_min):
     hours_per_step = dt_min / 60
-    beds_online = bed_online_count(state)
-    
-    # heat produced, according to removal
+
     co2_scrubber_heat_per_kpa_kw = 1200.0
     co2_scrubber_heat_added_kw = co2_removed_kpa * co2_scrubber_heat_per_kpa_kw / 1000.0
     
-    baseline_bed_heat_added_kw = beds_online * 0.4
+    baseline_bed_heat_added_kw = bed_online_count * 0.4
 
-    co2_scrubber_heat_added_kw = co2_scrubber_heat_added_kw + baseline_bed_heat_added_kw    
+    co2_scrubber_heat_added_kw = co2_scrubber_heat_added_kw + baseline_bed_heat_added_kw
     co2_scrubber_heat_added_kwh = co2_scrubber_heat_added_kw * hours_per_step
 
-    return co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa, co2_scrubber_heat_added_kw, co2_scrubber_heat_added_kwh
+    return co2_scrubber_heat_added_kw, co2_scrubber_heat_added_kwh #, co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh
+
+
+def run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min):
+    max_scrub_removal_kpa, beds_online = co2_scrub_capacity_kpa(state, co2_after_crew_kpa, next_time_s)
+    co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa = co2_removed_and_storage_update(co2_removed_kpa, beds_online, dt_min)
+    co2_scrubber_heat_kw, co2_scrubber_heat_kwh = co2_scrub_gas_power_and_heat(co2_removed_kpa, bed_online_count, dt_min)
+
+    return {
+        "co2_after_scrub_kpa": co2_after_scrub_kpa,
+        "co2_removed_kpa": co2_removed_kpa,
+        "new_co2_stored_kpa": new_co2_stored_kpa,
+        "co2_scrubber_heat_kw": co2_scrubber_heat_kw,
+        "co2_scrubber_heat_kwh": co2_scrubber_heat_kwh,
+        #"co2_scrubber_power_used_kw": co2_scrubber_power_used_kw,
+        #"co2_scrubber_energy_used_kwh": co2_scrubber_energy_used_kwh
+    }
