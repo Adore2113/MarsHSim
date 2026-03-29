@@ -272,3 +272,20 @@
 
         **next session start:**
     -break up co2 scrubber system into different functions to match the other files and then add power usage, eventually continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiatiors, pumps, solar
+
+
+
+        03/28/2026
+    -making crew metabolism into it's own file for organization and considering breaking it into smaller functions for quick/easier readability, as I add to the file
+
+    -breaking up the co2 scrubber system into different functions and adding heat, taking into consideration that I want there to be a baseline power per online bed like there is for heat, power usage used on actual co2 removed, emergency events, and full power loss (these last two will be handled later though)
+
+    -added power usage to co2 scrubber, updated engine and quick_test to work with the file properly
+
+    -added outputs to be printed so I can see that they are working properly
+
+        **next session start:**
+    -work on water_system, 
+    -eventually... lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiatiors, pumps, solar
+
+
