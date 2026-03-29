@@ -163,6 +163,16 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     ar_stored_kpa=round(buffer_gas_results["ar_stored_kpa"], 4),
     )
 
-    return new_state, co2_removed_kpa
+    outputs = {
+    "co2_removed_kpa": co2_removed_kpa,
+    "co2_scrubber_power_used_kw": co2_scrubber_power_used_kw,
+    "co2_scrubber_heat_kw": co2_scrubber_heat_kw,
+    "co2_scrubber_energy_used_kwh": co2_scrubber_energy_used_kwh,
+    "oga_heat_kw": oga_heat_kw,
+    "light_power_kw": light_power_kw
+    }
+
+
+    return new_state, outputs
 
 
