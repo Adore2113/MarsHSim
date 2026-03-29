@@ -4,6 +4,7 @@ from .oxygen_system import run_oga
 from .buffer_gas_system import mca, run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import crew_metabolism
+from .power_system import power_usage_kw
 
 # ----default timestep----
 default_dt_min = 5
@@ -115,20 +116,25 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
 
-    light_level, light_heat_kw, light_heat_kwh, light_power_kw, light_power_kwh = lights(state, dt_min)
+    light_level, light_heat_kw, light_heat_kwh, light_power_used_kw, light_power_used_kwh = lights(state, dt_min)
     o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh = crew_metabolism(state, dt_min)
 
     o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
     co2_after_crew_kpa = state.co2_kpa + co2_rise_kpa
 
+   
     oga_results = run_oga(state, o2_after_crew_kpa, dt_min)
     o2_after_oga_kpa = oga_results["o2_after_oga_kpa"]
     o2_added_kpa = oga_results["o2_added_kpa"]
     h2_produced_kg = oga_results["h2_produced_kg"]
+    
     water_used_kg = oga_results["water_used_kg"]
+   
     oga_heat_kw = oga_results["oga_heat_kw"]
     oga_heat_kwh = oga_results["oga_heat_kwh"]
-
+    oga_power_used_kw = oga_results["oga_power_used_kw"]
+    oga_energy_used_kwh = oga_results["oga_energy_used_kwh"]
+   
     co2_results = run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min)
 
     co2_after_scrub_kpa = co2_results["co2_after_scrub_kpa"]
@@ -169,10 +175,14 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     "co2_scrubber_heat_kw": co2_scrubber_heat_kw,
     "co2_scrubber_energy_used_kwh": co2_scrubber_energy_used_kwh,
     "oga_heat_kw": oga_heat_kw,
-    "light_power_kw": light_power_kw
+    "light_power_kw": light_power_used_kw,
+    "light_power_used_kwh" : light_power_used_kwh,
+    "oga_power_used_kw": oga_power_used_kw,
+    "oga_energy_used_kwh": oga_energy_used_kwh
+    
     }
 
-
+    outputs["total_power_used_kw"], outputs["total_energy_used_kwh"] = power_usage_kw(outputs)
     return new_state, outputs
 
 
