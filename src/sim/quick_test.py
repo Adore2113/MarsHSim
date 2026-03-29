@@ -1,5 +1,6 @@
 from src.sim.state import Habitat_State
 from src.sim.engine import step, gas_alert, mca
+from src.sim.crew_metabolism import crew_metabolism
 
 s0 = Habitat_State(
     # time
