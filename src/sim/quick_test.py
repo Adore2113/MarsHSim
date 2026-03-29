@@ -91,25 +91,34 @@ def sol_time(seconds):
     return hour_12, minutes, meridiem
 
     
-def print_state(state, scrubbed_amount, alerts):
+def print_state(state, outputs, alerts):
     hour, minutes, meridiem = sol_time(state.mission_time_s)
+    
     print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
     print(f"Light level: {state.light_level:.2f}")
     print(f"Oxygen: {state.o2_kpa} kPa")
     print(f"Hydrogen stored: {state.h2_stored_kg:.4f} kg")
-    print(f"Carbon Dioxide Scrubbed: {scrubbed_amount:.4f} kPa")
+    print(f"Carbon Dioxide Scrubbed: {outputs["co2_removed_kpa"]:.4f} kPa")
     print(f"Carbon Dioxide: {state.co2_kpa} kPa")
+    
     if alerts:
         print(f"Alert: {alerts}")
     print(f"Nitrogen: {state.n2_kpa} kPa")
     print(f"Argon: {state.ar_kpa} kPa")
     print(f"Total Pressure: {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa)} kPa")
     print(f"Water remaining: {state.water_for_oga_kg} kg")
+    
+    print(f"Scrubber power used: {outputs["co2_scrubber_power_used_kw"]:.4f} kW")
+    print(f"Scrubber heat: {outputs["co2_scrubber_heat_kw"]:.4f} kW")
+    print(f"Scrubber energy: {outputs["co2_scrubber_energy_used_kwh"]:.4f} kWh")
+    print(f"OGA heat: {outputs["oga_heat_kw"]:.4f} kW")
+    print(f"Lights power: {outputs["light_power_kw"]:.4f} kW")
+
     print()
 
 
 state = s0
 for i in range(12):
-    state, scrubbed_amount = step(state)
+    state, outputs = step(state)
     alerts = gas_alert(state)
-    print_state(state, scrubbed_amount, alerts)
+    print_state(state, outputs, alerts)
