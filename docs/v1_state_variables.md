@@ -9,10 +9,18 @@
 #### Lights:
 -light_level
 
+
 #### Crew:
 -crew_count
 -crew_activity
 
+
+#### Power:
+-battery_max_capacity_kwh
+-battery_stored_kwh 
+-solar_capacity_kw
+-solar_efficiency
+-dust_level
 
 #### Atmosphere:
 -target_pressure_kpa 
@@ -54,13 +62,6 @@
 
 -waste_brine_l
 
-#### Power loop:
-
--battery_kwh
-
--solar_input_kw
-
--load_kw
 
 #### Integrity and emergencies:
 
