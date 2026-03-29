@@ -129,8 +129,16 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     oga_heat_kw = oga_results["oga_heat_kw"]
     oga_heat_kwh = oga_results["oga_heat_kwh"]
 
-    co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa, co2_scrubber_heat_added_kw, co2_scrubber_heat_added_kwh = run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min)
+    co2_results = run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min)
 
+    co2_after_scrub_kpa = co2_results["co2_after_scrub_kpa"]
+    co2_removed_kpa = co2_results["co2_removed_kpa"]
+    new_co2_stored_kpa = co2_results["new_co2_stored_kpa"]
+    co2_scrubber_heat_kw = co2_results["co2_scrubber_heat_kw"]
+    co2_scrubber_heat_kwh = co2_results["co2_scrubber_heat_kwh"]
+    co2_scrubber_power_used_kw = co2_results["co2_scrubber_power_used_kw"]
+    co2_scrubber_energy_used_kwh = co2_results["co2_scrubber_energy_used_kwh"]
+    
     new_water_for_oga_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
     new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
 
