@@ -3,7 +3,7 @@ from .state import Habitat_State
 from .oxygen_system import run_oga
 from .buffer_gas_system import mca, run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
-from crew_metabolism import crew_metabolism
+from .crew_metabolism import crew_metabolism
 
 # ----default timestep----
 default_dt_min = 5
