@@ -8,20 +8,6 @@ from .power_system import power_usage_kw
 
 # ----default timestep----
 default_dt_min = 5
-#hours_per_step = dt_min / 60
-
-# ----conversions ----
-kelvin_offset = 273.15   # add to celsius to convert to kelvin
-o2_kg_per_kpa = 18.2
-co2_kg_per_kpa = 35.8
-n2_kg_per_kpa = 22.75
-ar_kg_per_kpa = 32.45
-pa_per_kpa = 1000   # kilopascals to pascals
-
-# ----chemistry constants----
-r = 8.314   # the universal gas constant
-h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
-o2_molar_mass = 32.0
 
 # ---- temperature targets----
 target_temp_c = 23.0
@@ -35,11 +21,6 @@ def get_sol_time(mission_time_s):
     hour_24 = sol_seconds // 3600
     minutes = (sol_seconds % 3600) // 60
     return hour_24, minutes
-
-
-# ----crew metabolism per default timestep----
-
-# moved to crew_metabolism.py
 
 
 def lights(state, dt_min):
