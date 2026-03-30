@@ -133,6 +133,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         state,
         mission_time_s=next_time_s,
         light_level = light_level,
+        amine_beds = co2_results["amine_beds"],
         o2_kpa=round(o2_after_oga_kpa, 4),
         co2_kpa=round(co2_after_scrub_kpa, 4),
         co2_stored_kpa=round(new_co2_stored_kpa, 4),
