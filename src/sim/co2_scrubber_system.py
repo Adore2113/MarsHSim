@@ -15,6 +15,8 @@ def bed_online_count(state):
 
 def co2_scrub_capacity_kpa(state, co2_after_crew_kpa, next_time_s):
     beds_online = bed_online_count(state)
+    scrub_per_bed_kpa = state.scrub_per_bed_kpa
+    regen_rate_kpa = 0.01    # how fast a bed is venting co2 outside during regen
     max_scrub_removal_kpa = beds_online * state.scrub_per_bed_kpa
 
     if co2_after_crew_kpa < 0.2:    # # efficiency drop when co2 is already low
@@ -40,6 +42,11 @@ def co2_removed_and_storage_update(state, co2_after_crew_kpa, max_scrub_removal_
 
 def co2_scrub_gas_power_and_heat(co2_removed_kpa, bed_online_count, next_time_s, dt_min):
     hours_per_step = dt_min / 60
+
+    co2_scrubber_heat_added_kw = 0.0
+    co2_scrubber_heat_added_kwh = 0.0
+    co2_scrubber_power_used_kw = 0.0
+    co2_scrubber_energy_used_kwh = 0.0
 
     if co2_removed_kpa > 0:
         co2_scrubber_heat_per_kpa_kw = 1200.0
