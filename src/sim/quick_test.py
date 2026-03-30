@@ -3,20 +3,16 @@ from src.sim.engine import step, gas_alert, mca
 from src.sim.crew_metabolism import crew_metabolism
 
 s0 = Habitat_State(
-    # time
+# ---time---
     mission_time_s = 0,
     
-    # lights
+# ---lights---
     light_level = 0.0,
 
-    # crew
+# ----crew----
     crew_count = 30,
-
-    #later these will be handled properly for schedules and some random events
     crew_activity = "normal",
-   # crew_activity = "sleep",
-    #crew_activity = "exercise",
-    #crew_activity = "intense",
+  
 
     hab_vol_m3 = 2000.0,
     hab_temp_c = 23,
@@ -120,7 +116,7 @@ def print_state(state, outputs, alerts):
         print(f"Alert: {alerts}")
     print(f"Nitrogen: {state.n2_kpa} kPa")
     print(f"Argon: {state.ar_kpa} kPa")
-    print(f"Total Pressure: {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa)} kPa")
+    print(f"Total Pressure: {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa):.4f} kPa")
     print(f"Water remaining: {state.water_for_oga_kg} kg")
     
     print(f"Scrubber power used: {outputs["co2_scrubber_power_used_kw"]:.4f} kW")
