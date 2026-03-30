@@ -80,9 +80,9 @@ class Habitat_State:
     # power
     battery_max_capacity_kwh: float
     battery_stored_kwh: float 
+    solar_arrays: list
     solar_capacity_kw: float
     solar_efficiency: float
-#####    dust_level: float
 
     # ----placeholders from here down----
     relative_humidity: float
