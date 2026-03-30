@@ -3,12 +3,26 @@ from .state import Habitat_State
 
 # file for handling crew metabolsim
 
+# ----crew activites and metabolism rates 
+crew_activity_states = {
+    "normal" : {"o2_drop_multiplier" : 1.0, "co2_rise_multiplier" : 1.0},
+    "sleep" : {"o2_drop_multiplier" : 0.8, "co2_rise_multiplier" : 0.8},
+    "exercise" : {"o2_drop_multiplier" : 1.5, "co2_rise_multiplier" : 1.5},  
+    "intense" : {"o2_drop_multiplier" : 2.0, "co2_rise_multiplier" : 2.0},
+}
+ 
+
 # ----crew metabolism per default timestep----
 def crew_metabolism(state, dt_min):
     hours_per_step = dt_min / 60
+    
     # ----atmosphere gases----
-    o2_drop_kpa = 0.00011 * state.crew_count    # =: 0.0033
-    co2_rise_kpa = 0.0000967 * state.crew_count    # = 0.0029
+    crew_activity = crew_activity_states[state.crew_activity]
+    o2_drop_x = crew_activity["o2_drop_multiplier"]
+    co2_rise_x = crew_activity["co2_rise_multiplier"]
+    
+    o2_drop_kpa = 0.00011 * state.crew_count * o2_drop_x
+    co2_rise_kpa = 0.0000967 * state.crew_count * co2_rise_x
 
     # ----tempurature----
     if state.crew_activity == "sleep":
