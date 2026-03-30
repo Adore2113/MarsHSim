@@ -200,9 +200,9 @@
 
 
         03/18/2026
-    -deciding if I should add heat output into current functions, or have it's own. I'm going to keep adding to the proper functions
+    -deciding if I should add heat output into current functions, or have its own. I'm going to keep adding to the proper functions
 
-    -adding heat produced by amine beds with exothermic absorption (the amine molecules catch the co2 which releases heat), and regeneration
+    -adding heat produced by amine beds with exothermic absorption (the amine molecules catch the CO2 which releases heat), and regeneration
 
     -wrote a first version of a readme.md file and decided to make my project public today
 
@@ -214,15 +214,15 @@
         03/19/2026
     -added dt_min to variables that change based on elapsed time in engine.py
 
-    -fixing the buffer gas control function so that it doesn't alter things from state directly and turning the return into a dictionary. I will probably end up using dictionaries for most of these as I go 
+    -fixing the buffer gas control function so that it doesn't alter things from state directly and turning the return into a dictionary. I will probably end up using dictionaries for most of these as I go
 
-     **next session start:**
+        **next session start:**
     -consider turning functions with five or more returns into dictionaries and continue with thermal control and temp management in run buffer gas
 
 
 
         03/20/2026
-    -I'm making the amount of heat added as a fixed amount for now
+    -I'm making the amount of heat added a fixed amount for now
 
     -added heat generation to buffer gas control function
 
@@ -232,51 +232,51 @@
 
 
         03/21/2026
-    -hand injury but working past it, going to add a light function where they dim at a certain time at night and also include how much heat the lights generate 
+    -hand injury but working past it, going to add a light function where they dim at a certain time at night and also include how much heat the lights generate
 
-    -going to go with the crew getting around 8 hours of sleep/night so lights will dim at 9:30pm (21:30) and they will brighten at 6:00am, usin level of brightness for now
+    -going to go with the crew getting around 8 hours of sleep/night so lights will dim at 9:30pm (21:30) and they will brighten at 6:00am, using level of brightness for now
 
-    -remember: mission_time_s = current time of day, dt_min = how long the step lasts, hours_per_step = scaling, production, ect
+    -remember: mission_time_s = current time of day, dt_min = how long the step lasts, hours_per_step = scaling, production, etc
 
-    -considering moving the time conversion logic out of quick_test into engine, or into it's own file to handle all timestep info because eventually it will be interactive
+    -considering moving the time conversion logic out of quick_test into engine, or into its own file to handle all timestep info because eventually it will be interactive
 
-    -considering adding seperate helper files for handling certain things seperately like one for amine scrubbers, OGA, ect. after having adding more code
+    -considering adding separate helper files for handling certain things separately like one for amine scrubbers, OGA, etc after adding more code
 
         **next session start:**
-    -continue adding heat generation to lights and add electronics/computers, radiatiors to their own functions, reconsider lighting variable names
+    -continue adding heat generation to lights and add electronics/computers, radiators to their own functions, reconsider lighting variable names
 
 
 
         03/24/2026
-    -since I want to have solar, I'm going to need to have a huge battery storage for when there are dust storms and other impacting factors (I still have an injury I am doing small blocks of code at a time) so Ill make the battery capacity 4000.0kWh for now
+    -since I want to have solar, I'm going to need to have a huge battery storage for when there are dust storms and other impacting factors (I still have an injury, I am doing small blocks of code at a time) so I'll make the battery capacity 4000.0 kWh for now
 
-    -I chose the starting amounts for some power variables and made a seperate file for the OGA and water electrolysis
+    -I chose the starting amounts for some power variables and made a separate file for the OGA and water electrolysis
 
     -added power consumed to lights function
 
         **next session start:**
-    -continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiatiors, pumps, solar and need to update step in engine.py to call the run_oga function properly now
+    -continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar and need to update step in engine.py to call the run_oga function properly now
 
 
 
         03/26/2026
     -added some power consumption variables to oxygen_system.py
 
-    -adding files for seperate logic systems
+    -adding files for separate logic systems
 
-    -for the mca function, I decided to not use state so I can manage/caluclate both before and after control
+    -for the mca function, I decided to not use state so I can manage/calculate both before and after control
 
-    -realizing that the file for the oxygen system has seperate functions and the buffer gas file has one solid function, so I might end up breaking up that long function into a few smaller ones for readability and also b/c I will be adding more to this function
+    -realizing that the file for the oxygen system has separate functions and the buffer gas file has one solid function, so I might end up breaking up that long function into a few smaller ones for readability and also because I will be adding more to this function
 
     -broke up one long buffer gas system function into smaller ones for readability, organization and future handling
 
         **next session start:**
-    -break up co2 scrubber system into different functions to match the other files and then add power usage, eventually continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiatiors, pumps, solar
+    -break up co2 scrubber system into different functions to match the other files and then add power usage, eventually continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar
 
 
 
         03/28/2026
-    -making crew metabolism into it's own file for organization and considering breaking it into smaller functions for quick/easier readability, as I add to the file
+    -making crew metabolism into its own file for organization and considering breaking it into smaller functions for quicker/easier readability as I add to the file
 
     -breaking up the co2 scrubber system into different functions and adding heat, taking into consideration that I want there to be a baseline power per online bed like there is for heat, power usage used on actual co2 removed, emergency events, and full power loss (these last two will be handled later though)
 
@@ -285,7 +285,28 @@
     -added outputs to be printed so I can see that they are working properly
 
         **next session start:**
-    -work on water_system, 
-    -eventually... lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiatiors, pumps, solar
+    -work on water_system
+    -eventually... lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar
 
 
+
+        03/28/2026
+    -decided to start with power_system.py since I already started implementing these features in other functions and updated step in engine.py to include power/energy used for OGA and lights
+
+    -updated state variables file to include the new power variables I've been using from state and removed them out of the placeholder value section
+
+    -started solar function in power.py but I need to decide how many panels I want, so far for my habitat size, I think I'll choose.. 30-40 smaller panels to make maintenance and repair easier(?)
+
+    -I am going to model the solar panels in a similar way to the amine beds list, where I can have each panel have a status, how much a panel can make in direct 100% sunlight, its efficiency, amount of dust build up and just its overall condition for repair use when I get to that
+
+    -changing from my idea of 30-40 panels to 10 larger ones at least for V1, to avoid my code being messy and harder to manage
+
+    -**while looking at the amine bed list, I'm not happy with how it's running right now because of how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that**
+
+    -side note: I thought about having panels on the outside of my habitat that are foil on one side and black on the other (like a car window shield), that could be flipped like a billboard (one of the ones that have two images on them and they flip to reveal the other image)
+
+    -I fixed a lot of my code today and added solar list of dictionaries, updated the amine list of dictionaries and made a crew metabolism dictionary, fixed some typos and learned a lot about organizing files, name consistency, code consistency, not going overboard too fast, and file setup
+
+        **next session start:**
+    -work on power_system.py
+    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
