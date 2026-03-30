@@ -21,7 +21,7 @@ s0 = Habitat_State(
     hab_vol_m3 = 2000.0,
     hab_temp_c = 23,
 
-    # atmosphere
+# ----atmosphere----
     target_pressure_kpa = 60.0,
     min_safe_pressure_kpa = 55.0,
     max_safe_pressure_kpa = 70.0,
@@ -42,17 +42,32 @@ s0 = Habitat_State(
     h2_stored_kg = 0.0,  
  
     amine_beds = [
-        {"status": "online", "capacity": 3.0, "co2_load": 0.0},
-        {"status": "regenerating", "capacity": 3.0, "co2_load": 1.0},
-        {"status": "standby", "capacity": 3.0, "co2_load": 0.0},
-        {"status": "standby", "capacity": 3.0, "co2_load": 0.0}
+        {"id": 1, "status": "standby", "capacity": 3.0, "co2_load": 0.0},
+        {"id": 2, "status": "standby", "capacity": 3.0, "co2_load": 0.0},
+        {"id": 3, "status": "standby", "capacity": 3.0, "co2_load": 0.0},
+        {"id": 4, "status": "standby", "capacity": 3.0, "co2_load": 0.0}
     ],
     scrub_per_bed_kpa = 0.0035,
 
     water_for_oga_kg = 1000.0, # placeholder name and amount
 
+# ----power----
     battery_max_capacity_kwh = 4000.0,
     battery_stored_kwh = 4000.0,    # starting with max capacity, for now
+    
+    solar_arrays = [
+        {"id": 1, "status": "online", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0},
+        {"id": 2, "status": "online", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0},
+        {"id": 3, "status": "online", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0},
+        {"id": 4, "status": "online", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0},
+        {"id": 5, "status": "online", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0},
+        {"id": 6, "status": "online", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0},
+        {"id": 7, "status": "online", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0},
+        {"id": 8, "status": "online", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0},
+        {"id": 9, "status": "standby",  "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0},
+        {"id": 10,"status": "standby",  "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0}
+    ], 
+
     solar_capacity_kw = 120.0,    # placeholder value until I do more research
     solar_efficiency = 0.8,    # starting with 80% efficiency to start, for now
 
