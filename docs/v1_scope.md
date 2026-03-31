@@ -301,7 +301,7 @@
 
     -changing from my idea of 30-40 panels to 10 larger ones at least for V1, to avoid my code being messy and harder to manage
 
-    -**while looking at the amine bed list, I'm not happy with how it's running right now because of how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that**
+    -***while looking at the amine bed list, I'm not happy with how it's running right now because of how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that***
 
     -side note: I thought about having panels on the outside of my habitat that are foil on one side and black on the other (like a car window shield), that could be flipped like a billboard (one of the ones that have two images on them and they flip to reveal the other image)
 
@@ -310,3 +310,13 @@
         **next session start:**
     -work on power_system.py
     -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
+
+
+
+        03/30/2026
+    -starting by reviewing my code and I see some areas I need to fix b/c of the changes I made last night, starting with how my amine beds function
+
+
+
+        03/31/2026
+    -updated solar array list to not be hard coded online and instead start with all of them being on standby status and added the function to manage what ones are online with a new function in power_system.py
