@@ -6,9 +6,20 @@ from .state import Habitat_State
 # state.solar_capacity_kw
 # state.solar_efficiency
 
-def solar_generation_kw(state):
-    ...
+def solar_arrays_online(solar_array):
+    new_solar_array = []
+    solar_array_online_count = sum(1 for array in solar_array if array["status"] == "online")
 
+    for array in solar_array:
+        new_array = array.copy()
+
+        if solar_array_online_count < 8 and new_array["status"] == "standby":
+            new_array["status"] = "online"
+            solar_array_online_count += 1
+
+        new_solar_array.append(new_array)
+
+    return new_solar_array, solar_array_online_count
 
 
 def power_usage_kw(outputs):
