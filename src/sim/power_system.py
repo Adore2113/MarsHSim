@@ -1,10 +1,6 @@
 from dataclasses import replace
 from .state import Habitat_State
 
-# state.battery_max_capacity_kwh
-# state.battery_stored_kwh 
-# state.solar_capacity_kw
-# state.solar_efficiency
 
 def solar_arrays_online(solar_array):
     new_solar_array = []
@@ -20,6 +16,23 @@ def solar_arrays_online(solar_array):
         new_solar_array.append(new_array)
 
     return new_solar_array, solar_array_online_count
+
+
+def solar_generation_kw(state, new_solar_array, sollar_array_online_count):
+    power_generated_per_array = []
+    total_solar_generated_kw = 0.0
+
+    for array in new_solar_array:
+        if array["status"] == "online":
+            power_generated_kw = (state.how_much_daylight_kw_m2 * array["area_m2"] * array["efficiency"] * array["dust_factor"])
+
+        else:
+            power_generated_kw = 0.0
+
+    power_generated_per_array.append({"id" : array["id"], "power_generated_kw" : power_generated_kw})
+    total_solar_generated_kw += power_generated_kw
+
+    return total_solar_generated_kw, power_generated_per_array
 
 
 def power_usage_kw(outputs):
