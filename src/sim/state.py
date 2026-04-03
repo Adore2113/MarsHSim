@@ -85,6 +85,8 @@ class Habitat_State:
     solar_efficiency: float
 
     # ----placeholders from here down----
+    how_much_daylight_kw_m2: float
+   
     relative_humidity: float
 
     # Water
