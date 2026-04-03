@@ -320,3 +320,15 @@
 
         03/31/2026
     -updated solar array list to not be hard coded online and instead start with all of them being on standby status and added the function to manage what ones are online with a new function in power_system.py
+
+
+
+        04/03/2026
+    -updated power_system.py and added a solar generation function and fixed the other no longer needed variables from the other files that had to do with solar power.
+
+    -I am using 0.50kw of sunlight for every 1 square meter (m2) for now, b/c my reasearch showed that Mars sunlight is btwn 0.4 - 0.6 kw / 1 m2 during daytime
+
+        **next session start:**
+    -work on power_system.py and fifure out where I want daylight calclated (maybe state, or make a new seperate file for handling calcualting times or day, days and other related things)
+    
+    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
