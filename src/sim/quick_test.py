@@ -64,10 +64,10 @@ s0 = Habitat_State(
         {"id" : 10,"status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0}
     ], 
 
-    solar_capacity_kw = 120.0,    # placeholder value until I do more research
-    solar_efficiency = 0.8,    # starting with 80% efficiency to start, for now
 
     #from here down these are placeholders
+    how_much_daylight_kw_m2 = 0.50,
+
     relative_humidity = 40.0,
 
     potable_water_l = 5000.0,
