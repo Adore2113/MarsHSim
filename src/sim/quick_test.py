@@ -66,7 +66,7 @@ s0 = Habitat_State(
     ], 
 
     #from here down these are placeholders
-    how_much_daylight_kw_m2 = 0.50,
+    daylight_m2_kw = 0.50,    # 0.60?
 
     relative_humidity = 40.0,
 
@@ -87,7 +87,7 @@ def print_state(state, outputs, alerts):
     print(f"Light level: {state.light_level:.2f}")
     print(f"Oxygen: {state.o2_kpa} kPa")
     print(f"Hydrogen stored: {state.h2_stored_kg:.4f} kg")
-    print(f"Carbon Dioxide Scrubbed: {outputs["co2_removed_kpa"]:.4f} kPa")
+    print(f"Carbon Dioxide Scrubbed: {outputs['co2_removed_kpa']:.4f} kPa")
     print(f"Carbon Dioxide: {state.co2_kpa} kPa")
     
     if alerts:
