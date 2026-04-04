@@ -330,5 +330,21 @@
 
         **next session start:**
     -work on power_system.py and fifure out where I want daylight calclated (maybe state, or make a new seperate file for handling calcualting times or day, days and other related things)
-    
+
+    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
+
+
+
+        04/04/2026
+    -while trying to come up with a way to make the daylight run smoothly and over time instead of hardcoding it to be on or off or at certain percentages, I learned what a sine wave is and I'm going to try to use that
+
+    -considering where to add a section that holds the math for calculating daylight over time (in it's own function in power_system.py or in engine where it handles the timestep math, or in it's own file completely)
+
+    -making a file for handling time steps and related functions
+
+    -I learned today that instead of 24 hours, Mars time actually runs at 24 hours and 39 minutes and 35 seconds, not just 24 hours, so I'm going to fix that now, while I'm working on the new mars_time.py file
+
+     **next session start:**
+    -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
+
     -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
