@@ -3,8 +3,12 @@ from .state import Habitat_State
 
 # file for handling all things time
 
-def sol_time(seconds):
-    total_sol_seconds = 88775    # one mars sol is 24h 39min 35sec
+total_sol_seconds = 88775     # one mars sol is 24h 39min 35sec
+sunrise_seconds = 64800    # 64800 = 6:00pm in seconds
+sunset_seconds = 21600    # 21600 = 6:00am in seconds
+max_daylight_per_m2_kw = 0.6    # placeholder
+
+def sol_time(seconds):    # for a readable clock
     sol_seconds = seconds % total_sol_seconds
     
     hour_24 = sol_seconds // 3600
@@ -21,3 +25,7 @@ def sol_time(seconds):
         hour_12 = 12
 
     return hour_12, minutes, meridiem
+
+
+def daylight_per_m2_kw(seconds, mission_time_s):
+    sol_seconds = seconds % total_sol_seconds
