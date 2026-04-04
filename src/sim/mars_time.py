@@ -5,9 +5,10 @@ from .state import Habitat_State
 # file for handling all things time
 
 total_sol_seconds = 88775     # one mars sol is 24h 39min 35sec
-sunrise_seconds = 64800    # 64800 = 6:00pm in seconds
-sunset_seconds = 21600    # 21600 = 6:00am in seconds
-max_daylight_per_m2_kw = 0.6    # placeholder
+sunrise_seconds = round(total_sol_seconds / 4 )   # ~ 22193
+afternoon_seconds = round(total_sol_seconds / 2)   # ~ 44387
+sunset_seconds = round(total_sol_seconds * 3 / 4)    # ~ 66581
+max_daylight_m2_kw = 0.6    # placeholder
 
 def sol_time(seconds):    # for a readable clock
     sol_seconds = seconds % total_sol_seconds
@@ -38,6 +39,6 @@ def daylight_per_m2_kw(seconds, mission_time_s):
     daylight_progress = (sol_seconds - sunrise_seconds) / daylight_length_seconds
 
     # using a sine wave, so using .sin from math import to get a radian and .pi 
-    daylight_m2_kw = max_daylight_per_m2_kw * math.sin(math.pi * daylight_progress)
+    daylight_m2_kw = max_daylight_m2_kw * math.sin(math.pi * daylight_progress)
 
     return daylight_m2_kw
