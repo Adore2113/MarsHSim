@@ -1,6 +1,7 @@
 from src.sim.state import Habitat_State
 from src.sim.engine import step, gas_alert, mca
 from src.sim.crew_metabolism import crew_metabolism
+from src.sim.mars_time import sol_time
 
 s0 = Habitat_State(
 # ---time---
@@ -64,7 +65,6 @@ s0 = Habitat_State(
         {"id" : 10,"status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0}
     ], 
 
-
     #from here down these are placeholders
     how_much_daylight_kw_m2 = 0.50,
 
@@ -80,28 +80,6 @@ s0 = Habitat_State(
 )
 
 
-def sol_time(seconds):
-    # one mars sol is 24h 39min 35sec
-    total_sol_seconds = 88775
-    sol_seconds = seconds % total_sol_seconds
-
-    hour_24 = sol_seconds // 3600
-    # 1h = 60min, 1min = 60 sec, 60*60 = 3600
-    minutes = (sol_seconds % 3600) // 60
-    
-    meridiem = "AM"
-    hour_12 = hour_24
-
-    if hour_24 >= 12:
-        meridiem = "PM"
-    if hour_24 > 12:
-        hour_12 = hour_24 - 12
-    if hour_24 == 0:
-        hour_12 = 12
-
-    return hour_12, minutes, meridiem
-
-    
 def print_state(state, outputs, alerts):
     hour, minutes, meridiem = sol_time(state.mission_time_s)
     
