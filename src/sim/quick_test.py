@@ -1,5 +1,5 @@
 from src.sim.state import Habitat_State
-from src.sim.engine import step, gas_alert, mca
+from src.sim.engine import step, gas_alert, mca, get_status
 from src.sim.crew_metabolism import crew_metabolism
 from src.sim.mars_time import sol_time
 
@@ -82,6 +82,7 @@ s0 = Habitat_State(
 
 def print_state(state, outputs, alerts):
     hour, minutes, meridiem = sol_time(state.mission_time_s)
+    status = get_status(state)
     
     print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
     print(f"Light level: {state.light_level:.2f}")
