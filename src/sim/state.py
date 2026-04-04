@@ -81,8 +81,7 @@ class Habitat_State:
     battery_max_capacity_kwh: float
     battery_stored_kwh: float 
     solar_arrays: list
-    solar_capacity_kw: float
-    solar_efficiency: float
+    how_much_daylight_kw_m2: float
 
     # ----placeholders from here down----
     how_much_daylight_kw_m2: float
