@@ -18,7 +18,7 @@ def solar_arrays_online(solar_array):
     return new_solar_array, solar_array_online_count
 
 
-def solar_generation_kw(state, new_solar_array, sollar_array_online_count):
+def solar_generation_kw(state, new_solar_array):
     power_generated_per_array = []
     total_solar_generated_kw = 0.0
 
@@ -29,8 +29,8 @@ def solar_generation_kw(state, new_solar_array, sollar_array_online_count):
         else:
             power_generated_kw = 0.0
 
-    power_generated_per_array.append({"id" : array["id"], "power_generated_kw" : power_generated_kw})
-    total_solar_generated_kw += power_generated_kw
+        power_generated_per_array.append({"id" : array["id"], "power_generated_kw" : power_generated_kw})
+        total_solar_generated_kw += power_generated_kw
 
     return total_solar_generated_kw, power_generated_per_array
 
