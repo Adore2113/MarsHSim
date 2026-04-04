@@ -83,32 +83,80 @@ s0 = Habitat_State(
 def print_state(state, outputs, alerts):
     hour, minutes, meridiem = sol_time(state.mission_time_s)
     status = get_status(state)
+    WIDTH = 33
+
+   # print("\n♡ ♡ ♡ ♡ Adore2113's MarsHSim ♡ ♡ ♡ ♡\n")
+
+    print("\n♡ " + "═" * 30 + " ♡")
+   # print("       Adore2113's MarsHSim")
+    print("Adore2113's MarsHSim".center(WIDTH))
+    print("♡ " + "═" * 30 + " ♡")
     
-    print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
-    print(f"Light level: {state.light_level:.2f}")
-    print(f"Oxygen: {state.o2_kpa} kPa")
-    print(f"Hydrogen stored: {state.h2_stored_kg:.4f} kg")
-    print(f"Carbon Dioxide Scrubbed: {outputs['co2_removed_kpa']:.4f} kPa")
-    print(f"Carbon Dioxide: {state.co2_kpa} kPa")
-    
+    print(("♡ [ TIME ] ♡").center(WIDTH))
+   # print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
+   # print(f"Light level: {state.light_level:.2f}")
+    print(f"{'Sol Clock:':<13} N/A | {hour}:{minutes:02d} {meridiem} LMST\n")
+    #print(f"{'Light Level:':<22} {state.light_level:.2f}")
+
+    print(("♡ [ ATMOSPHERE ] ♡").center(WIDTH))
     if alerts:
         print(f"Alert: {alerts}")
-    print(f"Nitrogen: {state.n2_kpa} kPa")
-    print(f"Argon: {state.ar_kpa} kPa")
-    print(f"Total Pressure: {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa):.4f} kPa")
-    print(f"Water remaining: {state.water_for_oga_kg} kg")
+    print(f"{'Oxygen:':<22} {state.o2_kpa:.3f} kPa")
+    print(f"{'Carbon Dioxide:':<22} {state.co2_kpa:.3f}  kPa")
+    print(f"{'Nitrogen:':<22} {state.n2_kpa:.3f} kPa")
+    print(f"{'Argon:':<22} {state.ar_kpa:.3f} kPa")
+    print(f"{'Total Pressure:':<22} {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa):.3f} kPa\n")
+
+    print(("♡ [ RESOURCES ] ♡").center(WIDTH))
+    print(f"{'Water Remaining:':<22} {state.water_for_oga_kg:.3f} kg")
+    print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.4f}  kg\n")
+
+    print(("♡ [ SYSTEMS ] ♡").center(WIDTH))
+    print(f"{'CO2 Scrubbed:':<22} {outputs['co2_removed_kpa']:.4f} kPa")
+    print(f"{'Scrubber Power Used:':<22} {outputs['co2_scrubber_power_used_kw']:.4f} kW")
+    print(f"{'Scrubber Heat:':<22} {outputs['co2_scrubber_heat_kw']:.4f} kW")
+    print(f"{'Scrubber Energy:':<22} {outputs['co2_scrubber_energy_used_kwh']:.4f} kWh")
+    print(f"{'OGA Heat:':<22} {outputs['oga_heat_kw']:.4f} kW")
+    print(f"{'Lights Power:':<22} {outputs['light_power_kw']:.4f} kW\n")
+
+    print((f"♡ [ SYSTEM STATUS: {status} ] ♡").center(WIDTH))
+
+    print("♡ " + "═" * 30 + " ♡")
     
-    print(f"Scrubber power used: {outputs["co2_scrubber_power_used_kw"]:.4f} kW")
-    print(f"Scrubber heat: {outputs["co2_scrubber_heat_kw"]:.4f} kW")
-    print(f"Scrubber energy: {outputs["co2_scrubber_energy_used_kwh"]:.4f} kWh")
-    print(f"OGA heat: {outputs["oga_heat_kw"]:.4f} kW")
-    print(f"Lights power: {outputs["light_power_kw"]:.4f} kW")
+    # ----- for printing when using the UI -----
+    #print("\n♡ ♡ ♡ ♡ Adore2113's MarsHSim ♡ ♡ ♡ ♡\n")
+    #print((f"[ SYSTEM STATUS: {status} ]")
+
+    #print("[ TIME ]")
+    #print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
+    #print(f"Light level: {state.light_level:.2f}")
+
+    #print("[ ATMOSPHERE ]")
+    #if alerts:
+    #    print(f"Alert: {alerts}")
+    #print(f"Oxygen: {state.o2_kpa:.3f} kPa")
+    #print(f"Carbon Dioxide: {state.co2_kpa:.3f} kPa")
+    #print(f"Nitrogen: {state.n2_kpa:.3f} kPa")
+    #print(f"Argon: {state.ar_kpa:.3f} kPa")
+    #print(f"Total Pressure: {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa):.3f} kPa")
+
+    #print("[ RESOURCES ]")
+    #print(f"Water remaining: {state.water_for_oga_kg:.3f} kg")
+    #print(f"Hydrogen stored: {state.h2_stored_kg:.4f} kg")
+
+    #print("[ SYSTEMS ]")
+    #print(f"Carbon Dioxide Scrubbed: {outputs['co2_removed_kpa']:.4f} kPa")
+    #print(f"Scrubber power used: {outputs['co2_scrubber_power_used_kw']:.4f} kW")
+    #print(f"Scrubber heat: {outputs['co2_scrubber_heat_kw']:.4f} kW")
+    #print(f"Scrubber energy: {outputs['co2_scrubber_energy_used_kwh']:.4f} kWh")
+    #print(f"OGA heat: {outputs['oga_heat_kw']:.4f} kW")
+    #print(f"Lights power: {outputs['light_power_kw']:.4f} kW")
 
     print()
 
 
 state = s0
-for i in range(12):
+for i in range(3):    #turn this back to 12
     state, outputs = step(state)
     alerts = gas_alert(state)
     print_state(state, outputs, alerts)
