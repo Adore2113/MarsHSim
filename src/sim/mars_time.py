@@ -1,3 +1,4 @@
+import math
 from dataclasses import replace
 from .state import Habitat_State
 
@@ -29,3 +30,14 @@ def sol_time(seconds):    # for a readable clock
 
 def daylight_per_m2_kw(seconds, mission_time_s):
     sol_seconds = seconds % total_sol_seconds
+
+    if sol_seconds < sunrise_seconds or sol_seconds >= sunset_seconds:
+        return 0.0
+    
+    daylight_length_seconds = sunset_seconds - sunrise_seconds
+    daylight_progress = (sol_seconds - sunrise_seconds) / daylight_length_seconds
+
+    # using a sine wave, so using .sin from math import to get a radian and .pi 
+    daylight_m2_kw = max_daylight_per_m2_kw * math.sin(math.pi * daylight_progress)
+
+    return daylight_m2_kw
