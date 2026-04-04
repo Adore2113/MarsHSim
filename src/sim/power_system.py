@@ -24,7 +24,7 @@ def solar_generation_kw(state, new_solar_array):
 
     for array in new_solar_array:
         if array["status"] == "online":
-            power_generated_kw = (state.how_much_daylight_kw_m2 * array["area_m2"] * array["efficiency"] * array["dust_factor"])
+            power_generated_kw = (state.daylight_m2_kw * array["area_m2"] * array["efficiency"] * array["dust_factor"])
 
         else:
             power_generated_kw = 0.0
