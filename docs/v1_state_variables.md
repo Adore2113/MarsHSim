@@ -18,9 +18,7 @@
 #### Power:
 -battery_max_capacity_kwh
 -battery_stored_kwh 
--solar_capacity_kw
--solar_efficiency
--dust_level
+-daylight_m2_kw
 
 #### Atmosphere:
 -target_pressure_kpa 
