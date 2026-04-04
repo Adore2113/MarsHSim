@@ -53,18 +53,16 @@ def lights(state, dt_min):
     return light_level, light_heat_added_kw, light_heat_added_kwh, light_power_used_kw, light_power_used_kwh
 
 
+def get_status(state):
+    if state.o2_kpa <= 17.0 or state.co2_kpa >= 2.0:
+        return "CRITICAL"
+    
+    elif state.o2_kpa <= 19.5 or state.co2_kpa >= 1.0:
+        return "WARNING"
+    
+    else:
+        return "NOMINAL"
 
-# ----functions for amine beds scrubbing co2----
-# moved to co2_srubbber_system.py
-
-# ----OGA and water electrolysis----
-# moved to oxygen_system.py
-
-# ----checking atmosphere gas levels---- 
-# moved to buffer_gas_system.py
-
-# ----controlling atmosphere gas levels----
-# moved to buffer_gas_system.py
 
 # ----alerts ----
 def gas_alert(state):
