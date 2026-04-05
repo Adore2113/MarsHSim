@@ -32,7 +32,7 @@
 
     -going to be using Dalton's Law
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡        03/05/2026
     -considering adding humidity contribution (1-2kPa ppH2O)
@@ -51,7 +51,7 @@
     -N winter/S summer 154 sols, average temp: 
     (I am going off of approximate surface temp daily averages for mid-latitude from NASA missions)
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       03/08/2026
     -resuming atmosphere creation with more and updated knowledge
@@ -80,7 +80,7 @@
 
     -tomorrow finishing scrubbing function in engine.py
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       03/09/2026
     -continuing where I left off with scrubbing
@@ -100,7 +100,7 @@
          **next session start:**
     -adding total pressure update tomorrow, remember to add the o2 regen to quick_test and state.py tomorrow, also starting this little part at the end of my notes
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       03/10/2026
     -renamed checking_gases function to gas_alerts, moved the co2 removal function to before o2_regen
@@ -122,7 +122,7 @@
        **next session start:**
     -consider breaking down the long conversion in oga_byproduct into multiple lines of code with notes explaining each step for easier understanding, vent the h2
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡        03/11/2026
     -learned it's important to document types of measurements as I go for conversions and future better understanding when both using and reading code
@@ -135,7 +135,7 @@
 
     -instead of venting, I'm going to store the h2
     
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡         03/13/2026
     -going to use 1000kg of water to start as a placeholder to finish the OGA functions
@@ -153,7 +153,7 @@
         **next session start:**
     -figure out variable numbers for the variables commented out at the top of engine.py, add in when the ar or n2 will be used from storage    
     
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡        03/14/2026
     -I added the variable co2_stored_kpa to collect and temporarily store the co2 the amine bed scrubs until I use it later in my code 
@@ -163,7 +163,7 @@
         **next session start:**
     -continue fixing variables, making sure the files are correct and finish adding Major Constituent Analyzer (mca) function and adding n2 to low pressure
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       03/15/2026
     -finished maintenance
@@ -175,7 +175,7 @@
          **next session start:**
     -add what I need to add to the other files from the new function I made today to handle the buffer gas
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡
 
 ### ♡       03/17/2026
     -yesterday I mapped out a better plan for the rest of my simulator, and I decided to clean it up as I go today..I realize I made a lot of mistakes earlier, but I'm noticing them and fixing them now
@@ -199,7 +199,7 @@
         **next session start:**
     -thermal control and temp management
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡
 
 ### ♡       03/18/2026
     -deciding if I should add heat output into current functions, or have its own. I'm going to keep adding to the proper functions
@@ -211,7 +211,7 @@
         **next session start:**
     -consider turning functions with five or more returns into dictionaries and continue with thermal control and temp management
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡
 
 ### ♡       03/19/2026
     -added dt_min to variables that change based on elapsed time in engine.py
@@ -221,7 +221,7 @@
         **next session start:**
     -consider turning functions with five or more returns into dictionaries and continue with thermal control and temp management in run buffer gas
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡
 
 ### ♡       03/20/2026
     -I'm making the amount of heat added a fixed amount for now
@@ -231,7 +231,7 @@
         **next session start:**
     -continue adding heat generation to functions and add radiators, lights, electronics/computers to their own functions
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡
 
 ### ♡       03/21/2026
     -hand injury but working past it, going to add a light function where they dim at a certain time at night and also include how much heat the lights generate
@@ -247,7 +247,7 @@
         **next session start:**
     -continue adding heat generation to lights and add electronics/computers, radiators to their own functions, reconsider lighting variable names
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡
 
 ### ♡       03/24/2026
     -since I want to have solar, I'm going to need to have a huge battery storage for when there are dust storms and other impacting factors (I still have an injury, I am doing small blocks of code at a time) so I'll make the battery capacity 4000.0 kWh for now
@@ -259,7 +259,7 @@
         **next session start:**
     -continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar and need to update step in engine.py to call the run_oga function properly now
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       03/26/2026
     -added some power consumption variables to oxygen_system.py
@@ -275,7 +275,7 @@
         **next session start:**
     -break up co2 scrubber system into different functions to match the other files and then add power usage, eventually continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       03/28/2026
     -making crew metabolism into its own file for organization and considering breaking it into smaller functions for quicker/easier readability as I add to the file
@@ -290,7 +290,7 @@
     -work on water_system
     -eventually... lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       03/28/2026
     -decided to start with power_system.py since I already started implementing these features in other functions and updated step in engine.py to include power/energy used for OGA and lights
@@ -313,17 +313,17 @@
     -work on power_system.py
     -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       03/30/2026
     -starting by reviewing my code and I see some areas I need to fix b/c of the changes I made last night, starting with how my amine beds function
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       03/31/2026
     -updated solar array list to not be hard coded online and instead start with all of them being on standby status and added the function to manage what ones are online with a new function in power_system.py
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       04/03/2026
     -updated power_system.py and added a solar generation function and fixed the other no longer needed variables from the other files that had to do with solar power.
@@ -335,7 +335,7 @@
 
     -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
 ### ♡       04/04/2026
     -while trying to come up with a way to make the daylight run smoothly and over time instead of hardcoding it to be on or off or at certain percentages, I learned what a sine wave is and I'm going to try to use that
@@ -353,5 +353,5 @@
 
     -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
 
-♡----------♡----------♡----------♡----------♡ 
+♡--------------------------------------------------♡ 
 
