@@ -1,81 +1,123 @@
-# MarsHSim
+# ♡ MarsHSim ♡
 
-I'm building a Mars habitat simulation where the system tries to keep the crew alive.
+I'm building a Mars habitat simulation where the system will try to keep a crew alive on Mars with no resupply.
+
+♡--------------------------------------------------♡
 
 MarsHSim models a self-sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 people inside a closed 2000 m3 habitat on Mars with no Earth resupply. 
 
 The focus is on reliability, realism, machine learning integration, reusability, and (eventually) cost considerations.
 
-## What it does / What it will do:
+##Overview:
 
-- Simulates a 30 crew habitat on Mars in Arcadia Planitia with a habitat size of 2000 m3 
+MarsHSim simulates a habitat in Arcadia Planitia running on Mars time (sols and LMST).
 
-- Runs a timestep based simulation with continuous updates that will be adjustable (currently fixed at 5min intervals)
+The system updates continuously using a timestep based simulation (currently 5 minute intervals), modeling how a closed life support system maintains stability over time.
 
-- Will run an interactive ui I designed
+My goal is to build something that feels real, structured, autonomous and slighlty interactive on a UI I designed
 
-- Runs on sols and Mars local mean solar time (LMST)
 
-- Tracks and maintains:
-    - Atmospheric gases:
-        - oxygen (o2)
-        - carbon dioxide (co2)
-        - nitrogen (n2)
-        - argon (ar)
+♡--------------------------------------------------♡
 
-    - Core life support systems:  
-        - Amine swing beds  
-        - Oxygen generation assembly (OGA) and water electrolysis  
-        - Major constituent analyzer (MCA)
+## Systems:
 
-    - Environmental systems:  
-        - Temperature (Celsius)  
-        - Power  
-        - Water  
-        - Food supplies  
-        - Crew metabolism  
-        - Day and night environment behavior
+### Atmospheric gases:
+♡  -oxygen (o2)  
+♡  -carbon dioxide (co2)  
+♡  -nitrogen (n2)  
+♡  -argon (ar)  
+
+### Core life support:
+♡  -amine swing beds  
+♡  -oxygen generation assembly (OGA)  
+♡  -water electrolysis  
+♡  -major constituent analyzer (MCA)  
+
+### Environmental systems:
+♡  -temperature (Celsius)  
+♡  -power  
+♡  -water  
+♡  -food supplies  
+♡  -crew metabolism  
+♡  -day and night behavior 
+
+
+♡--------------------------------------------------♡   
     
-    - Planned future features:
+## Planned Features:
 
-        - Emergency scenarios  
-        - Leaks  
-        - Illnesses affecting the environment  
-        - Dust storms  
-        - Extreme temperature changes  
+♡  -emergency scenarios  
+♡  -pressure leaks  
+♡  -crew illness affecting environment  
+♡  -dust storms  
+♡  -extreme temperature shifts  
+♡  -interactive monitoring and control interface  
 
-        - Interactive interface for monitoring and control
+
+♡--------------------------------------------------♡
 
 ## Current Focus:
 
-This simulator is in active development and still in it's early stages.
+♡  -building core systems one at a time  
+♡  -keeping outputs clean and readable  
+♡  -making each subsystem behave consistently  
+♡  -laying the foundation for future AI control  
 
-Right now the focus is building the core systems one at a time and making sure each one behaves clearly and consistently.  
+This project is in active development.
+
+♡--------------------------------------------------♡
 
 ## Project Structure:
     
-- state.py:
-  Defines the habitat state and all tracked variables
+♡ -src/
+♡ -sim/
+    -engine.py # main simulation loop and system coordination
+    -state.py # habitat state and tracked variables
 
-- engine.py:
-  Contains the simulation step and subsystem logic
+    -mars_time.py           # Mars time, sols, and LMST handling
 
-- quick_test.py:
-  Sets initial conditions and runs the simulation loop
+    -crew_metabolism.py     # crew O2 consumption and CO2 production
 
-- v1_scope.md:
-  Creation notes and development process
+    -oxygen_system.py       # OGA and oxygen generation logic
+    -co2_scrubber_system.py # amine bed CO2 removal system
+    -buffer_gas_system.py   # nitrogen and argon pressure balancing
 
-- v1_state_variables.md: 
-  Reference list of all variables used in the state
+    -power_system.py        # solar, battery, and power usage
+    -temp_system.py         # thermal control and heat modeling
+    -water_system.py        # water usage and tracking
+    -quick_test.py          # simulation entry point
 
-## How to run:
+♡ -docs/
+    -v1_scope.md # creation log and development notes
+    -v1_state_variables.md # reference of all tracked variables
 
-This project is in early development and currently runs as a simple simulation loop in the terminal.
+♡ -requirements.txt   # project dependencies
+♡ -gitignore         # ignored files
+♡ -README.md          # project overview
 
-To run:
-1. Make sure Python is installed
-2. Run the simulation file
+♡--------------------------------------------------♡ 
 
-```bash
-py -m src.sim.quick_test
+## Running the Simulation
+
+This currently runs as a terminal based simulation.
+
+Make sure Python is installed, then run:
+    py -m src.sim.quick_test
+
+♡--------------------------------------------------♡
+
+## Why this project:
+
+I wanted to build something that feels real, and something I was genuinely interested in and excited about.
+
+MarsHSim started as a way to explore how a closed life support system actually behaves over time, not just as isolated calculations but as a connected system where everything affects everything else.
+
+Instead of solving problems individually, this project focuses on how systems interact, drift, stabilize, learn, and fail.
+
+My long term goal is to move toward a simulation that can support autonomous decision making and eventually integrate machine learning for prediction and control, while keeping it slightly interactive to make it more engaging.
+
+For a more detailed breakdown of how this is being built step by step, see my raw development log that I update as I work on it:
+
+docs/v1_scope.md
+
+-Adore2113 ♡
