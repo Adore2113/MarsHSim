@@ -1,6 +1,6 @@
 # ♡ MarsHSim ♡
 
-![MarsHSim Banner](assets/github_preview.jpeg)
+![MarsHSim Banner](assets/github_preview.jpg "MarsHSim")
 
 I'm building a Mars habitat simulation where a closed system keeps a crew alive with no resupply, one subsystem at a time.
 
