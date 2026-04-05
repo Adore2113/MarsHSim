@@ -73,9 +73,9 @@ This project is in active development.
 
 ## Project Structure:
     
-♡ -src/-
+♡ -src/
 
-♡ -sim/-
+♡ -sim/
 
 ♡ --engine.py  =  main simulation loop and system coordination
 
@@ -100,7 +100,7 @@ This project is in active development.
 ♡ --quick_test.py  =  simulation entry point
 
 
-♡ -docs/-
+♡ -docs/
 
 ♡ --v1_scope.md  =  creation log and development notes
 
