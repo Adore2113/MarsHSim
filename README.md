@@ -77,9 +77,9 @@ This project is in active development.
 
 ♡ -sim/-
 
-♡ --engine.py--                --main simulation loop and system coordination
+♡ --engine.py = main simulation loop and system coordination
 
-♡ --state.py--                 --habitat state and tracked variables
+♡ --state.py = habitat state and tracked variables
 
 ♡ --mars_time.py--             --Mars time, sols, and LMST handling
 
