@@ -1,14 +1,16 @@
 # ♡ MarsHSim ♡
 
-I'm building a Mars habitat simulation where the system will try to keep a crew alive on Mars with no resupply.
+I'm building a Mars habitat simulation where a closed system keeps a crew alive with no resupply, one subsystem at a time.
 
 ♡--------------------------------------------------♡
 
-MarsHSim models a self-sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 people inside a closed 2000 m3 habitat on Mars with no Earth resupply. 
+MarsHSim models a self sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2000 m3 habitat on Mars.
 
-The focus is on reliability, realism, machine learning integration, reusability, and (eventually) cost considerations.
+The focus is on reliability, realism, machine learning integration, reusability, and eventually cost considerations.
 
-##Overview:
+♡--------------------------------------------------♡
+
+## Overview:
 
 MarsHSim simulates a habitat in Arcadia Planitia running on Mars time (sols and LMST).
 
