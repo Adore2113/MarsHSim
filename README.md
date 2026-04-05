@@ -77,40 +77,40 @@ This project is in active development.
 
 ♡ -sim/-
 
-♡ --engine.py = main simulation loop and system coordination
+♡ --engine.py  =  main simulation loop and system coordination
 
-♡ --state.py = habitat state and tracked variables
+♡ --state.py  =  habitat state and tracked variables
 
-♡ --mars_time.py--             --Mars time, sols, and LMST handling
+♡ --mars_time.py  =  Mars time, sols, and LMST handling
 
-♡ --crew_metabolism.py--       --crew O2 consumption and CO2 production
+♡ --crew_metabolism.py  =  crew O2 consumption and CO2 production
 
-♡ --oxygen_system.py--         --OGA and oxygen generation logic
+♡ --oxygen_system.py  =  OGA and oxygen generation logic
 
-♡ --co2_scrubber_system.py--   --amine bed CO2 removal system
+♡ --co2_scrubber_system.py  =  amine bed CO2 removal system
 
-♡ --buffer_gas_system.py--     --nitrogen and argon pressure balancing
+♡ --buffer_gas_system.py  =  nitrogen and argon pressure balancing
 
-♡ --power_system.py--          --solar, battery, and power usage
+♡ --power_system.py  =  solar, battery, and power usage
 
-♡ --temp_system.py--           --thermal control and heat modeling
+♡ --temp_system.py  =  thermal control and heat modeling
 
-♡ --water_system.py--          --water usage and tracking
+♡ --water_system.py  =  water usage and tracking
 
-♡ --quick_test.py--            --simulation entry point
+♡ --quick_test.py  =  simulation entry point
 
 
 ♡ -docs/-
 
-♡ --v1_scope.md--              --creation log and development notes
+♡ --v1_scope.md  =  creation log and development notes
 
-♡ --v1_state_variables.md--    --reference of all tracked variables
+♡ --v1_state_variables.md  =  reference of all tracked variables
 
-♡ -requirements.txt--          --project dependencies
+♡ -requirements.txt  =  project dependencies
 
-♡ -gitignore--                 --ignored files
+♡ -gitignore  =  ignored files
 
-♡ -README.md--                 --project overview
+♡ -README.md  =  project overview
 
 ♡--------------------------------------------------♡ 
 
