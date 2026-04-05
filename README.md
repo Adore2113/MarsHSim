@@ -131,7 +131,7 @@ MarsHSim started as a way to explore how a closed life support system actually b
 
 Instead of solving problems individually, this project focuses on how systems interact, drift, stabilize, learn, and fail.
 
-My long term goal is to move toward a simulation that can support autonomous decision making and eventually integrate machine learning for prediction and control, while keeping it slightly interactive to make it more engaging.
+My long term goal is to move toward a simulation that can support autonomous decision making and eventually integrate machine learning for prediction and control, while keeping it structured, autonomous, and slightly interactive to make it more engaging.
 
 For a more detailed breakdown of how this is being built step by step, see my raw development log that I update as I work on it:
 
