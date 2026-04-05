@@ -73,31 +73,33 @@ This project is in active development.
 
 ## Project Structure:
     
-♡ -src/
-♡ -sim/
-♡ --engine.py              # main simulation loop and system coordination
-♡ --state.py               # habitat state and tracked variables
+♡ -src/-
 
-♡ --mars_time.py           # Mars time, sols, and LMST handling
+♡ -sim/-
 
-♡ --crew_metabolism.py     # crew O2 consumption and CO2 production
+♡ --engine.py--             main simulation loop and system coordination
+♡ --state.py               habitat state and tracked variables
 
-♡ --oxygen_system.py       # OGA and oxygen generation logic
-♡ --co2_scrubber_system.py # amine bed CO2 removal system
-♡ --buffer_gas_system.py   # nitrogen and argon pressure balancing
+♡ --mars_time.py--           Mars time, sols, and LMST handling
 
-♡ --power_system.py        # solar, battery, and power usage
-♡ --temp_system.py         # thermal control and heat modeling
-♡ --water_system.py        # water usage and tracking
-♡ --quick_test.py          # simulation entry point
+♡ --crew_metabolism.py--     crew O2 consumption and CO2 production
 
-♡ -docs/
-♡ --v1_scope.md            # creation log and development notes
-♡ --v1_state_variables.md  # reference of all tracked variables
+♡ --oxygen_system.py--       OGA and oxygen generation logic
+♡ --co2_scrubber_system.py-- amine bed CO2 removal system
+♡ --buffer_gas_system.py--   nitrogen and argon pressure balancing
 
-♡ -requirements.txt        # project dependencies
-♡ -gitignore               # ignored files
-♡ -README.md               # project overview
+♡ --power_system.py--        solar, battery, and power usage
+♡ --temp_system.py--         thermal control and heat modeling
+♡ --water_system.py--        water usage and tracking
+♡ --quick_test.py--          simulation entry point
+
+♡ -docs/-
+♡ --v1_scope.md--            creation log and development notes
+♡ --v1_state_variables.md--  reference of all tracked variables
+
+♡ -requirements.txt--        project dependencies
+♡ -gitignore--               ignored files
+♡ -README.md--               project overview
 
 ♡--------------------------------------------------♡ 
 
