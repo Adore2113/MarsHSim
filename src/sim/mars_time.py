@@ -2,62 +2,68 @@ import math
 from dataclasses import replace
 from .state import Habitat_State
 
-# file for handling all things time
+# file for handling all things time 
 
-#    --------------------------------  
-
-total_sol_seconds = 88775     # one mars sol is 24h 39min 35sec
-sunrise_seconds = total_sol_seconds // 4   # ~ 22193
-afternoon_seconds = total_sol_seconds // 2   # ~ 44387
-sunset_seconds = (total_sol_seconds * 3) // 4    # ~ 66581
-
+seconds_per_sol = 88775     # one mars sol is 24h 39min 35sec
+hours_per_sol = seconds_per_sol / 3600
 max_daylight_m2_kw = 0.6    # placeholder
 
-# habitat location = 47° North, 184° East
+# habitat location = 47° North, 184° East (Arcadia Planitia)
 longitude_east_deg = 184
-longitude_north_deg = 47
+latitude_north_deg = 47
 
-#    --------------------------------
-
-def time_in_sol_seconds(mission_time_s):
-    longitude_offset_s = (longitude_east_deg * total_sol_seconds) // 3 
-    return (mission_time_s + longitude_offset_s) % total_sol_seconds
+# ls = areocentric solar longitude (season angle)
+solar_longitude_ls_deg = 0    # 0 = northern spring equinox
 
 
-def sol_time(mission_time_s):    # for a readable clock
-    time_in_sol_s = time_in_sol_seconds(mission_time_s)
+def advance_time(state, dt_s):
+    new_mission_time_s = state.mission_time_s + dt_s
     
-    hour_24 = (time_in_sol_s * 24) // total_sol_seconds
-    hour_remainder = (time_in_sol_s * 24) % total_sol_seconds
+    degrees_per_second = 360.0 / (668.6 * seconds_per_sol)
+    new_ls_deg = (solar_longitude_ls_deg + dt_s * degrees_per_second) % 360.0
     
-    minutes = (hour_remainder * 60) // total_sol_seconds
-    minute_remainder = (hour_remainder * 60) % total_sol_seconds 
-    seconds = (minute_remainder * 60) // total_sol_seconds 
-    
-    meridiem = "AM"
-    hour_12 = hour_24
+    return replace(state, new_mission_time_s = new_mission_time_s, solar_longitude_ls_deg = new_ls_deg)
 
-    if hour_24 >= 12:
-        meridiem = "PM"
-    if hour_24 > 12:
-        hour_12 = hour_24 - 12
-    if hour_24 == 0:
-        hour_12 = 12
 
-    return hour_12, minutes, seconds, meridiem
+def get_sol_and_time(state):    # for sol number and 24 hour time format
+    sol = int(state.mission_time_s // seconds_per_sol)
+    seconds_into_sol = state.mission_time_s % seconds_per_sol
 
+    hour_24 = seconds_into_sol // 3600
+    minute = (seconds_into_sol % 3600) // 60
+
+    return sol, hour_24, minute
+
+
+def daytime_check(state):
+    #I'll finish this later
+    _, hour, _ = get_sol_and_time(state)
+
+    is_daytime = 6 <= hour < 20
+
+    return is_daytime
+
+
+def sun_tilt_degree(solar_longitude_ls_deg):
+    mars_axial_tilt_deg = 25.19
+    sun_tilt_deg = mars_axial_tilt_deg * math.sin(math.radians(solar_longitude_ls_deg))
+   
+    return sun_tilt_deg
 
 
 def daylight_per_m2_kw(mission_time_s):
-    time_in_sol_s = time_in_sol_seconds(mission_time_s)
+    time_in_sol_s = mission_time_s % seconds_per_sol
     
-    if time_in_sol_s < sunrise_seconds or time_in_sol_s >= sunset_seconds:
+    sunrise_s = seconds_per_sol * 0.25    # ~6am
+    sunset_s = seconds_per_sol * 0.75    # ~6pm
+    
+    if time_in_sol_s < sunrise_s or time_in_sol_s >= sunset_s:
         return 0.0
-    
-    daylight_length_s = sunset_seconds - sunrise_seconds
-    daylight_progress = (time_in_sol_s - sunrise_seconds) / daylight_length_s
+
+    daylight_length_s = sunset_s - sunrise_s
+    daylight_progress = (time_in_sol_s - sunrise_s) / daylight_length_s
 
     # using a sine wave, so using .sin from math import to get a radian and .pi 
-    daylight_m2_kw = max_daylight_m2_kw * math.sin(math.pi * daylight_progress)
+    daylight_m2_kw = 0.6 * math.sin(math.pi * daylight_progress)
 
     return daylight_m2_kw
