@@ -1,25 +1,22 @@
 from dataclasses import dataclass
 
-
 @dataclass
 class Habitat_State:
-    # time
+# ------time----------------------------------------♡
     mission_time_s: int
 
-    # lights
+# ------lights--------------------------------------♡
     light_level: float
 
-    # crew
+# ------crew----------------------------------------♡
     crew_count: int
     crew_activity: str
 
-    amine_beds: list
-
-    # habitat
+# ------habitat-------------------------------------♡
     hab_vol_m3: float
     hab_temp_c: float
 
-    # atmosphere targets and limits
+# ------atmosphere targets and limits---------------♡ 
     target_pressure_kpa: float
     min_safe_pressure_kpa: float
     max_safe_pressure_kpa: float
@@ -29,22 +26,22 @@ class Habitat_State:
     target_n2_kpa: float
     target_ar_kpa: float
 
-    # current atmosphere
+# ------current atmosphere--------------------------♡
     o2_kpa: float
     co2_kpa: float
     n2_kpa: float
     ar_kpa: float
 
-    # gas storage
+# ------gas storage---------------------------------♡
     n2_stored_kpa: float
     ar_stored_kpa: float
     co2_stored_kpa: float
     h2_stored_kg: float
 
-    # oga water supply
+# ------OGA water-----------------------------------♡
     water_for_oga_kg: float
 
-    # Dalton's Law
+# ------pressure percentages using Dalton's Law-----♡
     @property
     def total_pressure_kpa(self) -> float:
         return self.o2_kpa + self.co2_kpa + self.n2_kpa + self.ar_kpa
@@ -73,25 +70,25 @@ class Habitat_State:
             return 0
         return 100 * self.ar_kpa / self.total_pressure_kpa
 
-
-    # amine beds 
+# ------amine beds----------------------------------♡
+    amine_beds: list
     scrub_per_bed_kpa: float
 
-    # power
+# ------power---------------------------------------♡
     battery_max_capacity_kwh: float
     battery_stored_kwh: float 
     solar_arrays: list
     daylight_m2_kw: float
 
-    # ----placeholders from here down----
+# ------placeholders for future plans---------------♡
     relative_humidity: float
 
-    # Water
+    # ♡ water ♡
     potable_water_l: float
     grey_water_l: float
     waste_brine_l: float
 
-    # Integrity / safety
+    # ♡ Integrity / safety ♡
     leak_rate_kpa_per_hr: float
     smoke_ppm: float
     radiation_msv_per_day: float
