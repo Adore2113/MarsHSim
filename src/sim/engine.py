@@ -16,17 +16,19 @@ min_temp_c = 20.0
 max_temp_c = 25.0
 
 # ----time----
-def get_sol_time(mission_time_s):
+def get_sol_time(state):
     total_sol_seconds = 88775
-    sol_seconds = mission_time_s % total_sol_seconds
+    sol_seconds = state.mission_time_s % total_sol_seconds
     hour_24 = sol_seconds // 3600
     minutes = (sol_seconds % 3600) // 60
     return hour_24, minutes
 
 
 def lights(state, dt_min):
-    hour_24, minutes = get_sol_time(state.mission_time_s)
     hours_per_step = dt_min / 60
+    hour_24, minutes = get_sol_time(state)
+    #minutes = get_sol_time(state)
+
     light_power_used_kw = 0.0
     light_power_used_kwh = 0.0
     light_heat_added_kw = 0.0
