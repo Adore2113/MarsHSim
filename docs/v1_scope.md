@@ -28,6 +28,8 @@
 ### ♡        03/04/2026
     -Wanting to keep lower pressure (~65 kilopascals (kPa) target) in habitat to make leaks not as catastrophic, and deciding to add argon as a buffer gas
 
+    -location: 47° North, 184° East (Arcadia Planitia)
+
     -30 crew members to hint at an early colony with a habitat size of 2000 cubic meters (m3)
 
     -going to be using Dalton's Law
@@ -354,4 +356,24 @@
     -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
 
 ♡--------------------------------------------------♡ 
+
+        04/05/2026
+    -fixing the lighting function to not be hardcoded and react and adjust to the level of daylight
+
+    -considering a file that will handle the light level, but so far I'm leaving it in engine, b/c I can't justify a file dedicated to just one function
+
+    -adding in the coordinates for the location of the habitat to make time passing and daylight and everything that goes along with that more accurate
+
+    -changed a ton in the mars_time.py file, I'm still figuring it out
+
+    **next session start:**
+    -REMEMBER TO COMMIT MORE!!
+
+    -do more reasearch and figure out mars_time.py
+
+    -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
+
+    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
+
+
 
