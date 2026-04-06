@@ -369,7 +369,7 @@
     **next session start:**
     -REMEMBER TO COMMIT MORE!!
 
-    -do more reasearch and figure out mars_time.py
+    -do more reasearch and figure out mars_time.py, clean up step in engine.py
 
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
 
