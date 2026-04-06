@@ -1,16 +1,16 @@
 from src.sim.state import Habitat_State
 from src.sim.engine import step, gas_alert, mca, get_status
 from src.sim.crew_metabolism import crew_metabolism
-from src.sim.mars_time import sol_time
+from src.sim.mars_time import get_sol_and_time
 
 s0 = Habitat_State(
-# ---time---
+# --- time ---
     mission_time_s = 0,
     
-# ---lights---
+# --- lights ---
     light_level = 0.0,
 
-# ----crew----
+# ---- crew ----
     crew_count = 30,
     crew_activity = "normal",
   
@@ -18,7 +18,7 @@ s0 = Habitat_State(
     hab_vol_m3 = 2000.0,
     hab_temp_c = 23,
 
-# ----atmosphere----
+# ---- atmosphere ----
     target_pressure_kpa = 60.0,
     min_safe_pressure_kpa = 55.0,
     max_safe_pressure_kpa = 70.0,
@@ -48,7 +48,7 @@ s0 = Habitat_State(
 
     water_for_oga_kg = 1000.0, # placeholder name and amount
 
-# ----power----
+# ---- power ----
     battery_max_capacity_kwh = 4000.0,
     battery_stored_kwh = 4000.0,    # starting with max capacity, for now
     
@@ -66,9 +66,9 @@ s0 = Habitat_State(
     ], 
 
     #from here down these are placeholders
-    daylight_m2_kw = 0.50,    # 0.60?
+    daylight_m2_kw = 0.0,
 
-    relative_humidity = 40.0,
+    relative_humidity = 45.0,
 
     potable_water_l = 5000.0,
     grey_water_l = 0.0,
@@ -81,7 +81,7 @@ s0 = Habitat_State(
 
 
 def print_state(state, outputs, alerts):
-    hour, minutes, meridiem = sol_time(state.mission_time_s)
+    sol, hour, minutes = get_sol_and_time(state)
     status = get_status(state)
     WIDTH = 33
 
@@ -93,9 +93,9 @@ def print_state(state, outputs, alerts):
     print("♡ " + "═" * 30 + " ♡")
     
     print(("♡ [ TIME ] ♡").center(WIDTH))
-   # print(f"Sol: n/a | {hour}:{minutes:02d} {meridiem} LMST")
+   # print(f"{'Sol': <15} {sol} | {hour}:{minutes:02d} LMST")
    # print(f"Light level: {state.light_level:.2f}")
-    print(f"{'Sol Clock:':<13} N/A | {hour}:{minutes:02d} {meridiem} LMST\n")
+    print(f"{'Sol': <15} {sol} | {hour}:{minutes:02d} LMST\n")
     #print(f"{'Light Level:':<22} {state.light_level:.2f}")
 
     print(("♡ [ ATMOSPHERE ] ♡").center(WIDTH))
