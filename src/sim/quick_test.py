@@ -4,21 +4,21 @@ from src.sim.crew_metabolism import crew_metabolism
 from src.sim.mars_time import get_sol_and_time
 
 s0 = Habitat_State(
-# --- time ---
+# ------time----------------------------------------♡
     mission_time_s = 0,
     
-# --- lights ---
+# ------lights--------------------------------------♡
     light_level = 0.0,
 
-# ---- crew ----
+# ------crew----------------------------------------♡
     crew_count = 30,
     crew_activity = "normal",
   
-
+# ------habitat-------------------------------------♡
     hab_vol_m3 = 2000.0,
-    hab_temp_c = 23,
+    hab_temp_c = 23.0,
 
-# ---- atmosphere ----
+# ------atmosphere targets and limits---------------♡ 
     target_pressure_kpa = 60.0,
     min_safe_pressure_kpa = 55.0,
     max_safe_pressure_kpa = 70.0,
@@ -28,16 +28,22 @@ s0 = Habitat_State(
     target_n2_kpa = 17.0,
     target_ar_kpa = 22.6,
 
+# ------current atmosphere--------------------------♡
     o2_kpa = 20.0,
     co2_kpa = 0.4,
     n2_kpa = 18.0,
     ar_kpa = 21.6, 
 
+# ------gas storage---------------------------------♡
     n2_stored_kpa = 60.0,   # ~1365 kg
     ar_stored_kpa = 30.0,   # ~973.5 kg
     co2_stored_kpa = 0.0,   # temporarily putting the co2 that the scrubber removes to here
     h2_stored_kg = 0.0,  
- 
+
+# ------OGA water-----------------------------------♡
+    water_for_oga_kg = 1200.0, # placeholder name and amount
+
+# ------amine beds----------------------------------♡
     amine_beds = [
         {"id" : 1, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0},
         {"id" : 2, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0},
@@ -46,11 +52,9 @@ s0 = Habitat_State(
     ],
     scrub_per_bed_kpa = 0.0035,
 
-    water_for_oga_kg = 1000.0, # placeholder name and amount
-
-# ---- power ----
+# ------power---------------------------------------♡
     battery_max_capacity_kwh = 4000.0,
-    battery_stored_kwh = 4000.0,    # starting with max capacity, for now
+    battery_stored_kwh = 3800.0,    # starting with max capacity, for now
     
     solar_arrays = [
         {"id" : 1, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
@@ -64,10 +68,10 @@ s0 = Habitat_State(
         {"id" : 9, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
         {"id" : 10,"status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0}
     ], 
-
-    #from here down these are placeholders
+    
     daylight_m2_kw = 0.0,
 
+# ------placeholders for future plans---------------♡
     relative_humidity = 45.0,
 
     potable_water_l = 5000.0,
