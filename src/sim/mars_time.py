@@ -2,7 +2,79 @@ import math
 from dataclasses import replace
 from .state import Habitat_State
 
-# file for handling all things time 
+#--------------------constants-----------------------♡
+seconds_per_sol = 88775     # one mars sol is 24h 39min 35sec
+hours_per_sol = seconds_per_sol / 3600
+max_daylight_m2_kw = 0.6    # placeholder
+
+# habitat location = 47° North, 184° East (Arcadia Planitia)
+longitude_east_deg = 184
+latitude_north_deg = 47
+
+# ls = areocentric solar longitude (season angle)
+solar_longitude_ls_deg_spring = 0    # equinox
+solar_longitude_ls_deg_summer = 90    # solstice
+solar_longitude_ls_deg_autumn = 180    # equinox
+solar_longitude_ls_deg_winter = 270    # solstice
+#----------------------------------------------------♡
+
+
+#---------current time within current sol------------♡
+
+
+
+
+#----------------24 hour time format-----------------♡ 
+
+
+
+
+#----------------------season------------------------♡ 
+
+
+
+#----------------current season angle----------------♡ 
+
+
+
+#--------convert sesason angle to sun's tilt---------♡ 
+
+
+
+
+#----------what fraction is sol is daylight----------♡ 
+
+
+
+
+#---------------sunset/sunrise & sine----------------♡
+
+
+
+
+#---------------solar generatioin info---------------♡
+
+        # handle this in power_system.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 seconds_per_sol = 88775     # one mars sol is 24h 39min 35sec
 hours_per_sol = seconds_per_sol / 3600
@@ -21,16 +93,18 @@ solar_longitude_ls_deg = 0
 # 270 = northern winter solstice
 
 
+#----------move simulation time step ahead-----------♡ 
 def advance_time(state, dt_s):
     new_mission_time_s = state.mission_time_s + dt_s
     
-    degrees_per_second = 360.0 / (668.6 * seconds_per_sol)
+    degrees_per_second = 360.0 / (668.6 * seconds_per_sol)    # one full orbit ~ 668.6
     new_ls_deg = (solar_longitude_ls_deg + dt_s * degrees_per_second) % 360.0
     
-    return replace(state, new_mission_time_s = new_mission_time_s, solar_longitude_ls_deg = new_ls_deg)
+    return replace(state, mission_time_s = new_mission_time_s, solar_longitude_ls_deg = new_ls_deg)
 
 
-def get_sol_and_time(state):    # for sol number and 24 hour time format
+#--------sol number and 24 hour time format----------♡ 
+def get_sol_and_time(state):
     sol = int(state.mission_time_s // seconds_per_sol)
     seconds_into_sol = state.mission_time_s % seconds_per_sol
 
@@ -39,7 +113,7 @@ def get_sol_and_time(state):    # for sol number and 24 hour time format
 
     return sol, hour_24, minute
 
-
+#------------decide if it's day or night------------♡ 
 def daytime_check(state):
     #I'll finish this later
     _, hour, _ = get_sol_and_time(state)
@@ -48,7 +122,7 @@ def daytime_check(state):
 
     return is_daytime
 
-
+#----------_-----------♡ 
 def sun_tilt_degree(solar_longitude_ls_deg):
     mars_axial_tilt_deg = 25.19
     sun_tilt_deg = mars_axial_tilt_deg * math.sin(math.radians(solar_longitude_ls_deg))
