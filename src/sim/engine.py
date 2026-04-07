@@ -15,14 +15,6 @@ target_temp_c = 23.0
 min_temp_c = 20.0
 max_temp_c = 25.0
 
-# ----time----
-def get_sol_time(state):
-    total_sol_seconds = 88775
-    sol_seconds = state.mission_time_s % total_sol_seconds
-    hour_24 = sol_seconds // 3600
-    minutes = (sol_seconds % 3600) // 60
-    return hour_24, minutes
-
 
 def lights(state, dt_min):
     hours_per_step = dt_min / 60
