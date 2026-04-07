@@ -7,8 +7,6 @@ seconds_per_sol = 88775     # one mars sol is 24h 39min 35sec
 hours_per_sol = seconds_per_sol / 3600
 sols_per_year = 668.6     # one full Mars orbit
 
-max_daylight_m2_kw = 0.6    # placeholder
-
 # habitat location = 47° North, 184° East (Arcadia Planitia)
 longitude_east_deg = 184
 latitude_north_deg = 47
@@ -18,10 +16,14 @@ solar_longitude_ls_deg_spring = 0    # equinox
 solar_longitude_ls_deg_summer = 90    # solstice
 solar_longitude_ls_deg_autumn = 180    # equinox
 solar_longitude_ls_deg_winter = 270    # solstice
+
+mars_axial_tilt_deg = 25.19    # how much mars is tilted for sun angle 
+
+max_daylight_m2_kw = 0.6    # placeholder
 #----------------------------------------------------♡
 
 
-#---------current time within current sol------------♡
+#--------------time within current sol---------------♡
 def sol_time_seconds(mission_time_s):
     return mission_time_s % seconds_per_sol
 
@@ -31,14 +33,10 @@ def get_sol_time(state):
     sol_number = int(state.mission_time_s // seconds_per_sol)
     sol_seconds = sol_time_seconds(state.mission_time_s)
     
-    hour_24 = sol_seconds // 3600
+    sol_hour = sol_seconds // 3600
     minutes = (sol_seconds % 3600) // 60
     
-    return sol_number, hour_24, minutes
-
-
-#----------------------season------------------------♡ 
-
+    return sol_number, sol_hour, minutes
 
 
 #----------------current season angle----------------♡ 
