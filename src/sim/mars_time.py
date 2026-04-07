@@ -51,7 +51,7 @@ def get_season_angle_deg(mission_time_s):    # ls = areocentric solar longitude 
     return ls_deg
 
 
-#--------convert sesason angle to sun's tilt---------♡ 
+#--------convert season angle to sun's tilt---------♡ 
 
 
 
