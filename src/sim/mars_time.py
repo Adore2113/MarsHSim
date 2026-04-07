@@ -30,7 +30,7 @@ def sol_time_seconds(mission_time_s):
 
 #----------------24 hour time format-----------------♡ 
 def get_sol_time(state):
-    sol_number = int(state.mission_time_s // seconds_per_sol)
+    sol_number = state.mission_time_s // seconds_per_sol
     sol_seconds = sol_time_seconds(state.mission_time_s)
     
     sol_hour = sol_seconds // 3600
@@ -44,17 +44,17 @@ def season_angle_deg(mission_time_s):    # ls = areocentric solar longitude (sea
     seconds_per_year = sols_per_year * seconds_per_sol
     degrees_per_second = 360.0 / seconds_per_year
 
-    ls_deg = (mission_time_s * degrees_per_second) % 360
+    current_season_angle_deg = (mission_time_s * degrees_per_second) % 360
     
-    return ls_deg
+    return current_season_angle_deg
 
 
 #-------how far the sun is shifted in the sky--------♡ 
 def solar_declination_deg(state):
     current_season_angle_deg = season_angle_deg(state.mission_time_s)
-    declination_deg = mars_axial_tilt_deg * math.sin(math.radians(current_season_angle_deg))
+    solar_decline_deg = mars_axial_tilt_deg * math.sin(math.radians(current_season_angle_deg))
 
-    return declination_deg
+    return solar_decline_deg
 
 
 #----------what fraction is sol is daylight----------♡ 
