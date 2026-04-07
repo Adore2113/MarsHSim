@@ -40,7 +40,7 @@ def get_sol_time(state):
 
 
 #----------------current season angle----------------♡ 
-def get_season_angle_deg(mission_time_s):    # ls = areocentric solar longitude (season angle)
+def season_angle_deg(mission_time_s):    # ls = areocentric solar longitude (season angle)
     seconds_per_year = sols_per_year * seconds_per_sol
     degrees_per_second = 360.0 / seconds_per_year
 
@@ -49,9 +49,12 @@ def get_season_angle_deg(mission_time_s):    # ls = areocentric solar longitude 
     return ls_deg
 
 
-#--------convert season angle to sun's tilt---------♡ 
+#-------how far the sun is shifted in the sky--------♡ 
+def solar_declination_deg(season_angle_deg):
+    s_a_deg = season_angle_deg(state.mission_time_s)
+    declination_deg = mars_axial_tilt_deg * math.radians(s_a_deg)
 
-
+    return declination_deg
 
 
 #----------what fraction is sol is daylight----------♡ 
