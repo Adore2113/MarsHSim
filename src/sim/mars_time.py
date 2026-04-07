@@ -13,7 +13,12 @@ longitude_east_deg = 184
 latitude_north_deg = 47
 
 # ls = areocentric solar longitude (season angle)
-solar_longitude_ls_deg = 0    # 0 = northern spring equinox
+solar_longitude_ls_deg = 0
+
+# 0 = northern spring equinox
+# 90 = northern summer solstice
+# 180 = northern autumn equinox
+# 270 = northern winter solstice
 
 
 def advance_time(state, dt_s):
@@ -64,6 +69,6 @@ def daylight_per_m2_kw(mission_time_s):
     daylight_progress = (time_in_sol_s - sunrise_s) / daylight_length_s
 
     # using a sine wave, so using .sin from math import to get a radian and .pi 
-    daylight_m2_kw = 0.6 * math.sin(math.pi * daylight_progress)
+    daylight_m2_kw = max_daylight_m2_kw * math.sin(math.pi * daylight_progress)
 
     return daylight_m2_kw
