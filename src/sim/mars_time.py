@@ -20,13 +20,19 @@ solar_longitude_ls_deg_winter = 270    # solstice
 
 
 #---------current time within current sol------------♡
-
-
+def sol_time_seconds(mission_time_s):
+    return mission_time_s % seconds_per_sol
 
 
 #----------------24 hour time format-----------------♡ 
-
-
+def get_sol_time(state):
+    sol_number = int(state.mission_time_s // seconds_per_sol)
+    sol_seconds = sol_time_seconds(state.mission_time_s)
+    
+    hour_24 = sol_seconds // 3600
+    minutes = (sol_seconds % 3600) // 60
+    
+    return sol_number, hour_24, minutes
 
 
 #----------------------season------------------------♡ 
