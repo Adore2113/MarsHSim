@@ -5,6 +5,8 @@ from .state import Habitat_State
 #--------------------constants-----------------------♡
 seconds_per_sol = 88775     # one mars sol is 24h 39min 35sec
 hours_per_sol = seconds_per_sol / 3600
+sols_per_year = 668.6     # one full Mars orbit
+
 max_daylight_m2_kw = 0.6    # placeholder
 
 # habitat location = 47° North, 184° East (Arcadia Planitia)
@@ -40,7 +42,13 @@ def get_sol_time(state):
 
 
 #----------------current season angle----------------♡ 
+def get_solar_longitude_ls_deg(mission_time_s):    # ls = areocentric solar longitude (season angle)
+    seconds_per_year = sols_per_year * seconds_per_sol
+    degrees_per_second = 360.0 / seconds_per_year
 
+    ls_deg = (mission_time_s * degrees_per_second) % 360
+    
+    return ls_deg
 
 
 #--------convert sesason angle to sun's tilt---------♡ 
