@@ -42,7 +42,7 @@ def get_sol_time(state):
 
 
 #----------------current season angle----------------♡ 
-def get_solar_longitude_ls_deg(mission_time_s):    # ls = areocentric solar longitude (season angle)
+def get_season_angle_deg(mission_time_s):    # ls = areocentric solar longitude (season angle)
     seconds_per_year = sols_per_year * seconds_per_sol
     degrees_per_second = 360.0 / seconds_per_year
 
