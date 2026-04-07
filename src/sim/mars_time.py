@@ -17,7 +17,7 @@ solar_longitude_ls_deg_summer = 90    # solstice
 solar_longitude_ls_deg_autumn = 180    # equinox
 solar_longitude_ls_deg_winter = 270    # solstice
 
-mars_axial_tilt_deg = 25.19    # how much mars is tilted for sun angle 
+mars_axial_tilt_deg = 25.19    # how much Mars is tilted for changing sun angle 
 
 max_daylight_m2_kw = 0.6    # placeholder
 #----------------------------------------------------♡
@@ -50,9 +50,9 @@ def season_angle_deg(mission_time_s):    # ls = areocentric solar longitude (sea
 
 
 #-------how far the sun is shifted in the sky--------♡ 
-def solar_declination_deg(season_angle_deg):
-    s_a_deg = season_angle_deg(state.mission_time_s)
-    declination_deg = mars_axial_tilt_deg * math.radians(s_a_deg)
+def solar_declination_deg(state):
+    current_season_angle_deg = season_angle_deg(state.mission_time_s)
+    declination_deg = mars_axial_tilt_deg * math.sin(math.radians(current_season_angle_deg))
 
     return declination_deg
 
