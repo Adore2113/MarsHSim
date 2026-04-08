@@ -8,8 +8,8 @@ hours_per_sol = seconds_per_sol / 3600
 sols_per_year = 668.6     # one full Mars orbit
 
 # habitat location = 47° North, 184° East (Arcadia Planitia)
-longitude_east_deg = 184
-latitude_north_deg = 47
+longitude_east_deg = 184.0
+latitude_north_deg = 47.0
 
 # ls = areocentric solar longitude (season angle)
 solar_longitude_ls_deg_spring = 0    # equinox
@@ -19,7 +19,7 @@ solar_longitude_ls_deg_winter = 270    # solstice
 
 mars_axial_tilt_deg = 25.19    # how much Mars is tilted for changing sun angle 
 
-max_daylight_m2_kw = 0.6    # placeholder
+max_daylight_m2_kw = 0.57
 #----------------------------------------------------♡
 
 
@@ -57,9 +57,25 @@ def solar_declination_deg(state):
     return solar_decline_deg
 
 
-#----------what fraction is sol is daylight----------♡ 
+#----------what fraction of sol is daylight----------♡ 
+def daylight_fraction_result(state):
+    latitude_north_rad = math.radians(latitude_north_deg(state))    #controls day length
+    solar_declination_rad = math.radians(solar_declination_deg)
 
+    sun_visibility = -math.tan(latitude_north_rad) * math.tan(solar_declination_rad)    # how extreme the sun's tilt is vs how extreme the habitat position is
 
+    if sun_visibility <= -1:
+        daylight_fraction = 1.0
+        return daylight_fraction
+    
+    if sun_visibility >= 1:
+        daylight_fraction = 0.0
+        return daylight_fraction
+
+    sun_visibility_half_rad = math.acos(sun_visibility)
+    daylight_fraction = sun_visibility_half_rad / math.pi
+    
+    return daylight_fraction
 
 
 #---------------sunset/sunrise & sine----------------♡
@@ -67,7 +83,7 @@ def solar_declination_deg(state):
 
 
 
-#---------------solar generatioin info---------------♡
+#---------------solar generation info---------------♡
 
         # handle this in power_system.py
 
