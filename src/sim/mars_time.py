@@ -101,6 +101,11 @@ def determine_sunlight_amount(state):
         return sunlight_fraction
 
     daylight_seconds = sunset_seconds - sunrise_seconds
+    
+    if daylight_seconds == 0:
+        sunlight_amount = 0.0
+        return sunlight_amount
+    
     seconds_since_sunrise = current_sol_seconds - sunrise_seconds
     daylight_amount = seconds_since_sunrise / daylight_seconds
 
