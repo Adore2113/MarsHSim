@@ -1,5 +1,6 @@
 from dataclasses import replace
 from .state import Habitat_State
+from .mars_time import get_sol_time
 
 
 def solar_arrays_online(solar_array):
@@ -41,3 +42,32 @@ def power_usage_kw(outputs):
   
     return total_power_used_kw, total_energy_used_kwh
  
+
+def lights(state, dt_min):
+    hours_per_step = dt_min / 60
+    sol_number, sol_hour, minutes = get_sol_time(state)
+
+    light_power_used_kw = 0.0
+    light_power_used_kwh = 0.0
+    light_heat_added_kw = 0.0
+    light_heat_added_kwh = 0.0
+
+    # consider making daytime power not 100% brightness so that 100% can be used for emergencies or for boosting crew alertness later
+
+    if 6 <= sol_hour < 21 or (sol_hour == 21 and minutes < 30):
+        light_level = 1.0
+        light_power_used_kw = 2.0
+        light_power_used_kwh = light_power_used_kw * hours_per_step
+        light_heat_added_kw = 0.5
+        light_heat_added_kwh = light_heat_added_kw * hours_per_step
+    
+        # make the amount used come out of storage
+
+    else:
+        light_level = 0.2
+        light_power_used_kw = 0.2
+        light_power_used_kwh = light_power_used_kw * hours_per_step
+        light_heat_added_kw = 0.1
+        light_heat_added_kwh = light_heat_added_kw * hours_per_step
+
+    return light_level, light_heat_added_kw, light_heat_added_kwh, light_power_used_kw, light_power_used_kwh
