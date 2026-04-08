@@ -1,15 +1,17 @@
 from dataclasses import replace
 from .state import Habitat_State
 
-# ----crew activites and metabolism rates-----------♡
+#--------crew activites and metabolism rates---------♡
 crew_activity_states = {
     "normal" : {"o2_drop_multiplier" : 1.0, "co2_rise_multiplier" : 1.0},
     "sleep" : {"o2_drop_multiplier" : 0.8, "co2_rise_multiplier" : 0.8},
     "exercise" : {"o2_drop_multiplier" : 1.5, "co2_rise_multiplier" : 1.5},  
     "intense" : {"o2_drop_multiplier" : 2.0, "co2_rise_multiplier" : 2.0},
-}
- 
-# ----crew metabolism per default timestep----------♡
+    }
+#----------------------------------------------------♡
+
+
+# -------crew metabolism per default timestep--------♡
 def crew_metabolism(state, dt_min):
     hours_per_step = dt_min / 60
     
