@@ -84,14 +84,15 @@ def sunrise_sunset_seconds(state):
     
     daylight_seconds = int(seconds_per_sol * current_daylight_fraction)
     night_seconds = seconds_per_sol - daylight_seconds     # total amount of night time
-    sunrise_seconds = seconds_per_sol // 2    # split amount in half
+    half_night_seconds = seconds_per_sol // 2    # split amount in half
+    sunrise_seconds = half_night_seconds
     sunset_seconds = sunrise_seconds + daylight_seconds
 
     return sunrise_seconds, sunset_seconds
 
 
 #---------------solar generation info---------------♡
-def determine_sunlight_amount()
+def determine_sunlight_amount(state)
 
 
         # handle this in power_system.py
