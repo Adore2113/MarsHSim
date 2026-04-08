@@ -91,8 +91,26 @@ def sunrise_sunset_seconds(state):
     return sunrise_seconds, sunset_seconds
 
 
+#-------------calculate sunlight amount-------------♡
+def determine_sunlight_amount(state):
+    current_sol_seconds = sol_time_seconds(state.mission_time_s)
+    sunrise_seconds, sunset_seconds = sunrise_sunset_seconds(state)
+
+    if current_sol_seconds < sunrise_seconds or current_sol_seconds > sunset_seconds:
+        sunlight_fraction = 0.0
+        return sunlight_fraction
+
+    daylight_seconds = sunset_seconds - sunrise_seconds
+    seconds_since_sunrise = current_sol_seconds - sunrise_seconds
+    daylight_amount = seconds_since_sunrise / daylight_seconds
+
+    sunlight_amount = math.sin(math.pi * daylight_amount)
+
+    return sunlight_amount
+
+
 #---------------solar generation info---------------♡
-def determine_sunlight_amount(state)
+
 
 
         # handle this in power_system.py
