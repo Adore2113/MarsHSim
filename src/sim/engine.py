@@ -5,7 +5,7 @@ from .buffer_gas_system import mca, run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import crew_metabolism
 from .power_system import power_usage_kw
-from .mars_time import daylight_per_m2_kw
+from .mars_time import get_sol_time, daylight_per_m2_kw
 
 # ----default timestep----
 default_dt_min = 5
@@ -18,8 +18,7 @@ max_temp_c = 25.0
 
 def lights(state, dt_min):
     hours_per_step = dt_min / 60
-    hour_24, minutes = get_sol_time(state)
-    #minutes = get_sol_time(state)
+    sol_number, sol_hour, minutes = get_sol_time(state)
 
     light_power_used_kw = 0.0
     light_power_used_kwh = 0.0
@@ -28,7 +27,7 @@ def lights(state, dt_min):
 
     # consider making daytime power not 100% brightness so that 100% can be used for emergencies or for boosting crew alertness later
 
-    if 6 <= hour_24 < 21 or (hour_24 == 21 and minutes < 30):
+    if 6 <= sol_hour < 21 or (sol_hour == 21 and minutes < 30):
         light_level = 1.0
         light_power_used_kw = 2.0
         light_power_used_kwh = light_power_used_kw * hours_per_step
@@ -122,7 +121,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_water_for_oga_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
     new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
 
-    new_daylight_per_m2_kw = daylight_per_m2_kw(next_time_s)
+    time_advanced_state = replace(state, mission_time_s=next_time_s)
+    new_daylight_per_m2_kw = daylight_per_m2_kw(time_advanced_state)
 
     pre_buffer_state = replace(
         state,
