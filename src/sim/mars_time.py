@@ -78,7 +78,7 @@ def daylight_fraction_result(state):
     return daylight_fraction
 
 
-#---------------sunset/sunrise & sine----------------♡
+#---sunset/sunrise (when daylight starts and ends)--♡
 def sunrise_sunset_seconds(state):
     current_daylight_fraction = daylight_fraction_result(state)
     
