@@ -18,6 +18,7 @@ max_temp_c = 25.0
 #----------------------------------------------------♡
 
 
+#-----------------get habitat status-----------------♡
 def get_status(state):
     if state.o2_kpa <= 17.0 or state.co2_kpa >= 2.0:
         return "CRITICAL"
@@ -29,7 +30,7 @@ def get_status(state):
         return "NOMINAL"
 
 
-# ----alerts ----
+#-----------------------alerts-----------------------♡
 def gas_alert(state):
     gas_alerts = []
     
@@ -57,6 +58,7 @@ def gas_alert(state):
     return gas_alerts
 
 
+#------------what happens in one timestep------------♡
 def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
