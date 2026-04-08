@@ -6,44 +6,16 @@ from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import crew_metabolism
 from .power_system import power_usage_kw
 from .mars_time import get_sol_time, daylight_per_m2_kw
+from .power_system import lights
 
-# ----default timestep----
-default_dt_min = 5
 
-# ---- temperature targets----
+#--------------------constants-----------------------♡
+default_dt_min = 5    # default timestep
+
 target_temp_c = 23.0
 min_temp_c = 20.0
 max_temp_c = 25.0
-
-
-def lights(state, dt_min):
-    hours_per_step = dt_min / 60
-    sol_number, sol_hour, minutes = get_sol_time(state)
-
-    light_power_used_kw = 0.0
-    light_power_used_kwh = 0.0
-    light_heat_added_kw = 0.0
-    light_heat_added_kwh = 0.0
-
-    # consider making daytime power not 100% brightness so that 100% can be used for emergencies or for boosting crew alertness later
-
-    if 6 <= sol_hour < 21 or (sol_hour == 21 and minutes < 30):
-        light_level = 1.0
-        light_power_used_kw = 2.0
-        light_power_used_kwh = light_power_used_kw * hours_per_step
-        light_heat_added_kw = 0.5
-        light_heat_added_kwh = light_heat_added_kw * hours_per_step
-    
-        # make the amount used come out of storage
-
-    else:
-        light_level = 0.2
-        light_power_used_kw = 0.2
-        light_power_used_kwh = light_power_used_kw * hours_per_step
-        light_heat_added_kw = 0.1
-        light_heat_added_kwh = light_heat_added_kw * hours_per_step
-
-    return light_level, light_heat_added_kw, light_heat_added_kwh, light_power_used_kw, light_power_used_kwh
+#----------------------------------------------------♡
 
 
 def get_status(state):
