@@ -79,8 +79,15 @@ def daylight_fraction_result(state):
 
 
 #---------------sunset/sunrise & sine----------------♡
+def sunrise_sunset_seconds(state):
+    current_daylight_fraction = daylight_fraction_result(state)
+    
+    daylight_seconds = int(seconds_per_sol * current_daylight_fraction)
+    night_seconds = seconds_per_sol - daylight_seconds     # total amount of night time
+    sunrise_seconds = seconds_per_sol // 2    # split amount in half
+    sunset_seconds = sunrise_seconds + daylight_seconds
 
-
+    return sunrise_seconds, sunset_seconds
 
 
 #---------------solar generation info---------------♡
