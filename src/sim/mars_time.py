@@ -59,8 +59,8 @@ def solar_declination_deg(state):
 
 #----------what fraction of sol is daylight----------♡ 
 def daylight_fraction_result(state):
-    latitude_north_rad = math.radians(latitude_north_deg(state))    #controls day length
-    solar_declination_rad = math.radians(solar_declination_deg)
+    latitude_north_rad = math.radians(latitude_north_deg)    #controls day length
+    solar_declination_rad = math.radians(solar_declination_deg(state))
 
     sun_visibility = -math.tan(latitude_north_rad) * math.tan(solar_declination_rad)    # how extreme the sun's tilt is vs how extreme the habitat position is
 
@@ -91,6 +91,8 @@ def sunrise_sunset_seconds(state):
 
 
 #---------------solar generation info---------------♡
+def determine_sunlight_amount()
+
 
         # handle this in power_system.py
 
