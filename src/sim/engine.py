@@ -126,25 +126,25 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     pre_buffer_state = replace(
         state,
-        mission_time_s=next_time_s,
+        mission_time_s = next_time_s,
         light_level = light_level,
         daylight_m2_kw = round(new_daylight_per_m2_kw, 4),
         amine_beds = co2_results["amine_beds"],
-        o2_kpa=round(o2_after_oga_kpa, 4),
-        co2_kpa=round(co2_after_scrub_kpa, 4),
-        co2_stored_kpa=round(new_co2_stored_kpa, 4),
-        h2_stored_kg=round(new_h2_stored_kg, 6),
-        water_for_oga_kg=round(new_water_for_oga_kg, 3),
+        o2_kpa = round(o2_after_oga_kpa, 4),
+        co2_kpa = round(co2_after_scrub_kpa, 4),
+        co2_stored_kpa = round(new_co2_stored_kpa, 4),
+        h2_stored_kg = round(new_h2_stored_kg, 6),
+        water_for_oga_kg = round(new_water_for_oga_kg, 3),
     )
 
     buffer_gas_results = run_buffer_gas_control(pre_buffer_state, dt_min)
 
     new_state = replace(
     pre_buffer_state,
-    n2_kpa=round(buffer_gas_results["n2_kpa"], 4),
-    ar_kpa=round(buffer_gas_results["ar_kpa"], 4),
-    n2_stored_kpa=round(buffer_gas_results["n2_stored_kpa"], 4),
-    ar_stored_kpa=round(buffer_gas_results["ar_stored_kpa"], 4),
+    n2_kpa = round(buffer_gas_results["n2_kpa"], 4),
+    ar_kpa = round(buffer_gas_results["ar_kpa"], 4),
+    n2_stored_kpa = round(buffer_gas_results["n2_stored_kpa"], 4),
+    ar_stored_kpa = round(buffer_gas_results["ar_stored_kpa"], 4),
     )
 
     outputs = {
