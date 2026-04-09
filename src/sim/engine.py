@@ -5,7 +5,7 @@ from .buffer_gas_system import mca, run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import crew_metabolism
 from .power_system import power_usage_kw
-from .mars_time import get_sol_time, daylight_per_m2_kw
+from .mars_time import get_sol_time, determine_sunlight_amount, daylight_per_m2_kw
 from .power_system import lights
 
 
@@ -93,12 +93,15 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     time_advanced_state = replace(state, mission_time_s=next_time_s)
     new_daylight_per_m2_kw = daylight_per_m2_kw(time_advanced_state)
+    current_sunlight_amount = determine_sunlight_amount(time_advanced_state)
+    new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
 
     pre_buffer_state = replace(
         time_advanced_state,
         mission_time_s = next_time_s,
+        daylight_m2_kw = round(new_daylight_per_m2_kw, 2),
+        peak_sunlight_today = round(new_peak_sunlight_today, 2),
         light_level = light_level,
-        daylight_m2_kw = round(new_daylight_per_m2_kw, 4),
         amine_beds = co2_results["amine_beds"],
         o2_kpa = round(o2_after_oga_kpa, 4),
         co2_kpa = round(co2_after_scrub_kpa, 4),
