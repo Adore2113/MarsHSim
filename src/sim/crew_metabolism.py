@@ -15,7 +15,7 @@ crew_activity_states = {
 def crew_metabolism(state, dt_min):
     hours_per_step = dt_min / 60
     
-    # ----atmosphere gases----♡
+    #-------------atmosphere gas changes-------------♡
     crew_activity = crew_activity_states[state.crew_activity]
     o2_drop_x = crew_activity["o2_drop_multiplier"]
     co2_rise_x = crew_activity["co2_rise_multiplier"]
@@ -23,7 +23,7 @@ def crew_metabolism(state, dt_min):
     o2_drop_kpa = 0.00011 * state.crew_count * o2_drop_x
     co2_rise_kpa = 0.0000967 * state.crew_count * co2_rise_x
 
-    # ----tempurature rise----♡
+    #--------------temperature changes---------------♡
     if state.crew_activity == "sleep":
         crew_temp_rise_kw = 0.083 * state.crew_count    # = 2.49
         crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
