@@ -26,7 +26,7 @@ def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
     return o2_after_oga_kpa, o2_added_kpa
 
 
-#-------------handling hydrogen created-------------♡
+#-------------handling hydrogen created--------------♡
 def oga_h2_byproduct(state, o2_added_kpa):
     hab_temp_k = state.hab_temp_c + kelvin_offset
     o2_added_pa = o2_added_kpa * pa_per_kpa
@@ -39,7 +39,7 @@ def oga_h2_byproduct(state, o2_added_kpa):
     # storing hydrogen for now to use it later 
 
 
-#-------------handling water consumption------------♡
+#-------------handling water consumption-------------♡
 def oga_water_consumed(state, o2_added_kpa):
     hab_temp_k = state.hab_temp_c + kelvin_offset
     o2_added_pa = o2_added_kpa * pa_per_kpa
@@ -50,7 +50,7 @@ def oga_water_consumed(state, o2_added_kpa):
     return water_used_kg
 
 
-#---system power consumption and heat produced-----♡
+#-----system power consumption and heat produced-----♡
 def oga_power_and_heat(o2_added_kpa, dt_min):
     hours_per_step = dt_min / 60
     
@@ -69,7 +69,7 @@ def oga_power_and_heat(o2_added_kpa, dt_min):
     return oga_heat_kw, oga_heat_kwh, oga_power_used_kw, oga_energy_used_kwh
 
 
-#-----------oga result info per timestep-----------♡
+#------------oga result info per timestep------------♡
 def run_oga(state, o2_after_crew_kpa, dt_min):
     o2_after_oga_kpa, o2_added_kpa = o2_regen_kpa(state, o2_after_crew_kpa, dt_min)
     water_used_kg = oga_water_consumed(state, o2_added_kpa)
