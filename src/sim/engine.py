@@ -95,7 +95,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_daylight_per_m2_kw = daylight_per_m2_kw(time_advanced_state)
 
     pre_buffer_state = replace(
-        state,
+        time_advanced_state,
         mission_time_s = next_time_s,
         light_level = light_level,
         daylight_m2_kw = round(new_daylight_per_m2_kw, 4),
