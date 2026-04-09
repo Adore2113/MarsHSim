@@ -11,10 +11,6 @@ from .power_system import lights
 
 #--------------------constants-----------------------♡
 default_dt_min = 5    # default timestep
-
-target_temp_c = 23.0
-min_temp_c = 20.0
-max_temp_c = 25.0
 #----------------------------------------------------♡
 
 
@@ -107,7 +103,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         o2_kpa = round(o2_after_oga_kpa, 4),
         co2_kpa = round(co2_after_scrub_kpa, 4),
         co2_stored_kpa = round(new_co2_stored_kpa, 4),
-        h2_stored_kg = round(new_h2_stored_kg, 6),
+        h2_stored_kg = round(new_h2_stored_kg, 4),
         water_for_oga_kg = round(new_water_for_oga_kg, 3),
     )
 
