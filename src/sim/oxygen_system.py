@@ -3,7 +3,7 @@ from .state import Habitat_State
 
 # file for Oxygen Generation Assembly (OGA) & Water Electrolysis
 
-# ----conversions ----
+#--------------------constants-----------------------♡
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 o2_kg_per_kpa = 18.2
 co2_kg_per_kpa = 35.8
@@ -11,12 +11,12 @@ n2_kg_per_kpa = 22.75
 ar_kg_per_kpa = 32.45
 pa_per_kpa = 1000   # kilopascals to pascals
 
-# ----chemistry constants----
 r = 8.314   # the universal gas constant
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0
+#----------------------------------------------------♡
 
-#  ----start of system----
+#------------oxygen regeneration process-------------♡
 def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
     oga_max_o2_output = 0.004
@@ -26,6 +26,7 @@ def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
     return o2_after_oga_kpa, o2_added_kpa
 
 
+#-------------handling hydrogen created-------------♡
 def oga_h2_byproduct(state, o2_added_kpa):
     hab_temp_k = state.hab_temp_c + kelvin_offset
     o2_added_pa = o2_added_kpa * pa_per_kpa
@@ -38,6 +39,7 @@ def oga_h2_byproduct(state, o2_added_kpa):
     # storing hydrogen for now to use it later 
 
 
+#-------------handling water consumption------------♡
 def oga_water_consumed(state, o2_added_kpa):
     hab_temp_k = state.hab_temp_c + kelvin_offset
     o2_added_pa = o2_added_kpa * pa_per_kpa
@@ -48,6 +50,7 @@ def oga_water_consumed(state, o2_added_kpa):
     return water_used_kg
 
 
+#---system power consumption and heat produced-----♡
 def oga_power_and_heat(o2_added_kpa, dt_min):
     hours_per_step = dt_min / 60
     
@@ -66,6 +69,7 @@ def oga_power_and_heat(o2_added_kpa, dt_min):
     return oga_heat_kw, oga_heat_kwh, oga_power_used_kw, oga_energy_used_kwh
 
 
+#-----------oga result info per timestep-----------♡
 def run_oga(state, o2_after_crew_kpa, dt_min):
     o2_after_oga_kpa, o2_added_kpa = o2_regen_kpa(state, o2_after_crew_kpa, dt_min)
     water_used_kg = oga_water_consumed(state, o2_added_kpa)
