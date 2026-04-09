@@ -79,6 +79,8 @@ class Habitat_State:
     battery_stored_kwh: float 
     solar_arrays: list
     daylight_m2_kw: float
+    peak_sunlight_today: float
+    low_sunlight_streak_sols: int
 
 # ------placeholders for future plans---------------♡
     relative_humidity: float
