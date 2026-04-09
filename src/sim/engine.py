@@ -5,7 +5,7 @@ from .buffer_gas_system import mca, run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import crew_metabolism
 from .power_system import power_usage_kw
-from .mars_time import get_sol_time, determine_sunlight_amount, daylight_per_m2_kw
+from .mars_time import get_sol_time, determine_sunlight_amount, daylight_per_m2_kw, current_sol_number
 from .power_system import lights
 
 
@@ -71,14 +71,18 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     o2_added_kpa = oga_results["o2_added_kpa"]
     h2_produced_kg = oga_results["h2_produced_kg"]
     
+
     water_used_kg = oga_results["water_used_kg"]
    
+
     oga_heat_kw = oga_results["oga_heat_kw"]
     oga_heat_kwh = oga_results["oga_heat_kwh"]
     oga_power_used_kw = oga_results["oga_power_used_kw"]
     oga_energy_used_kwh = oga_results["oga_energy_used_kwh"]
    
+
     co2_results = run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min)
+
 
     co2_after_scrub_kpa = co2_results["co2_after_scrub_kpa"]
     co2_removed_kpa = co2_results["co2_removed_kpa"]
@@ -88,13 +92,20 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     co2_scrubber_power_used_kw = co2_results["co2_scrubber_power_used_kw"]
     co2_scrubber_energy_used_kwh = co2_results["co2_scrubber_energy_used_kwh"]
     
+
     new_water_for_oga_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
     new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
 
+
     time_advanced_state = replace(state, mission_time_s=next_time_s)
+    previous_sol_number = current_sol_number(state.mission_time_s)
+    new_sol_number = current_sol_number(next_time_s)
+    new_sol_started = new_sol_number != previous_sol_number
+
     new_daylight_per_m2_kw = daylight_per_m2_kw(time_advanced_state)
     current_sunlight_amount = determine_sunlight_amount(time_advanced_state)
     new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
+
 
     pre_buffer_state = replace(
         time_advanced_state,
