@@ -122,7 +122,7 @@ def determine_sunlight_amount(state):
 def determine_low_sunlight_streak(state):
     low_sunlight = 0.3
 
-    if state.peak_sunlight_today < 0.3:
+    if state.peak_sunlight_today < low_sunlight:
         new_low_sunlight_streak_sols = state.low_sunlight_streak_sols + 1
     
     else:
@@ -137,7 +137,3 @@ def daylight_per_m2_kw(state):
     daylight_per_m2_kw = max_daylight_m2_kw * sunlight_amount
     
     return daylight_per_m2_kw
-
-        
-    # handle this in power_system.py
-
