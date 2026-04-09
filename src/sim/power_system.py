@@ -39,35 +39,36 @@ def solar_generation_kw(state, new_solar_arrays):
     return total_solar_generated_kw, power_generated_per_array
 
 
-#--------------habitat light power info--------------♡
+#-----------habitat main light power info------------♡
 def lights(state, dt_min):
     hours_per_step = dt_min / 60
-    sol_number, sol_hour, minutes = get_sol_time(state)
-
-    light_power_used_kw = 0.0
-    light_power_used_kwh = 0.0
-    light_heat_added_kw = 0.0
-    light_heat_added_kwh = 0.0
-
-    # consider making daytime power not 100% brightness so that 100% can be used for emergencies or for boosting crew alertness later
-
-    if 6 <= sol_hour < 21 or (sol_hour == 21 and minutes < 30):
-        light_level = 1.0
-        light_power_used_kw = 2.0
-        light_power_used_kwh = light_power_used_kw * hours_per_step
-        light_heat_added_kw = 0.5
-        light_heat_added_kwh = light_heat_added_kw * hours_per_step
+    _, sol_hour, minutes = get_sol_time(state)
+    sunlight_amount = determine_sunlight_amount(state)
+    crew_sleep_hours = 6 <= sol_hour < 21 or (sol_hour == 21 and minutes < 30)
     
-        # make the amount used come out of storage
+    if crew_sleep_hours:
+        base_light_level = 0.2
 
     else:
-        light_level = 0.2
-        light_power_used_kw = 0.2
-        light_power_used_kwh = light_power_used_kw * hours_per_step
-        light_heat_added_kw = 0.1
-        light_heat_added_kwh = light_heat_added_kw * hours_per_step
+        base_light_level = 1.0
 
-    return light_level, light_heat_added_kw, light_heat_added_kwh, light_power_used_kw, light_power_used_kwh
+    sunlight_dimming = sunlight_amount * 0.6    # sunlight level changes light level need for power saving
+    light_level_dimmed = base_light_level - sunlight_dimming
+
+    if state.battery_stored_kwh < 300:
+        min_light_level = 0.1
+    else:
+        min_light_level = 0.2
+    
+    final_light_level = max(min_light_level, light_level_dimmed)
+
+    light_power_used_kw = 2.0 * final_light_level
+    light_power_used_kwh = light_power_used_kw * hours_per_step
+
+    light_heat_added_kw =  0.5 * final_light_level
+    light_heat_added_kwh = light_heat_added_kw * hours_per_step
+
+    return final_light_level, light_heat_added_kw, light_heat_added_kwh, light_power_used_kw, light_power_used_kwh
 
 
 #-----how much power habitat systems are using-------♡
