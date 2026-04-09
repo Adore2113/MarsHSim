@@ -35,28 +35,30 @@
     h2_stored_kg
 
 #### ------OGA water---------------------------♡
-    water_for_oga_kg: float
+    water_for_oga_kg
 
 
 #### ------amine beds--------------------------♡
     amine_beds: list
-    scrub_per_bed_kpa: float
+    scrub_per_bed_kpa
 
 #### ------power-------------------------------♡
-    battery_max_capacity_kwh: float
-    battery_stored_kwh: float 
+    battery_max_capacity_kwh
+    battery_stored_kwh 
     solar_arrays: list
-    daylight_m2_kw: float
+    daylight_m2_kw
+    peak_sunlight_today
+    low_sunlight_streak_sols
 
 #### ------placeholders for future plans-------♡
-    relative_humidity: float
+    relative_humidity
 
     # ------------ ♡ water ♡------------
-    potable_water_l: float
-    grey_water_l: float
-    waste_brine_l: float
+    potable_water_l
+    grey_water_l
+    waste_brine_l
 
     #----- ♡ Integrity / safety ♡ -----
-    leak_rate_kpa_per_hr: float
-    smoke_ppm: float
-    radiation_msv_per_day: float
+    leak_rate_kpa_per_hr
+    smoke_ppm
+    radiation_msv_per_day
