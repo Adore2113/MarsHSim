@@ -5,7 +5,7 @@ from .mars_time import get_sol_time, daylight_per_m2_kw, determine_sunlight_amou
 
 #-----------which solar arrays are online------------♡
 def solar_arrays_online(solar_array):
-    new_solar_array = []
+    new_solar_arrays = []
     solar_array_online_count = sum(1 for array in solar_array if array["status"] == "online")
 
     for array in solar_array:
@@ -15,18 +15,18 @@ def solar_arrays_online(solar_array):
             new_array["status"] = "online"
             solar_array_online_count += 1
 
-        new_solar_array.append(new_array)
+        new_solar_arrays.append(new_array)
 
-    return new_solar_array, solar_array_online_count
+    return new_solar_arrays, solar_array_online_count
 
 
 #--------calulate solar power generated amount-------♡
-def solar_generation_kw(state, new_solar_array):
+def solar_generation_kw(state, new_solar_arrays):
     current_daylight_m2_kw = state.daylight_m2_kw
     power_generated_per_array = []
     total_solar_generated_kw = 0.0
 
-    for array in new_solar_array:
+    for array in new_solar_arrays:
         if array["status"] == "online":
             power_generated_kw = (current_daylight_m2_kw * array["area_m2"] * array["efficiency"] * array["dust_factor"])
 
