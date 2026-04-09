@@ -83,6 +83,7 @@ s0 = Habitat_State(
     smoke_ppm = 0.0,
     radiation_msv_per_day = 0.7
 )
+#----------------------------------------------------♡
 
 
 def print_state(state, outputs, alerts):
@@ -106,25 +107,31 @@ def print_state(state, outputs, alerts):
     print(("♡ [ ATMOSPHERE ] ♡").center(WIDTH))
     if alerts:
         print(f"Alert: {alerts}")
-    print(f"{'Oxygen:':<22} {state.o2_kpa:.3f} kPa")
-    print(f"{'Carbon Dioxide:':<22} {state.co2_kpa:.3f}  kPa")
-    print(f"{'Nitrogen:':<22} {state.n2_kpa:.3f} kPa")
-    print(f"{'Argon:':<22} {state.ar_kpa:.3f} kPa")
-    print(f"{'Total Pressure:':<22} {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa):.3f} kPa\n")
+    print(f"{'Oxygen:':<22} {state.o2_kpa:.2f} kPa")
+    print(f"{'Carbon Dioxide:':<22} {state.co2_kpa:.2f}  kPa")
+    print(f"{'Nitrogen:':<22} {state.n2_kpa:.2f} kPa")
+    print(f"{'Argon:':<22} {state.ar_kpa:.2f} kPa")
+    print(f"{'Total Pressure:':<22} {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa):.2f} kPa\n")
 
     print(("♡ [ RESOURCES ] ♡").center(WIDTH))
-    print(f"{'Water Remaining:':<22} {state.water_for_oga_kg:.3f} kg")
-    print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.4f}  kg\n")
+    print(f"{'Water Remaining:':<22} {state.water_for_oga_kg:.2f} kg")
+    print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f}  kg\n")
 
     print(("♡ [ SYSTEMS ] ♡").center(WIDTH))
-    print(f"{'CO2 Scrubbed:':<22} {outputs['co2_removed_kpa']:.4f} kPa")
-    print(f"{'Scrubber Power Used:':<22} {outputs['co2_scrubber_power_used_kw']:.4f} kW")
-    print(f"{'Scrubber Heat:':<22} {outputs['co2_scrubber_heat_kw']:.4f} kW")
-    print(f"{'Scrubber Energy:':<22} {outputs['co2_scrubber_energy_used_kwh']:.4f} kWh")
-    print(f"{'OGA Heat:':<22} {outputs['oga_heat_kw']:.4f} kW")
-    print(f"{'Lights Power:':<22} {outputs['light_power_kw']:.4f} kW\n")
+    print(f"{'CO2 Scrubbed:':<22} {outputs['co2_removed_kpa']:.2f} kPa")
+    print(f"{'Scrubber Power Used:':<22} {outputs['co2_scrubber_power_used_kw']:.2f} kW")
+    print(f"{'Scrubber Heat:':<22} {outputs['co2_scrubber_heat_kw']:.2f} kW")
+    print(f"{'Scrubber Energy:':<22} {outputs['co2_scrubber_energy_used_kwh']:.2f} kWh")
+    print(f"{'OGA Heat:':<22} {outputs['oga_heat_kw']:.2f} kW")
+    print(f"{'Lights Power:':<22} {outputs['light_power_kw']:.2f} kW\n")
 
     print((f"♡ [ SYSTEM STATUS: {status} ] ♡").center(WIDTH))
+
+    #--debug check:
+    print(("♡ [ SUN DEBUG ] ♡").center(WIDTH))
+    print(f"{'Daylight per m2:':<22} {state.daylight_m2_kw:.2f} kW")
+    print(f"{'Peak Sun Today:':<22} {state.peak_sunlight_today:.1f} / 1.0")
+    print(f"{'Low Sun Streak:':<22} {state.low_sunlight_streak_sols}")
 
     print("♡ " + "═" * 30 + " ♡")
     
@@ -165,3 +172,6 @@ for i in range(3):    #turn this back to 12
     state, outputs = step(state)
     alerts = gas_alert(state)
     print_state(state, outputs, alerts)
+
+    if i % 12 == 0:
+        print_state(state, outputs, alerts)
