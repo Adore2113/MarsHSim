@@ -28,6 +28,11 @@ def sol_time_seconds(mission_time_s):
     return mission_time_s % seconds_per_sol
 
 
+#----------------current sol number-----------------♡
+def current_sol_number(mission_time_s):
+    return mission_time_s // seconds_per_sol
+
+
 #----------------24 hour time format-----------------♡ 
 def get_sol_time(state):
     sol_number = state.mission_time_s // seconds_per_sol
