@@ -69,6 +69,8 @@ s0 = Habitat_State(
     ], 
     
     daylight_m2_kw = 0.0,
+    peak_sunlight_today = 0.0,
+    low_sunlight_streak_sols = 0,
 
 # ------placeholders for future plans---------------♡
     relative_humidity = 45.0,
