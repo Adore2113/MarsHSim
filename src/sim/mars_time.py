@@ -109,8 +109,21 @@ def determine_sunlight_amount(state):
     daylight_amount = seconds_since_sunrise / daylight_seconds
 
     sunlight_amount = math.sin(math.pi * daylight_amount)
-
+    
     return sunlight_amount
+
+
+#-------------low sunlight streak info--------------♡
+def determine_low_sunlight_streak(state):
+    low_sunlight = 0.3
+
+    if state.peak_sunlight_today < 0.3:
+        new_low_sunlight_streak_sols = state.low_sunlight_streak_sols + 1
+    
+    else:
+        new_low_sunlight_streak_sols = 0
+    
+    return new_low_sunlight_streak_sols
 
 
 #---------------solar generation info---------------♡
