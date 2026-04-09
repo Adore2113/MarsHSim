@@ -3,14 +3,15 @@ from .state import Habitat_State
 
 # file for Major Constituent Analyzer and buffer gas control
 
-# ----checking atmosphere gas levels---- 
+
+#-------------check habitat gas levels---------------♡
 def mca(o2_kpa, co2_kpa, n2_kpa, ar_kpa): 
     total_pressure_kpa = o2_kpa + co2_kpa + n2_kpa + ar_kpa
 
     return total_pressure_kpa
 
 
-# ----controlling atmosphere gas levels----
+#----stabilizing habitat gas levels w. buffer gas----♡
 def buffer_gas_regen_kpa(state):
     n2_kpa = state.n2_kpa
     n2_stored_kpa = state.n2_stored_kpa
@@ -20,7 +21,7 @@ def buffer_gas_regen_kpa(state):
     total_buffer_gas_added_kpa = 0.0
     total_pressure_kpa = mca(state.o2_kpa, state.co2_kpa, n2_kpa, ar_kpa)
 
-    # ----emergency control----
+    #---------handling emergency gas levels---------♡
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
         pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
 
@@ -61,6 +62,7 @@ def buffer_gas_regen_kpa(state):
     return n2_kpa, ar_kpa, n2_stored_kpa, ar_stored_kpa, total_buffer_gas_added_kpa    
       
 
+#-----system power consumption and heat produced-----♡
 def buffer_gas_power_and_heat(total_buffer_gas_added_kpa, dt_min):
     hours_per_step = dt_min / 60
 
@@ -81,6 +83,8 @@ def buffer_gas_power_and_heat(total_buffer_gas_added_kpa, dt_min):
     
     return buffer_gas_heat_added_kw, buffer_gas_heat_added_kwh, buffer_gas_power_used_kw, buffer_gas_energy_used_kwh
 
+
+#------buffer gas control info per timestep-------♡
 def run_buffer_gas_control(state, dt_min):
     n2_kpa, ar_kpa, n2_stored_kpa, ar_stored_kpa, total_buffer_gas_added_kpa = buffer_gas_regen_kpa(state)
     buffer_gas_heat_added_kw, buffer_gas_heat_added_kwh, buffer_gas_power_used_kw, buffer_gas_energy_used_kwh = buffer_gas_power_and_heat(total_buffer_gas_added_kpa, dt_min)
