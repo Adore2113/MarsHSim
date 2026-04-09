@@ -375,5 +375,35 @@
 
     -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
 
+♡--------------------------------------------------♡ 
 
+        04/07/2026
+    -starting by reviewing my mars_time file
 
+    -I'm going to hardcode Mar's tilt to be 25.19 degrees b/c my model isn't going to run long enough to take that slow progression into consideration
+
+    **next session start:**
+    -do more reasearch and figure out mars_time.py, clean up step in engine.py
+
+    -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
+
+    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
+
+♡--------------------------------------------------♡ 
+
+        04/08/2026
+    -continuing to fix the time file and updated engine and quick_test.py
+
+    -fix light function and resume the solar power set up
+
+    **next session start:**
+    -fix light function and resume solar power set up
+
+    -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
+
+    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
+
+♡--------------------------------------------------♡ 
+
+        04/09/2026
+    -
