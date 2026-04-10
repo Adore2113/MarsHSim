@@ -111,7 +111,7 @@
 
     -adding in the hydrogen that the OGA electrolysis makes and venting it -FOR NOW- and will do research on how I can use it later on (Sabatier?)
 
-    -adding OGA byproduct function in, first calculating 23C to Kelvin because I read the gas pressure depends on temp (pressure drops if it goes down) 
+    -adding OGA byproduct function in, first calculating 23C to Kelvin b/cI read the gas pressure depends on temp (pressure drops if it goes down) 
 
     -I know that chemistry ratios use moles, but I really wanted to stick to kPa and kilograms (kg) to avoid my code being more complex, so I'll figure out the conversions to avoid that
 
@@ -242,7 +242,7 @@
 
     -remember: mission_time_s = current time of day, dt_min = how long the step lasts, hours_per_step = scaling, production, etc
 
-    -considering moving the time conversion logic out of quick_test into engine, or into its own file to handle all timestep info because eventually it will be interactive
+    -considering moving the time conversion logic out of quick_test into engine, or into its own file to handle all timestep info b/c eventually it will be interactive
 
     -considering adding separate helper files for handling certain things separately like one for amine scrubbers, OGA, etc after adding more code
 
@@ -270,7 +270,7 @@
 
     -for the mca function, I decided to not use state so I can manage/calculate both before and after control
 
-    -realizing that the file for the oxygen system has separate functions and the buffer gas file has one solid function, so I might end up breaking up that long function into a few smaller ones for readability and also because I will be adding more to this function
+    -realizing that the file for the oxygen system has separate functions and the buffer gas file has one solid function, so I might end up breaking up that long function into a few smaller ones for readability and also b/cI will be adding more to this function
 
     -broke up one long buffer gas system function into smaller ones for readability, organization and future handling
 
@@ -305,7 +305,7 @@
 
     -changing from my idea of 30-40 panels to 10 larger ones at least for V1, to avoid my code being messy and harder to manage
 
-    -***while looking at the amine bed list, I'm not happy with how it's running right now because of how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that***
+    -***while looking at the amine bed list, I'm not happy with how it's running right now b/cof how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that***
 
     -side note: I thought about having panels on the outside of my habitat that are foil on one side and black on the other (like a car window shield), that could be flipped like a billboard (one of the ones that have two images on them and they flip to reveal the other image)
 
@@ -342,23 +342,23 @@
 ### ♡       04/04/2026
     -while trying to come up with a way to make the daylight run smoothly and over time instead of hardcoding it to be on or off or at certain percentages, I learned what a sine wave is and I'm going to try to use that
 
-    -considering where to add a section that holds the math for calculating daylight over time (in it's own function in power_system.py or in engine where it handles the timestep math, or in it's own file completely)
+    -considering where to add a section that holds the math for calculating daylight over time (in its own function in power_system.py or in engine where it handles timestep math, or in its own file completely)
 
-    -making a file for handling time steps and related functions
+    -making a file for handling timesteps and related functions
 
     -I learned today that instead of 24 hours, Mars time actually runs at 24 hours and 39 minutes and 35 seconds, not just 24 hours, so I'm going to fix that now, while I'm working on the new mars_time.py file
 
     -added a stylized print function for a nicer console view while I work without a UI ♡ kept the original print function commented out for when I want it plain again
 
-     **next session start:**
+        **next session start:**
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
 
     -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
 
 ♡--------------------------------------------------♡ 
 
-        04/05/2026
-    -fixing the lighting function to not be hardcoded and react and adjust to the level of daylight
+ ### ♡       04/05/2026
+    -fixing the lighting function to not be hardcoded and to react and adjust to the level of daylight
 
     -considering a file that will handle the light level, but so far I'm leaving it in engine, b/c I can't justify a file dedicated to just one function
 
@@ -366,7 +366,7 @@
 
     -changed a ton in the mars_time.py file, I'm still figuring it out
 
-    **next session start:**
+        **next session start:**
     -REMEMBER TO COMMIT MORE!!
 
     -do more reasearch and figure out mars_time.py, clean up step in engine.py
@@ -377,12 +377,12 @@
 
 ♡--------------------------------------------------♡ 
 
-        04/07/2026
+ ### ♡       04/07/2026
     -starting by reviewing my mars_time file
 
     -I'm going to hardcode Mar's tilt to be 25.19 degrees b/c my model isn't going to run long enough to take that slow progression into consideration
 
-    **next session start:**
+        **next session start:**
     -do more reasearch and figure out mars_time.py, clean up step in engine.py
 
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
@@ -391,12 +391,12 @@
 
 ♡--------------------------------------------------♡ 
 
-        04/08/2026
+ ### ♡       04/08/2026
     -continuing to fix the time file and updated engine and quick_test.py
 
     -fix light function and resume the solar power set up
 
-    **next session start:**
+        **next session start:**
     -fix light function and resume solar power set up
 
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
@@ -405,5 +405,18 @@
 
 ♡--------------------------------------------------♡ 
 
-        04/09/2026
-    -
+ ### ♡       04/09/2026
+    -fixed variables in v1_state_variables.md and added/fixed section headers in other files
+
+    -I want the lights to adjust to time as well as sunlight level and never go below 0.2 light level, and 0.3 as a daytime lighting support if there is enough sunlight, an emergency minimum with enough sunlight will be 0.1 incase of very low power
+
+    -considering extra lighting option for when there are times where there isn't any sunlight for so many days, to help keep crew moral up
+
+    -going to add three more variables related to sunlight mostly for the UI later
+
+        **next session start:**
+    -work on power_system.py: finish solar (updates and figure out how to handle dust and efficiency), update power storage and figure out how to implement that
+
+    -move to thermal after this (?)
+
+    -eventually... work on water_system, and then continue adding heat generated/heat waste to new functions and consider electronics/computers, radiators, pumps, temp handling file
