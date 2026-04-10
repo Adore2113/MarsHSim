@@ -117,4 +117,18 @@ def total_power_usage(outputs):
     total_energy_used_kwh = outputs["co2_scrubber_energy_used_kwh"] + outputs["oga_energy_used_kwh"] + outputs["light_power_used_kwh"] + outputs ["w_light_power_used_kwh"]
   
     return total_power_used_kw, total_energy_used_kwh
- 
+
+
+#-----battery usage and storage update per step------♡
+def run_system_power(state):
+    ...
+    
+
+#------------handling low power priorites------------♡
+def low_power_mode(state):
+    ...
+
+
+#--------------------power alerts--------------------♡
+def power_alerts(state):
+    ...
