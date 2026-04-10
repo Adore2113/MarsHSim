@@ -20,8 +20,9 @@ def solar_arrays_online(solar_array):
     return new_solar_arrays, solar_array_online_count
 
 
-#--------calulate solar power generated amount-------♡
-def solar_generation_kw(state, new_solar_arrays):
+#--------calculate solar power generated amount-------♡
+def solar_generation_kw(state, new_solar_arrays, dt_min):
+    hours_per_step = dt_min / 60
     current_daylight_m2_kw = state.daylight_m2_kw
     power_generated_per_array = []
     total_solar_generated_kw = 0.0
@@ -35,8 +36,23 @@ def solar_generation_kw(state, new_solar_arrays):
 
         power_generated_per_array.append({"id" : array["id"], "power_generated_kw" : power_generated_kw})
         total_solar_generated_kw += power_generated_kw
+        total_solar_generated_kwh = total_solar_generated_kw * hours_per_step
 
     return total_solar_generated_kw, power_generated_per_array
+
+
+#--------save solar power generated to storage-------♡
+def solar_battery_charge(state, total_solar_generated_kwh):
+    battery_stored_kwh = state.battery_stored_kwh
+    battery_max_capacity_kwh = state.battery_max_capacity_kwh
+    
+    if battery_stored_kwh < battery_max_capacity_kwh:
+        new_battery_stored_kwh = max(battery_max_capacity_kwh, battery_stored_kwh + total_solar_generated_kwh)
+
+    else:
+        new_battery_stored_kwh = battery_stored_kwh
+    
+    return new_battery_stored_kwh
 
 
 #-----------habitat main light power info------------♡
