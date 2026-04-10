@@ -4,7 +4,7 @@ from .oxygen_system import run_oga
 from .buffer_gas_system import mca, run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import crew_metabolism
-from .power_system import power_usage_kw
+from .power_system import power_usage_kw, wellness_lights
 from .mars_time import get_sol_time, determine_sunlight_amount, daylight_per_m2_kw, current_sol_number
 from .power_system import lights
 
@@ -60,6 +60,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     next_time_s = state.mission_time_s + dt_s
 
     light_level, light_heat_kw, light_heat_kwh, light_power_used_kw, light_power_used_kwh = lights(state, dt_min)
+    wellness_lights_on, wellness_light_level, w_light_heat_added_kw, w_light_heat_added_kwh, w_light_power_used_kw, w_light_power_used_kwh = wellness_lights(state, dt_min)
     o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh = crew_metabolism(state, dt_min)
 
     o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
@@ -105,7 +106,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_daylight_per_m2_kw = daylight_per_m2_kw(time_advanced_state)
     current_sunlight_amount = determine_sunlight_amount(time_advanced_state)
     new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
-
+    
 
     pre_buffer_state = replace(
         time_advanced_state,
