@@ -57,6 +57,7 @@ def lights(state, dt_min):
 
     if state.battery_stored_kwh < 300:
         min_light_level = 0.1
+
     else:
         min_light_level = 0.2
     
@@ -70,6 +71,28 @@ def lights(state, dt_min):
 
     return final_light_level, light_heat_added_kw, light_heat_added_kwh, light_power_used_kw, light_power_used_kwh
 
+
+#--------wellness lights from lack of sunlight-------♡
+def wellness_lights(state, dt_min):
+    hours_per_step = dt_min / 60
+    low_sunlight_streak = state.low_sunlight_streak_sols
+    
+    if low_sunlight_streak >= 3:
+        wellness_lights_on = True
+        wellness_light_level = 1.0
+    
+    else:
+        wellness_lights_on = False
+        wellness_light_level = 0.0
+    
+    w_light_power_used_kw = 0.5 * wellness_light_level
+    w_light_power_used_kwh = w_light_power_used_kw * hours_per_step
+
+    w_light_heat_added_kw =  0.1 * wellness_light_level
+    w_light_heat_added_kwh = w_light_heat_added_kw * hours_per_step
+
+    return wellness_lights_on, wellness_light_level, w_light_heat_added_kw, w_light_heat_added_kwh, w_light_power_used_kw, w_light_power_used_kwh
+    
 
 #-----how much power habitat systems are using-------♡
 def power_usage_kw(outputs):
