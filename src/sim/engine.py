@@ -4,7 +4,7 @@ from .oxygen_system import run_oga
 from .buffer_gas_system import mca, run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import crew_metabolism
-from .power_system import power_usage_kw, wellness_lights
+from .power_system import total_power_usage, wellness_lights
 from .mars_time import get_sol_time, determine_sunlight_amount, daylight_per_m2_kw, current_sol_number
 from .power_system import lights
 
@@ -133,19 +133,20 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     )
 
     outputs = {
-    "co2_removed_kpa": co2_removed_kpa,
-    "co2_scrubber_power_used_kw": co2_scrubber_power_used_kw,
-    "co2_scrubber_heat_kw": co2_scrubber_heat_kw,
-    "co2_scrubber_energy_used_kwh": co2_scrubber_energy_used_kwh,
-    "oga_heat_kw": oga_heat_kw,
-    "light_power_kw": light_power_used_kw,
+    "co2_removed_kpa" : co2_removed_kpa,
+    "co2_scrubber_power_used_kw" : co2_scrubber_power_used_kw,
+    "co2_scrubber_heat_kw" : co2_scrubber_heat_kw,
+    "co2_scrubber_energy_used_kwh" : co2_scrubber_energy_used_kwh,
+    "oga_heat_kw" : oga_heat_kw,
+    "light_power_kw" : light_power_used_kw,
     "light_power_used_kwh" : light_power_used_kwh,
-    "oga_power_used_kw": oga_power_used_kw,
-    "oga_energy_used_kwh": oga_energy_used_kwh
-    
+    "oga_power_used_kw" : oga_power_used_kw,
+    "oga_energy_used_kwh" : oga_energy_used_kwh,
+    "w_light_power_used_kw" : w_light_power_used_kw, 
+    "w_light_power_used_kwh" : w_light_power_used_kwh
     }
 
-    outputs["total_power_used_kw"], outputs["total_energy_used_kwh"] = power_usage_kw(outputs)
+    outputs["total_power_used_kw"], outputs["total_energy_used_kwh"] = total_power_usage(outputs)
     return new_state, outputs
 
 
