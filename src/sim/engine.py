@@ -7,51 +7,13 @@ from .crew_metabolism import crew_metabolism
 from .power_system import total_power_usage, wellness_lights, run_system_power
 from .mars_time import get_sol_time, determine_sunlight_amount, daylight_per_m2_kw, current_sol_number
 from .power_system import lights
+from .alerts import get_status, gas_alerts, power_alerts
+#----------------------------------------------------♡
 
 
 #--------------------constants-----------------------♡
 default_dt_min = 5    # default timestep
 #----------------------------------------------------♡
-
-
-#-----------------get habitat status-----------------♡
-def get_status(state):
-    if state.o2_kpa <= 17.0 or state.co2_kpa >= 2.0:
-        return "CRITICAL"
-    
-    elif state.o2_kpa <= 19.5 or state.co2_kpa >= 1.0:
-        return "WARNING"
-    
-    else:
-        return "NOMINAL"
-
-
-#-----------------------alerts-----------------------♡
-def gas_alert(state):
-    gas_alerts = []
-    
-    #o2
-    if state.o2_kpa <= 17.0:
-        gas_alerts.append("ALERT: Oxygen critical")
-    
-    elif state.o2_kpa <= 19.5:
-        gas_alerts.append("ALERT: Oxygen low")
-    
-    if state.o2_kpa >= 22.0:
-        gas_alerts.append("ALERT: Oxygen very high | fire risk")
-
-    #co2
-    if state.co2_kpa >= 2.0:
-        gas_alerts.append("ALERT: Carbon Dioxide critical")
-
-    elif state.co2_kpa >= 1.0:
-        gas_alerts.append("ALERT: Carbon Dioxide high")
-
-    # later add total pressure, leak detection, when scrubbers are full (saturated)
-    # water supply low, n2 supply low, temp out of range
-    # eventually airlocks humidity, temp loops
-
-    return gas_alerts
 
 
 #------------what happens in one timestep------------♡
@@ -154,5 +116,5 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         battery_stored_kwh = round(power_results["new_battery_stored_kwh"], 3),
         solar_arrays = power_results["new_solar_arrays"]
     )
-    
+
     return new_state, outputs
