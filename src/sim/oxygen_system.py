@@ -40,6 +40,7 @@ def oga_h2_byproduct(state, o2_added_kpa):
 
 
 #-------------handling water consumption-------------♡
+#--------------MOVE TO WATER_SYSTEM.PY---------------♡
 def oga_water_consumed(state, o2_added_kpa):
     hab_temp_k = state.hab_temp_c + kelvin_offset
     o2_added_pa = o2_added_kpa * pa_per_kpa
@@ -48,6 +49,7 @@ def oga_water_consumed(state, o2_added_kpa):
     water_used_kg = o2_produced_kg * 1.125    # 1.125kg H2O per 1kg of O2 produced
     
     return water_used_kg
+#----------------------------------------------------♡
 
 
 #-----system power consumption and heat produced-----♡
