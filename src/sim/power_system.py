@@ -36,7 +36,8 @@ def solar_generation_kw(state, new_solar_arrays, dt_min):
 
         power_generated_per_array.append({"id" : array["id"], "power_generated_kw" : power_generated_kw})
         total_solar_generated_kw += power_generated_kw
-        total_solar_generated_kwh = total_solar_generated_kw * hours_per_step
+        
+    total_solar_generated_kwh = total_solar_generated_kw * hours_per_step
 
     return total_solar_generated_kw, power_generated_per_array
 
