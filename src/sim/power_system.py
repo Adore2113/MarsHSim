@@ -6,18 +6,18 @@ from .mars_time import get_sol_time, daylight_per_m2_kw, determine_sunlight_amou
 #-----------which solar arrays are online------------♡
 def solar_arrays_online(solar_array):
     new_solar_arrays = []
-    solar_array_online_count = sum(1 for array in solar_array if array["status"] == "online")
+    solar_arrays_online_count = sum(1 for array in solar_array if array["status"] == "online")
 
     for array in solar_array:
         new_array = array.copy()
 
-        if solar_array_online_count < 8 and new_array["status"] == "standby":
+        if solar_arrays_online_count < 8 and new_array["status"] == "standby":
             new_array["status"] = "online"
-            solar_array_online_count += 1
+            solar_arrays_online_count += 1
 
         new_solar_arrays.append(new_array)
 
-    return new_solar_arrays, solar_array_online_count
+    return new_solar_arrays, solar_arrays_online_count
 
 
 #--------calculate solar power generated amount-------♡
@@ -122,7 +122,7 @@ def total_power_usage(outputs):
 #-----battery usage and storage update per step------♡
 def run_system_power(state, outputs, dt_min):
     hours_per_step = dt_min / 60
-    new_solar_arrays, solar_array_online_count = solar_arrays_online(state.solar_arrays)
+    new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state.solar_arrays)
     total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array = solar_generation(state, new_solar_arrays, dt_min)
     battery_after_charge = solar_battery_charge(state, total_solar_generated_kwh)
     total_power_used_kw, total_energy_used_kwh = total_power_usage(outputs)
@@ -130,7 +130,7 @@ def run_system_power(state, outputs, dt_min):
 
     return {
         "new_solar_arrays": new_solar_arrays,
-        "solar_array_online_count": solar_array_online_count,
+        "solar_arrays_online_count": solar_arrays_online_count,
         "total_solar_generated_kw": total_solar_generated_kw,
         "total_solar_generated_kwh": total_solar_generated_kwh,
         "total_power_used_kw": total_power_used_kw,
