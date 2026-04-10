@@ -21,7 +21,7 @@ def solar_arrays_online(solar_array):
 
 
 #--------calculate solar power generated amount-------♡
-def solar_generation_kw(state, new_solar_arrays, dt_min):
+def solar_generation(state, new_solar_arrays, dt_min):
     hours_per_step = dt_min / 60
     current_daylight_m2_kw = state.daylight_m2_kw
     power_generated_per_array = []
