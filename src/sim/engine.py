@@ -138,16 +138,21 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     "co2_scrubber_heat_kw" : co2_scrubber_heat_kw,
     "co2_scrubber_energy_used_kwh" : co2_scrubber_energy_used_kwh,
     "oga_heat_kw" : oga_heat_kw,
-    "light_power_kw" : light_power_used_kw,
-    "light_power_used_kwh" : light_power_used_kwh,
     "oga_power_used_kw" : oga_power_used_kw,
     "oga_energy_used_kwh" : oga_energy_used_kwh,
+    "light_power_kw" : light_power_used_kw,
+    "light_power_used_kwh" : light_power_used_kwh,
     "w_light_power_used_kw" : w_light_power_used_kw, 
     "w_light_power_used_kwh" : w_light_power_used_kwh, 
     }
 
     outputs["total_power_used_kw"], outputs["total_energy_used_kwh"] = total_power_usage(outputs)
     power_results = run_system_power(new_state, outputs, dt_min)
+    
+    new_state = replace(
+        new_state,
+        battery_stored_kwh = round(power_results["new_battery_stored_kwh"], 3),
+        solar_arrays = power_results["new_solar_arrays"]
+    )
+    
     return new_state, outputs
-
-
