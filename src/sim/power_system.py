@@ -39,7 +39,7 @@ def solar_generation(state, new_solar_arrays, dt_min):
         
     total_solar_generated_kwh = total_solar_generated_kw * hours_per_step
 
-    return total_solar_generated_kw, power_generated_per_array
+    return total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array
 
 
 #--------save solar power generated to storage-------♡
@@ -48,7 +48,7 @@ def solar_battery_charge(state, total_solar_generated_kwh):
     battery_max_capacity_kwh = state.battery_max_capacity_kwh
     
     if battery_stored_kwh < battery_max_capacity_kwh:
-        new_battery_stored_kwh = max(battery_max_capacity_kwh, battery_stored_kwh + total_solar_generated_kwh)
+        new_battery_stored_kwh = min(battery_max_capacity_kwh, battery_stored_kwh + total_solar_generated_kwh)
 
     else:
         new_battery_stored_kwh = battery_stored_kwh
@@ -120,14 +120,39 @@ def total_power_usage(outputs):
 
 
 #-----battery usage and storage update per step------♡
-def run_system_power(state):
-    ...
+def run_system_power(state, outputs, dt_min):
+    hours_per_step = dt_min / 60
+    new_solar_arrays, solar_array_online_count = solar_arrays_online(state.solar_arrays)
+    total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array = solar_generation(state, new_solar_arrays, dt_min)
+    battery_after_charge = solar_battery_charge(state, total_solar_generated_kwh)
+    total_power_used_kw, total_energy_used_kwh = total_power_usage(outputs)
+    new_battery_stored_kwh = max(0.0, battery_after_charge - total_energy_used_kwh)
+
+    return {
+        "new_solar_arrays": new_solar_arrays,
+        "solar_array_online_count": solar_array_online_count,
+        "total_solar_generated_kw": total_solar_generated_kw,
+        "total_solar_generated_kwh": total_solar_generated_kwh,
+        "total_power_used_kw": total_power_used_kw,
+        "total_energy_used_kwh": total_energy_used_kwh,
+        "new_battery_stored_kwh": new_battery_stored_kwh,
+        "power_generated_per_array": power_generated_per_array
+    }
     
-
-#------------handling low power priorites------------♡
+#------------deciding low power priorites------------♡
 def low_power_mode(state):
-    ...
+    battery_percentage = state.battery_stored_kwh / state.battery_max_capacity_kwh
 
+    if battery_percentage <= 0.10:
+        return "critical"
+
+    if battery_percentage <= 0.25:
+        return "low"
+    
+    else:
+        return "normal"
+    
+    ...
 
 #--------------------power alerts--------------------♡
 def power_alerts(state):
