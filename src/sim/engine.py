@@ -4,7 +4,7 @@ from .oxygen_system import run_oga
 from .buffer_gas_system import mca, run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import crew_metabolism
-from .power_system import total_power_usage, wellness_lights
+from .power_system import total_power_usage, wellness_lights, run_system_power
 from .mars_time import get_sol_time, determine_sunlight_amount, daylight_per_m2_kw, current_sol_number
 from .power_system import lights
 
@@ -143,10 +143,11 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     "oga_power_used_kw" : oga_power_used_kw,
     "oga_energy_used_kwh" : oga_energy_used_kwh,
     "w_light_power_used_kw" : w_light_power_used_kw, 
-    "w_light_power_used_kwh" : w_light_power_used_kwh
+    "w_light_power_used_kwh" : w_light_power_used_kwh, 
     }
 
     outputs["total_power_used_kw"], outputs["total_energy_used_kwh"] = total_power_usage(outputs)
+    power_results = run_system_power(new_state, outputs, dt_min)
     return new_state, outputs
 
 
