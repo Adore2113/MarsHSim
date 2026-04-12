@@ -1,8 +1,5 @@
 from dataclasses import replace
 from .state import Habitat_State
-from .power_system import power_alerts
-
-
 
 #-----------------get habitat status-----------------♡
 def get_status(state):
@@ -17,7 +14,7 @@ def get_status(state):
 
 
 #--------------------gas alerts----------------------♡
-def gas_alert(state):
+def gas_alerts(state):
     gas_alerts = []
     
     #o2
