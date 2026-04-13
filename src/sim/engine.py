@@ -66,8 +66,11 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     new_daylight_per_m2_kw = daylight_per_m2_kw(time_advanced_state)
     current_sunlight_amount = determine_sunlight_amount(time_advanced_state)
-    new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
-    
+    if new_sol_started:
+        new_peak_sunlight_today = current_sunlight_amount
+    else:
+        new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
+        
 
     pre_buffer_state = replace(
         time_advanced_state,
