@@ -10,7 +10,6 @@ from .power_system import lights
 from .alerts import get_status, gas_alerts, power_alerts
 #----------------------------------------------------♡
 
-
 #--------------------constants-----------------------♡
 default_dt_min = 5    # default timestep
 #----------------------------------------------------♡
@@ -108,8 +107,11 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     "w_light_power_used_kwh" : w_light_power_used_kwh, 
     }
 
-    outputs["total_power_used_kw"], outputs["total_energy_used_kwh"] = total_power_usage(outputs)
     power_results = run_system_power(new_state, outputs, dt_min)
+    outputs["total_power_used_kw"], outputs["total_energy_used_kwh"] = total_power_usage(outputs)
+    outputs["total_solar_generated_kw"] = power_results["total_solar_generated_kw"]
+    outputs["total_solar_generated_kwh"] = power_results["total_solar_generated_kwh"]
+    outputs["new_battery_stored_kwh"] = power_results["new_battery_stored_kwh"]
     
     new_state = replace(
         new_state,
