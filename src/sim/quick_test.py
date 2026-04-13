@@ -1,6 +1,7 @@
 from src.sim.state import Habitat_State
-from src.sim.engine import step, gas_alert, mca, get_status
+from src.sim.engine import step, mca, get_status
 from src.sim.mars_time import get_sol_time
+from .alerts import gas_alerts, get_status
 
 s0 = Habitat_State(
 # ------time----------------------------------------♡
@@ -125,7 +126,13 @@ def print_state(state, outputs, alerts):
     print(f"{'OGA Heat:':<22} {outputs['oga_heat_kw']:.2f} kW")
     print(f"{'Lights Power:':<22} {outputs['light_power_kw']:.2f} kW\n")
 
-    print((f"♡ [ SYSTEM STATUS: {status} ] ♡").center(WIDTH))
+    print(("♡ [ POWER ] ♡").center(WIDTH))
+    print(f"{'Total Power Used:':<22} {outputs['total_power_used_kw']:.2f} kW")
+    print(f"{'Total Energy Used:':<22} {outputs['total_energy_used_kwh']:.2f} kWh")
+    print(f"{'Solar Generated:':<22} {outputs['total_solar_generated_kw']:.2f} kW")
+    print(f"{'Battery Stored:':<22} {state.battery_stored_kwh:.2f} kWh")
+
+    print((f"\n♡ [ SYSTEM STATUS: {status} ] ♡\n").center(WIDTH))
 
     #--debug check:
     print(("♡ [ SUN DEBUG ] ♡").center(WIDTH))
@@ -168,10 +175,10 @@ def print_state(state, outputs, alerts):
 
 
 state = s0
-for i in range(3):    #turn this back to 12
+for i in range(40):    #turn this back to 12
     state, outputs = step(state)
-    alerts = gas_alert(state)
+    alerts = gas_alerts(state)
     print_state(state, outputs, alerts)
 
-    if i % 12 == 0:
-        print_state(state, outputs, alerts)
+   # if i % 12 == 3:
+   #    print_state(state, outputs, alerts)
