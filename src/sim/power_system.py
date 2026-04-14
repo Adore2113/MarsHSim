@@ -107,16 +107,16 @@ def wellness_lights(state, dt_min):
     w_light_power_used_kw = 0.5 * wellness_light_level
     w_light_power_used_kwh = w_light_power_used_kw * hours_per_step
 
-    w_light_heat_added_kw =  0.1 * wellness_light_level
-    w_light_heat_added_kwh = w_light_heat_added_kw * hours_per_step
+    w_light_heat_kw =  0.1 * wellness_light_level
+    w_light_heat_kwh = w_light_heat_kw * hours_per_step
 
     return {
             "wellness_lights_on": wellness_lights_on,
             "wellness_light_level": wellness_light_level,
             "w_light_power_used_kw": w_light_power_used_kw,
             "w_light_power_used_kwh": w_light_power_used_kwh,
-            "w_light_heat_added_kw": w_light_heat_added_kw,
-            "w_light_heat_added_kwh": w_light_heat_added_kwh,
+            "w_light_heat_kw": w_light_heat_kw,
+            "w_light_heat_kwh": w_light_heat_kwh,
         }    
 
 #-----how much power habitat systems are using-------♡
