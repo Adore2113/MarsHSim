@@ -139,21 +139,31 @@ def run_system_power(state, outputs, dt_min):
         "power_generated_per_array": power_generated_per_array
     }
     
-#------------deciding low power priorites------------♡
-def low_power_mode(state):
+
+#------------checking power current mode------------♡
+def check_power_mode(state):
     battery_percentage = state.battery_stored_kwh / state.battery_max_capacity_kwh
 
     if battery_percentage <= 0.10:
-        return "critical"
+        power_mode = "critical"
 
-    if battery_percentage <= 0.25:
-        return "low"
+    elif battery_percentage <= 0.25:
+        power_mode = "low"
     
     else:
-        return "normal"
+        power_mode = "normal"
     
-    ...
+    return power_mode
 
-#--------------------power alerts--------------------♡
-def power_alerts(state):
-    ...
+#------------deciding low power priorites------------♡
+def handling_power_mode(power_mode, final_light_level, wellness_light_level):
+    if power_mode == "low":
+        final_light_level *= 0.5
+        wellness_light_level = 0.0
+    
+    elif power_mode == "critical":
+        final_light_level *= 0.3
+        wellness_light_level = 0.0
+
+    return final_light_level, wellness_light_level
+    
