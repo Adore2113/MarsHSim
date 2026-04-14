@@ -82,7 +82,13 @@ def lights(state, dt_min):
     light_heat_added_kw =  0.5 * final_light_level
     light_heat_added_kwh = light_heat_added_kw * hours_per_step
 
-    return final_light_level, light_heat_added_kw, light_heat_added_kwh, light_power_used_kw, light_power_used_kwh
+    return {
+        "final_light_level" : final_light_level,
+        "light_heat_added_kw" : light_heat_added_kw,
+        "light_heat_added_kwh" : light_heat_added_kwh,
+        "light_power_used_kw" : light_power_used_kw,
+        "light_power_used_kwh" : light_power_used_kwh
+        }
 
 
 #--------wellness lights from lack of sunlight-------♡
