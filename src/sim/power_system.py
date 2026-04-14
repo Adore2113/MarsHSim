@@ -62,21 +62,16 @@ def lights(state, dt_min):
     _, sol_hour, minutes = get_sol_time(state)
     sunlight_amount = determine_sunlight_amount(state)
     crew_sleep_hours = 6 <= sol_hour < 21 or (sol_hour == 21 and minutes < 30)
-    
+    min_light_level = 0.2
+
     if crew_sleep_hours:
-        base_light_level = 0.2
+        base_light_level = min_light_level
 
     else:
         base_light_level = 1.0
 
     sunlight_dimming = sunlight_amount * 0.6    # sunlight level changes light level need for power saving
     light_level_dimmed = base_light_level - sunlight_dimming
-
-    if state.battery_stored_kwh < 300:
-        min_light_level = 0.1
-
-    else:
-        min_light_level = 0.2
     
     final_light_level = max(min_light_level, light_level_dimmed)
 
