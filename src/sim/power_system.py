@@ -2,6 +2,7 @@ from dataclasses import replace
 from .state import Habitat_State
 from .mars_time import get_sol_time, daylight_per_m2_kw, determine_sunlight_amount
 
+min_light_level = 0.2
 
 #-----------which solar arrays are online------------♡
 def solar_arrays_online(solar_array):
@@ -151,13 +152,13 @@ def check_power_mode(state):
     return power_mode
 
 #------------deciding low power priorites------------♡
-def handling_power_mode(power_mode, final_light_level, wellness_light_level):
+def apply_low_power_mode(power_mode, final_light_level, wellness_light_level):
     if power_mode == "low":
-        final_light_level *= 0.5
+        final_light_level = max(0.02, final_light_level * 0.5)
         wellness_light_level = 0.0
     
     elif power_mode == "critical":
-        final_light_level *= 0.3
+        final_light_level = max(0.02, final_light_level * 0.3)
         wellness_light_level = 0.0
 
     return final_light_level, wellness_light_level
