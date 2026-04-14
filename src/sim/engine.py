@@ -15,13 +15,50 @@ default_dt_min = 5    # default timestep
 #----------------------------------------------------♡
 
 
-#------------what happens in one timestep------------♡
-def step(state: Habitat_State, dt_min: int = default_dt_min):
+#-----------advance time info per timestep-----------♡
+def collect_advance_time(state, dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
+    
+    return dt_s, next_time_s    # maybe remove dt_s?
 
-    light_level, light_heat_kw, light_heat_kwh, light_power_used_kw, light_power_used_kwh = lights(state, dt_min)
-    wellness_lights_on, wellness_light_level, w_light_heat_added_kw, w_light_heat_added_kwh, w_light_power_used_kw, w_light_power_used_kwh = wellness_lights(state, dt_min)
+
+#-----------heat generated info per timestep---------♡
+def collect_heat_generated(state, dt_min):
+    _, light_heat_kw, light_heat_kwh, _, _ = lights(state, dt_min)
+    _, _, w_light_heat_added_kw, w_light_heat_added_kwh, _, _ = wellness_lights(state, dt_min)
+
+
+#---------------power info per timestep--------------♡
+def collect_power_info(state, dt_min):
+    light_level, _, _, light_power_used_kw, light_power_used_kwh = lights(state, dt_min)
+    wellness_lights_on, wellness_light_level, _, _, w_light_power_used_kw, w_light_power_used_kwh = wellness_lights(state, dt_min)
+
+
+#------------atmosphere info per timestep------------♡
+
+
+#----------------------------------------------------♡
+
+#----------------------------------------------------♡
+
+#----------------------------------------------------♡
+
+#----------------------------------------------------♡
+
+#----------------------------------------------------♡
+
+#----------------------------------------------------♡
+
+
+#------------what happens in one timestep------------♡
+def step(state: Habitat_State, dt_min: int = default_dt_min):
+   # dt_s = int(dt_min * 60)
+    #next_time_s = state.mission_time_s + dt_s
+    
+
+   # light_level, light_heat_kw, light_heat_kwh, light_power_used_kw, light_power_used_kwh = lights(state, dt_min)
+  #  wellness_lights_on, wellness_light_level, w_light_heat_added_kw, w_light_heat_added_kwh, w_light_power_used_kw, w_light_power_used_kwh = wellness_lights(state, dt_min)
     o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh = crew_metabolism(state, dt_min)
 
     o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
