@@ -1,6 +1,7 @@
 from src.sim.state import Habitat_State
-from src.sim.engine import step, mca, get_status
+from src.sim.engine import step
 from src.sim.mars_time import get_sol_time
+from .buffer_gas_system import mca
 from .alerts import gas_alerts, get_status
 
 s0 = Habitat_State(
@@ -124,7 +125,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Scrubber Heat:':<22} {outputs['co2_scrubber_heat_kw']:.2f} kW")
     print(f"{'Scrubber Energy:':<22} {outputs['co2_scrubber_energy_used_kwh']:.2f} kWh")
     print(f"{'OGA Heat:':<22} {outputs['oga_heat_kw']:.2f} kW")
-    print(f"{'Lights Power:':<22} {outputs['light_power_kw']:.2f} kW\n")
+    print(f"{'Lights Power:':<22} {outputs['light_power_used_kw']:.2f} kW\n")
 
     print(("♡ [ POWER ] ♡").center(WIDTH))
     print(f"{'Total Power Used:':<22} {outputs['total_power_used_kw']:.2f} kW")
@@ -169,16 +170,16 @@ def print_state(state, outputs, alerts):
     #print(f"Scrubber heat: {outputs['co2_scrubber_heat_kw']:.4f} kW")
     #print(f"Scrubber energy: {outputs['co2_scrubber_energy_used_kwh']:.4f} kWh")
     #print(f"OGA heat: {outputs['oga_heat_kw']:.4f} kW")
-    #print(f"Lights power: {outputs['light_power_kw']:.4f} kW")
+    #print(f"Lights power: {outputs['light_power_used_kw']:.4f} kW")
 
     print()
 
 
 state = s0
-for i in range(40):    #turn this back to 12
+for i in range(12):    #turn this back to 12
     state, outputs = step(state)
     alerts = gas_alerts(state)
     print_state(state, outputs, alerts)
 
-   # if i % 12 == 3:
-   #    print_state(state, outputs, alerts)
+    if i % 12 == 0:
+       print_state(state, outputs, alerts)
