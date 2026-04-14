@@ -28,8 +28,8 @@ def collect_heat_generated(crew_metabolism, light_results, wellness_light_result
     crew_temp_rise_kw = crew_metabolism["crew_temp_rise_kw"]
     crew_temp_rise_kwh = crew_metabolism["crew_temp_rise_kwh"] 
 
-    light_heat_kw = light_results["light_heat_added_kw"]
-    light_heat_kwh = light_results["light_heat_added_kwh"] 
+    light_heat_kw = light_results["light_heat_kw"]
+    light_heat_kwh = light_results["light_heat_kwh"] 
     
     w_light_heat_kw = wellness_light_results["w_light_heat_kw"]
     w_light_heat_kwh = wellness_light_results["w_light_heat_kwh"]
@@ -54,10 +54,18 @@ def collect_heat_generated(crew_metabolism, light_results, wellness_light_result
         }
 
 #---------------power info per timestep--------------♡
-def collect_power_info(state, dt_min):
-    light_level, _, _, light_power_used_kw, light_power_used_kwh = lights(state, dt_min)
-    wellness_lights_on, wellness_light_level, _, _, w_light_power_used_kw, w_light_power_used_kwh = wellness_lights(state, dt_min)
+def collect_power_info(light_results, wellness_light_results, oga_results, co2_results):
+    light_power_used_kw = light_results["light_power_used_kw"]
+    light_power_used_kwh = light_results["light_power_used_kwh"]
 
+    w_light_heat_kw = wellness_light_results["w_light_heat_kw"]
+    w_light_heat_kwh = wellness_light_results["w_light_heat_kwh"]
+
+    oga_power_used_kw = oga_results["oga_power_used_kw"]
+    oga_energy_used_kwh = oga_results["oga_energy_used_kwh"]
+   
+    co2_scrubber_power_used_kw = co2_results["co2_scrubber_power_used_kw"]
+    co2_scrubber_energy_used_kwh = co2_results["co2_scrubber_energy_used_kwh"]
 
 #------------atmosphere info per timestep------------♡
 
@@ -82,7 +90,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     
 
    # light_level, light_heat_kw, light_heat_kwh, light_power_used_kw, light_power_used_kwh = lights(state, dt_min)
-   # wellness_lights_on, wellness_light_level, w_light_heat_added_kw, w_light_heat_added_kwh, w_light_power_used_kw, w_light_power_used_kwh = wellness_lights(state, dt_min)
+   # wellness_lights_on, wellness_light_level, w_light_heat_kw, w_light_heat_kwh, w_light_power_used_kw, w_light_power_used_kwh = wellness_lights(state, dt_min)
     o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh = crew_metabolism(state, dt_min)
 
     o2_after_crew_kpa = state.o2_kpa - o2_drop_kpa
@@ -100,8 +108,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     # oga_heat_kw = oga_results["oga_heat_kw"]
     # oga_heat_kwh = oga_results["oga_heat_kwh"]
-    oga_power_used_kw = oga_results["oga_power_used_kw"]
-    oga_energy_used_kwh = oga_results["oga_energy_used_kwh"]
+    # oga_power_used_kw = oga_results["oga_power_used_kw"]
+    # oga_energy_used_kwh = oga_results["oga_energy_used_kwh"]
    
 
     co2_results = run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min)
@@ -112,8 +120,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_co2_stored_kpa = co2_results["new_co2_stored_kpa"]
     # co2_scrubber_heat_kw = co2_results["co2_scrubber_heat_kw"]
     # co2_scrubber_heat_kwh = co2_results["co2_scrubber_heat_kwh"]
-    co2_scrubber_power_used_kw = co2_results["co2_scrubber_power_used_kw"]
-    co2_scrubber_energy_used_kwh = co2_results["co2_scrubber_energy_used_kwh"]
+    # co2_scrubber_power_used_kw = co2_results["co2_scrubber_power_used_kw"]
+    # co2_scrubber_energy_used_kwh = co2_results["co2_scrubber_energy_used_kwh"]
     
 
     new_water_for_oga_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
