@@ -42,4 +42,9 @@ def crew_metabolism(state, dt_min):
         crew_temp_rise_kw = 0.120 * state.crew_count    # = 3.78
         crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
 
-    return o2_drop_kpa, co2_rise_kpa, crew_temp_rise_kw, crew_temp_rise_kwh
+    return {
+        "o2_drop_kpa" : o2_drop_kpa,
+        "co2_rise_kpa" : co2_rise_kpa,
+        "crew_temp_rise_kw" : crew_temp_rise_kw,
+        "crew_temp_rise_kwh" : crew_temp_rise_kwh
+        }
