@@ -8,3 +8,18 @@ target_temp_c = 23.0
 min_temp_c = 20.0
 max_temp_c = 25.0
 #----------------------------------------------------♡
+
+
+#---------------internal temp system-----------------♡
+
+
+#--------------external Mars environment-------------♡
+
+
+#--------------seasonal/weather changes--------------♡
+
+
+#-------calculate total temp changes generated-------♡
+
+
+#------------------run_temp_system-------------------♡
