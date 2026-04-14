@@ -126,6 +126,8 @@ def total_power_usage(outputs):
   
     return total_power_used_kw, total_energy_used_kwh
 
+    # eventually add total heat produced
+
 
 #-----battery usage and storage update per step------♡
 def run_system_power(state, outputs, dt_min):
