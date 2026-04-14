@@ -118,7 +118,7 @@ def determine_sunlight_amount(state):
     return sunlight_amount
 
 
-#-------------low sunlight streak info--------------♡
+#--------------low sunlight streak info--------------♡
 def determine_low_sunlight_streak(state):
     low_sunlight = 0.3
 
@@ -131,9 +131,26 @@ def determine_low_sunlight_streak(state):
     return new_low_sunlight_streak_sols
 
 
-#---------------solar generation info---------------♡
+#---------------solar generation info----------------♡
 def daylight_per_m2_kw(state):
     sunlight_amount = determine_sunlight_amount(state)
     daylight_per_m2_kw = max_daylight_m2_kw * sunlight_amount
     
     return daylight_per_m2_kw
+
+
+#--------------define northern seasons---------------♡
+def current_mars_season(state):
+    current_season_angle_deg = season_angle_deg(state.mission_time_s)
+
+    if 0 <= current_season_angle_deg < 90:
+        return "north_spring" 
+    
+    elif 90 <= current_season_angle_deg < 180:
+        return "north_summer" 
+    
+    elif 180 <= current_season_angle_deg < 270:
+        return "north_autumn" 
+    
+    else:
+        return "north_winter"
