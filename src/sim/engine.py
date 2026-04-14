@@ -24,9 +24,13 @@ def collect_advance_time(state, dt_min):
 
 
 #-----------heat generated info per timestep---------♡
-def collect_heat_generated(state, dt_min, oga_results):
-    _, light_heat_kw, light_heat_kwh, _, _ = lights(state, dt_min)
-    _, _, w_light_heat_added_kw, w_light_heat_added_kwh, _, _ = wellness_lights(state, dt_min)
+def collect_heat_generated(state, dt_min, light_results, wellness_light_results, oga_results):
+    light_heat_kw = light_results["light_heat_added_kw"]
+    light_heat_kwh = light_results["light_heat_added_kwh"] 
+    
+    w_light_heat_added_kw = wellness_light_results["w_light_heat_added_kw"]
+    w_light_heat_added_kwh = wellness_light_results["w_light_heat_added_kwh"]
+    
     oga_heat_kw = oga_results["oga_heat_kw"]
     oga_heat_kwh = oga_results["oga_heat_kwh"]
 
