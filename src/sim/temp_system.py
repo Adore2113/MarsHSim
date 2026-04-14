@@ -11,8 +11,7 @@ max_temp_c = 25.0
 
 
 #------------get total heat from outputs-------------♡
-def heat_from_outputs(outputs):
-   def total_internal_heat_kw(outputs):
+def heat_from_outputs_kw(outputs):
     return (
         outputs.get("crew_heat_kw", 0.0)
         + outputs.get("oga_heat_kw", 0.0)
