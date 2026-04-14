@@ -24,7 +24,10 @@ def collect_advance_time(state, dt_min):
 
 
 #-----------heat generated info per timestep---------♡
-def collect_heat_generated(state, dt_min, light_results, wellness_light_results, oga_results, co2_results):
+def collect_heat_generated(state, dt_min, crew_metabolism, light_results, wellness_light_results, oga_results, co2_results):
+    crew_temp_rise_kw = crew_metabolism["crew_temp_rise_kw"]
+    crew_temp_rise_kwh = crew_metabolism["crew_temp_rise_kwh"] 
+
     light_heat_kw = light_results["light_heat_added_kw"]
     light_heat_kwh = light_results["light_heat_added_kwh"] 
     
