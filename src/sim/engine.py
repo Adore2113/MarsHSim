@@ -28,8 +28,8 @@ def collect_heat_generated(state, dt_min, light_results, wellness_light_results,
     light_heat_kw = light_results["light_heat_added_kw"]
     light_heat_kwh = light_results["light_heat_added_kwh"] 
     
-    w_light_heat_added_kw = wellness_light_results["w_light_heat_added_kw"]
-    w_light_heat_added_kwh = wellness_light_results["w_light_heat_added_kwh"]
+    w_light_heat_kw = wellness_light_results["w_light_heat_kw"]
+    w_light_heat_kwh = wellness_light_results["w_light_heat_kwh"]
     
     oga_heat_kw = oga_results["oga_heat_kw"]
     oga_heat_kwh = oga_results["oga_heat_kwh"]
@@ -79,8 +79,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     water_used_kg = oga_results["water_used_kg"]
    
 
-    oga_heat_kw = oga_results["oga_heat_kw"]
-    oga_heat_kwh = oga_results["oga_heat_kwh"]
+    #oga_heat_kw = oga_results["oga_heat_kw"]
+    #oga_heat_kwh = oga_results["oga_heat_kwh"]
     oga_power_used_kw = oga_results["oga_power_used_kw"]
     oga_energy_used_kwh = oga_results["oga_energy_used_kwh"]
    
