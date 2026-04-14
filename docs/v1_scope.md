@@ -12,7 +12,6 @@
     -finite buffers and recycling efficiency matter
 
 ###  ♡ Time model:
-
     -Default timestep: 5 minutes
   
     -Engine uses configurable delta time(dt) (supported timesteps will be: 1, 5, 10, 30 min)
@@ -21,7 +20,7 @@
 
     -Track mission time in seconds internally, and converted to Mars sol and local time for display
 
-
+♡--------------------------------------------------♡
 
 ## ♡ Creation notes: 
         
@@ -43,7 +42,7 @@
 
     -wanting to keep the habitat temp between 22-24C ideally
 
-    -taking seasons on Mars into consideration (how many sols, winter lows ~-140C, summer highs ~20C, 25% yearly atmosphere pressure changes from CO2 freezing and sublimating at the poles, dune migration, albedo changes from ice/dust, dust storms in the spring/summer while global storms can engulf the whole planet)
+    -taking seasons on Mars into consideration (how many sols, winter lows ~-140C, summer highs ~20C, 25% yearly atmosphere pressure changes from co2 freezing and sublimating at the poles, dune migration, albedo changes from ice/dust, dust storms in the spring/summer while global storms can engulf the whole planet)
 
     -global dust storms can drop temp averages between 10-20C for a little while
 
@@ -67,7 +66,7 @@
     -30 crew members
     ~0.0033 * 30 = 0.099kPa/5min
 
-    CO2 rise: 
+    co2 rise: 
     ~0.0029kPa pp/5min
     ~0.0029 * 288 = 0.8352 kPa pp/day
     ~0.0029 * 30 = 0.087kPa/5min
@@ -206,7 +205,7 @@
 ### ♡       03/18/2026
     -deciding if I should add heat output into current functions, or have its own. I'm going to keep adding to the proper functions
 
-    -adding heat produced by amine beds with exothermic absorption (the amine molecules catch the CO2 which releases heat), and regeneration
+    -adding heat produced by amine beds with exothermic absorption (the amine molecules catch the co2 which releases heat), and regeneration
 
     -wrote a first version of a readme.md file and decided to make my project public today
 
@@ -330,10 +329,10 @@
 ### ♡       04/03/2026
     -updated power_system.py and added a solar generation function and fixed the other no longer needed variables from the other files that had to do with solar power.
 
-    -I am using 0.50kw of sunlight for every 1 square meter (m2) for now, b/c my reasearch showed that Mars sunlight is btwn 0.4 - 0.6 kw / 1 m2 during daytime
+    -I am using 0.50kw of sunlight for every 1 square meter (m2) for now, b/c my research showed that Mars sunlight is btwn 0.4 - 0.6 kw / 1 m2 during daytime
 
         **next session start:**
-    -work on power_system.py and fifure out where I want daylight calclated (maybe state, or make a new seperate file for handling calcualting times or day, days and other related things)
+    -work on power_system.py and figure out where I want daylight calculated (maybe state, or make a new separate file for handling calculating times of day, days and other related things)
 
     -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
 
@@ -369,7 +368,7 @@
         **next session start:**
     -REMEMBER TO COMMIT MORE!!
 
-    -do more reasearch and figure out mars_time.py, clean up step in engine.py
+    -do more research and figure out mars_time.py, clean up step in engine.py
 
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
 
@@ -383,7 +382,7 @@
     -I'm going to hardcode Mar's tilt to be 25.19 degrees b/c my model isn't going to run long enough to take that slow progression into consideration
 
         **next session start:**
-    -do more reasearch and figure out mars_time.py, clean up step in engine.py
+    -do more research and figure out mars_time.py, clean up step in engine.py
 
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
 
@@ -410,7 +409,7 @@
 
     -I want the lights to adjust to time as well as sunlight level and never go below 0.2 light level, and 0.3 as a daytime lighting support if there is enough sunlight, an emergency minimum with enough sunlight will be 0.1 incase of very low power
 
-    -considering extra lighting option for when there are times where there isn't any sunlight for so many days, to help keep crew moral up
+    -considering extra lighting option for when there are times where there isn't any sunlight for so many days, to help keep crew moral up (wellness lights)
 
     -going to add three more variables related to sunlight mostly for the UI later
 
@@ -420,3 +419,75 @@
     -move to thermal after this (?)
 
     -eventually... work on water_system, and then continue adding heat generated/heat waste to new functions and consider electronics/computers, radiators, pumps, temp handling file
+
+♡--------------------------------------------------♡ 
+
+ ### ♡       04/10/2026
+    -added function for solar power recharging habitat batteries
+
+    -added more functions to power_system.py file for updating power storage and power being used
+
+    -I'm going to leave the dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays for now.
+
+    -I want to start to organize my engine file
+
+    **next session start:**
+    -print total power being used and a power priority system for when power is low and only runs essential power systems
+
+    - handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+    -move to thermal after this (?)
+
+    -eventually... work on water_system, and then continue adding heat generated/heat waste to new functions and consider electronics/computers, radiators, pumps, temp handling file
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/11/2026
+    -moved alerts to it's own new file that included the status updates as well
+
+    **next session start:**
+    -print total power being used and a power priority system for when power is low and only runs essential power systems
+
+    - handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+    -move to thermal after this (?)
+
+    -eventually... work on water_system, and then continue adding heat generated/heat waste to new functions and consider electronics/computers, radiators, pumps, temp handling file   
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/13/2026
+    -going to add power info to print function
+
+    -fixed peak daylight today to reset for each sol
+
+    -for power modes:
+        -normal: obviously everything runs as it should
+
+        -low: lights dim, for sure disable wellness lights, keep life support and everything else running
+        
+        -critical: lights turned down to minimum, reduce non-essential systems (implementing this later), prioritize OGA and co2 scrubber
+
+    - I'm trying to decide if I should keep my lights function so it's controlling the brightness based off of it's own battery storage check, or move it to my function where it handles low power.. I'm leaning towards the latter
+
+    -I moved it ^
+
+    **next session start:**
+    -organize engine.py
+
+    --move to thermal after this (?)
+
+    -power priority system for when power is low and only runs essential power systems
+
+    - handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+    -eventually...
+        -work on water_system
+        
+        -continue adding heat generated/heat waste to new function
+        
+        -NTA (need to add) electronics/computers, radiators, pumps, water system, rations(?)  
+        
+        -add subsystems to the power priority system for when power is low and only runs essential power systems
+        
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
