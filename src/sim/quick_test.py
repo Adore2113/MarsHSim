@@ -126,7 +126,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f}  kg\n")
 
     print(("♡ [ SYSTEMS ] ♡").center(WIDTH))
-    print(f"{'CO2 Scrubbed:':<22} {outputs['co2_removed_kpa']:.2f} kPa")
+    print(f"{'CO2 Scrubbed:':<22} {outputs['co2_removed_kpa']:.4f} kPa")
     print(f"{'Scrubber Power Used:':<22} {outputs['co2_scrubber_power_used_kw']:.2f} kW")
     print(f"{'Scrubber Heat:':<22} {outputs['co2_scrubber_heat_kw']:.2f} kW")
     print(f"{'Scrubber Energy:':<22} {outputs['co2_scrubber_energy_used_kwh']:.2f} kWh")
