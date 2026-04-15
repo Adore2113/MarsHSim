@@ -130,6 +130,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Scrubber Energy:':<22} {outputs['co2_scrubber_energy_used_kwh']:.2f} kWh")
     print(f"{'OGA Heat:':<22} {outputs['oga_heat_kw']:.2f} kW")
     print(f"{'Lights Power:':<22} {outputs['light_power_used_kw']:.2f} kW\n")
+    print(f"{'Lights Heat:':<22} {outputs['light_heat_kw']:.2f} kW")
 
     print(("♡ [ POWER ] ♡").center(WIDTH))
     print(f"{'Total Power Used:':<22} {outputs['total_power_used_kw']:.2f} kW")
@@ -138,6 +139,21 @@ def print_state(state, outputs, alerts):
     print(f"{'Battery Stored:':<22} {state.battery_stored_kwh:.2f} kWh")
 
     print((f"\n♡ [ SYSTEM STATUS: {status} ] ♡\n").center(WIDTH))
+
+    print(("♡ [ THERMAL ] ♡").center(WIDTH))
+    print(f"{'Cabin Temp:':<22} {state.hab_temp_c:.2f} °C")
+    print(f"{'Outside Temp:':<22} {outputs['outside_temp_c']:.2f} °C")
+    print(f"{'Internal Heat:':<22} {outputs['internal_heat_kw']:.2f} kW")
+    print(f"{'Heat Loss:':<22} {outputs['heat_loss_kw']:.2f} kW")
+    print(f"{'Net Heat:':<22} {outputs['net_heat_kw']:.2f} kW")
+    print(f"{'Temp Change:':<22} {outputs['temp_change_c']:.2f} °C")
+
+    if outputs["net_heat_kw"] > 0:
+        print(f"{'Thermal Trend:':<22} Warming ↑\n")
+    elif outputs["net_heat_kw"] < 0:
+        print(f"{'Thermal Trend:':<22} Cooling ↓\n")
+    else:
+        print(f"{'Thermal Trend:':<22} Stable\n")
 
     #--debug check:
     print(("♡ [ SUN DEBUG ] ♡").center(WIDTH))
