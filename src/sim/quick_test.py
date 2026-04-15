@@ -110,6 +110,8 @@ def print_state(state, outputs, alerts):
     print(f"{'Sol': <15} {sol} | {hour}:{minutes:02d} LMST\n")
     #print(f"{'Light Level:':<22} {state.light_level:.2f}")
 
+    print((f"\n♡ [ SYSTEM STATUS: {status} ] ♡\n").center(WIDTH))
+
     print(("♡ [ ATMOSPHERE ] ♡").center(WIDTH))
     if alerts:
         print(f"Alert: {alerts}")
@@ -137,8 +139,6 @@ def print_state(state, outputs, alerts):
     print(f"{'Total Energy Used:':<22} {outputs['total_energy_used_kwh']:.2f} kWh")
     print(f"{'Solar Generated:':<22} {outputs['total_solar_generated_kw']:.2f} kW")
     print(f"{'Battery Stored:':<22} {state.battery_stored_kwh:.2f} kWh")
-
-    print((f"\n♡ [ SYSTEM STATUS: {status} ] ♡\n").center(WIDTH))
 
     print(("♡ [ THERMAL ] ♡").center(WIDTH))
     print(f"{'Cabin Temp:':<22} {state.hab_temp_c:.2f} °C")
