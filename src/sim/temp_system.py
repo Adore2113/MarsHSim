@@ -26,7 +26,7 @@ def heat_from_outputs_kw(outputs):
 
 
 #--------------external Mars environment-------------♡
-def determine_outside_temp_c(state):
+def determine_mars_temp_c(state):
     season = current_mars_season(state)
     sunlight = determine_sunlight_amount(state)
 
@@ -47,29 +47,48 @@ def determine_outside_temp_c(state):
         day_night_variation = 10.0
 
     temp_offset = (sunlight - 0.5) * 2 * day_night_variation
-    outside_temp_c = base_temp_c + temp_offset
+    mars_temp_c = base_temp_c + temp_offset
     
-    return outside_temp_c
+    return mars_temp_c
 
 
 #------passive heat loss to outside environment------♡
-def heat_loss_from_outside_kw(state, outside_temp_c):
-    temp_difference_c = state.hab_temp_c - outside_temp_c
+def heat_loss_from_outside_kw(state, mars_temp_c):
+    temp_difference_c = state.hab_temp_c - mars_temp_c
 
     heat_loss_kw = temp_difference_c * state.insulation_strength_kw_per_c
     
     return heat_loss_kw
 
+
+#---------------electric heater system---------------♡
+
+
+
+#---------------radiatior cooling system---------------♡
+def radiator_heat_rejection_kw(state, mars_temp_k):
+    total_rejection_kw = 0.0
+    heat_emission = 0.9
+    stefan_boltzmann_const = 5.67e-8
+    cabin_temp_k = state.cabin_temp_c + 273.15 
+
+    for rad in state.radiators
+
+
+#----------condensing heat exchanger (CHX)-----------♡
+     # focusing on temp first
+
+
 #------running thermal control for one timestep------♡
 def run_thermal_control(state, outputs, dt_min):
     hours_per_step = dt_min / 60.0
 
-    internal_heat_kw = heat_from_outputs_kw(outputs)
-    outside_temp_c = determine_outside_temp_c(state)
+    hab_heat_kw = heat_from_outputs_kw(outputs)
+    mars_temp_c = determine_mars_temp_c(state)
     
-    heat_loss_kw = heat_loss_from_outside_kw(state, outside_temp_c)
+    heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
 
-    net_heat_kw = internal_heat_kw - heat_loss_kw
+    net_heat_kw = hab_heat_kw - heat_loss_kw
 
     temp_change_c = (net_heat_kw * hours_per_step) / state.thermal_mass_kwh_per_c
     
@@ -85,8 +104,8 @@ def run_thermal_control(state, outputs, dt_min):
 
     return {
         "new_hab_temp_c": new_hab_temp_c,
-        "outside_temp_c": outside_temp_c,
-        "internal_heat_kw": internal_heat_kw,
+        "mars_temp_c": mars_temp_c,
+        "hab_heat_kw": hab_heat_kw,
         "heat_loss_kw": heat_loss_kw,
         "thermal_alerts": thermal_alerts,
         "net_heat_kw": net_heat_kw,
