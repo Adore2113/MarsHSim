@@ -20,8 +20,8 @@ s0 = Habitat_State(
 
 # ------thermal control-----------------------------♡
     hab_temp_c = 23.0,
-    insulation_strength_kw_per_c = 1.0,
-    thermal_mass_kwh_per_c = 6000.0,
+    insulation_strength_kw_per_c = 0.4,
+    thermal_mass_kwh_per_c = 800.0,
     
 # ------atmosphere targets and limits---------------♡ 
     target_pressure_kpa = 60.0,
@@ -137,7 +137,7 @@ def print_state(state, outputs, alerts):
     print(("♡ [ POWER ] ♡").center(WIDTH))
     print(f"{'Total Power Used:':<22} {outputs['total_power_used_kw']:.2f} kW")
     print(f"{'Total Energy Used:':<22} {outputs['total_energy_used_kwh']:.2f} kWh")
-    print(f"{'Solar Generated:':<22} {outputs['total_solar_generated_kw']:.2f} kW")
+    print(f"{'Solar Generated:':<22} {outputs['total_solar_generated_kw']:.4f} kW")
     print(f"{'Battery Stored:':<22} {state.battery_stored_kwh:.2f} kWh")
 
     print(("♡ [ THERMAL ] ♡").center(WIDTH))
@@ -146,7 +146,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Internal Heat:':<22} {outputs['internal_heat_kw']:.2f} kW")
     print(f"{'Heat Loss:':<22} {outputs['heat_loss_kw']:.2f} kW")
     print(f"{'Net Heat:':<22} {outputs['net_heat_kw']:.2f} kW")
-    print(f"{'Temp Change:':<22} {outputs['temp_change_c']:.2f} °C")
+    print(f"{'Temp Change:':<22} {outputs['temp_change_c']:.4f} °C")
 
     if outputs["net_heat_kw"] > 0:
         print(f"{'Thermal Trend:':<22} Warming ↑\n")
@@ -157,8 +157,8 @@ def print_state(state, outputs, alerts):
 
     #--debug check:
     print(("♡ [ SUN DEBUG ] ♡").center(WIDTH))
-    print(f"{'Daylight per m2:':<22} {state.daylight_m2_kw:.2f} kW")
-    print(f"{'Peak Sun Today:':<22} {state.peak_sunlight_today:.1f} / 1.0")
+    print(f"{'Daylight per m2:':<22} {state.daylight_m2_kw:.3f} kW")
+    print(f"{'Peak Sun Today:':<22} {state.peak_sunlight_today:.2f} / 1.0")
     print(f"{'Low Sun Streak:':<22} {state.low_sunlight_streak_sols}")
 
     print("♡ " + "═" * 30 + " ♡")
@@ -196,7 +196,7 @@ def print_state(state, outputs, alerts):
 
 
 state = s0
-for i in range(12):    #turn this back to 12
+for i in range(15):    #turn this back to 12
     state, outputs = step(state)
     alerts = gas_alerts(state)
     print_state(state, outputs, alerts)
