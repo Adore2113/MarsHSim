@@ -11,7 +11,7 @@
 #### ------habitat-----------------------------♡
     hab_vol_m3
     hab_temp_c
-    insulation_strength
+    insulation_strength_kw
 
 #### ------atmosphere targets and limits-------♡ 
     target_pressure_kpa
