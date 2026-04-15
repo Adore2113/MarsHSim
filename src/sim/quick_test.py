@@ -22,6 +22,17 @@ s0 = Habitat_State(
     hab_temp_c = 23.0,
     insulation_strength_kw_per_c = 0.4,
     thermal_mass_kwh_per_c = 800.0,
+
+
+    radiators = [
+        {"id" : 1, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+        {"id" : 2, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+        {"id" : 3, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+        {"id" : 4, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+        {"id" : 5, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+       # {"id" : 6, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},    
+    ],
+    heat_per_rad = 0.0035,
     
 # ------atmosphere targets and limits---------------♡ 
     target_pressure_kpa = 60.0,
@@ -142,8 +153,8 @@ def print_state(state, outputs, alerts):
 
     print(("♡ [ THERMAL ] ♡").center(WIDTH))
     print(f"{'Cabin Temp:':<22} {state.hab_temp_c:.2f} °C")
-    print(f"{'Outside Temp:':<22} {outputs['outside_temp_c']:.2f} °C")
-    print(f"{'Internal Heat:':<22} {outputs['internal_heat_kw']:.2f} kW")
+    print(f"{'Mars Temp:':<22} {outputs['Mars_temp_c']:.2f} °C")
+    print(f"{'Cabin Heat:':<22} {outputs['Cabin_heat_kw']:.2f} kW")
     print(f"{'Heat Loss:':<22} {outputs['heat_loss_kw']:.2f} kW")
     print(f"{'Net Heat:':<22} {outputs['net_heat_kw']:.2f} kW")
     print(f"{'Temp Change:':<22} {outputs['temp_change_c']:.4f} °C")

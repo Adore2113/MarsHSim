@@ -56,9 +56,6 @@ def determine_outside_temp_c(state):
 def heat_loss_from_outside_kw(state, outside_temp_c):
     temp_difference_c = state.hab_temp_c - outside_temp_c
 
-    if temp_difference_c <= 0:
-        return 0.0
-    
     heat_loss_kw = temp_difference_c * state.insulation_strength_kw_per_c
     
     return heat_loss_kw
@@ -87,11 +84,11 @@ def run_thermal_control(state, outputs, dt_min):
         thermal_alerts.append("CRITICAL: Cabin too cold")
 
     return {
-        "new_hab_temp_c": round(new_hab_temp_c, 2),
-        "outside_temp_c": round(outside_temp_c, 2),
-        "internal_heat_kw": round(internal_heat_kw, 2),
-        "heat_loss_kw": round(heat_loss_kw, 2),
+        "new_hab_temp_c": new_hab_temp_c,
+        "outside_temp_c": outside_temp_c,
+        "internal_heat_kw": internal_heat_kw,
+        "heat_loss_kw": heat_loss_kw,
         "thermal_alerts": thermal_alerts,
-        "net_heat_kw": round(net_heat_kw, 2),
-        "temp_change_c": round(temp_change_c, 2),
+        "net_heat_kw": net_heat_kw,
+        "temp_change_c": temp_change_c,
         }
