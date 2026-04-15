@@ -448,7 +448,7 @@
     **next session start:**
     -print total power being used and a power priority system for when power is low and only runs essential power systems
 
-    - handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+    -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
     -move to thermal after this (?)
 
@@ -468,18 +468,18 @@
         
         -critical: lights turned down to minimum, reduce non-essential systems (implementing this later), prioritize OGA and co2 scrubber
 
-    - I'm trying to decide if I should keep my lights function so it's controlling the brightness based off of it's own battery storage check, or move it to my function where it handles low power.. I'm leaning towards the latter
+    -I'm trying to decide if I should keep my lights function so it's controlling the brightness based off of it's own battery storage check, or move it to my function where it handles low power.. I'm leaning towards the latter
 
     -I moved it ^
 
     **next session start:**
     -organize engine.py
 
-    --move to thermal after this (?)
+    --move to thermal after this (?) temp_system.py
 
     -power priority system for when power is low and only runs essential power systems
 
-    - handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+    -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
     -eventually...
         -work on water_system
@@ -491,3 +491,64 @@
         -add subsystems to the power priority system for when power is low and only runs essential power systems
         
         -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/14/2026
+    -starting by organizing engine.py
+
+    -I like how clean the dictionaries look in engine.py so I think if my returns return four or more variables, I'm going to make it into a dictionary (starting with power_system.py with lights and wellness lights)
+    
+    -I cleaned up engine.py but quit pushing commits in the messy middle in case I had to undo everything I did anyway, but I got it sorted out and organized
+
+    -reviewing notes that I wrote and moving onto temp_system.py
+
+    -I'm thinking radiators, electric heaters, obvious insulation, fans and maybe.. a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin
+
+    -I'm going to focus on the thermal parts before considering humidity
+
+    -adding seasons to mars_time.py to help with my temp_system.py file
+
+    -adding my previous notes here:  
+    
+    -taking seasons on Mars into consideration (how many sols, winter lows ~-140C, summer highs ~20C, 25% yearly atmosphere pressure changes from co2 freezing and sublimating at the poles, dune migration, albedo changes from ice/dust, dust storms in the spring/summer while global storms can engulf the whole planet)
+
+    -global dust storms can drop temp averages between 10-20C for a little while
+
+    (temp = celcius)
+    -N spring fall 194 sols, average temp: -15 to -5 
+    -N summer winter: 178 sols, average temp: -5 to +5
+    -N fall spring 142 sols, average temp: -20 to -5
+    -N winter summer 154 sols, average temp: -30 to -10
+
+    (I am going off of approximate surface temp daily averages for mid-latitude from NASA missions)
+
+    -going to use the midpoint range of each season for v1
+
+    -added a variable for the habitats insulation as a heat leak rate, and I'm using 1.0 kw/C as a starter value
+
+    -I'm very happy with my progress today
+
+    -I'm realizing when I have the UI up and running, a lot of the sytems that are being used are going to need to be mentioned in an update log ("radiators ...", ect)
+
+    **next session start:**
+    -FIX NEW VARIABLES ADDED (insulation and thermal mass)
+
+    -power priority system for when power is low and only runs essential power systems
+
+    -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+    -eventually...
+        -work on water_system
+        
+        -continue adding heat generated/heat waste
+        
+        -NTA (need to add) electronics/computers, radiators, pumps, water system, rations(?)  
+        
+        -add subsystems to the power priority system for when power is low and only runs essential power systems
+        
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+        -update alerts file
+
+        -add random daily temp and sunlight variables after seasons are set up
