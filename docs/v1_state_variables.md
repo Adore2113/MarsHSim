@@ -10,9 +10,12 @@
 
 #### ------habitat-----------------------------♡
     hab_vol_m3
+
+# ------thermal control-----------------------------♡
     hab_temp_c
     insulation_strength_kw_per_c
-
+    thermal_mass_kwh_per_c
+    
 #### ------atmosphere targets and limits-------♡ 
     target_pressure_kpa
     min_safe_pressure_kpa
