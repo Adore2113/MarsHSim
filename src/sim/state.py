@@ -14,8 +14,11 @@ class Habitat_State:
 
 # ------habitat-------------------------------------♡
     hab_vol_m3: float
+
+# ------thermal control-----------------------------♡
     hab_temp_c: float
     insulation_strength_kw_per_c: float
+    thermal_mass_kwh_per_c: float
 
 # ------atmosphere targets and limits---------------♡ 
     target_pressure_kpa: float
