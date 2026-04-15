@@ -18,7 +18,7 @@ s0 = Habitat_State(
 # ------habitat-------------------------------------♡
     hab_vol_m3 = 2000.0,
     hab_temp_c = 23.0,
-    insulation_strength_kw = 1.0,
+    insulation_strength_kw_per_c = 1.0,
 
 # ------atmosphere targets and limits---------------♡ 
     target_pressure_kpa = 60.0,
