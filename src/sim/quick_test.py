@@ -17,9 +17,12 @@ s0 = Habitat_State(
   
 # ------habitat-------------------------------------♡
     hab_vol_m3 = 2000.0,
+
+# ------thermal control-----------------------------♡
     hab_temp_c = 23.0,
     insulation_strength_kw_per_c = 1.0,
-
+    thermal_mass_kwh_per_c = 6000.0,
+    
 # ------atmosphere targets and limits---------------♡ 
     target_pressure_kpa = 60.0,
     min_safe_pressure_kpa = 55.0,
