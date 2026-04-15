@@ -8,6 +8,9 @@ from .mars_time import current_mars_season, determine_sunlight_amount
 target_temp_c = 23.0
 min_temp_c = 20.0
 max_temp_c = 25.0
+
+insulation_strength_kw = 1.0
+thermal_mass_kwh_per_c = 6000.0
 #----------------------------------------------------♡
 
 
