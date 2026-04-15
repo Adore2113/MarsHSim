@@ -58,7 +58,7 @@ def heat_loss_from_outside_kw(state, outside_temp_c):
     if temp_difference_c <= 0:
         return 0.0
     
-    heat_loss_kw = temp_difference_c * state.insulation_loss
+    heat_loss_kw = temp_difference_c / state.insulation_strength
 
     return heat_loss_kw
 
