@@ -69,28 +69,36 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
 
 
 #-------------which radiators are online-------------♡
-def radiators_online(radiators, hab_temp_c, target_temp_c, max_temp_c):
+def radiators_online(radiators, hab_temp_c, target_temp_c):
     new_radiators = []
     radiators_online_count = sum(1 for rad in radiators if rad["status"] == "online")
+    hysteresis_c = 0.15
 
-    if hab_temp_c >= max_temp_c:
-        target_online_count = 6
-
-    elif hab_temp_c > target_temp_c:
-        target_online_count = 3
+    radiator_stages = [target_temp_c + 0.3, target_temp_c + 0.6, target_temp_c + 0.9, target_temp_c + 1.2, target_temp_c + 1.5, target_temp_c + 1.8,]
     
-    else:
-        target_online_count = 0
+    target_online_count = radiators_online_count
+
+    if radiators_online_count < len(radiator_stages):
+        next_rad_on_temp_c = radiator_stages[radiators_online_count]
+
+        if hab_temp_c >= next_rad_on_temp_c:
+            target_online_count += 1
+    
+    if radiators_online_count > 0:
+        next_rad_off_temp_c = radiator_stages[radiators_online_count - 1] - hysteresis_c
+
+        if hab_temp_c < next_rad_off_temp_c:
+            target_online_count -= 1
 
     for rad in radiators:
         new_radiator = rad.copy()
 
         if radiators_online_count < target_online_count and new_radiator["status"] == "standby":
-            new_radiators["status"] = "online"
+            new_radiator["status"] = "online"
             radiators_online_count += 1
 
         elif radiators_online_count > target_online_count and new_radiator["status"] == "online":
-            new_radiators["status"] = "standby"
+            new_radiator["status"] = "standby"
             radiators_online_count -= 1
 
         new_radiators.append(new_radiator)
@@ -129,7 +137,7 @@ def run_thermal_control(state, outputs, dt_min):
     
     heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
     
-    new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c, max_temp_c)
+    new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c)
     radiator_heat_rejection_kw = rad_heat_rejection_kw(state, mars_temp_k, new_radiators)
     
     net_heat_kw = hab_heat_kw - heat_loss_kw
