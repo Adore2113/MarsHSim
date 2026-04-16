@@ -8,7 +8,10 @@ from .mars_time import current_mars_season, determine_sunlight_amount
 target_temp_c = 23.0
 min_temp_c = 20.0
 max_temp_c = 25.0
-#----------------------------------------------------♡
+
+kelvin_offset = 273.15   # add to celsius to convert to kelvin
+stefan_boltzmann_const = 5.67e-8
+#---------------------------------------------------♡
 
 
 #------------get total heat from outputs-------------♡
@@ -95,14 +98,24 @@ def radiators_online(radiators, cabin_temp_c, target_temp_c, max_temp_c):
 
 
 #--------------radiatior cooling system--------------♡
-def radiator_heat_rejection_kw(state, mars_temp_k):
+def radiator_heat_rejection_kw(state, mars_temp_k, new_radiators):
     total_rejection_kw = 0.0
-    stefan_boltzmann_const = 5.67e-8
+    sb_const = stefan_boltzmann_const
     cabin_temp_k = state.cabin_temp_c + 273.15 
 
     for rad in state.radiators:
-        ...
+        if rad["status"] == "online":
+            covered_area_m2 = rad["area_m2"] * rad["dust_factor"]
+            rad_efficiency = rad["efficiency"]
+            
+            rad_temp_difference = cabin_temp_k ** 4 - mars_temp_k ** 4
 
+            heat_rejected_w = rad_efficiency * sb_const * covered_area_m2 * rad_temp_difference
+            total_rejection_kw += heat_rejected_w / 1000.0
+
+        return max(0.0, total_rejection_kw)
+    
+    
 #----------condensing heat exchanger (CHX)-----------♡
      # focusing on temp first
 
