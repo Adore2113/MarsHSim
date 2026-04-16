@@ -51,8 +51,9 @@ def determine_mars_temp_c(state):
 
     temp_offset = (sunlight - 0.5) * 2 * day_night_variation
     mars_temp_c = base_temp_c + temp_offset
-    
-    return mars_temp_c
+    mars_temp_k = mars_temp_c + kelvin_offset
+
+    return mars_temp_c, mars_temp_k
 
 
 #------passive heat loss to outside environment------♡
@@ -70,7 +71,7 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
 #-------------which radiators are online-------------♡
 def radiators_online(radiators, hab_temp_c, target_temp_c, max_temp_c):
     new_radiators = []
-    radiatiors_online_count = sum(1 for rad in radiators if rad["status"] == "online")
+    radiators_online_count = sum(1 for rad in radiators if rad["status"] == "online")
 
     if hab_temp_c >= max_temp_c:
         target_online_count = 6
@@ -82,28 +83,28 @@ def radiators_online(radiators, hab_temp_c, target_temp_c, max_temp_c):
         target_online_count = 0
 
     for rad in radiators:
-        new_radiators = radiators.copy()
+        new_radiator = rad.copy()
 
-        if radiators_online_count < target_online_count and new_radiators["status"] == "standby":
+        if radiators_online_count < target_online_count and new_radiator["status"] == "standby":
             new_radiators["status"] = "online"
             radiators_online_count += 1
 
-        elif radiators_online_count > target_online_count and new_radiators["status"] == "online":
+        elif radiators_online_count > target_online_count and new_radiator["status"] == "online":
             new_radiators["status"] = "standby"
             radiators_online_count -= 1
 
-        new_radiators.append(new_radiators)
+        new_radiators.append(new_radiator)
 
     return new_radiators, radiators_online_count
 
 
 #--------------radiatior cooling system--------------♡
-def radiator_heat_rejection_kw(state, mars_temp_k, new_radiators):
+def rad_heat_rejection_kw(state, mars_temp_k, new_radiators):
     total_rejection_kw = 0.0
     sb_const = stefan_boltzmann_const
-    hab_temp_k = state.hab_temp_c + 273.15 
+    hab_temp_k = state.hab_temp_c + kelvin_offset 
 
-    for rad in state.radiators:
+    for rad in new_radiators:
         if rad["status"] == "online":
             covered_area_m2 = rad["area_m2"] * rad["dust_factor"]
             rad_efficiency = rad["efficiency"]
@@ -113,7 +114,7 @@ def radiator_heat_rejection_kw(state, mars_temp_k, new_radiators):
             heat_rejected_w = rad_efficiency * sb_const * covered_area_m2 * rad_temp_difference
             total_rejection_kw += heat_rejected_w / 1000.0
 
-        return max(0.0, total_rejection_kw)
+    return max(0.0, total_rejection_kw)
     
 
 #----------condensing heat exchanger (CHX)-----------♡
@@ -123,19 +124,20 @@ def radiator_heat_rejection_kw(state, mars_temp_k, new_radiators):
 #------running thermal control for one timestep------♡
 def run_thermal_control(state, outputs, dt_min):
     hours_per_step = dt_min / 60.0
-
     hab_heat_kw = heat_from_outputs_kw(outputs)
-    mars_temp_c = determine_mars_temp_c(state)
+    mars_temp_c, mars_temp_k = determine_mars_temp_c(state)
     
     heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
-
+    
+    new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c, max_temp_c)
+    radiator_heat_rejection_kw = rad_heat_rejection_kw(state, mars_temp_k, new_radiators)
+    
     net_heat_kw = hab_heat_kw - heat_loss_kw
-
     temp_change_c = (net_heat_kw * hours_per_step) / state.thermal_mass_kwh_per_c
     
     new_hab_temp_c = state.hab_temp_c + temp_change_c
 
-#---------temp alerts ( move to alerts.py? )---------♡
+    #--------temp alerts ( move to alerts.py? )------♡
     thermal_alerts = []
     if new_hab_temp_c > 28.0:
         thermal_alerts.append("CRITICAL: Cabin too hot")
