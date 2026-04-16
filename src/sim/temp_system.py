@@ -64,16 +64,44 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
 #---------------electric heater system---------------♡
 
 
+#-------------which radiators are online-------------♡
+def radiators_online(radiators, cabin_temp_c, target_temp_c, max_temp_c):
+    new_radiators = []
+    radiatiors_online_count = sum(1 for rad in radiators if rad["status"] == "online")
 
-#---------------radiatior cooling system---------------♡
+    if cabin_temp_c >= max_temp_c:
+        target_online_count = 6
+
+    elif cabin_temp_c > target_temp_c:
+        target_online_count = 3
+    
+    else:
+        target_online_count = 0
+
+    for rad in radiators:
+        new_radiators = radiators.copy()
+
+        if radiators_online_count < target_online_count and new_radiators["status"] == "standby":
+            new_radiators["status"] = "online"
+            radiators_online_count += 1
+
+        elif radiators_online_count > target_online_count and new_radiators["status"] == "online":
+            new_radiators["status"] = "standby"
+            radiators_online_count -= 1
+
+        new_radiators.append(new_radiators)
+
+    return new_radiators, radiators_online_count
+
+
+#--------------radiatior cooling system--------------♡
 def radiator_heat_rejection_kw(state, mars_temp_k):
     total_rejection_kw = 0.0
-    heat_emission = 0.9
     stefan_boltzmann_const = 5.67e-8
     cabin_temp_k = state.cabin_temp_c + 273.15 
 
-    for rad in state.radiators
-
+    for rad in state.radiators:
+        ...
 
 #----------condensing heat exchanger (CHX)-----------♡
      # focusing on temp first
