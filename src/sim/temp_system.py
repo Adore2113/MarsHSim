@@ -68,14 +68,14 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
 
 
 #-------------which radiators are online-------------♡
-def radiators_online(radiators, cabin_temp_c, target_temp_c, max_temp_c):
+def radiators_online(radiators, hab_temp_c, target_temp_c, max_temp_c):
     new_radiators = []
     radiatiors_online_count = sum(1 for rad in radiators if rad["status"] == "online")
 
-    if cabin_temp_c >= max_temp_c:
+    if hab_temp_c >= max_temp_c:
         target_online_count = 6
 
-    elif cabin_temp_c > target_temp_c:
+    elif hab_temp_c > target_temp_c:
         target_online_count = 3
     
     else:
@@ -101,21 +101,21 @@ def radiators_online(radiators, cabin_temp_c, target_temp_c, max_temp_c):
 def radiator_heat_rejection_kw(state, mars_temp_k, new_radiators):
     total_rejection_kw = 0.0
     sb_const = stefan_boltzmann_const
-    cabin_temp_k = state.cabin_temp_c + 273.15 
+    hab_temp_k = state.hab_temp_c + 273.15 
 
     for rad in state.radiators:
         if rad["status"] == "online":
             covered_area_m2 = rad["area_m2"] * rad["dust_factor"]
             rad_efficiency = rad["efficiency"]
             
-            rad_temp_difference = cabin_temp_k ** 4 - mars_temp_k ** 4
+            rad_temp_difference = hab_temp_k ** 4 - mars_temp_k ** 4
 
             heat_rejected_w = rad_efficiency * sb_const * covered_area_m2 * rad_temp_difference
             total_rejection_kw += heat_rejected_w / 1000.0
 
         return max(0.0, total_rejection_kw)
     
-    
+
 #----------condensing heat exchanger (CHX)-----------♡
      # focusing on temp first
 
