@@ -125,7 +125,7 @@ def rad_heat_rejection_kw(state, mars_temp_k, new_radiators):
     return max(0.0, total_rejection_kw)
     
 
-#----radiator power consumption and heat produced----♡
+#-------------radiator power consumption-------------♡
 def radiator_power(radiators_online_count, dt_min):
     hours_per_step = dt_min / 60
     power_per_radiator_kw = 0.08
@@ -153,6 +153,8 @@ def run_thermal_control(state, outputs, dt_min):
     new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c)
     radiator_heat_rejection_kw = rad_heat_rejection_kw(state, mars_temp_k, new_radiators)
     
+    radiator_power_kw, radiator_energy_kwh = radiator_power(radiators_online_count, dt_min)
+
     net_heat_kw = hab_heat_kw - heat_loss_kw - radiator_heat_rejection_kw
     temp_change_c = (net_heat_kw * hours_per_step) / state.thermal_mass_kwh_per_c
     
@@ -171,6 +173,11 @@ def run_thermal_control(state, outputs, dt_min):
         "mars_temp_c": mars_temp_c,
         "hab_heat_kw": hab_heat_kw,
         "heat_loss_kw": heat_loss_kw,
+        "radiator_heat_rejection_kw": radiator_heat_rejection_kw,
+        "radiators_online_count": radiators_online_count,
+        "radiator_power_kw": radiator_power_kw,
+        "radiator_energy_kwh": radiator_energy_kwh,
+        "new_radiators": new_radiators,
         "thermal_alerts": thermal_alerts,
         "net_heat_kw": net_heat_kw,
         "temp_change_c": temp_change_c,
