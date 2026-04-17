@@ -42,11 +42,11 @@ def determine_mars_temp_c(state):
         day_night_variation = 15.0
     
     elif season == "north_autumn":
-        base_temp_c = -12.5
+        base_temp_c = -15
         day_night_variation = 12.0
     
     else:
-        base_temp_c = -20.0
+        base_temp_c = -25.0
         day_night_variation = 10.0
 
     temp_offset = (sunlight - 0.5) * 2 * day_night_variation
@@ -125,8 +125,21 @@ def rad_heat_rejection_kw(state, mars_temp_k, new_radiators):
     return max(0.0, total_rejection_kw)
     
 
+#----radiator power consumption and heat produced----♡
+def radiator_power(radiators_online_count, dt_min):
+    hours_per_step = dt_min / 60
+    power_per_radiator_kw = 0.08
+
+    radiator_power_kw = radiators_online_count * power_per_radiator_kw
+    radiator_energy_kwh = radiator_power_kw * hours_per_step
+    
+    return radiator_power_kw, radiator_energy_kwh
+    
+
 #----------condensing heat exchanger (CHX)-----------♡
      # focusing on temp first
+
+
 
 
 #------running thermal control for one timestep------♡
@@ -140,7 +153,7 @@ def run_thermal_control(state, outputs, dt_min):
     new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c)
     radiator_heat_rejection_kw = rad_heat_rejection_kw(state, mars_temp_k, new_radiators)
     
-    net_heat_kw = hab_heat_kw - heat_loss_kw
+    net_heat_kw = hab_heat_kw - heat_loss_kw - radiator_heat_rejection_kw
     temp_change_c = (net_heat_kw * hours_per_step) / state.thermal_mass_kwh_per_c
     
     new_hab_temp_c = state.hab_temp_c + temp_change_c
