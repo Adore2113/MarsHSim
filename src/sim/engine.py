@@ -147,7 +147,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         battery_stored_kwh = power_results["new_battery_stored_kwh"],
         solar_arrays = power_results["new_solar_arrays"],
         light_level = light_results["final_light_level"],
-        hab_temp_c = thermal_results["new_hab_temp_c"]
+        hab_temp_c = thermal_results["new_hab_temp_c"],
+        radiators = thermal_results["new_radiators"]
         )
 
     return new_state, outputs
