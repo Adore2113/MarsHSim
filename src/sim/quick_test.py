@@ -31,6 +31,8 @@ s0 = Habitat_State(
         {"id" : 4, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 5, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 6, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},    
+       # {"id" : 7, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+       # {"id" : 8, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
     ],
     #heat_per_rad = 0.0035,
     
@@ -158,6 +160,9 @@ def print_state(state, outputs, alerts):
     print(f"{'Heat Loss:':<22} {outputs['heat_loss_kw']:.2f} kW")
     print(f"{'Net Heat:':<22} {outputs['net_heat_kw']:.2f} kW")
     print(f"{'Temp Change:':<22} {outputs['temp_change_c']:.4f} °C")
+    print(f"{'Radiators Online:':<22} {outputs['radiators_online_count']}")
+    print(f"{'Rad Cooling:':<22} {outputs['radiator_heat_rejection_kw']:.2f} kW")
+    print(f"{'Rad Power:':<22} {outputs['radiator_power_kw']:.2f} kW")
 
     if outputs["net_heat_kw"] > 0:
         print(f"{'Thermal Trend:':<22} Warming ↑\n")
