@@ -552,3 +552,69 @@
         -update alerts file
 
         -add random daily temp and sunlight variables after seasons are set up
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/15/2026
+    -fixed insulation and thermal mass values
+
+    -adding electric heaters and radiators, and I want to do radiators like I did some of the other systems with lists
+
+    **next session start:**
+    -finish adding heat and cooling to power_system
+
+    -power priority system for when power is low and only runs essential power systems
+
+    -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+    -eventually...
+        -work on water_system
+        
+        -continue adding heat generated/heat waste
+        
+        -NTA (need to add) electronics/computers, radiators, pumps, water system, rations(?)  
+        
+        -add subsystems to the power priority system for when power is low and only runs essential power systems
+        
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+        -update alerts file
+
+        -add random daily temp and sunlight variables after seasons are set up
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/16/2026
+    - continuing with radiatior function
+
+    -I decided to go with radiator arrays, mostly to keep my code more manageable and after doing some research, I decided to go with a 6 array set up with a total of 50 panels
+
+    -going to change the way I have the radiators_online function set up b/c I don't like to hardcode the numbers like I did and I'm going to have a hysteresis so that my new setup doesn't turn on and off abruptly too often
+
+    -added radiator power usage and added radiator info to the other necessary files
+
+    -testing is running well
+
+        **next session start:**
+    -ADD HEATERS TO HABITAT
+
+    -consider implementing two backup radiators
+
+    -eventually...
+        -power priority system for when power is low and only runs essential power systems
+
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+        -work on water_system
+        
+        -continue adding heat generated/heat waste
+        
+        -NTA (need to add) electronics/computers, radiators, pumps, water system, rations(?)  
+        
+        -add subsystems to the power priority system for when power is low and only runs essential power systems
+        
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+        -update alerts file
+
+        -add random daily temp and sunlight variables after seasons are set up
