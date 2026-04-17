@@ -20,7 +20,7 @@ s0 = Habitat_State(
 
 # ------thermal control-----------------------------♡
     hab_temp_c = 23.0,
-    insulation_strength_kw_per_c = 0.4,
+    insulation_strength_kw_per_c = 0.8,
     thermal_mass_kwh_per_c = 800.0,
 
 
@@ -163,6 +163,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Radiators Online:':<22} {outputs['radiators_online_count']}")
     print(f"{'Rad Cooling:':<22} {outputs['radiator_heat_rejection_kw']:.2f} kW")
     print(f"{'Rad Power:':<22} {outputs['radiator_power_kw']:.2f} kW")
+    print(f"{'Insulation Strength:':<22} {state.insulation_strength_kw_per_c:.2f} kW/°C")
 
     if outputs["net_heat_kw"] > 0:
         print(f"{'Thermal Trend:':<22} Warming ↑\n")
@@ -212,7 +213,7 @@ def print_state(state, outputs, alerts):
 
 
 state = s0
-for i in range(15):    #turn this back to 12
+for i in range(200):    #turn this back to 12
     state, outputs = step(state)
     alerts = gas_alerts(state)
     print_state(state, outputs, alerts)
