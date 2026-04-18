@@ -20,6 +20,7 @@ class Habitat_State:
     insulation_strength_kw_per_c: float
     thermal_mass_kwh_per_c: float
     radiators: list
+    heaters: list
 
 # ------atmosphere targets and limits---------------♡ 
     target_pressure_kpa: float
