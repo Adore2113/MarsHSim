@@ -109,9 +109,24 @@ def heater_heat_added_kw(new_heaters):
 
     for heater in new_heaters:
         if heater["status"] == "online":
-            total_heater_heat_kw += heater["power_kw"]
+            heater_output_kw = heater["power_kw"] * heater["efficency"]
+            total_heater_heat_kw += heater_output_kw
 
     return total_heater_heat_kw
+
+
+#--------------heater power consumption--------------♡
+def heater_power(new_heaters, dt_min):
+    hours_per_step = dt_min / 60
+    heater_power_kw = 0.0
+
+    for heater in new_heaters:
+        if heater["status"] == "online":
+            heater_power_kw += heater["power_kw"]
+
+    heater_energy_kwh = heater_power_kw * hours_per_step
+
+    return heater_power_kw, heater_energy_kwh
 
 
 #-------------which radiators are online-------------♡
