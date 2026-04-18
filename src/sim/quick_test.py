@@ -145,13 +145,13 @@ def print_state(state, outputs, alerts):
     print(f"{'Scrubber Energy:':<22} {outputs['co2_scrubber_energy_used_kwh']:.2f} kWh")
     print(f"{'OGA Heat:':<22} {outputs['oga_heat_kw']:.2f} kW")
     print(f"{'Lights Power:':<22} {outputs['light_power_used_kw']:.2f} kW\n")
-    print(f"{'Lights Heat:':<22} {outputs['light_heat_kw']:.2f} kW")
+    print(f"{'Lights Heat:':<22} {outputs['light_heat_kw']:.2f} kW\n")
 
     print(("♡ [ POWER ] ♡").center(WIDTH))
     print(f"{'Total Power Used:':<22} {outputs['total_power_used_kw']:.2f} kW")
     print(f"{'Total Energy Used:':<22} {outputs['total_energy_used_kwh']:.2f} kWh")
     print(f"{'Solar Generated:':<22} {outputs['total_solar_generated_kw']:.4f} kW")
-    print(f"{'Battery Stored:':<22} {state.battery_stored_kwh:.2f} kWh")
+    print(f"{'Battery Stored:':<22} {state.battery_stored_kwh:.2f} kWh\n")
 
     print(("♡ [ THERMAL ] ♡").center(WIDTH))
     print(f"{'Cabin Temp:':<22} {state.hab_temp_c:.2f} °C")
@@ -213,7 +213,7 @@ def print_state(state, outputs, alerts):
 
 
 state = s0
-for i in range(200):    #turn this back to 12
+for i in range(12):    #turn this back to 12
     state, outputs = step(state)
     alerts = gas_alerts(state)
     print_state(state, outputs, alerts)
