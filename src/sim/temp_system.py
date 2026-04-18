@@ -65,7 +65,7 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
     return heat_loss_kw
 
 
-#---------------electric heater system---------------♡
+#--------------which heaters are online--------------♡
 def heaters_online(heaters, hab_temp_c, target_temp_c):
     new_heaters = []
     heaters_online_count = sum(1 for heater in heaters if heater["status"] == "online")
@@ -101,6 +101,18 @@ def heaters_online(heaters, hab_temp_c, target_temp_c):
         new_heaters.append(new_heater)
 
     return new_heaters, heaters_online_count
+
+
+#---------------electric heater system---------------♡
+def heater_heat_added_kw(new_heaters):
+    total_heater_heat_kw = 0.0
+
+    for heater in new_heaters:
+        if heater["status"] == "online":
+            total_heater_heat_kw += heater["power_kw"]
+
+    return total_heater_heat_kw
+
 
 #-------------which radiators are online-------------♡
 def radiators_online(radiators, hab_temp_c, target_temp_c):
