@@ -172,10 +172,16 @@ def print_state(state, outputs, alerts):
     print(f"{'Heat Loss:':<22} {outputs['heat_loss_kw']:.2f} kW")
     print(f"{'Net Heat:':<22} {outputs['net_heat_kw']:.2f} kW")
     print(f"{'Temp Change:':<22} {outputs['temp_change_c']:.4f} °C")
+    print(f"{'Insulation Strength:':<22} {state.insulation_strength_kw_per_c:.2f} kW/°C")
+    
     print(f"{'Radiators Online:':<22} {outputs['radiators_online_count']}")
     print(f"{'Rad Cooling:':<22} {outputs['radiator_heat_rejection_kw']:.2f} kW")
     print(f"{'Rad Power:':<22} {outputs['radiator_power_kw']:.2f} kW")
-    print(f"{'Insulation Strength:':<22} {state.insulation_strength_kw_per_c:.2f} kW/°C")
+        
+    print(f"{'Heaters Online:':<22} {outputs['heaters_online_count']}")
+    print(f"{'Heater Heat:':<22} {outputs['heater_heat_kw']:.2f} kW")
+    print(f"{'Heater Power Used:':<22} {outputs['heater_power_kw']:.2f} kW")
+    print(f"{'Heater Energy:':<22} {outputs['heater_energy_kwh']:.2f} kWh")
 
     if outputs["net_heat_kw"] > 0:
         print(f"{'Thermal Trend:':<22} Warming ↑\n")
@@ -225,10 +231,10 @@ def print_state(state, outputs, alerts):
 
 
 state = s0
-for i in range(12):    #turn this back to 12
+for i in range(300):    #turn this back to 12
     state, outputs = step(state)
     alerts = gas_alerts(state)
     print_state(state, outputs, alerts)
 
-    if i % 12 == 0:
+    if i % 20 == 0:
        print_state(state, outputs, alerts)
