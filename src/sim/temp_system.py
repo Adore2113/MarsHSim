@@ -109,7 +109,7 @@ def heater_heat_added_kw(new_heaters):
 
     for heater in new_heaters:
         if heater["status"] == "online":
-            heater_output_kw = heater["power_kw"] * heater["efficency"]
+            heater_output_kw = heater["power_kw"] * heater["efficiency"]
             total_heater_heat_kw += heater_output_kw
 
     return total_heater_heat_kw
@@ -214,12 +214,15 @@ def run_thermal_control(state, outputs, dt_min):
     
     heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
     
+    new_heaters, heaters_online_count = heaters_online(state.heaters, state.hab_temp_c, target_temp_c)
+    heater_heat_kw = heater_heat_added_kw(new_heaters)
+    heater_power_kw, heater_energy_kwh = heater_power(new_heaters, dt_min)
+
     new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c)
     radiator_heat_rejection_kw = rad_heat_rejection_kw(state, mars_temp_k, new_radiators)
-    
     radiator_power_kw, radiator_energy_kwh = radiator_power(radiators_online_count, dt_min)
 
-    net_heat_kw = hab_heat_kw - heat_loss_kw - radiator_heat_rejection_kw
+    net_heat_kw = hab_heat_kw + heater_heat_kw - heat_loss_kw - radiator_heat_rejection_kw
     temp_change_c = (net_heat_kw * hours_per_step) / state.thermal_mass_kwh_per_c
     
     new_hab_temp_c = state.hab_temp_c + temp_change_c
@@ -242,6 +245,11 @@ def run_thermal_control(state, outputs, dt_min):
         "radiator_power_kw": radiator_power_kw,
         "radiator_energy_kwh": radiator_energy_kwh,
         "new_radiators": new_radiators,
+        "heater_heat_kw": heater_heat_kw,
+        "heaters_online_count": heaters_online_count,
+        "heater_power_kw": heater_power_kw,
+        "heater_energy_kwh": heater_energy_kwh,
+        "new_heaters": new_heaters,
         "thermal_alerts": thermal_alerts,
         "net_heat_kw": net_heat_kw,
         "temp_change_c": temp_change_c,
