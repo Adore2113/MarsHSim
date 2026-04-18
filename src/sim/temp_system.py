@@ -66,6 +66,7 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
 
 
 #---------------electric heater system---------------♡
+def heater_system():
 
 
 #-------------which radiators are online-------------♡
@@ -89,6 +90,9 @@ def radiators_online(radiators, hab_temp_c, target_temp_c):
 
         if hab_temp_c < next_rad_off_temp_c:
             target_online_count -= 1
+
+    max_radiators_online_count = 6
+    target_online_count = min(target_online_count, max_radiators_online_count)
 
     for rad in radiators:
         new_radiator = rad.copy()
