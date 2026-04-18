@@ -66,8 +66,41 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
 
 
 #---------------electric heater system---------------♡
-def heater_system():
+def heaters_online(heaters, hab_temp_c, target_temp_c):
+    new_heaters = []
+    heaters_online_count = sum(1 for heater in heaters if heater["status"] == "online")
+    hysteresis_c = 0.15
 
+    heater_stages = [target_temp_c - 0.3, target_temp_c - 0.6, target_temp_c - 0.9, target_temp_c - 1.2, target_temp_c - 1.5, target_temp_c - 1.8,]
+
+    target_online_count = heaters_online_count
+
+    if heaters_online_count < len(heater_stages):
+        next_heater_on_temp_c = heater_stages[heaters_online_count]
+
+        if hab_temp_c <= next_heater_on_temp_c:
+            target_online_count += 1
+
+    if heaters_online_count > 0:
+        next_heater_off_temp_c = heater_stages[heaters_online_count - 1] + hysteresis_c
+
+        if hab_temp_c > next_heater_off_temp_c:
+            target_online_count -= 1
+
+    for heater in heaters:
+        new_heater = heater.copy()
+
+        if heaters_online_count < target_online_count and new_heater["status"] == "standby":
+                new_heater["status"] = "online"
+                heaters_online_count += 1
+
+        elif heaters_online_count > target_online_count and new_heater["status"] == "online":
+                new_heater["status"] = "standby"
+                heaters_online_count -= 1
+
+        new_heaters.append(new_heater)
+
+    return new_heaters, heaters_online_count
 
 #-------------which radiators are online-------------♡
 def radiators_online(radiators, hab_temp_c, target_temp_c):
