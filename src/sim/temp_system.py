@@ -204,6 +204,19 @@ def radiator_power(radiators_online_count, dt_min):
      # focusing on temp first
 
 
+#---------determine the habitat thermal mode---------♡
+def determine_thermal_mode(hab_temp_c, target_temp_c):
+    hab_temp_mode = "neutral"
+    if hab_temp_c < target_temp_c:
+        hab_temp_mode = "heating"
+    
+    elif hab_temp_c > target_temp_c:
+        hab_temp_mode = "cooling"
+    
+    else:
+        hab_temp_mode = "neutral"
+    
+    return hab_temp_mode
 
 
 #------running thermal control for one timestep------♡
@@ -227,14 +240,6 @@ def run_thermal_control(state, outputs, dt_min):
     
     new_hab_temp_c = state.hab_temp_c + temp_change_c
 
-    #--------temp alerts ( move to alerts.py? )------♡
-    thermal_alerts = []
-    if new_hab_temp_c > 28.0:
-        thermal_alerts.append("CRITICAL: Cabin too hot")
-    
-    elif new_hab_temp_c < 18.0:
-        thermal_alerts.append("CRITICAL: Cabin too cold")
-
     return {
         "new_hab_temp_c": new_hab_temp_c,
         "mars_temp_c": mars_temp_c,
@@ -254,3 +259,15 @@ def run_thermal_control(state, outputs, dt_min):
         "net_heat_kw": net_heat_kw,
         "temp_change_c": temp_change_c,
         }
+
+
+#---------------------temp alerts--------------------♡
+def thermal_alerts(new_hab_temp_c):
+    thermal_alerts = []
+    if new_hab_temp_c > 28.0:
+        thermal_alerts.append("CRITICAL: Cabin too hot")
+    
+    elif new_hab_temp_c < 18.0:
+        thermal_alerts.append("CRITICAL: Cabin too cold")
+
+    return thermal_alerts
