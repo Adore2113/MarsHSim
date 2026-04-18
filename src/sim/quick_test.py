@@ -23,7 +23,6 @@ s0 = Habitat_State(
     insulation_strength_kw_per_c = 0.8,
     thermal_mass_kwh_per_c = 800.0,
 
-
     radiators = [
         {"id" : 1, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 2, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
@@ -33,6 +32,17 @@ s0 = Habitat_State(
         {"id" : 6, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},    
         {"id" : 7, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 8, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+    ],
+
+    heaters = [
+        {"id" : 1, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
+        {"id" : 2, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
+        {"id" : 3, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
+        {"id" : 4, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
+        {"id" : 5, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
+        {"id" : 6, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},    
+        {"id" : 7, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
+        {"id" : 8, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
     ],
     
 # ------atmosphere targets and limits---------------♡ 
@@ -66,6 +76,9 @@ s0 = Habitat_State(
         {"id" : 2, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0},
         {"id" : 3, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0},
         {"id" : 4, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0}
+    #    {"id" : 5, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0},
+    #    {"id" : 6, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0}
+  
     ],
     scrub_per_bed_kpa = 0.0035,
 
