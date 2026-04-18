@@ -31,10 +31,9 @@ s0 = Habitat_State(
         {"id" : 4, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 5, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 6, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},    
-       # {"id" : 7, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
-       # {"id" : 8, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+        {"id" : 7, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+        {"id" : 8, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
     ],
-    #heat_per_rad = 0.0035,
     
 # ------atmosphere targets and limits---------------♡ 
     target_pressure_kpa = 60.0,
