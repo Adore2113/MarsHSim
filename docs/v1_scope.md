@@ -634,7 +634,13 @@
     -ADD SECOND AND THIRD HEATER STAGE TRIGGERS AND LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
 
     -eventually...
-        -work on water_system
+        -move onto humidty
+
+        -work on water_system.py
+
+        -update other files accordingly
+
+        -consider adding rationns or a food system
 
         -power priority system for when power is low and only runs essential power systems
         
