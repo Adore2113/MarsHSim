@@ -150,7 +150,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         light_level = light_results["final_light_level"],
         hab_temp_c = thermal_results["new_hab_temp_c"],
         heaters=thermal_results["new_heaters"],
-        radiators = thermal_results["new_radiators"]
+        radiators = thermal_results["new_radiators"],
         )
 
     return new_state, outputs
