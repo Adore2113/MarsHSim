@@ -182,16 +182,10 @@ def print_state(state, outputs, alerts):
     print(f"{'Heater Heat:':<22} {outputs['heater_heat_kw']:.2f} kW")
     print(f"{'Heater Power Used:':<22} {outputs['heater_power_kw']:.2f} kW")
     print(f"{'Heater Energy:':<22} {outputs['heater_energy_kwh']:.2f} kWh")
-
-    if outputs["net_heat_kw"] > 0:
-        print(f"{'Thermal Trend:':<22} Warming ↑\n")
-    elif outputs["net_heat_kw"] < 0:
-        print(f"{'Thermal Trend:':<22} Cooling ↓\n")
-    else:
-        print(f"{'Thermal Trend:':<22} Stable\n")
+    print(f"{'Thermal Mode:':<22} {outputs['hab_temp_mode']}\n")
 
     #--debug check:
-    print(("♡ [ SUN DEBUG ] ♡").center(WIDTH))
+    print(("♡ [ SUN INFORMATION ] ♡").center(WIDTH))
     print(f"{'Daylight per m2:':<22} {state.daylight_m2_kw:.3f} kW")
     print(f"{'Peak Sun Today:':<22} {state.peak_sunlight_today:.2f} / 1.0")
     print(f"{'Low Sun Streak:':<22} {state.low_sunlight_streak_sols}")
@@ -231,7 +225,7 @@ def print_state(state, outputs, alerts):
 
 
 state = s0
-for i in range(300):    #turn this back to 12
+for i in range(200):    #turn this back to 12
     state, outputs = step(state)
     alerts = gas_alerts(state)
     print_state(state, outputs, alerts)
