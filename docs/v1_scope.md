@@ -618,3 +618,34 @@
         -update alerts file
 
         -add random daily temp and sunlight variables after seasons are set up
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/18/2026
+    - starting with my temp file
+
+    -I'm going to keep the radiators using the habitat temp directly to run, and focus on adding in the electric heaters until then
+
+    -I am going to worry about emergencies later and just get the foundation down first, but I did add another two radiators to the radiator list
+
+    -making heaters their own list to be handled the same way the other systems are
+
+        **next session start:**
+    -ADD SECOND AND THIRD HEATER STAGE TRIGGERS AND LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
+
+    -eventually...
+        -work on water_system
+
+        -power priority system for when power is low and only runs essential power systems
+        
+        -continue adding heat generated/heat waste
+        
+        -NTA (need to add) electronics/computers, pumps, rations(?)  
+        
+        -add subsystems to the power priority system for when power is low and only runs essential power systems
+
+        -update alerts file
+
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+        -add random daily temp and sunlight variables after seasons are set up    
