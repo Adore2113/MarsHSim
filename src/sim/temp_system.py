@@ -205,18 +205,47 @@ def radiator_power(radiators_online_count, dt_min):
 
 
 #---------determine the habitat thermal mode---------♡
-def determine_thermal_mode(hab_temp_c, target_temp_c):
+def determine_thermal_mode(state, hab_temp_c, target_temp_c):
     hab_temp_mode = "neutral"
-    if hab_temp_c < target_temp_c:
-        hab_temp_mode = "heating"
+    new_heaters, heaters_online_count = heaters_online(state.heaters, state.hab_temp_c, target_temp_c)
+    new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c)
+
+    if heaters_online_count > 0:
+        new_radiators = []
+
+        for rad in state.radiators:
+            new_rad = rad.copy()
+            new_rad["status"] = "standby"
+            new_radiators.append(new_rad)
+
+        radiators_online_count = 0
     
+    elif radiators_online_count > 0:
+        new_heaters = []
+        
+        for heater in state.heaters:
+            new_heater = heater.copy()
+            new_heater["status"] = "standby"
+            new_heaters.append(new_heater)
+
+        heaters_online_count = 0
+    
+    if heaters_online_count > 0:
+        hab_temp_mode = "Active Heating Mode"
+
+    elif radiators_online_count > 0:
+        hab_temp_mode = "Active Cooling Mode"
+
+    elif hab_temp_c < target_temp_c:
+        hab_temp_mode = "Below Target Temp"
+
     elif hab_temp_c > target_temp_c:
-        hab_temp_mode = "cooling"
-    
+        hab_temp_mode = "Above Target Temp"
+
     else:
-        hab_temp_mode = "neutral"
+        hab_temp_mode = "Neutral"
     
-    return hab_temp_mode
+    return hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count
 
 
 #------running thermal control for one timestep------♡
@@ -224,14 +253,13 @@ def run_thermal_control(state, outputs, dt_min):
     hours_per_step = dt_min / 60.0
     hab_heat_kw = heat_from_outputs_kw(outputs)
     mars_temp_c, mars_temp_k = determine_mars_temp_c(state)
-    
+    hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(state, state.hab_temp_c, target_temp_c)
+
     heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
     
-    new_heaters, heaters_online_count = heaters_online(state.heaters, state.hab_temp_c, target_temp_c)
     heater_heat_kw = heater_heat_added_kw(new_heaters)
     heater_power_kw, heater_energy_kwh = heater_power(new_heaters, dt_min)
 
-    new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c)
     radiator_heat_rejection_kw = rad_heat_rejection_kw(state, mars_temp_k, new_radiators)
     radiator_power_kw, radiator_energy_kwh = radiator_power(radiators_online_count, dt_min)
 
@@ -255,9 +283,10 @@ def run_thermal_control(state, outputs, dt_min):
         "heater_power_kw": heater_power_kw,
         "heater_energy_kwh": heater_energy_kwh,
         "new_heaters": new_heaters,
-        "thermal_alerts": thermal_alerts,
+        "thermal_alerts": hab_temp_mode,
         "net_heat_kw": net_heat_kw,
         "temp_change_c": temp_change_c,
+        "hab_temp_mode" : hab_temp_mode
         }
 
 
