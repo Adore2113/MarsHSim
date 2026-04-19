@@ -1,5 +1,6 @@
 from dataclasses import replace
 from .state import Habitat_State
+from .temp_system import thermal_alerts
 
 #-----------------get habitat status-----------------♡
 def get_status(state):
