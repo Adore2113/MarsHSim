@@ -231,16 +231,16 @@ def determine_thermal_mode(state, hab_temp_c, target_temp_c):
         heaters_online_count = 0
     
     if heaters_online_count > 0:
-        hab_temp_mode = "Active Heating Mode"
+        hab_temp_mode = "Heating Mode"
 
     elif radiators_online_count > 0:
-        hab_temp_mode = "Active Cooling Mode"
+        hab_temp_mode = "Cooling Mode"
 
     elif hab_temp_c < target_temp_c:
-        hab_temp_mode = "Below Target Temp"
+        hab_temp_mode = "Below Target"
 
     elif hab_temp_c > target_temp_c:
-        hab_temp_mode = "Above Target Temp"
+        hab_temp_mode = "Above Target"
 
     else:
         hab_temp_mode = "Neutral"
