@@ -2,7 +2,7 @@ from dataclasses import replace
 from .state import Habitat_State
 from .temp_system import thermal_alerts
 
-#-----------------get habitat status-----------------♡
+#----------------get habitat status----------------♡
 def get_status(state):
     if state.o2_kpa <= 17.0 or state.co2_kpa >= 2.0:
         return "CRITICAL"
@@ -14,11 +14,10 @@ def get_status(state):
         return "NOMINAL"
 
 
-#--------------------gas alerts----------------------♡
+#--------------------gas alerts--------------------♡
 def gas_alerts(state):
     gas_alerts = []
     
-    #o2
     if state.o2_kpa <= 17.0:
         gas_alerts.append("ALERT: Oxygen critical")
     
@@ -28,7 +27,6 @@ def gas_alerts(state):
     if state.o2_kpa >= 22.0:
         gas_alerts.append("ALERT: Oxygen very high | fire risk")
 
-    #co2
     if state.co2_kpa >= 2.0:
         gas_alerts.append("ALERT: Carbon Dioxide critical")
 
@@ -38,7 +36,7 @@ def gas_alerts(state):
     return gas_alerts
 
 
-#--------------------power alerts--------------------♡
+#-------------------power alerts-------------------♡
 def power_alerts(state):
     power_alerts = []
     battery_percentage = state.battery_stored_kwh / state.battery_max_capacity_kwh
@@ -52,7 +50,20 @@ def power_alerts(state):
     return power_alerts
 
 
-#-----------------------alerts-----------------------♡
+#---------all alerts and hab status update---------♡
+def get_all_alerts(state, outputs):
+    alerts = []
+    status = get_status(state)
+
+    alerts.extend(gas_alerts(state))
+    alerts.extend(power_alerts(state))
+    alerts.extend(thermal_alerts(state))
+
+    return {
+        "status" : status,
+        "alerts" : alerts
+    }
+
 #def 
     # later add total pressure, leak detection, when scrubbers are full (saturated)
     # water supply low, n2 supply low, temp out of range
