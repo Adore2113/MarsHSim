@@ -135,12 +135,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
 #-----------------power system update----------------♡
     power_results = run_system_power(new_state, outputs, dt_min)
-
-    outputs["total_power_used_kw"] = power_results["total_power_used_kw"]
-    outputs["total_energy_used_kwh"] = power_results["total_energy_used_kwh"]
-    outputs["total_solar_generated_kw"] = power_results["total_solar_generated_kw"]
-    outputs["total_solar_generated_kwh"] = power_results["total_solar_generated_kwh"]
-    outputs["new_battery_stored_kwh"] = power_results["new_battery_stored_kwh"]
+    outputs.update(power_results)
 
 #-----------------final state update-----------------♡
     new_state = replace(
