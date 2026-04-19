@@ -16,6 +16,7 @@
     insulation_strength_kw_per_c
     thermal_mass_kwh_per_c
     radiators
+    heaters
     
 #### ------atmosphere targets and limits-------♡ 
     target_pressure_kpa
