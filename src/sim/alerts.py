@@ -3,15 +3,19 @@ from .state import Habitat_State
 from .temp_system import thermal_alerts
 
 #----------------get habitat status----------------♡
-def get_status(state):
-    if state.o2_kpa <= 17.0 or state.co2_kpa >= 2.0:
-        return "CRITICAL"
+def get_status(all_alerts):
+    hab_status = "NOMINAL"
     
-    elif state.o2_kpa <= 19.5 or state.co2_kpa >= 1.0:
-        return "WARNING"
+    if any("critical" in alert.lower() for alert in all_alerts):
+        hab_status = "CRITICAL"
     
+    elif all_alerts:
+        hab_status = "WARNING"
+
     else:
-        return "NOMINAL"
+        hab_status = "NOMINAL"
+    
+    return hab_status
 
 
 #--------------------gas alerts--------------------♡
@@ -51,7 +55,7 @@ def power_alerts(state):
 
 
 #---------all alerts and hab status update---------♡
-def get_all_alerts(state, outputs):
+def get_alerts_and_status(state, outputs):
     alerts = []
     status = get_status(state)
 
