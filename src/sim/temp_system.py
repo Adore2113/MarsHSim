@@ -1,7 +1,6 @@
 from dataclasses import replace
 from .state import Habitat_State
 from .mars_time import current_mars_season, determine_sunlight_amount
-from .crew_metabolism import crew_metabolism
 
 # file for temperature and humidity
 
@@ -311,16 +310,24 @@ def update_humidity(state, outputs, dt_min):
     hours_per_step = dt_min / 60.0
     chx_removal_efficiency = 0.85
     
-    total_vapor_added_kg = get_total_vapor_added_kg(state, outputs, dt_min)
+    total_vapor_added_kg = get_total_vapor_added_kg(outputs)
     vapor_per_pct_kg = (water_vapor_per_m3 * state.hab_vol_m3) / 100.0
-    target_vapor_kg = target_humidity_pct * vapor_per_pct_kg
-
-    current_vapor_kg = state.current_vapor_kg + total_vapor_added_kg
-    excess_vapor_kg = current_vapor_kg - target_vapor_kg
     
-    vapor_removed_kg = max(0, excess_vapor_kg * chx_removal_efficiency)
+    target_vapor_kg = state.target_humidity_pct * vapor_per_pct_kg
 
-    current_vapor_kg = current_vapor_kg - vapor_removed_kg
-    current_humidity_pct = max(20.0, min(80.0, current_humidity_pct))
+    current_vapor_kg = (state.current_humidity_pct * vapor_per_pct_kg) + total_vapor_added_kg
+    excess_vapor_kg = max(0.0, current_vapor_kg - target_vapor_kg)
 
-    return 
+    vapor_removed_kg = excess_vapor_kg * chx_removal_efficiency
+
+    new_vapor_kg = current_vapor_kg - vapor_removed_kg
+    new_humidity_pct = new_vapor_kg / vapor_per_pct_kg
+    new_humidity_pct = max(20.0, min(80.0, new_humidity_pct))
+
+    return {
+        "new_humidity_pct": new_humidity_pct,
+        "vapor_added_kg": total_vapor_added_kg,
+        "vapor_removed_kg": vapor_removed_kg,
+        "target_vapor_kg": target_vapor_kg,
+        "new_vapor_kg": new_vapor_kg
+    } 
