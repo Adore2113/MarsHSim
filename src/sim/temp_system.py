@@ -18,22 +18,6 @@ stefan_boltzmann_const = 5.67e-8
 #---------------------------------------------------♡
 
 
-#------------get total heat from outputs-------------♡
-def heat_from_outputs_kw(outputs):
-    return (
-        outputs.get("crew_temp_rise_kw", 0.0)
-        + outputs.get("oga_heat_kw", 0.0)
-        + outputs.get("co2_scrubber_heat_kw", 0.0)
-        + outputs.get("light_heat_kw", 0.0)
-        + outputs.get("buffer_gas_heat_kw", 0.0)
-    ) 
-
-#----------------get total humidity------------------♡
-def get_total_vapor_added_kg(outputs):   
-    total_vapor_added_kg = outputs.get("breath_vapor_added_kg", 0.0) + outputs.get("skin_vapor_added_kg", 0.0)
-
-    return total_vapor_added_kg
-
 #--------------external Mars environment-------------♡
 def determine_mars_temp_c(state):
     season = current_mars_season(state)
@@ -69,6 +53,17 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
     heat_loss_kw = temp_difference_c * state.insulation_strength_kw_per_c
     
     return heat_loss_kw
+
+
+#------------get total heat from outputs-------------♡
+def heat_from_outputs_kw(outputs):
+    return (
+        outputs.get("crew_temp_rise_kw", 0.0)
+        + outputs.get("oga_heat_kw", 0.0)
+        + outputs.get("co2_scrubber_heat_kw", 0.0)
+        + outputs.get("light_heat_kw", 0.0)
+        + outputs.get("buffer_gas_heat_kw", 0.0)
+    ) 
 
 
 #--------------which heaters are online--------------♡
@@ -206,20 +201,6 @@ def radiator_power(radiators_online_count, dt_min):
     return radiator_power_kw, radiator_energy_kwh
     
 
-#----------condensing heat exchanger (CHX)-----------♡
-def update_humidity(state, outputs, dt_min):
-    hours_per_step = dt_min / 60.0
-    chx_removal_efficiency = 0.85
-    total_vapor_added_kg = get_total_vapor_added_kg(state, outputs, dt_min)
-    
-    vapor_per_pct_kg = (water_vapor_per_m3 * state.hab_vol_m3) / 100.0
-    target_vapor_kg = target_humidity_pct * vapor_per_pct_kg
-
-    current_vapor_kg = state.current_vapor_kg + total_vapor_added_kg
-    excess_vapor_kg = current_vapor_kg - target_vapor_kg
-    
-
-
 #---------determine the habitat thermal mode---------♡
 def determine_thermal_mode(state, hab_temp_c, target_temp_c):
     hab_temp_mode = "neutral"
@@ -316,3 +297,30 @@ def get_thermal_alerts(new_hab_temp_c):
         thermal_alerts.append("CRITICAL: Habitat too cold")
 
     return thermal_alerts
+
+
+#----------------get total humidity------------------♡
+def get_total_vapor_added_kg(outputs):   
+    total_vapor_added_kg = outputs.get("breath_vapor_added_kg", 0.0) + outputs.get("skin_vapor_added_kg", 0.0)
+
+    return total_vapor_added_kg
+
+
+#----------condensing heat exchanger (CHX)-----------♡
+def update_humidity(state, outputs, dt_min):
+    hours_per_step = dt_min / 60.0
+    chx_removal_efficiency = 0.85
+    
+    total_vapor_added_kg = get_total_vapor_added_kg(state, outputs, dt_min)
+    vapor_per_pct_kg = (water_vapor_per_m3 * state.hab_vol_m3) / 100.0
+    target_vapor_kg = target_humidity_pct * vapor_per_pct_kg
+
+    current_vapor_kg = state.current_vapor_kg + total_vapor_added_kg
+    excess_vapor_kg = current_vapor_kg - target_vapor_kg
+    
+    vapor_removed_kg = max(0, excess_vapor_kg * chx_removal_efficiency)
+
+    current_vapor_kg = current_vapor_kg - vapor_removed_kg
+    current_humidity_pct = max(20.0, min(80.0, current_humidity_pct))
+
+    return 
