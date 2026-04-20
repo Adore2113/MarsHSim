@@ -132,11 +132,12 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         }
 
 #----------------run thermal control-----------------♡
+    humidity_results = update_humidity(new_state, outputs, dt_min)
+    outputs.update(humidity_results)
+    
     thermal_results = run_thermal_control(new_state, outputs, dt_min)
     outputs.update(thermal_results)
 
-    humidity_results = update_humidity(new_state, outputs, dt_min)
-    outputs.update(humidity_results)
 
 #-----------------power system update----------------♡
     power_results = run_system_power(new_state, outputs, dt_min)
