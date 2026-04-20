@@ -1,6 +1,7 @@
 from dataclasses import replace
 from .state import Habitat_State
 from .mars_time import current_mars_season, determine_sunlight_amount
+from .crew_metabolism import crew_metabolism
 
 # file for temperature and humidity
 
@@ -8,6 +9,8 @@ from .mars_time import current_mars_season, determine_sunlight_amount
 target_temp_c = 23.0
 min_temp_c = 20.0
 max_temp_c = 25.0
+
+target_humidity_pct = 48.0
 
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 stefan_boltzmann_const = 5.67e-8
@@ -17,7 +20,7 @@ stefan_boltzmann_const = 5.67e-8
 #------------get total heat from outputs-------------♡
 def heat_from_outputs_kw(outputs):
     return (
-        outputs.get("crew_heat_kw", 0.0)
+        outputs.get("crew_temp_rise_kw", 0.0)
         + outputs.get("oga_heat_kw", 0.0)
         + outputs.get("co2_scrubber_heat_kw", 0.0)
         + outputs.get("light_heat_kw", 0.0)
@@ -25,7 +28,8 @@ def heat_from_outputs_kw(outputs):
     ) 
 
 #----------------get total humidity------------------♡
-    # focusing on temp first
+def get_total_humidty(state, crew_metabolism):   
+    return (crew_metabolism.get("breath_vapor_added_kg", 0.0) + crew_metabolism.get("skin_vapor_added_kg", 0.0))
 
 
 #--------------external Mars environment-------------♡
@@ -201,7 +205,8 @@ def radiator_power(radiators_online_count, dt_min):
     
 
 #----------condensing heat exchanger (CHX)-----------♡
-     # focusing on temp first
+def update_humidity(state, dt_min)
+    hours_per_step = dt_min / 60.0
 
 
 #---------determine the habitat thermal mode---------♡
@@ -294,9 +299,9 @@ def run_thermal_control(state, outputs, dt_min):
 def get_thermal_alerts(new_hab_temp_c):
     thermal_alerts = []
     if new_hab_temp_c > 28.0:
-        thermal_alerts.append("CRITICAL: Cabin too hot")
+        thermal_alerts.append("CRITICAL: Habitat too hot")
     
     elif new_hab_temp_c < 18.0:
-        thermal_alerts.append("CRITICAL: Cabin too cold")
+        thermal_alerts.append("CRITICAL: Habitat too cold")
 
     return thermal_alerts
