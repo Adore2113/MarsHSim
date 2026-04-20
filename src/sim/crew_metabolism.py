@@ -22,7 +22,7 @@ crew_activity_states = {
 
 
 # -------crew metabolism per default timestep--------♡
-def crew_metabolism(state, dt_min):
+def total_crew_metabolism(state, dt_min):
     hours_per_step = dt_min / 60
     crew_activity = crew_activity_states[state.crew_activity]
 
