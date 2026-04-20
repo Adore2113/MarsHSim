@@ -18,8 +18,11 @@ class Habitat_State:
 # ------thermal control-----------------------------♡
     hab_temp_c: float
     target_humidity_pct: float
+    current_humidity_pct: float
+
     insulation_strength_kw_per_c: float
     thermal_mass_kwh_per_c: float
+
     radiators: list
     heaters: list
 
