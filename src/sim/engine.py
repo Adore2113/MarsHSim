@@ -6,7 +6,7 @@ from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import total_crew_metabolism
 from .power_system import lights, wellness_lights, run_system_power, total_power_usage
 from .mars_time import get_sol_time, daylight_per_m2_kw, determine_sunlight_amount, current_sol_number, determine_low_sunlight_streak
-from .temp_system import run_thermal_control
+from .temp_system import run_thermal_control, update_humidity
 
 #--------------------constants-----------------------♡
 default_dt_min = 5
@@ -136,6 +136,9 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     thermal_results = run_thermal_control(new_state, outputs, dt_min)
     outputs.update(thermal_results)
 
+    humidity_results = update_humidity(new_state, outputs, dt_min)
+    outputs.update(humidity_results)
+
 #-----------------power system update----------------♡
     power_results = run_system_power(new_state, outputs, dt_min)
     outputs.update(power_results)
@@ -147,8 +150,9 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         solar_arrays = power_results["new_solar_arrays"],
         light_level = light_results["final_light_level"],
         hab_temp_c = thermal_results["new_hab_temp_c"],
-        heaters=thermal_results["new_heaters"],
+        heaters = thermal_results["new_heaters"],
         radiators = thermal_results["new_radiators"],
+        current_humidity_pct = humidity_results["new_humidity_pct"]
         )
 
     return new_state, outputs
