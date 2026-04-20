@@ -22,6 +22,8 @@ s0 = Habitat_State(
 # ------thermal control-----------------------------♡
     hab_temp_c = 23.0,
     target_humidity_pct = 48.0,
+    current_humidity_pct = 48.0,
+
     insulation_strength_kw_per_c = 0.8,
     thermal_mass_kwh_per_c = 800.0,
 
