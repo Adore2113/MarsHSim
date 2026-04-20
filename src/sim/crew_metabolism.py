@@ -1,6 +1,11 @@
 from dataclasses import replace
 from .state import Habitat_State
 
+#--------------------constants-----------------------♡
+w_per_kw = 1000   # watts to kilowatts
+#---------------------------------------------------♡
+
+
 #--------crew activites and metabolism rates---------♡
 crew_activity_states = {
     "normal" : {"o2_drop_multiplier" : 1.0, "co2_rise_multiplier" : 1.0, "breath_vapor_multiplier" : 1.0, "skin_vapor_multiplier" : 1.0, "heat_per_person_w" : 120},
@@ -24,14 +29,14 @@ def crew_metabolism(state, dt_min):
     skin_vapor_added_kg = (0.8 * state.crew_count * crew_activity["skin_vapor_multiplier"] * hours_per_step) / 24
 
     #--------------temperature changes---------------♡
-    crew_temp_rise_kw = (crew_activity["heat_per_person_w"] * state.crew_count) / 1000.0
+    crew_temp_rise_kw = (crew_activity["heat_per_person_w"] * state.crew_count) / pa_per_kpa
     crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
 
     return {
         "o2_drop_kpa" : o2_drop_kpa,
         "co2_rise_kpa" : co2_rise_kpa,
+        "breath_vapor_added_kg" : breath_vapor_added_kg,
+        "skin_vapor_added_kg" : skin_vapor_added_kg,
         "crew_temp_rise_kw" : crew_temp_rise_kw,
         "crew_temp_rise_kwh" : crew_temp_rise_kwh,
-        "breath_vapor_added_kg" : breath_vapor_added_kg,
-        "skin_vapor_added_kg" : skin_vapor_added_kg
         }
