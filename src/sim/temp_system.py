@@ -11,6 +11,7 @@ min_temp_c = 20.0
 max_temp_c = 25.0
 
 target_humidity_pct = 48.0
+water_vapor_per_m3 = 0.0008
 
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 stefan_boltzmann_const = 5.67e-8
@@ -28,9 +29,10 @@ def heat_from_outputs_kw(outputs):
     ) 
 
 #----------------get total humidity------------------♡
-def get_total_humidty(state, crew_metabolism):   
-    return (crew_metabolism.get("breath_vapor_added_kg", 0.0) + crew_metabolism.get("skin_vapor_added_kg", 0.0))
+def get_total_vapor_added_kg(outputs):   
+    total_vapor_added_kg = outputs.get("breath_vapor_added_kg", 0.0) + outputs.get("skin_vapor_added_kg", 0.0)
 
+    return total_vapor_added_kg
 
 #--------------external Mars environment-------------♡
 def determine_mars_temp_c(state):
@@ -205,8 +207,17 @@ def radiator_power(radiators_online_count, dt_min):
     
 
 #----------condensing heat exchanger (CHX)-----------♡
-def update_humidity(state, dt_min)
+def update_humidity(state, outputs, dt_min):
     hours_per_step = dt_min / 60.0
+    chx_removal_efficiency = 0.85
+    total_vapor_added_kg = get_total_vapor_added_kg(state, outputs, dt_min)
+    
+    vapor_per_pct_kg = (water_vapor_per_m3 * state.hab_vol_m3) / 100.0
+    target_vapor_kg = target_humidity_pct * vapor_per_pct_kg
+
+    current_vapor_kg = state.current_vapor_kg + total_vapor_added_kg
+    excess_vapor_kg = current_vapor_kg - target_vapor_kg
+    
 
 
 #---------determine the habitat thermal mode---------♡
