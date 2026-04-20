@@ -354,6 +354,10 @@ def update_humidity(state, outputs, dt_min):
         "vapor_removed_kg": vapor_removed_kg,
         "target_vapor_kg": target_vapor_kg,
         "new_vapor_kg": new_vapor_kg,
+        "chx_heat_added_kw": chx_heat_added_kw,
+        "chx_heat_added_kwh": chx_heat_added_kwh,
+        "chx_power_used_kw": chx_power_used_kw,
+        "chx_energy_used_kwh": chx_energy_used_kwh
     } 
 
 
