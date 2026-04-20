@@ -289,6 +289,7 @@ def run_thermal_control(state, outputs, dt_min):
 #---------------------temp alerts--------------------♡
 def get_thermal_alerts(new_hab_temp_c):
     thermal_alerts = []
+    
     if new_hab_temp_c > 28.0:
         thermal_alerts.append("CRITICAL: Habitat too hot")
     
@@ -331,3 +332,21 @@ def update_humidity(state, outputs, dt_min):
         "target_vapor_kg": target_vapor_kg,
         "new_vapor_kg": new_vapor_kg
     } 
+
+#------------------humidity alerts-------------------♡
+def get_humidity_alerts(new_humidity_pct):
+    humidity_alerts = []
+
+    if new_humidity_pct < 20.0:
+        humidity_alerts.append("CRITICAL: Habitat humidity too low")
+
+    elif new_humidity_pct < 30.0:
+        humidity_alerts.append("WARNING: Habitat humidity low")
+
+    if new_humidity_pct > 70.0:
+        humidity_alerts.append("CRITICAL: Habitat humidity too high")
+
+    elif new_humidity_pct > 60.0:
+        humidity_alerts.append("WARNING: Habitat humidity high")
+
+    return humidity_alerts
