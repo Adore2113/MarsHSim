@@ -2,7 +2,8 @@ from src.sim.state import Habitat_State
 from src.sim.engine import step
 from src.sim.mars_time import get_sol_time
 from .buffer_gas_system import mca
-from .alerts import gas_alerts, get_status
+from .alerts import get_alerts, get_status
+from .temp_system import get_thermal_alerts
 
 s0 = Habitat_State(
 # ------time----------------------------------------♡
@@ -119,7 +120,7 @@ s0 = Habitat_State(
 
 def print_state(state, outputs, alerts):
     sol, hour, minutes = get_sol_time(state)
-    status = get_status(state)
+    status = get_status(alerts)
     WIDTH = 33
 
    # print("\n♡ ♡ ♡ ♡ Adore2113's MarsHSim ♡ ♡ ♡ ♡\n")
@@ -227,7 +228,7 @@ def print_state(state, outputs, alerts):
 state = s0
 for i in range(200):    #turn this back to 12
     state, outputs = step(state)
-    alerts = gas_alerts(state)
+    alerts = get_alerts(state, outputs)
     print_state(state, outputs, alerts)
 
     if i % 20 == 0:
