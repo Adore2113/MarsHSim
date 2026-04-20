@@ -21,21 +21,21 @@ def get_status(all_alerts):
 #--------------------gas alerts--------------------♡
 def get_gas_alerts(state):
     gas_alerts = []
-    
+
     if state.o2_kpa <= 17.0:
-        gas_alerts.append("ALERT: Oxygen critical")
+        gas_alerts.append("CRITICAL: Habitat oxygen levels too low")
     
     elif state.o2_kpa <= 19.5:
-        gas_alerts.append("ALERT: Oxygen low")
+        gas_alerts.append("WARNING: Habitat oxygen low")
     
     if state.o2_kpa >= 22.0:
-        gas_alerts.append("ALERT: Oxygen very high | fire risk")
+        gas_alerts.append("CRITICAL: Habitat oxygen levels too high | FIRE RISK")
 
     if state.co2_kpa >= 2.0:
-        gas_alerts.append("ALERT: Carbon Dioxide critical")
+        gas_alerts.append("CRITICAL: Carbon Dioxide too high")
 
     elif state.co2_kpa >= 1.0:
-        gas_alerts.append("ALERT: Carbon Dioxide high")
+        gas_alerts.append("WARNING: Carbon Dioxide high")
 
     return gas_alerts
 
