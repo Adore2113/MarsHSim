@@ -62,6 +62,7 @@ def heat_from_outputs_kw(outputs):
         + outputs.get("co2_scrubber_heat_kw", 0.0)
         + outputs.get("light_heat_kw", 0.0)
         + outputs.get("buffer_gas_heat_kw", 0.0)
+        + outputs.get("chx_heat_added_kw", 0.0)
     ) 
 
 
