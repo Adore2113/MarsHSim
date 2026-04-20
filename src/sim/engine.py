@@ -3,7 +3,7 @@ from .state import Habitat_State
 from .oxygen_system import run_oga
 from .buffer_gas_system import run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
-from .crew_metabolism import crew_metabolism
+from .crew_metabolism import total_crew_metabolism
 from .power_system import lights, wellness_lights, run_system_power, total_power_usage
 from .mars_time import get_sol_time, daylight_per_m2_kw, determine_sunlight_amount, current_sol_number, determine_low_sunlight_streak
 from .temp_system import run_thermal_control
@@ -43,7 +43,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         new_low_sunlight_streak_sols = state.low_sunlight_streak_sols
 
 #------------------crew metabolism-------------------♡
-    crew_results = crew_metabolism(state, dt_min)
+    crew_results = total_crew_metabolism(state, dt_min)
     o2_after_crew_kpa = state.o2_kpa - crew_results["o2_drop_kpa"]
     co2_after_crew_kpa = state.co2_kpa + crew_results["co2_rise_kpa"]
 
@@ -119,6 +119,9 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         "w_light_heat_kwh" : wellness_results["w_light_heat_kwh"],
         "crew_heat_kw" : state.crew_count * 0.1,
         "buffer_gas_heat_kw" : 0.0,
+
+        "breath_vapor_added_kg" : total_crew_metabolism["breath_vapor_added_kg"],
+        "skin_vapor_added_kg" : total_crew_metabolism["skin_vapor_added_kg"],
 
 #--------------------gas/atmosphere------------------♡
         "co2_removed_kpa" : co2_removed_kpa,
