@@ -21,6 +21,7 @@ s0 = Habitat_State(
 
 # ------thermal control-----------------------------♡
     hab_temp_c = 23.0,
+    target_humidity_pct = 48,
     insulation_strength_kw_per_c = 0.8,
     thermal_mass_kwh_per_c = 800.0,
 
@@ -167,9 +168,9 @@ def print_state(state, outputs, alerts):
     print(f"{'Battery Stored:':<22} {state.battery_stored_kwh:.2f} kWh\n")
 
     print(("♡ [ THERMAL ] ♡").center(WIDTH))
-    print(f"{'Cabin Temp:':<22} {state.hab_temp_c:.2f} °C")
+    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
     print(f"{'Mars Temp:':<22} {outputs['mars_temp_c']:.2f} °C")
-    print(f"{'Cabin Heat:':<22} {outputs['hab_heat_kw']:.2f} kW")
+    print(f"{'Habitat Heat:':<22} {outputs['hab_heat_kw']:.2f} kW")
     print(f"{'Heat Loss:':<22} {outputs['heat_loss_kw']:.2f} kW")
     print(f"{'Net Heat:':<22} {outputs['net_heat_kw']:.2f} kW")
     print(f"{'Temp Change:':<22} {outputs['temp_change_c']:.4f} °C")
@@ -226,7 +227,7 @@ def print_state(state, outputs, alerts):
 
 
 state = s0
-for i in range(200):    #turn this back to 12
+for i in range(12):    #turn this back to 12
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
     print_state(state, outputs, alerts)
