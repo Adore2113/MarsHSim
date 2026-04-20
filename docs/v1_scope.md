@@ -655,3 +655,34 @@
         -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
         -add random daily temp and sunlight variables after seasons are set up    
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/19/2026
+    -fixed alert file and a few realted variable names
+
+            **next session start:**
+    -ADD SECOND AND THIRD HEATER STAGE TRIGGERS AND LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
+
+    -eventually...
+        -move onto humidty
+
+        -work on water_system.py
+
+        -update other files accordingly
+
+        -consider adding rations or a food system
+
+        -power priority system for when power is low and only runs essential power systems
+        
+        -continue adding heat generated/heat waste
+        
+        -NTA (need to add) electronics/computers, pumps, rations(?)  
+        
+        -add subsystems to the power priority system for when power is low and only runs essential power systems
+
+        -update alerts file
+
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+        -add random daily temp and sunlight variables after seasons are set up 
