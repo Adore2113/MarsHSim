@@ -331,8 +331,6 @@ def update_humidity(state, outputs, dt_min):
     hours_per_step = dt_min / 60.0
     chx_removal_efficiency = 0.85
     
-    total_vapor_added_kg = outputs.get("breath_vapor_added_kg", 0.0) + outputs.get("skin_vapor_added_kg", 0.0)
-
     total_vapor_added_kg = get_total_vapor_added_kg(outputs)
     vapor_per_pct_kg = (water_vapor_per_m3 * state.hab_vol_m3) / 100.0
     
