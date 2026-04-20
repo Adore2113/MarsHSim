@@ -177,7 +177,11 @@ def print_state(state, outputs, alerts):
     print(f"{'Net Heat:':<22} {outputs['net_heat_kw']:.2f} kW")
     print(f"{'Temp Change:':<22} {outputs['temp_change_c']:.4f} °C")
     print(f"{'Insulation Strength:':<22} {state.insulation_strength_kw_per_c:.2f} kW/°C")
-    
+    print(f"{'Humidity:':<22} {outputs['new_humidity_pct']:.2f} %")
+    print(f"{'Vapor Removed:':<22} {outputs['vapor_removed_kg']:.4f} kg")
+    print(f"{'CHX Power Used:':<22} {outputs['chx_power_used_kw']:.2f} kW")
+    print(f"{'CHX Heat:':<22} {outputs['chx_heat_added_kw']:.2f} kW\n")
+
     print(f"{'Radiators Online:':<22} {outputs['radiators_online_count']}")
     print(f"{'Rad Cooling:':<22} {outputs['radiator_heat_rejection_kw']:.2f} kW")
     print(f"{'Rad Power:':<22} {outputs['radiator_power_kw']:.2f} kW")
