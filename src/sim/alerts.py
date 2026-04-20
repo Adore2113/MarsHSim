@@ -61,7 +61,8 @@ def get_alerts(state, outputs):
     alerts.extend(get_gas_alerts(state))
     alerts.extend(get_power_alerts(state))
     alerts.extend(get_thermal_alerts(outputs["new_hab_temp_c"]))
-    
+    alerts.extend(get_humidity_alerts(outputs["new_humidity_pct"]))
+
     return alerts
 
 
