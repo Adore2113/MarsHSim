@@ -330,7 +330,6 @@ def chx_power_and_heat(vapor_removed_kg, dt_min):
 def update_humidity(state, outputs, dt_min):
     hours_per_step = dt_min / 60.0
     chx_removal_efficiency = 0.85
-    chx_heat_added_kw, chx_heat_added_kwh, chx_power_used_kw, chx_energy_used_kwh = chx_power_and_heat(vapor_removed_kg, dt_min)
     
     total_vapor_added_kg = outputs.get("breath_vapor_added_kg", 0.0) + outputs.get("skin_vapor_added_kg", 0.0)
 
@@ -347,6 +346,8 @@ def update_humidity(state, outputs, dt_min):
     new_vapor_kg = current_vapor_kg - vapor_removed_kg
     new_humidity_pct = new_vapor_kg / vapor_per_pct_kg
     new_humidity_pct = max(20.0, min(80.0, new_humidity_pct))
+    
+    chx_heat_added_kw, chx_heat_added_kwh, chx_power_used_kw, chx_energy_used_kwh = chx_power_and_heat(vapor_removed_kg, dt_min)
 
     return {
         "new_humidity_pct": new_humidity_pct,
