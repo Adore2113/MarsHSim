@@ -3,7 +3,13 @@ from .state import Habitat_State
 
 #--------------------constants-----------------------♡
 w_per_kw = 1000   # watts to kilowatts
-#---------------------------------------------------♡
+
+base_o2_drop_kpa = 0.00011
+base_co2_rise_kpa = 0.0000967
+
+base_breath_vapor_kg_per_day = 1.0
+base_skin_vapor_kg_per_day = 0.8
+#----------------------------------------------------♡
 
 
 #--------crew activites and metabolism rates---------♡
@@ -21,15 +27,15 @@ def crew_metabolism(state, dt_min):
     crew_activity = crew_activity_states[state.crew_activity]
 
     #-------------atmosphere gas changes-------------♡
-    o2_drop_kpa = 0.00011 * state.crew_count * crew_activity["o2_drop_multiplier"]
-    co2_rise_kpa = 0.0000967 * state.crew_count * crew_activity["co2_rise_multiplier"]
+    o2_drop_kpa = base_o2_drop_kpa * state.crew_count * crew_activity["o2_drop_multiplier"]
+    co2_rise_kpa = base_co2_rise_kpa * state.crew_count * crew_activity["co2_rise_multiplier"]
 
     #----------------humidity changes----------------♡
-    breath_vapor_added_kg = (1.0 * state.crew_count * crew_activity["breath_vapor_multiplier"] * hours_per_step) / 24
-    skin_vapor_added_kg = (0.8 * state.crew_count * crew_activity["skin_vapor_multiplier"] * hours_per_step) / 24
+    breath_vapor_added_kg = (base_breath_vapor_kg_per_day * state.crew_count * crew_activity["breath_vapor_multiplier"] * hours_per_step) / 24
+    skin_vapor_added_kg = (base_skin_vapor_kg_per_day * state.crew_count * crew_activity["skin_vapor_multiplier"] * hours_per_step) / 24
 
     #--------------temperature changes---------------♡
-    crew_temp_rise_kw = (crew_activity["heat_per_person_w"] * state.crew_count) / pa_per_kpa
+    crew_temp_rise_kw = (crew_activity["heat_per_person_w"] * state.crew_count) / w_per_kw
     crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
 
     return {
