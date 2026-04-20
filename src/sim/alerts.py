@@ -1,6 +1,6 @@
 from dataclasses import replace
 from .state import Habitat_State
-from .temp_system import get_thermal_alerts
+from .temp_system import get_thermal_alerts, get_humidity_alerts
 
 #----------------get habitat status----------------♡
 def get_status(all_alerts):
