@@ -304,13 +304,36 @@ def get_total_vapor_added_kg(outputs):
     total_vapor_added_kg = outputs.get("breath_vapor_added_kg", 0.0) + outputs.get("skin_vapor_added_kg", 0.0)
 
     return total_vapor_added_kg
+    # add onto this as I go
+
+
+#-------chx power consumption and heat produced------♡
+def chx_power_and_heat(vapor_removed_kg, dt_min):
+    hours_per_step = dt_min / 60.0
+
+    chx_heat_added_kw = 0.0
+    chx_heat_added_kwh = 0.0
+    chx_power_used_kw = 0.0
+    chx_energy_used_kwh = 0.0
+
+    if vapor_removed_kg > 0.0:
+        chx_power_used_kw = 0.35
+        chx_energy_used_kwh = chx_power_used_kw * hours_per_step
+
+        chx_heat_added_kw = 0.20
+        chx_heat_added_kwh = chx_heat_added_kw * hours_per_step
+
+    return chx_heat_added_kw, chx_heat_added_kwh, chx_power_used_kw, chx_energy_used_kwh
 
 
 #----------condensing heat exchanger (CHX)-----------♡
 def update_humidity(state, outputs, dt_min):
     hours_per_step = dt_min / 60.0
     chx_removal_efficiency = 0.85
+    chx_heat_added_kw, chx_heat_added_kwh, chx_power_used_kw, chx_energy_used_kwh = chx_power_and_heat(vapor_removed_kg, dt_min)
     
+    total_vapor_added_kg = outputs.get("breath_vapor_added_kg", 0.0) + outputs.get("skin_vapor_added_kg", 0.0)
+
     total_vapor_added_kg = get_total_vapor_added_kg(outputs)
     vapor_per_pct_kg = (water_vapor_per_m3 * state.hab_vol_m3) / 100.0
     
@@ -330,8 +353,9 @@ def update_humidity(state, outputs, dt_min):
         "vapor_added_kg": total_vapor_added_kg,
         "vapor_removed_kg": vapor_removed_kg,
         "target_vapor_kg": target_vapor_kg,
-        "new_vapor_kg": new_vapor_kg
+        "new_vapor_kg": new_vapor_kg,
     } 
+
 
 #------------------humidity alerts-------------------♡
 def get_humidity_alerts(new_humidity_pct):
