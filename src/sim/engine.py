@@ -120,9 +120,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         "crew_heat_kw" : state.crew_count * 0.1,
         "buffer_gas_heat_kw" : 0.0,
 
-        "breath_vapor_added_kg" : total_crew_metabolism["breath_vapor_added_kg"],
-        "skin_vapor_added_kg" : total_crew_metabolism["skin_vapor_added_kg"],
-
+        "breath_vapor_added_kg" : crew_results["breath_vapor_added_kg"],
+        "skin_vapor_added_kg" : crew_results["skin_vapor_added_kg"],
 #--------------------gas/atmosphere------------------♡
         "co2_removed_kpa" : co2_removed_kpa,
         "o2_added_kpa": o2_added_kpa,
