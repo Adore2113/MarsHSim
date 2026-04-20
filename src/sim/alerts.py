@@ -1,6 +1,6 @@
 from dataclasses import replace
 from .state import Habitat_State
-from .temp_system import thermal_alerts
+from .temp_system import get_thermal_alerts
 
 #----------------get habitat status----------------♡
 def get_status(all_alerts):
@@ -19,7 +19,7 @@ def get_status(all_alerts):
 
 
 #--------------------gas alerts--------------------♡
-def gas_alerts(state):
+def get_gas_alerts(state):
     gas_alerts = []
     
     if state.o2_kpa <= 17.0:
@@ -41,7 +41,7 @@ def gas_alerts(state):
 
 
 #-------------------power alerts-------------------♡
-def power_alerts(state):
+def get_power_alerts(state):
     power_alerts = []
     battery_percentage = state.battery_stored_kwh / state.battery_max_capacity_kwh
 
@@ -54,19 +54,16 @@ def power_alerts(state):
     return power_alerts
 
 
-#---------all alerts and hab status update---------♡
-def get_alerts_and_status(state, outputs):
+#-----------------all alerts update-----------------♡
+def get_alerts(state, outputs):
     alerts = []
-    status = get_status(state)
 
-    alerts.extend(gas_alerts(state))
-    alerts.extend(power_alerts(state))
-    alerts.extend(thermal_alerts(state))
+    alerts.extend(get_gas_alerts(state))
+    alerts.extend(get_power_alerts(state))
+    alerts.extend(get_thermal_alerts(outputs["new_hab_temp_c"]))
+    
+    return alerts
 
-    return {
-        "status" : status,
-        "alerts" : alerts
-    }
 
 #def 
     # later add total pressure, leak detection, when scrubbers are full (saturated)

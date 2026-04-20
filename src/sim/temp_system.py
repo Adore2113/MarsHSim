@@ -291,7 +291,7 @@ def run_thermal_control(state, outputs, dt_min):
 
 
 #---------------------temp alerts--------------------♡
-def thermal_alerts(new_hab_temp_c):
+def get_thermal_alerts(new_hab_temp_c):
     thermal_alerts = []
     if new_hab_temp_c > 28.0:
         thermal_alerts.append("CRITICAL: Cabin too hot")
