@@ -16,12 +16,10 @@ bed_switch_interval_s = 3300
 bed_switch_power_multiplier = 1.25
 
 co2_efficiency_change_levels = {
-    0.0 : 0.35,
-    0.1 : 0.35,
+    0.0 : 0.55,
     0.2 : 0.55,
     0.4 : 0.85,
-    0.5 : 1.00,
-    0.6 : 1.00
+    0.5 : 1.00
 }
 #----------------------------------------------------♡
 
@@ -41,6 +39,23 @@ def amine_bed_control_and_count(amine_beds):
         new_beds.append(new_bed)
 
     return new_beds, beds_online_count
+
+
+#--------------co2 scrubbing efficiency--------------♡
+def get_co2_scrub_efficiency(co2_kpa):
+    if co2_kpa <= 0.2:
+        co2_scrub_efficiency = co2_efficiency_change_levels[0.0]
+
+    elif co2_kpa <= 0.4:
+        co2_scrub_efficiency = co2_efficiency_change_levels[0.2] + (co2_kpa - 0.2) / 0.2 * (co2_efficiency_change_levels[0.4] - co2_efficiency_change_levels[0.2])
+
+    elif co2_kpa <= 0.5:
+        co2_scrub_efficiency = co2_efficiency_change_levels[0.4] + (co2_kpa - 0.4) / 0.1 * (co2_efficiency_change_levels[0.5] - co2_efficiency_change_levels[0.4])
+
+    else:
+        co2_scrub_efficiency = co2_efficiency_change_levels[0.5]
+
+    return co2_scrub_efficiency
 
 
 #-------------co2 removal limit per step-------------♡
