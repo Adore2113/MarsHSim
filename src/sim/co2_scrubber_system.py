@@ -89,12 +89,6 @@ def co2_removed_and_storage_update(state, co2_after_crew_kpa, max_scrub_removal_
 #-----system power consumption and heat produced-----♡
 def co2_scrub_power_and_heat(co2_removed_kpa, beds_online_count, next_time_s, dt_min):
     hours_per_step = dt_min / 60
-    
-    base_power_per_bed_kw = 0.65
-    power_per_kpa_removed_kw = 45.0
-
-    base_heat_per_bed_kpa = 0.35
-    heat_per_kpa_removed_kw = 8.0
 
     co2_scrubber_heat_added_kw = 0.0
     co2_scrubber_heat_added_kwh = 0.0
@@ -134,5 +128,6 @@ def run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min):
         "co2_scrubber_heat_kwh": co2_scrubber_heat_kwh,
         "co2_scrubber_power_used_kw": co2_scrubber_power_used_kw,
         "co2_scrubber_energy_used_kwh": co2_scrubber_energy_used_kwh,
+        "beds_online_count" : beds_online_count,
         "amine_beds": beds_after_control
     }
