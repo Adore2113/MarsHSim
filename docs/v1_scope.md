@@ -686,3 +686,52 @@
         -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
         -add random daily temp and sunlight variables after seasons are set up 
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/20/2026
+    -moving onto humidity in thermal b/c I decided I will alter the insulation and mass values once I have all the systems implemented including water and everything
+
+    -all humidity will be mostly internal, through crew perspiration, breathing, ect. considering v2 having a greenhouse(?), 
+
+    -a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin but I'm going to make it mainly a humidty control subsystem first with slight cooling, b/c I already have the radiators
+
+    -added moisture variables to the crew metabolism file and updated temp_system.py
+
+    -I'm considering adding a new file to handle humidity depending on how big that part gets
+
+    -add humidity from crew showers, cooking, laundry(?) ect. 
+    
+    **next session start:**
+    -
+
+    -
+
+    -eventually...
+        -work on water_system.py
+
+        -update other files accordingly
+
+        -remove hardcoding and do calculations
+
+        -add humidity from crew showers, cooking, laundry(?) ect.
+
+        -consider adding rations or a food system/greenhouse
+
+        -power priority system for when power is low and only runs essential power systems
+        
+        -continue adding heat generated/heat waste
+        
+        -NTA (need to add) electronics/computers, pumps, rations(?)  
+        
+        -add subsystems to the power priority system for when power is low and only runs essential power systems
+
+        -update alerts file
+
+        -add second and third backups for systems (amine beds, radiators, heaters, ect.)
+
+        -LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
+
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+        -add random daily temp and sunlight variables after seasons are set up 
