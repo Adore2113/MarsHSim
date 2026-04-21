@@ -62,13 +62,12 @@ def get_co2_scrub_efficiency(co2_kpa):
 def co2_scrub_capacity_kpa(state, co2_after_crew_kpa, next_time_s):
     beds_after_control, beds_online_count = amine_bed_control_and_count(state.amine_beds)
     regen_rate_kpa = 0.01    # how fast a bed is venting co2 outside during regen
+    
     max_scrub_removal_kpa = beds_online_count * state.scrub_per_bed_kpa
+    efficiency = get_co2_scrub_efficiency(co2_after_crew_kpa)
 
-    if co2_after_crew_kpa < 0.2:    # efficiency drop when co2 is already low
-        max_scrub_removal_kpa *= 0.40
-    elif co2_after_crew_kpa < 0.4:
-        max_scrub_removal_kpa *= 0.70
-
+    max_scrub_removal_kpa *= efficiency
+    
     if next_time_s % 3300 == 0 and next_time_s != 0:    # every 55min switch beds w. a brief co2 spike
         max_scrub_removal_kpa *= 0.80
 
@@ -81,6 +80,7 @@ def co2_removed_and_storage_update(state, co2_after_crew_kpa, max_scrub_removal_
 
     co2_removed_kpa = min(max_scrub_removal_kpa, max(0.0, co2_above_target_kpa))
     co2_after_scrub_kpa = co2_after_crew_kpa - co2_removed_kpa
+    
     new_co2_stored_kpa = co2_removed_kpa + state.co2_stored_kpa
 
     return co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kpa
