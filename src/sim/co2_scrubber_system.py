@@ -2,6 +2,29 @@ from dataclasses import replace
 from .state import Habitat_State
 
 # file for co2 removal and amine bed functions
+#--------------------constants-----------------------♡
+scrub_per_bed_kpa = 0.012
+min_beds_online = 2
+
+base_power_per_bed_kw = 0.65
+power_per_kpa_removed_kw = 45.0
+
+base_heat_per_bed_kpa = 0.35
+heat_per_kpa_removed = 8.0
+
+bed_switch_interval_s = 3300
+bed_switch_power_multiplier = 1.25
+
+co2_efficiency_change_levels = {
+    0.0 : 0.35,
+    0.1 : 0.35,
+    0.2 : 0.55,
+    0.4 : 0.85,
+    0.5 : 1.00,
+    0.6 : 1.00
+}
+#----------------------------------------------------♡
+
 
 #---------which beds and how many are online---------♡
 def amine_bed_control_and_count(amine_beds):
@@ -11,7 +34,7 @@ def amine_bed_control_and_count(amine_beds):
     for bed in amine_beds:
         new_bed = bed.copy()
 
-        if beds_online_count < 2 and new_bed["status"] == "standby":
+        if beds_online_count < min_beds_online and new_bed["status"] == "standby":
             new_bed["status"] = "online"
             beds_online_count += 1
 
