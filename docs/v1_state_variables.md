@@ -13,8 +13,12 @@
 
 # ------thermal control-----------------------------♡
     hab_temp_c
+    target_humidity_pct
+    current_humidity_pct
+
     insulation_strength_kw_per_c
     thermal_mass_kwh_per_c
+
     radiators
     heaters
     
