@@ -87,14 +87,15 @@ class Habitat_State:
 # ------power---------------------------------------♡
     battery_max_capacity_kwh: float
     battery_stored_kwh: float 
+    
     solar_arrays: list
     daylight_m2_kw: float
+    max_daylight_m2_kw: float
     peak_sunlight_today: float
     low_sunlight_streak_sols: int
+    solar_absorptivity: int
 
 # ------placeholders for future plans---------------♡
-    relative_humidity: float
-
     # ♡ water ♡
     potable_water_l: float
     grey_water_l: float
