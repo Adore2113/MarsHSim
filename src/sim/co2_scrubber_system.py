@@ -102,8 +102,8 @@ def co2_scrub_power_and_heat(co2_removed_kpa, beds_online_count, next_time_s, dt
         actual_co2_removal_power_used_kw = co2_removed_kpa * power_per_kpa_removed_kw
         actual_co2_scrubber_heat_added_kw = co2_removed_kpa * heat_per_kpa_removed_kw
 
-        co2_scrubber_power_used_kw = baseline_power_kw + power_per_kpa_removed_kw
-        co2_scrubber_heat_added_kw = baseline_heat_kw + base_heat_per_bed_kpa
+        co2_scrubber_power_used_kw = baseline_power_kw + actual_co2_removal_power_used_kw
+        co2_scrubber_heat_added_kw = baseline_heat_kw + actual_co2_scrubber_heat_added_kw
 
         if next_time_s % bed_switch_interval_s == 0 and next_time_s != 0:    # temporary power increase when beds switch
             co2_scrubber_power_used_kw *= bed_switch_power_multiplier
