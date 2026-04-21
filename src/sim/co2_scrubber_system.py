@@ -10,7 +10,7 @@ base_power_per_bed_kw = 0.65
 power_per_kpa_removed_kw = 45.0
 
 base_heat_per_bed_kpa = 0.35
-heat_per_kpa_removed = 8.0
+heat_per_kpa_removed_kw = 8.0
 
 bed_switch_interval_s = 3300
 bed_switch_power_multiplier = 1.25
@@ -89,6 +89,12 @@ def co2_removed_and_storage_update(state, co2_after_crew_kpa, max_scrub_removal_
 #-----system power consumption and heat produced-----♡
 def co2_scrub_power_and_heat(co2_removed_kpa, beds_online_count, next_time_s, dt_min):
     hours_per_step = dt_min / 60
+    
+    base_power_per_bed_kw = 0.65
+    power_per_kpa_removed_kw = 45.0
+
+    base_heat_per_bed_kpa = 0.35
+    heat_per_kpa_removed_kw = 8.0
 
     co2_scrubber_heat_added_kw = 0.0
     co2_scrubber_heat_added_kwh = 0.0
@@ -96,23 +102,20 @@ def co2_scrub_power_and_heat(co2_removed_kpa, beds_online_count, next_time_s, dt
     co2_scrubber_energy_used_kwh = 0.0
 
     if co2_removed_kpa > 0:
-        co2_scrubber_heat_per_kpa_kw = 1200.0
-        co2_scrubber_heat_added_kw = co2_removed_kpa * co2_scrubber_heat_per_kpa_kw / 1000.0
-        baseline_bed_heat_kw = beds_online_count * 0.4
+        baseline_power_kw = beds_online_count * base_power_per_bed_kw
+        baseline_heat_kw = beds_online_count * base_heat_per_bed_kpa
 
-        co2_scrubber_heat_added_kw = co2_scrubber_heat_added_kw + baseline_bed_heat_kw
-        co2_scrubber_heat_added_kwh = co2_scrubber_heat_added_kw * hours_per_step
+        actual_co2_removal_power_used_kw = co2_removed_kpa * power_per_kpa_removed_kw
+        actual_co2_scrubber_heat_added_kw = co2_removed_kpa * heat_per_kpa_removed_kw
 
-        baseline_bed_power_used_kw = beds_online_count * 0.6    # placeholder amount
-        co2_removal_power_per_kpa_kw = 1500.0    # placeholder amount
-        co2_removal_power_used_kw = co2_removed_kpa * co2_removal_power_per_kpa_kw / 1000.0
+        co2_scrubber_power_used_kw = baseline_power_kw + power_per_kpa_removed_kw
+        co2_scrubber_heat_added_kw = baseline_heat_kw + base_heat_per_bed_kpa
 
-        co2_scrubber_power_used_kw = baseline_bed_power_used_kw + co2_removal_power_used_kw
-
-        if next_time_s % 3300 == 0 and next_time_s != 0:    # temporary power increase when beds switch
-            co2_scrubber_power_used_kw *= 1.10
+        if next_time_s % bed_switch_interval_s == 0 and next_time_s != 0:    # temporary power increase when beds switch
+            co2_scrubber_power_used_kw *= bed_switch_power_multiplier
 
         co2_scrubber_energy_used_kwh = co2_scrubber_power_used_kw * hours_per_step
+        co2_scrubber_heat_added_kwh = co2_scrubber_heat_added_kw * hours_per_step
 
     return co2_scrubber_heat_added_kw, co2_scrubber_heat_added_kwh, co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh
 
