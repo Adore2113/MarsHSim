@@ -70,11 +70,11 @@ def daylight_fraction_result(state):
     sun_visibility = -math.tan(latitude_north_rad) * math.tan(solar_declination_rad)    # how extreme the sun's tilt is vs how extreme the habitat position is
 
     if sun_visibility <= -1:
-        daylight_fraction = 1.0
+        daylight_fraction = 0.0
         return daylight_fraction
     
     if sun_visibility >= 1:
-        daylight_fraction = 0.0
+        daylight_fraction = 1.0
         return daylight_fraction
 
     sun_visibility_half_rad = math.acos(sun_visibility)
