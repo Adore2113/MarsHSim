@@ -135,7 +135,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     humidity_results = update_humidity(new_state, outputs, dt_min)
     outputs.update(humidity_results)
     
-    thermal_results = run_thermal_control(new_state, outputs, dt_min)
+    thermal_results = run_thermal_control(new_state, outputs, dt_min, current_sunlight_amount)
     outputs.update(thermal_results)
 
 #-----------------power system update----------------♡
