@@ -14,6 +14,11 @@ water_vapor_per_m3 = 0.0008
 
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 stefan_boltzmann_const = 5.67e-8
+
+sunlight_heat_gain_fraction = 0.65    # PLACEHOLDER!
+radiator_heat_gain_fraction = 0.30    # ^ placeholder
+
+sunlight_facing_hab_m2 = 45.0    # another placeholder
 #---------------------------------------------------♡
 
 
@@ -43,6 +48,17 @@ def determine_mars_temp_c(state):
     mars_temp_k = mars_temp_c + kelvin_offset
 
     return mars_temp_c, mars_temp_k
+
+
+#-------------sunlight the habitat absorbs-----------♡
+def get_solar_heat_gain_kw(state, sunlight_amount):
+    effective_area_m2 = sunlight_facing_hab_m2 * state.solar_absorptivity
+    transmittance = 0.75    # how much heat gets through
+    
+    sunlight_per_m2_kw= sunlight_amount * state.max_daylight_m2_kw * 1.0
+    solar_heat_gain_kw = sunlight_per_m2_kw * effective_area_m2 * transmittance * sunlight_heat_gain_fraction
+
+    return solar_heat_gain_kw
 
 
 #------passive heat loss to outside environment------♡
@@ -246,10 +262,16 @@ def determine_thermal_mode(state, hab_temp_c, target_temp_c):
 
 
 #------running thermal control for one timestep------♡
-def run_thermal_control(state, outputs, dt_min):
+def run_thermal_control(state, outputs, dt_min, sunlight_amount):
     hours_per_step = dt_min / 60.0
     hab_heat_kw = heat_from_outputs_kw(outputs)
     mars_temp_c, mars_temp_k = determine_mars_temp_c(state)
+    
+    if sunlight_amount is None:
+        sunlight_amount = determine_sunlight_amount(state)
+
+    solar_heat_gain_kw = get_solar_heat_gain_kw(state, sunlight_amount)
+    
     hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(state, state.hab_temp_c, target_temp_c)
 
     heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
@@ -260,7 +282,7 @@ def run_thermal_control(state, outputs, dt_min):
     radiator_heat_rejection_kw = rad_heat_rejection_kw(state, mars_temp_k, new_radiators)
     radiator_power_kw, radiator_energy_kwh = radiator_power(radiators_online_count, dt_min)
 
-    net_heat_kw = hab_heat_kw + heater_heat_kw - heat_loss_kw - radiator_heat_rejection_kw
+    net_heat_kw = hab_heat_kw + heater_heat_kw  + solar_heat_gain_kw - heat_loss_kw - radiator_heat_rejection_kw
     temp_change_c = (net_heat_kw * hours_per_step) / state.thermal_mass_kwh_per_c
     
     new_hab_temp_c = state.hab_temp_c + temp_change_c
@@ -269,6 +291,7 @@ def run_thermal_control(state, outputs, dt_min):
         "new_hab_temp_c": new_hab_temp_c,
         "mars_temp_c": mars_temp_c,
         "hab_heat_kw": hab_heat_kw,
+        "solar_heat_gain_kw" : solar_heat_gain_kw,
         "heat_loss_kw": heat_loss_kw,
         "radiator_heat_rejection_kw": radiator_heat_rejection_kw,
         "radiators_online_count": radiators_online_count,
