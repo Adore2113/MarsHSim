@@ -15,31 +15,25 @@ default_dt_min = 5
 
 #------------what happens in one timestep------------♡
 def step(state: Habitat_State, dt_min: int = default_dt_min):
-
-#-----------time, solar, and daylight update---------♡    
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
-    time_advanced_state = replace(state, mission_time_s=next_time_s)
+
+#-----------time, solar, and daylight update---------♡    
     previous_sol_number = current_sol_number(state.mission_time_s)
     new_sol_number = current_sol_number(next_time_s)
     new_sol_started = new_sol_number != previous_sol_number
+
+    time_advanced_state = replace(state, mission_time_s = next_time_s)
 
     new_daylight_per_m2_kw = daylight_per_m2_kw(time_advanced_state)
     current_sunlight_amount = determine_sunlight_amount(time_advanced_state)
 
     if new_sol_started:
         new_peak_sunlight_today = current_sunlight_amount
-
-        # Only update streak at sol boundary using finished sol
-        streak_check_state = replace(
-            state,
-            peak_sunlight_today=current_sunlight_amount
-            )
-        new_low_sunlight_streak_sols = determine_low_sunlight_streak(streak_check_state)
+        new_low_sunlight_streak_sols = determine_low_sunlight_streak(time_advanced_state)
+    
     else:
         new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
-
-        # Keep streak stable during the sol
         new_low_sunlight_streak_sols = state.low_sunlight_streak_sols
 
 #------------------crew metabolism-------------------♡
