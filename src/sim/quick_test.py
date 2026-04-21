@@ -104,12 +104,13 @@ s0 = Habitat_State(
     ], 
     
     daylight_m2_kw = 0.0,
+    max_daylight_m2_kw = 0.57,
     peak_sunlight_today = 0.0,
     low_sunlight_streak_sols = 0,
+    solar_absorptivity = 0.65,
+
 
 # ------placeholders for future plans---------------♡
-    relative_humidity = 45.0,
-
     potable_water_l = 5000.0,
     grey_water_l = 0.0,
     waste_brine_l = 0.0,
