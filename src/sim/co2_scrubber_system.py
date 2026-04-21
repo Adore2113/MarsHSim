@@ -9,7 +9,7 @@ min_beds_online = 2
 base_power_per_bed_kw = 0.65
 power_per_kpa_removed_kw = 45.0
 
-base_heat_per_bed_kpa = 0.35
+base_heat_per_bed_kw = 0.35
 heat_per_kpa_removed_kw = 8.0
 
 bed_switch_interval_s = 3300
@@ -95,9 +95,9 @@ def co2_scrub_power_and_heat(co2_removed_kpa, beds_online_count, next_time_s, dt
     co2_scrubber_power_used_kw = 0.0
     co2_scrubber_energy_used_kwh = 0.0
 
-    if co2_removed_kpa > 0:
+    if beds_online_count > 0:
         baseline_power_kw = beds_online_count * base_power_per_bed_kw
-        baseline_heat_kw = beds_online_count * base_heat_per_bed_kpa
+        baseline_heat_kw = beds_online_count * base_heat_per_bed_kw
 
         actual_co2_removal_power_used_kw = co2_removed_kpa * power_per_kpa_removed_kw
         actual_co2_scrubber_heat_added_kw = co2_removed_kpa * heat_per_kpa_removed_kw
