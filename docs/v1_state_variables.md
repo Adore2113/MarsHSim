@@ -6,7 +6,7 @@
 
 #### ------crew--------------------------------♡
     crew_count
-    crew_activity: str
+    crew_activity
 
 #### ------habitat-----------------------------♡
     hab_vol_m3
@@ -49,20 +49,21 @@
 
 
 #### ------amine beds--------------------------♡
-    amine_beds: list
+    amine_beds
     scrub_per_bed_kpa
 
 #### ------power-------------------------------♡
     battery_max_capacity_kwh
     battery_stored_kwh 
-    solar_arrays: list
+    
+    solar_arrays
     daylight_m2_kw
+    max_daylight_m2_kw
     peak_sunlight_today
     low_sunlight_streak_sols
+    solar_absorptivity
 
 #### ------placeholders for future plans-------♡
-    relative_humidity
-
     # ------------ ♡ water ♡------------
     potable_water_l
     grey_water_l
