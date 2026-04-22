@@ -25,15 +25,13 @@ black_water_tank_capacity_kg = 300.0    # placeholder
 
 #------------calculate crew water changes------------♡
 def get_crew_water_usage(state, crew_results, dt_min):
-    hours_per_step = dt_min / 60
-
     potable_water_used_kg = crew_results.get("potable_water_used_kg", 0.0)
     gray_water_added_kg = crew_results.get("gray_water_added_kg", 0.0)
     black_water_added_kg = crew_results.get("black_water_added_kg", 0.0)
 
     new_potable_water_tank_kg = max(0.0, state.potable_water_tank_kg - potable_water_used_kg)
-    new_gray_water_tank_kg = min(state.gray_water_tank_kg * gray_water_added_kg, gray_water_tank_capacity_kg)    # placeholder!
-    new_black_water_tank_kg = min(state.black_water_tank_kg * black_water_added_kg, black_water_tank_capacity_kg)
+    new_gray_water_tank_kg = min(state.gray_water_tank_kg + gray_water_added_kg, gray_water_tank_capacity_kg)    # placeholder!
+    new_black_water_tank_kg = min(state.black_water_tank_kg + black_water_added_kg, black_water_tank_capacity_kg)
 
     return {
         "potable_water_used_kg": potable_water_used_kg,
