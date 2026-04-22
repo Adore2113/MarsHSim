@@ -18,6 +18,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
 
+
 #-----------time, solar, and daylight update---------♡    
     previous_sol_number = current_sol_number(state.mission_time_s)
     new_sol_number = current_sol_number(next_time_s)
@@ -30,38 +31,49 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     if new_sol_started:
         new_peak_sunlight_today = current_sunlight_amount
-        new_low_sunlight_streak_sols = determine_low_sunlight_streak(new_state)
+        new_low_sunlight_streak_sols = determine_low_sunlight_streak(NEW_STATE)
     else:
         new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
         new_low_sunlight_streak_sols = state.low_sunlight_streak_sols
 
-    NEW_STATE = replace( NEW_STATE, daylight_m2_kw = new_daylight_per_m2_kw, peak_sunlight_today = new_peak_sunlight_today, low_sunlight_streak_sols = new_low_sunlight_streak_sols,)
+    NEW_STATE = replace(NEW_STATE, daylight_m2_kw = new_daylight_per_m2_kw, peak_sunlight_today = new_peak_sunlight_today, low_sunlight_streak_sols = new_low_sunlight_streak_sols,)
 
 
 #------------------crew metabolism-------------------♡
-    crew_results = total_crew_metabolism(state, dt_min)
-    o2_after_crew_kpa = state.o2_kpa - crew_results["o2_drop_kpa"]
-    co2_after_crew_kpa = state.co2_kpa + crew_results["co2_rise_kpa"]
+    crew_results = total_crew_metabolism(NEW_STATE, dt_min) 
+    
+    o2_after_crew_kpa = NEW_STATE.o2_kpa - crew_results["o2_drop_kpa"]
+    co2_after_crew_kpa = NEW_STATE.co2_kpa + crew_results["co2_rise_kpa"]
+
 
 #-------------------co2 scrubbing--------------------♡
-    co2_results = run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min)
+    co2_results = run_co2_scrub(NEW_STATE, co2_after_crew_kpa, next_time_s, dt_min)
+    
     co2_after_scrub_kpa = co2_results["co2_after_scrub_kpa"]
     co2_removed_kpa = co2_results["co2_removed_kpa"]
+   
     new_co2_stored_kpa = co2_results["new_co2_stored_kpa"]
 
+
 #----------------oga (o2 generation)-----------------♡
-    oga_results = run_oga(state, o2_after_crew_kpa, dt_min)
+    oga_results = run_oga(NEW_STATE, o2_after_crew_kpa, dt_min)
+    
     o2_after_oga_kpa = oga_results["o2_after_oga_kpa"]
     o2_added_kpa = oga_results["o2_added_kpa"]
+    
     h2_produced_kg = oga_results["h2_produced_kg"]
     water_used_kg = oga_results["water_used_kg"]
 
-    new_water_for_oga_kg = max(0.0, state.water_for_oga_kg - water_used_kg)
+    new_water_for_oga_kg = max(0.0, NEW_STATE.water_for_oga_kg - water_used_kg)
     new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
+
+    NEW_STATE = replace(NEW_STATE, o2_kpa = o2_after_oga_kpa, co2_kpa = co2_after_scrub_kpa, co2_stored_kpa = new_co2_stored_kpa, h2_stored_kg = new_h2_stored_kg, water_for_oga = new_water_for_oga_kg, amine_beds = co2_results["amine_beds"])
+
 
 #------------------lighting systems------------------♡
     light_results = lights(NEW_STATE, dt_min)
     wellness_results = wellness_lights(NEW_STATE, dt_min)
+
 
 #------state/checkpoint before buffer gas system-----♡
     pre_buffer_state = replace(
