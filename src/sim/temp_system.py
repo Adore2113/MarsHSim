@@ -70,18 +70,6 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
     return heat_loss_kw
 
 
-#------------get total heat from outputs-------------♡
-def heat_from_outputs_kw(outputs):
-    return (
-        outputs.get("crew_temp_rise_kw", 0.0)
-        + outputs.get("oga_heat_kw", 0.0)
-        + outputs.get("co2_scrubber_heat_kw", 0.0)
-        + outputs.get("light_heat_kw", 0.0)
-        + outputs.get("buffer_gas_heat_kw", 0.0)
-        + outputs.get("chx_heat_added_kw", 0.0)
-    ) 
-
-
 #--------------which heaters are online--------------♡
 def heaters_online(heaters, hab_temp_c, target_temp_c):
     new_heaters = []
