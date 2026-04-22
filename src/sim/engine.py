@@ -130,7 +130,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     humidity_results = update_humidity(NEW_STATE, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], dt_min)
     outputs.update(humidity_results)
     
-    thermal_results = run_thermal_control(NEW_STATE, outputs, dt_min, current_sunlight_amount)
+    thermal_results = run_thermal_control( NEW_STATE, crew_results["crew_temp_rise_kw"], oga_results["oga_heat_kw"], co2_results["co2_scrubber_heat_kw"], light_results["light_heat_kw"], wellness_results["w_light_heat_kw"], humidity_results["chx_heat_added_kw"], dt_min, current_sunlight_amount)
     outputs.update(thermal_results)
 
 #-----------------power system update----------------♡
