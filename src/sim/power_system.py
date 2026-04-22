@@ -120,25 +120,25 @@ def wellness_lights(state, dt_min):
         }    
 
 #-----how much power habitat systems are using-------♡
-def total_power_usage(outputs):
+def total_power_usage(co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh, oga_power_used_kw, oga_energy_used_kwh, light_power_used_kw, light_power_used_kwh, w_light_power_used_kw, w_light_power_used_kwh, radiator_power_kw, radiator_energy_kwh, heater_power_kw, heater_energy_kwh, chx_power_used_kw, chx_energy_used_kwh):
     total_power_used_kw = (
-        outputs["co2_scrubber_power_used_kw"]
-        + outputs["oga_power_used_kw"]
-        + outputs["light_power_used_kw"]
-        + outputs["w_light_power_used_kw"]
-        + outputs.get("radiator_power_kw", 0.0)
-        + outputs.get("heater_power_kw", 0.0)
-        + outputs.get("chx_power_used_kw", 0.0)
+        + co2_scrubber_power_used_kw
+        + oga_power_used_kw
+        + light_power_used_kw
+        + w_light_power_used_kw
+        + radiator_power_kw
+        + heater_power_kw
+        + chx_power_used_kw
         )
     
     total_energy_used_kwh = (
-        outputs["co2_scrubber_energy_used_kwh"]
-        + outputs["oga_energy_used_kwh"]
-        + outputs["light_power_used_kwh"]
-        + outputs["w_light_power_used_kwh"]
-        + outputs.get("radiator_energy_kwh", 0.0)
-        + outputs.get("heater_energy_kwh", 0.0)
-        + outputs.get("chx_energy_used_kwh", 0.0)
+        + co2_scrubber_energy_used_kwh
+        + oga_energy_used_kwh
+        + light_power_used_kwh
+        + w_light_power_used_kwh
+        + radiator_energy_kwh
+        + heater_energy_kwh
+        + chx_energy_used_kwh
         )  
     
     return total_power_used_kw, total_energy_used_kwh
@@ -147,12 +147,12 @@ def total_power_usage(outputs):
 
 
 #-----battery usage and storage update per step------♡
-def run_system_power(state, outputs, dt_min):
+def run_system_power(state, co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh, oga_power_used_kw, oga_energy_used_kwh, light_power_used_kw, light_power_used_kwh, w_light_power_used_kw, w_light_power_used_kwh, radiator_power_kw, radiator_energy_kwh, heater_power_kw, heater_energy_kwh, chx_power_used_kw, chx_energy_used_kwh, dt_min):
     hours_per_step = dt_min / 60
     new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state.solar_arrays)
     total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array = solar_generation(state, new_solar_arrays, dt_min)
     battery_after_charge = solar_battery_charge(state, total_solar_generated_kwh)
-    total_power_used_kw, total_energy_used_kwh = total_power_usage(outputs)
+    total_power_used_kw, total_energy_used_kwh = total_power_usage(co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh, oga_power_used_kw, oga_energy_used_kwh, light_power_used_kw, light_power_used_kwh, w_light_power_used_kw, w_light_power_used_kwh, radiator_power_kw, radiator_energy_kwh, heater_power_kw, heater_energy_kwh, chx_power_used_kw, chx_energy_used_kwh)
     new_battery_stored_kwh = max(0.0, battery_after_charge - total_energy_used_kwh)
 
     return {
