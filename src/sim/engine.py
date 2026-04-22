@@ -127,14 +127,43 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
 
 #----------------run thermal control-----------------♡
-    humidity_results = update_humidity(NEW_STATE, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], dt_min)
+    humidity_results = update_humidity(NEW_STATE,
+    crew_results["breath_vapor_added_kg"],
+    crew_results["skin_vapor_added_kg"],
+    dt_min)
+    
     outputs.update(humidity_results)
     
-    thermal_results = run_thermal_control( NEW_STATE, crew_results["crew_temp_rise_kw"], oga_results["oga_heat_kw"], co2_results["co2_scrubber_heat_kw"], light_results["light_heat_kw"], wellness_results["w_light_heat_kw"], humidity_results["chx_heat_added_kw"], dt_min, current_sunlight_amount)
+    thermal_results = run_thermal_control( NEW_STATE,
+    crew_results["crew_temp_rise_kw"],
+    oga_results["oga_heat_kw"],
+    co2_results["co2_scrubber_heat_kw"],
+    light_results["light_heat_kw"],
+    wellness_results["w_light_heat_kw"],
+    humidity_results["chx_heat_added_kw"],
+    current_sunlight_amount,
+    dt_min)
+
     outputs.update(thermal_results)
 
 #-----------------power system update----------------♡
-    power_results = run_system_power(NEW_STATE, outputs, dt_min)
+    power_results = run_system_power(NEW_STATE, 
+    co2_results["co2_scrubber_power_used_kw"],
+    co2_results["co2_scrubber_energy_used_kwh"],
+    oga_results["oga_power_used_kw"],
+    oga_results["oga_energy_used_kwh"],
+    light_results["light_power_used_kw"],
+    light_results["light_power_used_kwh"],
+    wellness_results["w_light_power_used_kw"],
+    wellness_results["w_light_power_used_kwh"],
+    thermal_results["radiator_power_kw"],
+    thermal_results["radiator_energy_kwh"],
+    thermal_results["heater_power_kw"],
+    thermal_results["heater_energy_kwh"],
+    humidity_results["chx_power_used_kw"],
+    humidity_results["chx_energy_used_kwh"], 
+    dt_min)
+
     outputs.update(power_results)
 
 #-----------------final state update-----------------♡
