@@ -529,7 +529,7 @@
 
     -I'm very happy with my progress today
 
-    -I'm realizing when I have the UI up and running, a lot of the sytems that are being used are going to need to be mentioned in an update log ("radiators ...", ect)
+    -I'm realizing when I have the UI up and running, a lot of the sytems that are being used are going to need to be mentioned in an update log ("radiators ...", etc.)
 
     **next session start:**
     -FIX NEW VARIABLES ADDED (insulation and thermal mass)
@@ -634,7 +634,7 @@
     -ADD SECOND AND THIRD HEATER STAGE TRIGGERS AND LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
 
     -eventually...
-        -move onto humidty
+        -move onto humidity
 
         -work on water_system.py
 
@@ -665,7 +665,7 @@
     -ADD SECOND AND THIRD HEATER STAGE TRIGGERS AND LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
 
     -eventually...
-        -move onto humidty
+        -move onto humidity
 
         -work on water_system.py
 
@@ -692,29 +692,30 @@
 ### ♡       04/20/2026
     -moving onto humidity in thermal b/c I decided I will alter the insulation and mass values once I have all the systems implemented including water and everything
 
-    -all humidity will be mostly internal, through crew perspiration, breathing, ect. considering v2 having a greenhouse(?), 
+    -all humidity will be mostly internal, through crew perspiration, breathing, etc. considering v2 having a greenhouse(?), 
 
-    -a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin but I'm going to make it mainly a humidty control subsystem first with slight cooling, b/c I already have the radiators
+    -a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin but I'm going to make it mainly a humidity control subsystem first with slight cooling, b/c I already have the radiators
 
     -added moisture variables to the crew metabolism file and updated temp_system.py
 
     -I'm considering adding a new file to handle humidity depending on how big that part gets
 
-    -add humidity from crew showers, cooking, laundry(?) ect. 
     
     **next session start:**
-    -
-
-    -
+    -change hardcoding to calculations (stay minimal for now)
 
     -eventually...
+        -add extra humidity from crew showers, cooking, laundry(?) etc. 
+
+        -remove some hardcoding from functions that should be calculated
+
         -work on water_system.py
 
         -update other files accordingly
 
         -remove hardcoding and do calculations
 
-        -add humidity from crew showers, cooking, laundry(?) ect.
+        -add humidity from crew showers, cooking, laundry(?) etc.
 
         -consider adding rations or a food system/greenhouse
 
@@ -728,10 +729,63 @@
 
         -update alerts file
 
-        -add second and third backups for systems (amine beds, radiators, heaters, ect.)
+        -add second and third backups for systems (amine beds, radiators, heaters, etc.)
 
         -LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
 
         -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
         -add random daily temp and sunlight variables after seasons are set up 
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/21/2026
+    -going back to co2_scrubber_system and changing hardcoding to calculations
+
+    -adding sunlight to the thermal system
+
+    -I realise that I should be making things change and come from state directly, not so many other things, so before starting water_system.py I'm going to do a complete refactor
+
+    -fixed time, solar and daylight update in step and renamed new state variable to NEW_STATE in caps to make it easier to see while I fix some parts of step
+
+    -finished updating the new state in step, so it's lowercase now and just fixing some layout issues ( making long function signatures extend vertically, but I'm not sure I like the way this looks)
+
+    -considering changing my repetitive functions to be one function that switches modes based on different things, but for now I will continue to keep doing this as I've been doing it
+
+
+       **next session start:**
+    - -work on water_system.py
+
+    -eventually...
+        -consider adding crew scheduling to add to all subsystems (add extra humidity, power, heat, etc. from crew showers, cooking, laundry(?) etc.)
+
+        -update other files accordingly
+
+        -remove hardcoding and do calculations
+
+        -add humidity from crew showers, cooking, laundry(?) etc.
+
+        -consider adding rations or a food system/greenhouse
+
+        -power priority system for when power is low and only runs essential power systems
+        
+        -continue adding heat generated/heat waste
+        
+        -NTA (need to add) electronics/computers, pumps, rations(?)  
+        
+        -add subsystems to the power priority system for when power is low and only runs essential power systems
+
+        -update alerts file
+
+        -break up outputs into either classes or smaller dictionaries
+
+        -add second and third backups for systems (amine beds, radiators, heaters, etc.)
+
+        -LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
+
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+        -add random daily temp and sunlight variables after seasons are set up 
+
+        -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
+
