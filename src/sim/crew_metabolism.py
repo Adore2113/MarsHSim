@@ -13,8 +13,6 @@ base_skin_vapor_per_day_kg = 0.8
 base_nourishment_per_day_kg = 2.35    # drinking and food prep
 base_hygiene_water_per_day_kg = 1.5
 base_black_water_per_day_kg = 1.8
-
-# base_condensate_per_day_kg = ?
 #----------------------------------------------------♡
 
 
