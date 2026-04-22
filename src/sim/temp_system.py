@@ -262,9 +262,9 @@ def determine_thermal_mode(state, hab_temp_c, target_temp_c):
 
 
 #------running thermal control for one timestep------♡
-def run_thermal_control(state, outputs, dt_min, sunlight_amount):
+def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, light_heat_kw, wellness_light_heat_kw, chx_heat_added_kw, dt_min, sunlight_amount):
     hours_per_step = dt_min / 60.0
-    hab_heat_kw = heat_from_outputs_kw(outputs)
+    hab_heat_kw = crew_heat_kw + oga_heat_kw + co2_scrubber_heat_kw + light_heat_kw + wellness_light_heat_kw + chx_heat_added_kw
     mars_temp_c, mars_temp_k = determine_mars_temp_c(state)
     
     if sunlight_amount is None:
