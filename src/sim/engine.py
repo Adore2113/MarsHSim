@@ -65,9 +65,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     water_used_kg = oga_results["water_used_kg"]
 
     new_water_for_oga_kg = max(0.0, NEW_STATE.water_for_oga_kg - water_used_kg)
-    new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
+    new_h2_stored_kg = NEW_STATE.h2_stored_kg + h2_produced_kg
 
-    NEW_STATE = replace(NEW_STATE, o2_kpa = o2_after_oga_kpa, co2_kpa = co2_after_scrub_kpa, co2_stored_kpa = new_co2_stored_kpa, h2_stored_kg = new_h2_stored_kg, water_for_oga = new_water_for_oga_kg, amine_beds = co2_results["amine_beds"])
+    NEW_STATE = replace(NEW_STATE, o2_kpa = o2_after_oga_kpa, co2_kpa = co2_after_scrub_kpa, co2_stored_kpa = new_co2_stored_kpa, h2_stored_kg = new_h2_stored_kg, water_for_oga_kg = new_water_for_oga_kg, amine_beds = co2_results["amine_beds"])
+
 
 
 #------------------lighting systems------------------♡
