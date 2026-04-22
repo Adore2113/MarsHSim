@@ -120,7 +120,21 @@ def wellness_lights(state, dt_min):
         }    
 
 #-----how much power habitat systems are using-------♡
-def total_power_usage(co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh, oga_power_used_kw, oga_energy_used_kwh, light_power_used_kw, light_power_used_kwh, w_light_power_used_kw, w_light_power_used_kwh, radiator_power_kw, radiator_energy_kwh, heater_power_kw, heater_energy_kwh, chx_power_used_kw, chx_energy_used_kwh):
+def total_power_usage(co2_scrubber_power_used_kw,
+    co2_scrubber_energy_used_kwh,
+    oga_power_used_kw,
+    oga_energy_used_kwh,
+    light_power_used_kw,
+    light_power_used_kwh,
+    w_light_power_used_kw,
+    w_light_power_used_kwh,
+    radiator_power_kw,
+    radiator_energy_kwh,
+    heater_power_kw,
+    heater_energy_kwh,
+    chx_power_used_kw,
+    chx_energy_used_kwh):
+    
     total_power_used_kw = (
         + co2_scrubber_power_used_kw
         + oga_power_used_kw
@@ -147,8 +161,23 @@ def total_power_usage(co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh, 
 
 
 #-----battery usage and storage update per step------♡
-def run_system_power(state, co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh, oga_power_used_kw, oga_energy_used_kwh, light_power_used_kw, light_power_used_kwh, w_light_power_used_kw, w_light_power_used_kwh, radiator_power_kw, radiator_energy_kwh, heater_power_kw, heater_energy_kwh, chx_power_used_kw, chx_energy_used_kwh, dt_min):
-    hours_per_step = dt_min / 60
+def run_system_power(state,
+    co2_scrubber_power_used_kw,
+    co2_scrubber_energy_used_kwh,
+    oga_power_used_kw,
+    oga_energy_used_kwh,
+    light_power_used_kw,
+    light_power_used_kwh,
+    w_light_power_used_kw,
+    w_light_power_used_kwh,
+    radiator_power_kw,
+    radiator_energy_kwh,
+    heater_power_kw,
+    heater_energy_kwh,
+    chx_power_used_kw,
+    chx_energy_used_kwh,
+    dt_min):
+
     new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state.solar_arrays)
     total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array = solar_generation(state, new_solar_arrays, dt_min)
     battery_after_charge = solar_battery_charge(state, total_solar_generated_kwh)
