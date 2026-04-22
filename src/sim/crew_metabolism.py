@@ -51,7 +51,7 @@ def total_crew_metabolism(state, dt_min):
 
     potable_water_used_kg = nourishment_kg + hygiene_water_kg
 
-   # gray_water_added_kg = potable_water_used_kg * 0.6  # placeholder ratio
+    gray_water_added_kg = hygiene_water_kg * 0.75    # 75% of water from hygeine
 
 
     return {
@@ -64,4 +64,5 @@ def total_crew_metabolism(state, dt_min):
         "hygiene_water_kg" : hygiene_water_kg,
         "black_water_kg" : black_water_kg,
         "potable_water_used_kg" : potable_water_used_kg,
+        "gray_water_added_kg" : gray_water_added_kg,
         }
