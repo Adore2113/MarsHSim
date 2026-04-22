@@ -2,13 +2,19 @@ from dataclasses import dataclass
 
 @dataclass
 class Habitat_State:
-# ------time----------------------------------------♡
+# -----------time-----------------------------------♡
     mission_time_s: int
 
-# ------lights--------------------------------------♡
+# -----------sun info-------------------------------♡
+    daylight_m2_kw: float
+    
+    peak_sunlight_today: float
+    low_sunlight_streak_sols: int
+
+# -----------lights---------------------------------♡
     light_level: float
 
-# ------crew----------------------------------------♡
+# -----------crew-----------------------------------♡
     crew_count: int
     crew_activity: str
 
@@ -89,17 +95,17 @@ class Habitat_State:
     battery_stored_kwh: float 
     
     solar_arrays: list
-    daylight_m2_kw: float
-    max_daylight_m2_kw: float
-    peak_sunlight_today: float
-    low_sunlight_streak_sols: int
     solar_absorptivity: int
 
+# ------water---------------------------------------♡
+
+    potable_water_tank_kg: float
+    brine_tank_kg: float
+    wastewater_tank_kg: float
+    condensate_tank_kg: float
+    gray_water_tank_kg: float
+
 # ------placeholders for future plans---------------♡
-    # ♡ water ♡
-    potable_water_l: float
-    grey_water_l: float
-    waste_brine_l: float
 
     # ♡ Integrity / safety ♡
     leak_rate_kpa_per_hr: float
