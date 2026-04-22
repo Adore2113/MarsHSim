@@ -109,7 +109,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         "w_light_heat_kw" : wellness_results["w_light_heat_kw"],
         "w_light_heat_kwh" : wellness_results["w_light_heat_kwh"],
 
-        "crew_heat_kw" : state.crew_count * 0.1,
+        "crew_heat_kw" : crew_results["crew_temp_rise_kw"],
         "buffer_gas_heat_kw" : 0.0,
 
 #-------------humidity/moisture control--------------♡
@@ -125,20 +125,21 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         "water_used_kg" : water_used_kg,
         }
 
+
 #----------------run thermal control-----------------♡
-    humidity_results = update_humidity(new_state, outputs, dt_min)
+    humidity_results = update_humidity(NEW_STATE, outputs, dt_min)
     outputs.update(humidity_results)
     
-    thermal_results = run_thermal_control(new_state, outputs, dt_min, current_sunlight_amount)
+    thermal_results = run_thermal_control(NEW_STATE, outputs, dt_min, current_sunlight_amount)
     outputs.update(thermal_results)
 
 #-----------------power system update----------------♡
-    power_results = run_system_power(new_state, outputs, dt_min)
+    power_results = run_system_power(NEW_STATE, outputs, dt_min)
     outputs.update(power_results)
 
 #-----------------final state update-----------------♡
-    new_state = replace(
-        new_state,
+    NEW_STATE = replace(
+        NEW_STATE,
         battery_stored_kwh = power_results["new_battery_stored_kwh"],
         solar_arrays = power_results["new_solar_arrays"],
         light_level = light_results["final_light_level"],
@@ -148,4 +149,4 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         current_humidity_pct = humidity_results["new_humidity_pct"]
         )
 
-    return new_state, outputs
+    return NEW_STATE, outputs
