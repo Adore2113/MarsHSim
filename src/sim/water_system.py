@@ -39,22 +39,42 @@ def get_crew_water_usage(state, crew_results, dt_min):
         "potable_water_used_kg": potable_water_used_kg,
         "gray_water_added_kg": gray_water_added_kg,
         "black_water_added_kg": black_water_added_kg,
-        
+
         "new_potable_water_tank_kg": new_potable_water_tank_kg,
         "new_gray_water_tank_kg": new_gray_water_tank_kg,
         "new_black_water_tank_kg": new_black_water_tank_kg,
     }
 
 
-
-
-
-
 #------------run urine processor assembly------------♡
 def run_upa(state, dt_min):
     hours_per_step = dt_min / 60
-    ...
+    
+    if state.black_water_tank_kg <= 0.1:
+        return {"recovered_water_kg" : 0.0, "brine_added_kg" : 0.0, "processed_per_step_kg" : 0.0, "upa_power_used_kw" : 0.0, "upa_energy_used_kwh" : 0.0}
+    
+    processed_per_step_kg = min(state.black_water_tank_kg, upa_handling_capacity_per_hour_kg * hours_per_step)
+    
+    recovered_water_kg = processed_per_step_kg * upa_recovery_rate
+    brine_added_kg = processed_per_step_kg  * (1 - upa_recovery_rate)
 
+    if processed_per_step_kg > 0:
+        upa_power_used_kw = base_upa_power_kw
+    
+    else:
+        upa_power_used_kw = 0.0
+
+    upa_energy_used_kwh = upa_power_used_kw * hours_per_step
+
+    return {
+    "recovered_water_kg": recovered_water_kg,
+    "brine_added_kg": brine_added_kg,
+
+    "processed_per_step_kg": processed_per_step_kg,
+
+    "upa_power_used_kw": upa_power_used_kw,
+    "upa_energy_used_kwh" : upa_energy_used_kwh
+    }
 
 #------------run brine processor assembly------------♡
 def run_bpa(state, dt_min):
