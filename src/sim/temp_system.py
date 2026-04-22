@@ -17,7 +17,7 @@ stefan_boltzmann_const = 5.67e-8
 
 sunlight_heat_gain_fraction = 0.65    # PLACEHOLDER!
 radiator_heat_gain_fraction = 0.30    # ^ placeholder
-
+max_daylight_m2_kw = 0.57
 sunlight_facing_hab_m2 = 45.0    # another placeholder
 #---------------------------------------------------♡
 
@@ -55,7 +55,7 @@ def get_solar_heat_gain_kw(state, sunlight_amount):
     effective_area_m2 = sunlight_facing_hab_m2 * state.solar_absorptivity
     transmittance = 0.75    # how much heat gets through
     
-    sunlight_per_m2_kw= sunlight_amount * state.max_daylight_m2_kw * 1.0
+    sunlight_per_m2_kw= sunlight_amount * max_daylight_m2_kw * 1.0
     solar_heat_gain_kw = sunlight_per_m2_kw * effective_area_m2 * transmittance * sunlight_heat_gain_fraction
 
     return solar_heat_gain_kw
