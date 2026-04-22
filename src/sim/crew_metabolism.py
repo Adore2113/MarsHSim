@@ -45,7 +45,13 @@ def total_crew_metabolism(state, dt_min):
     crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
 
     #------------------water usage-------------------♡
+    nourishment_per_day_kg = (base_nourishment_per_day_kg * state.crew_count * crew_activity["water_multiplier"] * hours_per_step) / 24
+    hygiene_water_per_day_kg = (base_hygiene_water_per_day_kg * state.crew_count * crew_activity["water_multiplier"] * hours_per_step) / 24
+    black_water_per_day_kg = (base_black_water_per_day_kg * state.crew_count * crew_activity["water_multiplier"] * hours_per_step) / 24
 
+    potable_water_used_kg = nourishment_per_day_kg + hygiene_water_per_day_kg
+
+   # gray_water_added_kg = potable_water_used_kg * 0.6  # placeholder ratio
 
 
     return {
@@ -54,5 +60,8 @@ def total_crew_metabolism(state, dt_min):
         "breath_vapor_added_kg" : breath_vapor_added_kg,
         "skin_vapor_added_kg" : skin_vapor_added_kg,
         "crew_temp_rise_kw" : crew_temp_rise_kw,
-        "crew_temp_rise_kwh" : crew_temp_rise_kwh,
+        "nourishment_per_day_kg" : nourishment_per_day_kg,
+        "hygiene_water_per_day_kg" : hygiene_water_per_day_kg,
+        "black_water_per_day_kg" : black_water_per_day_kg,
+        "potable_water_used_kg" : potable_water_used_kg,
         }
