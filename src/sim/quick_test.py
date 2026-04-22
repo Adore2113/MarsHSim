@@ -107,19 +107,23 @@ s0 = Habitat_State(
     peak_sunlight_today = 0.0,
     low_sunlight_streak_sols = 0,
     solar_absorptivity = 0.65,
+    
+# ------water---------------------------------------♡
 
+    potable_water_tank_kg = 5000.0,
+    brine_tank_kg = 0.0,
+    wastewater_tank_kg = 0.0,
+    condensate_tank_kg = 0.0,
+    gray_water_tank_kg = 0.0,
 
 # ------placeholders for future plans---------------♡
-    potable_water_l = 5000.0,
-    grey_water_l = 0.0,
-    waste_brine_l = 0.0,
 
+    # ♡ Integrity / safety ♡
     leak_rate_kpa_per_hr = 0.0,
     smoke_ppm = 0.0,
     radiation_msv_per_day = 0.7
-)
 #----------------------------------------------------♡
-
+    )
 
 def print_state(state, outputs, alerts):
     sol, hour, minutes = get_sol_time(state)
