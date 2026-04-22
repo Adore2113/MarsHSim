@@ -51,13 +51,12 @@ def determine_mars_temp_c(state):
 
 
 #-------------sunlight the habitat absorbs-----------♡
-def get_solar_heat_gain_kw(state, sunlight_amount):
+def get_solar_heat_gain_kw(state):
     effective_area_m2 = sunlight_facing_hab_m2 * state.solar_absorptivity
     transmittance = 0.75    # how much heat gets through
     
-    sunlight_per_m2_kw= sunlight_amount * max_daylight_m2_kw * 1.0
-    solar_heat_gain_kw = sunlight_per_m2_kw * effective_area_m2 * transmittance * sunlight_heat_gain_fraction
-
+    solar_heat_gain_kw = state.daylight_m2_kw * effective_area_m2 * transmittance
+    
     return solar_heat_gain_kw
 
 
@@ -258,7 +257,7 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
     if sunlight_amount is None:
         sunlight_amount = determine_sunlight_amount(state)
 
-    solar_heat_gain_kw = get_solar_heat_gain_kw(state, sunlight_amount)
+    solar_heat_gain_kw = get_solar_heat_gain_kw(state)
     
     hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(state, state.hab_temp_c, target_temp_c)
 
@@ -332,7 +331,6 @@ def chx_power_and_heat(vapor_removed_kg, dt_min):
 
 #----------condensing heat exchanger (CHX)-----------♡
 def update_humidity(state, breath_vapor_added_kg, skin_vapor_added_kg, dt_min):
-    hours_per_step = dt_min / 60.0
     chx_removal_efficiency = 0.85
     
     total_vapor_added_kg = breath_vapor_added_kg + skin_vapor_added_kg
