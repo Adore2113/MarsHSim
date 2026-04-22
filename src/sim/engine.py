@@ -127,7 +127,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
 
 #----------------run thermal control-----------------♡
-    humidity_results = update_humidity(NEW_STATE, outputs, dt_min)
+    humidity_results = update_humidity(NEW_STATE, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], dt_min)
     outputs.update(humidity_results)
     
     thermal_results = run_thermal_control(NEW_STATE, outputs, dt_min, current_sunlight_amount)
@@ -138,15 +138,6 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     outputs.update(power_results)
 
 #-----------------final state update-----------------♡
-    NEW_STATE = replace(
-        NEW_STATE,
-        battery_stored_kwh = power_results["new_battery_stored_kwh"],
-        solar_arrays = power_results["new_solar_arrays"],
-        light_level = light_results["final_light_level"],
-        hab_temp_c = thermal_results["new_hab_temp_c"],
-        heaters = thermal_results["new_heaters"],
-        radiators = thermal_results["new_radiators"],
-        current_humidity_pct = humidity_results["new_humidity_pct"]
-        )
+    NEW_STATE = replace(NEW_STATE, battery_stored_kwh = power_results["new_battery_stored_kwh"], solar_arrays = power_results["new_solar_arrays"], light_level = light_results["final_light_level"], hab_temp_c = thermal_results["new_hab_temp_c"], heaters = thermal_results["new_heaters"], radiators = thermal_results["new_radiators"], current_humidity_pct = humidity_results["new_humidity_pct"])
 
     return NEW_STATE, outputs
