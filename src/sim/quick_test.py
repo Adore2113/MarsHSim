@@ -104,7 +104,6 @@ s0 = Habitat_State(
     ], 
     
     daylight_m2_kw = 0.0,
-    max_daylight_m2_kw = 0.57,
     peak_sunlight_today = 0.0,
     low_sunlight_streak_sols = 0,
     solar_absorptivity = 0.65,
