@@ -16,6 +16,7 @@ base_black_water_per_day_kg = 1.8
 #----------------------------------------------------♡
 
 
+
 #--------crew activites and metabolism rates---------♡
 crew_activity_states = {
     "normal" : {"o2_drop_multiplier" : 1.0, "co2_rise_multiplier" : 1.0, "breath_vapor_multiplier" : 1.0, "skin_vapor_multiplier" : 1.0, "heat_per_person_w" : 120, "water_multiplier": 1.0},
@@ -43,11 +44,11 @@ def total_crew_metabolism(state, dt_min):
     crew_temp_rise_kwh = crew_temp_rise_kw * hours_per_step
 
     #------------------water usage-------------------♡
-    nourishment_kg = (base_nourishment_per_day_kg * state.crew_count * crew_activity["water_multiplier"] * hours_per_step) / 24
+    nourishment_water_kg = (base_nourishment_per_day_kg * state.crew_count * crew_activity["water_multiplier"] * hours_per_step) / 24
     hygiene_water_kg = (base_hygiene_water_per_day_kg * state.crew_count * crew_activity["water_multiplier"] * hours_per_step) / 24
     black_water_kg = (base_black_water_per_day_kg * state.crew_count* hours_per_step) / 24
 
-    potable_water_used_kg = nourishment_kg + hygiene_water_kg
+    potable_water_used_kg = nourishment_water_kg + hygiene_water_kg
 
     gray_water_added_kg = hygiene_water_kg * 0.75    # 75% of water from hygeine
 
@@ -55,12 +56,14 @@ def total_crew_metabolism(state, dt_min):
     return {
         "o2_drop_kpa" : o2_drop_kpa,
         "co2_rise_kpa" : co2_rise_kpa,
+
         "breath_vapor_added_kg" : breath_vapor_added_kg,
         "skin_vapor_added_kg" : skin_vapor_added_kg,
+
         "crew_temp_rise_kw" : crew_temp_rise_kw,
-        "nourishment_kg" : nourishment_kg,
+        "nourishment_water_kg" : nourishment_water_kg,      
         "hygiene_water_kg" : hygiene_water_kg,
-        "black_water_kg" : black_water_kg,
+        "black_water_added_kg" : black_water_kg,
         "potable_water_used_kg" : potable_water_used_kg,
         "gray_water_added_kg" : gray_water_added_kg,
         }
