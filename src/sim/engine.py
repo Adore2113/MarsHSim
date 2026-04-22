@@ -23,18 +23,20 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_sol_number = current_sol_number(next_time_s)
     new_sol_started = new_sol_number != previous_sol_number
 
-    time_advanced_state = replace(state, mission_time_s = next_time_s)
+    NEW_STATE = replace(state, mission_time_s = next_time_s)
 
-    new_daylight_per_m2_kw = daylight_per_m2_kw(time_advanced_state)
-    current_sunlight_amount = determine_sunlight_amount(time_advanced_state)
+    current_sunlight_amount = determine_sunlight_amount(NEW_STATE)
+    new_daylight_per_m2_kw = daylight_per_m2_kw(NEW_STATE)
 
     if new_sol_started:
         new_peak_sunlight_today = current_sunlight_amount
-        new_low_sunlight_streak_sols = determine_low_sunlight_streak(time_advanced_state)
-    
+        new_low_sunlight_streak_sols = determine_low_sunlight_streak(new_state)
     else:
         new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
         new_low_sunlight_streak_sols = state.low_sunlight_streak_sols
+
+    NEW_STATE = replace( NEW_STATE, daylight_m2_kw = new_daylight_per_m2_kw, peak_sunlight_today = new_peak_sunlight_today, low_sunlight_streak_sols = new_low_sunlight_streak_sols,)
+
 
 #------------------crew metabolism-------------------♡
     crew_results = total_crew_metabolism(state, dt_min)
@@ -58,12 +60,12 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
 
 #------------------lighting systems------------------♡
-    light_results = lights(time_advanced_state, dt_min)
-    wellness_results = wellness_lights(time_advanced_state, dt_min)
+    light_results = lights(NEW_STATE, dt_min)
+    wellness_results = wellness_lights(NEW_STATE, dt_min)
 
 #------state/checkpoint before buffer gas system-----♡
     pre_buffer_state = replace(
-        time_advanced_state,
+        NEW_STATE,
         daylight_m2_kw = new_daylight_per_m2_kw,
         peak_sunlight_today = new_peak_sunlight_today,
         low_sunlight_streak_sols = new_low_sunlight_streak_sols,
