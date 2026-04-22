@@ -323,14 +323,6 @@ def get_thermal_alerts(new_hab_temp_c):
     return thermal_alerts
 
 
-#----------------get total humidity------------------♡
-def get_total_vapor_added_kg(outputs):   
-    total_vapor_added_kg = outputs.get("breath_vapor_added_kg", 0.0) + outputs.get("skin_vapor_added_kg", 0.0)
-
-    return total_vapor_added_kg
-    # add onto this as I go
-
-
 #-------chx power consumption and heat produced------♡
 def chx_power_and_heat(vapor_removed_kg, dt_min):
     hours_per_step = dt_min / 60.0
@@ -351,11 +343,11 @@ def chx_power_and_heat(vapor_removed_kg, dt_min):
 
 
 #----------condensing heat exchanger (CHX)-----------♡
-def update_humidity(state, outputs, dt_min):
+def update_humidity(state, breath_vapor_added_kg, skin_vapor_added_kg, dt_min):
     hours_per_step = dt_min / 60.0
     chx_removal_efficiency = 0.85
     
-    total_vapor_added_kg = get_total_vapor_added_kg(outputs)
+    total_vapor_added_kg = breath_vapor_added_kg + skin_vapor_added_kg
     vapor_per_pct_kg = (water_vapor_per_m3 * state.hab_vol_m3) / 100.0
     
     target_vapor_kg = state.target_humidity_pct * vapor_per_pct_kg
