@@ -70,38 +70,17 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     NEW_STATE = replace(NEW_STATE, o2_kpa = o2_after_oga_kpa, co2_kpa = co2_after_scrub_kpa, co2_stored_kpa = new_co2_stored_kpa, h2_stored_kg = new_h2_stored_kg, water_for_oga_kg = new_water_for_oga_kg, amine_beds = co2_results["amine_beds"])
 
 
+#----------------run buffer gas system---------------♡
+    buffer_gas_results = run_buffer_gas_control(NEW_STATE, dt_min)
+
+    NEW_STATE = replace(NEW_STATE, n2_kpa = buffer_gas_results["n2_kpa"], ar_kpa = buffer_gas_results["ar_kpa"], n2_stored_kpa = buffer_gas_results["n2_stored_kpa"],ar_stored_kpa = buffer_gas_results["ar_stored_kpa"])
+
+
 
 #------------------lighting systems------------------♡
     light_results = lights(NEW_STATE, dt_min)
     wellness_results = wellness_lights(NEW_STATE, dt_min)
 
-
-#------state/checkpoint before buffer gas system-----♡
-    pre_buffer_state = replace(
-        NEW_STATE,
-        daylight_m2_kw = new_daylight_per_m2_kw,
-        peak_sunlight_today = new_peak_sunlight_today,
-        low_sunlight_streak_sols = new_low_sunlight_streak_sols,
-        light_level = light_results["final_light_level"],
-        amine_beds = co2_results["amine_beds"],
-        o2_kpa = o2_after_oga_kpa,
-        co2_kpa = co2_after_scrub_kpa,
-        co2_stored_kpa = new_co2_stored_kpa,
-        h2_stored_kg = new_h2_stored_kg,
-        water_for_oga_kg = new_water_for_oga_kg,
-        )
-
-#----------------run buffer gas system---------------♡
-    buffer_gas_results = run_buffer_gas_control(pre_buffer_state, dt_min)
-
-#---------------state after gas update---------------♡
-    new_state = replace(
-        pre_buffer_state,
-        n2_kpa=buffer_gas_results["n2_kpa"],
-        ar_kpa=buffer_gas_results["ar_kpa"],
-        n2_stored_kpa=buffer_gas_results["n2_stored_kpa"],
-        ar_stored_kpa=buffer_gas_results["ar_stored_kpa"],
-    )
 
 #-------------power and subsystem outputs------------♡
     outputs = {
