@@ -76,7 +76,7 @@ def run_upa(state, dt_min):
 
 
 #------------run brine processor assembly------------♡
-def run_bpa(state, condensate_kg, dt_min):
+def run_bpa(state, dt_min):
     hours_per_step = dt_min / 60
 
     if state.brine_storage_kg <= 0.1:
@@ -102,9 +102,9 @@ def run_bpa(state, condensate_kg, dt_min):
 
 
 #------------run water processor assembly------------♡
-def run_wpa(state, dt_min):
+def run_wpa(state, condensate_kg, dt_min):
     hours_per_step = dt_min / 60
-    total_water_input_kg = state.gray_water_storage_kg + condensate_kg
+    total_water_input_kg = state.gray_water_storage_kg #+ condensate_kg
     
     if total_water_input_kg <= 0.1:
         return {"recovered_water_kg" : 0.0, "water_processed_kg": 0.0, "wpa_power_used_kw" : 0.0, "wpa_energy_used_kwh" : 0.0}
