@@ -65,10 +65,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     h2_produced_kg = oga_results["h2_produced_kg"]
     water_used_kg = oga_results["water_used_kg"]
 
-    new_water_for_oga_kg = max(0.0, new_state.water_for_oga_kg - water_used_kg)
+    new_potable_water_kg = max(0.0, new_state.potable_water_storage_kg - water_used_kg)
     new_h2_stored_kg = new_state.h2_stored_kg + h2_produced_kg
 
-    new_state = replace(new_state, o2_kpa = o2_after_oga_kpa, co2_kpa = co2_after_scrub_kpa, co2_stored_kpa = new_co2_stored_kpa, h2_stored_kg = new_h2_stored_kg, water_for_oga_kg = new_water_for_oga_kg, amine_beds = co2_results["amine_beds"])
+    new_state = replace(new_state, o2_kpa = o2_after_oga_kpa, co2_kpa = co2_after_scrub_kpa, co2_stored_kpa = new_co2_stored_kpa, h2_stored_kg = new_h2_stored_kg, potable_water_storage_kg = new_potable_water_kg, amine_beds = co2_results["amine_beds"])
 
 
 #----------------run buffer gas system---------------♡
