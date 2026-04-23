@@ -59,7 +59,7 @@ def buffer_gas_regen_kpa(state):
             total_buffer_gas_added_kpa += ar_to_add_kpa
             pressure_needed_kpa -= ar_to_add_kpa
         
-    return n2_kpa, ar_kpa, n2_stored_kpa, ar_stored_kpa, total_buffer_gas_added_kpa    
+    return n2_kpa, ar_kpa, n2_stored_kpa, ar_stored_kpa, total_buffer_gas_added_kpa
       
 
 #-----system power consumption and heat produced-----♡
