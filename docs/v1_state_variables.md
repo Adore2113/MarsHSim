@@ -44,10 +44,6 @@
     co2_stored_kpa
     h2_stored_kg
 
-#### ------OGA water---------------------------♡
-    water_for_oga_kg
-
-
 #### ------amine beds--------------------------♡
     amine_beds
     scrub_per_bed_kpa
@@ -65,10 +61,16 @@
 
 # ------water---------------------------------------♡
     potable_water_storage_kg
-    brine_storage_kg
-    wastewater_storage_kg
-    condensate_storage_kg
     gray_water_storage_kg
+    black_water_storage_kg   
+    condensate_storage_kg   
+    brine_storage_kg
+
+    potable_water_storage_capacity_kg
+    gray_water_storage_capacity_kg
+    black_water_storage_capacity_kg
+    condensate_storage_capacity_kg
+    brine_storage_capacity_kg 
 
 # ------placeholders for future plans---------------♡
 
