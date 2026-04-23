@@ -124,9 +124,13 @@ s0 = Habitat_State(
     # ♡ Integrity / safety ♡
     leak_rate_kpa_per_hr = 0.0,
     smoke_ppm = 0.0,
-    radiation_msv_per_day = 0.7
-#----------------------------------------------------♡
+    radiation_msv_per_day = 0.7,
+
+# --------wellness lights on or off-----------------♡
+    wellness_lights_on = False,
     )
+#----------------------------------------------------♡
+
 
 def print_state(state, outputs, alerts):
     sol, hour, minutes = get_sol_time(state)
