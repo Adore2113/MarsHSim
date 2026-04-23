@@ -19,7 +19,7 @@ bpa_handling_capacity_per_hour_kg = 0.15
 potable_water_storage_capacity_kg = 5000.0    # placeholder
 gray_water_storage_capacity_kg = 500.0    # placeholder
 black_water_storage_capacity_kg = 300.0    # placeholder
-condensate_storage_capacity_kg = kg = 80.0    # placeholder
+condensate_storage_capacity_kg = 80.0    # placeholder
 #----------------------------------------------------♡
 
 
@@ -129,7 +129,7 @@ def run_wpa(state, dt_min):
         "recovered_water_kg": recovered_water_kg,
         "water_processed_kg": water_processed_kg,
         "condensate_removed_kg": condensate_removed_kg,
-        "gray_water_removed_kg": water_processed_kg,    # change after figuring out condensate_kg
+        "gray_water_removed_kg": gray_water_removed_kg,
 
         "wpa_power_used_kw": wpa_power_used_kw,
         "wpa_energy_used_kwh": wpa_energy_used_kwh,
