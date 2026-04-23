@@ -16,28 +16,42 @@ heat_per_kpa_removed_kw = 8.0
 bed_switch_interval_s = 3300
 bed_switch_power_multiplier = 1.25
 
-co2_efficiency_change_levels = {
-    0.0 : 0.55,
-    0.2 : 0.55,
-    0.4 : 0.85,
-    0.5 : 1.00
-}
+co2_efficiency_change_levels = {0.0 : 0.55, 0.2 : 0.55, 0.4 : 0.85, 0.5 : 1.00}
 #----------------------------------------------------♡
 
 
 #---------which beds and how many are online---------♡
-def amine_bed_control_and_count(amine_beds):
+def amine_bed_control_and_count(amine_beds, co2_kpa, target_co2_kpa):
     new_beds = []
     beds_online_count = sum(1 for bed in amine_beds if bed["status"] == "online")
 
-    for bed in amine_beds:
-        new_bed = bed.copy()
+    hysteresis = 0.5
+    bed_switched_this_step = False
 
-        if beds_online_count < min_beds_online and new_bed["status"] == "standby":
-            new_bed["status"] = "online"
-            beds_online_count += 1
+    if co2_kpa > target_co2_kpa + hysteresis and beds_online_count < len(amine_beds):
+        for bed in amine_beds:
+            new_bed = bed.copy()
 
-        new_beds.append(new_bed)
+            if new_bed["status"] == "standby":
+                new_bed["status"] = "online"
+                beds_online_count += 1
+                bed_switched_this_step = True
+
+            new_beds.append(new_bed)
+
+    elif co2_kpa < target_co2_kpa - hysteresis and beds_online_count > min_beds_online:
+        for bed in amine_beds:
+            new_bed = bed.copy()
+
+            if new_bed["status"] == "online" and  beds_online_count > min_beds_online:
+                new_bed["status"] = "standby"
+                beds_online_count -= 1
+                bed_switched_this_step = True
+            
+            new_beds.append(new_bed)
+    
+    else:
+        new_beds = [bed.copy() for bed in amine_beds]
 
     return new_beds, beds_online_count
 
@@ -61,7 +75,7 @@ def get_co2_scrub_efficiency(co2_kpa):
 
 #-------------co2 removal limit per step-------------♡
 def co2_scrub_capacity_kpa(state, co2_after_crew_kpa, next_time_s):
-    beds_after_control, beds_online_count = amine_bed_control_and_count(state.amine_beds)
+    beds_after_control, beds_online_count = amine_bed_control_and_count(state.amine_beds, state.co2_kpa, state.target_co2_kpa)
     regen_rate_kpa = 0.01    # how fast a bed is venting co2 outside during regen
     
     max_scrub_removal_kpa = beds_online_count * state.scrub_per_bed_kpa
