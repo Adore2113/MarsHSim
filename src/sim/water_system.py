@@ -79,7 +79,27 @@ def run_upa(state, dt_min):
 def run_bpa(state, condensate_kg, dt_min):
     hours_per_step = dt_min / 60
 
-    ...
+    if state.brine_storage_kg <= 0.1:
+        return {"recovered_water_kg" : 0.0, "water_processed_kg": 0.0,  "bpa_power_used_kw" : 0.0, "bpa_energy_used_kwh" : 0.0}
+
+    water_processed_kg = min(state.brine_storage_kg, bpa_handling_capacity_per_hour_kg * hours_per_step)
+    recovered_water_kg = water_processed_kg * bpa_recovery_rate
+
+    if water_processed_kg > 0:
+        bpa_power_used_kw = base_bpa_power_kw
+    
+    else:
+        bpa_power_used_kw = 0.0
+
+    bpa_energy_used_kwh = bpa_power_used_kw * hours_per_step
+
+    return {
+        "recovered_water_kg": recovered_water_kg,
+        "water_processed_kg": water_processed_kg,
+        "bpa_power_used_kw": bpa_power_used_kw,
+        "bpa_energy_used_kwh": bpa_energy_used_kwh,
+    }
+
 
 #------------run water processor assembly------------♡
 def run_wpa(state, dt_min):
@@ -87,7 +107,7 @@ def run_wpa(state, dt_min):
     total_water_input_kg = state.gray_water_storage_kg + condensate_kg
     
     if total_water_input_kg <= 0.1:
-        return {"recovered_water_kg" : 0.0, "wpa_power_used_kw" : 0.0, "wpa_energy_used_kwh" : 0.0}
+        return {"recovered_water_kg" : 0.0, "water_processed_kg": 0.0, "wpa_power_used_kw" : 0.0, "wpa_energy_used_kwh" : 0.0}
 
     water_processed_kg = min(total_water_input_kg, wpa_handling_capacity_per_hour_kg * hours_per_step)
     recovered_water_kg = water_processed_kg * wpa_recovery_rate
