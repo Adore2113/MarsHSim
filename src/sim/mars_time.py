@@ -72,7 +72,7 @@ def daylight_fraction_result(state):
     if sun_visibility <= -1:
         daylight_fraction = 0.0
         return daylight_fraction
-    
+
     if sun_visibility >= 1:
         daylight_fraction = 1.0
         return daylight_fraction
