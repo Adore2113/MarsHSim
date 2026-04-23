@@ -113,3 +113,6 @@ class Habitat_State:
     leak_rate_kpa_per_hr: float
     smoke_ppm: float
     radiation_msv_per_day: float
+    
+# --------wellness lights on or off-----------------♡
+    wellness_lights_on: bool = False
