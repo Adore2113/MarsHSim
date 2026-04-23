@@ -58,18 +58,21 @@
     
     solar_arrays
     daylight_m2_kw
-    max_daylight_m2_kw
+
     peak_sunlight_today
     low_sunlight_streak_sols
     solar_absorptivity
 
-#### ------placeholders for future plans-------♡
-    # ------------ ♡ water ♡------------
-    potable_water_l
-    grey_water_l
-    waste_brine_l
+# ------water---------------------------------------♡
+    potable_water_storage_kg
+    brine_storage_kg
+    wastewater_storage_kg
+    condensate_storage_kg
+    gray_water_storage_kg
 
-    #----- ♡ Integrity / safety ♡ -----
+# ------placeholders for future plans---------------♡
+
+    # ♡ Integrity / safety ♡
     leak_rate_kpa_per_hr
     smoke_ppm
     radiation_msv_per_day
