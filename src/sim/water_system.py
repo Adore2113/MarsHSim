@@ -20,6 +20,7 @@ potable_water_storage_capacity_kg = 5000.0    # placeholder
 gray_water_storage_capacity_kg = 500.0    # placeholder
 black_water_storage_capacity_kg = 300.0    # placeholder
 condensate_storage_capacity_kg = 80.0    # placeholder
+brine_storage_capacity_kg = 150.0    # placeholder
 #----------------------------------------------------♡
 
 
