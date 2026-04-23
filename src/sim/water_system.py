@@ -49,7 +49,7 @@ def run_upa(state, dt_min):
     hours_per_step = dt_min / 60
     
     if state.black_water_storage_kg <= 0.1:
-        return {"recovered_water_kg" : 0.0, "brine_added_kg" : 0.0, "processed_per_step_kg" : 0.0, "upa_power_used_kw" : 0.0, "upa_energy_used_kwh" : 0.0}
+        return {"recovered_water_kg" : 0.0, "brine_added_kg" : 0.0, "black_water_removed_kg": 0.0, "upa_power_used_kw" : 0.0, "upa_energy_used_kwh" : 0.0}
     
     black_water_removed_kg = min(state.black_water_storage_kg, upa_handling_capacity_per_hour_kg * hours_per_step)
     
