@@ -78,3 +78,6 @@
     leak_rate_kpa_per_hr
     smoke_ppm
     radiation_msv_per_day
+
+# --------wellness lights on or off-----------------♡
+    wellness_lights_on
