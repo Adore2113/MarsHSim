@@ -7,6 +7,7 @@ from .crew_metabolism import total_crew_metabolism
 from .power_system import lights, wellness_lights, run_system_power
 from .mars_time import daylight_per_m2_kw, determine_sunlight_amount, current_sol_number, determine_low_sunlight_streak
 from .temp_system import run_thermal_control, update_humidity
+from .water_system import crew_water_usage, run_bpa, run_upa, run_wpa, potable_water_storage_capacity_kg
 
 #--------------------constants-----------------------♡
 default_dt_min = 5
@@ -42,11 +43,11 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 #------------------crew metabolism-------------------♡
     crew_results = total_crew_metabolism(new_state, dt_min) 
     
+
+#-------------------co2 scrubbing--------------------♡
     o2_after_crew_kpa = new_state.o2_kpa - crew_results["o2_drop_kpa"]
     co2_after_crew_kpa = new_state.co2_kpa + crew_results["co2_rise_kpa"]
 
-
-#-------------------co2 scrubbing--------------------♡
     co2_results = run_co2_scrub(new_state, co2_after_crew_kpa, next_time_s, dt_min)
     
     co2_after_scrub_kpa = co2_results["co2_after_scrub_kpa"]
@@ -76,11 +77,33 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_state = replace(new_state, n2_kpa = buffer_gas_results["n2_kpa"], ar_kpa = buffer_gas_results["ar_kpa"], n2_stored_kpa = buffer_gas_results["n2_stored_kpa"],ar_stored_kpa = buffer_gas_results["ar_stored_kpa"])
 
 
-
 #------------------lighting systems------------------♡
     light_results = lights(new_state, dt_min)
     wellness_results = wellness_lights(new_state, dt_min)
 
+#-------------------water subsystems-----------------♡
+    crew_water_results = crew_water_usage(new_state, crew_results, dt_min)
+    
+    upa_results = run_upa(new_state, dt_min)
+    bpa_results = run_bpa(new_state, dt_min)
+    wpa_results = run_wpa(new_state, condensate_kg = 0.0, dt_min = dt_min)    # add real condensate later
+
+    total_recovered_water_kg = (upa_results["recovered_water_kg"] + wpa_results["recovered_water_kg"] + bpa_results["recovered_water_kg"])
+
+    new_potable_water_storage_kg = min(potable_water_storage_capacity_kg, crew_water_results["new_potable_water_storage_kg"] + total_recovered_water_kg)
+
+    new_gray_water_storage_kg = max(0.0, crew_water_results["new_gray_water_storage_kg"] - wpa_results["gray_water_removed_kg"])
+
+    new_black_water_storage_kg = max(0.0, crew_water_results["new_black_water_storage_kg"] - upa_results.get("black_water_removed_kg", 0.0))
+
+    new_brine_storage_kg = max(0.0, new_state.brine_storage_kg - bpa_results.get("processed_water_kg", 0.0))
+    
+    new_state = replace(new_state, 
+        potable_water_storage_kg = new_potable_water_storage_kg,
+        gray_water_storage_kg = new_gray_water_storage_kg,
+        black_water_storage_kg = new_black_water_storage_kg,
+        brine_storage_kg = new_brine_storage_kg,
+    )
 
 #-------------power and subsystem outputs------------♡
     outputs = {
@@ -123,6 +146,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         
 #-------------------water subsystem------------------♡
         "water_used_kg" : water_used_kg,
+        
         }
 
 
