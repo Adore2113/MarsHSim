@@ -789,3 +789,57 @@
 
         -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
 
+♡--------------------------------------------------♡ 
+
+### ♡       04/22/2026
+    -doing some research before starting water_system.py to know what kind of water system makes sense with focus on reusability
+
+    -going by what NASA uses for water recovery systems I'm going to use:
+        -Urine Processor Assembly (UPA)
+        -Water Processor Assembly (WPA)
+        -Brine Processor Assembly (BPA)
+    
+    -so the urine goes through the UPA and gets clean water and brine, and the brine goes through the BPA and gets some more clean water and a smaller amount of brine (that's the goal anyway)
+
+    -I read about In-Situ Resource Utilization (ISRU) to extract water locally but I'll worry about that later
+
+       **next session start:**
+    -continue working on water_system.py:
+        -add new results to print function
+        -add condensate
+        -change oga to use water usage from water_system file, and remove its own storage variable
+        -don't forget about the CHX
+
+
+    -eventually...
+        -consider adding crew scheduling to add to all subsystems (add extra humidity, power, heat, etc. from crew showers, cooking, laundry(?) etc.)
+
+        -update other files accordingly
+
+        -remove hardcoding and do calculations
+
+        -add humidity from crew showers, cooking, laundry(?) etc.
+
+        -consider adding rations or a food system/greenhouse
+
+        -power priority system for when power is low and only runs essential power systems
+        
+        -continue adding heat generated/heat waste
+        
+        -NTA (need to add) electronics/computers, pumps, rations(?)  
+        
+        -add subsystems to the power priority system for when power is low and only runs essential power systems
+
+        -update alerts file
+
+        -break up outputs into either classes or smaller dictionaries
+
+        -add second and third backups for systems (amine beds, radiators, heaters, etc.)
+
+        -LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
+
+        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
+
+        -add random daily temp and sunlight variables after seasons are set up 
+
+        -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
