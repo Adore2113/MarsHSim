@@ -54,9 +54,6 @@ class Habitat_State:
     co2_stored_kpa: float
     h2_stored_kg: float
 
-# ------OGA water-----------------------------------♡
-    water_for_oga_kg: float
-
 # ------pressure percentages using Dalton's Law-----♡
     @property
     def total_pressure_kpa(self) -> float:
