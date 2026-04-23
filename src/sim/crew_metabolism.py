@@ -16,7 +16,6 @@ base_black_water_per_day_kg = 1.8
 #----------------------------------------------------♡
 
 
-
 #--------crew activites and metabolism rates---------♡
 crew_activity_states = {
     "normal" : {"o2_drop_multiplier" : 1.0, "co2_rise_multiplier" : 1.0, "breath_vapor_multiplier" : 1.0, "skin_vapor_multiplier" : 1.0, "heat_per_person_w" : 120, "water_multiplier": 1.0},
@@ -61,7 +60,7 @@ def total_crew_metabolism(state, dt_min):
         "skin_vapor_added_kg" : skin_vapor_added_kg,
 
         "crew_temp_rise_kw" : crew_temp_rise_kw,
-        "nourishment_water_kg" : nourishment_water_kg,      
+        "nourishment_water_kg" : nourishment_water_kg,  
         "hygiene_water_kg" : hygiene_water_kg,
         "black_water_added_kg" : black_water_kg,
         "potable_water_used_kg" : potable_water_used_kg,
