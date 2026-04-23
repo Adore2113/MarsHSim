@@ -110,11 +110,11 @@ s0 = Habitat_State(
     
 # ------water---------------------------------------♡
 
-    potable_water_tank_kg = 5000.0,
-    brine_tank_kg = 0.0,
-    wastewater_tank_kg = 0.0,
-    condensate_tank_kg = 0.0,
-    gray_water_tank_kg = 0.0,
+    potable_water_storage_kg = 5000.0,
+    brine_storage_kg = 0.0,
+    black_water_storage_kg = 0.0,
+    condensate_storage_kg = 0.0,
+    gray_water_storage_kg = 0.0,
 
 # ------placeholders for future plans---------------♡
 
