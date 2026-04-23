@@ -95,17 +95,17 @@ class Habitat_State:
     solar_absorptivity: int
 
 # ------water---------------------------------------♡
-    potable_water_storage_kg : float
-    gray_water_storage_kg : float
-    black_water_storage_kg : float   
-    condensate_storage_kg : float   
-    brine_storage_kg : float
+    potable_water_storage_kg: float
+    gray_water_storage_kg: float
+    black_water_storage_kg: float   
+    condensate_storage_kg: float   
+    brine_storage_kg: float
 
-    potable_water_storage_capacity_kg : float
-    gray_water_storage_capacity_kg : float
-    black_water_storage_capacity_kg : float
+    potable_water_storage_capacity_kg: float
+    gray_water_storage_capacity_kg: float
+    black_water_storage_capacity_kg: float
     condensate_storage_capacity_kg: float
-    brine_storage_capacity_kg : float 
+    brine_storage_capacity_kg: float 
 
 # ------placeholders for future plans---------------♡
 
