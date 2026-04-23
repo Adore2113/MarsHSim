@@ -33,7 +33,7 @@ s0 = Habitat_State(
         {"id" : 3, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 4, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 5, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
-        {"id" : 6, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},    
+        {"id" : 6, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 7, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
         {"id" : 8, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
     ],
@@ -44,7 +44,7 @@ s0 = Habitat_State(
         {"id" : 3, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
         {"id" : 4, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
         {"id" : 5, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
-        {"id" : 6, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},    
+        {"id" : 6, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
         {"id" : 7, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
         {"id" : 8, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
     ],
@@ -112,8 +112,8 @@ s0 = Habitat_State(
 
     potable_water_storage_kg = 5000.0,
     gray_water_storage_kg = 0.0,
-    black_water_storage_kg = 0.0,    
-    condensate_storage_kg = 0.0,    
+    black_water_storage_kg = 0.0,
+    condensate_storage_kg = 0.0,
     brine_storage_kg = 0.0,
 
     potable_water_storage_capacity_kg = 5000.0,    # placeholder
@@ -162,13 +162,20 @@ def print_state(state, outputs, alerts):
 
     print(("♡ [ RESOURCES ] ♡").center(WIDTH))
     print(f"{'Water Remaining:':<22} {state.water_for_oga_kg:.2f} kg")
-    print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f}  kg\n")
+    print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f}  kg")
+    print(f"{'Potable Water:':<22} {state.potable_water_storage_kg:.2f} kg")
+    print(f"{'Gray Water:':<22} {state.gray_water_storage_kg:.2f} kg")
+    print(f"{'Black Water:':<22} {state.black_water_storage_kg:.2f} kg")
+    print(f"{'Condensate:':<22} {state.condensate_storage_kg:.2f} kg")
+    print(f"{'Brine:':<22} {state.brine_storage_kg:.2f} kg\n")
 
     print(("♡ [ SYSTEMS ] ♡").center(WIDTH))
     print(f"{'CO2 Scrubbed:':<22} {outputs['co2_removed_kpa']:.4f} kPa")
     print(f"{'Scrubber Power Used:':<22} {outputs['co2_scrubber_power_used_kw']:.2f} kW")
     print(f"{'Scrubber Heat:':<22} {outputs['co2_scrubber_heat_kw']:.2f} kW")
     print(f"{'Scrubber Energy:':<22} {outputs['co2_scrubber_energy_used_kwh']:.2f} kWh")
+    print(f"{'O2 Added:':<22} {outputs['o2_added_kpa']:.4f} kPa")
+    print(f"{'OGA Water Used:':<22} {outputs['oga_water_used_kg']:.4f} kg")
     print(f"{'OGA Heat:':<22} {outputs['oga_heat_kw']:.2f} kW")
     print(f"{'Lights Power:':<22} {outputs['light_power_used_kw']:.2f} kW\n")
     print(f"{'Lights Heat:':<22} {outputs['light_heat_kw']:.2f} kW\n")
@@ -201,6 +208,20 @@ def print_state(state, outputs, alerts):
     print(f"{'Heater Power Used:':<22} {outputs['heater_power_kw']:.2f} kW")
     print(f"{'Heater Energy:':<22} {outputs['heater_energy_kwh']:.2f} kWh")
     print(f"{'Thermal Mode:':<22} {outputs['hab_temp_mode']}\n")
+
+    print(("♡ [ WATER SYSTEM ] ♡").center(WIDTH))
+    print(f"{'Potable Used:':<22} {outputs['potable_water_used_kg']:.2f} kg")
+    print(f"{'Gray Added:':<22} {outputs['gray_water_added_kg']:.2f} kg")
+    print(f"{'Black Added:':<22} {outputs['black_water_added_kg']:.2f} kg")
+    print(f"{'Condensate Added:':<22} {outputs['vapor_removed_kg']:.2f} kg")
+    print(f"{'UPA Recovered:':<22} {outputs['upa_recovered_water_kg']:.2f} kg")
+    print(f"{'UPA Brine Added:':<22} {outputs['upa_brine_added_kg']:.2f} kg")
+    print(f"{'UPA Black Removed:':<22} {outputs['upa_black_water_removed_kg']:.2f} kg")
+    print(f"{'WPA Recovered:':<22} {outputs['wpa_recovered_water_kg']:.2f} kg")
+    print(f"{'WPA Processed:':<22} {outputs['wpa_water_processed_kg']:.2f} kg")
+    print(f"{'BPA Recovered:':<22} {outputs['bpa_recovered_water_kg']:.2f} kg")
+    print(f"{'BPA Processed:':<22} {outputs['bpa_water_processed_kg']:.2f} kg")
+    print(f"{'Total Recovered:':<22} {outputs['total_recovered_water_kg']:.2f} kg\n")
 
     #--debug check:
     print(("♡ [ SUN INFORMATION ] ♡").center(WIDTH))
