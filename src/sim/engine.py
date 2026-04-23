@@ -145,8 +145,22 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         "h2_produced_kg" : h2_produced_kg,
         
 #-------------------water subsystem------------------♡
-        "water_used_kg" : water_used_kg,
-        
+        "oga_water_used_kg" : water_used_kg,    # connect oga water usage to water_system.py
+        "potable_water_used_kg": crew_water_results["potable_water_used_kg"],
+        "gray_water_added_kg": crew_water_results["gray_water_added_kg"],
+        "black_water_added_kg": crew_water_results["black_water_added_kg"],
+
+        "upa_recovered_water_kg": upa_results["recovered_water_kg"],
+        "upa_brine_added_kg": upa_results["brine_added_kg"],
+        "upa_black_water_removed_kg": upa_results["black_water_removed_kg"],
+
+        "wpa_recovered_water_kg": wpa_results["recovered_water_kg"],
+        "wpa_water_processed_kg": wpa_results["water_processed_kg"],
+
+        "bpa_recovered_water_kg": bpa_results["recovered_water_kg"],
+        "bpa_water_processed_kg": bpa_results["water_processed_kg"],
+
+        "total_recovered_water_kg": total_recovered_water_kg,
         }
 
 
