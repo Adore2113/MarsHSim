@@ -95,14 +95,19 @@ def lights(state, dt_min):
 def wellness_lights(state, dt_min):
     hours_per_step = dt_min / 60
     low_sunlight_streak = state.low_sunlight_streak_sols
-    
+
+    wellness_light_status = False
+
     if low_sunlight_streak >= 3:
         wellness_lights_on = True
         wellness_light_level = 1.0
     
-    else:
+    elif low_sunlight_streak <= 1:
         wellness_lights_on = False
         wellness_light_level = 0.0
+    
+    else:
+        wellness_lights_on = wellness_light_status
     
     w_light_power_used_kw = 0.5 * wellness_light_level
     w_light_power_used_kwh = w_light_power_used_kw * hours_per_step
