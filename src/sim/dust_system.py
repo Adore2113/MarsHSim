@@ -10,7 +10,6 @@ base_dust_rate_per_sol = 0.007
 primary_rad_dust_multiplier = 1.12   # placeholder
 backup_rad_dust_multiplier = 0.885   # placeholder
 solar_dust_miltiplier = 1.15   # placeholder
-
 online_multiplier = 1.25    # online systems get dusty a bit faster
 
 min_raditor_efficiency = 0.35   # placeholder
@@ -30,12 +29,15 @@ def get_dust_accumulation(state, dt_min):
     for rad in state.radiators:
         new_rad = rad.copy()
 
-        if new_rad["status"] == "online":
-          if new_rad["type"] == "primary":
-               dust_multiplier = primary_rad_dust_multiplier
+        if new_rad["type"] == "primary":
+            dust_multiplier = primary_rad_dust_multiplier
 
-          else:
-              dust_multiplier = backup_rad_dust_multiplier
+        else:
+            dust_multiplier = backup_rad_dust_multiplier
+
+        
+        if new_rad["status"] == "online":
+            dust_multiplier *= online_multiplier
 
         efficiency_loss = base_dust_rate_per_sol * dust_multiplier * sols_per_step
         
