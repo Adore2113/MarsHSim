@@ -106,8 +106,9 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         brine_storage_kg = water_storage_results["new_brine_storage_kg"],
     )
 
-#-------------power and subsystem outputs------------♡
+
     outputs = {
+         #-------------power consumption--------------♡
         "co2_scrubber_power_used_kw" : co2_results["co2_scrubber_power_used_kw"],
         "co2_scrubber_energy_used_kwh" : co2_results["co2_scrubber_energy_used_kwh"],
         
@@ -119,8 +120,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         
         "w_light_power_used_kw" : wellness_results["w_light_power_used_kw"],
         "w_light_power_used_kwh" : wellness_results["w_light_power_used_kwh"],
-
-#---------------------heat/temp----------------------♡
+        
+        #--------------heat + temp---------------♡
         "co2_scrubber_heat_kw" : co2_results["co2_scrubber_heat_kw"],
         "co2_scrubber_heat_kwh" : co2_results["co2_scrubber_heat_kwh"],
         
@@ -136,16 +137,16 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         "crew_heat_kw" : crew_results["crew_temp_rise_kw"],
         "buffer_gas_heat_kw" : 0.0,
 
-#-------------humidity/moisture control--------------♡
+        #----------------humidity----------------♡
         "breath_vapor_added_kg" : crew_results["breath_vapor_added_kg"],
         "skin_vapor_added_kg" : crew_results["skin_vapor_added_kg"],
 
-#--------------------gas/atmosphere------------------♡
+        #------------gases/atmosphere------------♡
         "co2_removed_kpa" : co2_removed_kpa,
         "o2_added_kpa": o2_added_kpa,
         "h2_produced_kg" : h2_produced_kg,
         
-#-------------------water subsystem------------------♡
+        #-----------------water------------------♡
         "oga_water_used_kg" : water_used_kg,    # connect oga water usage to water_system.py
         "potable_water_used_kg": crew_water_results["potable_water_used_kg"],
         "gray_water_added_kg": crew_water_results["gray_water_added_kg"],
@@ -188,22 +189,32 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     outputs.update(thermal_results)
 
 #-----------------power system update----------------♡
-    power_results = run_system_power(new_state, 
-    co2_results["co2_scrubber_power_used_kw"],
-    co2_results["co2_scrubber_energy_used_kwh"],
-    oga_results["oga_power_used_kw"],
-    oga_results["oga_energy_used_kwh"],
-    light_results["light_power_used_kw"],
-    light_results["light_power_used_kwh"],
-    wellness_results["w_light_power_used_kw"],
-    wellness_results["w_light_power_used_kwh"],
-    thermal_results["radiator_power_kw"],
-    thermal_results["radiator_energy_kwh"],
-    thermal_results["heater_power_kw"],
-    thermal_results["heater_energy_kwh"],
-    humidity_results["chx_power_used_kw"],
-    humidity_results["chx_energy_used_kwh"], 
-    dt_min)
+    power_results = run_system_power(
+        new_state,
+        #-------------power consumption--------------♡
+        co2_results["co2_scrubber_power_used_kw"],
+        co2_results["co2_scrubber_energy_used_kwh"],
+        oga_results["oga_power_used_kw"],
+        oga_results["oga_energy_used_kwh"],
+        light_results["light_power_used_kw"],
+        light_results["light_power_used_kwh"],
+        wellness_results["w_light_power_used_kw"],
+        wellness_results["w_light_power_used_kwh"],
+        #-------------lighting heat--------------♡
+        light_results["light_heat_kw"],
+        light_results["light_heat_kwh"],
+        wellness_results["w_light_heat_kw"],
+        wellness_results["w_light_heat_kwh"],
+        #----------------thermal-----------------♡
+        thermal_results["radiator_power_kw"],
+        thermal_results["radiator_energy_kwh"],
+        thermal_results["heater_power_kw"],
+        thermal_results["heater_energy_kwh"],
+        #------------------CHX-------------------♡
+        humidity_results["chx_power_used_kw"],
+        humidity_results["chx_energy_used_kwh"],
+        dt_min
+    )
 
     outputs.update(power_results)
 
