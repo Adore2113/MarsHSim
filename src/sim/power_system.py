@@ -1,6 +1,6 @@
 from dataclasses import replace
 from .state import Habitat_State
-from .mars_time import get_sol_time, daylight_per_m2_kw, determine_sunlight_amount
+from .mars_time import get_sol_time, determine_sunlight_amount
 
 #--------------------constants-----------------------♡
 min_light_level = 0.2
@@ -27,13 +27,12 @@ def solar_arrays_online(solar_array):
 #--------calculate solar power generated amount-------♡
 def solar_generation(state, new_solar_arrays, dt_min):
     hours_per_step = dt_min / 60
-    current_daylight_m2_kw = state.daylight_m2_kw
     power_generated_per_array = []
     total_solar_generated_kw = 0.0
 
     for array in new_solar_arrays:
         if array["status"] == "online":
-            power_generated_kw = (current_daylight_m2_kw * array["area_m2"] * array["efficiency"] * array["dust_factor"])
+            power_generated_kw = (state.daylight_m2_kw * array["area_m2"] * array["efficiency"] * array["dust_factor"])
 
         else:
             power_generated_kw = 0.0
@@ -48,14 +47,11 @@ def solar_generation(state, new_solar_arrays, dt_min):
 
 #--------save solar power generated to storage-------♡
 def solar_battery_charge(state, total_solar_generated_kwh):
-    battery_stored_kwh = state.battery_stored_kwh
-    battery_max_capacity_kwh = state.battery_max_capacity_kwh
-    
-    if battery_stored_kwh < battery_max_capacity_kwh:
-        new_battery_stored_kwh = min(battery_max_capacity_kwh, battery_stored_kwh + total_solar_generated_kwh)
+    if state.battery_stored_kwh < state.battery_max_capacity_kwh:
+        new_battery_stored_kwh = min(state.battery_max_capacity_kwh, state.battery_stored_kwh + total_solar_generated_kwh)
 
     else:
-        new_battery_stored_kwh = battery_stored_kwh
+        new_battery_stored_kwh = state.battery_stored_kwh
     
     return new_battery_stored_kwh
 
@@ -65,6 +61,7 @@ def lights(state, dt_min):
     hours_per_step = dt_min / 60
     _, sol_hour, minutes = get_sol_time(state)
     sunlight_amount = determine_sunlight_amount(state)
+    
     crew_awake_hours = 6 <= sol_hour < 21 or (sol_hour == 21 and minutes < 30)
 
     if crew_awake_hours:
@@ -98,8 +95,7 @@ def wellness_lights(state, dt_min):
     hours_per_step = dt_min / 60
     low_sunlight_streak = state.low_sunlight_streak_sols
 
-    wellness_light_status = False
-
+    #----------------hysteresis----------------------♡
     if low_sunlight_streak >= 3:
         wellness_lights_on = True
         wellness_light_level = 1.0
@@ -109,7 +105,7 @@ def wellness_lights(state, dt_min):
         wellness_light_level = 0.0
     
     else:
-        wellness_lights_on = wellness_light_status
+        wellness_lights_on = state.wellness_lights_on
     
     w_light_power_used_kw = 0.5 * wellness_light_level
     w_light_power_used_kwh = w_light_power_used_kw * hours_per_step
@@ -162,45 +158,47 @@ def total_power_usage(co2_scrubber_power_used_kw,
         + heater_energy_kwh
         + chx_energy_used_kwh
         )  
-    
+
     return total_power_used_kw, total_energy_used_kwh
 
-    # eventually add total heat produced
+
+#-----how much heat was generated--------------------♡
+def total_heat_generated(light_heat_kw, light_heat_kwh ,w_light_heat_kw, w_light_heat_kwh):
+    total_heat_added_kw = light_heat_kw + w_light_heat_kw
+
+    total_heat_added_kwh =  light_heat_kwh + w_light_heat_kwh
+
+    return total_heat_added_kw, total_heat_added_kwh
 
 
 #-----battery usage and storage update per step------♡
 def run_system_power(state,
-    co2_scrubber_power_used_kw,
-    co2_scrubber_energy_used_kwh,
-    oga_power_used_kw,
-    oga_energy_used_kwh,
-    light_power_used_kw,
-    light_power_used_kwh,
-    w_light_power_used_kw,
-    w_light_power_used_kwh,
-    radiator_power_kw,
-    radiator_energy_kwh,
-    heater_power_kw,
-    heater_energy_kwh,
-    chx_power_used_kw,
-    chx_energy_used_kwh,
+    co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh,
+    oga_power_used_kw, oga_energy_used_kwh,
+    light_power_used_kw, light_power_used_kwh,
+    w_light_power_used_kw, w_light_power_used_kwh,
+    light_heat_kw, light_heat_kwh,
+    w_light_heat_kw, w_light_heat_kwh,
+    radiator_power_kw, radiator_energy_kwh,
+    heater_power_kw, heater_energy_kwh,
+    chx_power_used_kw, chx_energy_used_kwh,
     dt_min):
 
     new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state.solar_arrays)
     total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array = solar_generation(state, new_solar_arrays, dt_min)
     battery_after_charge = solar_battery_charge(state, total_solar_generated_kwh)
     total_power_used_kw, total_energy_used_kwh = total_power_usage(co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh, oga_power_used_kw, oga_energy_used_kwh, light_power_used_kw, light_power_used_kwh, w_light_power_used_kw, w_light_power_used_kwh, radiator_power_kw, radiator_energy_kwh, heater_power_kw, heater_energy_kwh, chx_power_used_kw, chx_energy_used_kwh)
+    total_heat_added_kw, total_heat_added_kwh = total_heat_generated(light_heat_kw, light_heat_kwh ,w_light_heat_kw, w_light_heat_kwh)
     new_battery_stored_kwh = max(0.0, battery_after_charge - total_energy_used_kwh)
 
     return {
         "new_solar_arrays": new_solar_arrays,
-        "solar_arrays_online_count": solar_arrays_online_count,
-        "total_solar_generated_kw": total_solar_generated_kw,
-        "total_solar_generated_kwh": total_solar_generated_kwh,
-        "total_power_used_kw": total_power_used_kw,
-        "total_energy_used_kwh": total_energy_used_kwh,
-        "new_battery_stored_kwh": new_battery_stored_kwh,
-        "power_generated_per_array": power_generated_per_array
+        "solar_arrays_online_count" : solar_arrays_online_count,
+        "total_solar_generated_kw" : total_solar_generated_kw, "total_solar_generated_kwh" : total_solar_generated_kwh,
+        "total_power_used_kw" : total_power_used_kw, "total_energy_used_kwh" : total_energy_used_kwh,
+        "total_heat_added_kw" : total_heat_added_kw, "total_heat_added_kwh" : total_heat_added_kwh,
+        "new_battery_stored_kwh" : new_battery_stored_kwh,
+        "power_generated_per_array":  power_generated_per_array
     }
     
 
