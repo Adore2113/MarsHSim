@@ -18,10 +18,13 @@ def buffer_gas_regen_kpa(state):
     ar_kpa = state.ar_kpa
     ar_stored_kpa = state.ar_stored_kpa
 
+    hysteresis_kpa = 0.15
+    target_pressure_kpa = state.target_pressure_kpa
+    
     total_buffer_gas_added_kpa = 0.0
     total_pressure_kpa = mca(state.o2_kpa, state.co2_kpa, n2_kpa, ar_kpa)
-
-    #---------handling emergency gas levels---------♡
+    
+    #---------handling emergency gas levels---------♡  
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
         pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
 
@@ -38,8 +41,8 @@ def buffer_gas_regen_kpa(state):
             total_buffer_gas_added_kpa += ar_to_add_kpa
             pressure_needed_kpa -= ar_to_add_kpa
 
-    elif total_pressure_kpa < state.target_pressure_kpa:
-        pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
+    elif total_pressure_kpa < (target_pressure_kpa - hysteresis_kpa):
+        pressure_needed_kpa = target_pressure_kpa - total_pressure_kpa
 
         if n2_kpa < state.target_n2_kpa:
             n2_room_left_kpa = state.target_n2_kpa - n2_kpa
