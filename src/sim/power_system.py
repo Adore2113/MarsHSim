@@ -4,6 +4,11 @@ from .mars_time import get_sol_time, determine_sunlight_amount
 
 #--------------------constants-----------------------♡
 min_light_level = 0.2
+
+base_light_power_kw = 2.0
+base_light_heat_kw = 0.5
+base_w_light_power_kw = 0.5
+base_w_light_heat_kw = 0.1
 #---------------------------------------------------♡
 
 
@@ -75,10 +80,10 @@ def lights(state, dt_min):
     
     final_light_level = max(min_light_level, light_level_dimmed)
 
-    light_power_used_kw = 2.0 * final_light_level
+    light_power_used_kw = base_light_power_kw * final_light_level
     light_power_used_kwh = light_power_used_kw * hours_per_step
 
-    light_heat_kw =  0.5 * final_light_level
+    light_heat_kw =  base_w_light_heat_kw * final_light_level
     light_heat_kwh = light_heat_kw * hours_per_step
 
     return {
@@ -107,10 +112,10 @@ def wellness_lights(state, dt_min):
     else:
         wellness_lights_on = state.wellness_lights_on
     
-    w_light_power_used_kw = 0.5 * wellness_light_level
+    w_light_power_used_kw = base_w_light_power_kw * wellness_light_level
     w_light_power_used_kwh = w_light_power_used_kw * hours_per_step
 
-    w_light_heat_kw =  0.1 * wellness_light_level
+    w_light_heat_kw =  base_w_light_heat_kw * wellness_light_level
     w_light_heat_kwh = w_light_heat_kw * hours_per_step
 
     return {
@@ -131,7 +136,8 @@ def total_power_usage(
     w_light_power_used_kw, w_light_power_used_kwh,
     radiator_power_kw, radiator_energy_kwh,
     heater_power_kw, heater_energy_kwh,
-    chx_power_used_kw, chx_energy_used_kwh):
+    chx_power_used_kw, chx_energy_used_kwh
+    ):
     
     total_power_used_kw = (
         + co2_scrubber_power_used_kw
