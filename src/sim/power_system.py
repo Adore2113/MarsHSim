@@ -124,20 +124,14 @@ def wellness_lights(state, dt_min):
 
 
 #-----how much power habitat systems are using-------♡
-def total_power_usage(co2_scrubber_power_used_kw,
-    co2_scrubber_energy_used_kwh,
-    oga_power_used_kw,
-    oga_energy_used_kwh,
-    light_power_used_kw,
-    light_power_used_kwh,
-    w_light_power_used_kw,
-    w_light_power_used_kwh,
-    radiator_power_kw,
-    radiator_energy_kwh,
-    heater_power_kw,
-    heater_energy_kwh,
-    chx_power_used_kw,
-    chx_energy_used_kwh):
+def total_power_usage(
+    co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh,
+    oga_power_used_kw, oga_energy_used_kwh,
+    light_power_used_kw, light_power_used_kwh,
+    w_light_power_used_kw, w_light_power_used_kwh,
+    radiator_power_kw, radiator_energy_kwh,
+    heater_power_kw, heater_energy_kwh,
+    chx_power_used_kw, chx_energy_used_kwh):
     
     total_power_used_kw = (
         + co2_scrubber_power_used_kw
