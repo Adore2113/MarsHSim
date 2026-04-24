@@ -13,13 +13,14 @@ target_humidity_pct = 48.0
 water_vapor_per_m3 = 0.0008
 
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
+w_per_kw = 1000.0   # watts to kilowatts
 stefan_boltzmann_const = 5.67e-8
 
-sunlight_heat_gain_fraction = 0.65    # PLACEHOLDER!
-radiator_heat_gain_fraction = 0.30    # ^ placeholder
+max_daylight_m2_kw = 0.59
+sunlight_facing_hab_m2 = 48.0
+default_solar_absorptivity = 0.68
 
-max_daylight_m2_kw = 0.57
-sunlight_facing_hab_m2 = 45.0    # another placeholder
+default_radiator_emission = 0.90
 
 hysteresis_c = 0.3
 #---------------------------------------------------♡
@@ -183,12 +184,13 @@ def rad_heat_rejection_kw(state, mars_temp_k, new_radiators):
     for rad in new_radiators:
         if rad["status"] == "online":
             covered_area_m2 = rad["area_m2"] * rad["dust_factor"]
-            rad_efficiency = rad["efficiency"]
+            
+            effective_emission = default_radiator_emission * rad["efficiency"]
             
             rad_temp_difference = hab_temp_k ** 4 - mars_temp_k ** 4
 
-            heat_rejected_w = rad_efficiency * sb_const * covered_area_m2 * rad_temp_difference
-            total_rejection_kw += heat_rejected_w / 1000.0
+            heat_rejected_w = effective_emission * sb_const * covered_area_m2 * rad_temp_difference
+            total_rejection_kw += heat_rejected_w / w_per_kw
 
     return max(0.0, total_rejection_kw)
     
