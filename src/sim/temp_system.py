@@ -18,7 +18,6 @@ stefan_boltzmann_const = 5.67e-8
 
 max_daylight_m2_kw = 0.59
 sunlight_facing_hab_m2 = 48.0
-default_solar_absorptivity = 0.68
 
 default_radiator_emission = 0.90
 
@@ -57,7 +56,7 @@ def determine_mars_temp_c(state):
 #------------------solar heat gain-------------------♡
 def get_solar_heat_gain_kw(state):
     effective_area_m2 = sunlight_facing_hab_m2 * state.solar_absorptivity
-    transmittance = 0.75    # how much heat gets through
+    transmittance = 0.75    # fraction of how much heat gets through
     
     solar_heat_gain_kw = state.daylight_m2_kw * effective_area_m2 * transmittance
     
@@ -83,14 +82,11 @@ def heaters_online(heaters, hab_temp_c, target_temp_c):
     target_online_count = heaters_online_count
 
     if heaters_online_count < len(heater_stages):
-        next_heater_on_temp_c = heater_stages[heaters_online_count]
-
-        if hab_temp_c <= next_heater_on_temp_c:
+        if hab_temp_c <= heater_stages[heaters_online_count]:
             target_online_count += 1
 
     if heaters_online_count > 0:
-        next_heater_off_temp_c = heater_stages[heaters_online_count - 1] + hysteresis_c
-
+        next_heater_off_temp_c = heater_stages[heaters_online_count - 1]  + hysteresis_c       
         if hab_temp_c > next_heater_off_temp_c:
             target_online_count -= 1
 
@@ -98,8 +94,13 @@ def heaters_online(heaters, hab_temp_c, target_temp_c):
         new_heater = heater.copy()
 
         if heaters_online_count < target_online_count and new_heater["status"] == "standby":
-                new_heater["status"] = "online"
-                heaters_online_count += 1
+                if new_heater["type"] == "primary":
+                    new_heater["status"] = "online"
+                    heaters_online_count += 1
+                
+                elif new_heater["type"] == "backup" and heaters_online_count < target_online_count:
+                    new_heater["status"] == "online"
+                    heaters_online_count += 1
 
         elif heaters_online_count > target_online_count and new_heater["status"] == "online":
                 new_heater["status"] = "standby"
@@ -140,7 +141,6 @@ def heater_power(new_heaters, dt_min):
 def radiators_online(radiators, hab_temp_c, target_temp_c):
     new_radiators = []
     radiators_online_count = sum(1 for rad in radiators if rad["status"] == "online")
-    hysteresis_c = 0.3
 
     radiator_stages = [target_temp_c + 0.3, target_temp_c + 0.6, target_temp_c + 0.9, target_temp_c + 1.2, target_temp_c + 1.5, target_temp_c + 1.8,]
     
@@ -158,14 +158,19 @@ def radiators_online(radiators, hab_temp_c, target_temp_c):
         if hab_temp_c < next_rad_off_temp_c:
             target_online_count -= 1
 
-    target_online_count = min(target_online_count, 6)
+    target_online_count = min(target_online_count, 8)
 
     for rad in radiators:
         new_radiator = rad.copy()
 
         if radiators_online_count < target_online_count and new_radiator["status"] == "standby":
-            new_radiator["status"] = "online"
-            radiators_online_count += 1
+            if new_radiator["type"] == "primary":
+                new_radiator["status"] = "online"
+                online_count += 1
+
+            elif new_radiator["type"] == "backup" and online_count < target_online_count:
+                new_radiator["status"] = "online"
+                online_count += 1
 
         elif radiators_online_count > target_online_count and new_radiator["status"] == "online":
             new_radiator["status"] = "standby"
