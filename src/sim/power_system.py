@@ -2,7 +2,10 @@ from dataclasses import replace
 from .state import Habitat_State
 from .mars_time import get_sol_time, daylight_per_m2_kw, determine_sunlight_amount
 
+#--------------------constants-----------------------♡
 min_light_level = 0.2
+#---------------------------------------------------♡
+
 
 #-----------which solar arrays are online------------♡
 def solar_arrays_online(solar_array):
@@ -63,7 +66,6 @@ def lights(state, dt_min):
     _, sol_hour, minutes = get_sol_time(state)
     sunlight_amount = determine_sunlight_amount(state)
     crew_awake_hours = 6 <= sol_hour < 21 or (sol_hour == 21 and minutes < 30)
-    min_light_level = 0.2
 
     if crew_awake_hours:
         base_light_level = min_light_level
@@ -123,6 +125,7 @@ def wellness_lights(state, dt_min):
             "w_light_heat_kw": w_light_heat_kw,
             "w_light_heat_kwh": w_light_heat_kwh,
         }    
+
 
 #-----how much power habitat systems are using-------♡
 def total_power_usage(co2_scrubber_power_used_kw,
@@ -215,6 +218,7 @@ def check_power_mode(state):
         power_mode = "normal"
     
     return power_mode
+
 
 #------------deciding low power priorites------------♡
 def apply_low_power_mode(power_mode, final_light_level, wellness_light_level):
