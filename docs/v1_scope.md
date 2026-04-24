@@ -843,3 +843,59 @@
         -add random daily temp and sunlight variables after seasons are set up 
 
         -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/23/2026
+    -adding condensate/CHX to water_system and engine, and made OGA use potable water
+
+    -added new results to print function
+
+    -fixing heating issue, my hysteresis was WAY too high in temp_system.py
+
+    -added hysteresis for amine beds function, buffer gas system, wellness lights and OGA
+
+
+
+       **next session start:**
+    -fix thermal mass from 800 to a much lower amount and check insulation value
+
+    -LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
+
+
+    -make sure more heaters turn on properly
+
+    -make sure at least two amine beds are always online(?)
+
+    -make backup amine beds, and other systems (2 minimum)
+
+    -add thermal alerts and warnings
+
+    -eventually...
+        -remove hardcoding and do calculations
+
+        -have backups for heaters and radiators and amine beds and any other system that uses multiple machines/systems
+
+        -add crew scheduling 
+
+        -add to water usage and humidity from showers, cooking, laundry etc.
+
+        -rations or a food system/greenhouse(?)
+
+        -update alerts file amd male a better system with mixed temp things, humidity, power, water, etx.
+
+        -handle dust factor and add wind effects on radiators and solar arrays(which will be 0.0 - 1.0)
+
+        -add random Mars wind cleaning the solar arrays
+
+        -add random daily temp and sunlight variables after seasons are set up 
+
+        -power priority system for when power is low (only runs essential systems)
+        
+        -break up outputs into either classes or smaller dictionaries
+
+        -continue adding heat generated/heat waste
+        
+        -need to add electronic heat and power, rations(?)  
+
+        -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
