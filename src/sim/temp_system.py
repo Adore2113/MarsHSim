@@ -17,8 +17,11 @@ stefan_boltzmann_const = 5.67e-8
 
 sunlight_heat_gain_fraction = 0.65    # PLACEHOLDER!
 radiator_heat_gain_fraction = 0.30    # ^ placeholder
+
 max_daylight_m2_kw = 0.57
 sunlight_facing_hab_m2 = 45.0    # another placeholder
+
+hysteresis_c = 0.3
 #---------------------------------------------------♡
 
 
@@ -50,7 +53,7 @@ def determine_mars_temp_c(state):
     return mars_temp_c, mars_temp_k
 
 
-#-------------sunlight the habitat absorbs-----------♡
+#------------------solar heat gain-------------------♡
 def get_solar_heat_gain_kw(state):
     effective_area_m2 = sunlight_facing_hab_m2 * state.solar_absorptivity
     transmittance = 0.75    # how much heat gets through
@@ -60,7 +63,7 @@ def get_solar_heat_gain_kw(state):
     return solar_heat_gain_kw
 
 
-#------passive heat loss to outside environment------♡
+#------------------passive heat loss-----------------♡
 def heat_loss_from_outside_kw(state, mars_temp_c):
     temp_difference_c = state.hab_temp_c - mars_temp_c
 
@@ -69,11 +72,10 @@ def heat_loss_from_outside_kw(state, mars_temp_c):
     return heat_loss_kw
 
 
-#--------------which heaters are online--------------♡
+#----------------------heaters-----------------------♡
 def heaters_online(heaters, hab_temp_c, target_temp_c):
     new_heaters = []
     heaters_online_count = sum(1 for heater in heaters if heater["status"] == "online")
-    hysteresis_c = 0.3
 
     heater_stages = [target_temp_c - 0.1, target_temp_c - 0.3, target_temp_c - 0.6, target_temp_c - 1.0, target_temp_c - 1.5, target_temp_c - 2.0,]
 
@@ -107,7 +109,7 @@ def heaters_online(heaters, hab_temp_c, target_temp_c):
     return new_heaters, heaters_online_count
 
 
-#---------------electric heater system---------------♡
+#----------------heater heat produced----------------♡
 def heater_heat_added_kw(new_heaters):
     total_heater_heat_kw = 0.0
 
@@ -133,7 +135,7 @@ def heater_power(new_heaters, dt_min):
     return heater_power_kw, heater_energy_kwh
 
 
-#-------------which radiators are online-------------♡
+#---------------------radiators----------------------♡
 def radiators_online(radiators, hab_temp_c, target_temp_c):
     new_radiators = []
     radiators_online_count = sum(1 for rad in radiators if rad["status"] == "online")
@@ -155,8 +157,7 @@ def radiators_online(radiators, hab_temp_c, target_temp_c):
         if hab_temp_c < next_rad_off_temp_c:
             target_online_count -= 1
 
-    max_radiators_online_count = 6
-    target_online_count = min(target_online_count, max_radiators_online_count)
+    target_online_count = min(target_online_count, 6)
 
     for rad in radiators:
         new_radiator = rad.copy()
@@ -173,8 +174,7 @@ def radiators_online(radiators, hab_temp_c, target_temp_c):
 
     return new_radiators, radiators_online_count
 
-
-#--------------radiatior cooling system--------------♡
+#----------------radiatior cooling-------------------♡
 def rad_heat_rejection_kw(state, mars_temp_k, new_radiators):
     total_rejection_kw = 0.0
     sb_const = stefan_boltzmann_const
@@ -204,8 +204,8 @@ def radiator_power(radiators_online_count, dt_min):
     return radiator_power_kw, radiator_energy_kwh
     
 
-#---------determine the habitat thermal mode---------♡
-def determine_thermal_mode(state, hab_temp_c, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw):
+#-----------determine habitat thermal mode-----------♡
+def determine_thermal_mode(state, hab_temp_c, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw, target_temp_c):
     new_heaters, heaters_online_count = heaters_online(state.heaters, state.hab_temp_c, target_temp_c)
     new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c)
 
@@ -232,7 +232,6 @@ def determine_thermal_mode(state, hab_temp_c, heat_loss_kw, hab_heat_kw, solar_h
     temp_without_heaters_c = hab_heat_kw + solar_heat_gain_kw - heat_loss_kw
 
     if temp_without_heaters_c < -5.0 and heaters_online_count == 0:
-        if any (new_heater["status"] == "standby" for new_heater in new_heaters):
             for new_heater in new_heaters:
                 if new_heater["status"] == "standby":
                     new_heater["status"] = "online"
@@ -245,10 +244,10 @@ def determine_thermal_mode(state, hab_temp_c, heat_loss_kw, hab_heat_kw, solar_h
     elif radiators_online_count > 0:
         hab_temp_mode = "Cooling Mode"
 
-    elif hab_temp_c < target_temp_c:
+    elif hab_temp_c < target_temp_c - hysteresis_c:
         hab_temp_mode = "Below Target"
 
-    elif hab_temp_c > target_temp_c:
+    elif hab_temp_c > target_temp_c + hysteresis_c:
         hab_temp_mode = "Above Target"
 
     else:
@@ -270,7 +269,7 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
     
     heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
     
-    hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(state, state.hab_temp_c, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
+    hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(state, state.hab_temp_c, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw, target_temp_c)
     
     heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
     
