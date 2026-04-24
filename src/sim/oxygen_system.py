@@ -9,7 +9,7 @@ o2_kg_per_kpa = 18.2
 co2_kg_per_kpa = 35.8
 n2_kg_per_kpa = 22.75
 ar_kg_per_kpa = 32.45
-pa_per_kpa = 1000   # kilopascals to pascals
+pa_per_kpa = 1000.0   # kilopascals to pascals
 
 r = 8.314   # the universal gas constant
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
