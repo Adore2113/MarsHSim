@@ -18,7 +18,7 @@ def buffer_gas_regen_kpa(state):
     ar_kpa = state.ar_kpa
     ar_stored_kpa = state.ar_stored_kpa
 
-    hysteresis_kpa = 0.15
+    hysteresis_kpa = 0.05
     target_pressure_kpa = state.target_pressure_kpa
     
     total_buffer_gas_added_kpa = 0.0
