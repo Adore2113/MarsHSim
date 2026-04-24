@@ -7,13 +7,13 @@ from .mars_time import seconds_per_sol
 #--------------------constants-----------------------♡
 base_dust_rate_per_sol = 0.007
 
-primary_rad_dust_multiplier = 1.12   # placeholder
-backup_rad_dust_multiplier = 0.885   # placeholder
-solar_dust_miltiplier = 1.15   # placeholder
+primary_rad_dust_multiplier = 1.12
+backup_rad_dust_multiplier = 0.885
+solar_dust_miltiplier = 1.15
 online_multiplier = 1.25    # online systems get dusty a bit faster
 
-min_raditor_efficiency = 0.35   # placeholder
-min_solar_effiency = 0.40   # placeholder
+min_raditor_efficiency = 0.35
+min_solar_effiency = 0.40
 #----------------------------------------------------♡
 
 
