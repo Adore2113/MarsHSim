@@ -11,6 +11,8 @@ primary_rad_dust_multiplier = 1.12   # placeholder
 backup_rad_dust_multiplier = 0.885   # placeholder
 solar_dust_miltiplier = 1.15   # placeholder
 
+online_multiplier = 1.25    # online systems get dusty a bit faster
+
 min_raditor_efficiency = 0.35   # placeholder
 min_solar_effiency = 0.40   # placeholder
 #----------------------------------------------------♡
@@ -40,4 +42,24 @@ def get_dust_accumulation(state, dt_min):
         new_rad["dust_factor"] = max(min_raditor_efficiency, new_rad["dust_factor"] - efficiency_loss)
         new_radiators.append(new_rad)
     
-    return new_radiators
+    #------------------solar arrays------------------♡
+    for array in state.solar_arrays:
+        new_array = array.copy()
+        
+        dust_rate = base_dust_rate_per_sol * solar_dust_miltiplier
+
+        if new_array["status"] == "online":
+            efficiency_loss *= online_multiplier
+
+        efficiency_loss = dust_rate * sols_per_step
+        
+        new_array["dust_factor"] = max(min_solar_effiency, new_array["dust_factor"] - efficiency_loss)
+        new_solar_arrays.append(new_array)
+    
+    return {
+        "new_radiators" : new_radiators,
+        "new_solar_arrays" : new_solar_arrays,
+    }
+
+
+
