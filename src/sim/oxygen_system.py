@@ -18,10 +18,11 @@ o2_molar_mass = 32.0
 oga_max_o2_output = 0.004
 #----------------------------------------------------♡
 
+
 #------------oxygen regeneration process-------------♡
 def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
-    o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))     # make enough o2 to fill deficit + a bit extra, never negative
+    o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))
     o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
 
     return o2_after_oga_kpa, o2_added_kpa
@@ -73,8 +74,16 @@ def oga_power_and_heat(o2_added_kpa, dt_min):
 
 #------------oga result info per timestep------------♡
 def run_oga(state, o2_after_crew_kpa, dt_min):
+    hours_per_step = dt_min / 60.0
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
-    o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))
+    
+    hysteresis_kpa = 0.002    # only enough to avoid quick switching on and off, subject to change 
+
+    if o2_needed_kpa < hysteresis_kpa:
+        o2_added_kpa = 0.0
+
+    else:
+        o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))
     
     water_used_kg = oga_water_consumed(state, o2_added_kpa)
  
