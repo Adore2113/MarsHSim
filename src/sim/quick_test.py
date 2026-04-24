@@ -24,29 +24,28 @@ s0 = Habitat_State(
     target_humidity_pct = 48.0,
     current_humidity_pct = 48.0,
 
-    insulation_strength_kw_per_c = 0.8,
-    thermal_mass_kwh_per_c = 800.0,
+    insulation_strength_kw_per_c = 1.15,
+    thermal_mass_kwh_per_c = 260.0,
 
     radiators = [
-        {"id" : 1, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
-        {"id" : 2, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
-        {"id" : 3, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
-        {"id" : 4, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
-        {"id" : 5, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
-        {"id" : 6, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
-        {"id" : 7, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
-        {"id" : 8, "status" : "standby", "area_m2" : 60, "efficiency" : 0.9, "dust_factor" : 1.0},
+        {"id" : 1, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
+        {"id" : 2, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
+        {"id" : 3, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
+        {"id" : 4, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
+        {"id" : 5, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
+       
+        {"id" : 6, "status" : "standby", "area_m2" : 55, "efficiency" : 0.85, "dust_factor" : 1.0, "type" : "backup"},
+        {"id" : 7, "status" : "standby", "area_m2" : 55, "efficiency" : 0.85, "dust_factor" : 1.0, "type" : "backup"},
     ],
 
     heaters = [
-        {"id" : 1, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
-        {"id" : 2, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
-        {"id" : 3, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
-        {"id" : 4, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
-        {"id" : 5, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
-        {"id" : 6, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
-        {"id" : 7, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
-        {"id" : 8, "status" : "standby", "power_kw" : 8.0, "efficiency" : 1.0},
+        {"id" : 1, "status" : "standby", "power_kw" : 9.0, "efficiency" : 1.0, "type" : "primary"},
+        {"id" : 2, "status" : "standby", "power_kw" : 9.0, "efficiency" : 1.0, "type" : "primary"},
+        {"id" : 3, "status" : "standby", "power_kw" : 9.0, "efficiency" : 1.0, "type" : "primary"},
+        {"id" : 4, "status" : "standby", "power_kw" : 9.0, "efficiency" : 1.0, "type" : "primary"},
+        
+        {"id" : 5, "status" : "standby", "power_kw" : 8.0, "efficiency" : 0.98, "type" : "backup"},
+        {"id" : 6, "status" : "standby", "power_kw" : 8.0, "efficiency" : 0.98, "type" : "backup"},
     ],
     
 # ------atmosphere targets and limits---------------♡ 
@@ -103,7 +102,7 @@ s0 = Habitat_State(
     daylight_m2_kw = 0.0,
     peak_sunlight_today = 0.0,
     low_sunlight_streak_sols = 0,
-    solar_absorptivity = 0.65,
+    solar_absorptivity = 0.68,
     
 # ------water---------------------------------------♡
 
