@@ -16,14 +16,16 @@ kelvin_offset = 273.15   # add to celsius to convert to kelvin
 w_per_kw = 1000.0   # watts to kilowatts
 kj_per_kwh = 3600.0    # kilojoules in 1 kWh
 stefan_boltzmann_const = 5.67e-8
-condensation_heat_kj_per_kg = 2260.0
 
 max_daylight_m2_kw = 0.59
 sunlight_facing_hab_m2 = 48.0
 
 default_radiator_emission = 0.90
-base_chx_power_kw = 0.35
 
+base_chx_power_kw = 0.35
+base_chx_waste_heat_fraction = 0.60
+chx_removal_efficiency = 0.85
+condensation_heat_kj_per_kg = 2260.0
 
 hysteresis_c = 0.3
 #---------------------------------------------------♡
@@ -271,9 +273,10 @@ def determine_thermal_mode(state, hab_temp_c, heat_loss_kw, hab_heat_kw, solar_h
 #------running thermal control for one timestep------♡
 def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, light_heat_kw, wellness_light_heat_kw, chx_heat_added_kw, dt_min, sunlight_amount):
     hours_per_step = dt_min / 60.0
-    hab_heat_kw = crew_heat_kw + oga_heat_kw + co2_scrubber_heat_kw + light_heat_kw + wellness_light_heat_kw + chx_heat_added_kw
     mars_temp_c, mars_temp_k = determine_mars_temp_c(state)
-    
+
+    hab_heat_kw = crew_heat_kw + oga_heat_kw + co2_scrubber_heat_kw + light_heat_kw + wellness_light_heat_kw + chx_heat_added_kw
+
     if sunlight_amount is None:
         sunlight_amount = determine_sunlight_amount(state)
 
@@ -332,56 +335,69 @@ def get_thermal_alerts(new_hab_temp_c):
     return thermal_alerts
 
 
-#-------chx power consumption and heat produced------♡
-def chx_power_and_heat(vapor_removed_kg, dt_min):
+#----------condensing heat exchanger (CHX)-----------♡
+def run_chx(vapor_removed_kg, dt_min):
     hours_per_step = dt_min / 60.0
+    seconds_per_step = dt_min * 60.0
 
-    chx_heat_added_kw = 0.0
-    chx_heat_added_kwh = 0.0
     chx_power_used_kw = 0.0
     chx_energy_used_kwh = 0.0
+    
+    chx_cooling_kw = 0.0
+    chx_cooling_kwh = 0.0
+    
+    chx_heat_added_kw = 0.0
+    chx_heat_added_kwh = 0.0
 
     if vapor_removed_kg > 0.0:
         chx_power_used_kw = base_chx_power_kw
         chx_energy_used_kwh = chx_power_used_kw * hours_per_step
+        
+        chx_cooling_kj = vapor_removed_kg * condensation_heat_kj_per_kg
+        chx_cooling_kw = chx_cooling_kj / seconds_per_step
+        chx_cooling_kwh = chx_cooling_kw * hours_per_step
 
-        chx_heat_added_kj = vapor_removed_kg * condensation_heat_kj_per_kg
-        chx_heat_added_kwh = chx_heat_added_kj / kj_per_kwh
-        chx_heat_added_kw = chx_heat_added_kwh / hours_per_step
+        chx_waste_heat_added_kw = chx_power_used_kw * base_chx_waste_heat_fraction       
 
-    return chx_heat_added_kw, chx_heat_added_kwh, chx_power_used_kw, chx_energy_used_kwh
-
-
-#----------condensing heat exchanger (CHX)-----------♡
-def update_humidity(state, breath_vapor_added_kg, skin_vapor_added_kg, dt_min):
-    chx_removal_efficiency = 0.85
+        chx_heat_added_kw = chx_waste_heat_added_kw - chx_cooling_kw
+        chx_heat_added_kwh = chx_heat_added_kw * hours_per_step
     
+    return chx_power_used_kw, chx_energy_used_kwh, chx_cooling_kw, chx_cooling_kwh, chx_heat_added_kw, chx_heat_added_kwh
+
+
+#-----------------updating humidity------------------♡
+def update_humidity(state, breath_vapor_added_kg, skin_vapor_added_kg, dt_min):
     total_vapor_added_kg = breath_vapor_added_kg + skin_vapor_added_kg
     vapor_per_pct_kg = (water_vapor_per_m3 * state.hab_vol_m3) / 100.0
     
     target_vapor_kg = state.target_humidity_pct * vapor_per_pct_kg
-
     current_vapor_kg = (state.current_humidity_pct * vapor_per_pct_kg) + total_vapor_added_kg
+    
     excess_vapor_kg = max(0.0, current_vapor_kg - target_vapor_kg)
-
     vapor_removed_kg = excess_vapor_kg * chx_removal_efficiency
 
     new_vapor_kg = current_vapor_kg - vapor_removed_kg
     new_humidity_pct = new_vapor_kg / vapor_per_pct_kg
     new_humidity_pct = max(20.0, min(80.0, new_humidity_pct))
     
-    chx_heat_added_kw, chx_heat_added_kwh, chx_power_used_kw, chx_energy_used_kwh = chx_power_and_heat(vapor_removed_kg, dt_min)
+    chx_power_used_kw, chx_energy_used_kwh, chx_cooling_kw, chx_cooling_kwh, chx_heat_added_kw, chx_heat_added_kwh = run_chx(vapor_removed_kg, dt_min)
 
     return {
         "new_humidity_pct": new_humidity_pct,
+
         "vapor_added_kg": total_vapor_added_kg,
         "vapor_removed_kg": vapor_removed_kg,
         "target_vapor_kg": target_vapor_kg,
         "new_vapor_kg": new_vapor_kg,
+
+        "chx_power_used_kw": chx_power_used_kw,
+        "chx_energy_used_kwh": chx_energy_used_kwh,
+
+        "chx_cooling_kw": chx_cooling_kw,
+        "chx_cooling_kwh": chx_cooling_kwh,
+
         "chx_heat_added_kw": chx_heat_added_kw,
         "chx_heat_added_kwh": chx_heat_added_kwh,
-        "chx_power_used_kw": chx_power_used_kw,
-        "chx_energy_used_kwh": chx_energy_used_kwh
     } 
 
 
