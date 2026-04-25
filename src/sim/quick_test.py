@@ -167,7 +167,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Black Water:':<22} {state.black_water_storage_kg:.2f} kg")
     print(f"{'Condensate:':<22} {state.condensate_storage_kg:.2f} kg")
     print(f"{'Brine:':<22} {state.brine_storage_kg:.2f} kg")
-    print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f}  kg")
+    print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f}kg")
 
 
     #---------------------water----------------------♡
@@ -248,10 +248,9 @@ def print_state(state, outputs, alerts):
     
 
 state = s0
-for i in range(12):
+for i in range(145):
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
-    print_state(state, outputs, alerts)
 
-    if i % 20 == 0:
-       print_state(state, outputs, alerts)
+    if i % 12 == 0:
+        print_state(state, outputs, alerts)
