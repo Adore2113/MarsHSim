@@ -4,6 +4,11 @@ from .mars_time import get_sol_time, determine_sunlight_amount
 
 
 #--------------------constants-----------------------♡
+max_arrays_online = 10
+
+target_power_usage_ratio = 0.85
+base_solar_power_per_array_kw = 0.0
+
 min_light_level = 0.2
 
 base_light_power_kw = 2.0
