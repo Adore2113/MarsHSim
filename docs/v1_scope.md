@@ -899,3 +899,65 @@
         -need to add electronic heat and power, rations(?)  
 
         -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
+
+        -considering adding different dust accumulation amounts for solar arrays (add in when I add other things using random)
+
+        -meteroite damange (microscopic)?
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/24/2026
+    -starting by fixing my termal mass value and insulation strength
+
+    -fixed thermal_system.py by cleaning up globals, changing placeholder values to real/accurate values and updating the rad heat function
+
+    -I'm reading about dust and how it's managed best on Mars, there are a lot of different ways it's handled.. I like the idea of:
+        - electrostatic dust repulsion (EDS) b/c of the fact that it's passive
+
+        -scheduled cleaning, although I like the idea of the crew having one less thing to worry about and maintain, if it can be done on it's own
+        
+        -dust repellent coatings for sure that will need to be redone over a certain amount of times(?)
+
+    -started adding back up radiators and heaters
+
+    -started file for handling dust
+
+    NEXT SESSION:  fix amine beds to show up as online!
+
+    ♡--------------------TO DO: --------------------♡ 
+        -amine beds: 2 always online and add backups
+
+        -update alerts: thermal, water, add warnings
+
+        -finish dust accumulation function
+
+        -add back ups for other systems
+
+        -add power priority systems
+
+        -replace hardcoding to caluclations
+
+        -add crew scheduling
+        
+        -add maintenance scheduling
+
+        -add rations/food system ( greenhouse ?)
+
+        -add wind effects to solar and external habitat
+
+        -add random events:
+            -extra dust accumulation
+            -wind removing some dust from ararys
+            -daily temp and sunlight events
+            -dust storms
+            -leaks
+            -meteroite damange (microscopic)?
+            -cute messages when system is running perfectly well
+
+        -break outputs into classes or smaller dicts
+
+        -continue adding heat generated/heat waste
+        
+        -add electronic heat and power
+
+        -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
