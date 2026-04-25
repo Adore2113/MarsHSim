@@ -1,6 +1,7 @@
-from dataclasses import replace
-from .state import Habitat_State
+#--------------------imports-------------------------♡
 from .mars_time import get_sol_time, determine_sunlight_amount
+#----------------------------------------------------♡
+
 
 #--------------------constants-----------------------♡
 min_light_level = 0.2
