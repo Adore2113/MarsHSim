@@ -77,7 +77,7 @@ def heaters_online(heaters, hab_temp_c, target_temp_c):
     new_heaters = []
     heaters_online_count = sum(1 for heater in heaters if heater["status"] == "online")
 
-    heater_stages = [target_temp_c - 0.1, target_temp_c - 0.3, target_temp_c - 0.6, target_temp_c - 1.0, target_temp_c - 1.5, target_temp_c - 2.0,]
+    heater_stages = [target_temp_c - 0.3, target_temp_c - 0.6, target_temp_c - 1.0, target_temp_c - 1.5, target_temp_c - 2.0,]
 
     target_online_count = heaters_online_count
 
