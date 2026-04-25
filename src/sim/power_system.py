@@ -44,18 +44,24 @@ def solar_arrays_online(state):
     for array in state.solar_arrays:
         new_array = array.copy()
 
-        if array["status"] == "standby":
-            if array["type"] == "primary" and primary_arrays_needed > 0:
+        if new_array["status"] == "standby" and primary_arrays_needed > 0:
+            if new_array["type"] == "primary":
                 new_array["status"] = "online"
-                primary_arrays_needed += 1
-                solar_arrays_online_count +=1 
+                primary_arrays_needed -= 1
+                solar_arrays_online_count += 1 
 
             elif new_array["type"] == "backup" and primary_arrays_needed <= 2:
                 new_array["status"] = "online"
-                solar_arrays_online_count +=1  
+                solar_arrays_online_count += 1  
 
-        elif new_array["status"] == "online":
-            solar_arrays_online_count +=1
+    #-----------------turn off arrays-----------------♡ 
+        elif new_array["status"] == "online" and solar_arrays_online_count >= target_arrays_online:
+            if new_array["type"] == "backup" or solar_arrays_online_count > target_arrays_online:
+                    new_array["status"] = "standby"
+                    solar_arrays_online_count -= 1
+        
+        if new_array["status"] == "online":
+            solar_arrays_online_count += 1
 
         new_solar_arrays.append(new_array) 
 
