@@ -1,6 +1,3 @@
-from dataclasses import replace
-from .state import Habitat_State
-
 #--------------------constants-----------------------♡
 w_per_kw = 1000   # watts to kilowatts
 
