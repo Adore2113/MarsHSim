@@ -1,6 +1,7 @@
+#--------------------imports-------------------------♡
 import math
-from dataclasses import replace
-from .state import Habitat_State
+#----------------------------------------------------♡
+
 
 #--------------------constants-----------------------♡
 seconds_per_sol = 88775     # one mars sol is 24h 39min 35sec
@@ -28,7 +29,7 @@ def sol_time_seconds(mission_time_s):
     return mission_time_s % seconds_per_sol
 
 
-#----------------current sol number-----------------♡
+#----------------current sol number------------------♡
 def current_sol_number(mission_time_s):
     return mission_time_s // seconds_per_sol
 
@@ -83,7 +84,7 @@ def daylight_fraction_result(state):
     return daylight_fraction
 
 
-#---sunset/sunrise (when daylight starts and ends)--♡
+#-----------when daylight starts and ends-----------♡
 def sunrise_sunset_seconds(state):
     current_daylight_fraction = daylight_fraction_result(state)
     
