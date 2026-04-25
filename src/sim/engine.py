@@ -1,4 +1,4 @@
-#--------------------imports-----------------------♡
+#--------------------imports-------------------------♡
 from dataclasses import replace
 from .state import Habitat_State
 from .oxygen_system import run_oga
