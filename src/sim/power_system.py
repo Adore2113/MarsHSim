@@ -2,8 +2,8 @@
 from .mars_time import get_sol_time, determine_sunlight_amount
 #----------------------------------------------------♡
 
-
 #--------------------constants-----------------------♡
+min_arrays_online = 6
 max_arrays_online = 10
 
 target_power_usage_ratio = 0.85
@@ -19,18 +19,45 @@ base_w_light_heat_kw = 0.1
 
 
 #-----------which solar arrays are online------------♡
-def solar_arrays_online(solar_array):
+def solar_arrays_online(state):
     new_solar_arrays = []
-    solar_arrays_online_count = sum(1 for array in solar_array if array["status"] == "online")
+    solar_arrays_online_count = 0
 
-    for array in solar_array:
+    battery_pct = state.battery_stored_kwh / state.battery_max_capacity_kwh
+    
+    #---------how many arrays needed online---------♡  
+    if state.daylight_m2_kw < 0.1:
+        target_arrays_online = 0
+    
+    elif battery_pct < 0.25:
+        target_arrays_online = max_arrays_online
+
+    elif battery_pct < 0.50:
+        target_arrays_online = 8
+    
+    else:
+        target_arrays_online = min_arrays_online
+
+    #---------handling primary arrays first---------♡  
+    primary_arrays_needed = target_arrays_online
+
+    for array in state.solar_arrays:
         new_array = array.copy()
 
-        if solar_arrays_online_count < 8 and new_array["status"] == "standby":
-            new_array["status"] = "online"
-            solar_arrays_online_count += 1
+        if array["status"] == "standby":
+            if array["type"] == "primary" and primary_arrays_needed > 0:
+                new_array["status"] = "online"
+                primary_arrays_needed += 1
+                solar_arrays_online_count +=1 
 
-        new_solar_arrays.append(new_array)
+            elif new_array["type"] == "backup" and primary_arrays_needed <= 2:
+                new_array["status"] = "online"
+                solar_arrays_online_count +=1  
+
+        elif new_array["status"] == "online":
+            solar_arrays_online_count +=1
+
+        new_solar_arrays.append(new_array) 
 
     return new_solar_arrays, solar_arrays_online_count
 
@@ -190,7 +217,7 @@ def run_system_power(state,
     chx_power_used_kw, chx_energy_used_kwh,
     dt_min):
 
-    new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state.solar_arrays)
+    new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state)
     total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array = solar_generation(state, new_solar_arrays, dt_min)
     battery_after_charge = solar_battery_charge(state, total_solar_generated_kwh)
     total_power_used_kw, total_energy_used_kwh = total_power_usage(co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh, oga_power_used_kw, oga_energy_used_kwh, light_power_used_kw, light_power_used_kwh, w_light_power_used_kw, w_light_power_used_kwh, radiator_power_kw, radiator_energy_kwh, heater_power_kw, heater_energy_kwh, chx_power_used_kw, chx_energy_used_kwh)
