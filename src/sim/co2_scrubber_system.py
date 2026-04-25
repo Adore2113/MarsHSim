@@ -57,13 +57,11 @@ def amine_bed_control_and_count(state):
                 elif new_bed["type"] == "backup" and primary_beds_needed <= 2:
                     new_bed["status"] = "online"
                     beds_online_count += 1 
-                
-            new_beds.append(new_bed)
 
-        #-------------turn off more beds-------------♡ 
-    if beds_online_count < target_beds_online and co2_needed > co2_hysteresis_for_on:
-        primary_beds_needed = target_beds_online - beds_online_count
-
+    #---------------switch to standby---------------♡ 
+    elif beds_online_count > target_beds_online and co2_needed < co2_hysteresis_for_off:
+        beds_not_needed = beds_online_count - target_beds_online
+        
         for bed in state.amine_beds:
             new_bed = bed.copy()
 
@@ -72,8 +70,6 @@ def amine_bed_control_and_count(state):
                     new_bed["status"] = "standby"
                     beds_not_needed -= 1
                     beds_online_count -= 1
-
-            new_beds.append(new_bed)
 
     else:
         new_beds = [bed.copy() for bed in state.amine_beds]
