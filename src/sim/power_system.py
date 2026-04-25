@@ -52,9 +52,9 @@ def solar_arrays_online(state):
 
             elif new_array["type"] == "backup" and primary_arrays_needed <= 2:
                 new_array["status"] = "online"
-                solar_arrays_online_count += 1  
+                solar_arrays_online_count += 1
 
-    #-----------------turn off arrays-----------------♡ 
+    #---------------switch to standby---------------♡ 
         elif new_array["status"] == "online" and solar_arrays_online_count >= target_arrays_online:
             if new_array["type"] == "backup" or solar_arrays_online_count > target_arrays_online:
                     new_array["status"] = "standby"
