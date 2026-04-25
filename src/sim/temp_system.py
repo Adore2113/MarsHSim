@@ -1,6 +1,6 @@
-from dataclasses import replace
-from .state import Habitat_State
+#--------------------imports-------------------------♡
 from .mars_time import current_mars_season, determine_sunlight_amount
+#----------------------------------------------------♡
 
 # file for temperature and humidity
 
@@ -14,12 +14,16 @@ water_vapor_per_m3 = 0.0008
 
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 w_per_kw = 1000.0   # watts to kilowatts
+kj_per_kwh = 3600.0    # kilojoules in 1 kWh
 stefan_boltzmann_const = 5.67e-8
+condensation_heat_kj_per_kg = 2260.0
 
 max_daylight_m2_kw = 0.59
 sunlight_facing_hab_m2 = 48.0
 
 default_radiator_emission = 0.90
+base_chx_power_kw = 0.35
+
 
 hysteresis_c = 0.3
 #---------------------------------------------------♡
@@ -338,11 +342,12 @@ def chx_power_and_heat(vapor_removed_kg, dt_min):
     chx_energy_used_kwh = 0.0
 
     if vapor_removed_kg > 0.0:
-        chx_power_used_kw = 0.35
+        chx_power_used_kw = base_chx_power_kw
         chx_energy_used_kwh = chx_power_used_kw * hours_per_step
 
-        chx_heat_added_kw = 0.20
-        chx_heat_added_kwh = chx_heat_added_kw * hours_per_step
+        chx_heat_added_kj = vapor_removed_kg * condensation_heat_kj_per_kg
+        chx_heat_added_kwh = chx_heat_added_kj / kj_per_kwh
+        chx_heat_added_kw = chx_heat_added_kwh / hours_per_step
 
     return chx_heat_added_kw, chx_heat_added_kwh, chx_power_used_kw, chx_energy_used_kwh
 
