@@ -99,7 +99,7 @@ def heaters_online(heaters, hab_temp_c, target_temp_c):
                     heaters_online_count += 1
                 
                 elif new_heater["type"] == "backup" and heaters_online_count < target_online_count:
-                    new_heater["status"] == "online"
+                    new_heater["status"] = "online"
                     heaters_online_count += 1
 
         elif heaters_online_count > target_online_count and new_heater["status"] == "online":
@@ -179,6 +179,7 @@ def radiators_online(radiators, hab_temp_c, target_temp_c):
         new_radiators.append(new_radiator)
 
     return new_radiators, radiators_online_count
+
 
 #----------------radiatior cooling-------------------♡
 def rad_heat_rejection_kw(state, mars_temp_k, new_radiators):
