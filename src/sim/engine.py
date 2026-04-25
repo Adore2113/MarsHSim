@@ -233,6 +233,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     )
 
     outputs.update(power_results)
+    outputs["solar_arrays_online_count"] = power_results["solar_arrays_online_count"]
+    outputs["power_generated_per_array"] = power_results.get("power_generated_per_array", [])  
 
         #-------------------dust---------------------♡
     dust_results = get_dust_accumulation(replace(new_state, radiators = thermal_results["new_radiators"]), dt_min)
