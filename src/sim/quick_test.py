@@ -90,20 +90,21 @@ s0 = Habitat_State(
     scrub_per_bed_kpa = 0.0035,
 
     #-----------------power / solar------------------♡
-    battery_max_capacity_kwh = 4000.0,
-    battery_stored_kwh = 3800.0,    # starting with max capacity, for now
+    battery_max_capacity_kwh = 1300.0,
+    battery_stored_kwh = 1100.0,
     
     solar_arrays = [
-        {"id" : 1, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
-        {"id" : 2, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
-        {"id" : 3, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
-        {"id" : 4, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
-        {"id" : 5, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
-        {"id" : 6, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
-        {"id" : 7, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
-        {"id" : 8, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
-        {"id" : 9, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0},
-        {"id" : 10,"status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0}
+        {"id" : 1, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
+        {"id" : 2, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
+        {"id" : 3, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
+        {"id" : 4, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
+        {"id" : 5, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
+        {"id" : 6, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
+        {"id" : 7, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
+        {"id" : 8, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
+
+        {"id" : 9, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "backup"},
+        {"id" : 10,"status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "backup"}
     ], 
     
     solar_absorptivity = 0.68,
@@ -167,7 +168,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Black Water:':<22} {state.black_water_storage_kg:.2f} kg")
     print(f"{'Condensate:':<22} {state.condensate_storage_kg:.2f} kg")
     print(f"{'Brine:':<22} {state.brine_storage_kg:.2f} kg")
-    print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f}kg")
+    print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f} kg")
 
 
     #---------------------water----------------------♡
@@ -215,7 +216,7 @@ def print_state(state, outputs, alerts):
 
     #--------------------thermal---------------------♡
     print(("\n\n♡         [  THERMAL  ]          ♡").center(WIDTH))
-    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
+    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.4f} °C")     # maybe bring back down to 2
     print(f"{'Mars Temp:':<22} {outputs['mars_temp_c']:.2f} °C\n")
     
     print(f"{'Habitat Heat:':<22} {outputs['hab_heat_kw']:.2f} kW")
@@ -248,7 +249,7 @@ def print_state(state, outputs, alerts):
     
 
 state = s0
-for i in range(145):
+for i in range(200):
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
 
