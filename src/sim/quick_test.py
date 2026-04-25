@@ -210,14 +210,19 @@ def print_state(state, outputs, alerts):
     print(("\n\n♡          [   POWER   ]         ♡").center(WIDTH))
     print(f"{'Total Power Used:':<22} {outputs['total_power_used_kw']:.2f} kW")
     print(f"{'Total Energy Used:':<22} {outputs['total_energy_used_kwh']:.2f} kWh")
+    
+    print(f"\n{'Solar Arrays Online:':<22} {outputs.get('solar_arrays_online_count', 0)} /10")
     print(f"{'Solar Generated:':<22} {outputs['total_solar_generated_kw']:.2f} kW")    # maybe change to 3 or 4
-    print(f"{'Battery Stored:':<22} {state.battery_stored_kwh:.2f} kWh")
+    print(f"\n{'Battery Stored:':<22} {state.battery_stored_kwh:.2f} kWh")
     print(f"{'Wellness Lights:':<22} {'ON' if outputs.get('wellness_lights_on', False) else 'OFF'}")
 
     #--------------------thermal---------------------♡
     print(("\n\n♡         [  THERMAL  ]          ♡").center(WIDTH))
-    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.4f} °C")     # maybe bring back down to 2
-    print(f"{'Mars Temp:':<22} {outputs['mars_temp_c']:.2f} °C\n")
+    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
+    print(f"{'Mars Temp:':<22} {outputs['mars_temp_c']:.2f} °C")
+
+    print((f"\n♡  [THERMAL MODE: {outputs['hab_temp_mode']}]  ♡\n").center(WIDTH))
+
     
     print(f"{'Habitat Heat:':<22} {outputs['hab_heat_kw']:.2f} kW")
     print(f"{'Heat Loss:':<22} {outputs['heat_loss_kw']:.2f} kW")
@@ -240,8 +245,6 @@ def print_state(state, outputs, alerts):
     print(f"{'Heater Power Used:':<22} {outputs['heater_power_kw']:.2f} kW")
     print(f"{'Heater Energy:':<22} {outputs['heater_energy_kwh']:.2f} kWh")
     
-    print((f"\n\n♡  [THERMAL MODE: {outputs['hab_temp_mode']}]  ♡\n").center(WIDTH))
-
   #  print(f"{'Thermal Mode:':<22} {outputs['hab_temp_mode']}\n")
    
     print("♡ " + "-" * 30 + " ♡")
