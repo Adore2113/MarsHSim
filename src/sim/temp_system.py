@@ -166,11 +166,11 @@ def radiators_online(radiators, hab_temp_c, target_temp_c):
         if radiators_online_count < target_online_count and new_radiator["status"] == "standby":
             if new_radiator["type"] == "primary":
                 new_radiator["status"] = "online"
-                online_count += 1
+                radiators_online_count += 1
 
-            elif new_radiator["type"] == "backup" and online_count < target_online_count:
+            elif new_radiator["type"] == "backup" and radiators_online_count < target_online_count:
                 new_radiator["status"] = "online"
-                online_count += 1
+                radiators_online_count += 1
 
         elif radiators_online_count > target_online_count and new_radiator["status"] == "online":
             new_radiator["status"] = "standby"
