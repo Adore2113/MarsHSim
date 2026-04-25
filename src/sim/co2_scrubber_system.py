@@ -1,10 +1,6 @@
-from dataclasses import replace
-from .state import Habitat_State
-
 # file for co2 removal and amine bed functions
 
 #--------------------constants-----------------------♡
-scrub_per_bed_kpa = 0.012
 min_beds_online = 2
 
 base_power_per_bed_kw = 0.65
@@ -17,6 +13,7 @@ bed_switch_interval_s = 3300
 bed_switch_power_multiplier = 1.25
 
 co2_efficiency_change_levels = {0.0 : 0.55, 0.2 : 0.55, 0.4 : 0.85, 0.5 : 1.00}
+co2_hysteresis = 0.05
 #----------------------------------------------------♡
 
 
@@ -25,28 +22,41 @@ def amine_bed_control_and_count(amine_beds, co2_kpa, target_co2_kpa):
     new_beds = []
     beds_online_count = sum(1 for bed in amine_beds if bed["status"] == "online")
 
-    hysteresis = 0.5
-    bed_switched_this_step = False
-
-    if co2_kpa > target_co2_kpa + hysteresis and beds_online_count < len(amine_beds):
+    if beds_online_count < min_beds_online:
         for bed in amine_beds:
             new_bed = bed.copy()
-
-            if new_bed["status"] == "standby":
+            
+            if new_bed["status"] == "standby" and beds_online_count < min_beds_online:
                 new_bed["status"] = "online"
                 beds_online_count += 1
-                bed_switched_this_step = True
-
+            
             new_beds.append(new_bed)
+        
+        return new_beds, beds_online_count
 
-    elif co2_kpa < target_co2_kpa - hysteresis and beds_online_count > min_beds_online:
+    if co2_kpa > target_co2_kpa + co2_hysteresis and beds_online_count < len(amine_beds):
+        turned_on = False
+        
         for bed in amine_beds:
             new_bed = bed.copy()
+            
+            if not turned_on and new_bed["status"] == "standby":
+                new_bed["status"] = "online"
+                beds_online_count += 1
+                turned_on = True
+            
+            new_beds.append(new_bed)
 
-            if new_bed["status"] == "online" and  beds_online_count > min_beds_online:
+    elif co2_kpa < target_co2_kpa - co2_hysteresis and beds_online_count > min_beds_online:
+        turned_off = False
+        
+        for bed in amine_beds:
+            new_bed = bed.copy()
+            
+            if not turned_off and new_bed["status"] == "online":
                 new_bed["status"] = "standby"
                 beds_online_count -= 1
-                bed_switched_this_step = True
+                turned_off = True
             
             new_beds.append(new_bed)
     
@@ -75,7 +85,7 @@ def get_co2_scrub_efficiency(co2_kpa):
 
 #-------------co2 removal limit per step-------------♡
 def co2_scrub_capacity_kpa(state, co2_after_crew_kpa, next_time_s):
-    beds_after_control, beds_online_count = amine_bed_control_and_count(state.amine_beds, state.co2_kpa, state.target_co2_kpa)
+    beds_after_control, beds_online_count = amine_bed_control_and_count(state.amine_beds, co2_after_crew_kpa, state.target_co2_kpa)
     regen_rate_kpa = 0.01    # how fast a bed is venting co2 outside during regen
     
     max_scrub_removal_kpa = beds_online_count * state.scrub_per_bed_kpa
@@ -83,7 +93,7 @@ def co2_scrub_capacity_kpa(state, co2_after_crew_kpa, next_time_s):
 
     max_scrub_removal_kpa *= efficiency
     
-    if next_time_s % 3300 == 0 and next_time_s != 0:    # every 55min switch beds w. a brief co2 spike
+    if next_time_s % bed_switch_interval_s == 0 and next_time_s != 0:    # every 55min switch beds w. a brief co2 spike
         max_scrub_removal_kpa *= 0.80
 
     return max_scrub_removal_kpa, beds_online_count, beds_after_control
