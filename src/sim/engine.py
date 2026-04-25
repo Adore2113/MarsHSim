@@ -41,8 +41,12 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
         new_low_sunlight_streak_sols = state.low_sunlight_streak_sols
 
-    new_state = replace(new_state, daylight_m2_kw = new_daylight_per_m2_kw, peak_sunlight_today = new_peak_sunlight_today, low_sunlight_streak_sols = new_low_sunlight_streak_sols,)
-
+    new_state = replace(
+        new_state, 
+        daylight_m2_kw = new_daylight_per_m2_kw, 
+        peak_sunlight_today = new_peak_sunlight_today, 
+        low_sunlight_streak_sols = new_low_sunlight_streak_sols
+        )
     #----------------crew metabolism-----------------♡
     crew_results = total_crew_metabolism(new_state, dt_min) 
     
@@ -82,7 +86,13 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     #---------------buffer gas system----------------♡
     buffer_gas_results = run_buffer_gas_control(new_state, dt_min)
 
-    new_state = replace(new_state, n2_kpa = buffer_gas_results["n2_kpa"], ar_kpa = buffer_gas_results["ar_kpa"], n2_stored_kpa = buffer_gas_results["n2_stored_kpa"],ar_stored_kpa = buffer_gas_results["ar_stored_kpa"])
+    new_state = replace(
+        new_state, 
+        n2_kpa = buffer_gas_results["n2_kpa"], 
+        ar_kpa = buffer_gas_results["ar_kpa"], 
+        n2_stored_kpa = buffer_gas_results["n2_stored_kpa"],
+        ar_stored_kpa = buffer_gas_results["ar_stored_kpa"]
+        )
 
     #--------------------lighting--------------------♡
     light_results = lights(new_state, dt_min)
@@ -90,7 +100,6 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     #-----------------CHX (humidity)-----------------♡
     humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], dt_min)
-
     condensate_added_kg = humidity_results["vapor_removed_kg"]
     
     #---------------water subsystems-----------------♡
@@ -110,7 +119,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         black_water_storage_kg = water_storage_results["new_black_water_storage_kg"],
         condensate_storage_kg = water_storage_results["new_condensate_storage_kg"],
         brine_storage_kg = water_storage_results["new_brine_storage_kg"],
-    )
+        )
 
     outputs = {
          #-------------power consumption-------------♡
@@ -148,6 +157,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
         #--------------gases/atmosphere--------------♡
         "co2_removed_kpa" : co2_removed_kpa,
+        "beds_online_count": co2_results["beds_online_count"],
         "o2_added_kpa": o2_added_kpa,
         "h2_produced_kg" : h2_produced_kg,
         
@@ -232,7 +242,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_state = replace(
         new_state,
         battery_stored_kwh = power_results["new_battery_stored_kwh"],
-        solar_arrays = power_results["new_solar_arrays"],
+        solar_arrays = dust_results["new_solar_arrays"],
         light_level = light_results["final_light_level"],
         wellness_lights_on = wellness_results["wellness_lights_on"],
         hab_temp_c = thermal_results["new_hab_temp_c"],
