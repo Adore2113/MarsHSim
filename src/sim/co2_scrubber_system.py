@@ -26,7 +26,7 @@ def amine_bed_control_and_count(amine_beds, co2_kpa, target_co2_kpa):
         for bed in amine_beds:
             new_bed = bed.copy()
             
-            if new_bed["status"] == "standby" and beds_online_count < min_beds_online:
+            if new_bed["status"] == "standby":
                 new_bed["status"] = "online"
                 beds_online_count += 1
             
