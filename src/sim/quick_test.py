@@ -221,7 +221,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Habitat Heat:':<22} {outputs['hab_heat_kw']:.2f} kW")
     print(f"{'Heat Loss:':<22} {outputs['heat_loss_kw']:.2f} kW")
     print(f"{'Net Heat:':<22} {outputs['net_heat_kw']:.2f} kW")
-    print(f"{'Temp Change:':<22} {outputs['temp_change_c']:.2f} °C")    # maybe change to 3 or 4
+    print(f"{'Temp Change:':<22} ~{outputs['temp_change_c']:.2f} °C")    # maybe change to 3 or 4
     print(f"{'Insulation Strength:':<22} {state.insulation_strength_kw_per_c:.2f} kW/°C\n")
     
     print(f"{'Humidity:':<22} {outputs['new_humidity_pct']:.2f} %")
