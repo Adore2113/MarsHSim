@@ -1,28 +1,31 @@
+#--------------------imports-------------------------♡
 from dataclasses import dataclass
+#----------------------------------------------------♡
+
 
 @dataclass
 class Habitat_State:
-# -----------time-----------------------------------♡
+    #---------------time and daylight----------------♡
     mission_time_s: int
 
-# -----------sun info-------------------------------♡
     daylight_m2_kw: float
     
     peak_sunlight_today: float
     low_sunlight_streak_sols: int
 
-# -----------lights---------------------------------♡
+    #--------------------lights----------------------♡
     light_level: float
 
-# -----------crew-----------------------------------♡
+    #---------------------crew-----------------------♡
     crew_count: int
     crew_activity: str
 
-# ------habitat-------------------------------------♡
+    #--------------------habitat---------------------♡
     hab_vol_m3: float
 
-# ------thermal control-----------------------------♡
+    #--------------------thermal---------------------♡
     hab_temp_c: float
+
     target_humidity_pct: float
     current_humidity_pct: float
 
@@ -31,9 +34,10 @@ class Habitat_State:
 
     radiators: list
     heaters: list
-
-# ------atmosphere targets and limits---------------♡ 
+   
+    #---------atmosphere targets and limits----------♡
     target_pressure_kpa: float
+    
     min_safe_pressure_kpa: float
     max_safe_pressure_kpa: float
 
@@ -42,19 +46,19 @@ class Habitat_State:
     target_n2_kpa: float
     target_ar_kpa: float
 
-# ------current atmosphere--------------------------♡
+    #---------------current atmosphere---------------♡
     o2_kpa: float
     co2_kpa: float
     n2_kpa: float
     ar_kpa: float
 
-# ------gas storage---------------------------------♡
+    #------------------gas storage-------------------♡
     n2_stored_kpa: float
     ar_stored_kpa: float
     co2_stored_kpa: float
     h2_stored_kg: float
 
-# ------pressure percentages using Dalton's Law-----♡
+    #------pressure percentages w. Dalton's Law------♡
     @property
     def total_pressure_kpa(self) -> float:
         return self.o2_kpa + self.co2_kpa + self.n2_kpa + self.ar_kpa
@@ -83,18 +87,18 @@ class Habitat_State:
             return 0
         return 100 * self.ar_kpa / self.total_pressure_kpa
 
-# ------amine beds----------------------------------♡
+    #------------------amine_beds--------------------♡
     amine_beds: list
     scrub_per_bed_kpa: float
 
-# ------power---------------------------------------♡
+    #-----------------power / solar------------------♡
     battery_max_capacity_kwh: float
     battery_stored_kwh: float 
     
     solar_arrays: list
     solar_absorptivity: int
 
-# ------water---------------------------------------♡
+    #---------------------water----------------------♡
     potable_water_storage_kg: float
     gray_water_storage_kg: float
     black_water_storage_kg: float   
@@ -106,13 +110,11 @@ class Habitat_State:
     black_water_storage_capacity_kg: float
     condensate_storage_capacity_kg: float
     brine_storage_capacity_kg: float 
-
-# ------placeholders for future plans---------------♡
-
-    # ♡ Integrity / safety ♡
+    
+    #------------------placeholders------------------♡
     leak_rate_kpa_per_hr: float
     smoke_ppm: float
     radiation_msv_per_day: float
-    
-# --------wellness lights on or off-----------------♡
+
+    #----------------wellness lights-----------------♡
     wellness_lights_on: bool = False
