@@ -5,16 +5,17 @@ from .mars_time import get_sol_time, determine_sunlight_amount
 #--------------------constants-----------------------♡
 min_arrays_online = 6
 max_arrays_online = 10
-
 target_power_usage_ratio = 0.85
 base_solar_power_per_array_kw = 0.0
 
-min_light_level = 0.2
-
 base_light_power_kw = 2.0
 base_light_heat_kw = 0.5
+
 base_w_light_power_kw = 0.5
 base_w_light_heat_kw = 0.1
+
+min_light_level = 0.2
+solar_hysteresis = 0.05
 #---------------------------------------------------♡
 
 
@@ -29,10 +30,10 @@ def solar_arrays_online(state):
     if state.daylight_m2_kw < 0.1:
         target_arrays_online = 0
     
-    elif battery_pct < 0.25:
+    elif battery_pct < (0.25 - solar_hysteresis):
         target_arrays_online = max_arrays_online
-
-    elif battery_pct < 0.50:
+    
+    elif battery_pct < (0.50 - solar_hysteresis):
         target_arrays_online = 8
     
     else:
@@ -48,22 +49,21 @@ def solar_arrays_online(state):
             if new_array["type"] == "primary":
                 new_array["status"] = "online"
                 primary_arrays_needed -= 1
-                solar_arrays_online_count += 1 
 
             elif new_array["type"] == "backup" and primary_arrays_needed <= 2:
                 new_array["status"] = "online"
-                solar_arrays_online_count += 1
 
     #---------------switch to standby---------------♡ 
-        elif new_array["status"] == "online" and solar_arrays_online_count >= target_arrays_online:
-            if new_array["type"] == "backup" or solar_arrays_online_count > target_arrays_online:
+        elif new_array["status"] == "online":
+            if solar_arrays_online_count >= target_arrays_online:
+                
+                if new_array["type"] == "backup" or solar_arrays_online_count > target_arrays_online:
                     new_array["status"] = "standby"
-                    solar_arrays_online_count -= 1
-        
+
         if new_array["status"] == "online":
             solar_arrays_online_count += 1
 
-        new_solar_arrays.append(new_array) 
+        new_solar_arrays.append(new_array)
 
     return new_solar_arrays, solar_arrays_online_count
 
