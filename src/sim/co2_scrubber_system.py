@@ -23,26 +23,26 @@ def amine_beds_online(state):
     new_beds = []
     beds_online_count = sum(1 for bed in state.amine_beds if bed["status"] == "online")
     
-    co2_needed = state.co2_kpa - state.target_co2_kpa
+    co2_needed_kpa = state.co2_kpa - state.target_co2_kpa
 
     #----------how many beds needed online-----------♡ 
-    if co2_needed > 0.50:
+    if co2_needed_kpa > 0.50:
         target_beds_online = max_beds_online
     
-    elif co2_needed > 0.25:
+    elif co2_needed_kpa > 0.25:
         target_beds_online = 5
     
-    elif co2_needed > 0.10:
+    elif co2_needed_kpa > 0.10:
         target_beds_online = 4
     
-    elif co2_needed > 0.03:
+    elif co2_needed_kpa > 0.03:
         target_beds_online = 3
 
     else:
         target_beds_online = max_beds_online 
  
     #----------handling primary beds first----------♡ 
-    if beds_online_count < target_beds_online and co2_needed > co2_hysteresis_for_on:
+    if beds_online_count < target_beds_online and co2_needed_kpa > co2_hysteresis_for_on:
         primary_beds_needed = target_beds_online - beds_online_count
         
         for bed in state.amine_beds:
@@ -59,7 +59,7 @@ def amine_beds_online(state):
                     beds_online_count += 1 
 
     #---------------switch to standby---------------♡ 
-    elif beds_online_count > target_beds_online and co2_needed < co2_hysteresis_for_off:
+    elif beds_online_count > target_beds_online and co2_needed_kpa < co2_hysteresis_for_off:
         beds_not_needed = beds_online_count - target_beds_online
         
         for bed in state.amine_beds:
