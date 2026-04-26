@@ -23,6 +23,7 @@ condensation_heat_kj_per_kg = 2260.0
 water_vapor_per_m3 = 0.0008
 
 hysteresis_c = 0.5
+thermal_hysteresis_c = 0.4
 #---------------------------------------------------♡
 
 
@@ -34,13 +35,13 @@ def determine_mars_temp_c(state):
     if season == "north_spring":
         base_temp_c = -10.0
         day_night_variation = 12.0
-
+    
     elif season == "north_summer":
         base_temp_c = 0.0
         day_night_variation = 15.0
     
     elif season == "north_autumn":
-        base_temp_c = -15
+        base_temp_c = -15.0
         day_night_variation = 12.0
     
     else:
