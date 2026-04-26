@@ -234,18 +234,18 @@ def radiator_power(radiators_online_count, dt_min):
     
 
 #-----------determine habitat thermal mode-----------♡
-def determine_thermal_mode(state, hab_temp_c, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw, target_temp_c):
+def determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw):
     new_heaters, heaters_online_count = heaters_online(state)
     new_radiators, radiators_online_count = radiators_online(state)
 
     if heaters_online_count > 0:
         new_radiators = []
-
+        
         for rad in state.radiators:
             new_rad = rad.copy()
             new_rad["status"] = "standby"
             new_radiators.append(new_rad)
-
+        
         radiators_online_count = 0
     
     elif radiators_online_count > 0:
@@ -255,33 +255,34 @@ def determine_thermal_mode(state, hab_temp_c, heat_loss_kw, hab_heat_kw, solar_h
             new_heater = heater.copy()
             new_heater["status"] = "standby"
             new_heaters.append(new_heater)
-
+        
         heaters_online_count = 0
     
     temp_without_heaters_c = hab_heat_kw + solar_heat_gain_kw - heat_loss_kw
 
     if temp_without_heaters_c < -5.0 and heaters_online_count == 0:
-            for new_heater in new_heaters:
-                if new_heater["status"] == "standby":
-                    new_heater["status"] = "online"
-                    heaters_online_count += 1
-                    break
+        for new_heater in new_heaters:
+            if new_heater["status"] == "standby":
+                new_heater["status"] = "online"
+                heaters_online_count += 1
+                
+                break
 
     if heaters_online_count > 0:
-        hab_temp_mode = "Heating Mode"
+        hab_temp_mode = "Heating"
 
     elif radiators_online_count > 0:
-        hab_temp_mode = "Cooling Mode"
+        hab_temp_mode = "Cooling"
 
-    elif hab_temp_c < target_temp_c - hysteresis_c:
+    elif state.hab_temp_c < state.target_temp_c - hysteresis_c:
         hab_temp_mode = "Below Target"
 
-    elif hab_temp_c > target_temp_c + hysteresis_c:
+    elif state.hab_temp_c > state.target_temp_c + hysteresis_c:
         hab_temp_mode = "Above Target"
 
     else:
         hab_temp_mode = "Neutral"
-    
+
     return hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count
 
 
@@ -299,7 +300,7 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
     
     heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
     
-    hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(state, state.hab_temp_c, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw, state.target_temp_c)
+    hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
     
     heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
     
