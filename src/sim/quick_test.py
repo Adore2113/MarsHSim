@@ -28,8 +28,12 @@ s0 = Habitat_State(
 
     #--------------------thermal---------------------♡
     hab_temp_c = 23.0,
-    target_humidity_pct = 48.0,
+    target_temp_c = 23.0,
+    min_temp_c = 20.0,
+    max_temp_c = 25.0,
+
     current_humidity_pct = 48.0,
+    target_humidity_pct = 48.0,
 
     insulation_strength_kw_per_c = 1.20,
     thermal_mass_kwh_per_c = 280.0,
