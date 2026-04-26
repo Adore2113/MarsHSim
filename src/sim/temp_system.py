@@ -14,12 +14,13 @@ water_vapor_per_m3 = 0.0008
 
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 w_per_kw = 1000.0   # watts to kilowatts
-kj_per_kwh = 3600.0    # kilojoules in 1 kWh
 stefan_boltzmann_const = 5.67e-8
 
 max_daylight_m2_kw = 0.59
 sunlight_facing_hab_m2 = 48.0
 
+max_radiators_online = 7
+max_heaters_online = 6
 default_radiator_emission = 0.90
 
 base_chx_power_kw = 0.35
