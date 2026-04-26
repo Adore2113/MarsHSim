@@ -22,7 +22,7 @@ chx_removal_efficiency = 0.85
 condensation_heat_kj_per_kg = 2260.0
 water_vapor_per_m3 = 0.0008
 
-hysteresis_c = 0.3
+hysteresis_c = 0.5
 #---------------------------------------------------♡
 
 
@@ -81,16 +81,16 @@ def heaters_online(state):
     heat_needed_c = state.target_temp_c - state.hab_temp_c
    
     #--------how many heaters needed online----------♡ 
-    if heat_needed_c > 2.0:
+    if heat_needed_c > (2.0 + hysteresis_c):
         target_heaters_online =  max_heaters_online
     
-    elif heat_needed_c > 1.2:
+    elif heat_needed_c > (1.2 + hysteresis_c):
         target_heaters_online = 5
     
-    elif heat_needed_c > 0.5:
+    elif heat_needed_c > (0.5 + hysteresis_c):
         target_heaters_online = 3
     
-    elif heat_needed_c > 0.2:
+    elif heat_needed_c > (0.2 + hysteresis_c):
         target_heaters_online = 2
     
     else:
@@ -152,45 +152,52 @@ def heater_power(new_heaters, dt_min):
 
 
 #---------------------radiators----------------------♡
-def radiators_online(radiators, hab_temp_c, target_temp_c):
+def radiators_online(state):
     new_radiators = []
-    radiators_online_count = sum(1 for rad in radiators if rad["status"] == "online")
+    radiators_online_count = 0
 
-    radiator_stages = [target_temp_c + 0.3, target_temp_c + 0.6, target_temp_c + 0.9, target_temp_c + 1.2, target_temp_c + 1.5, target_temp_c + 1.8,]
+    cooling_needed_c = state.hab_temp_c - state.target_temp_c
+
+    #---------how many heaters needed online---------♡ 
+    if cooling_needed_c > (2.0 + hysteresis_c):
+        target_online = max_radiators_online
     
-    target_online_count = radiators_online_count
-
-    if radiators_online_count < len(radiator_stages):
-        next_rad_on_temp_c = radiator_stages[radiators_online_count]
-
-        if hab_temp_c >= next_rad_on_temp_c:
-            target_online_count += 1
+    elif cooling_needed_c > (1.2 + hysteresis_c):
+        target_online = 6
     
-    if radiators_online_count > 0:
-        next_rad_off_temp_c = radiator_stages[radiators_online_count - 1] - hysteresis_c
+    elif cooling_needed_c > (0.6 + hysteresis_c):
+        target_online = 4
+    
+    elif cooling_needed_c > (0.2 + hysteresis_c):
+        target_online = 2
+    
+    else:
+        target_online = 0
 
-        if hab_temp_c < next_rad_off_temp_c:
-            target_online_count -= 1
+    primary_radiators_needed = target_online
+    
+    #----------handling primary beds first----------♡ 
+    for rad in state.radiators:
+        new_rad = rad.copy()
 
-    target_online_count = min(target_online_count, 8)
+        if new_rad["status"] == "standby" and primary_radiators_needed > 0:
+            if new_rad["type"] == "primary":
+                new_rad["status"] = "online"
+                primary_radiators_needed -= 1
+            
+            elif new_rad["type"] == "backup" and primary_radiators_needed <= 2:
+                new_rad["status"] = "online"
 
-    for rad in radiators:
-        new_radiator = rad.copy()
+    #---------------switch to standby---------------♡ 
+        elif new_rad["status"] == "online":
+            if radiators_online_count >= target_online:
+                if new_rad["type"] == "backup" or radiators_online_count > 2:
+                    new_rad["status"] = "standby"
 
-        if radiators_online_count < target_online_count and new_radiator["status"] == "standby":
-            if new_radiator["type"] == "primary":
-                new_radiator["status"] = "online"
-                radiators_online_count += 1
+        if new_rad["status"] == "online":
+            radiators_online_count += 1
 
-            elif new_radiator["type"] == "backup" and radiators_online_count < target_online_count:
-                new_radiator["status"] = "online"
-                radiators_online_count += 1
-
-        elif radiators_online_count > target_online_count and new_radiator["status"] == "online":
-            new_radiator["status"] = "standby"
-            radiators_online_count -= 1
-
-        new_radiators.append(new_radiator)
+        new_radiators.append(new_rad)
 
     return new_radiators, radiators_online_count
 
@@ -229,7 +236,7 @@ def radiator_power(radiators_online_count, dt_min):
 #-----------determine habitat thermal mode-----------♡
 def determine_thermal_mode(state, hab_temp_c, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw, target_temp_c):
     new_heaters, heaters_online_count = heaters_online(state)
-    new_radiators, radiators_online_count = radiators_online(state.radiators, state.hab_temp_c, target_temp_c)
+    new_radiators, radiators_online_count = radiators_online(state)
 
     if heaters_online_count > 0:
         new_radiators = []
