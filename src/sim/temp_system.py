@@ -23,7 +23,6 @@ condensation_heat_kj_per_kg = 2260.0
 water_vapor_per_m3 = 0.0008
 
 hysteresis_c = 0.5
-thermal_hysteresis_c = 0.4
 #---------------------------------------------------♡
 
 
