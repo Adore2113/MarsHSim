@@ -65,8 +65,8 @@ def get_solar_heat_gain_kw(state):
 
 
 #------------------passive heat loss-----------------♡
-def heat_loss_from_outside_kw(state, mars_temp_c):
-    temp_difference_c = state.hab_temp_c - mars_temp_c
+def heat_loss_from_outside_kw(state):
+    temp_difference_c = state.hab_temp_c - state.mars_temp_c
 
     heat_loss_kw = temp_difference_c * state.insulation_strength_kw_per_c
     
@@ -298,11 +298,11 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
 
     solar_heat_gain_kw = get_solar_heat_gain_kw(state)
     
-    heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
+    heat_loss_kw = heat_loss_from_outside_kw(state)
     
     hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
     
-    heat_loss_kw = heat_loss_from_outside_kw(state, mars_temp_c)
+    heat_loss_kw = heat_loss_from_outside_kw(state)
     
     heater_heat_kw = heater_heat_added_kw(new_heaters)
     heater_power_kw, heater_energy_kwh = heater_power(new_heaters, dt_min)
@@ -315,28 +315,38 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
     
     new_hab_temp_c = state.hab_temp_c + temp_change_c
 
-    return {
-        "new_hab_temp_c": new_hab_temp_c,
+    #----------------dict for updates----------------♡ 
+    thermal_updates = {
+        "hab_temp_c": new_hab_temp_c,
         "mars_temp_c": mars_temp_c,
-        "hab_heat_kw": hab_heat_kw,
+        "heaters": new_heaters,
+        "radiators": new_radiators,
+    }
+    
+    #-----------dict for printing outputs------------♡ 
+    thermal_outputs = {
+        "mars_temp_c": mars_temp_c,
+
         "solar_heat_gain_kw" : solar_heat_gain_kw,
         "heat_loss_kw": heat_loss_kw,
+        
         "radiator_heat_rejection_kw": radiator_heat_rejection_kw,
         "radiators_online_count": radiators_online_count,
         "radiator_power_kw": radiator_power_kw,
         "radiator_energy_kwh": radiator_energy_kwh,
-        "new_radiators": new_radiators,
+        
         "heater_heat_kw": heater_heat_kw,
         "heaters_online_count": heaters_online_count,
         "heater_power_kw": heater_power_kw,
         "heater_energy_kwh": heater_energy_kwh,
-        "new_heaters": new_heaters,
+        
         "thermal_alerts": hab_temp_mode,
         "net_heat_kw": net_heat_kw,
         "temp_change_c": temp_change_c,
         "hab_temp_mode" : hab_temp_mode
-        }
+    }
 
+    return thermal_updates, thermal_outputs
 
 #---------------------temp alerts--------------------♡
 def get_thermal_alerts(state):
