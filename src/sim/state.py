@@ -26,8 +26,10 @@ class Habitat_State:
     #--------------------thermal---------------------♡
     hab_temp_c: float
     target_temp_c: float
-    min_temp_c: float
-    max_temp_c: float
+    min_comfort_temp_c: float
+    max_comfort_temp_c: float
+
+    mars_temp_c: float
 
     target_humidity_pct: float
     current_humidity_pct: float
