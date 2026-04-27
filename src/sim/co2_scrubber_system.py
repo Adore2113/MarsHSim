@@ -1,5 +1,6 @@
 # file for co2 removal and amine bed functions
 
+
 #--------------------constants-----------------------♡
 min_beds_online = 2
 max_beds_online = 6

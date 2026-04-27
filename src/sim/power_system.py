@@ -2,11 +2,11 @@
 from .mars_time import get_sol_time, determine_sunlight_amount
 #----------------------------------------------------♡
 
+
 #--------------------constants-----------------------♡
 min_arrays_online = 6
 max_arrays_online = 10
 target_power_usage_ratio = 0.85
-base_solar_power_per_array_kw = 0.0
 
 base_light_power_kw = 2.0
 base_light_heat_kw = 0.5
@@ -120,9 +120,9 @@ def lights(state, dt_min):
     final_light_level = max(min_light_level, light_level_dimmed)
 
     light_power_used_kw = base_light_power_kw * final_light_level
-    light_power_used_kwh = light_power_used_kw * hours_per_step
+    light_energy_used_kwh = light_power_used_kw * hours_per_step
 
-    light_heat_kw =  base_w_light_heat_kw * final_light_level
+    light_heat_kw =  base_light_heat_kw* final_light_level
     light_heat_kwh = light_heat_kw * hours_per_step
 
     return {
@@ -130,7 +130,7 @@ def lights(state, dt_min):
         "light_heat_kw" : light_heat_kw,
         "light_heat_kwh" : light_heat_kwh,
         "light_power_used_kw" : light_power_used_kw,
-        "light_power_used_kwh" : light_power_used_kwh
+        "light_energy_used_kwh" : light_energy_used_kwh
         }
 
 
@@ -152,7 +152,7 @@ def wellness_lights(state, dt_min):
         wellness_lights_on = state.wellness_lights_on
     
     w_light_power_used_kw = base_w_light_power_kw * wellness_light_level
-    w_light_power_used_kwh = w_light_power_used_kw * hours_per_step
+    w_light_energy_used_kwh = w_light_power_used_kw * hours_per_step
 
     w_light_heat_kw =  base_w_light_heat_kw * wellness_light_level
     w_light_heat_kwh = w_light_heat_kw * hours_per_step
@@ -161,21 +161,21 @@ def wellness_lights(state, dt_min):
             "wellness_lights_on": wellness_lights_on,
             "wellness_light_level": wellness_light_level,
             "w_light_power_used_kw": w_light_power_used_kw,
-            "w_light_power_used_kwh": w_light_power_used_kwh,
+            "w_light_energy_used_kwh": w_light_energy_used_kwh,
             "w_light_heat_kw": w_light_heat_kw,
-            "w_light_heat_kwh": w_light_heat_kwh,
+            "w_light_heat_kwh": w_light_heat_kwh
         }    
 
 
-#-----how much power habitat systems are using-------♡
-def total_power_usage(
-    co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh,
-    oga_power_used_kw, oga_energy_used_kwh,
-    light_power_used_kw, light_power_used_kwh,
-    w_light_power_used_kw, w_light_power_used_kwh,
-    radiator_power_kw, radiator_energy_kwh,
-    heater_power_kw, heater_energy_kwh,
-    chx_power_used_kw, chx_energy_used_kwh
+#------------------total power usage-----------------♡
+def get_total_power_usage(
+        co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh,
+        oga_power_used_kw, oga_energy_used_kwh,
+        light_power_used_kw, light_energy_used_kwh,
+        w_light_power_used_kw, w_light_energy_used_kwh,
+        radiator_power_kw, radiator_energy_kwh,
+        heater_power_kw, heater_energy_kwh,
+        chx_power_used_kw, chx_energy_used_kwh
     ):
     
     total_power_used_kw = (
@@ -191,8 +191,8 @@ def total_power_usage(
     total_energy_used_kwh = (
         + co2_scrubber_energy_used_kwh
         + oga_energy_used_kwh
-        + light_power_used_kwh
-        + w_light_power_used_kwh
+        + light_energy_used_kwh
+        + w_light_energy_used_kwh
         + radiator_energy_kwh
         + heater_energy_kwh
         + chx_energy_used_kwh
@@ -201,7 +201,7 @@ def total_power_usage(
     return total_power_used_kw, total_energy_used_kwh
 
 
-#-----how much heat was generated--------------------♡
+#-----------------total heat generated---------------♡
 def total_heat_generated(light_heat_kw, light_heat_kwh ,w_light_heat_kw, w_light_heat_kwh):
     total_heat_added_kw = light_heat_kw + w_light_heat_kw
 
@@ -210,36 +210,65 @@ def total_heat_generated(light_heat_kw, light_heat_kwh ,w_light_heat_kw, w_light
     return total_heat_added_kw, total_heat_added_kwh
 
 
-#-----battery usage and storage update per step------♡
-def run_system_power(state,
-    co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh,
-    oga_power_used_kw, oga_energy_used_kwh,
-    light_power_used_kw, light_power_used_kwh,
-    w_light_power_used_kw, w_light_power_used_kwh,
-    light_heat_kw, light_heat_kwh,
-    w_light_heat_kw, w_light_heat_kwh,
-    radiator_power_kw, radiator_energy_kwh,
-    heater_power_kw, heater_energy_kwh,
-    chx_power_used_kw, chx_energy_used_kwh,
+#------------------full power system-----------------♡
+def run_system_power(
+    state,
+    co2_results,
+    oga_results,
+    light_results,
+    wellness_results,
+    thermal_outputs,
+    humidity_results,
     dt_min):
 
     new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state)
+    
     total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array = solar_generation(state, new_solar_arrays, dt_min)
+    
     battery_after_charge = solar_battery_charge(state, total_solar_generated_kwh)
-    total_power_used_kw, total_energy_used_kwh = total_power_usage(co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh, oga_power_used_kw, oga_energy_used_kwh, light_power_used_kw, light_power_used_kwh, w_light_power_used_kw, w_light_power_used_kwh, radiator_power_kw, radiator_energy_kwh, heater_power_kw, heater_energy_kwh, chx_power_used_kw, chx_energy_used_kwh)
-    total_heat_added_kw, total_heat_added_kwh = total_heat_generated(light_heat_kw, light_heat_kwh ,w_light_heat_kw, w_light_heat_kwh)
+    
+    total_power_used_kw, total_energy_used_kwh = get_total_power_usage(
+        co2_results["co2_scrubber_power_used_kw"], co2_results["co2_scrubber_energy_used_kwh"],
+        oga_results["oga_power_used_kw"], oga_results["oga_energy_used_kwh"],
+        light_results["light_power_used_kw"], light_results["light_energy_used_kwh"],
+        wellness_results["w_light_power_used_kw"], wellness_results["w_light_energy_used_kwh"],
+        thermal_outputs.get("radiator_power_kw", 0.0), thermal_outputs.get("radiator_energy_kwh", 0.0),
+        thermal_outputs.get("heater_power_kw", 0.0), thermal_outputs.get("heater_energy_kwh", 0.0),
+        humidity_results.get("chx_power_used_kw", 0.0), humidity_results.get("chx_energy_used_kwh", 0.0)
+        )
+
+
+    total_heat_added_kw, total_heat_added_kwh = total_heat_generated(
+        light_results["light_heat_kw"],
+        light_results["light_heat_kwh"],
+        wellness_results["w_light_heat_kw"],
+        wellness_results["w_light_heat_kwh"]
+        )   
+    
     new_battery_stored_kwh = max(0.0, battery_after_charge - total_energy_used_kwh)
 
-    return {
-        "new_solar_arrays": new_solar_arrays,
-        "solar_arrays_online_count" : solar_arrays_online_count,
-        "total_solar_generated_kw" : total_solar_generated_kw, "total_solar_generated_kwh" : total_solar_generated_kwh,
-        "total_power_used_kw" : total_power_used_kw, "total_energy_used_kwh" : total_energy_used_kwh,
-        "total_heat_added_kw" : total_heat_added_kw, "total_heat_added_kwh" : total_heat_added_kwh,
-        "new_battery_stored_kwh" : new_battery_stored_kwh,
-        "power_generated_per_array":  power_generated_per_array
+    #------------dict for updating state-------------♡ 
+    power_updates = {
+        "battery_stored_kwh" : new_battery_stored_kwh,
+        "solar_arrays": new_solar_arrays,
     }
     
+    #-----------dict for printing outputs------------♡ 
+    power_outputs = {
+        "solar_arrays_online_count" : solar_arrays_online_count,
+        "power_generated_per_array":  power_generated_per_array,
+
+        "total_solar_generated_kw" : total_solar_generated_kw,
+        "total_solar_generated_kwh" : total_solar_generated_kwh,
+        
+        "total_power_used_kw" : total_power_used_kw,
+        "total_energy_used_kwh" : total_energy_used_kwh,
+        
+        "total_heat_added_kw" : total_heat_added_kw,
+        "total_heat_added_kwh" : total_heat_added_kwh,
+    }
+
+    return power_updates, power_outputs
 
 #------------checking power current mode------------♡
 def check_power_mode(state):
@@ -268,4 +297,25 @@ def apply_low_power_mode(power_mode, final_light_level, wellness_light_level):
         wellness_light_level = 0.0
 
     return final_light_level, wellness_light_level
-    
+
+
+#----------power system info for engine.py-----------♡
+def power_sytem_info(
+    state,
+    co2_results,
+    oga_results,
+    light_results,
+    wellness_results,
+    thermal_outputs,
+    humidity_results,
+    water_outputs,
+    dt_min
+    ):
+
+    power_results = {
+        
+    }
+
+    power_updates, power_outputs = run_system_power(state, power_results, dt_min)
+
+    return power_updates, power_outputs

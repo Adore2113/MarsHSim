@@ -1,5 +1,6 @@
 # file for managing water, water recycling and generation
 
+
 #--------------------constants-----------------------♡
 upa_recovery_rate = 0.85    # urine processor assembly
 wpa_recovery_rate = 0.95    # water processor assembly
@@ -96,7 +97,7 @@ def run_bpa(state, dt_min):
 #------------run water processor assembly------------♡
 def run_wpa(state, dt_min):
     hours_per_step = dt_min / 60
-    total_water_input_kg = state.gray_water_storage_kg + state.condensate_storage_kg
+    total_water_input_kg = state.gray_water_storage_kg
     
     if total_water_input_kg <= 0.1:
         return {"recovered_water_kg" : 0.0, "water_processed_kg": 0.0, "condensate_removed_kg":0.0, "gray_water_removed_kg": 0.0, "wpa_power_used_kw" : 0.0, "wpa_energy_used_kwh" : 0.0}
@@ -127,18 +128,17 @@ def run_wpa(state, dt_min):
     }
 
 
-
 #---------------update water storage-----------------♡
-def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, condensate_added_kg):
+def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, condensate_added_kg):
     total_recovered_water_kg = (upa_results["recovered_water_kg"] + wpa_results["recovered_water_kg"] + bpa_results["recovered_water_kg"])
     
-    new_potable_water_storage_kg = min(state.potable_water_storage_capacity_kg, max(0.0, crew_water_results["new_potable_water_storage_kg"] + total_recovered_water_kg))
+    new_potable_water_storage_kg = min(state.potable_water_storage_capacity_kg, max(0.0, crew_water_results["new_potable_water_storage_kg"] - oga_water_used_kg + total_recovered_water_kg))
     new_gray_water_storage_kg = min(state.gray_water_storage_capacity_kg, max(0.0, crew_water_results["new_gray_water_storage_kg"] - wpa_results["gray_water_removed_kg"]))
     new_black_water_storage_kg = min(state.black_water_storage_capacity_kg, max(0.0, crew_water_results["new_black_water_storage_kg"] - upa_results["black_water_removed_kg"]))
     new_condensate_storage_kg = min(state.condensate_storage_capacity_kg, max(0.0, state.condensate_storage_kg + condensate_added_kg - wpa_results["condensate_removed_kg"]))
     new_brine_storage_kg = min(state.brine_storage_capacity_kg, max(0.0, state.brine_storage_kg + upa_results["brine_added_kg"] - bpa_results["water_processed_kg"]))
 
-    #----------------dict for updates----------------♡ 
+    #------------dict for updating state-------------♡ 
     state_updates = {
         "potable_water_storage_kg": new_potable_water_storage_kg,
         "gray_water_storage_kg": new_gray_water_storage_kg,
@@ -152,21 +152,23 @@ def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results
 
     return state_updates, outputs
 
+
 #----------------run full water system---------------♡
-def run_water_system(state, crew_results, condensate_added_kg, dt_min):
+def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg, dt_min):
     crew_water_results = crew_water_usage(state, crew_results, dt_min)
 
     upa_results = run_upa(state, dt_min)
     bpa_results = run_bpa(state, dt_min)
     wpa_results = run_wpa(state, dt_min)
 
-    water_updates, water_storage_outputs = update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, condensate_added_kg)
+    water_updates, water_storage_outputs = update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, condensate_added_kg)
 
     water_outputs = {
         "potable_water_used_kg": crew_water_results["potable_water_used_kg"],
         "gray_water_added_kg": crew_water_results["gray_water_added_kg"],
         "black_water_added_kg": crew_water_results["black_water_added_kg"],
         "condensate_added_kg": condensate_added_kg,
+        "oga_water_used_kg": oga_water_used_kg,
 
         "upa_recovered_water_kg": upa_results["recovered_water_kg"],
         "upa_brine_added_kg": upa_results["brine_added_kg"],

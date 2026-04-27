@@ -1,4 +1,5 @@
 #--------------------imports-------------------------♡
+from dataclasses import replace
 from .mars_time import current_mars_season, determine_sunlight_amount
 #----------------------------------------------------♡
 
@@ -290,18 +291,20 @@ def determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
 def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, light_heat_kw, wellness_light_heat_kw, chx_heat_added_kw, dt_min, sunlight_amount):
     hours_per_step = dt_min / 60.0
     mars_temp_c, mars_temp_k = determine_mars_temp_c(state)
+   
+    thermal_state = replace(state, mars_temp_c = mars_temp_c)
 
     hab_heat_kw = crew_heat_kw + oga_heat_kw + co2_scrubber_heat_kw + light_heat_kw + wellness_light_heat_kw + chx_heat_added_kw
-
+    
     if sunlight_amount is None:
         sunlight_amount = determine_sunlight_amount(state)
 
     solar_heat_gain_kw = get_solar_heat_gain_kw(state)
     
-    heat_loss_kw = heat_loss_from_outside_kw(state)
-    
-    hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
-    
+    heat_loss_kw = heat_loss_from_outside_kw(thermal_state)
+
+    hab_temp_mode, new_heaters, heaters_online_count, new_radiators, radiators_online_count = determine_thermal_mode(thermal_state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
+
     heat_loss_kw = heat_loss_from_outside_kw(state)
     
     heater_heat_kw = heater_heat_added_kw(new_heaters)
@@ -315,7 +318,7 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
     
     new_hab_temp_c = state.hab_temp_c + temp_change_c
 
-    #----------------dict for updates----------------♡ 
+    #------------dict for updating state-------------♡ 
     thermal_updates = {
         "hab_temp_c": new_hab_temp_c,
         "mars_temp_c": mars_temp_c,

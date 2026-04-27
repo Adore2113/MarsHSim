@@ -924,7 +924,7 @@
 
     NEXT SESSION:  fix amine beds to show up as online!
 
-    ♡--------------------TO DO: --------------------♡ 
+    ♡-------------------TO DO: -------------------♡ 
         -amine beds: 2 always online and add backups
 
         -update alerts: thermal, water, add warnings
@@ -976,7 +976,7 @@
     NEXT SESSION:  go throuh files and update everything using state (starting with thermal) and clean up inconsistencies
 
 
-    ♡--------------------TO DO: --------------------♡ 
+    ♡-------------------TO DO: -------------------♡ 
         -add to file for handling dust
 
         -update alerts: thermal, water, add warnings
@@ -1016,7 +1016,7 @@
 
 ♡--------------------------------------------------♡ 
 
-### ♡       04/25/2026
+### ♡       04/26/2026
     -connecting files to state more directly
 
     -figuring out how to reduce outputs in engine, while still keeping it
@@ -1027,7 +1027,50 @@
     NEXT SESSION: finish working on breaing up outputs and making engine more organized
 
 
-    ♡--------------------TO DO: --------------------♡ 
+    ♡-------------------TO DO: -------------------♡ 
+        -add to file for handling dust
+
+        -update alerts: thermal, water, add warnings
+
+        -finish dust accumulation function
+
+        -add back ups for other systems
+
+        -add power priority systems
+
+        -replace hardcoding to caluclations
+
+        -add crew scheduling
+        
+        -add maintenance scheduling
+
+        -add rations/food system ( greenhouse ?)
+
+        -add wind effects to solar and external habitat
+
+        -add random events:
+            -extra dust accumulation
+            -wind removing some dust from ararys
+            -daily temp and sunlight events
+            -dust storms
+            -leaks
+            -meteroite damange (microscopic)?
+            -cute messages when system is running perfectly well
+
+        -break outputs into classes or smaller dicts
+
+        -continue adding heat generated/heat waste
+        
+        -add electronic heat and power
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/27/2026
+    -continue connecting files to state more directly, reduce outputs in engine, and turning files into seperate dictionaries
+
+
+
+    ♡-------------------TO DO: -------------------♡ 
         -add to file for handling dust
 
         -update alerts: thermal, water, add warnings

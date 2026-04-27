@@ -1,8 +1,10 @@
-from dataclasses import replace
-from .state import Habitat_State
+#--------------------imports-------------------------♡
+from src.sim.state import Habitat_State
 from .temp_system import get_thermal_alerts, get_humidity_alerts
+#----------------------------------------------------♡
 
-#----------------get habitat status----------------♡
+
+#-----------------get habitat status-----------------♡
 def get_status(all_alerts):
     hab_status = "NOMINAL"
     
@@ -18,7 +20,7 @@ def get_status(all_alerts):
     return hab_status
 
 
-#--------------------gas alerts--------------------♡
+#---------------------gas alerts---------------------♡
 def get_gas_alerts(state):
     gas_alerts = []
 
@@ -40,7 +42,7 @@ def get_gas_alerts(state):
     return gas_alerts
 
 
-#-------------------power alerts-------------------♡
+#--------------------power alerts--------------------♡
 def get_power_alerts(state):
     power_alerts = []
     battery_percentage = state.battery_stored_kwh / state.battery_max_capacity_kwh
@@ -54,13 +56,13 @@ def get_power_alerts(state):
     return power_alerts
 
 
-#-----------------all alerts update-----------------♡
+#------------------all alerts update-----------------♡
 def get_alerts(state, outputs):
     alerts = []
 
     alerts.extend(get_gas_alerts(state))
     alerts.extend(get_power_alerts(state))
-    alerts.extend(get_thermal_alerts(outputs["new_hab_temp_c"]))
+    alerts.extend(get_thermal_alerts(state))
     alerts.extend(get_humidity_alerts(outputs["new_humidity_pct"]))
 
     return alerts
