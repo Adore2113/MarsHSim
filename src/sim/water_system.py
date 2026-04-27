@@ -153,3 +153,49 @@ def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results
     }
 
     return state_updates, outputs
+
+#----------------run full water system---------------♡
+def run_water_system(state, crew_results, condensate_added_kg, dt_min):
+    crew_water_results = crew_water_usage(state, crew_results, dt_min)
+
+    upa_results = run_upa(state, dt_min)
+    bpa_results = run_bpa(state, dt_min)
+    wpa_results = run_wpa(state, dt_min)
+
+    water_updates, water_outputs = update_water_storages_kg(
+        state,
+        crew_water_results,
+        upa_results,
+        wpa_results,
+        bpa_results,
+        condensate_added_kg
+    )
+
+    outputs = {
+        "potable_water_used_kg": crew_water_results["potable_water_used_kg"],
+        "gray_water_added_kg": crew_water_results["gray_water_added_kg"],
+        "black_water_added_kg": crew_water_results["black_water_added_kg"],
+        "condensate_added_kg": condensate_added_kg,
+
+        "upa_recovered_water_kg": upa_results["recovered_water_kg"],
+        "upa_brine_added_kg": upa_results["brine_added_kg"],
+        "upa_black_water_removed_kg": upa_results["black_water_removed_kg"],
+        "upa_power_used_kw": upa_results["upa_power_used_kw"],
+        "upa_energy_used_kwh": upa_results["upa_energy_used_kwh"],
+
+        "wpa_recovered_water_kg": wpa_results["recovered_water_kg"],
+        "wpa_water_processed_kg": wpa_results["water_processed_kg"],
+        "wpa_condensate_removed_kg": wpa_results["condensate_removed_kg"],
+        "wpa_gray_water_removed_kg": wpa_results["gray_water_removed_kg"],
+        "wpa_power_used_kw": wpa_results["wpa_power_used_kw"],
+        "wpa_energy_used_kwh": wpa_results["wpa_energy_used_kwh"],
+
+        "bpa_recovered_water_kg": bpa_results["recovered_water_kg"],
+        "bpa_water_processed_kg": bpa_results["water_processed_kg"],
+        "bpa_power_used_kw": bpa_results["bpa_power_used_kw"],
+        "bpa_energy_used_kwh": bpa_results["bpa_energy_used_kwh"],
+
+        "total_recovered_water_kg": water_outputs["total_recovered_water_kg"],
+    }
+
+    return water_updates, outputs
