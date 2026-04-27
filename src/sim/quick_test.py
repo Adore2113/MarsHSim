@@ -167,7 +167,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Carbon Dioxide:':<22} {state.co2_kpa:.2f} kPa")
     print(f"{'Nitrogen:':<22} {state.n2_kpa:.2f} kPa")
     print(f"{'Argon:':<22} {state.ar_kpa:.2f} kPa")
-    print(f"{'Total Pressure:':<22} {mca(state.o2_kpa, state.co2_kpa, state.n2_kpa, state.ar_kpa):.2f} kPa")
+    print(f"{'Total Pressure:':<22} {mca(state):.2f} kPa")
 
     #-------------------resources--------------------♡
     print(("\n\n♡         [ RESOURCES ]          ♡").center(WIDTH))
