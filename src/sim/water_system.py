@@ -148,9 +148,7 @@ def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results
     }
 
     #-----------dict for printing outputs------------♡ 
-    outputs = {
-        "total_recovered_water_kg": total_recovered_water_kg,
-    }
+    outputs = {"total_recovered_water_kg": total_recovered_water_kg}
 
     return state_updates, outputs
 
@@ -162,16 +160,9 @@ def run_water_system(state, crew_results, condensate_added_kg, dt_min):
     bpa_results = run_bpa(state, dt_min)
     wpa_results = run_wpa(state, dt_min)
 
-    water_updates, water_outputs = update_water_storages_kg(
-        state,
-        crew_water_results,
-        upa_results,
-        wpa_results,
-        bpa_results,
-        condensate_added_kg
-    )
+    water_updates, water_storage_outputs = update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, condensate_added_kg)
 
-    outputs = {
+    water_outputs = {
         "potable_water_used_kg": crew_water_results["potable_water_used_kg"],
         "gray_water_added_kg": crew_water_results["gray_water_added_kg"],
         "black_water_added_kg": crew_water_results["black_water_added_kg"],
@@ -195,7 +186,7 @@ def run_water_system(state, crew_results, condensate_added_kg, dt_min):
         "bpa_power_used_kw": bpa_results["bpa_power_used_kw"],
         "bpa_energy_used_kwh": bpa_results["bpa_energy_used_kwh"],
 
-        "total_recovered_water_kg": water_outputs["total_recovered_water_kg"],
+        "total_recovered_water_kg": water_storage_outputs["total_recovered_water_kg"],
     }
 
-    return water_updates, outputs
+    return water_updates, water_outputs
