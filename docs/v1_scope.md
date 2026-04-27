@@ -1013,3 +1013,52 @@
         -add electronic heat and power
 
         -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/25/2026
+    -connecting files to state more directly
+
+    -figuring out how to reduce outputs in engine, while still keeping it
+
+    -started turning files into seperate dictionaries to reduce the massive outputs dict in engine.py, started with water, working on temp
+
+
+    NEXT SESSION: finish working on breaing up outputs and making engine more organized
+
+
+    ♡--------------------TO DO: --------------------♡ 
+        -add to file for handling dust
+
+        -update alerts: thermal, water, add warnings
+
+        -finish dust accumulation function
+
+        -add back ups for other systems
+
+        -add power priority systems
+
+        -replace hardcoding to caluclations
+
+        -add crew scheduling
+        
+        -add maintenance scheduling
+
+        -add rations/food system ( greenhouse ?)
+
+        -add wind effects to solar and external habitat
+
+        -add random events:
+            -extra dust accumulation
+            -wind removing some dust from ararys
+            -daily temp and sunlight events
+            -dust storms
+            -leaks
+            -meteroite damange (microscopic)?
+            -cute messages when system is running perfectly well
+
+        -break outputs into classes or smaller dicts
+
+        -continue adding heat generated/heat waste
+        
+        -add electronic heat and power
