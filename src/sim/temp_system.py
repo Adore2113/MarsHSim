@@ -78,7 +78,7 @@ def heat_loss_from_outside_kw(state):
 def heaters_online(state):
     new_heaters = []
     heaters_online_count = sum(1 for heater in state.heaters if heater["status"] == "online")
-
+    
     heat_needed_c = state.target_temp_c - state.hab_temp_c
    
     #--------how many heaters needed online----------♡ 
@@ -99,7 +99,7 @@ def heaters_online(state):
 
     #-------handling primary radiators first--------♡ 
     if heaters_online_count < target_heaters_online:
-        primary_heaters_needed = target_heaters_online
+        primary_heaters_needed = target_heaters_online - heaters_online_count
 
         for heater in state.heaters:
             new_heater = heater.copy()
@@ -110,7 +110,7 @@ def heaters_online(state):
                     primary_heaters_needed -= 1
                     heaters_online_count += 1
                 
-                elif new_heater["type"] == "backup" and primary_heaters_needed <= 2:
+                elif new_heater["type"] == "backup":
                     new_heater["status"] = "online"
                     primary_heaters_needed -= 1
                     heaters_online_count += 1
@@ -118,14 +118,14 @@ def heaters_online(state):
             new_heaters.append(new_heater)
 
     #---------------switch to standby---------------♡ 
-    elif heaters_online_count >= target_heaters_online:
+    elif heaters_online_count > target_heaters_online:
         heaters_not_needed = heaters_online_count - target_heaters_online 
             
         for heater in state.heaters:
             new_heater = heater.copy()
   
             if heaters_not_needed > 0 and new_heater["status"] == "online":
-                if heaters_not_needed > 0 and new_heater["status"] == "online":
+                if new_heater["type"] == "backup" or heaters_not_needed > 0:
                     new_heater["status"] = "standby"
                     heaters_not_needed -= 1
                     heaters_online_count -= 1
