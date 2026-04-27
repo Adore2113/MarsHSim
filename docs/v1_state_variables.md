@@ -13,6 +13,12 @@
 
 # ------thermal control-----------------------------♡
     hab_temp_c
+    target_temp_c
+    min_comfort_temp_c
+    max_comfort_temp_c
+
+    mars_temp_c
+
     target_humidity_pct
     current_humidity_pct
 
