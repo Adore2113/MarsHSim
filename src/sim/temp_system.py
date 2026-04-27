@@ -167,7 +167,7 @@ def heater_power(new_heaters, dt_min):
 #---------------------radiators----------------------♡
 def radiators_online(state):
     new_radiators = []
-    radiators_online_count = 0
+    radiators_online_count = sum(1 for rad in state.radiators if rad["status"] == "online")
 
     cooling_needed_c = state.hab_temp_c - state.target_temp_c
 
@@ -186,31 +186,43 @@ def radiators_online(state):
     
     else:
         target_online = 0
-
-    primary_radiators_needed = target_online
     
     #----------handling primary beds first----------♡ 
-    for rad in state.radiators:
-        new_rad = rad.copy()
+    if radiators_online_count < target_online:
+        primary_radiators_needed = target_online - radiators_online_count
+    
+        for rad in state.radiators:
+            new_rad = rad.copy()
 
-        if new_rad["status"] == "standby" and primary_radiators_needed > 0:
-            if new_rad["type"] == "primary":
-                new_rad["status"] = "online"
-                primary_radiators_needed -= 1
+            if new_rad["status"] == "standby" and primary_radiators_needed > 0:
+                if new_rad["type"] == "primary":
+                    new_rad["status"] = "online"
+                    primary_radiators_needed -= 1
+                    radiators_online_count += 1
+                
+                elif new_rad["type"] == "backup":
+                    new_rad["status"] = "online"
+                    primary_radiators_needed -= 1
+                    radiators_online_count += 1
             
-            elif new_rad["type"] == "backup" and primary_radiators_needed <= 2:
-                new_rad["status"] = "online"
+            new_radiators.append(new_rad)
 
     #---------------switch to standby---------------♡ 
-        elif new_rad["status"] == "online":
-            if radiators_online_count >= target_online:
-                if new_rad["type"] == "backup" or radiators_online_count > 2:
+    elif radiators_online_count > target_online:
+        radiators_not_needed = radiators_online_count - target_online 
+    
+        for rad in state.radiators:
+            new_rad = rad.copy()
+
+            if new_rad["type"] == "backup" or radiators_not_needed > 0:
                     new_rad["status"] = "standby"
+                    radiators_not_needed -= 1
+                    radiators_online_count -= 1
 
-        if new_rad["status"] == "online":
-            radiators_online_count += 1
+            new_radiators.append(new_rad)
 
-        new_radiators.append(new_rad)
+    else:
+        new_radiators = [rad.copy() for rad in state.radiators]
 
     return new_radiators, radiators_online_count
 
