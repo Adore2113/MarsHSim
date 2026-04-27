@@ -55,8 +55,9 @@ def amine_beds_online(state, co2_kpa):
                     primary_beds_needed -= 1
                     beds_online_count += 1
 
-                elif new_bed["type"] == "backup" and primary_beds_needed <= 2:
+                elif new_bed["type"] == "backup":
                     new_bed["status"] = "online"
+                    primary_beds_needed -= 1
                     beds_online_count += 1
 
             new_beds.append(new_bed)
@@ -69,11 +70,13 @@ def amine_beds_online(state, co2_kpa):
             new_bed = bed.copy()
 
             if beds_not_needed > 0 and new_bed["status"] == "online":
-                if new_bed["type"] == "backup" or beds_online_count > min_beds_online:
+                if new_bed["type"] == "backup" or beds_not_needed > 0:
                     new_bed["status"] = "standby"
                     beds_not_needed -= 1
                     beds_online_count -= 1
 
+            new_beds.append(new_bed)
+            
     else:
         new_beds = [bed.copy() for bed in state.amine_beds]
 
