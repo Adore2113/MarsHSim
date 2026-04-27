@@ -29,8 +29,10 @@ s0 = Habitat_State(
     #--------------------thermal---------------------♡
     hab_temp_c = 23.0,
     target_temp_c = 23.0,
-    min_temp_c = 20.0,
-    max_temp_c = 25.0,
+    min_comfort_temp_c = 20.0,
+    max_comfort_temp_c = 25.0,
+
+    mars_temp_c = -20.0,
 
     current_humidity_pct = 48.0,
     target_humidity_pct = 48.0,
