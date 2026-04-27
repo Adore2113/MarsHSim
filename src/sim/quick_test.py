@@ -229,8 +229,7 @@ def print_state(state, outputs, alerts):
 
     print((f"\n♡  [THERMAL MODE: {outputs['hab_temp_mode']}]  ♡\n").center(WIDTH))
 
-    
-    print(f"{'Habitat Heat:':<22} {outputs['hab_heat_kw']:.2f} kW")
+
     print(f"{'Heat Loss:':<22} {outputs['heat_loss_kw']:.2f} kW")
     print(f"{'Net Heat:':<22} {outputs['net_heat_kw']:.2f} kW")
     print(f"{'Temp Change:':<22} ~{outputs['temp_change_c']:.2f} °C")    # maybe change to 3 or 4
