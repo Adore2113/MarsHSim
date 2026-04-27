@@ -40,24 +40,24 @@ s0 = Habitat_State(
     thermal_mass_kwh_per_c = 280.0,
 
     radiators = [
-        {"id" : 1, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
-        {"id" : 2, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
-        {"id" : 3, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
-        {"id" : 4, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
-        {"id" : 5, "status" : "standby", "area_m2" : 68, "efficiency" : 0.95, "dust_factor" : 1.0, "type" : "primary"},
+        {"id": 1, "status": "standby", "area_m2": 68, "efficiency": 0.95, "dust_factor": 1.0, "type": "primary"},
+        {"id": 2, "status": "standby", "area_m2": 68, "efficiency": 0.95, "dust_factor": 1.0, "type": "primary"},
+        {"id": 3, "status": "standby", "area_m2": 68, "efficiency": 0.95, "dust_factor": 1.0, "type": "primary"},
+        {"id": 4, "status": "standby", "area_m2": 68, "efficiency": 0.95, "dust_factor": 1.0, "type": "primary"},
+        {"id": 5, "status": "standby", "area_m2": 68, "efficiency": 0.95, "dust_factor": 1.0, "type": "primary"},
        
-        {"id" : 6, "status" : "standby", "area_m2" : 55, "efficiency" : 0.85, "dust_factor" : 1.0, "type" : "backup"},
-        {"id" : 7, "status" : "standby", "area_m2" : 55, "efficiency" : 0.85, "dust_factor" : 1.0, "type" : "backup"},
+        {"id": 6, "status": "standby", "area_m2": 55, "efficiency": 0.85, "dust_factor": 1.0, "type": "backup"},
+        {"id": 7, "status": "standby", "area_m2": 55, "efficiency": 0.85, "dust_factor": 1.0, "type": "backup"},
     ],
 
     heaters = [
-        {"id" : 1, "status" : "standby", "power_kw" : 9.0, "efficiency" : 1.0, "type" : "primary"},
-        {"id" : 2, "status" : "standby", "power_kw" : 9.0, "efficiency" : 1.0, "type" : "primary"},
-        {"id" : 3, "status" : "standby", "power_kw" : 9.0, "efficiency" : 1.0, "type" : "primary"},
-        {"id" : 4, "status" : "standby", "power_kw" : 9.0, "efficiency" : 1.0, "type" : "primary"},
+        {"id": 1, "status": "standby", "power_kw": 9.0, "efficiency": 1.0, "type": "primary"},
+        {"id": 2, "status": "standby", "power_kw": 9.0, "efficiency": 1.0, "type": "primary"},
+        {"id": 3, "status": "standby", "power_kw": 9.0, "efficiency": 1.0, "type": "primary"},
+        {"id": 4, "status": "standby", "power_kw": 9.0, "efficiency": 1.0, "type": "primary"},
         
-        {"id" : 5, "status" : "standby", "power_kw" : 8.0, "efficiency" : 0.98, "type" : "backup"},
-        {"id" : 6, "status" : "standby", "power_kw" : 8.0, "efficiency" : 0.98, "type" : "backup"},
+        {"id": 5, "status": "standby", "power_kw": 8.0, "efficiency": 0.98, "type": "backup"},
+        {"id": 6, "status": "standby", "power_kw": 8.0, "efficiency": 0.98, "type": "backup"},
     ],
     
     #---------atmosphere targets and limits----------♡
@@ -84,13 +84,13 @@ s0 = Habitat_State(
 
     #------------------amine_beds--------------------♡
     amine_beds = [
-        {"id" : 1, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0, "type": "primary"},
-        {"id" : 2, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0, "type": "primary"},
-        {"id" : 3, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0, "type": "primary"},
-        {"id" : 4, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0, "type": "primary"},
+        {"id": 1, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "primary"},
+        {"id": 2, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "primary"},
+        {"id": 3, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "primary"},
+        {"id": 4, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "primary"},
         
-        {"id" : 5, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0, "type": "backup"},
-        {"id" : 6, "status" : "standby", "capacity" : 3.0, "co2_load" : 0.0, "type": "backup"},
+        {"id": 5, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "backup"},
+        {"id": 6, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "backup"},
     ],
     scrub_per_bed_kpa = 0.0035,
 
@@ -99,17 +99,17 @@ s0 = Habitat_State(
     battery_stored_kwh = 1100.0,
     
     solar_arrays = [
-        {"id" : 1, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
-        {"id" : 2, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
-        {"id" : 3, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
-        {"id" : 4, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
-        {"id" : 5, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
-        {"id" : 6, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
-        {"id" : 7, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
-        {"id" : 8, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "primary"},
+        {"id": 1, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
+        {"id": 2, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
+        {"id": 3, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
+        {"id": 4, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
+        {"id": 5, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
+        {"id": 6, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
+        {"id": 7, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
+        {"id": 8, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
 
-        {"id" : 9, "status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "backup"},
-        {"id" : 10,"status" : "standby", "area_m2" : 50, "efficiency" : 0.28, "dust_factor" : 1.0, "type": "backup"}
+        {"id": 9, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "backup"},
+        {"id": 10,"status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "backup"}
     ], 
     
     solar_absorptivity = 0.68,
@@ -197,13 +197,13 @@ def print_state(state, outputs, alerts):
     #-------------------subsystems-------------------♡
     print(("\n\n♡         [  SYSTEMS  ]          ♡").center(WIDTH))
     print(f"{'Amine Beds Online:':<22} {outputs.get('beds_online_count', 0)}")
-    print(f"{'CO2 Scrubbed:':<22} {outputs.get('co2_removed_kpa', 0):.2f} kPa")
+    print(f"{'CO2 Scrubbed:':<22} {outputs.get('co2_removed_kpa', 0):.3f} kPa")
 
     print(f"{'Scrubber Power Used:':<22} {outputs.get('co2_scrubber_power_used_kw', 0):.2f} kW")
     print(f"{'Scrubber Heat:':<22} {outputs.get('co2_scrubber_heat_kw', 0):.2f} kW")
     print(f"{'Scrubber Energy:':<22} {outputs.get('co2_scrubber_energy_used_kwh', 0):.2f} kWh")
     
-    print(f"{'O2 Added:':<22} {outputs.get('o2_added_kpa', 0):.2f} kPa")
+    print(f"{'O2 Added:':<22} {outputs.get('o2_added_kpa', 0):.3f} kPa")
     print(f"{'OGA Heat:':<22} {outputs.get('oga_heat_kw', 0):.2f} kW")
     print(f"{'Lights Power:':<22} {outputs.get('light_power_used_kw', 0):.2f} kW")
     print(f"{'Lights Heat:':<22} {outputs.get('light_heat_kw', 0):.2f} kW")
@@ -229,7 +229,7 @@ def print_state(state, outputs, alerts):
 
     print(f"{'Heat Loss:':<22} {outputs.get('heat_loss_kw', 0):.2f} kW")
     print(f"{'Net Heat:':<22} {outputs.get('net_heat_kw', 0):.2f} kW")
-    print(f"{'Temp Change:':<22} ~{outputs.get('temp_change_c', 0):.2f} °C")
+    print(f"{'Temp Change:':<22} ~{outputs.get('temp_change_c', 0):.3f} °C")
     print(f"{'Humidity:':<22} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
     print(f"{'Vapor Removed:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")
     
