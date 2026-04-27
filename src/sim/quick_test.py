@@ -141,6 +141,8 @@ s0 = Habitat_State(
 def print_state(state, outputs, alerts):
     sol, hour, minutes = get_sol_time(state)
     status = get_status(alerts)
+    temp_change_per_hour = outputs.get("temp_change_c", 0) * 12    # change this later
+
     WIDTH = 33
 
     print("\n♡ " + "-" * 30 + " ♡")
@@ -228,8 +230,10 @@ def print_state(state, outputs, alerts):
     print(f"{'Mars Temp:':<22} {outputs.get('mars_temp_c', state.mars_temp_c):.2f} °C")
 
     print(f"{'Heat Loss:':<22} {outputs.get('heat_loss_kw', 0):.2f} kW")
+    
     print(f"{'Net Heat:':<22} {outputs.get('net_heat_kw', 0):.2f} kW")
-    print(f"{'Temp Change:':<22} ~{outputs.get('temp_change_c', 0):.3f} °C")
+    print(f"{'Temp Trend:':<22} ~{temp_change_per_hour:.3f} °C/hr")    
+    
     print(f"{'Humidity:':<22} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
     print(f"{'Vapor Removed:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")
     
