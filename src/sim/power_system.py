@@ -81,7 +81,7 @@ def solar_generation(state, new_solar_arrays, dt_min):
         else:
             power_generated_kw = 0.0
 
-        power_generated_per_array.append({"id" : array["id"], "power_generated_kw" : power_generated_kw})
+        power_generated_per_array.append({"id": array["id"], "power_generated_kw" : power_generated_kw})
         total_solar_generated_kw += power_generated_kw
         
     total_solar_generated_kwh = total_solar_generated_kw * hours_per_step
@@ -126,11 +126,11 @@ def lights(state, dt_min):
     light_heat_kwh = light_heat_kw * hours_per_step
 
     return {
-        "final_light_level" : final_light_level,
-        "light_heat_kw" : light_heat_kw,
-        "light_heat_kwh" : light_heat_kwh,
-        "light_power_used_kw" : light_power_used_kw,
-        "light_energy_used_kwh" : light_energy_used_kwh
+        "final_light_level": final_light_level,
+        "light_heat_kw": light_heat_kw,
+        "light_heat_kwh": light_heat_kwh,
+        "light_power_used_kw": light_power_used_kw,
+        "light_energy_used_kwh": light_energy_used_kwh
         }
 
 
@@ -249,23 +249,23 @@ def run_system_power(
 
     #------------dict for updating state-------------♡ 
     power_updates = {
-        "battery_stored_kwh" : new_battery_stored_kwh,
+        "battery_stored_kwh": new_battery_stored_kwh,
         "solar_arrays": new_solar_arrays,
     }
     
     #-----------dict for printing outputs------------♡ 
     power_outputs = {
-        "solar_arrays_online_count" : solar_arrays_online_count,
+        "solar_arrays_online_count": solar_arrays_online_count,
         "power_generated_per_array":  power_generated_per_array,
 
-        "total_solar_generated_kw" : total_solar_generated_kw,
-        "total_solar_generated_kwh" : total_solar_generated_kwh,
+        "total_solar_generated_kw": total_solar_generated_kw,
+        "total_solar_generated_kwh": total_solar_generated_kwh,
         
-        "total_power_used_kw" : total_power_used_kw,
-        "total_energy_used_kwh" : total_energy_used_kwh,
+        "total_power_used_kw": total_power_used_kw,
+        "total_energy_used_kwh": total_energy_used_kwh,
         
-        "total_heat_added_kw" : total_heat_added_kw,
-        "total_heat_added_kwh" : total_heat_added_kwh,
+        "total_heat_added_kw": total_heat_added_kw,
+        "total_heat_added_kwh": total_heat_added_kwh,
     }
 
     return power_updates, power_outputs
@@ -297,25 +297,3 @@ def apply_low_power_mode(power_mode, final_light_level, wellness_light_level):
         wellness_light_level = 0.0
 
     return final_light_level, wellness_light_level
-
-
-#----------power system info for engine.py-----------♡
-def power_sytem_info(
-    state,
-    co2_results,
-    oga_results,
-    light_results,
-    wellness_results,
-    thermal_outputs,
-    humidity_results,
-    water_outputs,
-    dt_min
-    ):
-
-    power_results = {
-        
-    }
-
-    power_updates, power_outputs = run_system_power(state, power_results, dt_min)
-
-    return power_updates, power_outputs
