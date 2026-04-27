@@ -57,7 +57,9 @@ def amine_beds_online(state, co2_kpa):
 
                 elif new_bed["type"] == "backup" and primary_beds_needed <= 2:
                     new_bed["status"] = "online"
-                    beds_online_count += 1 
+                    beds_online_count += 1
+
+            new_beds.append(new_bed)
 
     #---------------switch to standby---------------♡ 
     elif beds_online_count > target_beds_online and co2_needed_kpa < co2_hysteresis_for_off:
