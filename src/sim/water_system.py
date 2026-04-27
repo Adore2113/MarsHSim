@@ -1,6 +1,3 @@
-from dataclasses import replace
-from .state import Habitat_State
-
 # file for managing water, water recycling and generation
 
 #--------------------constants-----------------------♡
@@ -15,14 +12,7 @@ base_bpa_power_kw = 0.75
 upa_handling_capacity_per_hour_kg = 6.0
 wpa_handling_capacity_per_hour_kg = 10.0
 bpa_handling_capacity_per_hour_kg = 0.15
-
-potable_water_storage_capacity_kg = 5000.0    # placeholder
-gray_water_storage_capacity_kg = 500.0    # placeholder
-black_water_storage_capacity_kg = 300.0    # placeholder
-condensate_storage_capacity_kg = 80.0    # placeholder
-brine_storage_capacity_kg = 150.0    # placeholder
 #----------------------------------------------------♡
-
 
 
 #------------calculate crew water changes------------♡
@@ -32,8 +22,8 @@ def crew_water_usage(state, crew_results, dt_min):
     black_water_added_kg = crew_results.get("black_water_added_kg", 0.0)
 
     new_potable_water_storage_kg = max(0.0, state.potable_water_storage_kg - potable_water_used_kg)
-    new_gray_water_storage_kg = min(state.gray_water_storage_kg + gray_water_added_kg, gray_water_storage_capacity_kg)
-    new_black_water_storage_kg = min(state.black_water_storage_kg + black_water_added_kg, black_water_storage_capacity_kg)
+    new_gray_water_storage_kg = min(state.gray_water_storage_kg + gray_water_added_kg, state.gray_water_storage_capacity_kg)
+    new_black_water_storage_kg = min(state.black_water_storage_kg + black_water_added_kg, state.black_water_storage_capacity_kg)
 
     return {
         "potable_water_used_kg": potable_water_used_kg,
@@ -142,17 +132,24 @@ def run_wpa(state, dt_min):
 def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, condensate_added_kg):
     total_recovered_water_kg = (upa_results["recovered_water_kg"] + wpa_results["recovered_water_kg"] + bpa_results["recovered_water_kg"])
     
-    new_potable_water_storage_kg = min(potable_water_storage_capacity_kg, max(0.0, crew_water_results["new_potable_water_storage_kg"] + total_recovered_water_kg))
-    new_gray_water_storage_kg = min(gray_water_storage_capacity_kg, max(0.0, crew_water_results["new_gray_water_storage_kg"] - wpa_results["gray_water_removed_kg"]))
-    new_black_water_storage_kg = min(black_water_storage_capacity_kg, max(0.0, crew_water_results["new_black_water_storage_kg"] - upa_results["black_water_removed_kg"]))
-    new_condensate_storage_kg = min(condensate_storage_capacity_kg, max(0.0, state.condensate_storage_kg + condensate_added_kg - wpa_results["condensate_removed_kg"]))
-    new_brine_storage_kg = min(brine_storage_capacity_kg, max(0.0, state.brine_storage_kg + upa_results["brine_added_kg"] - bpa_results["water_processed_kg"]))
+    new_potable_water_storage_kg = min(state.potable_water_storage_capacity_kg, max(0.0, crew_water_results["new_potable_water_storage_kg"] + total_recovered_water_kg))
+    new_gray_water_storage_kg = min(state.gray_water_storage_capacity_kg, max(0.0, crew_water_results["new_gray_water_storage_kg"] - wpa_results["gray_water_removed_kg"]))
+    new_black_water_storage_kg = min(state.black_water_storage_capacity_kg, max(0.0, crew_water_results["new_black_water_storage_kg"] - upa_results["black_water_removed_kg"]))
+    new_condensate_storage_kg = min(state.condensate_storage_capacity_kg, max(0.0, state.condensate_storage_kg + condensate_added_kg - wpa_results["condensate_removed_kg"]))
+    new_brine_storage_kg = min(state.brine_storage_capacity_kg, max(0.0, state.brine_storage_kg + upa_results["brine_added_kg"] - bpa_results["water_processed_kg"]))
 
-    return {
-        "new_potable_water_storage_kg": new_potable_water_storage_kg,
-        "new_gray_water_storage_kg": new_gray_water_storage_kg,
-        "new_black_water_storage_kg": new_black_water_storage_kg,
-        "new_condensate_storage_kg": new_condensate_storage_kg,
-        "new_brine_storage_kg": new_brine_storage_kg,
+    #----------------dict for updates----------------♡ 
+    state_updates = {
+        "potable_water_storage_kg": new_potable_water_storage_kg,
+        "gray_water_storage_kg": new_gray_water_storage_kg,
+        "black_water_storage_kg": new_black_water_storage_kg,
+        "condensate_storage_kg": new_condensate_storage_kg,
+        "brine_storage_kg": new_brine_storage_kg,
+    }
+
+    #-----------dict for printing outputs------------♡ 
+    outputs = {
         "total_recovered_water_kg": total_recovered_water_kg,
     }
+
+    return state_updates, outputs
