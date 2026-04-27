@@ -339,7 +339,7 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
 
 
 #---------------------temp alerts--------------------♡
-def get_thermal_alerts(new_hab_temp_c):
+def get_thermal_alerts(state, new_hab_temp_c):
     thermal_alerts = []
     
     if new_hab_temp_c > 28.0:
@@ -348,6 +348,13 @@ def get_thermal_alerts(new_hab_temp_c):
     elif new_hab_temp_c < 18.0:
         thermal_alerts.append("CRITICAL: Habitat too cold")
 
+    else:
+        if new_hab_temp_c > state.max_comfort_temp_c:
+            thermal_alerts.append("WARNING: Habitat getting hot")
+        
+        if new_hab_temp_c < state.min_comfort_temp_c:
+            thermal_alerts.append("WARNING: Habitat getting cold")
+            
     return thermal_alerts
 
 
