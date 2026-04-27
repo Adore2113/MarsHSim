@@ -20,11 +20,11 @@ co2_hysteresis_for_off = -0.05
 
 
 #---------which beds and how many are online---------♡
-def amine_beds_online(state):
+def amine_beds_online(state, co2_kpa):
     new_beds = []
     beds_online_count = sum(1 for bed in state.amine_beds if bed["status"] == "online")
     
-    co2_needed_kpa = state.co2_kpa - state.target_co2_kpa
+    co2_needed_kpa = co2_kpa - state.target_co2_kpa
 
     #----------how many beds needed online-----------♡ 
     if co2_needed_kpa > 0.50:
@@ -40,7 +40,7 @@ def amine_beds_online(state):
         target_beds_online = 3
 
     else:
-        target_beds_online = max_beds_online 
+        target_beds_online = min_beds_online 
  
     #----------handling primary beds first----------♡ 
     if beds_online_count < target_beds_online and co2_needed_kpa > co2_hysteresis_for_on:
@@ -97,7 +97,7 @@ def get_co2_scrub_efficiency(co2_kpa):
 
 #-------------co2 removal limit per step-------------♡
 def co2_scrub_capacity_kpa(state, co2_after_crew_kpa, next_time_s):
-    beds_after_control, beds_online_count = amine_beds_online(state)
+    beds_after_control, beds_online_count = amine_beds_online(state, co2_after_crew_kpa)
     regen_rate_kpa = 0.01    # how fast a bed is venting co2 outside during regen
     
     max_scrub_removal_kpa = beds_online_count * state.scrub_per_bed_kpa
