@@ -151,12 +151,14 @@ def print_state(state, outputs, alerts):
 
     #---------------time and daylight----------------♡
     print(f"{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
-    print(f"{'Sunlight per m²:':<22} {state.daylight_m2_kw:.3f} kW")
+    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
+    print(f"{'Mars Temp:':<22} {outputs['mars_temp_c']:.2f} °C")
     print(f"{'Peak Sun Today:':<22} {state.peak_sunlight_today:.3f} /1.0")
     print(f"{'Low Sun Streak:':<22} {state.low_sunlight_streak_sols} sols")
-   
+    print(f"{'Sunlight per m²:':<22} {state.daylight_m2_kw:.3f} kW")
+
     #----------------habitat status------------------♡
-    print((f"\n♡  [  SYSTEM STATUS: {status}  ]  ♡\n").center(WIDTH))
+    print((f"\n♡  [  SYSTEM STATUS: {status}  ]  ♡").center(WIDTH))
     
     if alerts:
             print((f"♡      [  ALERT: {status}  ]      ♡").center(WIDTH))
@@ -170,7 +172,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Total Pressure:':<22} {mca(state):.2f} kPa")
 
     #-------------------resources--------------------♡
-    print(("\n\n♡         [ RESOURCES ]          ♡").center(WIDTH))
+    print(("\n♡         [ RESOURCES ]          ♡").center(WIDTH))
     print(f"{'Potable Water:':<22} {state.potable_water_storage_kg:.2f} kg")
     print(f"{'Gray Water:':<22} {state.gray_water_storage_kg:.2f} kg")
     print(f"{'Black Water:':<22} {state.black_water_storage_kg:.2f} kg")
@@ -179,7 +181,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f} kg")
 
     #---------------------water----------------------♡
-    print(("\n\n♡      [   WATER SYSTEM   ]      ♡").center(WIDTH))
+    print(("\n♡      [   WATER SYSTEM   ]      ♡").center(WIDTH))
     print(f"{'Potable Used:':<22} {outputs.get('potable_water_used_kg', 0):.2f} kg")
     print(f"{'OGA Water Used:':<22} {outputs.get('oga_water_used_kg', 0):.2f} kg")
     print(f"{'Gray Added:':<22} {outputs.get('gray_water_added_kg', 0):.2f} kg")
@@ -197,7 +199,7 @@ def print_state(state, outputs, alerts):
     print(f"{'BPA Recovered:':<22} {outputs.get('bpa_recovered_water_kg', 0):.2f} kg")
 
     #-------------------subsystems-------------------♡
-    print(("\n\n♡         [  SYSTEMS  ]          ♡").center(WIDTH))
+    print(("\n♡         [  SYSTEMS  ]          ♡").center(WIDTH))
     print(f"{'Amine Beds Online:':<22} {outputs.get('beds_online_count', 0)}")
     print(f"{'CO2 Scrubbed:':<22} {outputs.get('co2_removed_kpa', 0):.3f} kPa")
 
@@ -211,7 +213,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Lights Heat:':<22} {outputs.get('light_heat_kw', 0):.2f} kW")
  
     #--------------------power-----------------------♡
-    print(("\n\n♡          [   POWER   ]         ♡").center(WIDTH))
+    print(("\n♡          [   POWER   ]         ♡").center(WIDTH))
     print(f"{'Total Power Used:':<22} {outputs.get('total_power_used_kw', 0):.2f} kW")
     print(f"{'Total Energy Used:':<22} {outputs.get('total_energy_used_kwh', 0):.2f} kWh")
     
@@ -221,10 +223,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Wellness Lights:':<22} {'ON' if state.wellness_lights_on else 'OFF'}")
 
     #--------------------thermal---------------------♡
-    print(("\n\n♡         [  THERMAL  ]          ♡").center(WIDTH))
-    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
-    print(f"{'Mars Temp:':<22} {outputs['mars_temp_c']:.2f} °C")
-
+    print(("\n♡         [  THERMAL  ]          ♡").center(WIDTH))
     print((f"\n♡  [THERMAL MODE: {outputs['hab_temp_mode']}]  ♡\n").center(WIDTH))
     print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
     print(f"{'Mars Temp:':<22} {outputs.get('mars_temp_c', state.mars_temp_c):.2f} °C")
@@ -232,7 +231,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Heat Loss:':<22} {outputs.get('heat_loss_kw', 0):.2f} kW")
     
     print(f"{'Net Heat:':<22} {outputs.get('net_heat_kw', 0):.2f} kW")
-    print(f"{'Temp Trend:':<22} ~{temp_change_per_hour:.3f} °C/hr")    
+    print(f"{'Temp Trend:':<20} ~ {temp_change_per_hour:.3f} °C/hr")    
     
     print(f"{'Humidity:':<22} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
     print(f"{'Vapor Removed:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")

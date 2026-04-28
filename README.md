@@ -16,7 +16,7 @@ The focus is on reliability, realism, machine learning integration, reusability,
 
 MarsHSim simulates a habitat in Arcadia Planitia running on Mars time (sols and LMST).
 
-The system updates continuously using a timestep based simulation (currently 5 minute intervals), modeling how a closed life support system maintains stability over time.
+The system updates continuously using a timestep based simulation, modeling how a closed life support system maintains stability over time.
 
 My goal is to build something that feels real, structured, autonomous and slighlty interactive on a UI I designed
 

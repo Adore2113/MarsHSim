@@ -1066,8 +1066,27 @@
 ♡--------------------------------------------------♡ 
 
 ### ♡       04/27/2026
-    -continue connecting files to state more directly, reduce outputs in engine, and turning files into seperate dictionaries
+    -continue connecting files to state more directly and reducing outputs in engine
 
+    -added venting for OGA
+
+    -adding sabatier info/logic into my water system file
+
+    notes from before:     
+    
+    -NASA references: crew co2 production is around 1kg pp/day
+    
+    -researched o2 regeneration and electrolysis with focus on Oxygen Generation Assembly (OGA), MOXIE-like Solid Oxide Electrolysis (SOXE), and Sabatier co2 reduction + electrolysis
+
+    
+    Pros: reliable, efficient, works well with amine beds and humidity considerations, low power usage at ~5-10kW, ~500-800kg hardware
+
+    Cons: requires water (not really a huge con b/c recycling is a main priority), produces hydrogen (could use Sabatier or vent)
+
+    NEXT SESSION: 
+    -add sabatier info/logic into water system file
+    
+    -look at the heater logic and consider adding a target heaters online and heat needed variable to print for debugging
 
 
     ♡-------------------TO DO: -------------------♡ 
@@ -1077,11 +1096,7 @@
 
         -finish dust accumulation function
 
-        -add back ups for other systems
-
         -add power priority systems
-
-        -replace hardcoding to caluclations
 
         -add crew scheduling
         
@@ -1105,3 +1120,4 @@
         -continue adding heat generated/heat waste
         
         -add electronic heat and power
+        
