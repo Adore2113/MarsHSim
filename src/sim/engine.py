@@ -139,7 +139,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     outputs = {
         #-------------------crew--------------------♡
-        "crew_heat_kw" : crew_results["crew_temp_rise_kw"],
+        "crew_heat_kw": crew_results["crew_temp_rise_kw"],
 
         #----------------atmosphere-----------------♡
         "co2_scrubber_power_used_kw": co2_results["co2_scrubber_power_used_kw"],
@@ -159,6 +159,11 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
         #----------------buffer gas-----------------♡
         "buffer_gas_heat_kw": 0.0,
+        "buffer_gas_vented_kpa": buffer_gas_results["total_buffer_gas_vented_kpa"],
+        "total_buffer_gas_added_kpa": buffer_gas_results["total_buffer_gas_added_kpa"],
+        "buffer_gas_mode": buffer_gas_results["buffer_gas_mode"],
+        "pressure_gap_kpa": buffer_gas_results["pressure_gap_kpa"],
+
 
         #------------------lights-------------------♡
         "light_power_used_kw": light_results["light_power_used_kw"],

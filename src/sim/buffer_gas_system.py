@@ -88,7 +88,7 @@ def buffer_gas_control_kpa(state):
     else:
         pass
         
-    return (new_n2_kpa, new_ar_kpa, new_n2_stored_kpa, new_ar_stored_kpa, total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa)
+    return (new_n2_kpa, new_ar_kpa, new_n2_stored_kpa, new_ar_stored_kpa, total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, buffer_gas_mode, pressure_gap_kpa)
       
 
 #----system power consumption and heat produced-----♡
@@ -117,20 +117,23 @@ def buffer_gas_power_and_heat(total_buffer_gas_added_kpa, total_buffer_gas_vente
 
 #-------buffer gas control info per timestep--------♡
 def run_buffer_gas_control(state, dt_min):
-    n2_kpa, ar_kpa, n2_stored_kpa, ar_stored_kpa, total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa = buffer_gas_control_kpa(state)
+    n2_kpa, ar_kpa, n2_stored_kpa, ar_stored_kpa, total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, buffer_gas_mode, pressure_gap_kpa = buffer_gas_control_kpa(state)
     
     buffer_gas_heat_added_kw, buffer_gas_heat_added_kwh, buffer_gas_power_used_kw, buffer_gas_energy_used_kwh = buffer_gas_power_and_heat(total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, dt_min)
     
+
     return {
-        "n2_kpa" : n2_kpa,
-        "ar_kpa" : ar_kpa,
-        "n2_stored_kpa" : n2_stored_kpa,
-        "ar_stored_kpa" : ar_stored_kpa,
-        "total_buffer_gas_added_kpa" : total_buffer_gas_added_kpa,
-        "buffer_gas_heat_added_kw" : buffer_gas_heat_added_kw,
-        "total_buffer_gas_vented_kpa" : total_buffer_gas_vented_kpa,
-        "buffer_gas_heat_added_kwh" : buffer_gas_heat_added_kwh,
-        "buffer_gas_power_used_kw" : buffer_gas_power_used_kw, 
-        "buffer_gas_energy_used_kwh" : buffer_gas_energy_used_kwh,
+        "n2_kpa": n2_kpa,
+        "ar_kpa": ar_kpa,
+        "n2_stored_kpa": n2_stored_kpa,
+        "ar_stored_kpa": ar_stored_kpa,
+        "total_buffer_gas_added_kpa": total_buffer_gas_added_kpa,
+        "buffer_gas_heat_added_kw": buffer_gas_heat_added_kw,
+        "total_buffer_gas_vented_kpa": total_buffer_gas_vented_kpa,
+        "buffer_gas_heat_added_kwh": buffer_gas_heat_added_kwh,
+        "buffer_gas_power_used_kw": buffer_gas_power_used_kw, 
+        "buffer_gas_energy_used_kwh": buffer_gas_energy_used_kwh,
+        "buffer_gas_mode": buffer_gas_mode, 
+        "pressure_gap_kpa":  pressure_gap_kpa 
     }
 

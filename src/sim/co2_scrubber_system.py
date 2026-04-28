@@ -13,7 +13,7 @@ power_per_kpa_removed_kw = 45.0
 base_heat_per_bed_kw = 0.35
 heat_per_kpa_removed_kw = 8.0
 
-co2_efficiency_change_levels = {0.0 : 0.55, 0.2 : 0.55, 0.4 : 0.85, 0.5 : 1.00}
+co2_efficiency_change_levels = {0.0: 0.55, 0.2: 0.55, 0.4: 0.85, 0.5: 1.00}
 co2_hysteresis_for_on = 0.05
 co2_hysteresis_for_off = -0.05
 #----------------------------------------------------♡
@@ -170,6 +170,6 @@ def run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min):
         "co2_scrubber_heat_kwh": co2_scrubber_heat_kwh,
         "co2_scrubber_power_used_kw": co2_scrubber_power_used_kw,
         "co2_scrubber_energy_used_kwh": co2_scrubber_energy_used_kwh,
-        "beds_online_count" : beds_online_count,
+        "beds_online_count": beds_online_count,
         "amine_beds": beds_after_control
     }

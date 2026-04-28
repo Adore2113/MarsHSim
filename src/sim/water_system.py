@@ -44,7 +44,7 @@ def run_upa(state, dt_min):
     hours_per_step = dt_min / 60
     
     if state.black_water_storage_kg <= 0.1:
-        return {"recovered_water_kg" : 0.0, "brine_added_kg" : 0.0, "black_water_removed_kg": 0.0, "upa_power_used_kw" : 0.0, "upa_energy_used_kwh" : 0.0}
+        return {"recovered_water_kg": 0.0, "brine_added_kg": 0.0, "black_water_removed_kg": 0.0, "upa_power_used_kw": 0.0, "upa_energy_used_kwh": 0.0}
     
     black_water_removed_kg = min(state.black_water_storage_kg, upa_handling_capacity_per_hour_kg * hours_per_step)
     
@@ -66,7 +66,7 @@ def run_upa(state, dt_min):
     "black_water_removed_kg": black_water_removed_kg,
 
     "upa_power_used_kw": upa_power_used_kw,
-    "upa_energy_used_kwh" : upa_energy_used_kwh
+    "upa_energy_used_kwh": upa_energy_used_kwh
     }
 
 
@@ -75,7 +75,7 @@ def run_bpa(state, dt_min):
     hours_per_step = dt_min / 60
 
     if state.brine_storage_kg <= 0.1:
-        return {"recovered_water_kg" : 0.0, "water_processed_kg": 0.0,  "bpa_power_used_kw" : 0.0, "bpa_energy_used_kwh" : 0.0}
+        return {"recovered_water_kg": 0.0, "water_processed_kg": 0.0,  "bpa_power_used_kw": 0.0, "bpa_energy_used_kwh": 0.0}
 
     water_processed_kg = min(state.brine_storage_kg, bpa_handling_capacity_per_hour_kg * hours_per_step)
     recovered_water_kg = water_processed_kg * bpa_recovery_rate
@@ -102,7 +102,7 @@ def run_wpa(state, dt_min):
     total_water_input_kg = state.gray_water_storage_kg
     
     if total_water_input_kg <= 0.1:
-        return {"recovered_water_kg" : 0.0, "water_processed_kg": 0.0, "condensate_removed_kg":0.0, "gray_water_removed_kg": 0.0, "wpa_power_used_kw" : 0.0, "wpa_energy_used_kwh" : 0.0}
+        return {"recovered_water_kg": 0.0, "water_processed_kg": 0.0, "condensate_removed_kg":0.0, "gray_water_removed_kg": 0.0, "wpa_power_used_kw": 0.0, "wpa_energy_used_kwh": 0.0}
 
     water_processed_kg = min(total_water_input_kg, wpa_handling_capacity_per_hour_kg * hours_per_step)
     condensate_removed_kg = min(state.condensate_storage_kg, water_processed_kg)

@@ -61,7 +61,7 @@ s0 = Habitat_State(
     ],
     
     #---------atmosphere targets and limits----------♡
-    target_pressure_kpa = 60.0,
+    target_pressure_kpa = 65.0,
     min_safe_pressure_kpa = 55.0,
     max_safe_pressure_kpa = 70.0,
 
@@ -165,12 +165,17 @@ def print_state(state, outputs, alerts):
     
     #-------------atmosphere / pressure--------------♡
     print(("\n♡      [   ATMOSPHERE    ]       ♡").center(WIDTH))  
+    print(f"{'Total Pressure:':<22} {mca(state):.2f} kPa")    
     print(f"{'Oxygen:':<22} {state.o2_kpa:.2f} kPa")
     print(f"{'Carbon Dioxide:':<22} {state.co2_kpa:.2f} kPa")
     print(f"{'Nitrogen:':<22} {state.n2_kpa:.2f} kPa")
-    print(f"{'Argon:':<22} {state.ar_kpa:.2f} kPa")
-    print(f"{'Total Pressure:':<22} {mca(state):.2f} kPa")
-
+    print(f"{'Argon:':<22} {state.ar_kpa:.2f} kPa\n")
+   
+    print(f"Gas Added: {outputs['total_buffer_gas_added_kpa']:.3f} kPa")
+    print(f"{'Gas Vented:':<22} {outputs.get('buffer_gas_vented_kpa'):.3f} kPa")
+    print(f"Buffer Gas Mode: {outputs['buffer_gas_mode']}")
+    print(f"Pressure Gap: {outputs['pressure_gap_kpa']:.3f} kPa")
+    
     #-------------------resources--------------------♡
     print(("\n♡         [ RESOURCES ]          ♡").center(WIDTH))
     print(f"{'Potable Water:':<22} {state.potable_water_storage_kg:.2f} kg")

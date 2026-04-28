@@ -15,10 +15,10 @@ base_black_water_per_day_kg = 1.8
 
 #--------crew activites and metabolism rates---------♡
 crew_activity_states = {
-    "normal" : {"o2_drop_multiplier" : 1.0, "co2_rise_multiplier" : 1.0, "breath_vapor_multiplier" : 1.0, "skin_vapor_multiplier" : 1.0, "heat_per_person_w" : 120, "water_multiplier": 1.0},
-    "sleep" : {"o2_drop_multiplier" : 0.8, "co2_rise_multiplier" : 0.8, "breath_vapor_multiplier" : 0.8, "skin_vapor_multiplier" : 0.4, "heat_per_person_w" : 83,  "water_multiplier": 0.6},
-    "exercise" : {"o2_drop_multiplier" : 1.5, "co2_rise_multiplier" : 1.5, "breath_vapor_multiplier" : 1.4, "skin_vapor_multiplier" : 2.0, "heat_per_person_w" : 280,  "water_multiplier": 1.8},  
-    "intense" : {"o2_drop_multiplier" : 2.0, "co2_rise_multiplier" : 2.0, "breath_vapor_multiplier" : 1.8, "skin_vapor_multiplier" : 3.0, "heat_per_person_w" : 350, "water_multiplier": 2.2},
+    "normal": {"o2_drop_multiplier": 1.0, "co2_rise_multiplier": 1.0, "breath_vapor_multiplier": 1.0, "skin_vapor_multiplier": 1.0, "heat_per_person_w": 120, "water_multiplier": 1.0},
+    "sleep": {"o2_drop_multiplier": 0.8, "co2_rise_multiplier": 0.8, "breath_vapor_multiplier": 0.8, "skin_vapor_multiplier": 0.4, "heat_per_person_w": 83,  "water_multiplier": 0.6},
+    "exercise": {"o2_drop_multiplier": 1.5, "co2_rise_multiplier": 1.5, "breath_vapor_multiplier": 1.4, "skin_vapor_multiplier": 2.0, "heat_per_person_w": 280,  "water_multiplier": 1.8},  
+    "intense": {"o2_drop_multiplier": 2.0, "co2_rise_multiplier": 2.0, "breath_vapor_multiplier": 1.8, "skin_vapor_multiplier": 3.0, "heat_per_person_w": 350, "water_multiplier": 2.2},
     }
 
 
@@ -50,16 +50,16 @@ def total_crew_metabolism(state, dt_min):
 
 
     return {
-        "o2_drop_kpa" : o2_drop_kpa,
-        "co2_rise_kpa" : co2_rise_kpa,
+        "o2_drop_kpa": o2_drop_kpa,
+        "co2_rise_kpa": co2_rise_kpa,
 
-        "breath_vapor_added_kg" : breath_vapor_added_kg,
-        "skin_vapor_added_kg" : skin_vapor_added_kg,
+        "breath_vapor_added_kg": breath_vapor_added_kg,
+        "skin_vapor_added_kg": skin_vapor_added_kg,
 
-        "crew_temp_rise_kw" : crew_temp_rise_kw,
-        "nourishment_water_kg" : nourishment_water_kg,  
-        "hygiene_water_kg" : hygiene_water_kg,
-        "black_water_added_kg" : black_water_kg,
-        "potable_water_used_kg" : potable_water_used_kg,
-        "gray_water_added_kg" : gray_water_added_kg,
+        "crew_temp_rise_kw": crew_temp_rise_kw,
+        "nourishment_water_kg": nourishment_water_kg,  
+        "hygiene_water_kg": hygiene_water_kg,
+        "black_water_added_kg": black_water_kg,
+        "potable_water_used_kg": potable_water_used_kg,
+        "gray_water_added_kg": gray_water_added_kg,
         }

@@ -354,7 +354,7 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
     thermal_outputs = {
         "mars_temp_c": mars_temp_c,
 
-        "solar_heat_gain_kw" : solar_heat_gain_kw,
+        "solar_heat_gain_kw": solar_heat_gain_kw,
         "heat_loss_kw": heat_loss_kw,
         
         "radiator_heat_rejection_kw": radiator_heat_rejection_kw,
@@ -370,7 +370,7 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
         "thermal_alerts": hab_temp_mode,
         "net_heat_kw": net_heat_kw,
         "temp_change_c": temp_change_c,
-        "hab_temp_mode" : hab_temp_mode
+        "hab_temp_mode": hab_temp_mode
     }
 
     return thermal_updates, thermal_outputs

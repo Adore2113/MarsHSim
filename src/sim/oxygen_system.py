@@ -90,16 +90,16 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
 
     if state.potable_water_storage_kg < min_water_needed_for_oga_kg:
         return {
-            "o2_after_oga_kpa" : o2_after_crew_kpa,
-            "o2_added_kpa" : 0.0,
-            "h2_produced_kg" : 0.0,
+            "o2_after_oga_kpa": o2_after_crew_kpa,
+            "o2_added_kpa": 0.0,
+            "h2_produced_kg": 0.0,
             "water_used_kg": 0.0,
-            "oga_heat_kw" : 0.0,
-            "oga_heat_kwh" : 0.0,
-            "oga_power_used_kw" : 0.0,
-            "oga_energy_used_kwh" : 0.0,
-            "oga_limited_by_water" : True,
-            "water_needed_for_oga_kg" : min_water_needed_for_oga_kg - state.potable_water_storage_kg
+            "oga_heat_kw": 0.0,
+            "oga_heat_kwh": 0.0,
+            "oga_power_used_kw": 0.0,
+            "oga_energy_used_kwh": 0.0,
+            "oga_limited_by_water": True,
+            "water_needed_for_oga_kg": min_water_needed_for_oga_kg - state.potable_water_storage_kg
         }
 
     o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
