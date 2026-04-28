@@ -67,7 +67,7 @@ s0 = Habitat_State(
 
     target_o2_kpa = 20.0,
     target_co2_kpa = 0.4,
-    target_n2_kpa = 17.0,
+    target_n2_kpa = 22.0,
     target_ar_kpa = 22.6,
 
     #---------------current atmosphere---------------♡
