@@ -1,4 +1,6 @@
-# MarsHSim (subject to change?)
+# MarsHSim
+
+#### (name subject to change)
 
 ## Sim loop: time steps
 
