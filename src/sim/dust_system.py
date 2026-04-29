@@ -61,6 +61,3 @@ def get_dust_accumulation(state, dt_min):
         "new_radiators": new_radiators,
         "new_solar_arrays": new_solar_arrays,
     }
-
-
-

@@ -1121,3 +1121,9 @@
         
         -add electronic heat and power
         
+♡--------------------------------------------------♡ 
+
+### ♡       04/28/2026
+    -mostly a research day about Mars and seasons, temperature, atmosphere and more on systems that would be needed in a real Mars habitat
+
+    -created a new file for the Sabatier
