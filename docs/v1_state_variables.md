@@ -1,17 +1,17 @@
-#### ------time--------------------------------♡
+## Time:
     mission_time_s
 
-#### ------lights------------------------------♡
+## Light System:
     light_level
 
-#### ------crew--------------------------------♡
+## Crew:
     crew_count
     crew_activity
 
-#### ------habitat-----------------------------♡
+## Habitat:
     hab_vol_m3
 
-# ------thermal control-----------------------------♡
+## Thermal:
     hab_temp_c
     target_temp_c
     min_comfort_temp_c
@@ -28,33 +28,51 @@
     radiators
     heaters
     
-#### ------atmosphere targets and limits-------♡ 
-    target_pressure_kpa
-    min_safe_pressure_kpa
-    max_safe_pressure_kpa
+## Atmosphere:
+#### ♡---------gas targets----------♡
+    target_pressure_kpa: float
+    target_o2_kpa: float
+    target_co2_kpa: float
+    target_n2_kpa: float
+    target_ar_kpa: float
+    target_ch2_kpa: float
 
-    target_o2_kpa
-    target_co2_kpa
-    target_n2_kpa
-    target_ar_kpa
+#### ♡-------min safe levels--------♡
+    min_safe_pressure_kpa: float
+    #min_safe_o2_kpa: float
+    #min_safe_co2_kpa: float
+    #min_safe_n2_kpa: float
+    #min_safe_ar_kpa: float
+    min_safe_ch4_kpa: float
 
-#### ------current atmosphere------------------♡
-    o2_kpa
-    co2_kpa
-    n2_kpa
-    ar_kpa
+#### ♡--------max safe levels-------♡
+    max_safe_pressure_kpa: float
+    #max_safe_o2_kpa: float
+    #max_safe_co2_kpa: float
+    #max_safe_n2_kpa: float
+    #max_safe_ar_kpa: float
+    max_safe_ch4_kpa: float
 
-#### ------gas storage-------------------------♡
-    n2_stored_kpa
-    ar_stored_kpa
-    co2_stored_kpa
-    h2_stored_kg
+#### ♡------current gas levels------♡
+    o2_kpa: float
+    co2_kpa: float
+    n2_kpa: float
+    ar_kpa: float
+    ch4_kpa: float
 
-#### ------amine beds--------------------------♡
+#### ♡--------gas in storage--------♡
+    n2_stored_kpa: float
+    ar_stored_kpa: float
+    co2_stored_kpa: float
+    h2_stored_kg: float
+    ch4_stored_kg: float 
+
+
+## Amine Beds:
     amine_beds
     scrub_per_bed_kpa
 
-#### ------power-------------------------------♡
+## Power:
     battery_max_capacity_kwh
     battery_stored_kwh 
     
@@ -65,25 +83,20 @@
     low_sunlight_streak_sols
     solar_absorptivity
 
-# ------water---------------------------------------♡
+## Water:
+#### ♡-------water in storage-------♡
+
     potable_water_storage_kg
     gray_water_storage_kg
     black_water_storage_kg   
     condensate_storage_kg   
     brine_storage_kg
-
+#### ♡------water storage limits----♡
     potable_water_storage_capacity_kg
     gray_water_storage_capacity_kg
     black_water_storage_capacity_kg
     condensate_storage_capacity_kg
     brine_storage_capacity_kg 
 
-# ------placeholders for future plans---------------♡
-
-    # ♡ Integrity / safety ♡
-    leak_rate_kpa_per_hr
-    smoke_ppm
-    radiation_msv_per_day
-
-# --------wellness lights on or off-----------------♡
+## Wellness Lights:
     wellness_lights_on
