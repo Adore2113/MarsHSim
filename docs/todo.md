@@ -23,7 +23,7 @@
         - sabatier over time
 
 
-    ♡ add limits instead of harsh cutoffs
+    ♡ add limits instead of harsh cutoffs:
         
         - systems gradually lose effectiveness near extremes
 
@@ -32,9 +32,6 @@
 
 
 ### Later Focus:
-    ♡ update alerts: thermal, water, etc.
-
-
     ♡ continue adding heat generated and heat waste
 
 
@@ -44,7 +41,14 @@
     ♡ add power priority systems
 
 
-    ♡ go through all units and make them consistent (kpa, kg, kW, kWh)
+    ♡ go through all units and make them consistent: 
+        - kpa
+        
+        - kg
+        
+        - kw
+        
+        - kwh
 
 
     ♡ consider seperating files for values:
@@ -67,7 +71,17 @@
 
         - environment
 
+
     ♡ clean up how the subsystems interact
+
+   
+    ♡ update alerts: 
+        
+        - thermal
+
+        - water
+
+        - consider all other files
 
 
 ### Eventual Focus:
