@@ -1,8 +1,8 @@
-# file for managing water, water recycling and generation
+# file for handling recylcing co2 into water and methane (CH4)
 
 
 #--------------------constants-----------------------♡
-upa_recovery_rate = 0.85    # urine processor assembly
+base_sab    # sabatier
 wpa_recovery_rate = 0.95    # water processor assembly
 bpa_recovery_rate = 0.60    # brine processor assembly
 

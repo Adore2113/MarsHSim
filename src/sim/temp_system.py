@@ -20,7 +20,9 @@ sunlight_facing_hab_m2 = 48.0
 base_chx_power_kw = 0.35
 base_chx_waste_heat_fraction = 0.60
 chx_removal_efficiency = 0.85
+
 condensation_heat_kj_per_kg = 2260.0
+
 water_vapor_per_m3 = 0.0008
 
 hysteresis_c = 0.5

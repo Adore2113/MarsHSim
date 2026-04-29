@@ -39,29 +39,42 @@ class Habitat_State:
 
     radiators: list
     heaters: list
-   
-    #---------atmosphere targets and limits----------♡
-    target_pressure_kpa: float
+    #---------------current atmosphere---------------♡
     
-    min_safe_pressure_kpa: float
-    max_safe_pressure_kpa: float
-
+    #---------------current atmosphere---------------♡
+    #---------gas targets----------♡
+    target_pressure_kpa: float
     target_o2_kpa: float
     target_co2_kpa: float
     target_n2_kpa: float
     target_ar_kpa: float
+    target_ch2_kpa: float
+
+    min_safe_pressure_kpa: float
+    min_safe_o2_kpa: float
+    min_safe_co2_kpa: float
+    min_safe_n2_kpa: float
+     min_safe_ar_kpa: float
+       
+    max_safe_pressure_kpa: float
+    max_safe_o2_kpa: float
+    max_safe_co2_kpa: float
+    max_safe_n2_kpa: float
+    max_safe_ar_kpa: float
 
     #---------------current atmosphere---------------♡
     o2_kpa: float
     co2_kpa: float
     n2_kpa: float
     ar_kpa: float
+    ch4_kpa: float
 
     #------------------gas storage-------------------♡
     n2_stored_kpa: float
     ar_stored_kpa: float
     co2_stored_kpa: float
     h2_stored_kg: float
+    ch4_stored_kg: float 
 
     #------pressure percentages w. Dalton's Law------♡
     @property

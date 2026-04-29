@@ -1127,3 +1127,14 @@
     -mostly a research day about Mars and seasons, temperature, atmosphere and more on systems that would be needed in a real Mars habitat
 
     -created a new file for the Sabatier
+
+♡--------------------------------------------------♡ 
+
+### ♡       04/29/2026
+    -starting file for Sabatier
+
+    -turn seasons into a list
+
+    -turn on alerts for min and max safe targets and make crew alerts react to them (i.e "some of the crew members are starting to report headaches")
+
+    
