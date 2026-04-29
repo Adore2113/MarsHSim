@@ -122,12 +122,14 @@ class Habitat_State:
     solar_absorptivity: int
 
     #---------------------water----------------------♡
+    #-------water in storage-------♡
     potable_water_storage_kg: float
     gray_water_storage_kg: float
     black_water_storage_kg: float   
     condensate_storage_kg: float   
     brine_storage_kg: float
-
+    
+    #------water storage limits----♡
     potable_water_storage_capacity_kg: float
     gray_water_storage_capacity_kg: float
     black_water_storage_capacity_kg: float
