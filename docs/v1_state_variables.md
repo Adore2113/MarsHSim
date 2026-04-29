@@ -30,42 +30,42 @@
     
 ## Atmosphere:
 #### ♡---------gas targets----------♡
-    target_pressure_kpa: float
-    target_o2_kpa: float
-    target_co2_kpa: float
-    target_n2_kpa: float
-    target_ar_kpa: float
-    target_ch2_kpa: float
+    target_pressure_kpa
+    target_o2_kpa
+    target_co2_kpa
+    target_n2_kpa
+    target_ar_kpa
+    target_ch2_kpa
 
 #### ♡-------min safe levels--------♡
-    min_safe_pressure_kpa: float
-    #min_safe_o2_kpa: float
-    #min_safe_co2_kpa: float
-    #min_safe_n2_kpa: float
-    #min_safe_ar_kpa: float
-    min_safe_ch4_kpa: float
+    min_safe_pressure_kpa
+    #min_safe_o2_kpa
+    #min_safe_co2_kpa
+    #min_safe_n2_kpa
+    #min_safe_ar_kpa
+    min_safe_ch4_kpa
 
 #### ♡--------max safe levels-------♡
-    max_safe_pressure_kpa: float
-    #max_safe_o2_kpa: float
-    #max_safe_co2_kpa: float
-    #max_safe_n2_kpa: float
-    #max_safe_ar_kpa: float
-    max_safe_ch4_kpa: float
+    max_safe_pressure_kpa
+    #max_safe_o2_kpa
+    #max_safe_co2_kpa
+    #max_safe_n2_kpa
+    #max_safe_ar_kpa
+    max_safe_ch4_kpa
 
 #### ♡------current gas levels------♡
-    o2_kpa: float
-    co2_kpa: float
-    n2_kpa: float
-    ar_kpa: float
-    ch4_kpa: float
+    o2_kpa
+    co2_kpa
+    n2_kpa
+    ar_kpa
+    ch4_kpa
 
 #### ♡--------gas in storage--------♡
-    n2_stored_kpa: float
-    ar_stored_kpa: float
-    co2_stored_kpa: float
-    h2_stored_kg: float
-    ch4_stored_kg: float 
+    n2_stored_kpa
+    ar_stored_kpa
+    co2_stored_kpa
+    h2_stored_kg
+    ch4_stored_kg 
 
 
 ## Amine Beds:
