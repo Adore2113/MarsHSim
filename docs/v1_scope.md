@@ -25,6 +25,59 @@
 ♡--------------------------------------------------♡
 
 ## ♡ Creation notes: 
+
+
+
+#### Habitat Info:
+    -location: 47° North, 184° East (Arcadia Planitia)
+    30 crew members to hint at an early colony with a habitat size of 2000 cubic meters (m3)
+
+#### Atmosphere:
+    -target pressure:   lower ( ~65 kilopascals(kpa)):  - less catastrphic leaks
+    -buffer gases:      Argon (Ar) and Nitrogen (N2):   -Ar can be extracted (Mars atmosphere(atmos) is ~1.6% Ar) and it it won't react   -Mars atmos is ~2.7% Nitrogen and humans are familiar with it
+
+
+#### Seasons/Date/Time/Sol
+
+#### Crew
+    -30 person crew
+
+#### Systems
+
+    -30 crew members to hint at an early colony with a habitat size of 2000 cubic meters (m3)
+
+    -going to be using Dalton's Law
+
+♡--------------------------------------------------♡ 
+    
+    -considering adding humidity contribution (1-2kPa ppH2O)
+
+    -researched net habitat volume per crew member (average minimum of 25m3 pp), and I'm happy with keeping the habitat size at 2000m3 (~66 m3 pp)
+
+    -wanting to keep the habitat temp between 22-24C ideally
+
+    -taking seasons on Mars into consideration (how many sols, winter lows ~-140C, summer highs ~20C, 25% yearly atmosphere pressure changes from co2 freezing and sublimating at the poles, dune migration, albedo changes from ice/dust, dust storms in the spring/summer while global storms can engulf the whole planet)
+
+    -global dust storms can drop temp averages between 10-20C for a little while
+
+    -N spring/S fall 194 sols, average temp:  
+    -N summer/S winter: 178 sols, average temp:
+    -N fall/S spring 142 sols, average temp:
+    -N winter/S summer 154 sols, average temp: 
+
+    o2 <18kpa = hypoxia risk (symptoms: - )
+    -  >23kpa = o2 toxicity + fire risk
+
+    co2 ~0.7kpa = headaches
+     -  ~1kpa = impaired thinking
+     -  ~3kpa = severe (symptoms: - )
+
+    n2 >= 80% = asphyxiation
+    
+    h2 >= 4% = fire risk, explosive risks
+    
+    ch4 ~ 5% = flammability risk
+     -  ~ 15% - 17& = explosive risk
         
 ### ♡        03/04/2026
     -Wanting to keep lower pressure (~65 kilopascals (kPa) target) in habitat to make leaks not as catastrophic, and deciding to add argon as a buffer gas
@@ -289,10 +342,6 @@
 
     -added outputs to be printed so I can see that they are working properly
 
-        **next session start:**
-    -work on water_system
-    -eventually... lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar
-
 ♡--------------------------------------------------♡ 
 
 ### ♡       03/28/2026
@@ -311,10 +360,6 @@
     -side note: I thought about having panels on the outside of my habitat that are foil on one side and black on the other (like a car window shield), that could be flipped like a billboard (one of the ones that have two images on them and they flip to reveal the other image)
 
     -I fixed a lot of my code today and added solar list of dictionaries, updated the amine list of dictionaries and made a crew metabolism dictionary, fixed some typos and learned a lot about organizing files, name consistency, code consistency, not going overboard too fast, and file setup
-
-        **next session start:**
-    -work on power_system.py
-    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
 
 ♡--------------------------------------------------♡ 
 
@@ -336,8 +381,6 @@
         **next session start:**
     -work on power_system.py and figure out where I want daylight calculated (maybe state, or make a new separate file for handling calculating times of day, days and other related things)
 
-    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps
-
 ♡--------------------------------------------------♡ 
 
 ### ♡       04/04/2026
@@ -353,8 +396,6 @@
 
         **next session start:**
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
-
-    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
 
 ♡--------------------------------------------------♡ 
 
@@ -374,8 +415,6 @@
 
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
 
-    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
-
 ♡--------------------------------------------------♡ 
 
  ### ♡       04/07/2026
@@ -388,8 +427,6 @@
 
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
 
-    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
-
 ♡--------------------------------------------------♡ 
 
  ### ♡       04/08/2026
@@ -401,8 +438,6 @@
     -fix light function and resume solar power set up
 
     -work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
-
-    -eventually... work on water_system, lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, temp handling file
 
 ♡--------------------------------------------------♡ 
 
@@ -419,8 +454,6 @@
     -work on power_system.py: finish solar (updates and figure out how to handle dust and efficiency), update power storage and figure out how to implement that
 
     -move to thermal after this (?)
-
-    -eventually... work on water_system, and then continue adding heat generated/heat waste to new functions and consider electronics/computers, radiators, pumps, temp handling file
 
 ♡--------------------------------------------------♡ 
 
@@ -440,8 +473,6 @@
 
     -move to thermal after this (?)
 
-    -eventually... work on water_system, and then continue adding heat generated/heat waste to new functions and consider electronics/computers, radiators, pumps, temp handling file
-
 ♡--------------------------------------------------♡ 
 
 ### ♡       04/11/2026
@@ -453,8 +484,6 @@
     -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
     -move to thermal after this (?)
-
-    -eventually... work on water_system, and then continue adding heat generated/heat waste to new functions and consider electronics/computers, radiators, pumps, temp handling file   
 
 ♡--------------------------------------------------♡ 
 
@@ -483,16 +512,6 @@
 
     -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
-    -eventually...
-        -work on water_system
-        
-        -continue adding heat generated/heat waste to new function
-        
-        -NTA (need to add) electronics/computers, radiators, pumps, water system, rations(?)  
-        
-        -add subsystems to the power priority system for when power is low and only runs essential power systems
-        
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
 ♡--------------------------------------------------♡ 
 
@@ -540,20 +559,6 @@
 
     -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
-    -eventually...
-        -work on water_system
-        
-        -continue adding heat generated/heat waste
-        
-        -NTA (need to add) electronics/computers, radiators, pumps, water system, rations(?)  
-        
-        -add subsystems to the power priority system for when power is low and only runs essential power systems
-        
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
-
-        -update alerts file
-
-        -add random daily temp and sunlight variables after seasons are set up
 
 ♡--------------------------------------------------♡ 
 
@@ -569,20 +574,6 @@
 
     -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
 
-    -eventually...
-        -work on water_system
-        
-        -continue adding heat generated/heat waste
-        
-        -NTA (need to add) electronics/computers, radiators, pumps, water system, rations(?)  
-        
-        -add subsystems to the power priority system for when power is low and only runs essential power systems
-        
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
-
-        -update alerts file
-
-        -add random daily temp and sunlight variables after seasons are set up
 
 ♡--------------------------------------------------♡ 
 
@@ -602,24 +593,7 @@
 
     -consider implementing two backup radiators
 
-    -eventually...
-        -power priority system for when power is low and only runs essential power systems
 
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
-
-        -work on water_system
-        
-        -continue adding heat generated/heat waste
-        
-        -NTA (need to add) electronics/computers, radiators, pumps, water system, rations(?)  
-        
-        -add subsystems to the power priority system for when power is low and only runs essential power systems
-        
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
-
-        -update alerts file
-
-        -add random daily temp and sunlight variables after seasons are set up
 
 ♡--------------------------------------------------♡ 
 
@@ -635,28 +609,7 @@
         **next session start:**
     -ADD SECOND AND THIRD HEATER STAGE TRIGGERS AND LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
 
-    -eventually...
-        -move onto humidity
 
-        -work on water_system.py
-
-        -update other files accordingly
-
-        -consider adding rationns or a food system
-
-        -power priority system for when power is low and only runs essential power systems
-        
-        -continue adding heat generated/heat waste
-        
-        -NTA (need to add) electronics/computers, pumps, rations(?)  
-        
-        -add subsystems to the power priority system for when power is low and only runs essential power systems
-
-        -update alerts file
-
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
-
-        -add random daily temp and sunlight variables after seasons are set up    
 
 ♡--------------------------------------------------♡ 
 
@@ -666,28 +619,7 @@
             **next session start:**
     -ADD SECOND AND THIRD HEATER STAGE TRIGGERS AND LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
 
-    -eventually...
-        -move onto humidity
 
-        -work on water_system.py
-
-        -update other files accordingly
-
-        -consider adding rations or a food system
-
-        -power priority system for when power is low and only runs essential power systems
-        
-        -continue adding heat generated/heat waste
-        
-        -NTA (need to add) electronics/computers, pumps, rations(?)  
-        
-        -add subsystems to the power priority system for when power is low and only runs essential power systems
-
-        -update alerts file
-
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
-
-        -add random daily temp and sunlight variables after seasons are set up 
 
 ♡--------------------------------------------------♡ 
 
@@ -706,38 +638,6 @@
     **next session start:**
     -change hardcoding to calculations (stay minimal for now)
 
-    -eventually...
-        -add extra humidity from crew showers, cooking, laundry(?) etc. 
-
-        -remove some hardcoding from functions that should be calculated
-
-        -work on water_system.py
-
-        -update other files accordingly
-
-        -remove hardcoding and do calculations
-
-        -add humidity from crew showers, cooking, laundry(?) etc.
-
-        -consider adding rations or a food system/greenhouse
-
-        -power priority system for when power is low and only runs essential power systems
-        
-        -continue adding heat generated/heat waste
-        
-        -NTA (need to add) electronics/computers, pumps, rations(?)  
-        
-        -add subsystems to the power priority system for when power is low and only runs essential power systems
-
-        -update alerts file
-
-        -add second and third backups for systems (amine beds, radiators, heaters, etc.)
-
-        -LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
-
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
-
-        -add random daily temp and sunlight variables after seasons are set up 
 
 ♡--------------------------------------------------♡ 
 
@@ -758,38 +658,6 @@
        **next session start:**
     - -work on water_system.py
 
-    -eventually...
-        -consider adding crew scheduling to add to all subsystems (add extra humidity, power, heat, etc. from crew showers, cooking, laundry(?) etc.)
-
-        -update other files accordingly
-
-        -remove hardcoding and do calculations
-
-        -add humidity from crew showers, cooking, laundry(?) etc.
-
-        -consider adding rations or a food system/greenhouse
-
-        -power priority system for when power is low and only runs essential power systems
-        
-        -continue adding heat generated/heat waste
-        
-        -NTA (need to add) electronics/computers, pumps, rations(?)  
-        
-        -add subsystems to the power priority system for when power is low and only runs essential power systems
-
-        -update alerts file
-
-        -break up outputs into either classes or smaller dictionaries
-
-        -add second and third backups for systems (amine beds, radiators, heaters, etc.)
-
-        -LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
-
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
-
-        -add random daily temp and sunlight variables after seasons are set up 
-
-        -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
 
 ♡--------------------------------------------------♡ 
 
@@ -811,40 +679,6 @@
         -add condensate
         -change oga to use water usage from water_system file, and remove its own storage variable
         -don't forget about the CHX
-
-
-    -eventually...
-        -consider adding crew scheduling to add to all subsystems (add extra humidity, power, heat, etc. from crew showers, cooking, laundry(?) etc.)
-
-        -update other files accordingly
-
-        -remove hardcoding and do calculations
-
-        -add humidity from crew showers, cooking, laundry(?) etc.
-
-        -consider adding rations or a food system/greenhouse
-
-        -power priority system for when power is low and only runs essential power systems
-        
-        -continue adding heat generated/heat waste
-        
-        -NTA (need to add) electronics/computers, pumps, rations(?)  
-        
-        -add subsystems to the power priority system for when power is low and only runs essential power systems
-
-        -update alerts file
-
-        -break up outputs into either classes or smaller dictionaries
-
-        -add second and third backups for systems (amine beds, radiators, heaters, etc.)
-
-        -LOOK INTO INSULATION AND MASS VALUES B/C HABITAT IS LOSING 25KW AND ONE HEATER ONLY = 8KW
-
-        -handle dust factor (which will be 0.0 - 1.0) and random Mars wind cleaning the solar arrays
-
-        -add random daily temp and sunlight variables after seasons are set up 
-
-        -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
 
 ♡--------------------------------------------------♡ 
 
@@ -873,39 +707,6 @@
 
     -add thermal alerts and warnings
 
-    -eventually...
-        -remove hardcoding and do calculations
-
-        -have backups for heaters and radiators and amine beds and any other system that uses multiple machines/systems
-
-        -add crew scheduling 
-
-        -add to water usage and humidity from showers, cooking, laundry etc.
-
-        -rations or a food system/greenhouse(?)
-
-        -update alerts file amd male a better system with mixed temp things, humidity, power, water, etx.
-
-        -handle dust factor and add wind effects on radiators and solar arrays(which will be 0.0 - 1.0)
-
-        -add random Mars wind cleaning the solar arrays
-
-        -add random daily temp and sunlight variables after seasons are set up 
-
-        -power priority system for when power is low (only runs essential systems)
-        
-        -break up outputs into either classes or smaller dictionaries
-
-        -continue adding heat generated/heat waste
-        
-        -need to add electronic heat and power, rations(?)  
-
-        -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
-
-        -considering adding different dust accumulation amounts for solar arrays (add in when I add other things using random)
-
-        -meteroite damange (microscopic)?
-
 ♡--------------------------------------------------♡ 
 
 ### ♡       04/24/2026
@@ -926,43 +727,6 @@
 
     NEXT SESSION:  fix amine beds to show up as online!
 
-    ♡-------------------TO DO: -------------------♡ 
-        -amine beds: 2 always online and add backups
-
-        -update alerts: thermal, water, add warnings
-
-        -finish dust accumulation function
-
-        -add back ups for other systems
-
-        -add power priority systems
-
-        -replace hardcoding to caluclations
-
-        -add crew scheduling
-        
-        -add maintenance scheduling
-
-        -add rations/food system ( greenhouse ?)
-
-        -add wind effects to solar and external habitat
-
-        -add random events:
-            -extra dust accumulation
-            -wind removing some dust from ararys
-            -daily temp and sunlight events
-            -dust storms
-            -leaks
-            -meteroite damange (microscopic)?
-            -cute messages when system is running perfectly well
-
-        -break outputs into classes or smaller dicts
-
-        -continue adding heat generated/heat waste
-        
-        -add electronic heat and power
-
-        -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
 
 ♡--------------------------------------------------♡ 
 
@@ -977,45 +741,6 @@
 
     NEXT SESSION:  go throuh files and update everything using state (starting with thermal) and clean up inconsistencies
 
-
-    ♡-------------------TO DO: -------------------♡ 
-        -add to file for handling dust
-
-        -update alerts: thermal, water, add warnings
-
-        -finish dust accumulation function
-
-        -add back ups for other systems
-
-        -add power priority systems
-
-        -replace hardcoding to caluclations
-
-        -add crew scheduling
-        
-        -add maintenance scheduling
-
-        -add rations/food system ( greenhouse ?)
-
-        -add wind effects to solar and external habitat
-
-        -add random events:
-            -extra dust accumulation
-            -wind removing some dust from ararys
-            -daily temp and sunlight events
-            -dust storms
-            -leaks
-            -meteroite damange (microscopic)?
-            -cute messages when system is running perfectly well
-
-        -break outputs into classes or smaller dicts
-
-        -continue adding heat generated/heat waste
-        
-        -add electronic heat and power
-
-        -consider changing my repetitive functions to be one function that switches modes based on different things (boolean values(radiators vs heaters, etc.))
-
 ♡--------------------------------------------------♡ 
 
 ### ♡       04/26/2026
@@ -1027,43 +752,6 @@
 
 
     NEXT SESSION: finish working on breaing up outputs and making engine more organized
-
-
-    ♡-------------------TO DO: -------------------♡ 
-        -add to file for handling dust
-
-        -update alerts: thermal, water, add warnings
-
-        -finish dust accumulation function
-
-        -add back ups for other systems
-
-        -add power priority systems
-
-        -replace hardcoding to caluclations
-
-        -add crew scheduling
-        
-        -add maintenance scheduling
-
-        -add rations/food system ( greenhouse ?)
-
-        -add wind effects to solar and external habitat
-
-        -add random events:
-            -extra dust accumulation
-            -wind removing some dust from ararys
-            -daily temp and sunlight events
-            -dust storms
-            -leaks
-            -meteroite damange (microscopic)?
-            -cute messages when system is running perfectly well
-
-        -break outputs into classes or smaller dicts
-
-        -continue adding heat generated/heat waste
-        
-        -add electronic heat and power
 
 ♡--------------------------------------------------♡ 
 
@@ -1091,38 +779,6 @@
     -look at the heater logic and consider adding a target heaters online and heat needed variable to print for debugging
 
 
-    ♡-------------------TO DO: -------------------♡ 
-        -add to file for handling dust
-
-        -update alerts: thermal, water, add warnings
-
-        -finish dust accumulation function
-
-        -add power priority systems
-
-        -add crew scheduling
-        
-        -add maintenance scheduling
-
-        -add rations/food system ( greenhouse ?)
-
-        -add wind effects to solar and external habitat
-
-        -add random events:
-            -extra dust accumulation
-            -wind removing some dust from ararys
-            -daily temp and sunlight events
-            -dust storms
-            -leaks
-            -meteroite damange (microscopic)?
-            -cute messages when system is running perfectly well
-
-        -break outputs into classes or smaller dicts
-
-        -continue adding heat generated/heat waste
-        
-        -add electronic heat and power
-        
 ♡--------------------------------------------------♡ 
 
 ### ♡       04/28/2026
