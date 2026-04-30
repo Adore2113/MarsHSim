@@ -15,10 +15,12 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡  continue with atmosphere
 
 
+
 ##      03/05/2026
     ♡ taking a couple of days for research
 
     ♡ considering adding humidity contribution (1-2kPa ppH2O)
+
 
 
 ##      03/08/2026
@@ -30,6 +32,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ finish scrubbing function in engine.py
+
 
 
 ##      03/09/2026
@@ -51,7 +54,8 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ add the o2 regen to quick_test and state.py
 
 
-##       03/10/2026
+
+##      03/10/2026
     ♡ renamed checking_gases function to gas_alerts, moved the co2 removal function to before o2_regen
 
     ♡ I know that chemistry ratios use moles, but I really wanted to stick to kPa and kilograms (kg) to avoid my code being more complex, so I'll figure out the conversions to avoid that
@@ -68,7 +72,8 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ vent the h2 later, store for now
 
 
-##        03/11/2026
+
+##       03/11/2026
     ♡ learned it's important to document types of measurements as I go for conversions and future better understanding when both using and reading code
 
     ♡ adding measurements on the end of certain variable names, moved some of the variables from the oga_byproduct function to be global variables for referencing them later
@@ -79,6 +84,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ store h2 for now
+
 
 
 ##      03/13/2026
@@ -98,6 +104,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ add in when the ar or n2 will be used from storage    
     
 
+
 ##      03/14/2026
 
     ♡ I added the variable co2_stored_kpa to collect and temporarily store the co2 the amine bed scrubs until I use it later in my code
@@ -108,7 +115,8 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ continue fixing variables, making sure the files are correct and finish adding Major Constituent Analyzer (mca) function and adding n2 to low pressure
 
 
-##       03/15/2026
+
+##      03/15/2026
     ♡ finished maintenance
 
     ♡ continuing with mca, and adding another function to handle buffer gas
@@ -117,6 +125,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ add what I need to add to the other files from the new function I made today to handle the buffer gas
+
 
 
 ##      03/17/2026
@@ -141,7 +150,8 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 
-##       03/18/2026
+
+##      03/18/2026
     ♡ deciding if I should add heat output into current functions, or have its own. I'm going to keep adding to the proper functions
 
     ♡ adding heat produced by amine beds with exothermic absorption (the amine molecules catch the co2 which releases heat), and regeneration
@@ -150,6 +160,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ consider turning functions with five or more returns into dictionaries and continue with thermal control and temp management
+
 
 
 ##      03/19/2026
@@ -161,12 +172,14 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ consider turning functions with five or more returns into dictionaries and continue with thermal control and temp management in run buffer gas
 
 
+
 ##      03/20/2026
     ♡ I'm making the amount of heat added a fixed amount for now
 
     ♡ added heat generation to buffer gas control function
 #### Next Session:
     ♡ continue adding heat generation to functions and add radiators, lights, electronics/computers to their own functions
+
 
 
 ##      03/21/2026
@@ -180,6 +193,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ continue adding heat generation to lights and add electronics/computers, radiators to their own functions, reconsider lighting variable names
+
 
 
 ##      03/24/2026
@@ -197,6 +211,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ update step in engine.py to call the run_oga function properly now
 
 
+
 ##      03/26/2026
     ♡ added some power consumption variables to oxygen_system.py
 
@@ -212,6 +227,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ break up co2 scrubber system into different functions to match the other files and then add power usage, eventually continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar
 
 
+
 ##      03/28/2026
     ♡ making crew metabolism into its own file for organization and considering breaking it into smaller functions for quicker/easier readability as I add to the file
 
@@ -223,6 +239,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ work on water_system or power..
+
 
 
 ##      03/29/2026
@@ -244,12 +261,15 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ work on power_system.py
 
 
+
 ##      03/30/2026
     ♡ starting by reviewing my code and I see some areas I need to fix b/c of the changes I made last night, starting with how my amine beds function
 
 
+
 ##      03/31/2026
     ♡ updated solar array list to not be hard coded online but start with all of them being on standby status and added a function to manage what ones are online with a new function in power_system.py
+
 
 
 ##      04/03/2026
@@ -259,6 +279,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ work on power_system.py and figure out where I want daylight calculated (maybe state, or make a new separate file for handling calculating times of day, days and other related things)
+
 
 
 ##      04/04/2026
@@ -276,6 +297,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ work on power_system.py: finish solar updates and figure out how to handle dust and efficiency, update power storage and figure out how to implement that
 
 
+
 ##      04/05/2026
     ♡ fixing the lighting function to not be hardcoded and to react and adjust to the level of daylight
 
@@ -289,6 +311,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ REMEMBER TO COMMIT MORE!!
 
     ♡ do more research and figure out mars_time.py, clean up step in engine.py
+
 
 
 ##      04/07/2026
@@ -305,6 +328,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ do more research and figure out mars_time.py, clean up step in engine.py
 
 
+
 ##      04/08/2026
     ♡ continuing to fix the time file and updated engine and quick_test.py
 
@@ -316,6 +340,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ fix light function and resume solar power set up
+
 
 
 ##      04/09/2026
@@ -333,6 +358,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ move to thermal after this (?)
 
 
+
 ##      04/10/2026
     ♡ added function for solar power recharging habitat batteries
 
@@ -348,6 +374,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ print total power being used and a power priority system for when power is low and only runs essential power systems
 
 
+
 ##      04/11/2026
     ♡ moved alerts to it's own new file that included the status updates as well
 
@@ -355,11 +382,13 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ print total power being used and a power priority system for when power is low and only runs essential power systems
 
 
+
 ##      04/12/2026
     ♡ started importing power_alerts from power_system to the new alerts file, but very busy today
 
 #### Next Session:
     ♡ print total power being used and a power priority system for when power is low and only runs essential power systems
+
 
 
 ##      04/13/2026
@@ -375,6 +404,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ organize engine.py
+
 
 
 ##      04/14/2026
@@ -398,6 +428,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ fix new variables added (insulation and thermal mass)
 
 
+
 ##      04/15/2026
     ♡ fixed insulation and thermal mass values
 
@@ -405,6 +436,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ finish adding heat and cooling to power_system
+
 
 
 
@@ -425,6 +457,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ consider implementing two backup radiators
 
 
+
 ##      04/18/2026
     ♡ starting with my temp file
 
@@ -440,11 +473,13 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ add second and third heater stage triggers and look into insulation and mass values b/c habitat is losing 25kw and one heater only = 8kw
 
 
+
 ##      04/19/2026
     ♡ fixed alert file and a few related variable names
 
 #### Next Session:
     ♡ add second and third heater stage triggers and look into insulation and mass values b/c habitat is losing 25kw and one heater only = 8kw
+
 
 
 
@@ -462,6 +497,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ change hardcoding to calculations (stay minimal for now)
 
 
+
 ##      04/21/2026
     ♡ going back to co2_scrubber_system and changing hardcoding to calculations
 
@@ -477,6 +513,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ -work on water_system.py
+
 
 
 ##      04/22/2026
@@ -499,6 +536,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
         - don't forget about the CHX
 
 
+
 ##      04/23/2026
     ♡ adding condensate/CHX to water_system and engine, and made OGA use potable water
 
@@ -512,6 +550,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ fix thermal mass from 800 to a much lower amount and check insulation value
 
     ♡ look into insulation and mass values b/c habitat is losing 25kw and one heater only = 8kw
+
 
 
 ##      04/24/2026
@@ -534,6 +573,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ fix amine beds to show up as online
 
 
+
 ##      04/25/2026
     ♡ amine beds to show up as online
 
@@ -549,6 +589,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ go through files and update everything using state (starting with thermal) and clean up inconsistencies
 
 
+
 ##      04/26/2026
     ♡ connecting files to state more directly
 
@@ -560,6 +601,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ finish working on breaking up outputs and making engine more organized
+
 
 
 ##      04/27/2026
@@ -579,6 +621,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ look at the heater logic and consider adding a target heaters online and heat needed variable to print for debugging
 
 
+
 ##      04/28/2026
     ♡ mostly a research day about Mars and seasons, temperature, atmosphere and more on systems that would be needed in a real Mars habitat
 
@@ -590,6 +633,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ start file for Sabatier
+
 
 
 ##      04/29/2026
