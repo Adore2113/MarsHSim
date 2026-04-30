@@ -3,25 +3,21 @@
 
 #--------------------constants-----------------------♡
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
-o2_kg_per_kpa = 18.2
-co2_kg_per_kpa = 35.8
-n2_kg_per_kpa = 22.75
-ar_kg_per_kpa = 32.45
 pa_per_kpa = 1000.0   # kilopascals to pascals
 
-r = 8.314   # the universal gas constant
+r = 8.314   # the universal gas constant (pascals)
+# or r = 0.008314 (for kpa)
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0
 
-oga_max_o2_output = 0.004
+oga_max_o2_output_kpa = 0.004
 #----------------------------------------------------♡
 
 
 #------------oxygen regeneration process-------------♡
 def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
-    o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))
-    o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
+    o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))    o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
 
     return o2_after_oga_kpa, o2_added_kpa
 
