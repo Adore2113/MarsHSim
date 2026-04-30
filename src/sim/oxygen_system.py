@@ -5,8 +5,7 @@
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 pa_per_kpa = 1000.0   # kilopascals to pascals
 
-r = 8.314   # the universal gas constant (pascals)
-# or r = 0.008314 (for kpa)
+r_kpa = 0.008314   # the universal gas constant
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0
 
@@ -17,30 +16,35 @@ oga_max_o2_output_kpa = 0.004
 #------------oxygen regeneration process-------------♡
 def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
-    o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))    o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
+    o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))
+    o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
 
     return o2_after_oga_kpa, o2_added_kpa
 
 
 #-------------handling hydrogen created--------------♡
 def oga_h2_byproduct(state, o2_added_kpa):
+    if o2_added_kpa <= 0:
+        return 0.0
+    
     hab_temp_k = state.hab_temp_c + kelvin_offset
-    o2_added_pa = o2_added_kpa * pa_per_kpa
-    o2_produced_moles = (o2_added_pa * state.hab_vol_m3) / (r * hab_temp_k)    # ideal gas law: convert o2 pressure increase to moles
-  
-    h2_produced_moles = o2_produced_moles * 2    # electrolysis makes 2 moles of h2 for every mole of o2
-    h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000 
-
+    
+    o2_produced_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * hab_temp_k)
+    
+    h2_produced_moles = o2_produced_moles * 2
+    h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000
+    
     return h2_produced_kg
-    # storing hydrogen for now to use it later 
 
 
 #-------------handling water consumption-------------♡
 def oga_water_consumed(state, o2_added_kpa):
     hab_temp_k = state.hab_temp_c + kelvin_offset
+    
     o2_added_pa = o2_added_kpa * pa_per_kpa
-    o2_produced_moles = (o2_added_pa * state.hab_vol_m3) / (r * hab_temp_k)
+    o2_produced_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * hab_temp_k)
     o2_produced_kg = (o2_produced_moles * o2_molar_mass) / 1000
+    
     water_used_kg = o2_produced_kg * 1.125    # 1.125kg H2O per 1kg of O2 produced
     
     return water_used_kg
@@ -77,7 +81,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         o2_added_kpa = 0.0
 
     else:
-        o2_added_kpa = min(oga_max_o2_output, max(0.0, o2_needed_kpa + 0.001))
+        o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))
     
     water_used_kg = oga_water_consumed(state, o2_added_kpa)
  
