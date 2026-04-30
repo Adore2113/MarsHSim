@@ -650,3 +650,12 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ turn on alerts for min and max safe targets and make crew alerts react to them (i.e "some of the crew members are starting to report headaches")
 
     ♡ go over all variables in state, add or remove things for consistency and organize them better (eventually)
+
+
+##      04/30/2026
+    ♡ sorted through creation notes and finished seperating things into their own files 
+
+    ♡ updated OGA logic, by removing the pa conversation at all and made r for the universal gas constant in kpa instead
+
+#### Next Session:
+    ♡ get back to the Sabatier file

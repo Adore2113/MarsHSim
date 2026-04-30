@@ -9,7 +9,7 @@ r_kpa = 0.008314   # the universal gas constant
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0
 
-oga_max_o2_output_kpa = 0.004
+oga_max_o2_output_kpa = 0.5
 #----------------------------------------------------♡
 
 
