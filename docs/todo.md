@@ -3,10 +3,13 @@
 #### I will be adding and removing from this. I needed somewhere to organize my ideas and thoughts
 
 ### Current Focus:
-    ♡ add Sabatier info/logic into it's own file
+    ♡ add Sabatier info / logic into it's own file
 
 
 ### Next Focus:
+    ♡ go back to notes and recheck my "safe" values for gases
+
+
     ♡ review heater logic:
         
         - add target_heaters_online to print for debugging
@@ -25,7 +28,7 @@
 
     ♡ add limits instead of harsh cutoffs:
         
-        - systems gradually lose effectiveness near extremes
+        - systems gradually lose effectiveness
 
 
     ♡ add trend tracking to other systems (like "temp trend" in print)
@@ -42,6 +45,7 @@
 
 
     ♡ go through all units and make them consistent: 
+       
         - kpa
         
         - kg
@@ -58,9 +62,6 @@
         - state = things that change per timestep
 
         - separate file = constants, limits, targets
-
-
-    ♡ define “normal ranges” for all systems in one place
 
 
     ♡ add system efficiency modifiers:
@@ -88,6 +89,8 @@
     ♡ add to file for handling dust:
         
         - finish dust accumulation function
+        
+        -make dust factor 0.0 - 1.0
 
     ♡ turn seasons into a list with different changes
 
