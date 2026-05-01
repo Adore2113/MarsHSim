@@ -25,8 +25,8 @@ def buffer_gas_control_kpa(state):
     
     total_buffer_gas_added_kpa = 0.0
     total_buffer_gas_vented_kpa = 0.0
-    
-    #------------buffer gas needed modes------------♡  
+
+    #---------------buffer gas modes----------------♡  
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
         buffer_gas_mode = "emergency_add"
         pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
