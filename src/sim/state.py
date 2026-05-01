@@ -40,7 +40,6 @@ class Habitat_State:
     radiators: list
     heaters: list
 
-
     #-------------------atmosphere-------------------♡
     #---------gas targets----------♡
     target_pressure_kpa: float
@@ -48,7 +47,7 @@ class Habitat_State:
     target_co2_kpa: float
     target_n2_kpa: float
     target_ar_kpa: float
-    #target_ch4_kpa: float
+    target_ch4_kpa: float
     
     #-------min safe levels--------♡
     min_safe_pressure_kpa: float
@@ -71,14 +70,16 @@ class Habitat_State:
     co2_kpa: float
     n2_kpa: float
     ar_kpa: float
-    #ch4_kpa: float
+    
+    ch4_kpa: float
     
     #--------gas in storage--------♡
     n2_stored_kpa: float
     ar_stored_kpa: float
     co2_stored_kpa: float
-    h2_stored_kg: float
-    #ch4_stored_kg: float 
+    
+    h2_stored_kg: float    # more of a resource so kg
+    ch4_stored_kg: float 
 
 
     #------pressure percentages w. Dalton's Law------♡
@@ -143,3 +144,6 @@ class Habitat_State:
 
     #----------------wellness lights-----------------♡
     wellness_lights_on: bool = False
+
+    #--------------------sabatier--------------------♡
+    sabatier_on: bool = False
