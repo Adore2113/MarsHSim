@@ -3,9 +3,9 @@
 
 #--------------------constants-----------------------♡
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
-pa_per_kpa = 1000.0   # kilopascals to pascals
-
 r_kpa = 0.008314   # the universal gas constant
+
+pa_per_kpa = 1000.0   # kilopascals to pascals
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0
 
