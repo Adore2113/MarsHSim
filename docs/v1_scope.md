@@ -30,15 +30,13 @@
 ##  Creation Notes:
     These are just notes I wanted to keep together, they aren't in any specific order and they will be updated and edited every so often.
 
-
-
-
 #### Systems:
     ♡ - I'll define these later -
 
+
+
 ### Alert Notes:
-(03/04/2026)(04/30/2026)
-    ♡ Gas alert ideas for future log:
+        ♡ Gas alert ideas for future log:
         (o2): 
         ♡ o2 < 12 kPa:
             - severe hypoxia
@@ -99,28 +97,24 @@
                 - main danger = fire/explosion
         ---------------------------------------
         
-        (symptom references):
-            ♡ hypoxia / asphyxiation: headache » fatigue » dizziness » confusion » unconsciousness
-            
-            ♡ hypercapnia: headache » drowsiness » disorientation » coma risk
-            
-            ♡ oxygen toxicity: dry throat/cough » chest pain » nausea » seizures
+    (symptom references):
+        ♡ hypoxia / asphyxiation: headache » fatigue » dizziness » confusion » unconsciousness
+        
+        ♡ hypercapnia: headache » drowsiness » disorientation » coma risk
+        
+        ♡ oxygen toxicity: dry throat/cough » chest pain » nausea » seizures
 
 
 ### Atmosphere Notes:
-(03/04/2026)
     ♡ target pressure:
         - lower (~65 kilopascals (kPa))
         - less catastrophic leaks
 
-(03/05/2026)
     ♡ 25% yearly atmosphere pressure changes from co2 freezing and sublimating at the poles
 
 #### Gas Notes:
-(03/04/2026)
     ♡ going to be using Dalton's Law
 
-(03/08/2026)
     ♡ tracking partial pressure changes per timestep instead of mass
 
     ♡ O2 drop:
@@ -131,11 +125,10 @@
 
     ♡ 30 crew members
         ~0.0033 * 30 = 0.099kPa/5min
-(03/09/2026)
-    SpaceX: combines oxygen production with making methane rocket fuel with Sabatier + electrolysis
+
+    ♡ SpaceX: combines oxygen production with making methane rocket fuel with Sabatier + electrolysis
 
 #### Buffer Gas Notes:
-(03/04/2026)
     ♡ buffer gases:
         - argon (Ar)
             - Mars atmosphere is ~1.6% Ar
@@ -146,7 +139,6 @@
             - humans are familiar with it
 
 #### CO2 Scrubbing / Amine Bed Notes:
-(03/08/2026)
     ♡ ~0.0029kPa pp/5min
 
     ♡ ~0.0029 * 288 = 0.8352 kPa pp/day
@@ -161,15 +153,12 @@
 
     ♡ making them a list so when I add more features they will be easier to access
 
-(03/18/2026)
     ♡ adding heat produced by amine beds with exothermic absorption (the amine molecules catch the co2 which releases heat), and regeneration
 
-(04/25/2026)
     ♡ amine beds come online based on how much co2 is needed using two different hysteresis
     
 
 #### O2 / OGA Notes:
-(03/09/2026)
     ♡ NASA references: crew co2 production is around 1kg pp/day
 
     ♡ pros:
@@ -185,8 +174,6 @@
         - produces hydrogen (can feed Sabatier for methane/oxygen or vent)
         - big hardware mass when scaled to 30 crew
 
-(03/10/2026)(04/30/2026)
-    
     ♡ h2_kg = (2 * o2_added_kpa * hab_vol_m3 * 2.016) / (r * temp_k * 1000)
 
     ♡ r:
@@ -206,23 +193,18 @@
     - for every oxygen made, you also get hydrogen (2 hydrogen for 1 oxygen)
     - converts hydrogen grams into kg
 
-(03/13/2026)
     ♡ water usage:
         - about 1.125 kg of water is needed to get 1 kg of oxygen
         
 ### Crew Notes:
-(03/21/2026)
     ♡ crew getting around 8 hours of sleep/night (9:30pm (21:30)- 6:00am)
 
 
 ### Power Notes:
-(03/21/2026)
     ♡ lights will dim at 9:30pm (21:30) and they will brighten at 6:00am
 
-(03/24/2026)
     ♡ battery capacity: 4000.0 kWh (for now)
 
-(03/29/2026)
     ♡ changing from 30-40 smaller panels to 10 larger ones
 
     ♡ solar panels modeled similarly to amine beds:
@@ -234,14 +216,12 @@
     
     ♡ I thought about having panels on the outside of my habitat that are foil on one side and black on the other (like a car window shield), that could be flipped like a billboard (one of the ones that have two images on them and they flip to reveal the other image)
 
-(04/09/2026)
     ♡ I want the lights to adjust to time as well as sunlight level and never go below 0.2 light level
 
     ♡ 0.3 as a daytime light level support if there is enough sunlight
 
     ♡ an emergency minimum with enough sunlight will be 0.1 in case of very low power
 
-(04/13/2026)
     ♡ normal:
         - obviously everything runs as it should
 
@@ -261,24 +241,21 @@
 
 
 ### Sabatier Notes:
+    ♡ reactions_avaliable is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
 
 
 
 ### Thermal Notes:
-(03/17/2026)
     ♡ going to use kilowatts (kW) for heat sources (kW = change) (C = result)
 
-(04/14/2026)
     ♡ adding a variable for the habitat's insulation as a heat leak rate, and I'm using 1.0 kw/C as a starter value
 
      ♡ I'm thinking about radiators, electric heaters, obvious insulation, fans and maybe.. a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin
 
-(04/16/2026)
     ♡ I decided to go with radiator arrays, mostly to keep my code more manageable
 
     ♡ after doing some research, I decided to go with a 6 array set up with a total of 50 panels for now
 
-(04/20/2026)
     ♡ all humidity will be mostly internal, through crew perspiration, breathing, etc. 
     
     ♡ considering having a greenhouse b/c of the no resupply
@@ -288,7 +265,6 @@
 
 
 ### Water / CHX Notes:
-(04/22/2026)
     ♡ water recovery systems I'm going to use:
         - Urine Processor Assembly (UPA)
         - Water Processor Assembly (WPA)
@@ -298,10 +274,8 @@
 
     ♡ I read about In-Situ Resource Utilization (ISRU) to extract water locally but I'll worry about that later
 
-(04/23/2026)
     ♡ OGA uses potable water
 
-(04/24/2026)
     ♡ electrostatic dust repulsion (EDS) b/c of the fact that it's passive
 
     ♡ scheduled cleaning (possibly automated)
@@ -310,24 +284,18 @@
 
 
 ### Mars Dust / Environment Factors:
-(03/05/2026)
+
     ♡ dune migration (research this more)
 
     ♡ sun absorption changes from ice/dust
 
-(04/10/2026)
+
     ♡ dust factor ranges from 0.0 - 1.0
 
     ♡ eventually have Mars dust storms and things added in with random, maybe wind cleaning off some of the dust from the solar arrays as well
 
 
-
-### Mars Temp Notes:
-
-
-
-### Mars Time of Day / Season Notes:
-(03/05/2026)
+### Mars Time of Day / Season / Temp Notes:
     ♡ N spring / S fall:
         - 194 sols
         - average temp: ~(-25°C) - ~(-5°C)
@@ -365,23 +333,19 @@
 
     ♡ I'm going off of approximate surface temp daily averages for mid-latitude from NASA (Viking 2)
 
-(03/21/2026)
+    
     ♡ mission_time_s = current time of day
 
     ♡ dt_min = how long the step lasts
 
     ♡ hours_per_step = scaling, production, etc
 
-(04/03/2026)
     ♡ using 0.50kW of sunlight for every 1 square meter (m2) for now
 
     ♡ Mars sunlight is between 0.4 - 0.6 kW / m2 during daytime
 
-(04/04/2026)
     ♡ Mars time runs at 24 hours and 39 minutes and 35 seconds
 
-(04/07/2026)
     ♡ I'm going to hardcode Mars' tilt to be 25.19 degrees b/c my model isn't going to run long enough to take that slow progression into consideration
 
-(04/14/2026)
     ♡ going to use the midpoint range of each season for now (v1?)
