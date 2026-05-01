@@ -59,28 +59,53 @@ s0 = Habitat_State(
         {"id": 5, "status": "standby", "power_kw": 8.0, "efficiency": 0.98, "type": "backup"},
         {"id": 6, "status": "standby", "power_kw": 8.0, "efficiency": 0.98, "type": "backup"},
     ],
-    
-    #---------atmosphere targets and limits----------♡
-    target_pressure_kpa = 65.0,
-    min_safe_pressure_kpa = 55.0,
-    max_safe_pressure_kpa = 70.0,
 
+#-------------------atmosphere-------------------♡
+    #---------gas targets----------♡    
+    target_pressure_kpa = 65.0,
     target_o2_kpa = 20.0,
     target_co2_kpa = 0.4,
     target_n2_kpa = 22.0,
     target_ar_kpa = 22.6,
+    target_ch4_kpa = 0.05,
 
-    #---------------current atmosphere---------------♡
+    #-------min safe levels--------♡
+    min_safe_pressure_kpa = 55.0,
+   # min_safe_o2_kpa = ,
+   # min_safe_co2_kpa = ,
+   # min_safe_n2_kpa = ,
+   # min_safe_ar_kpa = ,
+    min_safe_ch4_kpa = 0.5,
+
+    #--------max safe levels-------♡
+    max_safe_pressure_kpa = 70.0,
+    #max_safe_o2_kpa = ,
+    #max_safe_co2_kpa = ,
+    #max_safe_n2_kpa = ,
+    #max_safe_ar_kpa = ,
+    #max_safe_ch4_kpa = ,
+
+    #------current gas levels------♡
     o2_kpa = 20.0,
     co2_kpa = 0.4,
     n2_kpa = 18.0,
-    ar_kpa = 21.6, 
+    ar_kpa = 21.6,
+    ch4_kpa = 0.0,
 
-    #------------------gas storage-------------------♡
-    n2_stored_kpa = 60.0,   # ~1365 kg
-    ar_stored_kpa = 30.0,   # ~973.5 kg
-    co2_stored_kpa = 0.0,   # temporarily putting the co2 that the scrubber removes to here
-    h2_stored_kg = 0.0,  
+    #--------gas in storage--------♡
+    n2_stored_kpa = 60.0,
+    ar_stored_kpa = 30.0,
+    co2_stored_kpa = 0.0,
+    h2_stored_kg = 0.0,
+    ch4_stored_kg = 0.0, 
+
+    #------gas storage limits------♡
+   # o2_storage_capacity_kg = 
+   # co2_storage_capacity_kg = 
+   # n2_storage_capacity_kg = 
+   # ar_storage_capacity_kg = 
+    ch4_storage_capacity_kg = 400.0,
+
 
     #------------------amine_beds--------------------♡
     amine_beds = [
@@ -134,8 +159,11 @@ s0 = Habitat_State(
 
     #----------------wellness lights-----------------♡
     wellness_lights_on = False,
-    )
+
+    #--------------------sabatier--------------------♡
+    sabatier_on = False,
     #------------------------------------------------♡
+        )
 
 
 def print_state(state, outputs, alerts):
