@@ -77,8 +77,8 @@ def buffer_gas_control_kpa(state):
             pressure_to_vent_kpa -= ar_to_vent
             
             total_buffer_gas_vented_kpa += ar_to_vent 
-        
-        #--------------vent Nitrogen----------------♡  
+  
+        #-------------venting Nitrogen--------------♡  
         if pressure_to_vent_kpa > 0 and new_n2_kpa > state.target_n2_kpa:
             n2_to_vent = min(pressure_to_vent_kpa, new_n2_kpa - state.target_n2_kpa)
             new_n2_kpa -= n2_to_vent

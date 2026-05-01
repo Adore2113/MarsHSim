@@ -657,5 +657,27 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ updated OGA logic, by removing the pa conversation at all and made r for the universal gas constant in kpa instead
 
+    ♡ I am going to keep h2 stored in kg and also I'm going to make the methane(ch4) storage to be in kg b/c these are being treated as resources, and I read that the Sabatier uses mass ratios, not pressure ratios
+
+    ♡ if I need to convert them at any time, I'll just use the conversion and put it up as a constant in the file
+
+    ♡ resuming Sabatier file
+
+    ♡ using a hysteresis to avoid jumpy on and off reactions
+
+    ♡ reactions_avaliable is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
+
+    ♡ I realise I actually put the mode decision in the main function for running the sabatier and also the OGA actually, and I didn't in the other files. I've been changing things and upgrading how I'm doing things so eventually I will need to go through all of the files that I worked on first.
+
+    ♡ waiting to do that though ^ b/c refactoring and editing has taken up enough time for the time being, and I want to focus on getting some main systemsfigured out. 
+
+    ♡ I thought adding a little bit of a leak while venting the ch4 was realistic, so I might add this to the other systems that vent
+
 #### Next Session:
-    ♡ get back to the Sabatier file
+    ♡ get back to the Sabatier file with power and heat produced fixed
+
+    ♡ figure out what to put gases at in quick_test for starting values
+
+    ♡ figure out values for new commented out variables in state and quick_test, and if I really even need them
+    
+    ♡ add a little bit of a leak while venting

@@ -91,6 +91,7 @@ s0 = Habitat_State(
     n2_kpa = 18.0,
     ar_kpa = 21.6,
     ch4_kpa = 0.0,
+    h2_kg = 0.0,    # figure this out
 
     #--------gas in storage--------♡
     n2_stored_kpa = 60.0,

@@ -47,7 +47,7 @@ class Habitat_State:
     target_co2_kpa: float
     target_n2_kpa: float
     target_ar_kpa: float
-    target_ch4_kpa: float
+    target_ch4_kg: float
     
     #-------min safe levels--------♡
     min_safe_pressure_kpa: float
@@ -55,7 +55,9 @@ class Habitat_State:
     #min_safe_co2_kpa: float
     #min_safe_n2_kpa: float
     #min_safe_ar_kpa: float
-    #min_safe_ch4_kpa: float
+    
+    #min_safe_h2_kg: float    
+    #min_safe_ch4_kg: float
     
     #--------max safe levels-------♡
     max_safe_pressure_kpa: float
@@ -63,7 +65,9 @@ class Habitat_State:
     #max_safe_co2_kpa: float
     #max_safe_n2_kpa: float
     #max_safe_ar_kpa: float
-    #max_safe_ch4_kpa: float
+    
+    #max_safe_h2_kg: float
+    #max_safe_ch4_kg: float
     
     #------current gas levels------♡
     o2_kpa: float
@@ -71,7 +75,8 @@ class Habitat_State:
     n2_kpa: float
     ar_kpa: float
     
-    ch4_kpa: float
+    ch4_kg: float
+    h2_kg: float
     
     #--------gas in storage--------♡
     n2_stored_kpa: float
