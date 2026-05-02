@@ -1,7 +1,7 @@
 #--------------------imports-------------------------♡
-from src.sim.state import Habitat_State
-from src.sim.engine import step
-from src.sim.mars_time import get_sol_time
+from .state import Habitat_State
+from .engine import step
+from .mars_time import get_sol_time
 from .buffer_gas_system import mca
 from .alerts import get_alerts, get_status
 #----------------------------------------------------♡
