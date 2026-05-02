@@ -39,6 +39,16 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
     h2_kg = state.h2_kg
     _, co2_kg = run_conversions(state)
 
+    #------------default sabatier values------------♡  
+    sabatier_mode = "offline"
+    water_produced_kg = 0.0
+    ch4_produced_kg = 0.0
+    h2_consumed_kg = 0.0
+    co2_consumed_kpa = 0.0
+    ch4_vented_kg = 0.0
+    new_ch4_stored_kg = state.ch4_stored_kg
+    ch4_kg = state.ch4_kg
+
     #----------------sabatier modes-----------------♡  
     if not state.sabatier_on:
         sabatier_mode = "offline"
@@ -103,14 +113,16 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
             sabatier_mode = "venting"
 
         ch4_kg = state.ch4_kg + (ch4_produced_kg * 0.2)    # hinting at a tiny leak from atmosphere, might remove later   
-
+    
+    #------------dict for updating state-------------♡ 
     sabatier_updates = {
         "ch4_kg": ch4_kg,
         "ch4_stored_kg": new_ch4_stored_kg,
-        "sabatier_mode": sabatier_mode
     }
-
+   
+    #-----------dict for printing outputs------------♡ 
     sabatier_outputs = {
+        "sabatier_mode": sabatier_mode,
         "sabatier_power_used_kw": sabatier_power_used_kw,
         "sabatier_energy_used_kw": sabatier_energy_used_kw,
         "sabatier_heat_added_kw": sabatier_heat_added_kw,
@@ -121,4 +133,6 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
         "sabatier_h2_consumed_kg": h2_consumed_kg,
         "sabatier_co2_consumed_kpa": co2_consumed_kpa, 
     }
+
+    return sabatier_updates, sabatier_outputs
             
