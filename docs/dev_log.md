@@ -681,3 +681,20 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ figure out values for new commented out variables in state and quick_test, and if I really even need them
     
     ♡ add a little bit of a leak while venting
+
+
+##      05/01/2026
+    ♡ added sabatier outputs and updates into engine.py and fixed variables for ch4 where I accidentally put kpa insted or kg
+
+    ♡ code is running again
+
+#### Next Session:
+    ♡ update print to show sabatier information
+
+    ♡ get back to the Sabatier file with power and heat produced fixed
+
+    ♡ figure out what to put gases at in quick_test for starting values
+
+    ♡ figure out values for new commented out variables in state and quick_test, and if I really even need them
+    
+    ♡ add a little bit of a leak while venting
