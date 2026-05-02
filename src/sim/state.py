@@ -57,7 +57,7 @@ class Habitat_State:
     #min_safe_ar_kpa: float
     
     #min_safe_h2_kg: float    
-    #min_safe_ch4_kg: float
+    min_safe_ch4_kg: float
     
     #--------max safe levels-------♡
     max_safe_pressure_kpa: float
@@ -67,7 +67,7 @@ class Habitat_State:
     #max_safe_ar_kpa: float
     
     #max_safe_h2_kg: float
-    #max_safe_ch4_kg: float
+   # max_safe_ch4_kg: float
     
     #------current gas levels------♡
     o2_kpa: float
@@ -84,7 +84,14 @@ class Habitat_State:
     co2_stored_kpa: float
     
     h2_stored_kg: float    # more of a resource so kg
-    ch4_stored_kg: float 
+    ch4_stored_kg: float
+
+    #------gas storage limits------♡
+   # o2_storage_capacity_kg: float 
+   # co2_storage_capacity_kg: float 
+   # n2_storage_capacity_kg: float 
+   # ar_storage_capacity_kg: float 
+    ch4_storage_capacity_kg: float
 
 
     #------pressure percentages w. Dalton's Law------♡
