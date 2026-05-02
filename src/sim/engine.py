@@ -10,6 +10,7 @@ from .mars_time import daylight_per_m2_kw, determine_sunlight_amount, current_so
 from .temp_system import run_thermal_control, update_humidity
 from .water_system import run_water_system
 from .dust_system import get_dust_accumulation
+from .sabatier_system import run_conversions, run_sabatier
 #----------------------------------------------------♡
 
 
@@ -51,15 +52,21 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     #----------------crew metabolism-----------------♡
     crew_results = total_crew_metabolism(new_state, dt_min) 
 
-    #--------------atmosphere (CO2 / OGA)------------♡
+    #-------------------atmosphere-------------------♡
+        #----------------mca------------------♡
     o2_after_crew_kpa = new_state.o2_kpa - crew_results["o2_drop_kpa"]
     co2_after_crew_kpa = new_state.co2_kpa + crew_results["co2_rise_kpa"]
 
     co2_results = run_co2_scrub(new_state, co2_after_crew_kpa, next_time_s, dt_min)
     oga_results = run_oga(new_state, o2_after_crew_kpa, dt_min)
 
-    #-------------------buffer gas-------------------♡
+        #-------------buffer gas--------------♡
     buffer_gas_results = run_buffer_gas_control(new_state, dt_min)
+
+        #--------------sabatier---------------♡
+    co2_kg, temp_k = run_conversions(state)
+    sabatier_updates, sabatier_outputs = run_sabatier(state, dt_min, co2_kg, temp_k)
+    # state_after_sabatier = replace(new_state, **sabatier_updates)
 
     #-----------------humidity (CHX)-----------------♡
     humidity_results = update_humidity(
@@ -116,6 +123,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         **water_updates,
         **thermal_updates,
         **power_updates,
+        **sabatier_updates,
 
         "o2_kpa": oga_results["o2_after_oga_kpa"],
         "co2_kpa": co2_results["co2_after_scrub_kpa"],
@@ -191,5 +199,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     #---------------------power----------------------♡
     outputs.update(power_outputs)
+
+    #-------------------sabatier---------------------♡
+    outputs.update(sabatier_outputs)
 
     return new_state, outputs
