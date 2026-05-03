@@ -172,10 +172,11 @@ def print_state(state, outputs, alerts):
     status = get_status(alerts)
     temp_change_per_hour = outputs.get("temp_change_c", 0) * 12    # change this later
 
-    WIDTH = 33
+    #--------------style variables--------------♡
+    width = 33
 
     print("\n♡ " + "-" * 30 + " ♡")
-    print("Adore2113's MarsHSim".center(WIDTH))
+    print("Adore2113's MarsHSim".center(width))
     print("♡ " + "-" * 30 + " ♡")
 
     #---------------time and daylight----------------♡
@@ -187,13 +188,13 @@ def print_state(state, outputs, alerts):
     print(f"{'Sunlight per m²:':<22} {state.daylight_m2_kw:.3f} kW")
 
     #----------------habitat status------------------♡
-    print((f"\n♡  [  SYSTEM STATUS: {status}  ]  ♡").center(WIDTH))
+    print((f"\n♡  [  SYSTEM STATUS: {status}  ]  ♡").center(width))
     
     if alerts:
-            print((f"♡      [  ALERT: {status}  ]      ♡").center(WIDTH))
+            print((f"♡      [  ALERT: {status}  ]      ♡").center(width))
     
     #-------------atmosphere / pressure--------------♡
-    print(("\n♡      [   ATMOSPHERE    ]       ♡").center(WIDTH))  
+    print(("\n♡      [   ATMOSPHERE    ]       ♡").center(width))  
     print(f"{'Total Pressure:':<22} {mca(state):.2f} kPa")    
     print(f"{'Oxygen:':<22} {state.o2_kpa:.2f} kPa")
     print(f"{'Carbon Dioxide:':<22} {state.co2_kpa:.2f} kPa")
@@ -205,8 +206,17 @@ def print_state(state, outputs, alerts):
     print(f"Buffer Gas Mode: {outputs['buffer_gas_mode']}")
     print(f"Pressure Gap: {outputs['pressure_gap_kpa']:.3f} kPa")
     
+    print(("\n♡      [    SABATIER     ]       ♡").center(width))  
+    print(f"{'Sabatier Power used:':<22} {outputs['sabatier_power_used_kw']:.2f} kW")
+    print(f"{'Sabatier Heat Added:':<22} {outputs['sabatier_heat_added_kw']:.2f} kW")
+    print(f"{'Sabatier Water Added:':<22} {outputs['sabatier_water_produced_kg']:.2f} kg")
+    print(f"{'Methane Added:':<22} {outputs['sabatier_ch4_produced_kg']:.2f} kg")
+    print(f"{'Methane Vented:':<22} {outputs['sabatier_ch4_vented_kg']:.2f} kg")
+    print(f"{'H2 Consumed:':<22} {outputs['sabatier_h2_consumed_kg']:.2f} kg")
+    print(f"{'CO2 Consumed:':<22} {outputs['sabatier_co2_consumed_kpa']:.2f} kPa")
+
     #-------------------resources--------------------♡
-    print(("\n♡         [ RESOURCES ]          ♡").center(WIDTH))
+    print(("\n♡         [ RESOURCES ]          ♡").center(width))
     print(f"{'Potable Water:':<22} {state.potable_water_storage_kg:.2f} kg")
     print(f"{'Gray Water:':<22} {state.gray_water_storage_kg:.2f} kg")
     print(f"{'Black Water:':<22} {state.black_water_storage_kg:.2f} kg")
@@ -215,7 +225,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f} kg")
 
     #---------------------water----------------------♡
-    print(("\n♡      [   WATER SYSTEM   ]      ♡").center(WIDTH))
+    print(("\n♡      [   WATER SYSTEM   ]      ♡").center(width))
     print(f"{'Potable Used:':<22} {outputs.get('potable_water_used_kg', 0):.2f} kg")
     print(f"{'OGA Water Used:':<22} {outputs.get('oga_water_used_kg', 0):.2f} kg")
     print(f"{'Gray Added:':<22} {outputs.get('gray_water_added_kg', 0):.2f} kg")
@@ -233,7 +243,7 @@ def print_state(state, outputs, alerts):
     print(f"{'BPA Recovered:':<22} {outputs.get('bpa_recovered_water_kg', 0):.2f} kg")
 
     #-------------------subsystems-------------------♡
-    print(("\n♡         [  SYSTEMS  ]          ♡").center(WIDTH))
+    print(("\n♡         [  SYSTEMS  ]          ♡").center(width))
     print(f"{'Amine Beds Online:':<22} {outputs.get('beds_online_count', 0)}")
     print(f"{'CO2 Scrubbed:':<22} {outputs.get('co2_removed_kpa', 0):.3f} kPa")
 
@@ -247,7 +257,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Lights Heat:':<22} {outputs.get('light_heat_kw', 0):.2f} kW")
  
     #--------------------power-----------------------♡
-    print(("\n♡          [   POWER   ]         ♡").center(WIDTH))
+    print(("\n♡          [   POWER   ]         ♡").center(width))
     print(f"{'Total Power Used:':<22} {outputs.get('total_power_used_kw', 0):.2f} kW")
     print(f"{'Total Energy Used:':<22} {outputs.get('total_energy_used_kwh', 0):.2f} kWh")
     
@@ -257,8 +267,8 @@ def print_state(state, outputs, alerts):
     print(f"{'Wellness Lights:':<22} {'ON' if state.wellness_lights_on else 'OFF'}")
 
     #--------------------thermal---------------------♡
-    print(("\n♡         [  THERMAL  ]          ♡").center(WIDTH))
-    print((f"\n♡  [THERMAL MODE: {outputs['hab_temp_mode']}]  ♡\n").center(WIDTH))
+    print(("\n♡         [  THERMAL  ]          ♡").center(width))
+    print((f"\n♡  [THERMAL MODE: {outputs['hab_temp_mode']}]  ♡\n").center(width))
     print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
     print(f"{'Mars Temp:':<22} {outputs.get('mars_temp_c', state.mars_temp_c):.2f} °C")
 
