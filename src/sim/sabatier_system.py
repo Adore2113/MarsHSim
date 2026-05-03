@@ -1,4 +1,4 @@
-# file for handling recylcing co2 into water and methane (CH4)
+# file for handling recycling co2 into water and methane (CH4)
 
 
 #--------------------constants-----------------------♡
@@ -33,11 +33,13 @@ def run_conversions(state):
     co2_kg = (state.co2_kpa * state.hab_vol_m3 * co2_molar_mass) / (r_kpa * temp_k * 1000)
 
     return temp_k, co2_kg
+
+
 #----------------co2 + h2 = ch4 + H2o----------------♡
 def run_sabatier(state, dt_min, co2_kg, temp_k):
     hours_per_step = dt_min / 60
-    h2_kg = state.h2_kg
     _, co2_kg = run_conversions(state)
+    h2_kg = state.h2_stored_kg
 
     #------------default sabatier values------------♡  
     sabatier_mode = "offline"
@@ -47,7 +49,7 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
     co2_consumed_kpa = 0.0
     ch4_vented_kg = 0.0
     new_ch4_stored_kg = state.ch4_stored_kg
-    ch4_kg = state.ch4_kg
+    ch4_kpa = state.ch4_kpa
 
     #----------------sabatier modes-----------------♡  
     if not state.sabatier_on:
@@ -57,41 +59,33 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
         sabatier_mode = "idle"
     
     elif co2_kg <= min_co2_for_reaction_kpa * hysteresis:
-        sabatier_mode = "idle, limited co2"
+        sabatier_mode = "limited co2"
     
     elif h2_kg <= min_h2_for_reaction_kg * hysteresis:
-        sabatier_mode = "idle, limited h2"
+        sabatier_mode = "limited h2"
     
     else:
         sabatier_mode = "running"
 
     #----------power usage / heat per mode----------♡  
-    if sabatier_mode == "offline" or sabatier_mode == "idle":
+    if sabatier_mode in ("offline", "idle"):
         sabatier_power_used_kw = 0.0
-        sabatier_energy_used_kw = 0.0
         sabatier_heat_added_kw = 0.0
-        sabatier_heat_added_kwh  = 0.0
-    
-    elif sabatier_mode == "idle, limited co2" or sabatier_mode == "idle, limited h2":
+
+    elif sabatier_mode in ("limited_co2", "limited_h2"):
         sabatier_power_used_kw = base_sabatier_power_kw * 0.55    # use less power
-        sabatier_energy_used_kw = sabatier_power_used_kw * hours_per_step
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
-        sabatier_heat_added_kwh  = sabatier_heat_added_kw * hours_per_step
-    
+
     elif sabatier_mode == "venting":
-        sabatier_power_used_kw = base_sabatier_power_kw * 1.25    # use more power
-        sabatier_energy_used_kw = sabatier_power_used_kw * hours_per_step
+        sabatier_power_used_kw = base_sabatier_power_kw * 1.25    # more power
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
-        sabatier_heat_added_kwh  = sabatier_heat_added_kw * hours_per_step
-    
-    else:
+
+    else:  # normal running
         sabatier_power_used_kw = base_sabatier_power_kw
-        sabatier_energy_used_kw = sabatier_power_used_kw * hours_per_step
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
-        sabatier_heat_added_kwh  = sabatier_heat_added_kw * hours_per_step
-   
+
     #---------------running sabatier----------------♡  
-    if sabatier_mode == "running":
+    if sabatier_mode in ("running", "limited co2", "limited h2"):
         h2_moles = h2_kg / h2_molar_mass
         co2_moles = co2_kg / co2_molar_mass
 
@@ -101,8 +95,7 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
         ch4_produced_kg = reactions_avaliable * 1 * ch4_molar_mass * kg_per_g
         h2_consumed_kg = reactions_avaliable * 4  * h2_molar_mass * kg_per_g
         co2_consumed_kg = reactions_avaliable * 1 * co2_molar_mass * kg_per_g
-        co2_consumed_kpa = (co2_consumed_kg * r_kpa * temp_k * 1000) / (state.hab_vol_m3 * co2_molar_mass)
-
+        co2_consumed_kpa = (co2_consumed_kg * r_kpa * (state.hab_temp_c + kelvin_offset) * 1000) / (state.hab_vol_m3 * co2_molar_mass)
         #-----------ventting excess Methane---------♡
         ch4_max_storage_kg = state.ch4_storage_capacity_kg
         new_ch4_stored_kg = state.ch4_stored_kg + ch4_produced_kg
@@ -112,11 +105,15 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
             new_ch4_stored_kg = ch4_max_storage_kg
             sabatier_mode = "venting"
 
-        ch4_kg = state.ch4_kg + (ch4_produced_kg * 0.2)    # hinting at a tiny leak from atmosphere, might remove later   
+        ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.2)    # hinting at a tiny leak from atmosphere, might remove later   
     
+        sabatier_energy_used_kwh = sabatier_power_used_kw * hours_per_step
+        
+        sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
+        sabatier_heat_added_kwh  = sabatier_heat_added_kw * hours_per_step
     #------------dict for updating state-------------♡ 
     sabatier_updates = {
-        "ch4_kg": ch4_kg,
+        "ch4_kpa": ch4_kpa,
         "ch4_stored_kg": new_ch4_stored_kg,
     }
    
@@ -124,7 +121,7 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
     sabatier_outputs = {
         "sabatier_mode": sabatier_mode,
         "sabatier_power_used_kw": sabatier_power_used_kw,
-        "sabatier_energy_used_kw": sabatier_energy_used_kw,
+        "sabatier_energy_used_kwh": sabatier_energy_used_kwh,
         "sabatier_heat_added_kw": sabatier_heat_added_kw,
         "sabatier_heat_added_kwh": sabatier_heat_added_kwh,
         "sabatier_water_produced_kg": water_produced_kg,
