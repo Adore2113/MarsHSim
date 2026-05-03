@@ -67,7 +67,7 @@ s0 = Habitat_State(
     target_co2_kpa = 0.4,
     target_n2_kpa = 22.0,
     target_ar_kpa = 22.6,
-    target_ch4_kg = 0.05,
+    target_ch4_kpa = 0.05,
 
     #-------min safe levels--------♡
     min_safe_pressure_kpa = 55.0,
@@ -75,7 +75,7 @@ s0 = Habitat_State(
    # min_safe_co2_kpa = ,
    # min_safe_n2_kpa = ,
    # min_safe_ar_kpa = ,
-    min_safe_ch4_kg = 0.5,
+    min_safe_ch4_kpa = 0.5,
 
     #--------max safe levels-------♡
     max_safe_pressure_kpa = 70.0,
@@ -83,15 +83,15 @@ s0 = Habitat_State(
     #max_safe_co2_kpa = ,
     #max_safe_n2_kpa = ,
     #max_safe_ar_kpa = ,
-    #max_safe_ch4_kg = ,
+    #max_safe_ch4_kpa = ,
 
     #------current gas levels------♡
     o2_kpa = 20.0,
     co2_kpa = 0.4,
     n2_kpa = 18.0,
     ar_kpa = 21.6,
-    ch4_kg = 0.0,
-    h2_kg = 0.0,    # figure this out
+    ch4_kpa = 0.0,
+    h2_kpa = 0.0,    # figure this out
 
     #--------gas in storage--------♡
     n2_stored_kpa = 60.0,
