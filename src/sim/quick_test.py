@@ -17,6 +17,7 @@ s0 = Habitat_State(
     
     #--------------------lights----------------------♡
     light_level = 0.0,
+    wellness_lights_on = False,
 
     #---------------------crew-----------------------♡
     crew_count = 30,
@@ -63,50 +64,57 @@ s0 = Habitat_State(
 #-------------------atmosphere-------------------♡
     #---------gas targets----------♡    
     target_pressure_kpa = 65.0,
-    target_o2_kpa = 20.0,
-    target_co2_kpa = 0.4,
-    target_n2_kpa = 22.0,
+    
     target_ar_kpa = 22.6,
-    target_ch4_kpa = 0.05,
+    target_ch4_kpa = 0.05,    
+    target_co2_kpa = 0.4,
+    target_h2_kpa = 0.0,
+    target_n2_kpa = 22.0,
+    target_o2_kpa = 20.0,
 
     #-------min safe levels--------♡
     min_safe_pressure_kpa = 55.0,
-   # min_safe_o2_kpa = ,
-   # min_safe_co2_kpa = ,
-   # min_safe_n2_kpa = ,
-   # min_safe_ar_kpa = ,
-    min_safe_ch4_kpa = 0.5,
+
+    min_safe_ar_kpa = 10.0,
+    min_safe_ch4_kpa = 0.0,
+    min_safe_co2_kpa = 0.0,
+    min_safe_h2_kpa = 0.0,
+    min_safe_n2_kpa = 10.0,
+    min_safe_o2_kpa = 18.0,
 
     #--------max safe levels-------♡
     max_safe_pressure_kpa = 70.0,
-    #max_safe_o2_kpa = ,
-    #max_safe_co2_kpa = ,
-    #max_safe_n2_kpa = ,
-    #max_safe_ar_kpa = ,
-    #max_safe_ch4_kpa = ,
+
+    max_safe_ar_kpa = 30.0,
+    max_safe_ch4_kpa = 0.8,       # fire risk!
+    max_safe_co2_kpa = 1.0,
+    max_safe_h2_kpa = 0.4,
+    max_safe_n2_kpa = 30.0,    
+    max_safe_o2_kpa = 25.0,
 
     #------current gas levels------♡
-    o2_kpa = 20.0,
-    co2_kpa = 0.4,
-    n2_kpa = 18.0,
     ar_kpa = 21.6,
     ch4_kpa = 0.0,
-    h2_kpa = 0.0,    # figure this out
+    co2_kpa = 0.4,
+    h2_kpa = 0.0,    
+    n2_kpa = 18.0,
+    o2_kpa = 20.0,
 
     #--------gas in storage--------♡
-    n2_stored_kpa = 60.0,
     ar_stored_kpa = 30.0,
-    co2_stored_kpa = 0.0,
-    h2_stored_kg = 0.0,
-    ch4_stored_kg = 0.0, 
+    ch4_stored_kg = 0.0,
+    co2_stored_kpa = 0.0, 
+    h2_stored_kg = 50.0,    # starting with this for Sabatier testing
+    n2_stored_kpa = 60.0,
+    o2_stored_kpa = 800.0,
 
     #------gas storage limits------♡
-   # o2_storage_capacity_kg = 
-   # co2_storage_capacity_kg = 
-   # n2_storage_capacity_kg = 
-   # ar_storage_capacity_kg = 
+    ar_storage_capacity_kg = 1200.0,
     ch4_storage_capacity_kg = 400.0,
-
+    co2_storage_capacity_kg = 500.0,    
+    h2_storage_capacity_kg = 300.0,
+    n2_storage_capacity_kg = 2000.0,
+    o2_storage_capacity_kg = 1500.0,
 
     #------------------amine_beds--------------------♡
     amine_beds = [
@@ -159,7 +167,6 @@ s0 = Habitat_State(
     radiation_msv_per_day = 0.7,
 
     #----------------wellness lights-----------------♡
-    wellness_lights_on = False,
 
     #--------------------sabatier--------------------♡
     sabatier_on = False,
@@ -207,17 +214,19 @@ def print_state(state, outputs, alerts):
     print(f"Pressure Gap: {outputs['pressure_gap_kpa']:.3f} kPa")
     
     print(("\n♡      [    SABATIER     ]       ♡").center(width))  
-    print(f"{'Sabatier Power used:':<22} {outputs['sabatier_power_used_kw']:.2f} kW")
-    print(f"{'Sabatier Heat Added:':<22} {outputs['sabatier_heat_added_kw']:.2f} kW")
-    print(f"{'Sabatier Water Added:':<22} {outputs['sabatier_water_produced_kg']:.2f} kg")
-    print(f"{'Methane Added:':<22} {outputs['sabatier_ch4_produced_kg']:.2f} kg")
-    print(f"{'Methane Vented:':<22} {outputs['sabatier_ch4_vented_kg']:.2f} kg")
-    print(f"{'H2 Consumed:':<22} {outputs['sabatier_h2_consumed_kg']:.2f} kg")
-    print(f"{'CO2 Consumed:':<22} {outputs['sabatier_co2_consumed_kpa']:.2f} kPa")
+    print(f"{'Power Used:':<22} {outputs.get('sabatier_power_used_kw', 0):.2f} kW")
+    print(f"{'Heat Added:':<22} {outputs.get('sabatier_heat_added_kw', 0):.2f} kW")
+    print(f"{'Water Produced:':<22} {outputs.get('sabatier_water_produced_kg', 0):.2f} kg")
+    print(f"{'CH4 Produced:':<22} {outputs.get('sabatier_ch4_produced_kg', 0):.2f} kg")
+    print(f"{'CH4 Vented:':<22} {outputs.get('sabatier_ch4_vented_kg', 0):.2f} kg")
+    print(f"{'H2 Consumed:':<22} {outputs.get('sabatier_h2_consumed_kg', 0):.2f} kg")
+    print(f"{'CO2 Consumed:':<22} {outputs.get('sabatier_co2_consumed_kpa', 0):.3f} kPa")
 
     #-------------------resources--------------------♡
     print(("\n♡         [ RESOURCES ]          ♡").center(width))
     print(f"{'Potable Water:':<22} {state.potable_water_storage_kg:.2f} kg")
+    print(f"{'H2 Stored:':<22} {state.h2_stored_kg:.2f} kg")
+    print(f"{'CH4 Stored:':<22} {state.ch4_stored_kg:.2f} kg")    
     print(f"{'Gray Water:':<22} {state.gray_water_storage_kg:.2f} kg")
     print(f"{'Black Water:':<22} {state.black_water_storage_kg:.2f} kg")
     print(f"{'Condensate:':<22} {state.condensate_storage_kg:.2f} kg")
