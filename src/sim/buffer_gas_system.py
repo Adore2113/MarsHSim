@@ -3,6 +3,11 @@
 
 #--------------------constants-----------------------♡
 hysteresis_kpa = 0.05
+base_buffer_gas_power_kw = 0.84
+base_buffer_gas_heat_kw = 1.5
+mca_update_power_kw = 0.1
+
+hysteresis_kpa = 0.05
 #---------------------------------------------------♡
 
 
