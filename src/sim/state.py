@@ -41,6 +41,16 @@ class Habitat_State:
     heaters: list
 
     #-------------------atmosphere-------------------♡
+    base_gas_leak_kpa_per_hour = 0.004
+
+    #-------gas leak rates---------♡
+    o2_leak_rate_kpa_per_hr: float
+    n2_leak_rate_kpa_per_hr: float
+    ar_leak_rate_kpa_per_hr: float
+    ch4_leak_rate_kpa_per_hr: float
+    h2_leak_rate_kpa_per_hr: float
+    co2_leak_rate_kpa_per_hr: float
+
     #---------gas targets----------♡
     target_pressure_kpa: float
     target_o2_kpa: float
