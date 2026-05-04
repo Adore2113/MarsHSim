@@ -106,7 +106,10 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
             new_ch4_stored_kg = state.ch4_storage_capacity_kg
             sabatier_mode = "venting"
 
-        ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.2)    # hinting at a tiny leak while venting  
+            ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.3)    # hinting at a tiny leak while venting
+        
+        else:
+            ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.01)
    
     #------------dict for updating state-------------♡ 
     sabatier_updates = {
