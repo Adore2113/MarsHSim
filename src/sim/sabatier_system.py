@@ -72,7 +72,7 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
         sabatier_power_used_kw = 0.0
         sabatier_heat_added_kw = 0.0
 
-    elif sabatier_mode in ("limited_co2", "limited_h2"):
+    elif sabatier_mode in ("limited co2", "limited h2"):
         sabatier_power_used_kw = base_sabatier_power_kw * 0.55    # use less power
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
 
@@ -80,7 +80,7 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
         sabatier_power_used_kw = base_sabatier_power_kw * 1.25    # more power
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
 
-    else:  # normal running
+    else:
         sabatier_power_used_kw = base_sabatier_power_kw
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
 
@@ -95,22 +95,19 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
         ch4_produced_kg = reactions_avaliable * 1 * ch4_molar_mass * kg_per_g
         h2_consumed_kg = reactions_avaliable * 4  * h2_molar_mass * kg_per_g
         co2_consumed_kg = reactions_avaliable * 1 * co2_molar_mass * kg_per_g
+        
         co2_consumed_kpa = (co2_consumed_kg * r_kpa * (state.hab_temp_c + kelvin_offset) * 1000) / (state.hab_vol_m3 * co2_molar_mass)
+        
         #-----------ventting excess Methane---------♡
-        ch4_max_storage_kg = state.ch4_storage_capacity_kg
         new_ch4_stored_kg = state.ch4_stored_kg + ch4_produced_kg
 
-        if new_ch4_stored_kg > ch4_max_storage_kg:
-            ch4_vented_kg = min(new_ch4_stored_kg - ch4_max_storage_kg)
-            new_ch4_stored_kg = ch4_max_storage_kg
+        if new_ch4_stored_kg > state.ch4_storage_capacity_kg:
+            ch4_vented_kg = new_ch4_stored_kg - state.ch4_storage_capacity_kg
+            new_ch4_stored_kg = state.ch4_storage_capacity_kg
             sabatier_mode = "venting"
 
-        ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.2)    # hinting at a tiny leak from atmosphere, might remove later   
-    
-        sabatier_energy_used_kwh = sabatier_power_used_kw * hours_per_step
-        
-        sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
-        sabatier_heat_added_kwh  = sabatier_heat_added_kw * hours_per_step
+        ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.2)    # hinting at a tiny leak while venting  
+   
     #------------dict for updating state-------------♡ 
     sabatier_updates = {
         "ch4_kpa": ch4_kpa,
@@ -121,9 +118,9 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
     sabatier_outputs = {
         "sabatier_mode": sabatier_mode,
         "sabatier_power_used_kw": sabatier_power_used_kw,
-        "sabatier_energy_used_kwh": sabatier_energy_used_kwh,
+        "sabatier_energy_used_kwh": sabatier_power_used_kw * hours_per_step,
         "sabatier_heat_added_kw": sabatier_heat_added_kw,
-        "sabatier_heat_added_kwh": sabatier_heat_added_kwh,
+        "sabatier_heat_added_kwh": sabatier_heat_added_kw * hours_per_step,
         "sabatier_water_produced_kg": water_produced_kg,
         "sabatier_ch4_produced_kg": ch4_produced_kg,
         "sabatier_ch4_vented_kg": ch4_vented_kg,
