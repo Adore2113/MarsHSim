@@ -112,6 +112,9 @@
 
     ♡ 25% yearly atmosphere pressure changes from co2 freezing and sublimating at the poles
 
+    ♡ kg for storage, kpa for atmosphere
+
+
 #### Gas Notes:
     ♡ going to be using Dalton's Law
 

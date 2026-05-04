@@ -101,12 +101,12 @@ s0 = Habitat_State(
     o2_kpa = 20.0,
 
     #--------gas in storage--------♡
-    ar_stored_kpa = 30.0,
+    ar_stored_kg = 30.0,
     ch4_stored_kg = 0.0,
-    co2_stored_kpa = 0.0, 
+    co2_stored_kg = 0.0, 
     h2_stored_kg = 50.0,    # starting with this for Sabatier testing
-    n2_stored_kpa = 60.0,
-    o2_stored_kpa = 800.0,
+    n2_stored_kg = 60.0,
+    o2_stored_kg = 800.0,
 
     #------gas storage limits------♡
     ar_storage_capacity_kg = 1200.0,
@@ -169,7 +169,7 @@ s0 = Habitat_State(
     #----------------wellness lights-----------------♡
 
     #--------------------sabatier--------------------♡
-    sabatier_on = False,
+    sabatier_on = False,    # True for testing
     #------------------------------------------------♡
         )
 

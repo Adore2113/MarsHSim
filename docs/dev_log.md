@@ -698,3 +698,21 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ figure out values for new commented out variables in state and quick_test, and if I really even need them
     
     ♡ add a little bit of a leak while venting
+
+
+##      05/03/2026
+    ♡ updating print to show sabatier information
+
+    ♡ I decided to track gases in the atmosphere in kpa, and h2 and ch4 in kg for storage, and I'm not 100% sure about the other ones yet
+
+    ♡ going to keep things consistent: kg for storage, kpa for atmosphere << FINISH THIS AFTER FIXING SABATIER>>
+
+#### Next Session:
+
+    ♡ get back to the Sabatier file with power and heat produced fixed
+
+    ♡ figure out what to put gases at in quick_test for starting values
+
+    ♡ figure out values for new commented out variables in state and quick_test, and if I really even need them
+    
+    ♡ add a little bit of a leak while venting
