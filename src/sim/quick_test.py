@@ -62,6 +62,15 @@ s0 = Habitat_State(
     ],
 
 #-------------------atmosphere-------------------♡
+     #-------gas leak rates---------♡
+    o2_leak_rate_kpa_per_hr = 0.008,
+    n2_leak_rate_kpa_per_hr = 0.009,
+    ar_leak_rate_kpa_per_hr = 0.007,
+    ch4_leak_rate_kpa_per_hr = 0.012,
+    h2_leak_rate_kpa_per_hr = 0.025,    # hydrogen leaks the fastest
+    co2_leak_rate_kpa_per_hr = 0.006,
+
+ 
     #---------gas targets----------♡    
     target_pressure_kpa = 65.0,
     
