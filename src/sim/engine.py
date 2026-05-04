@@ -126,11 +126,11 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
         "o2_kpa": oga_results["o2_after_oga_kpa"],
         "co2_kpa": co2_results["co2_after_scrub_kpa"],
-        "co2_stored_kpa": co2_results["new_co2_stored_kpa"],
+        "co2_stored_kg": co2_results["new_co2_stored_kg"],
         "n2_kpa": buffer_gas_results["n2_kpa"],
         "ar_kpa": buffer_gas_results["ar_kpa"],
-        "n2_stored_kpa": buffer_gas_results["n2_stored_kpa"],
-        "ar_stored_kpa": buffer_gas_results["ar_stored_kpa"],
+        "n2_stored_kg": buffer_gas_results["n2_stored_kg"],
+        "ar_stored_kg": buffer_gas_results["ar_stored_kg"],
         "h2_stored_kg": new_state.h2_stored_kg + oga_results["h2_produced_kg"],
         
         "solar_arrays": dust_results["new_solar_arrays"],
