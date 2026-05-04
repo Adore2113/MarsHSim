@@ -49,7 +49,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         low_sunlight_streak_sols = new_low_sunlight_streak_sols
         )
     
-    #----------------crew metabolism-----------------♡
+    #----------------------crew----------------------♡
     crew_results = total_crew_metabolism(new_state, dt_min) 
 
     #-------------------atmosphere-------------------♡
@@ -68,7 +68,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     sabatier_updates, sabatier_outputs = run_sabatier(state, dt_min, co2_kg, temp_k)
     # state_after_sabatier = replace(new_state, **sabatier_updates)
 
-    #-----------------humidity (CHX)-----------------♡
+        #--------------humidity---------------♡
     humidity_results = update_humidity(
         new_state,
         crew_results["breath_vapor_added_kg"],
@@ -91,19 +91,18 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     
     #--------------------thermal---------------------♡
     thermal_updates, thermal_outputs = run_thermal_control(
-    new_state,
-    crew_results["crew_temp_rise_kw"],
-    oga_results["oga_heat_kw"],
-    co2_results["co2_scrubber_heat_kw"],
-    light_results["light_heat_kw"],
-    wellness_results["w_light_heat_kw"],
-    humidity_results["chx_heat_added_kw"],
-    dt_min,
-    current_sunlight_amount
+        new_state,
+        crew_results["crew_temp_rise_kw"],
+        oga_results["oga_heat_kw"],
+        co2_results["co2_scrubber_heat_kw"],
+        light_results["light_heat_kw"],
+        wellness_results["w_light_heat_kw"],
+        humidity_results["chx_heat_added_kw"],
+        dt_min,
+        current_sunlight_amount
     )
     #----------------------dust----------------------♡
-    state_after_thermal = replace(new_state, **thermal_updates)
-    dust_results = get_dust_accumulation(state_after_thermal, dt_min)
+    dust_results = get_dust_accumulation(new_state, dt_min)
 
     #---------------------power----------------------♡
     power_updates, power_outputs = run_system_power(
