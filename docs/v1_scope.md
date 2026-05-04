@@ -114,6 +114,8 @@
 
     ♡ kg for storage, kpa for atmosphere
 
+    ♡ adding variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others)
+
 
 #### Gas Notes:
     ♡ going to be using Dalton's Law

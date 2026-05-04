@@ -10,6 +10,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ going to be using Dalton's Law 
 
     ♡ researched net habitat volume per crew member (average minimum of 25m3 pp), and I'm happy with keeping the habitat size at 2000m3 (~66 m3 pp)
+    
 
 #### Next Session:
     ♡  continue with atmosphere
@@ -705,7 +706,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I decided to track gases in the atmosphere in kpa, and h2 and ch4 in kg for storage, and I'm not 100% sure about the other ones yet
 
-    ♡ going to keep things consistent: kg for storage, kpa for atmosphere << FINISH THIS AFTER FIXING SABATIER>>
+    ♡ going to keep things consistent: kg for storage, kpa for atmosphere
+
+    ♡ adding variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others)
 
 #### Next Session:
 
