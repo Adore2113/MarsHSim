@@ -20,8 +20,7 @@ co2_hysteresis_for_off = -0.05
 
 
 #--------------co2 scrubbing efficiency--------------♡
-def get_co2_scrub_efficiency(state):
-    co2_kpa = state.co2_kpa
+def get_co2_scrub_efficiency(co2_kpa):
     
     if co2_kpa <= 0.2:
         co2_scrub_efficiency = 0.55
@@ -33,7 +32,10 @@ def get_co2_scrub_efficiency(state):
         co2_scrub_efficiency = 0.85 + (co2_kpa - 0.4) / 0.1 * (1.00 - 0.85)    # gradually increase effort from 0.85 - 1.00 as co2 rises from 0.4 - 0.5kpa
 
     else:
-        return 1.00
+        co2_scrub_efficiency = 1.00
+
+    return co2_scrub_efficiency
+
 
 #---------which beds and how many are online---------♡
 def amine_beds_online(state):
