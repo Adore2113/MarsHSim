@@ -719,3 +719,10 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ figure out values for new commented out variables in state and quick_test, and if I really even need them
     
     ♡ add a little bit of a leak while venting
+
+
+##      05/04/2026
+
+
+#### Next Session:
+

@@ -31,7 +31,15 @@
     These are just notes I wanted to keep together, they aren't in any specific order and they will be updated and edited every so often.
 
 #### Systems:
-    ♡ - I'll define these later -
+    ♡ - I'll define these later - 
+
+
+
+#### Variables / Constants:
+    ♡ - There are some variables that haven't been used, b/c I will need them for future plans and ideas
+
+    ♡ - I can sort them and maybe rethink the constants and what variables will be in state, later on
+
 
 
 
