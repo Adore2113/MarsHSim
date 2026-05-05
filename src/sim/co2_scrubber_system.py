@@ -25,7 +25,7 @@ def get_co2_scrub_efficiency(co2_kpa):
     if co2_kpa <= 0.2:
         co2_scrub_efficiency = 0.55
     
-    elif co2_kpa <= 4:
+    elif co2_kpa <= 0.4:
         co2_scrub_efficiency = 0.55 + (co2_kpa - 0.2) / 0.2 * (0.85 - 0.55)    # gradually increase effort from 0.55 - 8.5 as co2 rises from 0.2 - 0.4kpa
 
     elif co2_kpa <= 0.5:
