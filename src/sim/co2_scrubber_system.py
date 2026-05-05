@@ -8,25 +8,41 @@ bed_switch_interval_s = 3300
 bed_switch_power_multiplier = 1.25
 
 base_power_per_bed_kw = 0.65
-power_per_kpa_removed_kw = 45.0
-
 base_heat_per_bed_kw = 0.35
+
+power_per_kpa_removed_kw = 45.0
 heat_per_kpa_removed_kw = 8.0
 
-co2_efficiency_change_levels = {0.0: 0.55, 0.2: 0.55, 0.4: 0.85, 0.5: 1.00}
 co2_hysteresis_for_on = 0.05
 co2_hysteresis_for_off = -0.05
 #----------------------------------------------------♡
 
 
+
+#--------------co2 scrubbing efficiency--------------♡
+def get_co2_scrub_efficiency(state):
+    co2_kpa = state.co2_kpa
+    
+    if co2_kpa <= 0.2:
+        co2_scrub_efficiency = 0.55
+    
+    elif co2_kpa <= 4:
+        co2_scrub_efficiency = 0.55 + (co2_kpa - 0.2) / 0.2 * (0.85 - 0.55)    # gradually increase effort from 0.55 - 8.5 as co2 rises from 0.2 - 0.4kpa
+
+    elif co2_kpa <= 0.5:
+        co2_scrub_efficiency = 0.85 + (co2_kpa - 0.4) / 0.1 * (1.00 - 0.85)    # gradually increase effort from 0.85 - 1.00 as co2 rises from 0.4 - 0.5kpa
+
+    else:
+        return 1.00
+
 #---------which beds and how many are online---------♡
-def amine_beds_online(state, co2_kpa):
+def amine_beds_online(state):
     new_beds = []
     beds_online_count = sum(1 for bed in state.amine_beds if bed["status"] == "online")
     
-    co2_needed_kpa = co2_kpa - state.target_co2_kpa
+    co2_needed_kpa = state.co2_kpa - state.target_co2_kpa
 
-    #----------how many beds needed online-----------♡ 
+    #----------how many beds needed online----------♡ 
     if co2_needed_kpa > 0.50:
         target_beds_online = max_beds_online
     
@@ -83,26 +99,9 @@ def amine_beds_online(state, co2_kpa):
     return new_beds, beds_online_count
 
 
-#--------------co2 scrubbing efficiency--------------♡
-def get_co2_scrub_efficiency(co2_kpa):
-    if co2_kpa <= 0.2:
-        co2_scrub_efficiency = co2_efficiency_change_levels[0.0]
-
-    elif co2_kpa <= 0.4:
-        co2_scrub_efficiency = co2_efficiency_change_levels[0.2] + (co2_kpa - 0.2) / 0.2 * (co2_efficiency_change_levels[0.4] - co2_efficiency_change_levels[0.2])
-
-    elif co2_kpa <= 0.5:
-        co2_scrub_efficiency = co2_efficiency_change_levels[0.4] + (co2_kpa - 0.4) / 0.1 * (co2_efficiency_change_levels[0.5] - co2_efficiency_change_levels[0.4])
-
-    else:
-        co2_scrub_efficiency = co2_efficiency_change_levels[0.5]
-
-    return co2_scrub_efficiency
-
-
 #-------------co2 removal limit per step-------------♡
 def co2_scrub_capacity_kpa(state, co2_after_crew_kpa, next_time_s):
-    beds_after_control, beds_online_count = amine_beds_online(state, co2_after_crew_kpa)
+    beds_after_control, beds_online_count = amine_beds_online(state)
     regen_rate_kpa = 0.01    # how fast a bed is venting co2 outside during regen
     
     max_scrub_removal_kpa = beds_online_count * state.scrub_per_bed_kpa
