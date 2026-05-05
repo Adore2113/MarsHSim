@@ -163,14 +163,20 @@ def run_co2_scrub(state, co2_after_crew_kpa, next_time_s, dt_min):
     co2_after_scrub_kpa, co2_removed_kpa, new_co2_stored_kg = co2_removed_and_storage_update(state, co2_after_crew_kpa, max_scrub_removal_kpa)
     co2_scrubber_heat_kw, co2_scrubber_heat_kwh, co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh = co2_scrub_power_and_heat(co2_removed_kpa, beds_online_count, next_time_s, dt_min)
 
-    return {
-        "co2_after_scrub_kpa": co2_after_scrub_kpa,
+    #------------dict for updating state-------------♡ 
+    scrubber_updates = {
+        "co2_kpa": co2_after_scrub_kpa,
+        "co2_stored_kg": new_co2_stored_kg,
+        "amine_beds": beds_after_control,
+    }
+
+    scrubber_outputs = {
         "co2_removed_kpa": co2_removed_kpa,
-        "new_co2_stored_kg": new_co2_stored_kg,
         "co2_scrubber_heat_kw": co2_scrubber_heat_kw,
         "co2_scrubber_heat_kwh": co2_scrubber_heat_kwh,
         "co2_scrubber_power_used_kw": co2_scrubber_power_used_kw,
         "co2_scrubber_energy_used_kwh": co2_scrubber_energy_used_kwh,
         "beds_online_count": beds_online_count,
-        "amine_beds": beds_after_control
     }
+
+    return scrubber_updates, scrubber_outputs
