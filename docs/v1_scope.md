@@ -34,13 +34,10 @@
     ♡ - I'll define these later - 
 
 
-
 #### Variables / Constants:
     ♡ - There are some variables that haven't been used, b/c I will need them for future plans and ideas
 
     ♡ - I can sort them and maybe rethink the constants and what variables will be in state, later on
-
-
 
 
 ### Alert Notes:
