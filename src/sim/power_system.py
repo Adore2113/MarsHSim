@@ -1,5 +1,5 @@
 #--------------------imports-------------------------♡
-from .mars_time import get_sol_time, determine_sunlight_amount
+from .mars_time import get_sol_time, get_sunlight_amount
 #----------------------------------------------------♡
 
 
@@ -105,7 +105,7 @@ def light_system(state, dt_min):
     hours_per_step = dt_min / 60
     _, sol_hour, minutes = get_sol_time(state)
     
-    sunlight_amount = determine_sunlight_amount(state)
+    sunlight_amount = get_sunlight_amount(state)
     low_sunlight_streak = state.low_sunlight_streak_sols
 
     #------------------main lights------------------♡ 
