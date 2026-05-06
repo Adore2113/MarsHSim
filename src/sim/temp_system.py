@@ -1,6 +1,6 @@
 #--------------------imports-------------------------♡
 from dataclasses import replace
-from .mars_time import current_mars_season, determine_sunlight_amount
+from .mars_time import current_mars_season, get_sunlight_amount
 #----------------------------------------------------♡
 
 # file for temperature and humidity
@@ -32,7 +32,7 @@ hysteresis_c = 0.5
 #--------------external Mars environment-------------♡
 def determine_mars_temp_c(state):
     season = current_mars_season(state)
-    sunlight = determine_sunlight_amount(state)
+    sunlight = get_sunlight_amount(state)
 
     if season == "north_spring":
         base_temp_c = -10.0
@@ -323,7 +323,7 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
     hab_heat_kw = crew_heat_kw + oga_heat_kw + co2_scrubber_heat_kw + light_heat_kw + wellness_light_heat_kw + chx_heat_added_kw
     
     if sunlight_amount is None:
-        sunlight_amount = determine_sunlight_amount(state)
+        sunlight_amount = get_sunlight_amount(state)
 
     solar_heat_gain_kw = get_solar_heat_gain_kw(state)
     
