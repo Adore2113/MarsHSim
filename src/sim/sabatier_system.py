@@ -69,8 +69,8 @@ def run_sabatier(state, dt_min, co2_kg, temp_k):
 
     #----------power usage / heat per mode----------♡  
     if sabatier_mode in ("offline", "idle"):
-        sabatier_power_used_kw = 0.0
-        sabatier_heat_added_kw = 0.0
+        sabatier_power_used_kw = 0.1
+        sabatier_heat_added_kw = 0.1
 
     elif sabatier_mode in ("limited co2", "limited h2"):
         sabatier_power_used_kw = base_sabatier_power_kw * 0.55    # use less power
