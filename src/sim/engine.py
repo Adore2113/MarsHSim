@@ -5,7 +5,7 @@ from .oxygen_system import run_oga
 from .buffer_gas_system import run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import total_crew_metabolism
-from .power_system import lights, wellness_lights, run_system_power
+from .power_system import light_system, run_system_power
 from .mars_time import daylight_per_m2_kw, determine_sunlight_amount, current_sol_number, determine_low_sunlight_streak
 from .temp_system import run_thermal_control, update_humidity
 from .water_system import run_water_system
@@ -58,7 +58,6 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     co2_scrubber_updates, co2_scrubber_outputs = run_co2_scrub(new_state, co2_after_crew_kpa, next_time_s, dt_min)
     oga_updates, oga_outputs = run_oga(new_state, o2_after_crew_kpa, dt_min)
-        #----------------mca------------------♡
 
         #-------------buffer gas--------------♡
     buffer_gas_updates, buffer_gas_outputs = run_buffer_gas_control(new_state, dt_min)
@@ -66,15 +65,9 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         #--------------sabatier---------------♡
     co2_kg, temp_k = run_conversions(state)
     sabatier_updates, sabatier_outputs = run_sabatier(state, dt_min, co2_kg, temp_k)
-    # state_after_sabatier = replace(new_state, **sabatier_updates)    # commented out, b/c unsure if using yet
 
         #--------------humidity---------------♡
-    humidity_results = update_humidity(
-        new_state,
-        crew_results["breath_vapor_added_kg"],
-        crew_results["skin_vapor_added_kg"],
-        dt_min
-    )
+    humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], dt_min)
 
         #----------------water----------------♡
     water_updates, water_outputs = run_water_system(
@@ -84,10 +77,9 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         oga_outputs["water_used_kg"],
         dt_min
     )
-        
+
         #---------------lights----------------♡
-    light_results = lights(new_state, dt_min)
-    wellness_results = wellness_lights(new_state, dt_min)
+    light_results = light_system(new_state, dt_min)
  
         #--------------thermal----------------♡
     thermal_updates, thermal_outputs = run_thermal_control(
@@ -96,7 +88,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         oga_outputs["oga_heat_kw"],
         co2_scrubber_outputs["co2_scrubber_heat_kw"],
         light_results["light_heat_kw"],
-        wellness_results["w_light_heat_kw"],
+        light_results["w_light_heat_kw"],
         humidity_results["chx_heat_added_kw"],
         dt_min,
         current_sunlight_amount
@@ -111,7 +103,6 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         co2_scrubber_outputs,
         oga_outputs,
         light_results,
-        wellness_results,
         thermal_outputs,
         humidity_results,
         dt_min
@@ -131,7 +122,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         "solar_arrays": dust_results["new_solar_arrays"],
         "radiators": dust_results["new_radiators"],
         "light_level": light_results["final_light_level"],
-        "wellness_lights_on": wellness_results["wellness_lights_on"],
+        "wellness_lights_on": light_results["wellness_lights_on"],
         "current_humidity_pct": humidity_results["new_humidity_pct"],
     }
 
@@ -142,18 +133,6 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         #----------------crew-----------------♡
         "crew_heat_kw": crew_results["crew_temp_rise_kw"],
 
-        #-------------atmosphere--------------♡
-        #---------------lights----------------♡
-        "light_power_used_kw": light_results["light_power_used_kw"],
-        "light_energy_used_kwh": light_results["light_energy_used_kwh"],
-        "light_heat_kw": light_results["light_heat_kw"],
-        "light_heat_kwh": light_results["light_heat_kwh"],
-
-        "w_light_power_used_kw": wellness_results["w_light_power_used_kw"],
-        "w_light_energy_used_kwh": wellness_results["w_light_energy_used_kwh"],
-        "w_light_heat_kw": wellness_results["w_light_heat_kw"],
-        "w_light_heat_kwh": wellness_results["w_light_heat_kwh"],
-        
         #--------------humidity---------------♡
         "breath_vapor_added_kg": crew_results["breath_vapor_added_kg"],
         "skin_vapor_added_kg": crew_results["skin_vapor_added_kg"]
