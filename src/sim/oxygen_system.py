@@ -11,12 +11,11 @@ h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/
 o2_molar_mass = 32.0   # grams per mole
 
 oga_max_o2_output_kpa = 0.5
-oga_base_power_kw = 2.5
-oga_base_heat_kw = 1.2
+base_oga_power_kw = 2.5
+base_oga_heat_kw = 1.2
 
-o2_to_water_ratio = 1.125
 safety_backup_water_kg = 30.0
-
+hysteresis_kpa = 0.002
 water_kg_per_o2_kg = 1.125
 #----------------------------------------------------♡
 
@@ -30,39 +29,11 @@ def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
     return o2_after_oga_kpa, o2_added_kpa
 
 
-#-------------handling hydrogen created--------------♡
-def oga_h2_byproduct(state, o2_added_kpa):
-    if o2_added_kpa <= 0:
-        return 0.0
-    
-    hab_temp_k = state.hab_temp_c + kelvin_offset
-    
-    o2_produced_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * hab_temp_k)
-    
-    h2_produced_moles = o2_produced_moles * 2
-    h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000
-    
-    return h2_produced_kg
-
-
-#-------------handling water consumption-------------♡
-def oga_water_consumed(state, o2_added_kpa):
-    hab_temp_k = state.hab_temp_c + kelvin_offset
-    
-    o2_added_pa = o2_added_kpa * pa_per_kpa
-    o2_produced_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * hab_temp_k)
-    o2_produced_kg = (o2_produced_moles * o2_molar_mass) / 1000
-    
-    water_used_kg = o2_produced_kg * 1.125    # 1.125kg H2O per 1kg of O2 produced
-    
-    return water_used_kg
-#----------------------------------------------------♡
-
 
 #-----system power consumption and heat produced-----♡
 def oga_power_and_heat(o2_added_kpa, dt_min):
     hours_per_step = dt_min / 60
-    
+
     if o2_added_kpa > 0:
         oga_heat_kw = 1.2
         oga_heat_kwh = oga_heat_kw * hours_per_step
@@ -81,48 +52,80 @@ def oga_power_and_heat(o2_added_kpa, dt_min):
 #------------oga result info per timestep------------♡
 def run_oga(state, o2_after_crew_kpa, dt_min):
     hours_per_step = dt_min / 60.0
-    o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
-    
-    hysteresis_kpa = 0.002    # only enough to avoid quick switching on and off, subject to change 
 
+    #---------------default oga values--------------♡
+    oga_mode = "offline"
+    o2_added_kpa = 0.0
+    h2_produced_kg = 0.0
+    water_used_kg = 0.0
+    limited_by_water = False 
+
+    o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
+
+    #-------------------oga modes-------------------♡  
     if o2_needed_kpa < hysteresis_kpa:
-        o2_added_kpa = 0.0
+        oga_mode = "idle"
 
     else:
+        oga_mode = "running"
+
+    #--------------water storage check--------------♡
+    water_needed_kg = water_used_kg * water_kg_per_o2_kg
+    min_water_needed_kg = water_needed_kg + (state.crew_count * 2.0) + safety_backup_water_kg
+
+    if state.potable_water_storage_kg < min_water_needed_kg:
+        oga_mode = "limited water"
+        limited_by_water = True
+    
+    #------------------oga running------------------♡
+    if oga_mode == "running":
         o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))
+        o2_produced_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
+        o2_added_pa = o2_added_kpa * pa_per_kpa
+        o2_produced_kg = (o2_produced_moles * o2_molar_mass) / 1000
+     
+        h2_produced_moles = o2_produced_moles * 2
+        h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000
     
-    water_used_kg = oga_water_consumed(state, o2_added_kpa)
- 
-    safety_backup_water_kg = 30.0 + (state.crew_count * 2.0)
-    min_water_needed_for_oga_kg = water_used_kg + safety_backup_water_kg
-
-    if state.potable_water_storage_kg < min_water_needed_for_oga_kg:
-        return {
-            "o2_after_oga_kpa": o2_after_crew_kpa,
-            "o2_added_kpa": 0.0,
-            "h2_produced_kg": 0.0,
-            "water_used_kg": 0.0,
-            "oga_heat_kw": 0.0,
-            "oga_heat_kwh": 0.0,
-            "oga_power_used_kw": 0.0,
-            "oga_energy_used_kwh": 0.0,
-            "oga_limited_by_water": True,
-            "water_needed_for_oga_kg": min_water_needed_for_oga_kg - state.potable_water_storage_kg
-        }
-
-    o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
-    h2_produced_kg = oga_h2_byproduct(state, o2_added_kpa)
+        water_used_kg = o2_produced_kg *water_kg_per_o2_kg
+        
+    #----------power usage / heat per mode----------♡  
+    if oga_mode in ("offline", "idle"):
+        power_used_kw = 0.1
+        heat_added_kw = 0.5
     
-    oga_heat_kw, oga_heat_kwh, oga_power_used_kw, oga_energy_used_kwh = oga_power_and_heat(o2_added_kpa, dt_min)
+    elif oga_mode == "limited water":
+        power_used_kw = base_oga_power_kw * 0.60
+        heat_added_kw = base_oga_heat_kw * 0.60
 
-    return {
-        "o2_after_oga_kpa": o2_after_oga_kpa,
+    elif oga_mode == "running":
+        power_used_kw = base_oga_power_kw
+        heat_added_kw = base_oga_heat_kw
+    
+    else:
+        power_used_kw = 0.0
+        heat_added_kw = 0.0
+
+    #------------dict for updating state-------------♡ 
+    oga_updates = {
+        "o2_kpa": o2_after_crew_kpa + o2_added_kpa,
+        "h2_stored_kg": state.h2_stored_kg + h2_produced_kg,
+    }
+
+    #-----------dict for printing outputs------------♡ 
+    oga_outputs = {
+        "oga_mode": oga_mode,
         "o2_added_kpa": o2_added_kpa,
         "h2_produced_kg": h2_produced_kg,
         "water_used_kg": water_used_kg,
-        "oga_heat_kw": oga_heat_kw,
-        "oga_heat_kwh": oga_heat_kwh,
-        "oga_power_used_kw": oga_power_used_kw,
-        "oga_energy_used_kwh": oga_energy_used_kwh,
-        "oga_limited_by_water": False
+        
+        "oga_power_used_kw": power_used_kw,
+        "oga_energy_used_kwh": power_used_kw * hours_per_step,
+        "oga_heat_kw": heat_added_kw,
+        "oga_heat_kwh": heat_added_kw * hours_per_step,
+        
+        "oga_limited_by_water": limited_by_water,
+
     }
+
+    return oga_updates, oga_outputs
