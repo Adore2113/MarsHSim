@@ -3,13 +3,21 @@
 
 #--------------------constants-----------------------♡
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
-r_kpa = 0.008314   # the universal gas constant
-
 pa_per_kpa = 1000.0   # kilopascals to pascals
+r_kpa = 0.008314   # universal gas constant, 8.314 / 1000
+kg_per_g = 0.001
+
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
-o2_molar_mass = 32.0
+o2_molar_mass = 32.0   # grams per mole
 
 oga_max_o2_output_kpa = 0.5
+oga_base_power_kw = 2.5
+oga_base_heat_kw = 1.2
+
+o2_to_water_ratio = 1.125
+safety_backup_water_kg = 30.0
+
+water_kg_per_o2_kg = 1.125
 #----------------------------------------------------♡
 
 
