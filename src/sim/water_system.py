@@ -2,9 +2,9 @@
 
 
 #--------------------constants-----------------------♡
-upa_recovery_rate = 0.85    # urine processor assembly
-wpa_recovery_rate = 0.95    # water processor assembly
-bpa_recovery_rate = 0.60    # brine processor assembly
+upa_recovery_rate = 0.85
+wpa_recovery_rate = 0.95
+bpa_recovery_rate = 0.60
 
 base_upa_power_kw = 0.45
 base_wpa_power_kw = 0.35
