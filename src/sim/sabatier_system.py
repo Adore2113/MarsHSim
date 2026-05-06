@@ -3,7 +3,7 @@
 
 #--------------------constants-----------------------♡
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
-r_kpa = 0.008314   # the universal gas constant, 8.314 / 1000 
+r_kpa = 0.008314   # universal gas constant, 8.314 / 1000 
 pa_per_kpa = 1000.0
 kg_per_g = 0.001
 exothermic_reaction = 0.65
@@ -14,7 +14,7 @@ co2_molar_mass = 44.01
 ch4_molar_mass = 16.043
 h2o_molar_mass = 18.015
 
-h2_to_water_ratio = 0.45
+water_kg_per_h2_kg = 0.45
 
 min_h2_for_reaction_kg = 0.05
 min_co2_for_reaction_kpa = 0.05
