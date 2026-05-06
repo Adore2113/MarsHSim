@@ -24,7 +24,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
         
-        #--time, solar, and daylight update---♡
+        #-------time / solar / daylight-------♡
     previous_sol_number = current_sol_number(state.mission_time_s)
     new_sol_number = current_sol_number(next_time_s)
     new_sol_started = new_sol_number != previous_sol_number
@@ -57,7 +57,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     o2_after_crew_kpa = new_state.o2_kpa - crew_results["o2_drop_kpa"]
     co2_after_crew_kpa = new_state.co2_kpa + crew_results["co2_rise_kpa"]
 
-    co2_results = run_co2_scrub(new_state, co2_after_crew_kpa, next_time_s, dt_min)
+    scrubber_updates, scrubber_outputs = run_co2_scrub(new_state, co2_after_crew_kpa, next_time_s, dt_min)
     oga_results = run_oga(new_state, o2_after_crew_kpa, dt_min)
 
         #-------------buffer gas--------------♡
@@ -66,7 +66,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         #--------------sabatier---------------♡
     co2_kg, temp_k = run_conversions(state)
     sabatier_updates, sabatier_outputs = run_sabatier(state, dt_min, co2_kg, temp_k)
-    # state_after_sabatier = replace(new_state, **sabatier_updates)
+    # state_after_sabatier = replace(new_state, **sabatier_updates)    # commented out, b/c unsure if using yet
 
         #--------------humidity---------------♡
     humidity_results = update_humidity(
@@ -94,7 +94,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         new_state,
         crew_results["crew_temp_rise_kw"],
         oga_results["oga_heat_kw"],
-        co2_results["co2_scrubber_heat_kw"],
+        scrubber_outputs["co2_scrubber_heat_kw"],
         light_results["light_heat_kw"],
         wellness_results["w_light_heat_kw"],
         humidity_results["chx_heat_added_kw"],
@@ -108,7 +108,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         #----------------power----------------♡
     power_updates, power_outputs = run_system_power(
         new_state,
-        co2_results,
+        scrubber_outputs,
         oga_results,
         light_results,
         wellness_results,
@@ -123,19 +123,18 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         **thermal_updates,
         **power_updates,
         **sabatier_updates,
+        **scrubber_updates,
 
         "o2_kpa": oga_results["o2_after_oga_kpa"],
-        "co2_kpa": co2_results["co2_after_scrub_kpa"],
-        "co2_stored_kg": co2_results["new_co2_stored_kg"],
         "n2_kpa": buffer_gas_results["n2_kpa"],
         "ar_kpa": buffer_gas_results["ar_kpa"],
+        
         "n2_stored_kg": buffer_gas_results["n2_stored_kg"],
         "ar_stored_kg": buffer_gas_results["ar_stored_kg"],
         "h2_stored_kg": new_state.h2_stored_kg + oga_results["h2_produced_kg"],
-        
+
         "solar_arrays": dust_results["new_solar_arrays"],
         "radiators": dust_results["new_radiators"],
-        "amine_beds": co2_results["amine_beds"],
         "light_level": light_results["final_light_level"],
         "wellness_lights_on": wellness_results["wellness_lights_on"],
         "current_humidity_pct": humidity_results["new_humidity_pct"],
@@ -150,12 +149,12 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
         #-------------atmosphere--------------♡
         #--------------co2 / OGA--------------♡
-        "co2_scrubber_power_used_kw": co2_results["co2_scrubber_power_used_kw"],
-        "co2_scrubber_energy_used_kwh": co2_results["co2_scrubber_energy_used_kwh"],
-        "co2_scrubber_heat_kw": co2_results["co2_scrubber_heat_kw"],
-        "co2_scrubber_heat_kwh": co2_results["co2_scrubber_heat_kwh"],
-        "co2_removed_kpa": co2_results["co2_removed_kpa"],
-        "beds_online_count": co2_results["beds_online_count"],
+        "co2_scrubber_power_used_kw": scrubber_outputs["co2_scrubber_power_used_kw"],
+        "co2_scrubber_energy_used_kwh": scrubber_outputs["co2_scrubber_energy_used_kwh"],
+        "co2_scrubber_heat_kw": scrubber_outputs["co2_scrubber_heat_kw"],
+        "co2_scrubber_heat_kwh": scrubber_outputs["co2_scrubber_heat_kwh"],
+        "co2_removed_kpa": scrubber_outputs["co2_removed_kpa"],
+        "beds_online_count": scrubber_outputs["beds_online_count"],
 
         "oga_power_used_kw": oga_results["oga_power_used_kw"],
         "oga_energy_used_kwh": oga_results["oga_energy_used_kwh"],
