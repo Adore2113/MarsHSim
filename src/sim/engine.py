@@ -6,7 +6,7 @@ from .buffer_gas_system import run_buffer_gas_control
 from .co2_scrubber_system import run_co2_scrub
 from .crew_metabolism import total_crew_metabolism
 from .power_system import light_system, run_system_power
-from .mars_time import daylight_per_m2_kw, determine_sunlight_amount, current_sol_number, determine_low_sunlight_streak
+from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, current_sol_number, determine_low_sunlight_streak
 from .temp_system import run_thermal_control, update_humidity
 from .water_system import run_water_system
 from .dust_system import get_dust_accumulation
@@ -31,8 +31,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     new_state = replace(state, mission_time_s = next_time_s)
 
-    current_sunlight_amount = determine_sunlight_amount(new_state)
-    new_daylight_per_m2_kw = daylight_per_m2_kw(new_state)
+    current_sunlight_amount = get_sunlight_amount(new_state)
+    new_daylight_per_m2_kw = get_daylight_per_m2_kw(new_state)
 
     if new_sol_started:
         new_peak_sunlight_today = current_sunlight_amount
