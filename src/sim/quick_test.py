@@ -218,7 +218,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Argon:':<22} {state.ar_kpa:.2f} kPa\n")
    
     print(f"Gas Added: {outputs['total_buffer_gas_added_kpa']:.3f} kPa")
-    print(f"{'Gas Vented:':<22} {outputs.get('buffer_gas_vented_kpa'):.3f} kPa")
+    print(f"{'Gas Vented:':<22} {outputs.get('total_buffer_gas_vented_kpa', 0.0):.3f} kPa")
     print(f"Buffer Gas Mode: {outputs['buffer_gas_mode']}")
     print(f"Pressure Gap: {outputs['pressure_gap_kpa']:.3f} kPa")
     
