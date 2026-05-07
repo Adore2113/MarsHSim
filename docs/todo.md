@@ -3,35 +3,16 @@
 #### I will be adding and removing from this. I needed somewhere to organize my ideas and thoughts
 
 ### Current Focus:
-    ♡ add Sabatier info / logic into it's own file
+    ♡ start adding variables for a greenhouse and think about systems needed for a greenhouse on Mars
 
 
 ### Next Focus:
-    ♡ go back to notes and recheck my "safe" values for gases
-
-
-    ♡ review heater logic:
-        
-        - add target_heaters_online to print for debugging
-
-        - add heat_needed variable to print for debugging
-
-
-    ♡ track system efficiency:
-        
-        - oga
-
-        - scrubber
-
-        - sabatier over time
-
-
-    ♡ add limits instead of harsh cutoffs:
-        
-        - systems gradually lose effectiveness
-
-
     ♡ add trend tracking to other systems (like "temp trend" in print)
+
+
+    ♡ add rations / food system:
+        
+        - add greenhouse (crucial for no resupply)
 
 
 ### Later Focus:
@@ -72,9 +53,6 @@
 
         - environment
 
-
-    ♡ clean up how the subsystems interact
-
    
     ♡ update alerts: 
         
@@ -98,17 +76,12 @@
     ♡ add crew scheduling
 
 
-    ♡ havelogs for crew reacting to system events
+    ♡ have logs for crew reacting to system events
         
         - "some of the crew members are starting to report headaches", etc.
 
    
     ♡ add maintenance scheduling
-
-
-    ♡ add rations / food system:
-        
-        - add greenhouse (crucial for no resupply)
 
 
     ♡ add wind effects:
