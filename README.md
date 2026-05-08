@@ -4,11 +4,13 @@
 
 I'm building a Mars habitat simulation where a closed system keeps a crew alive with no resupply, one subsystem at a time.
 
+<p align="center">
 ♡♡♡
+</p>
 
 MarsHSim models a self sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2000 m3 habitat on Mars.
 
-The focus is on reliability, realism, machine learning integration, reusability, and eventually cost considerations.
+♡ The focus is on reliability, realism, machine learning integration, reusability, and eventually cost considerations.
 
 
 ## Overview:
@@ -16,6 +18,10 @@ The focus is on reliability, realism, machine learning integration, reusability,
 MarsHSim simulates a habitat in Arcadia Planitia running on Mars time (sols and LMST).
 
 The system updates continuously using a timestep based simulation, modeling how a closed life support system maintains stability over time.
+
+<p align="center">
+♡♡♡
+</p>
 
 My goal is to build something that feels real, structured, autonomous and potentially slighlty interactive on a UI I designed
 
@@ -167,7 +173,6 @@ Currently running as a terminal based simulation.
 Make sure Python is installed, then run:
     py -m src.sim.quick_test
 
-♡--------------------------------------------------♡
 
 ## Why this project:
 
