@@ -4,13 +4,12 @@
 
 I'm building a Mars habitat simulation where a closed system keeps a crew alive with no resupply, one subsystem at a time.
 
-♡--------------------------------------------------♡
+♡♡♡
 
 MarsHSim models a self sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2000 m3 habitat on Mars.
 
 The focus is on reliability, realism, machine learning integration, reusability, and eventually cost considerations.
 
-♡--------------------------------------------------♡
 
 ## Overview:
 
@@ -18,105 +17,152 @@ MarsHSim simulates a habitat in Arcadia Planitia running on Mars time (sols and 
 
 The system updates continuously using a timestep based simulation, modeling how a closed life support system maintains stability over time.
 
-My goal is to build something that feels real, structured, autonomous and slighlty interactive on a UI I designed
+My goal is to build something that feels real, structured, autonomous and potentially slighlty interactive on a UI I designed
 
-
-♡--------------------------------------------------♡
 
 ## Systems:
 
-### Atmospheric gases:
-♡  -oxygen (o2)  
-♡  -carbon dioxide (co2)  
-♡  -nitrogen (n2)  
-♡  -argon (ar)  
+#### Atmospheric gases:
+♡ oxygen (o2)
 
-### Core life support:
-♡  -amine swing beds  
-♡  -oxygen generation assembly (OGA)  
-♡  -water electrolysis  
-♡  -major constituent analyzer (MCA)  
+♡ carbon dioxide (co2)
 
-### Environmental systems:
-♡  -temperature (Celsius)  
-♡  -power  
-♡  -water  
-♡  -food supplies  
-♡  -crew metabolism  
-♡  -day and night behavior 
+♡ nitrogen (n2)
+
+♡ argon (ar)
+
+#### Core life support:
+♡ amine swing beds
+
+♡ oxygen generation assembly (OGA)
+
+♡ water electrolysis
+
+♡ Sabatier reaction system
+
+♡ major constituent analyzer (MCA)
+
+♡ buffer gas management
+
+#### Environmental systems:
+♡ habitat temperature control
+
+♡ radiator cooling
+
+♡ heater systems
+
+♡ humidity control
+
+♡ day/night thermal behavior
+
+♡ Mars solar cycles 
+
+#### Resource systems:
+♡ power generation and battery storage
+
+♡ water storage and recovery
+
+♡ hydrogen byproduct storage
+
+♡ atmospheric pressure stabilization
+
+#### Crew and Habitat:
+♡ crew metabolism
+
+♡ oxygen consumption & CO2 production
+
+♡ crew heat generation
+
+♡ day and night behavior 
 
 
-♡--------------------------------------------------♡   
-    
 ## Planned Features:
+♡ greenhouse (in progress)
 
-♡  -emergency scenarios  
-♡  -pressure leaks  
-♡  -crew illness affecting environment  
-♡  -dust storms  
-♡  -extreme temperature shifts  
-♡  -interactive monitoring and control interface  
+♡ food supplies
 
+♡ environmental monitoring
 
-♡--------------------------------------------------♡
+♡ emergency scenarios
+
+♡ pressure leaks
+
+♡ crew illness
+
+♡ plant disease
+
+♡ dust storms
+
+♡ extreme temperature shifts
+
+♡ interactive monitoring and control interface
+
 
 ## Current Focus:
 
-♡  -building core systems one at a time  
-♡  -keeping outputs clean and readable  
-♡  -making each subsystem behave consistently  
-♡  -laying the foundation for future AI control  
+♡ greenhouse and food production systems  
+
+♡ expanding closed loop habitat resource management  
+
+♡ laying groundwork for future AI habitat oversight
 
 This project is in active development.
 
-♡--------------------------------------------------♡
 
 ## Project Structure:
+
+♡ docs /
     
-♡ -src/
+    - todo.md = planned systems, ideas, fixes and future tasks
 
-♡ -sim/
+    - dev_log.md = active development log and my thought process
 
-♡ --engine.py  =  main simulation loop and system coordination
+    - v1_scope.md  =  project info and notes
 
-♡ --state.py  =  habitat state and tracked variables
+    - v1_state_variables.md  =  reference of all tracked variables
 
-♡ --mars_time.py  =  Mars time, sols, and LMST handling
+♡ src /sim /
 
-♡ --crew_metabolism.py  =  crew O2 consumption and CO2 production
+    - alerts.py = simulation alerts and warning systems (very incomplete, not a main focus right now)
 
-♡ --oxygen_system.py  =  OGA and oxygen generation logic
+    - buffer_gas.py = nitrogen and argon pressure balancing
 
-♡ --co2_scrubber_system.py  =  amine bed CO2 removal system
+    - co2_scrub.py = amine swing bed CO2 scrubbing
 
-♡ --buffer_gas_system.py  =  nitrogen and argon pressure balancing
+    - crew.py = crew metabolism and environmental impact
 
-♡ --power_system.py  =  solar, battery, and power usage
+    - dust.py = dust accumulation and environmental dust effects
 
-♡ --temp_system.py  =  thermal control and heat modeling
+    - engine.py = main simulation loop and subsystem coordination
 
-♡ --water_system.py  =  water usage and tracking
+    - greenhouse.py = future greenhouse and food production systems
 
-♡ --quick_test.py  =  simulation entry point
+    - mars_time.py = Mars sols, LMST, and day/night cycles
 
+    - oxygen_system.py = oxygen generation assembly (OGA) and electrolysis
 
-♡ -docs/
+    - power.py = solar, batteries, power distribution and power consumption
 
-♡ --v1_scope.md  =  creation log and development notes
+    - quick_test.py = simulation entry point and testing environment (name subject to change..)
 
-♡ --v1_state_variables.md  =  reference of all tracked variables
+    - sabatier.py = CO2 conversion and methane production systems
 
-♡ -requirements.txt  =  project dependencies
+    - state.py = habitat state and tracked simulation variables
 
-♡ -gitignore  =  ignored files
+    - temp_system.py = habitat thermal control and heat modeling
 
-♡ -README.md  =  project overview
+    - water.py = water storage, recovery, and usage tracking
 
-♡--------------------------------------------------♡ 
+♡ gitignore  =  ignored files
+
+♡ README.md  =  project overview
+
+♡ requirements.txt  =  project dependencies
+
 
 ## Running the Simulation
 
-This currently runs as a terminal based simulation.
+Currently running as a terminal based simulation.
 
 Make sure Python is installed, then run:
     py -m src.sim.quick_test
@@ -135,6 +181,6 @@ My long term goal is to move toward a simulation that can support autonomous dec
 
 For a more detailed breakdown of how this is being built step by step, see my raw development log that I update as I work on it:
 
-docs/v1_scope.md
+docs/dev_log
 
 -Adore2113 ♡
