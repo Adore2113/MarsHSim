@@ -36,7 +36,7 @@ My goal is to build something that feels real, structured, autonomous and potent
 ♡ nitrogen (n2)
 
 ♡ argon (ar)
-<img align="right" src="assets/me_for_readme.gif" width="260">
+<img align="right" src="assets/me_for_readme.gif" width="280">
 #### Core life support:
 ♡ amine swing beds
 
