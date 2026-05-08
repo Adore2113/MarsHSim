@@ -9,6 +9,8 @@
 ### Next Focus:
     ♡ add trend tracking to other systems (like "temp trend" in print)
 
+  ♡ move some constants and variables out of greenhouse.py and add them to state variables
+
 
     ♡ add rations / food system:
         
