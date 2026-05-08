@@ -668,7 +668,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ reactions_avaliable is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
 
-    ♡ I realise I actually put the mode decision in the main function for running the sabatier and also the OGA actually, and I didn't in the other files. I've been changing things and upgrading how I'm doing things so eventually I will need to go through all of the files that I worked on first.
+    ♡ I realize I actually put the mode decision in the main function for running the sabatier and also the OGA actually, and I didn't in the other files. I've been changing things and upgrading how I'm doing things so eventually I will need to go through all of the files that I worked on first.
 
     ♡ waiting to do that though ^ b/c refactoring and editing has taken up enough time for the time being, and I want to focus on getting some main systemsfigured out. 
 
@@ -721,8 +721,27 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ add a little bit of a leak while venting
 
 
-##      05/04/2026
+##      05/05/2026
+    ♡ working on co2_scrubber_system.py making the logic closer to the sabatier and other systems logic
 
+    ♡ considering adding a file for handling helper logic, to make things like handling primary systems and stuff before backups
+
+    ♡ updated current systems to return output and update dicts, and updated engine.py to accommodate that
+
+    ♡ I realized that I have been wasting a lot of time refactoring and trying to keep my files consistent, which I'm sure is a good thing later on, but for now there's a lot to be done so I'm going to switch focus a
 
 #### Next Session:
+    ♡ finish updating current systems to return output and update dicts, and updated engine.py to accommodate that, left off on oga and getting the code to run, pick back up tomorrow, and fix printing issues
 
+
+##      05/06/2026
+    ♡ finished updating current systems to return output and update dicts, and updated engine.py to accommodate that
+
+    ♡ I need to look over mars_time.py and go over that logic again, but I might wait until I get the greenhouse and other systems set up
+
+    ♡ I haven't decided if the greenhouse will be easier to implement after or before I update the mars_time..
+
+    ♡ updated mars_time file
+
+#### Next Session:
+    ♡ start focusing on greenhouse variables and systems needed, starting with light for the greenhouse

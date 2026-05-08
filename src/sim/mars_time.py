@@ -6,6 +6,8 @@ import math
 #--------------------constants-----------------------♡
 seconds_per_sol = 88775.244     # one mars sol is 24h 39min 35sec
 sols_per_year = 668.599     # one full Mars orbit
+seconds_per_mars_year = sols_per_year * seconds_per_sol
+degrees_per_second = 360.0 / seconds_per_mars_year
 
 # habitat location = 47° North, 184° East (Arcadia Planitia)
 latitude_north_deg = 47.0
@@ -14,7 +16,7 @@ longitude_east_deg = 184.0
 mars_axial_tilt_deg = 25.19    # how much Mars is tilted for changing sun angle 
 max_daylight_m2_kw = 0.57
 low_sunlight_kw = 0.3    # < 0.3 sunlight per m2 = low sunlight
-min_growth_light_kw = 0.15    # 0.15 sunlight per m2 = min useful light ( FOR GREENHOUSE LATER )
+
 #----------------------------------------------------♡
 
 
@@ -32,7 +34,6 @@ def current_sol_number(mission_time_s):
 def get_sol_time(state):
     sol_number = state.mission_time_s // seconds_per_sol
     sol_seconds = sol_time_seconds(state.mission_time_s)
-
     sol_hour = int(sol_seconds // 3600)
     minutes = int((sol_seconds % 3600) // 60)
     
@@ -41,9 +42,6 @@ def get_sol_time(state):
 
 #----------------current season angle----------------♡ 
 def get_season_angle_deg(mission_time_s):
-    seconds_per_year = sols_per_year * seconds_per_sol
-    degrees_per_second = 360.0 / seconds_per_year
-
     season_angle_deg = (mission_time_s * degrees_per_second) % 360
     
     return season_angle_deg
@@ -136,7 +134,7 @@ def current_mars_season(state):
     
 
 #--------------low sunlight streak info--------------♡
-def determine_low_sunlight_streak(state):
+def get_low_sunlight_streak(state):
     if state.peak_sunlight_today < low_sunlight_kw:
         new_low_sunlight_streak_sols = state.low_sunlight_streak_sols + 1
     

@@ -2,15 +2,15 @@
 from dataclasses import replace
 from .state import Habitat_State
 from .oxygen_system import run_oga
-from .buffer_gas_system import run_buffer_gas_control
-from .co2_scrubber_system import run_co2_scrub
-from .crew_metabolism import total_crew_metabolism
-from .power_system import light_system, run_system_power
-from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, current_sol_number, determine_low_sunlight_streak
+from .buffer_gas import run_buffer_gas_control
+from .co2_scrub import run_co2_scrub
+from .crew import total_crew_metabolism
+from .power import light_system, run_system_power
+from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, current_sol_number, get_low_sunlight_streak
 from .temp_system import run_thermal_control, update_humidity
-from .water_system import run_water_system
-from .dust_system import get_dust_accumulation
-from .sabatier_system import run_conversions, run_sabatier
+from .water import run_water_system
+from .dust import get_dust_accumulation
+from .sabatier import run_conversions, run_sabatier
 #----------------------------------------------------♡
 
 
@@ -36,7 +36,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     if new_sol_started:
         new_peak_sunlight_today = current_sunlight_amount
-        new_low_sunlight_streak_sols = determine_low_sunlight_streak(new_state)
+        new_low_sunlight_streak_sols = get_low_sunlight_streak(new_state)
     
     else:
         new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)

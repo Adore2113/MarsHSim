@@ -205,7 +205,33 @@
 
     ♡ water usage:
         - about 1.125 kg of water is needed to get 1 kg of oxygen
-        
+
+
+#### Greenhouse Notes:
+    ♡ considering hydroponics, a set up between waste water and filtering and that filtered water 
+    
+    ♡ my friend Joe had a hydroponic set up at his house that he built using clay balls, a massive fishtank, a grow light and plants at different levels to the light, it was one perfect interconnected system and that is my inspiration
+
+    ♡ lightweight clayballs from earth able to pack in tightly and securely in the starship to Mars instead of soil (or...)
+
+    ♡ grow racks, artificial grow lights
+
+    ♡ humidity control
+
+    ♡ plants that help scrub the co2, and generate o2
+
+    ♡ fruit trees, potatoes, squash, greenery, 
+
+    ♡ plantaine leaf
+
+    ♡ plant disease
+
+
+
+### Ration Notes:
+    ♡ lentils/beans
+
+
 ### Crew Notes:
     ♡ crew getting around 8 hours of sleep/night (9:30pm (21:30)- 6:00am)
 
