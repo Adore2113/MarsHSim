@@ -209,10 +209,18 @@
 
 #### Greenhouse Notes:
     ♡ considering hydroponics, a set up between waste water and filtering and that filtered water 
+
+    ♡ gray/black water to water filtration to UPA/WPA to potable to greenhouse
+
+    ♡ loop = crew waste to treatment to greenhouse nutriant solutio to plants to humidity to CHX capture to water system!
+
+    ♡ pros : massive water recylcing!
+
+    ♡ cons: nutrient imbalance and pathogens (plant disease)
     
     ♡ my friend Joe had a hydroponic set up at his house that he built using clay balls, a massive fishtank, a grow light and plants at different levels to the light, it was one perfect interconnected system and that is my inspiration
 
-    ♡ lightweight clayballs from earth able to pack in tightly and securely in the starship to Mars instead of soil (or...)
+    ♡ lightweight clayballs from earth able to pack in tightly and securely in the starship, slow degration over years to Mars instead of soil
 
     ♡ grow racks, artificial grow lights
 
@@ -220,11 +228,11 @@
 
     ♡ plants that help scrub the co2, and generate o2
 
-    ♡ fruit trees, potatoes, squash, greenery, 
+    ♡ dwarf fruit trees, potatoes, squash, spinach, almonds, (herbs, small amount, dual purpose only (reasearch this)) 
 
-    ♡ plantaine leaf
+    ♡ plantaine leaf (minor infection healing)
 
-    ♡ plant disease
+  ♡ plant disease
 
 
 
