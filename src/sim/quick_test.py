@@ -2,7 +2,7 @@
 from .state import Habitat_State
 from .engine import step
 from .mars_time import get_sol_time
-from .buffer_gas_system import mca
+from .buffer_gas import mca
 from .alerts import get_alerts, get_status
 #----------------------------------------------------♡
 
@@ -311,7 +311,7 @@ def print_state(state, outputs, alerts):
     print(f"{'Heater Energy:':<22} {outputs.get('heater_energy_kwh', 0):.2f} kWh")
 
   #  print(f"{'Thermal Mode:':<22} {outputs['hab_temp_mode']}\n")
-   
+    print("\n\n\n♡ [ GREENHOUSE SUBSYSTEM INITIALIZATION ] ♡\n\n\n")
     print("♡ " + "-" * 30 + " ♡")
 #----------------------------------------------------♡
     
