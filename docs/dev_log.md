@@ -745,3 +745,23 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ start focusing on greenhouse variables and systems needed, starting with light for the greenhouse
+
+
+##      05/08/2026
+    ♡ updated README.md and renamed a lot of files today
+
+    ♡ start focusing on greenhouse variables and systems needed, starting with light for the greenhouse
+
+    ♡ going with a hydroponic set up, I updated v1_scope to include all my notes about a greenhouse 
+
+    ♡ going to add to my habitat size after I have the greenhouse set up, so for now I'm going to treat it as if it is a seperate building, running on all the same systems
+
+    ♡ I like the idea of the plants having a set percentage of sunlight that is let in, so even if it's low they're still getting at least a good portion of what IS avaliable, but I'm not entirely sure I'll stick with 70
+
+    ♡ trying to set up my file so that it will be easy to incorporate changing seasons and days without sunlight, ect.
+
+    ♡ reconsidering my modes being two seperate words instead of snake case?
+
+#### Next Session:
+    ♡ continue greenhouse 
+ 
