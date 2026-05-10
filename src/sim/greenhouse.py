@@ -5,10 +5,12 @@ from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, get_daylight
 # file for greenhouse system
 
 #--------------------constants-----------------------♡
-greenhouse_area_m2 = 250
+greenhouse_temp_target_c = 24    # break this up into a few different heat light areas for different plants
 
 best_sunlight_per_m2_kw = 0.45
 min_useful_sunlight_per_m2_kw = 0.15
+
+base_heat_light_power_usage_kw = 0.12
 
 led_power_per_m2_kw = 0.12
 led_heat_ratio = 0.68
@@ -23,6 +25,8 @@ base_power_per_m2_kw = 0.10    # led, pumps, circulation, ect.
 base_water_needed_per_m2_kg_per_sol = 3.3
 #----------------------------------------------------♡
 
+
+#----------------greenhouse lighting-----------------♡
 def greenhouse_lighting(state, dt_min):
     hours_per_step = dt_min / 60
     sunlight_intensity = get_sunlight_amount(state)
@@ -46,28 +50,19 @@ def greenhouse_lighting(state, dt_min):
         gh_lighting_mode = "Optimal Sunlight"
         led_level = 0.0
     
-    led_power_usage_kw = led_power_per_m2_kw * greenhouse_area_m2 * led_level
+    led_power_usage_kw = led_power_per_m2_kw * state.greenhouse_floor_area_m2 * led_level
 
-    return {
-        "gh_lighting_mode": gh_lighting_mode,
-        "natural_light_kw": natural_light_kw,
-        "effective_daylight_kw": effective_daylight_kw,
-        "led_level": led_level,
-        "led_power_usage_kw": led_power_usage_kw,
-        "daylight_fraction": daylight_fraction,
-    }
-
-
-
-
-#--------------greenhouse natural light--------------♡
-
-
+    return(
+        gh_lighting_mode,
+        natural_light_kw,
+        effective_daylight_kw,
+        led_level,
+        led_power_usage_kw,
+        daylight_fraction,
+        )
 
 # growth speed
-  
-# light requirement
-  
+    
 # O2/CO2 exchange rate
   
 # food yield
@@ -81,3 +76,5 @@ def greenhouse_lighting(state, dt_min):
 # pros : massive water recylcing!
 
 # cons: nutrient imbalance and pathogens (plant disease)
+
+#--------------greenhouse water usage--------------♡
