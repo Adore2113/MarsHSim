@@ -208,6 +208,20 @@
 
 
 #### Greenhouse Notes:
+    ♡ these notes are a mess while I organize my thoughts 
+
+    ♡ floor_area_m2 = 250
+    
+    ♡ effective_grow_area_m2 = floor_area_m2 * rack_layers
+    
+    ♡ 50 m2 floor area * 3 rack layers = 150 m2 growing area
+
+    ♡ ceiling_area_m2 = 40
+
+    ♡ ceiling_use_efficiency = 0.60
+
+    ♡ ceiling_grow_area_m2 = ceiling_area_m2 * ceiling_use_efficiency
+
     ♡ considering hydroponics, a set up between waste water and filtering and that filtered water 
 
     ♡ gray/black water to water filtration to UPA/WPA to potable to greenhouse
@@ -228,11 +242,58 @@
 
     ♡ plants that help scrub the co2, and generate o2
 
-    ♡ dwarf fruit trees, potatoes, squash, spinach, almonds, (herbs, small amount, dual purpose only (reasearch this)) 
+    ♡ really contemplating how to approach this, without it turning into a detailed greenhouse simulator.. I've considered:
+        - each individual crop type having specific growing conditions, but this would be way to complex for this sim in genreal, let alone compared to my other systems..
+        
+        - each conainer type having their own specific growing conditions
+        
+        - having one overall setting for the greenhouse, but this just seems to simple  
 
-    ♡ plantaine leaf (minor infection healing)
+    ♡ I've decided to go with 
 
-  ♡ plant disease
+    ♡ I am using the idea of the crew maintaining:
+        -40% carbs:
+            - I'm even open to making this a lower percentage, but after doing my own reasearch from different sites and things, I'm choosing this for now
+        
+        -45% fat:
+            - these are very dense in calories and  keep people full longer
+
+        -15% protein:
+            - high protein just doesn't seem ideal for a survival environment for multiple reasons
+            - humans can survive off of 15% protein
+
+    ♡ I didn't want to have foods that need a lot of processing, at least to start
+
+    ♡ food choices/considerations:
+            - sweet potato (high in calories, higher nutrients than regular potatoes, edible leaves, easy to grow, ect.) - can grow vertically, 15-20 inch diameter ()
+            
+            - quinoa (protein, very low prep after harvest, resiliant, carbs)
+            
+            - corn (mulitpurpose, starchy, easy growth) - 46 m2 area
+            
+            - dwarf banana trees (familiar, sweet, sort of a morale fruit)
+
+            - peanut (high in fat, protein and calories)
+
+            - sunflowers for seeds, morale, ect.
+
+            - peas (fast growth)
+
+            - spinach
+
+            - plantain leaf ( medicinal, anti-inflammatory, wound care, teas, ect.)
+
+            - drwaf passionfruit trees (protein, vitamins, nice smell for morale) 
+
+            - lentils don't seem realistic to harvest and process, so I was thinking there could be a food storage/rations that include them to start or have as an emergency back up,as well as freeze dried protiens and other emergency rations
+
+
+    ♡  herbs?( small amount, dual purpose only (reasearch this))
+
+    ♡ fleshy fruits = high water content (peaches, apples, )
+    ♡ dry fruits = good for seeds and plant reproduction,  fruit protect their seeds well    
+
+    ♡ plant disease, labor hours, morale value, spoilage rate, water use, ect. 
 
 
 
