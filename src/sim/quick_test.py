@@ -26,6 +26,61 @@ s0 = Habitat_State(
     #--------------------habitat---------------------♡
     hab_vol_m3 = 2000.0,
 
+    #------------------greenhouse--------------------♡
+    greenhouse_floor_area_m2 = 250.0,
+    
+    structural_floor_area_m2 = 90.0,    # floor only
+    container_floor_area_m2 = 110.0,
+    rack_floor_area_m2 = 25.0,
+    rack_bonus_area_m2 = 75.0,
+    
+    usable_floor_grow_area_m2 = 225.0,
+    walkway_area_m2 = 25.0,
+    
+    ceiling_hanging_area_m2 = 40.0,
+    ceiling_bonus_area_m2 = 24.0,
+    
+    total_effective_grow_area_m2 = 324.0,
+
+    greenhouse_zones = [
+        {
+        "zone": "structural",
+        "area_m2": 90.0,
+        "main_crop": "mixed_large",           # corn, banana, passionfruit, sunflower
+        "growth_progress": 0.35,
+        "health": 0.98,
+        "light_exposure": 0.6,
+        "water_efficiency": 1.0,
+        "harvest_ready": False,
+        },
+        {
+        "zone": "container",
+        "area_m2": 110.0,
+        "main_crop": "mixed_medium",          # sweet potato, peanut, quinoa
+        "growth_progress": 0.42,
+        "health": 0.98,
+        "light_exposure": 0.65,
+        "water_efficiency": 1.05,
+        "harvest_ready": False,
+        },
+        {
+        "zone": "rack",
+        "area_m2": 25.0 + 75.0 + 24.0,       # racks and ceiling
+        "main_crop": "mixed_small",           # spinach, peas, medicinal plants
+        "growth_progress": 0.28,
+        "health": 0.98,
+        "light_exposure": 0.75,               # racks usually get better light
+        "water_efficiency": 0.95,
+        "harvest_ready": False,
+        "rack_layers": 3,
+        }
+    ],
+    
+    greenhouse_area_on = False,
+    greenhouse_stage = "starter",
+    food_support_level = "partial",
+    stored_food_still_needed = True,
+
     #--------------------thermal---------------------♡
     hab_temp_c = 23.0,
     target_temp_c = 23.0,
@@ -69,6 +124,8 @@ s0 = Habitat_State(
     ch4_leak_rate_kpa_per_hr = 0.012,
     h2_leak_rate_kpa_per_hr = 0.025,    # hydrogen leaks the fastest
     co2_leak_rate_kpa_per_hr = 0.006,
+
+    base_gas_leak_kpa_per_hour = 0.004,
 
  
     #---------gas targets----------♡    
