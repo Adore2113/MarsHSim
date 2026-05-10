@@ -765,3 +765,15 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 #### Next Session:
     ♡ continue greenhouse 
  
+
+ ##      05/09/2026
+     ♡ reasearch for plants and nutrition (I updated notes in v1_scope.md)
+
+    ♡ I'm going to make a list for the different plants, to keep it simple, I'm not going to have a list for each seperate plant, instead I'm going to go by plant area
+
+    ♡ adding plant list to state, I want to take how much spacing the plants need into consideration
+
+    ♡ this isn't a greenhouse simulator it's a mars habitat simulator, so it doesn't need to be as complex as it could be
+
+#### Next Session:
+    ♡ continue greenhouse 
