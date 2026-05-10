@@ -23,11 +23,36 @@ class Habitat_State:
     #--------------------habitat---------------------♡
     hab_vol_m3: float
 
+    #------------------greenhouse--------------------♡
+    greenhouse_floor_area_m2: int
+    
+    structural_floor_area_m2: int
+    container_floor_area_m2: int
+    rack_floor_area_m2: int
+    rack_bonus_area_m2: int
+    
+    usable_floor_grow_area_m2: int
+    walkway_area_m2: int
+    
+    ceiling_hanging_area_m2: int
+    ceiling_bonus_area_m2: int
+    
+    total_effective_grow_area_m2: int
+    greenhouse_zones: list
+    
+    greenhouse_area_on: bool
+    greenhouse_stage: str
+    food_support_level: str
+    stored_food_still_needed: bool
+
     #--------------------thermal---------------------♡
     hab_temp_c: float
     target_temp_c: float
     min_comfort_temp_c: float
     max_comfort_temp_c: float
+
+    #gh_temp_c: float
+    #gh_target_temp_c: float
 
     mars_temp_c: float
 
@@ -41,7 +66,7 @@ class Habitat_State:
     heaters: list
 
     #-------------------atmosphere-------------------♡
-    base_gas_leak_kpa_per_hour = 0.004
+    base_gas_leak_kpa_per_hour: int
 
     #-------gas leak rates---------♡
     o2_leak_rate_kpa_per_hr: float
@@ -85,7 +110,6 @@ class Habitat_State:
     co2_kpa: float
     n2_kpa: float
     ar_kpa: float
-    
     ch4_kpa: float
     h2_kpa: float
     
@@ -167,7 +191,7 @@ class Habitat_State:
     radiation_msv_per_day: float
 
     #----------------wellness lights-----------------♡
-    wellness_lights_on: bool = False
+    wellness_lights_on: bool
 
     #--------------------sabatier--------------------♡
-    sabatier_on: bool = False    # turn on for debugging
+    sabatier_on: bool
