@@ -34,32 +34,46 @@ def greenhouse_lighting(state, dt_min):
 
     natural_light_kw = sunlight_intensity * get_daylight_per_m2_kw(state)
     day_length_bonus = base_light_absorption_pct + (0.3 * daylight_fraction) 
-
     effective_daylight_kw = natural_light_kw * day_length_bonus
 
-    #-----------decide if LEDs are needed------------♡
-    if effective_daylight_kw <= min_useful_sunlight_per_m2_kw:
-        gh_lighting_mode = "Low Sunlight"
-        led_level = 1.0
-
-    elif effective_daylight_kw < best_sunlight_per_m2_kw:
-        gh_lighting_mode = "LED needed"
-        led_level = (best_sunlight_per_m2_kw - effective_daylight_kw) / best_sunlight_per_m2_kw
-
-    else:
-        gh_lighting_mode = "Optimal Sunlight"
-        led_level = 0.0
+    zone_light_targets_kw = {"structural": 0.85, "container": 0.70, "rack": 0.60}
     
-    led_power_usage_kw = led_power_per_m2_kw * state.greenhouse_floor_area_m2 * led_level
+    total_led_power_usage_kw = 0.0
+    zone_results = {}
 
-    return(
-        gh_lighting_mode,
-        natural_light_kw,
-        effective_daylight_kw,
-        led_level,
-        led_power_usage_kw,
-        daylight_fraction,
-        )
+    #-------------adjust light for zones-------------♡
+    for zone in state.greenhouse_zones:
+        zone_name = zone["zone"]
+        area_m2 = zone["area_m2"]
+        target_light = zone_light_targets_kw.get(zone_name, 0.70)
+        
+        if effective_daylight_kw <= min_useful_sunlight_per_m2_kw:
+            led_level = 1.0
+            light_mode = "Low Sunlight"
+        
+        elif effective_daylight_kw < target_light:
+            led_level = (target_light - effective_daylight_kw) / target_light
+            light_mode = "LED Needed"
+        
+        else:
+            led_level = 0.0
+            light_mode = "Optimal Sunlight"
+
+    led_power_usage_kw = led_power_per_m2_kw * area_m2 * led_level
+    total_led_power_usage_kw += led_power_usage_kw
+    
+    new_light_exposure = min(1.0, effective_daylight_kw / target_light + led_level)
+
+    zone_results[zone_name] = {"light_mode": light_mode, "led_level": led_level, "led_power_usage_kw": led_power_usage_kw, "new_light_exposure": new_light_exposure,}
+
+    return{
+        "gh_lighting_mode": "greenhouse_lighting_active",
+        "natural_light_kw": natural_light_kw,
+        "effective_light_kw": effective_daylight_kw,
+        "total_led_power_kw": total_led_power_usage_kw,
+        "daylight_fraction": daylight_fraction,
+        "zone_lighting": zone_results, 
+    }
 
 # growth speed
     
