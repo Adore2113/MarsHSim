@@ -23,6 +23,12 @@ o2_produced_per_m2_kpa_per_sol = 0.020
 base_light_absorption_pct = 0.7    # plants soak up 70% of sunlight from the amount avaliable
 base_power_per_m2_kw = 0.10    # led, pumps, circulation, ect.
 base_water_needed_per_m2_kg_per_sol = 3.3
+
+zone_efficiency = {
+    "structural": {"growth_multiplier": 1.0,  "water_multiplier": 1.1,  "co2_multiplier": 1.0},
+    "container": {"growth_multiplier": 1.1,  "water_multiplier": 1.0,  "co2_multiplier": 1.05},
+    "rack": {"growth_multiplier": 1.25, "water_multiplier": 0.95, "co2_multiplier": 1.1},   # racks are more efficient but need more light
+}
 #----------------------------------------------------♡
 
 
@@ -39,6 +45,7 @@ def greenhouse_lighting(state, dt_min):
     zone_light_targets_kw = {"structural": 0.85, "container": 0.70, "rack": 0.60}
     
     total_led_power_usage_kw = 0.0
+    total_led_heat_kw = 0.0
     zone_results = {}
 
     #-------------adjust light for zones-------------♡
@@ -60,17 +67,26 @@ def greenhouse_lighting(state, dt_min):
             light_mode = "Optimal Sunlight"
 
     led_power_usage_kw = led_power_per_m2_kw * area_m2 * led_level
+    led_heat_kw = led_power_usage_kw * led_heat_ratio
+    
     total_led_power_usage_kw += led_power_usage_kw
+    total_led_heat_kw += led_heat_kw
     
     new_light_exposure = min(1.0, effective_daylight_kw / target_light + led_level)
 
-    zone_results[zone_name] = {"light_mode": light_mode, "led_level": led_level, "led_power_usage_kw": led_power_usage_kw, "new_light_exposure": new_light_exposure,}
+    zone_results[zone_name] = {"light_mode": light_mode, "led_level": led_level, "led_power_usage_kw": led_power_usage_kw, "led_heat_kw": led_heat_kw, "new_light_exposure": new_light_exposure,}
 
     return{
         "gh_lighting_mode": "greenhouse_lighting_active",
         "natural_light_kw": natural_light_kw,
         "effective_light_kw": effective_daylight_kw,
+        
         "total_led_power_kw": total_led_power_usage_kw,
+        "total_led_energy_kwh": total_led_power_usage_kw * hours_per_step,
+
+        "total_led_heat_kw": total_led_heat_kw,
+        "total_led_heat_kwh": total_led_heat_kw * hours_per_step,
+
         "daylight_fraction": daylight_fraction,
         "zone_lighting": zone_results, 
     }
