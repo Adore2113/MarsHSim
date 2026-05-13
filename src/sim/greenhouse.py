@@ -12,6 +12,7 @@ base_heat_light_power_usage_kw = 0.12
 
 led_power_per_m2_kw = 0.12
 led_heat_ratio = 0.68
+transpiration_ratio = 0.85
 
 base_power_per_m2_kw = 0.10    # led, pumps, circulation, ect.
 greenhouse_heat_per_m2_kw = 0.015
@@ -35,7 +36,7 @@ def greenhouse_lighting(state, dt_min):
         zone_name = zone["zone"]
         area_m2 = zone["effective_grow_area_m2"]
 
-        light_target_kw = zone.get("light_target_kw", 0.70)
+        light_target_kw = zone.get("light_target_kw_per_m2", 0.70)
         light_absorption = zone.get("base_light_absorption_pct", 0.70)
 
         day_length_bonus = 0.70 + (0.30 * daylight_fraction)
@@ -122,6 +123,9 @@ def greenhouse_resources(zone, sol_fraction):
     water_consumed_kg = water_needed_kg * (1.0 - water_recirculation_efficiency)    # pct of water not recovered
     water_recirculated_kg = water_needed_kg * water_recirculation_efficiency
     
+    transpiration_kg = water_consumed_kg * transpiration_ratio
+    plant_mass_water_kg = water_consumed_kg * (1.0 - transpiration_ratio)
+
     co2_consumed_per_m2_kpa = zone["co2_consumed_per_m2_kpa_per_sol"]
     total_co2_consumed_kpa = co2_consumed_per_m2_kpa * area_m2 * sol_fraction
 
