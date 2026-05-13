@@ -14,6 +14,7 @@ led_power_per_m2_kw = 0.12
 led_heat_ratio = 0.68
 
 base_power_per_m2_kw = 0.10    # led, pumps, circulation, ect.
+greenhouse_heat_per_m2_kw = 0.015
 #----------------------------------------------------♡
 
 
@@ -87,7 +88,7 @@ def greenhouse_lighting(state, dt_min):
 
 #-----------------zone plant growth------------------♡
 def greenhouse_zone_growth(zone, zone_light, sol_fraction):
-    area_m2 = zone["effective_growth_area_m2"]
+    area_m2 = zone["effective_grow_area_m2"]
     light_exposure = zone_light["light_exposure"]
     health = zone.get("health", 1.0)
     
@@ -100,11 +101,11 @@ def greenhouse_zone_growth(zone, zone_light, sol_fraction):
     harvest_ready = new_growth_progress >= 1.0
 
     food_produced_kg = 0.0
-    food_yeild = zone["food_yeild_per_2_kg_per_sol"]
-    yield_multiplier = zone.get("food_yield_mulitplier")
+    food_yield = zone["food_yield_per_m2_kg_per_sol"]
+    yield_multiplier = zone.get("food_yield_multiplier", 1.0)
 
     if harvest_ready:
-        food_produced_kg = food_yeild * area_m2 * yield_multiplier
+        food_produced_kg = food_yield * area_m2 * yield_multiplier
         new_growth_progress = 0.0
     
     return new_growth_progress, harvest_ready, food_produced_kg
@@ -112,91 +113,113 @@ def greenhouse_zone_growth(zone, zone_light, sol_fraction):
 
 #----------------water / co2 / oxygen----------------♡
 def greenhouse_resources(zone, sol_fraction):
-    area_m2 = zone["effective_growth_area_m2"]
-    base_water_needed = area_m2 = zone["effective_growth_area_m2"]
+    area_m2 = zone["effective_grow_area_m2"]
+    base_water_needed = zone["base_water_needed_per_m2_kg_per_sol"]
     water_multiplier = zone.get("water_multiplier", 1.0)
     water_recirculation_efficiency = zone.get("water_recirculation_efficiency", 0.85)
 
-    water_needed_kg = base_water_needed * area_m2 *water_multiplier * sol_fraction
-    
+    water_needed_kg = base_water_needed * area_m2 * water_multiplier * sol_fraction    
     water_consumed_kg = water_needed_kg * (1.0 - water_recirculation_efficiency)    # pct of water not recovered
     water_recirculated_kg = water_needed_kg * water_recirculation_efficiency
+    
+    co2_consumed_per_m2_kpa = zone["co2_consumed_per_m2_kpa_per_sol"]
+    total_co2_consumed_kpa = co2_consumed_per_m2_kpa * area_m2 * sol_fraction
 
+    o2_produced_per_m2_kpa =  zone["o2_produced_per_m2_kpa_per_sol"]
+    total_o2_produced_kpa = o2_produced_per_m2_kpa * area_m2 * sol_fraction
 
+    greenhouse_heat_added_kw = greenhouse_heat_per_m2_kw * area_m2
 
-
-
-
-
-
-
-
-
-
-
-
+    return {
+        "water_needed_kg": water_needed_kg,
+        "water_consumed_kg": water_consumed_kg,
+        "water_recirculated_kg": water_recirculated_kg,
+        
+        "co2_consumed_kpa": total_co2_consumed_kpa,
+        "o2_produced_kpa": total_o2_produced_kpa,
+        
+        "greenhouse_heat_added_kw": greenhouse_heat_added_kw,
+    }
 
 
 #-------------main greenhouse function---------------♡
 def run_greenhouse(state, dt_min):
-    hours_per_step = dt_min * 60
+    hours_per_step = dt_min / 60
     sol_fraction = dt_min / (24 * 60.0)
   
     if state.greenhouse_on == False:
-        greenhouse_mode = "offline"
+        return {}, {
+            "greenhouse_mode": "offline",
+            "total_food_produced_kg": 0.0,
+            "total_water_needed_kg": 0.0,
+            "total_water_consumed_kg": 0.0,
+            "total_water_recirculated_kg": 0.0,
+            "total_co2_consumed_kpa": 0.0,
+            "total_o2_produced_kpa": 0.0,
+            "total_greenhouse_heat_kw": 0.0,
+            "total_greenhouse_heat_kwh": 0.0,
+            "total_led_power_kw": 0.0,
+            "total_led_heat_kw": 0.0,
+            "zone_outputs": {}
+            }
     
     lighting = greenhouse_lighting(state, dt_min)
     zone_lighting = lighting["zone_lighting"]
     
-    #-----------default greenhouse values-----------♡  
-    total_co2_kpa = 0.0
-    total_co2_consumed_kpa = 0.0
+    total_water_needed_kg = 0.0
     total_water_consumed_kg = 0.0
+    total_water_recirculated_kg = 0.0
+
+    total_co2_consumed_kpa = 0.0
+    total_o2_produced_kpa = 0.0
+
     total_food_produced_kg = 0.0
-    total_power_used_kw = 0.0
-    total_heat_added = 0.0
+    total_greenhouse_heat_added_kw = 0.0
 
     new_zones = []
+    zone_outputs = {}
 
     for zone in state.greenhouse_zones:
         zone_name = zone["zone"]
-        area_m2 = zone["area_m2"]
-        
         zone_light = zone_lighting[zone_name]
-        natural_light_kw = zone_light["natural_light_kw"]
-        
-        target_light_kw = zone.get("light_target_kw", 0.70)
-        
-        if target_light_kw > 0:
-            light_growth_efficiency = natural_light_kw / target_light_kw
-        
-        else:
-            light_growth_efficiency = 0.0
-        
-        growth_rate = zone["base_growth_rate_per_sol"] * zone.get("growth_rate_multiplier", 1.0)
-        daily_growth = growth_rate * light_growth_efficiency
 
-        new_growth_progress = zone["growth_progress"] + daily_growth
+        new_growth_progress, harvest_ready, food_produced_kg = greenhouse_zone_growth(zone, zone_light, sol_fraction)
+        resources = greenhouse_resources(zone, sol_fraction)
 
-        harvest_ready = new_growth_progress >= 1.0
+        total_food_produced_kg += food_produced_kg
         
-        if harvest_ready:
-            food_yeild = zone["food_yield_per_m2_kg_per_sol"] * area_m2 * zone.get("food_yield_multiplier", 1.0)
-            total_food_produced_kg += food_yeild
+        total_water_needed_kg += resources["water_needed_kg"]
+        total_water_consumed_kg += resources["water_consumed_kg"]
+        total_water_recirculated_kg += resources["water_recirculated_kg"]
+        
+        total_co2_consumed_kpa += resources["co2_consumed_kpa"]
+        total_o2_produced_kpa += resources["o2_produced_kpa"]
+        
+        total_greenhouse_heat_added_kw += resources["greenhouse_heat_added_kw"]
 
-            new_growth_progress = 0.0
+        new_zone = zone.copy()
+        new_zone["growth_progress"] = new_growth_progress
+        new_zone["harvest_ready"] = harvest_ready
+        new_zone["light_exposure"] = zone_light["light_exposure"]
 
-        water_consumed_kg = zone["base_water_needed_per_m2_kg_per_sol"] * area_m2 * zone.get("water_multiplier")
-        co2_consumed = zone["co2_consumed_per_m2_kpa_per_sol"] * area_m2
-        o2_produced = zone["o2_produced_per_m2_kpa_per_sol"] * area_m2
-    
-        total_water_consumed_kg += water_consumed_kg
-        total_co2_consumed_kpa += co2_consumed
-        total_o2_produced_kpa += o2_produced
-        total_bio_heat_added_kw += 0.015 * area_m2
+        new_zones.append(new_zone)
 
-        new_zones.append({"growth_progress": new_growth_progress, "harvest_ready": harvest_ready})
-    
+        zone_outputs[zone_name] = {
+            "grow_method": zone["grow_method"],
+            "light_mode": zone_light["light_mode"],
+            "light_exposure": zone_light["light_exposure"],
+            "led_level": zone_light["led_level"],
+            "food_produced_kg": food_produced_kg,
+            "water_needed_kg": resources["water_needed_kg"],
+            "water_consumed_kg": resources["water_consumed_kg"],
+            "water_recirculated_kg": resources["water_recirculated_kg"],
+            "co2_consumed_kpa": resources["co2_consumed_kpa"],
+            "o2_produced_kpa": resources["o2_produced_kpa"],
+            "greenhouse_heat_added_kw": resources["greenhouse_heat_added_kw"],
+            "growth_progress": new_growth_progress,
+            "harvest_ready": harvest_ready,
+        }
+
     #------------dict for updating state-------------♡ 
     greenhouse_updates = {
         "greenhouse_zones": new_zones
@@ -205,33 +228,35 @@ def run_greenhouse(state, dt_min):
     #-----------dict for printing outputs------------♡ 
     greenhouse_outputs = {
         "greenhouse_mode": "online",
-        
+
         "total_food_produced_kg": total_food_produced_kg,
-        
+
+        "total_water_needed_kg": total_water_needed_kg,
         "total_water_consumed_kg": total_water_consumed_kg,
+        "total_water_recirculated_kg": total_water_recirculated_kg,
+
         "total_co2_consumed_kpa": total_co2_consumed_kpa,
         "total_o2_produced_kpa": total_o2_produced_kpa,
-        "total_bio_heat_kw": total_bio_heat_added_kw,
-        "total_bio_heat_kwh": total_bio_heat_added_kw * hours_per_step,
-        
-        "lighting": lighting,
+
+        "total_greenhouse_heat_kw": total_greenhouse_heat_added_kw,
+        "total_greenhouse_heat_kwh": total_greenhouse_heat_added_kw * hours_per_step,
+
+        "total_led_power_kw": lighting["total_led_power_kw"],
+        "total_led_energy_kwh": lighting["total_led_energy_kwh"],
+        "total_led_heat_kw": lighting["total_led_heat_kw"],
+        "total_led_heat_kwh": lighting["total_led_heat_kwh"],
+
+        "natural_light_kw_per_m2": lighting["natural_light_kw_per_m2"],
+        "zone_outputs": zone_outputs,
     }
     
     return greenhouse_updates, greenhouse_outputs
     
 
     
-# O2/CO2 exchange rate
-  
-  
-# water use
-  
+
 # gray/black water to water filtration to UPA/WPA to potable to greenhouse
 
 # loop = crew waste to treatment to greenhouse nutriant solutio to plants to humidity to CHX capture to water system!
 
 # pros : massive water recylcing!
-
-# cons: nutrient imbalance and pathogens (plant disease)
-
-#--------------greenhouse water usage--------------♡
