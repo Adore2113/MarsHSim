@@ -157,8 +157,6 @@ def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results
 def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg, greenhouse_water_used_kg, greenhouse_transpiration_kg, dt_min):
     crew_water_results = crew_water_usage(state, crew_results, dt_min)
     
-    total_condensate_added_kg = condensate_added_kg + greenhouse_transpiration_kg
-
     upa_results = run_upa(state, dt_min)
     bpa_results = run_bpa(state, dt_min)
     wpa_results = run_wpa(state, dt_min)
@@ -172,8 +170,7 @@ def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg
         
         "condensate_added_kg": condensate_added_kg,
         "greenhouse_transpiration_kg": greenhouse_transpiration_kg,
-        "total_condensate_added_kg": total_condensate_added_kg,
-        
+                
         "oga_water_used_kg": oga_water_used_kg,
         "greenhouse_water_used_kg": greenhouse_water_used_kg,
 
