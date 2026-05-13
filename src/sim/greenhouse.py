@@ -110,9 +110,17 @@ def greenhouse_zone_growth(zone, zone_light, sol_fraction):
     return new_growth_progress, harvest_ready, food_produced_kg
 
 
+#----------------water / co2 / oxygen----------------♡
+def greenhouse_resources(zone, sol_fraction):
+    area_m2 = zone["effective_growth_area_m2"]
+    base_water_needed = area_m2 = zone["effective_growth_area_m2"]
+    water_multiplier = zone.get("water_multiplier", 1.0)
+    water_recirculation_efficiency = zone.get("water_recirculation_efficiency", 0.85)
 
-
-
+    water_needed_kg = base_water_needed * area_m2 *water_multiplier * sol_fraction
+    
+    water_consumed_kg = water_needed_kg * (1.0 - water_recirculation_efficiency)    # pct of water not recovered
+    water_recirculated_kg = water_needed_kg * water_recirculation_efficiency
 
 
 
