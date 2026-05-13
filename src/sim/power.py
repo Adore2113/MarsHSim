@@ -168,13 +168,13 @@ def light_system(state, dt_min):
 
 
 #------------------total power usage-----------------♡
-def get_total_power_usage(co2_scrubber_power_used_kw, oga_power_used_kw, light_power_used_kw, w_light_power_used_kw, radiator_power_kw, heater_power_kw, chx_power_used_kw):
-    total_power_used_kw = (co2_scrubber_power_used_kw + oga_power_used_kw + light_power_used_kw + w_light_power_used_kw + radiator_power_kw + heater_power_kw + chx_power_used_kw )
+def get_total_power_usage(co2_scrubber_power_used_kw, oga_power_used_kw, light_power_used_kw, w_light_power_used_kw, greenhouse_led_power_kw, radiator_power_kw, heater_power_kw, chx_power_used_kw):
+    total_power_used_kw = (co2_scrubber_power_used_kw + oga_power_used_kw + light_power_used_kw + w_light_power_used_kw + greenhouse_led_power_kw + radiator_power_kw + heater_power_kw + chx_power_used_kw )
 
     return total_power_used_kw
 
-def get_total_energy_usage(co2_scrubber_energy_used_kwh, oga_energy_used_kwh, light_energy_used_kwh, w_light_energy_used_kwh, radiator_energy_kwh, heater_energy_kwh, chx_energy_used_kwh):
-    total_energy_used_kwh = (co2_scrubber_energy_used_kwh + oga_energy_used_kwh + light_energy_used_kwh + w_light_energy_used_kwh + radiator_energy_kwh + heater_energy_kwh + chx_energy_used_kwh )  
+def get_total_energy_usage(co2_scrubber_energy_used_kwh, oga_energy_used_kwh, light_energy_used_kwh, w_light_energy_used_kwh, greenhouse_led_energy_kwh, radiator_energy_kwh, heater_energy_kwh, chx_energy_used_kwh):
+    total_energy_used_kwh = (co2_scrubber_energy_used_kwh + oga_energy_used_kwh + light_energy_used_kwh + w_light_energy_used_kwh + greenhouse_led_energy_kwh + radiator_energy_kwh + heater_energy_kwh + chx_energy_used_kwh )  
 
     return total_energy_used_kwh
 
@@ -186,7 +186,9 @@ def run_system_power(
     light_results,
     thermal_outputs,
     humidity_results,
-    dt_min):
+    greenhouse_outputs,
+    dt_min
+    ):
 
     new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state)
     
@@ -199,6 +201,7 @@ def run_system_power(
         oga_results["oga_power_used_kw"],
         light_results["light_power_used_kw"],
         light_results["w_light_power_used_kw"],
+        greenhouse_outputs.get("total_led_power_kw", 0.0),
         thermal_outputs.get("radiator_power_kw", 0.0),
         thermal_outputs.get("heater_power_kw", 0.0),
         humidity_results.get("chx_power_used_kw", 0.0)
@@ -209,6 +212,7 @@ def run_system_power(
     oga_results["oga_energy_used_kwh"],
     light_results["light_energy_used_kwh"],
     light_results["w_light_energy_used_kwh"],
+    greenhouse_outputs.get("total_led_energy_kwh", 0.0),
     thermal_outputs.get("radiator_energy_kwh", 0.0),
     thermal_outputs.get("heater_energy_kwh", 0.0),
     humidity_results.get("chx_energy_used_kwh", 0.0)
@@ -238,6 +242,9 @@ def run_system_power(
         
         "total_heat_added_kw": total_heat_added_kw,
         "total_heat_added_kwh": total_heat_added_kwh,
+
+        "greenhouse_led_power_kw": greenhouse_outputs.get("total_led_power_kw", 0.0),
+        "greenhouse_led_energy_kwh": greenhouse_outputs.get("total_led_energy_kwh", 0.0),
 
         **light_results
     }
