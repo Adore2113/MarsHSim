@@ -144,7 +144,7 @@ s0 = Habitat_State(
         }
     ],
     
-    greenhouse_on = False,
+    greenhouse_on = True,    # True for testing
     greenhouse_stage = "starter",
     food_support_level = "partial",
     stored_food_still_needed = True,
@@ -302,9 +302,9 @@ s0 = Habitat_State(
     #----------------wellness lights-----------------♡
 
     #--------------------sabatier--------------------♡
-    sabatier_on = False,    # True for testing
+    sabatier_on =True,    # True for testing
     #------------------------------------------------♡
-        )
+    )
 
 
 def print_state(state, outputs, alerts):
@@ -345,7 +345,16 @@ def print_state(state, outputs, alerts):
     print(f"{'Gas Vented:':<22} {outputs.get('total_buffer_gas_vented_kpa', 0.0):.3f} kPa")
     print(f"Buffer Gas Mode: {outputs['buffer_gas_mode']}")
     print(f"Pressure Gap: {outputs['pressure_gap_kpa']:.3f} kPa")
-    
+
+    #-------------------greenhouse-------------------♡
+    print(("\n♡      [   GREENHOUSE   ]       ♡").center(width))
+    print(f"{'Mode:':<22} {outputs.get('greenhouse_mode', 'offline')}")
+    print(f"{'Food Produced:':<22} {outputs.get('total_food_produced_kg', 0):.3f} kg")
+    print(f"{'Water Used:':<22} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
+    print(f"{'CO2 Consumed:':<22} {outputs.get('greenhouse_co2_consumed_kpa', 0):.4f} kPa")
+    print(f"{'O2 Produced:':<22} {outputs.get('greenhouse_o2_produced_kpa', 0):.4f} kPa")
+
+    #--------------------sabatier--------------------♡
     print(("\n♡      [    SABATIER     ]       ♡").center(width))  
     print(f"{'Power Used:':<22} {outputs.get('sabatier_power_used_kw', 0):.2f} kW")
     print(f"{'Heat Added:':<22} {outputs.get('sabatier_heat_added_kw', 0):.2f} kW")
@@ -434,8 +443,6 @@ def print_state(state, outputs, alerts):
     print(f"{'Heater Power Used:':<22} {outputs.get('heater_power_kw', 0):.2f} kW")
     print(f"{'Heater Energy:':<22} {outputs.get('heater_energy_kwh', 0):.2f} kWh")
 
-  #  print(f"{'Thermal Mode:':<22} {outputs['hab_temp_mode']}\n")
-    print("\n\n\n♡ [ GREENHOUSE SUBSYSTEM INITIALIZATION ] ♡\n\n\n")
     print("♡ " + "-" * 30 + " ♡")
 #----------------------------------------------------♡
     
