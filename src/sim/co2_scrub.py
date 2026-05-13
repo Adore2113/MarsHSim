@@ -131,7 +131,7 @@ def co2_removed_and_storage_update(state, co2_after_crew_kpa, max_scrub_removal_
     
     if co2_removed_kpa > 0.0:
         co2_removed_moles = (co2_removed_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
-        co2_removed_kg = co2_removed_moles * co2_molar_mass
+        co2_removed_kg = co2_removed_moles * co2_molar_mass / 1000
     
     else:
         co2_removed_kg = 0.0
