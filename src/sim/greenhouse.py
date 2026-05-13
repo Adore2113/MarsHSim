@@ -64,9 +64,11 @@ def greenhouse_lighting(state, dt_min):
         zone_lighting[zone_name] = {
             "light_mode": light_mode,
             "effective_light_kw": effective_light_kw,
+            
             "led_level": led_level,
             "led_power_kw": led_power_kw,
             "led_heat_kw": led_heat_kw,
+            
             "light_exposure": light_exposure,
         }
 
@@ -81,6 +83,50 @@ def greenhouse_lighting(state, dt_min):
 
         "zone_lighting": zone_lighting,
     }
+
+
+#-----------------zone plant growth------------------♡
+def greenhouse_zone_growth(zone, zone_light, sol_fraction):
+    area_m2 = zone["effective_growth_area_m2"]
+    light_exposure = zone_light["light_exposure"]
+    health = zone.get("health", 1.0)
+    
+    base_growth_rate = zone["base_growth_rate_per_sol"]
+    growth_multiplier = zone.get("growth_rate_multiplier", 1.0)
+
+    growth_increase = base_growth_rate * growth_multiplier * light_exposure * health * sol_fraction
+
+    new_growth_progress = zone["growth_progress"] + growth_increase
+    harvest_ready = new_growth_progress >= 1.0
+
+    food_produced_kg = 0.0
+    food_yeild = zone["food_yeild_per_2_kg_per_sol"]
+    yield_multiplier = zone.get("food_yield_mulitplier")
+
+    if harvest_ready:
+        food_produced_kg = food_yeild * area_m2 * yield_multiplier
+        new_growth_progress = 0.0
+    
+    return new_growth_progress, harvest_ready, food_produced_kg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #-------------main greenhouse function---------------♡
@@ -166,11 +212,9 @@ def run_greenhouse(state, dt_min):
     return greenhouse_updates, greenhouse_outputs
     
 
-# growth speed
     
 # O2/CO2 exchange rate
   
-# food yield
   
 # water use
   
