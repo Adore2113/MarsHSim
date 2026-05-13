@@ -43,94 +43,102 @@ s0 = Habitat_State(
     total_effective_grow_area_m2 = 324.0,
 
     greenhouse_zones = [
-    #----------------structural zone-----------------♡       
+        #------------structural zone-----------------♡
         {
-        "zone": "structural",    # bigger floor areas
-        "area_m2": 90.0,
-        "main_crop": "mixed_large",    # corn, banana, passionfruit, sunflower
+        "zone": "structural",
+        "grow_method": "hydroponic_large_crop_mix",
+        "floor_area_m2": 90.0,
+        "effective_grow_area_m2": 90.0,  
 
-        #------biological behavior-----♡
+        #-----------targets------------♡
+        "ideal_temp_c": 26.0,
+        "light_target_kw_per_m2": 0.85,
+
+        #------------biology-----------♡
         "base_growth_rate_per_sol": 0.010,
         "base_light_absorption_pct": 0.75,
         "base_water_needed_per_m2_kg_per_sol": 4.2,
-
         "food_yield_per_m2_kg_per_sol": 0.065,
         "co2_consumed_per_m2_kpa_per_sol": 0.030,
         "o2_produced_per_m2_kpa_per_sol": 0.024,
-  
-        #------------stats-------------♡
-        "light_exposure": 0.6,
-        "water_efficiency": 1.0,
-        "health": 0.98,
 
-        "growth_rate_multiplier": 0.85,
+        #----------hydroponics---------♡
+        "water_recirculation_efficiency": 0.82,
 
-        #----------modifiers-----------♡    
+        #----------modifiers-----------♡
         "water_multiplier": 1.15,
+        "growth_rate_multiplier": 0.85,
         "food_yield_multiplier": 1.25,
 
-        #-----------runtime------------♡    
+        #-----------runtime------------♡
+        "light_exposure": 0.60,
+        "health": 0.98,
         "growth_progress": 0.35,
         "harvest_ready": False,
         },
-
-    #-----------------container zone-----------------♡
+        #-------------container zone-----------------♡
         {
         "zone": "container",
-        "area_m2": 110.0,
-        "main_crop": "mixed_medium",    # sweet potato, peanut, quinoa
+        "grow_method": "hydroponic_medium_crop_mix",
+        "floor_area_m2": 110.0,
+        "effective_grow_area_m2": 110.0,
 
-        #------biological behavior-----♡
+        #-----------targets------------♡
+        "ideal_temp_c": 24.0,
+        "light_target_kw_per_m2": 0.70,
+
+        #------------biology-----------♡
         "base_growth_rate_per_sol": 0.014,
         "base_light_absorption_pct": 0.70,
         "base_water_needed_per_m2_kg_per_sol": 3.2,
-
         "food_yield_per_m2_kg_per_sol": 0.085,
         "co2_consumed_per_m2_kpa_per_sol": 0.025,
         "o2_produced_per_m2_kpa_per_sol": 0.020,
 
-        #------------stats-------------♡  
-        "light_exposure": 0.65,
-        "water_efficiency": 1.05,
-        "health": 0.98,
+        #----------hydroponics---------♡
+        "water_recirculation_efficiency": 0.88,
 
-        #----------modifiers-----------♡    
+        #----------modifiers-----------♡
         "water_multiplier": 1.0,
         "growth_rate_multiplier": 0.42,
-        "food_yield_multiplier": 1.0, 
+        "food_yield_multiplier": 1.0,
 
-        #-----------runtime------------♡    
+        #-----------runtime------------♡
+        "light_exposure": 0.65,
+        "health": 0.98,
         "growth_progress": 0.42,
         "harvest_ready": False,
         },
-
-    #-------------------rack zone--------------------♡
+        #----------------rack zone-------------------♡
         {
         "zone": "rack",
-        "rack_layers": 3,
-        "area_m2": 25.0 + 75.0 + 24.0,    # racks, rack bonus and ceiling bonus area m2
-        "main_crop": "mixed_small",    # spinach, peas, medicinal plants
+        "grow_method": "hydroponic_small_crop_mix",
+        "floor_area_m2": 25.0,
+        "effective_grow_area_m2": 124.0,
 
-        #------biological behavior-----♡
-        "base_growth_rate_per_sol": 0.0,
+        #-----------targets------------♡
+        "ideal_temp_c": 22.0,
+        "light_target_kw_per_m2": 0.60,
+
+        #------------biology-----------♡
+        "base_growth_rate_per_sol": 0.020,
         "base_light_absorption_pct": 0.65,
         "base_water_needed_per_m2_kg_per_sol": 2.1,
-
         "food_yield_per_m2_kg_per_sol": 0.055,
         "co2_consumed_per_m2_kpa_per_sol": 0.018,
         "o2_produced_per_m2_kpa_per_sol": 0.015,
-       
-        #------------stats-------------♡
-        "light_exposure": 0.75,    # racks usually get better light
-        "water_efficiency": 0.95,
-        "health": 0.98,
-        
-        #----------modifiers-----------♡    
-        "water_multiplier": 0.9,
-        "food_yield_multiplier": 0.75,
-        "growth_rate_multiplier": 0.45,
 
-        #-----------runtime------------♡    
+        #----------hydroponics---------♡
+        "water_recirculation_efficiency": 0.94,
+
+        #----------modifiers-----------♡
+        "water_multiplier": 0.9,
+        "growth_rate_multiplier": 0.45,
+        "food_yield_multiplier": 0.75,
+
+        #-----------runtime------------♡
+        "light_exposure": 0.75,
+        "health": 0.98,
         "growth_progress": 0.28,
         "harvest_ready": False,
         }
@@ -187,7 +195,6 @@ s0 = Habitat_State(
 
     base_gas_leak_kpa_per_hour = 0.004,
 
- 
     #---------gas targets----------♡    
     target_pressure_kpa = 65.0,
     
