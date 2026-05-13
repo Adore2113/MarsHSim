@@ -21,37 +21,8 @@ water_kg_per_o2_kg = 1.125
 
 
 #------------oxygen regeneration process-------------♡
-def o2_regen_kpa(state, o2_after_crew_kpa, dt_min):
-    o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
-    o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))
-    o2_after_oga_kpa = o2_after_crew_kpa + o2_added_kpa
-
-    return o2_after_oga_kpa, o2_added_kpa
-
-
-
-#-----system power consumption and heat produced-----♡
-def oga_power_and_heat(o2_added_kpa, dt_min):
-    hours_per_step = dt_min / 60
-
-    if o2_added_kpa > 0:
-        oga_heat_kw = 1.2
-        oga_heat_kwh = oga_heat_kw * hours_per_step
-        oga_power_used_kw = 2.5
-        oga_energy_used_kwh = oga_power_used_kw * hours_per_step
-
-    else:
-        oga_heat_kw = 0.0
-        oga_heat_kwh = 0.0
-        oga_power_used_kw = 0.0
-        oga_energy_used_kwh = 0.0
-
-    return oga_heat_kw, oga_heat_kwh, oga_power_used_kw, oga_energy_used_kwh
-
-
-#------------oga result info per timestep------------♡
 def run_oga(state, o2_after_crew_kpa, dt_min):
-    hours_per_step = dt_min / 60.0
+    hours_per_step = dt_min / 60
 
     #---------------default oga values--------------♡
     oga_mode = "offline"
@@ -69,25 +40,27 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
     else:
         oga_mode = "running"
 
-    #--------------water storage check--------------♡
-    water_needed_kg = water_used_kg * water_kg_per_o2_kg
-    min_water_needed_kg = water_needed_kg + (state.crew_count * 2.0) + safety_backup_water_kg
-
-    if state.potable_water_storage_kg < min_water_needed_kg:
-        oga_mode = "limited water"
-        limited_by_water = True
-    
     #------------------oga running------------------♡
     if oga_mode == "running":
         o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))
+        
         o2_produced_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
-        o2_added_pa = o2_added_kpa * pa_per_kpa
         o2_produced_kg = (o2_produced_moles * o2_molar_mass) / 1000
      
         h2_produced_moles = o2_produced_moles * 2
         h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000
     
         water_used_kg = o2_produced_kg *water_kg_per_o2_kg
+
+    #--------------water storage check--------------♡
+        min_water_needed_kg = water_used_kg + (state.crew_count * 2.0) + safety_backup_water_kg
+        
+        if state.potable_water_storage_kg < min_water_needed_kg:
+            oga_mode = "limited water"
+            limited_by_water = True
+            water_used_kg = 0.0
+            h2_produced_kg = 0.0
+            o2_added_kpa = 0.0
         
     #----------power usage / heat per mode----------♡  
     if oga_mode in ("offline", "idle"):
