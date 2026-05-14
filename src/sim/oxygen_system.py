@@ -34,7 +34,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
 
     #-------------------oga modes-------------------♡  
-    if o2_needed_kpa < hysteresis_kpa:
+    if o2_needed_kpa <= hysteresis_kpa:
         oga_mode = "idle"
 
     else:
@@ -50,7 +50,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         h2_produced_moles = o2_produced_moles * 2
         h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000
     
-        water_used_kg = o2_produced_kg *water_kg_per_o2_kg
+        water_used_kg = o2_produced_kg * water_kg_per_o2_kg
 
     #--------------water storage check--------------♡
         min_water_needed_kg = water_used_kg + (state.crew_count * 2.0) + safety_backup_water_kg
@@ -82,8 +82,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
     #------------dict for updating state-------------♡ 
     oga_updates = {
         "o2_kpa": o2_after_crew_kpa + o2_added_kpa,
-        "h2_stored_kg": state.h2_stored_kg + h2_produced_kg,
-    }
+        "h2_stored_kg": min(state.h2_storage_capacity_kg, state.h2_stored_kg + h2_produced_kg)    }
 
     #-----------dict for printing outputs------------♡ 
     oga_outputs = {
