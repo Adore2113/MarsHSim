@@ -62,10 +62,10 @@ def run_sabatier(state, dt_min):
             sabatier_mode = "idle"
         
         elif co2_kpa <= min_co2_for_reaction_kpa * hysteresis:
-            sabatier_mode = "limited co2"
+            sabatier_mode = "limited_co2"
         
         elif h2_kg <= min_h2_for_reaction_kg * hysteresis:
-            sabatier_mode = "limited h2"
+            sabatier_mode = "limited_h2"
         
         else:
             sabatier_mode = "running"
@@ -75,7 +75,7 @@ def run_sabatier(state, dt_min):
         sabatier_power_used_kw = 0.1
         sabatier_heat_added_kw = 0.1
 
-    elif sabatier_mode in ("limited co2", "limited h2"):
+    elif sabatier_mode in ("limited_co2", "limited_h2"):
         sabatier_power_used_kw = base_sabatier_power_kw * 0.55    # use less power
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
 
