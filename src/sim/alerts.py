@@ -42,7 +42,7 @@ def get_gas_alerts(state):
 
     elif state.o2_kpa > state.target_o2_kpa + 0.5:
         gas_alerts.append("WARNING: Oxygen above target")
-        
+
         #-----------carbon dioxide------------♡
     if state.co2_kpa >= state.max_safe_co2_kpa:
         gas_alerts.append("CRITICAL: Carbon dioxide too high")
@@ -69,14 +69,14 @@ def get_gas_alerts(state):
 #--------------------power alerts--------------------♡
 def get_power_alerts(state):
     power_alerts = []
-    battery_percentage = state.battery_stored_kwh / state.battery_max_capacity_kwh
+    battery_pct = state.battery_stored_kwh / state.battery_max_capacity_kwh
 
-    if battery_percentage <= 0.10:
-        power_alerts.append("ALERT: Power critical")
+    if battery_pct <= 0.10:
+        power_alerts.append("CRITICAL: Battery power critical")
 
-    elif battery_percentage <= 0.25:
-        power_alerts.append("ALERT: Power low")
-    
+    elif battery_pct <= 0.25:
+        power_alerts.append("WARNING: Battery power low")
+
     return power_alerts
 
 
