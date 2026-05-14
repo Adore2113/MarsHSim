@@ -1,6 +1,5 @@
 #--------------------imports-------------------------♡
-from src.sim.state import Habitat_State
-from .temp_system import get_thermal_alerts, get_humidity_alerts
+from .temp import get_thermal_alerts, get_humidity_alerts
 #----------------------------------------------------♡
 
 
@@ -11,7 +10,7 @@ def get_status(all_alerts):
     if any("critical" in alert.lower() for alert in all_alerts):
         hab_status = "CRITICAL"
     
-    elif all_alerts:
+    elif any(alert.startswith("WARNING") for alert in all_alerts):
         hab_status = "WARNING"
 
     else:
@@ -24,20 +23,45 @@ def get_status(all_alerts):
 def get_gas_alerts(state):
     gas_alerts = []
 
-    if state.o2_kpa <= 17.0:
-        gas_alerts.append("CRITICAL: Habitat oxygen levels too low")
-    
-    elif state.o2_kpa <= 19.5:
-        gas_alerts.append("WARNING: Habitat oxygen low")
-    
-    if state.o2_kpa >= 22.0:
-        gas_alerts.append("CRITICAL: Habitat oxygen levels too high | FIRE RISK")
+        #--------------pressure---------------♡
+    if state.total_pressure_kpa <= state.min_safe_pressure_kpa:
+        gas_alerts.append("CRITICAL: Habitat pressure too low")
 
-    if state.co2_kpa >= 2.0:
-        gas_alerts.append("CRITICAL: Carbon Dioxide too high")
+    elif state.total_pressure_kpa >= state.max_safe_pressure_kpa:
+        gas_alerts.append("CRITICAL: Habitat pressure too high")
 
-    elif state.co2_kpa >= 1.0:
-        gas_alerts.append("WARNING: Carbon Dioxide high")
+        #---------------oxygen----------------♡
+    if state.o2_kpa <= state.min_safe_o2_kpa:
+        gas_alerts.append("CRITICAL: Oxygen too low")
+
+    elif state.o2_kpa < state.target_o2_kpa - 0.5:
+        gas_alerts.append("WARNING: Oxygen below target")
+
+    elif state.o2_kpa >= state.max_safe_o2_kpa:
+        gas_alerts.append("CRITICAL: Oxygen too high | fire risk")
+
+    elif state.o2_kpa > state.target_o2_kpa + 0.5:
+        gas_alerts.append("WARNING: Oxygen above target")
+        
+        #-----------carbon dioxide------------♡
+    if state.co2_kpa >= state.max_safe_co2_kpa:
+        gas_alerts.append("CRITICAL: Carbon dioxide too high")
+
+    elif state.co2_kpa > state.target_co2_kpa + 0.3:
+        gas_alerts.append("WARNING: Carbon dioxide above target")
+
+        #-------------trace gases-------------♡
+    if state.ch4_kpa >= state.max_safe_ch4_kpa:
+        gas_alerts.append("CRITICAL: Methane above safe limit")
+
+    elif state.ch4_kpa > state.target_ch4_kpa:
+        gas_alerts.append("WARNING: Methane detected")
+
+    if state.h2_kpa >= state.max_safe_h2_kpa:
+        gas_alerts.append("CRITICAL: Hydrogen above safe limit")
+
+    elif state.h2_kpa > state.target_h2_kpa:
+        gas_alerts.append("WARNING: Hydrogen detected")
 
     return gas_alerts
 
