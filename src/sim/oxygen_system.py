@@ -82,7 +82,8 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
     #------------dict for updating state-------------♡ 
     oga_updates = {
         "o2_kpa": o2_after_crew_kpa + o2_added_kpa,
-        "h2_stored_kg": min(state.h2_storage_capacity_kg, state.h2_stored_kg + h2_produced_kg)    }
+        "h2_stored_kg": min(state.h2_storage_capacity_kg, state.h2_stored_kg + h2_produced_kg)
+        }
 
     #-----------dict for printing outputs------------♡ 
     oga_outputs = {
