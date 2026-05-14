@@ -1,9 +1,4 @@
-#--------------------imports-------------------------♡
-from .temp import get_thermal_alerts, get_humidity_alerts
-#----------------------------------------------------♡
-
-
-#-----------------get habitat status-----------------♡
+#-----------------get habitat status----------------♡
 def get_status(all_alerts):
     hab_status = "NOMINAL"
     
@@ -19,7 +14,7 @@ def get_status(all_alerts):
     return hab_status
 
 
-#---------------------gas alerts---------------------♡
+#---------------------gas alerts--------------------♡
 def get_gas_alerts(state):
     gas_alerts = []
 
@@ -66,7 +61,7 @@ def get_gas_alerts(state):
     return gas_alerts
 
 
-#--------------------power alerts--------------------♡
+#--------------------power alerts-------------------♡
 def get_power_alerts(state):
     power_alerts = []
     battery_pct = state.battery_stored_kwh / state.battery_max_capacity_kwh
@@ -79,7 +74,27 @@ def get_power_alerts(state):
 
     return power_alerts
 
-#-------------------water alerts---------------------♡
+
+#------------------thermal alerts-------------------♡
+def get_thermal_alerts(state):
+    thermal_alerts = []
+
+    if state.hab_temp_c >= 28.0:
+        thermal_alerts.append("CRITICAL: Habitat temperature too high")
+
+    elif state.hab_temp_c <= 18.0:
+        thermal_alerts.append("CRITICAL: Habitat temperature too low")
+
+    elif state.hab_temp_c > state.max_comfort_temp_c:
+        thermal_alerts.append("WARNING: Habitat temperature above comfort range")
+
+    elif state.hab_temp_c < state.min_comfort_temp_c:
+        thermal_alerts.append("WARNING: Habitat temperature below comfort range")
+
+    return thermal_alerts
+
+
+#-------------------water alerts--------------------♡
 def get_water_alerts(state):
     water_alerts = []
     potable_pct = state.potable_water_storage_kg / state.potable_water_storage_capacity_kg
@@ -104,7 +119,8 @@ def get_water_alerts(state):
 
     return water_alerts
 
-#------------------subsytem alerts-------------------♡
+
+#-----------------subsystem alerts------------------♡
 def get_subsystem_alerts(state, outputs):
     subsystem_alerts = []
 
@@ -122,21 +138,36 @@ def get_subsystem_alerts(state, outputs):
 
     return subsystem_alerts
 
-#------------------all alerts update-----------------♡
+
+#------------------humidity alerts------------------♡
+def get_humidity_alerts(state):
+    humidity_alerts = []
+
+    if state.current_humidity_pct >= 75:
+        humidity_alerts.append("CRITICAL: Habitat humidity too high")
+
+    elif state.current_humidity_pct <= 15:
+        humidity_alerts.append("CRITICAL: Habitat humidity too low")
+
+    elif state.current_humidity_pct >= 60:
+        humidity_alerts.append("WARNING: Habitat humidity above comfort range")
+
+    elif state.current_humidity_pct <= 25:
+        humidity_alerts.append("WARNING: Habitat humidity below comfort range")
+
+    return humidity_alerts
+
+
+#-----------------all alerts update-----------------♡
 def get_alerts(state, outputs):
     alerts = []
 
     alerts.extend(get_gas_alerts(state))
     alerts.extend(get_power_alerts(state))
+    alerts.extend(get_thermal_alerts(state))
     alerts.extend(get_water_alerts(state))
     alerts.extend(get_thermal_alerts(state))
-    alerts.extend(get_humidity_alerts(outputs.get("new_humidity_pct", state.current_humidity_pct)))
     alerts.extend(get_subsystem_alerts(state, outputs))
-    
+    alerts.extend(get_humidity_alerts(state))
+
     return alerts
-
-
-#def 
-    # later add total pressure, leak detection, when scrubbers are full (saturated)
-    # water supply low, n2 supply low, temp out of range
-    # eventually airlocks humidity, temp loops
