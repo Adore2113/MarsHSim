@@ -166,7 +166,6 @@ def get_alerts(state, outputs):
     alerts.extend(get_power_alerts(state))
     alerts.extend(get_thermal_alerts(state))
     alerts.extend(get_water_alerts(state))
-    alerts.extend(get_thermal_alerts(state))
     alerts.extend(get_subsystem_alerts(state, outputs))
     alerts.extend(get_humidity_alerts(state))
 
