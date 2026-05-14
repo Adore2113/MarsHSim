@@ -2,7 +2,13 @@
 
 
 #--------------------constants-----------------------♡
-hysteresis_kpa = 0.05
+kelvin_offset = 273.15   # add to celsius to convert to kelvin
+pa_per_kpa = 1000.0   # kilopascals to pascals
+r_kpa = 0.008314   # universal gas constant, 8.314 / 1000
+kg_per_g = 0.001
+n2_molar_mass_kg = 0.028014
+ar_molar_mass_kg = 0.039948
+
 base_buffer_gas_power_kw = 0.84
 base_buffer_gas_heat_kw = 1.5
 mca_update_power_kw = 0.1
@@ -19,9 +25,7 @@ def mca(state):
 
 
 #--------------stabilizing gas levels---------------♡
-def buffer_gas_control_kpa(state, dt_min):
-    hours_per_step = dt_min / 60
-
+def buffer_gas_control_kpa(state):
     new_n2_kpa = state.n2_kpa
     new_ar_kpa = state.ar_kpa
     new_n2_stored_kg = state.n2_stored_kg
@@ -57,23 +61,30 @@ def buffer_gas_control_kpa(state, dt_min):
         #--------------Nitrogen first---------------♡  
         if new_n2_kpa < state.target_n2_kpa:
             n2_room_left_kpa = state.target_n2_kpa - new_n2_kpa
-            n2_to_add_kpa = min(pressure_to_add_kpa, n2_room_left_kpa, new_n2_stored_kg)
+            n2_to_add_kpa = min(pressure_to_add_kpa, n2_room_left_kpa)
 
-            new_n2_kpa += n2_to_add_kpa
-            new_n2_stored_kg -= n2_to_add_kpa
-            
-            total_buffer_gas_added_kpa += n2_to_add_kpa
-            pressure_to_add_kpa -= n2_to_add_kpa
+            n2_added_moles = (n2_to_add_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
+            n2_added_kg = n2_added_moles * n2_molar_mass_kg
+
+            if new_n2_stored_kg >= n2_added_kg:
+                new_n2_kpa += n2_to_add_kpa
+                new_n2_stored_kg -= n2_added_kg
+                total_buffer_gas_added_kpa += n2_to_add_kpa
+                pressure_to_add_kpa -= n2_to_add_kpa
 
         #----------------Argon second---------------♡
         if pressure_to_add_kpa > 0 and new_ar_kpa < state.target_ar_kpa:
             ar_room_left_kpa = state.target_ar_kpa - new_ar_kpa
-            ar_to_add_kpa = min(pressure_to_add_kpa, ar_room_left_kpa, new_ar_stored_kg)
-            
-            new_ar_kpa += ar_to_add_kpa
-            new_ar_stored_kg -= ar_to_add_kpa
-            total_buffer_gas_added_kpa += ar_to_add_kpa
-            pressure_to_add_kpa -= ar_to_add_kpa
+            ar_to_add_kpa = min(pressure_to_add_kpa, ar_room_left_kpa)
+
+            ar_added_moles = (ar_to_add_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
+            ar_added_kg = ar_added_moles * ar_molar_mass_kg
+
+            if new_ar_stored_kg >= ar_added_kg:
+                new_ar_kpa += ar_to_add_kpa
+                new_ar_stored_kg -= ar_added_kg
+                total_buffer_gas_added_kpa += ar_to_add_kpa
+                pressure_to_add_kpa -= ar_to_add_kpa
 
     #---------------venting extra gas---------------♡  
     elif buffer_gas_mode == "vent":
@@ -107,13 +118,13 @@ def buffer_gas_power_and_heat(total_buffer_gas_added_kpa, total_buffer_gas_vente
     hours_per_step = dt_min / 60
 
     if total_buffer_gas_added_kpa > 0 or total_buffer_gas_vented_kpa > 0:
-        buffer_gas_heat_per_kpa_kw = 1.5
+        buffer_gas_heat_per_kpa_kw = base_buffer_gas_heat_kw
         total_gas_moved_kpa = total_buffer_gas_added_kpa + total_buffer_gas_vented_kpa
         
         buffer_gas_heat_added_kw = total_gas_moved_kpa * buffer_gas_heat_per_kpa_kw
         buffer_gas_heat_added_kwh = buffer_gas_heat_added_kw * hours_per_step
     
-        buffer_gas_power_used_kw = 0.4
+        buffer_gas_power_used_kw = base_buffer_gas_power_kw
         buffer_gas_energy_used_kwh = buffer_gas_power_used_kw * hours_per_step
     
     else:
@@ -128,7 +139,7 @@ def buffer_gas_power_and_heat(total_buffer_gas_added_kpa, total_buffer_gas_vente
 
 #-------buffer gas control info per timestep--------♡
 def run_buffer_gas_control(state, dt_min):
-    n2_kpa, ar_kpa, n2_stored_kg, ar_stored_kg, total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, buffer_gas_mode, pressure_gap_kpa = buffer_gas_control_kpa(state, dt_min) 
+    n2_kpa, ar_kpa, n2_stored_kg, ar_stored_kg, total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, buffer_gas_mode, pressure_gap_kpa = buffer_gas_control_kpa(state) 
     buffer_gas_heat_added_kw, buffer_gas_heat_added_kwh, buffer_gas_power_used_kw, buffer_gas_energy_used_kwh = buffer_gas_power_and_heat(total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, dt_min)
     
     #------------dict for updating state-------------♡ 
