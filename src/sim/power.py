@@ -168,13 +168,13 @@ def light_system(state, dt_min):
 
 
 #------------------total power usage-----------------♡
-def get_total_power_usage(co2_scrubber_power_used_kw, oga_power_used_kw, light_power_used_kw, w_light_power_used_kw, greenhouse_led_power_kw, radiator_power_kw, heater_power_kw, chx_power_used_kw):
-    total_power_used_kw = (co2_scrubber_power_used_kw + oga_power_used_kw + light_power_used_kw + w_light_power_used_kw + greenhouse_led_power_kw + radiator_power_kw + heater_power_kw + chx_power_used_kw )
+def get_total_power_usage(co2_scrubber_power_used_kw, oga_power_used_kw, light_power_used_kw, w_light_power_used_kw, greenhouse_led_power_kw, radiator_power_kw, heater_power_kw, chx_power_used_kw, upa_power_used_kw, wpa_power_used_kw, bpa_power_used_kw, sabatier_power_used_kw):
+    total_power_used_kw = (co2_scrubber_power_used_kw + oga_power_used_kw + light_power_used_kw + w_light_power_used_kw + greenhouse_led_power_kw + radiator_power_kw + heater_power_kw + chx_power_used_kw  + upa_power_used_kw + wpa_power_used_kw + bpa_power_used_kw + sabatier_power_used_kw)
 
     return total_power_used_kw
 
-def get_total_energy_usage(co2_scrubber_energy_used_kwh, oga_energy_used_kwh, light_energy_used_kwh, w_light_energy_used_kwh, greenhouse_led_energy_kwh, radiator_energy_kwh, heater_energy_kwh, chx_energy_used_kwh):
-    total_energy_used_kwh = (co2_scrubber_energy_used_kwh + oga_energy_used_kwh + light_energy_used_kwh + w_light_energy_used_kwh + greenhouse_led_energy_kwh + radiator_energy_kwh + heater_energy_kwh + chx_energy_used_kwh )  
+def get_total_energy_usage(co2_scrubber_energy_used_kwh, oga_energy_used_kwh, light_energy_used_kwh, w_light_energy_used_kwh, greenhouse_led_energy_kwh, radiator_energy_kwh, heater_energy_kwh, chx_energy_used_kwh, upa_energy_used_kwh, wpa_energy_used_kwh, bpa_energy_used_kwh, sabatier_energy_used_kwh):
+    total_energy_used_kwh = (co2_scrubber_energy_used_kwh + oga_energy_used_kwh + light_energy_used_kwh + w_light_energy_used_kwh + greenhouse_led_energy_kwh + radiator_energy_kwh + heater_energy_kwh + chx_energy_used_kwh + upa_energy_used_kwh + wpa_energy_used_kwh + bpa_energy_used_kwh + sabatier_energy_used_kwh)  
 
     return total_energy_used_kwh
 
@@ -187,15 +187,14 @@ def run_system_power(
     thermal_outputs,
     humidity_results,
     greenhouse_outputs,
+    water_outputs,
+    sabatier_outputs,
     dt_min
     ):
 
-    new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state)
-    
+    new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state) 
     total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array = solar_generation(state, new_solar_arrays, dt_min)
-    
-    battery_after_charge = solar_battery_charge(state, total_solar_generated_kwh)
-    
+
     total_power_used_kw = get_total_power_usage(
         co2_results["co2_scrubber_power_used_kw"],
         oga_results["oga_power_used_kw"],
@@ -204,7 +203,11 @@ def run_system_power(
         greenhouse_outputs.get("total_led_power_kw", 0.0),
         thermal_outputs.get("radiator_power_kw", 0.0),
         thermal_outputs.get("heater_power_kw", 0.0),
-        humidity_results.get("chx_power_used_kw", 0.0)
+        humidity_results.get("chx_power_used_kw", 0.0),
+        water_outputs.get("upa_power_used_kw", 0.0),
+        water_outputs.get("wpa_power_used_kw", 0.0),
+        water_outputs.get("bpa_power_used_kw", 0.0),
+        sabatier_outputs.get("sabatier_power_used_kw", 0.0)
     )
 
     total_energy_used_kwh = get_total_energy_usage(
@@ -215,13 +218,20 @@ def run_system_power(
     greenhouse_outputs.get("total_led_energy_kwh", 0.0),
     thermal_outputs.get("radiator_energy_kwh", 0.0),
     thermal_outputs.get("heater_energy_kwh", 0.0),
-    humidity_results.get("chx_energy_used_kwh", 0.0)
+    humidity_results.get("chx_energy_used_kwh", 0.0),
+    water_outputs.get("upa_energy_used_kwh", 0.0),
+    water_outputs.get("wpa_energy_used_kwh", 0.0),
+    water_outputs.get("bpa_energy_used_kwh", 0.0),
+    sabatier_outputs.get("sabatier_energy_used_kwh", 0.0)
     )
 
+    net_energy_kwh = total_solar_generated_kwh - total_energy_used_kwh
+   
+    new_battery_stored_kwh = state.battery_stored_kwh + net_energy_kwh
+    new_battery_stored_kwh = max(0.0, min(state.battery_max_capacity_kwh, new_battery_stored_kwh))
+   
     total_heat_added_kw = light_results["total_light_heat_kw"]
     total_heat_added_kwh = light_results["total_light_heat_kwh"]
-
-    new_battery_stored_kwh = max(0.0, battery_after_charge - total_energy_used_kwh)
 
     #------------dict for updating state-------------♡ 
     power_updates = {
