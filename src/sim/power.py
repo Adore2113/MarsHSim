@@ -112,10 +112,10 @@ def light_system(state, dt_min):
     crew_awake_hours = 6 <= sol_hour < 21 or (sol_hour == 21 and minutes < 30)
 
     if crew_awake_hours:
-        base_light_level = min_light_level
+        base_light_level = 1.0
 
     else:
-        base_light_level = 1.0
+        base_light_level = min_light_level
 
     sunlight_dimming = sunlight_amount * 0.6    # sunlight level changes light level need for power saving
     light_level_dimmed = base_light_level - sunlight_dimming
