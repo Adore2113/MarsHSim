@@ -3,31 +3,32 @@
 #### I will be adding and removing from this. I needed somewhere to organize my ideas and thoughts
 
 ### Current Focus:
-    ♡ start adding variables for a greenhouse and think about systems needed for a greenhouse on Mars
+    ♡ stablize all system logic to make sure things are working as I want them to, specifically:
+        - atmosphere drift
+        - O2 / CO2 balance
+        - battery drain
+        - water recovery balance
+        - greenhouse behavior over day and night cycles
+        - alert accuracy    
 
 
 ### Next Focus:
     ♡ add trend tracking to other systems (like "temp trend" in print)
 
-   ♡ move some constants and variables out of greenhouse.py and add them to state variables
-
-
-    ♡ add rations / food system:
-        
-        - add greenhouse (crucial for no resupply)
+    ♡ add tank depletion alerts         
 
 
 ### Later Focus:
     ♡ continue adding heat generated and heat waste
 
 
-    ♡ add electronic heat and power
+    ♡ add electronic and misc heat and power
 
 
     ♡ add power priority systems
 
 
-    ♡ go through all units and make them consistent: 
+    ♡ double check unit consistencies: 
        
         - kpa
         
@@ -36,6 +37,8 @@
         - kw
         
         - kwh
+
+        - ect.
 
 
     ♡ consider seperating files for values:
@@ -58,11 +61,7 @@
    
     ♡ update alerts: 
         
-        - thermal
-
-        - water
-
-        - consider all other files
+        - 
 
 
 ### Eventual Focus:
@@ -71,6 +70,7 @@
         - finish dust accumulation function
         
         -make dust factor 0.0 - 1.0
+
 
     ♡ turn seasons into a list with different changes
 
@@ -110,4 +110,46 @@
 
     ♡ add cute messages when system is running perfectly well
 
+
     ♡ consider adding disease_risk to greenhouse plants
+
+
+    ♡ add alerts for: 
+        -dust build up
+        
+        -system efficiency
+        
+        -weather
+        
+        -alert for when wellness lights come on
+        
+        -leak detection
+        
+        -when scrubbers are full (saturated)
+
+
+    ♡ add rations, maybe?
+
+
+### Completed / Mostly Completed:
+    I should have added this way earlier to track things.. 
+
+    ♡ add greenhouse variables and greenhouse subsystem
+
+    ♡ add greenhouse water, CO2, O2, heat, LED, and transpiration outputs
+
+    ♡ integrate greenhouse with atmosphere, humidity, water, thermal, and power
+
+    ♡ add dust file
+
+    ♡ add Sabatier system
+
+    ♡ update alerts for gas, pressure, water, power, humidity, thermal, and subsystem modes
+
+    ♡ go through many major unit consistency fixes:
+        - kPa atmosphere
+        - kg storage
+        - kW power
+        - kWh energy
+
+    ♡ move some constants and variables out of greenhouse.py and add them to state variables
