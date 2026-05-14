@@ -13,7 +13,7 @@ base_black_water_per_day_kg = 1.8
 #----------------------------------------------------♡
 
 
-#--------crew activites and metabolism rates---------♡
+#--------crew activities and metabolism rates---------♡
 crew_activity_states = {
     "normal": {"o2_drop_multiplier": 1.0, "co2_rise_multiplier": 1.0, "breath_vapor_multiplier": 1.0, "skin_vapor_multiplier": 1.0, "heat_per_person_w": 120, "water_multiplier": 1.0},
     "sleep": {"o2_drop_multiplier": 0.8, "co2_rise_multiplier": 0.8, "breath_vapor_multiplier": 0.8, "skin_vapor_multiplier": 0.4, "heat_per_person_w": 83,  "water_multiplier": 0.6},
