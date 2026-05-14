@@ -121,16 +121,16 @@ def current_mars_season(state):
     # ls = areocentric solar longitude (season angle)
 
     if 0 <= season_angle_deg < 90:
-        return "Northern Spring" 
+        return "northern_spring" 
     
     elif 90 <= season_angle_deg < 180:
-        return "Northern Summer" 
+        return "northern_summer" 
     
     elif 180 <= season_angle_deg < 270:
-        return "Northern Autumn" 
+        return "northern_autumn" 
     
     else:
-        return "Northern Winter"
+        return "northern_winter"
     
 
 #--------------low sunlight streak info--------------♡
