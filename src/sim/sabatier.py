@@ -44,20 +44,25 @@ def run_sabatier(state, dt_min):
 
     if not state.sabatier_on:
         sabatier_mode = "offline"
-    
+
+    #--------------avaliable reactants--------------♡  
     else:
-        co2_kg = (state.co2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass
+        co2_kpa = state.co2_kpa
         h2_kg = state.h2_stored_kg
-    
+
+    #----------------convert to moles---------------♡  
+        co2_g = (co2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass
+        co2_moles = co2_g / co2_molar_mass
+
+        h2_g = h2_kg * 1000
+        h2_moles = h2_g / h2_molar_mass
+
     #----------------sabatier modes-----------------♡  
-        if co2_kg <= min_co2_for_reaction_kpa and h2_kg <= min_h2_for_reaction_kg:
-            sabatier_mode = "idle"
+        if co2_kpa <= min_co2_for_reaction_kpa and h2_kg <= min_h2_for_reaction_kg:            sabatier_mode = "idle"
         
-        elif co2_kg <= min_co2_for_reaction_kpa * hysteresis:
-            sabatier_mode = "limited co2"
+        elif co2_kpa <= min_co2_for_reaction_kpa * hysteresis:            sabatier_mode = "limited co2"
         
-        elif h2_kg <= min_h2_for_reaction_kg * hysteresis:
-            sabatier_mode = "limited h2"
+        elif h2_kg <= min_h2_for_reaction_kg * hysteresis:            sabatier_mode = "limited h2"
         
         else:
             sabatier_mode = "running"
@@ -81,12 +86,6 @@ def run_sabatier(state, dt_min):
 
     #---------------running sabatier----------------♡  
     if sabatier_mode in ("running", "limited co2", "limited h2"):
-        co2_kg = (state.co2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass
-        co2_moles = co2_kg / co2_molar_mass
-        
-        h2_kg = state.h2_stored_kg
-        h2_moles = h2_kg / h2_molar_mass
-
         reactions_avaliable = min(h2_moles / 4, co2_moles) * base_sabatier_efficiency     # 1 co2 : 4 h2
 
         water_produced_kg = reactions_avaliable * 2 * h2o_molar_mass * kg_per_g
