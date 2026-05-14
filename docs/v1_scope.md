@@ -31,7 +31,18 @@
     These are just notes I wanted to keep together, they aren't in any specific order and they will be updated and edited every so often.
 
 #### Systems:
-    ♡ - I'll define these later - 
+    ♡ Crew metabolism
+    ♡ OGA / electrolysis
+    ♡ CO2 scrubber / amine beds
+    ♡ Buffer gas control / MCA
+    ♡ Sabatier reactor
+    ♡ Water recovery systems (UPA / WPA / BPA)
+    ♡ Humidity / CHX
+    ♡ Thermal control
+    ♡ Solar + battery power system
+    ♡ Greenhouse subsystem
+    ♡ Dust accumulation
+    ♡ Alerts + monitoring 
 
 
 #### Variables / Constants:
@@ -210,18 +221,6 @@
 #### Greenhouse Notes:
     ♡ these notes are a mess while I organize my thoughts 
 
-    ♡ floor_area_m2 = 250
-    
-    ♡ effective_grow_area_m2 = floor_area_m2 * rack_layers
-    
-    ♡ 50 m2 floor area * 3 rack layers = 150 m2 growing area
-
-    ♡ ceiling_area_m2 = 40
-
-    ♡ ceiling_use_efficiency = 0.60
-
-    ♡ ceiling_grow_area_m2 = ceiling_area_m2 * ceiling_use_efficiency
-
     ♡ considering hydroponics, a set up between waste water and filtering and that filtered water 
 
     ♡ gray/black water to water filtration to UPA/WPA to potable to greenhouse
@@ -232,8 +231,6 @@
 
     ♡ cons: nutrient imbalance and pathogens (plant disease)
     
-    ♡ my friend Joe had a hydroponic set up at his house that he built using clay balls, a massive fishtank, a grow light and plants at different levels to the light, it was one perfect interconnected system and that is my inspiration
-
     ♡ lightweight clayballs from earth able to pack in tightly and securely in the starship, slow degration over years to Mars instead of soil
 
     ♡ grow racks, artificial grow lights
@@ -249,7 +246,7 @@
         
         - having one overall setting for the greenhouse, but this just seems to simple  
 
-    ♡ I've decided to go with 
+    ♡ I've decided to go with three seperate zones seperated by container type and use the averages of the plants for the information to work with
 
     ♡ I am using the idea of the crew maintaining:
         -40% carbs:
@@ -265,25 +262,46 @@
     ♡ I didn't want to have foods that need a lot of processing, at least to start
 
     ♡ food choices/considerations:
-            - sweet potato (high in calories, higher nutrients than regular potatoes, edible leaves, easy to grow, ect.) - can grow vertically, 15-20 inch diameter ()
+            - sweet potato (high in calories, higher nutrients than regular potatoes, edible leaves, easy to grow, ect.) 
+                - can grow vertically
+                -germination 1-14 days, vegetative 2-8 weeks, flowering 6-12 weeks, harvest ~3 months
             
+
             - quinoa (protein, very low prep after harvest, resiliant, carbs)
+                -germination 2-3 weels, vegetative 2-4 weeks, flowering 4-6 weeks, harvest 3-4 months
+
+
+            - corn (mulitpurpose, starchy, easy growth) - 
+                -germination 5-10 days, vegetative 10-50 days, flowering 50-70 days, harvest 90-140 days
             
-            - corn (mulitpurpose, starchy, easy growth) - 46 m2 area
-            
-            - dwarf banana trees (familiar, sweet, sort of a morale fruit)
+
+            - dwarf banana trees (familiar, sweet, sort of a morale fruit):
+                -germination 2-3 weeks, vegetative 3-6 months, flowering 6-12 months, fruit development 11-14 months
+
 
             - peanut (high in fat, protein and calories)
+                -germination 5-10 days, vegetative 10-40 days, flowering 40-50, harvest 120-160 days
+
 
             - sunflowers for seeds, morale, ect.
+                -germination 7-10 days, vegetative 20-40 days, flowering 30-50 days, harvest 70-120 days
+
 
             - peas (fast growth)
+                -germination 7-14 days, vegetative 12-42 days, flowering 28-45 days, harvest 60-70 days 
+
 
             - spinach
+                -germination 7-14 days, vegetative 30-45 days, flowering 42-56 days, harvest 37-60 days 
+
 
             - plantain leaf ( medicinal, anti-inflammatory, wound care, teas, ect.)
+                -germination 7-21 days, vegetative 14-42 days, flowering 120-365 days, harvest 1-2 years (this is way to long, I'm removing this from the list) 
+
 
             - drwaf passionfruit trees (protein, vitamins, nice smell for morale) 
+                -germination 7-28 days, vegetative 60-182 days, flowering 182-547 days, harvest 1-1.5 years 
+
 
             - lentils don't seem realistic to harvest and process, so I was thinking there could be a food storage/rations that include them to start or have as an emergency back up,as well as freeze dried protiens and other emergency rations
 
@@ -294,7 +312,6 @@
     ♡ dry fruits = good for seeds and plant reproduction,  fruit protect their seeds well    
 
     ♡ plant disease, labor hours, morale value, spoilage rate, water use, ect. 
-
 
 
 ### Ration Notes:
