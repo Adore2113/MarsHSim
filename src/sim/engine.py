@@ -74,9 +74,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     sabatier_updates, sabatier_outputs = run_sabatier(new_state, dt_min)
         
         #--------------humidity---------------♡
-    gh_transpiration_kg = greenhouse_outputs.get("total_water_consumed_kg", 0.0) * 0.85
-
-    humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], gh_transpiration_kg, dt_min)
+    humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], greenhouse_outputs["transpiration_kg"], dt_min)
        
         #----------------water----------------♡
     water_updates, water_outputs = run_water_system(
@@ -85,7 +83,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         humidity_results["vapor_removed_kg"],
         oga_outputs["water_used_kg"],
         greenhouse_outputs.get("total_water_consumed_kg", 0.0),
-        gh_transpiration_kg,
+        greenhouse_outputs["transpiration_kg"],
         dt_min
     )
 
@@ -150,13 +148,6 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         #--------------humidity---------------♡
         "breath_vapor_added_kg": crew_results["breath_vapor_added_kg"],
         "skin_vapor_added_kg": crew_results["skin_vapor_added_kg"],
-        
-        #-------------greenhouse--------------♡
-        "greenhouse_mode": greenhouse_outputs.get("greenhouse_mode", "offline"),
-        "total_food_produced_kg": greenhouse_outputs.get("total_food_produced_kg", 0.0),
-        "greenhouse_water_consumed_kg": greenhouse_outputs.get("total_water_consumed_kg", 0.0),
-        "greenhouse_co2_consumed_kpa": greenhouse_outputs.get("total_co2_consumed_kpa", 0.0),
-        "greenhouse_o2_produced_kpa": greenhouse_outputs.get("total_o2_produced_kpa", 0.0)
     }
 
     #--------------oxygen system / OGA---------------♡
