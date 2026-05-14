@@ -133,7 +133,7 @@ class Habitat_State:
     #------pressure percentages w. Dalton's Law------♡
     @property
     def total_pressure_kpa(self) -> float:
-        return self.o2_kpa + self.co2_kpa + self.n2_kpa + self.ar_kpa
+        return self.o2_kpa + self.co2_kpa + self.n2_kpa + self.ar_kpa + self.ch4_kpa + self.h2_kpa
 
     @property
     def o2_percent(self):
@@ -168,7 +168,7 @@ class Habitat_State:
     battery_stored_kwh: float 
     
     solar_arrays: list
-    solar_absorptivity: int
+    solar_absorptivity: float
 
     #---------------------water----------------------♡
     #-------water in storage-------♡
