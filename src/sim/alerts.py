@@ -94,16 +94,33 @@ def get_water_alerts(state):
         water_alerts.append("WARNING: Potable water low")
 
     if gray_pct >= 0.90:
-        water_alerts.append("WARNING: Gray water storage nearly full")
+        water_alerts.append("WARNING: Gray water storage almost full")
 
     if black_pct >= 0.90:
-        water_alerts.append("WARNING: Black water storage nearly full")
+        water_alerts.append("WARNING: Black water storage almost full")
 
     if brine_pct >= 0.90:
-        water_alerts.append("WARNING: Brine storage nearly full")
+        water_alerts.append("WARNING: Brine storage almost full")
 
     return water_alerts
 
+#------------------subsytem alerts-------------------♡
+def get_subsystem_alerts(state, outputs):
+    subsystem_alerts = []
+
+    if outputs.get("oga_limited_by_water", False):
+        subsystem_alerts.append("WARNING: OGA limited by water supply")
+
+    if outputs.get("sabatier_mode") == "limited co2":
+        subsystem_alerts.append("WARNING: Sabatier limited by CO2 availability")
+
+    if outputs.get("sabatier_mode") == "limited h2":
+        subsystem_alerts.append("WARNING: Sabatier limited by H2 availability")
+
+    if outputs.get("buffer_gas_mode") == "emergency_add":
+        subsystem_alerts.append("CRITICAL: Emergency buffer gas addition active")
+
+    return subsystem_alerts
 
 #------------------all alerts update-----------------♡
 def get_alerts(state, outputs):
@@ -111,9 +128,11 @@ def get_alerts(state, outputs):
 
     alerts.extend(get_gas_alerts(state))
     alerts.extend(get_power_alerts(state))
+    alerts.extend(get_water_alerts(state))
     alerts.extend(get_thermal_alerts(state))
-    alerts.extend(get_humidity_alerts(outputs["new_humidity_pct"]))
-
+    alerts.extend(get_humidity_alerts(outputs.get("new_humidity_pct", state.current_humidity_pct)))
+    alerts.extend(get_subsystem_alerts(state, outputs))
+    
     return alerts
 
 
