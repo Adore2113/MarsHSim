@@ -52,15 +52,16 @@ s0 = Habitat_State(
 
         #-----------targets------------♡
         "ideal_temp_c": 26.0,
-        "light_target_kw_per_m2": 0.85,
+        "light_target_kw_per_m2": 0.75,
 
         #------------biology-----------♡
-        "base_growth_rate_per_sol": 0.010,
+        "base_growth_rate_per_sol": 0.011,
         "base_light_absorption_pct": 0.75,
-        "base_water_needed_per_m2_kg_per_sol": 4.2,
-        "food_yield_per_m2_kg_per_sol": 0.065,
-        "co2_consumed_per_m2_kpa_per_sol": 0.030,
-        "o2_produced_per_m2_kpa_per_sol": 0.024,
+        "base_water_needed_per_m2_kg_per_sol": 3.4,
+        
+        "food_yield_per_m2_kg_per_sol": 0.25,
+        "co2_consumed_per_m2_kpa_per_sol": 0.025,
+        "o2_produced_per_m2_kpa_per_sol": 0.022,
 
         #----------hydroponics---------♡
         "water_recirculation_efficiency": 0.82,
@@ -88,10 +89,11 @@ s0 = Habitat_State(
         "light_target_kw_per_m2": 0.70,
 
         #------------biology-----------♡
-        "base_growth_rate_per_sol": 0.014,
+        "base_growth_rate_per_sol": 0.016,
         "base_light_absorption_pct": 0.70,
-        "base_water_needed_per_m2_kg_per_sol": 3.2,
-        "food_yield_per_m2_kg_per_sol": 0.085,
+        "base_water_needed_per_m2_kg_per_sol": 2.6,
+        
+        "food_yield_per_m2_kg_per_sol": 0.29,
         "co2_consumed_per_m2_kpa_per_sol": 0.025,
         "o2_produced_per_m2_kpa_per_sol": 0.020,
 
@@ -100,7 +102,7 @@ s0 = Habitat_State(
 
         #----------modifiers-----------♡
         "water_multiplier": 1.0,
-        "growth_rate_multiplier": 0.42,
+        "growth_rate_multiplier": 0.75,
         "food_yield_multiplier": 1.0,
 
         #-----------runtime------------♡
@@ -121,10 +123,11 @@ s0 = Habitat_State(
         "light_target_kw_per_m2": 0.60,
 
         #------------biology-----------♡
-        "base_growth_rate_per_sol": 0.020,
+        "base_growth_rate_per_sol": 0.030,
         "base_light_absorption_pct": 0.65,
-        "base_water_needed_per_m2_kg_per_sol": 2.1,
-        "food_yield_per_m2_kg_per_sol": 0.055,
+        "base_water_needed_per_m2_kg_per_sol": 1.9,
+        
+        "food_yield_per_m2_kg_per_sol": 0.29,
         "co2_consumed_per_m2_kpa_per_sol": 0.018,
         "o2_produced_per_m2_kpa_per_sol": 0.015,
 
@@ -133,7 +136,7 @@ s0 = Habitat_State(
 
         #----------modifiers-----------♡
         "water_multiplier": 0.9,
-        "growth_rate_multiplier": 0.45,
+        "growth_rate_multiplier": 0.65,
         "food_yield_multiplier": 0.75,
 
         #-----------runtime------------♡
@@ -321,7 +324,7 @@ def print_state(state, outputs, alerts):
 
     #---------------time and daylight----------------♡
     print(f"{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
-    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
+    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.3f} °C")    # change back to 2f
     print(f"{'Mars Temp:':<22} {outputs['mars_temp_c']:.2f} °C")
     print(f"{'Peak Sun Today:':<22} {state.peak_sunlight_today:.3f} /1.0")
     print(f"{'Low Sun Streak:':<22} {state.low_sunlight_streak_sols} sols")
