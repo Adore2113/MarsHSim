@@ -113,11 +113,13 @@ def greenhouse_zone_growth(zone, zone_light, sol_fraction):
 
 
 #----------------water / co2 / oxygen----------------♡
-def greenhouse_resources(zone, sol_fraction):
+def greenhouse_resources(zone, zone_light, sol_fraction):
     area_m2 = zone["effective_grow_area_m2"]
     base_water_needed = zone["base_water_needed_per_m2_kg_per_sol"]
     water_multiplier = zone.get("water_multiplier", 1.0)
     water_recirculation_efficiency = zone.get("water_recirculation_efficiency", 0.85)
+    light_exposure = zone_light["light_exposure"]
+    plant_health = zone.get("health", 1.0)
 
     water_needed_kg = base_water_needed * area_m2 * water_multiplier * sol_fraction    
     water_consumed_kg = water_needed_kg * (1.0 - water_recirculation_efficiency)    # pct of water not recovered
@@ -126,11 +128,13 @@ def greenhouse_resources(zone, sol_fraction):
     transpiration_kg = water_consumed_kg * transpiration_ratio
     plant_mass_water_kg = water_consumed_kg * (1.0 - transpiration_ratio)
 
+    photosynthesis = light_exposure * plant_health
+
     co2_consumed_per_m2_kpa = zone["co2_consumed_per_m2_kpa_per_sol"]
-    total_co2_consumed_kpa = co2_consumed_per_m2_kpa * area_m2 * sol_fraction
+    total_co2_consumed_kpa = co2_consumed_per_m2_kpa * area_m2 * sol_fraction * photosynthesis
 
     o2_produced_per_m2_kpa =  zone["o2_produced_per_m2_kpa_per_sol"]
-    total_o2_produced_kpa = o2_produced_per_m2_kpa * area_m2 * sol_fraction
+    total_o2_produced_kpa = o2_produced_per_m2_kpa * area_m2 * sol_fraction * photosynthesis
 
     greenhouse_heat_added_kw = greenhouse_heat_per_m2_kw * area_m2
 
@@ -138,7 +142,9 @@ def greenhouse_resources(zone, sol_fraction):
         "water_needed_kg": water_needed_kg,
         "water_consumed_kg": water_consumed_kg,
         "water_recirculated_kg": water_recirculated_kg,
-        
+        "transpiration_kg": transpiration_kg,
+        "plant_mass_water_kg": plant_mass_water_kg,
+
         "co2_consumed_kpa": total_co2_consumed_kpa,
         "o2_produced_kpa": total_o2_produced_kpa,
         
@@ -158,6 +164,7 @@ def run_greenhouse(state, dt_min):
             "total_water_needed_kg": 0.0,
             "total_water_consumed_kg": 0.0,
             "total_water_recirculated_kg": 0.0,
+            "total_transpiration_kg": 0.0,
             "total_co2_consumed_kpa": 0.0,
             "total_o2_produced_kpa": 0.0,
             "total_greenhouse_heat_kw": 0.0,
@@ -173,6 +180,7 @@ def run_greenhouse(state, dt_min):
     total_water_needed_kg = 0.0
     total_water_consumed_kg = 0.0
     total_water_recirculated_kg = 0.0
+    total_transpiration_kg = 0.0
 
     total_co2_consumed_kpa = 0.0
     total_o2_produced_kpa = 0.0
@@ -188,14 +196,15 @@ def run_greenhouse(state, dt_min):
         zone_light = zone_lighting[zone_name]
 
         new_growth_progress, harvest_ready, food_produced_kg = greenhouse_zone_growth(zone, zone_light, sol_fraction)
-        resources = greenhouse_resources(zone, sol_fraction)
+        resources = greenhouse_resources(zone, zone_light, sol_fraction)
 
         total_food_produced_kg += food_produced_kg
         
         total_water_needed_kg += resources["water_needed_kg"]
         total_water_consumed_kg += resources["water_consumed_kg"]
         total_water_recirculated_kg += resources["water_recirculated_kg"]
-        
+        total_transpiration_kg += resources["transpiration_kg"]    
+    
         total_co2_consumed_kpa += resources["co2_consumed_kpa"]
         total_o2_produced_kpa += resources["o2_produced_kpa"]
         
@@ -213,13 +222,17 @@ def run_greenhouse(state, dt_min):
             "light_mode": zone_light["light_mode"],
             "light_exposure": zone_light["light_exposure"],
             "led_level": zone_light["led_level"],
+            
             "food_produced_kg": food_produced_kg,
             "water_needed_kg": resources["water_needed_kg"],
             "water_consumed_kg": resources["water_consumed_kg"],
             "water_recirculated_kg": resources["water_recirculated_kg"],
+            "transpiration_kg": resources["transpiration_kg"],
             "co2_consumed_kpa": resources["co2_consumed_kpa"],
             "o2_produced_kpa": resources["o2_produced_kpa"],
+            
             "greenhouse_heat_added_kw": resources["greenhouse_heat_added_kw"],
+
             "growth_progress": new_growth_progress,
             "harvest_ready": harvest_ready,
         }
@@ -238,6 +251,7 @@ def run_greenhouse(state, dt_min):
         "total_water_needed_kg": total_water_needed_kg,
         "total_water_consumed_kg": total_water_consumed_kg,
         "total_water_recirculated_kg": total_water_recirculated_kg,
+        "transpiration_kg": total_transpiration_kg,
 
         "total_co2_consumed_kpa": total_co2_consumed_kpa,
         "total_o2_produced_kpa": total_o2_produced_kpa,
