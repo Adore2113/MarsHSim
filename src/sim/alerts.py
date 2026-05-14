@@ -79,6 +79,31 @@ def get_power_alerts(state):
 
     return power_alerts
 
+#-------------------water alerts---------------------♡
+def get_water_alerts(state):
+    water_alerts = []
+    potable_pct = state.potable_water_storage_kg / state.potable_water_storage_capacity_kg
+    gray_pct = state.gray_water_storage_kg / state.gray_water_storage_capacity_kg
+    black_pct = state.black_water_storage_kg / state.black_water_storage_capacity_kg
+    brine_pct = state.brine_storage_kg / state.brine_storage_capacity_kg
+
+    if potable_pct <= 0.10:
+        water_alerts.append("CRITICAL: Potable water critically low")
+
+    elif potable_pct <= 0.25:
+        water_alerts.append("WARNING: Potable water low")
+
+    if gray_pct >= 0.90:
+        water_alerts.append("WARNING: Gray water storage nearly full")
+
+    if black_pct >= 0.90:
+        water_alerts.append("WARNING: Black water storage nearly full")
+
+    if brine_pct >= 0.90:
+        water_alerts.append("WARNING: Brine storage nearly full")
+
+    return water_alerts
+
 
 #------------------all alerts update-----------------♡
 def get_alerts(state, outputs):
