@@ -28,9 +28,8 @@ def total_crew_metabolism(state, dt_min):
     crew_activity = crew_activity_states[state.crew_activity]
 
     #-------------atmosphere gas changes-------------♡
-    o2_drop_kpa = base_o2_drop_kpa * state.crew_count * crew_activity["o2_drop_multiplier"]
-    co2_rise_kpa = base_co2_rise_kpa * state.crew_count * crew_activity["co2_rise_multiplier"]
-
+    o2_drop_kpa = base_o2_drop_kpa * state.crew_count * crew_activity["o2_drop_multiplier"] * hours_per_step
+    co2_rise_kpa = base_co2_rise_kpa * state.crew_count * crew_activity["co2_rise_multiplier"] * hours_per_step
     #----------------humidity changes----------------♡
     breath_vapor_added_kg = (base_breath_vapor_per_day_kg * state.crew_count * crew_activity["breath_vapor_multiplier"] * hours_per_step) / 24
     skin_vapor_added_kg = (base_skin_vapor_per_day_kg * state.crew_count * crew_activity["skin_vapor_multiplier"] * hours_per_step) / 24
