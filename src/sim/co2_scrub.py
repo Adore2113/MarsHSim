@@ -50,20 +50,23 @@ def amine_beds_online(state):
     co2_needed_kpa = state.co2_kpa - state.target_co2_kpa
 
     #----------how many beds needed online----------♡ 
-    if co2_needed_kpa > 0.50:
+    if co2_needed_kpa <= 0.0:
+        target_beds_online = 0
+
+    elif co2_needed_kpa > 0.50:
         target_beds_online = max_beds_online
-    
+
     elif co2_needed_kpa > 0.25:
         target_beds_online = 5
-    
+
     elif co2_needed_kpa > 0.10:
         target_beds_online = 4
-    
+
     elif co2_needed_kpa > 0.03:
         target_beds_online = 3
 
     else:
-        target_beds_online = min_beds_online 
+        target_beds_online = min_beds_online
  
     #----------handling primary beds first----------♡ 
     if beds_online_count < target_beds_online and co2_needed_kpa > co2_hysteresis_for_on:
@@ -131,7 +134,7 @@ def co2_removed_and_storage_update(state, co2_after_crew_kpa, max_scrub_removal_
     
     if co2_removed_kpa > 0.0:
         co2_removed_moles = (co2_removed_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
-        co2_removed_kg = co2_removed_moles * co2_molar_mass / 1000
+        co2_removed_kg = co2_removed_moles * co2_molar_mass
     
     else:
         co2_removed_kg = 0.0
