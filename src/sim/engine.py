@@ -1,7 +1,7 @@
 #--------------------imports-------------------------♡
 from dataclasses import replace
 from .state import Habitat_State
-from .oxygen_system import run_oga
+from .oxygen import run_oga
 from .buffer_gas import run_buffer_gas_control
 from .co2_scrub import run_co2_scrub
 from .crew import total_crew_metabolism
@@ -117,6 +117,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         thermal_outputs,
         humidity_results,
         greenhouse_outputs,
+        water_outputs,
+        sabatier_outputs,
         dt_min
     )
 
@@ -129,7 +131,6 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         **oga_updates,
         **co2_scrubber_updates,
         **buffer_gas_updates,
-        **greenhouse_updates, 
 
         "solar_arrays": dust_results["new_solar_arrays"],
         "radiators": dust_results["new_radiators"],

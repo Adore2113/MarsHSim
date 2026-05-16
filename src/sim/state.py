@@ -5,6 +5,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Habitat_State:
+    #--------------------habitat---------------------♡
+    hab_vol_m3: float
+
     #---------------time and daylight----------------♡
     mission_time_s: int
 
@@ -19,9 +22,6 @@ class Habitat_State:
     #---------------------crew-----------------------♡
     crew_count: int
     crew_activity: str
-
-    #--------------------habitat---------------------♡
-    hab_vol_m3: float
 
     #------------------greenhouse--------------------♡
     greenhouse_floor_area_m2: int
@@ -50,9 +50,6 @@ class Habitat_State:
     target_temp_c: float
     min_comfort_temp_c: float
     max_comfort_temp_c: float
-
-    #gh_temp_c: float
-    #gh_target_temp_c: float
 
     mars_temp_c: float
 

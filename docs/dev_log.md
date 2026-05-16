@@ -777,3 +777,57 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ continue greenhouse 
+
+
+ ##      05/10/2026
+     ♡ busy day, but I was able to go over the lighting function I had made in greenhouse.py and decided to add zones for each type of container the plants are in, I'm going to use the averages of thet crop types in the containers
+
+#### Next Session:
+    ♡ continue greenhouse    
+
+
+ ##      05/11/2026
+     ♡ adding heat from the LED lights in my greenhouse_lighting function
+
+     ♡ I might shorten the variable names as my sim gets bigger
+
+     ♡ still going to use the layout to match my other files (I'm wondering how important this is in big projects)
+     
+     ♡ I updated the list for the greenhouse zones 
+
+
+#### Next Session:
+    ♡ continue greenhouse and start by adding ideal_temp
+
+
+##      05/13/2026
+    ♡ adding in hydroponics to the greenhouse list, and starting from greenhouse lighting to make the greenhouse file be how I want it to be
+
+    ♡ I didn't want the multipliers in the constants like some other files, b/c they are different for each zone 
+
+    ♡ I connected the new greenhouse variables and logic to the other files
+
+#### Next Session:
+    ♡ continue greenhouse
+
+
+
+##      05/14/2026
+    ♡ less focused on matching files, and more focused on accurate logic now
+
+    ♡ going over all of my files and checking logic and structure before moving on
+
+    ♡ I update all of my files and figured out my units of measurements, b/c I accidentally mixed up kpa being companred and usd with kg, ect.
+
+    ♡ I'm going to change the modes in each file to be snake case 
+
+    ♡ updating alerts.py and I'm going to move humidity and thermal alerts there as well
+
+    ♡ I updated my todo.md file and v1_state_variables file
+
+    ♡ going to add in the gas leak logic so the variables are actually getting used so I can delete the vague universal gas leak per hour variable
+
+    ♡ adding gas_leak.py file to handle that ^
+
+#### Next Session:
+    ♡ 
