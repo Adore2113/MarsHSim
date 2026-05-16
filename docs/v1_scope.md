@@ -9,6 +9,8 @@
 ## V1 goal:
     ♡ closed loop ECLSS monitoring, logging, alerts, simple controllers
 
+    ♡ Habitat size of 2400 m3 in Arcadia Planitia (47° North, 184° East)
+
 ### V2 goal:
     ♡ AI autonomy, predictive control, fault detection
 
@@ -51,74 +53,60 @@
     ♡ - I can sort them and maybe rethink the constants and what variables will be in state, later on
 
 
-### Alert Notes:
-        ♡ Gas alert ideas for future log:
-        (o2): 
-        ♡ o2 < 12 kPa:
-            - severe hypoxia
-            - crew: confusion, dizziness, rapid blackout
-        ---------------------------------------
-        ♡ o2 < 16–18 kPa:
-            - mild hypoxia
-            - crew: headache, fatigue, shortness of breath
-        ---------------------------------------
-        ♡ o2 > 25 kPa (sustained):
-            - mild hyperoxia + fire risk
-            - crew: dry throat, cough
-        ---------------------------------------
-        ♡ o2 > 50 kPa (sustained):
-            - severe oxygen toxicity
-            - crew: chest pain, nausea, seizures
-        ---------------------------------------
+### Mars / Time of Day / Season / Temp Notes:
+    ♡ N spring / S fall:
+        - 194 sols
+        - average temp: ~(-25°C) - ~(-5°C)
+        - daytime highs: ~(-10°C) - ~(10°C)
+        - nighttime lows: ~(-80°C) - ~(-110°C)
+        - warms gradually
+        - slightly better ice stability
+        - dust: frequent dust devils (small, short dust whirlwinds)
 
-        (co2):
-            ♡ co2 > 0.7 kPa:
-                - mild hypercapnia
-                - crew: headache, flushed skin
-        ---------------------------------------
-            ♡ co2 > 1.5 kPa:
-                - moderate hypercapnia
-                - crew: strong headache, drowsiness
-        ---------------------------------------
-            ♡ co2 > 3 kPa:
-                - high hypercapnia
-                - crew: severe headache, disorientation
-        ---------------------------------------
-            ♡ co2 > 5 kPa:
-                - severe hypercapnia
-                - crew: extreme drowsiness, coma risk
-        ---------------------------------------
+    ♡ N summer / S winter:
+        - 178 sols
+        - average temp: ~(-15°C) - ~(0°C)
+        - daytime highs: ~(0°C) - ~(20°C)
+        - nighttime lows: ~(-85°C) - ~(-115°C)
+        - better solar reliability
+        - dust: lower risk
 
-        (n2):
-            ♡ high n2 (≥ 80% or o2 low):
-                - hypoxia from low o2
-                - crew: headache, dizziness, confusion, blackout
-            note: 
-                - main danger = reduced oxygen
-        ---------------------------------------
-        
-        (h2):
-            ♡ h2 ≥ 4%:
-                - explosion/fire risk
-                - crew: headache, dizziness, confusion, blackout (if o2 drops)
-            note: 
-                - main danger = fire/explosion
-        ---------------------------------------
-        
-        (ch4):
-            ♡ ch4 ≥ 5%:
-                - explosion/fire risk
-                - crew: headache, dizziness, confusion, blackout (if o2 drops)
-            note: 
-                - main danger = fire/explosion
-        ---------------------------------------
-        
-    (symptom references):
-        ♡ hypoxia / asphyxiation: headache » fatigue » dizziness » confusion » unconsciousness
-        
-        ♡ hypercapnia: headache » drowsiness » disorientation » coma risk
-        
-        ♡ oxygen toxicity: dry throat/cough » chest pain » nausea » seizures
+    ♡ N fall / S spring:
+        - 142 sols
+        - average temp: ~(-25°C) - ~(-10°C)
+        - daytime highs: ~(-15°C) - ~(5°C)
+        - nighttime lows: ~(-90°C) - ~(-120°C)
+        - occasional high temp: ~(10°C) - ~(15°C)
+        - cools gradually
+        - dust: frequent dust devils
+
+    ♡ N winter / S summer:
+        - 154 sols
+        - average temp: ~(-35°C) - ~(-15°C)
+        - daytime highs: ~(-25°C) - ~(-5°C)
+        - nighttime lows: ~(-100°C) - ~(-130°C)
+        - dust: storms, sometimes global
+
+    ♡ global dust storms can drop surface temp averages by 10-20°C for weeks
+
+    ♡ I'm going off of approximate surface temp daily averages for mid-latitude from NASA (Viking 2)
+
+    
+    ♡ mission_time_s = current time of day
+
+    ♡ dt_min = how long the step lasts
+
+    ♡ hours_per_step = scaling, production, etc
+
+    ♡ using 0.50kW of sunlight for every 1 square meter (m2) for now
+
+    ♡ Mars sunlight is between 0.4 - 0.6 kW / m2 during daytime
+
+    ♡ Mars time runs at 24 hours and 39 minutes and 35 seconds
+
+    ♡ I'm going to hardcode Mars' tilt to be 25.19 degrees b/c my model isn't going to run long enough to take that slow progression into consideration
+
+    ♡ going to use the midpoint range of each season for now (v1?)
 
 
 ### Atmosphere Notes:
@@ -417,57 +405,75 @@
     ♡ eventually have Mars dust storms and things added in with random, maybe wind cleaning off some of the dust from the solar arrays as well
 
 
-### Mars Time of Day / Season / Temp Notes:
-    ♡ N spring / S fall:
-        - 194 sols
-        - average temp: ~(-25°C) - ~(-5°C)
-        - daytime highs: ~(-10°C) - ~(10°C)
-        - nighttime lows: ~(-80°C) - ~(-110°C)
-        - warms gradually
-        - slightly better ice stability
-        - dust: frequent dust devils (small, short dust whirlwinds)
-
-    ♡ N summer / S winter:
-        - 178 sols
-        - average temp: ~(-15°C) - ~(0°C)
-        - daytime highs: ~(0°C) - ~(20°C)
-        - nighttime lows: ~(-85°C) - ~(-115°C)
-        - better solar reliability
-        - dust: lower risk
-
-    ♡ N fall / S spring:
-        - 142 sols
-        - average temp: ~(-25°C) - ~(-10°C)
-        - daytime highs: ~(-15°C) - ~(5°C)
-        - nighttime lows: ~(-90°C) - ~(-120°C)
-        - occasional high temp: ~(10°C) - ~(15°C)
-        - cools gradually
-        - dust: frequent dust devils
-
-    ♡ N winter / S summer:
-        - 154 sols
-        - average temp: ~(-35°C) - ~(-15°C)
-        - daytime highs: ~(-25°C) - ~(-5°C)
-        - nighttime lows: ~(-100°C) - ~(-130°C)
-        - dust: storms, sometimes global
-
-    ♡ global dust storms can drop surface temp averages by 10-20°C for weeks
-
-    ♡ I'm going off of approximate surface temp daily averages for mid-latitude from NASA (Viking 2)
 
     
-    ♡ mission_time_s = current time of day
+### Alert Notes:
+        ♡ Gas alert ideas for future log:
+        (o2): 
+        ♡ o2 < 12 kPa:
+            - severe hypoxia
+            - crew: confusion, dizziness, rapid blackout
+        ---------------------------------------
+        ♡ o2 < 16–18 kPa:
+            - mild hypoxia
+            - crew: headache, fatigue, shortness of breath
+        ---------------------------------------
+        ♡ o2 > 25 kPa (sustained):
+            - mild hyperoxia + fire risk
+            - crew: dry throat, cough
+        ---------------------------------------
+        ♡ o2 > 50 kPa (sustained):
+            - severe oxygen toxicity
+            - crew: chest pain, nausea, seizures
+        ---------------------------------------
 
-    ♡ dt_min = how long the step lasts
+        (co2):
+            ♡ co2 > 0.7 kPa:
+                - mild hypercapnia
+                - crew: headache, flushed skin
+        ---------------------------------------
+            ♡ co2 > 1.5 kPa:
+                - moderate hypercapnia
+                - crew: strong headache, drowsiness
+        ---------------------------------------
+            ♡ co2 > 3 kPa:
+                - high hypercapnia
+                - crew: severe headache, disorientation
+        ---------------------------------------
+            ♡ co2 > 5 kPa:
+                - severe hypercapnia
+                - crew: extreme drowsiness, coma risk
+        ---------------------------------------
 
-    ♡ hours_per_step = scaling, production, etc
+        (n2):
+            ♡ high n2 (≥ 80% or o2 low):
+                - hypoxia from low o2
+                - crew: headache, dizziness, confusion, blackout
+            note: 
+                - main danger = reduced oxygen
+        ---------------------------------------
+        
+        (h2):
+            ♡ h2 ≥ 4%:
+                - explosion/fire risk
+                - crew: headache, dizziness, confusion, blackout (if o2 drops)
+            note: 
+                - main danger = fire/explosion
+        ---------------------------------------
+        
+        (ch4):
+            ♡ ch4 ≥ 5%:
+                - explosion/fire risk
+                - crew: headache, dizziness, confusion, blackout (if o2 drops)
+            note: 
+                - main danger = fire/explosion
+        ---------------------------------------
+        
+    (symptom references):
+        ♡ hypoxia / asphyxiation: headache » fatigue » dizziness » confusion » unconsciousness
+        
+        ♡ hypercapnia: headache » drowsiness » disorientation » coma risk
+        
+        ♡ oxygen toxicity: dry throat/cough » chest pain » nausea » seizures
 
-    ♡ using 0.50kW of sunlight for every 1 square meter (m2) for now
 
-    ♡ Mars sunlight is between 0.4 - 0.6 kW / m2 during daytime
-
-    ♡ Mars time runs at 24 hours and 39 minutes and 35 seconds
-
-    ♡ I'm going to hardcode Mars' tilt to be 25.19 degrees b/c my model isn't going to run long enough to take that slow progression into consideration
-
-    ♡ going to use the midpoint range of each season for now (v1?)
