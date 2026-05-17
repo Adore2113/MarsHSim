@@ -830,4 +830,43 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ adding gas_leak.py file to handle that ^
 
 #### Next Session:
-    ♡ 
+    ♡ go over my numbers and targets
+
+
+##      05/15/2026
+    ♡ I'm going to go over my variable values in quick_test/state to make sure my numbers are where I want them, I realize I've changed a few things as I went while testing and using different research, so this seems like a good place to start
+
+    ♡ considering making my habitat a bit bigger.. I was aiming for ~67m3, but I'm second guessing this when I focus on the fact that this is a long term, no resupply simulation
+
+    ♡ increasing habitat size by 20%
+
+    ♡ Today I started considering spatial realism
+
+#### Next Session:
+
+    ♡ review current variables, check numbers, evaluate my plaeholders and review my targets
+
+
+##      05/16/2026
+     ♡  while going over the total habitat volume in m3, I'm thinking that the crew can live with smaller living quarters and I'm going to make the greenhouse a bit bigger because it is crucial for long term survival, and I'm considering storage areas being a bit bigger as well..
+
+    ♡ I was reading about how much room a person typically needs per person for psychological wellbeing. I read it was 300m2 pp but that seems really unrealistic for Mars
+
+    ♡ research on the height requirements for ideal psychological wellbeing vertically, people seem to do better with "void" spaces (taller living areas), but also considering that I can't have an unrealistically tall habitat, so I keep trying to go for the minimum for psychological wellbeing long-term so I'm going with .. 4m? maybe.. 3.8 (though the habitat would need to be partially buried, but I'm not simulating structural engineering right now)    
+
+    ♡ I'm also reading about the thickness that a Mars habitat would have to be, with a focus on protection from radiation depending on materials used. I'm trying to figure out where the line is between believable Mars habitat, and overcomplicating my entire simulation.. For now I'm going to choose some loose numbers and estimates and continue
+
+    ♡ I'm only going to focus on the variables that I currently have and make sure I'm happy with the numbers and targets and I'll consider spatial realism more later
+
+    ♡ I'm updating the measurements and variables for the greenhouse now that I made it bigger. I want to optimize the space in the greenhouse
+
+    ♡ considering looking at species that make their own structures and systems as inspiration for efficiency
+
+    ♡ Taking the layout into consideration, hydroponics lets me consider other greenhouse layout ideas, so I'm leaning toward a sort of "helix" .. hive, area instead. A layered growing space that spirals inward toward a main central area for utilities, maintenance, water systems, and other things instead of just rows and boxes.
+
+    ♡ I also think it would be easier to visually see/monitor a lot more plants along a gradual slope instead of separate rectangular flat rows and it would potentially work well with the vertical racks and hangers like I wanted.
+
+    ♡ As far as the quick_test file goes, as of right now, it's messy and I will clean it up soon, and the variables won't be printed to so many floating point decimals on the UI, it's mostly for debugging and making sure everything is working as it should
+
+#### Next Session:
+    ♡ make a file for debugging, so I can see my outputs closer together per subsystem instead of going through every subsystem every run    
