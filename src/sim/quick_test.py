@@ -358,18 +358,17 @@ def print_state(state, outputs, alerts):
     print(f"{'Mode:':<22} {outputs.get('greenhouse_mode', 'offline')}")
     print(f"{'Food Produced:':<22} {outputs.get('total_food_produced_kg', 0):.3f} kg")
 
-    print(f"{'Water Needed:':<22} {outputs.get('total_water_needed_kg', 0):.3f} kPa")
+    print(f"{'Water Needed:':<22} {outputs.get('total_water_needed_kg', 0):.3f} kg")
     print(f"{'Water Used:':<22} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
-    print(f"{'Water Recirculated:':<22} {outputs.get('total_water_recirculated_kg', 0):.4f} kPa")
+    print(f"{'Water Recirculated:':<22} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
 
-    print(f"{'CO2 Consumed:':<22} {outputs.get('greenhouse_co2_consumed_kpa', 0):.4f} kPa")
-    print(f"{'O2 Produced:':<22} {outputs.get('greenhouse_o2_produced_kpa', 0):.4f} kPa")
+    print(f"{'CO2 Consumed:':<22} {outputs.get('greenhouse_co2_consumed_kpa', 0):.3f} kPa")
+    print(f"{'O2 Produced:':<22} {outputs.get('greenhouse_o2_produced_kpa', 0):.3f} kPa")
     
-    print(f"{'Transpiration:':<22} {outputs.get('transpiration_kg', 0):.3f} kPa")
-    print(f"{'GH Heat Added:':<22} {outputs.get('total_greenhouse_heat_kw', 0):.4f} kPa")
-    print(f"{'GH Power Used:':<22} {outputs.get('total_led_power_kw', 0):.4f} kPa")
+    print(f"{'Transpiration:':<22} {outputs.get('transpiration_kg', 0):.3f} kga")
+    print(f"{'GH Heat Added:':<22} {outputs.get('total_greenhouse_heat_kw', 0):.3f} kW")
+    print(f"{'GH Power Used:':<22} {outputs.get('total_led_power_kw', 0):.2f} kW")
     
-    print("GREENHOUSE ON:", state.greenhouse_on)
     #--------------------sabatier--------------------♡
     print(("\n♡      [    SABATIER     ]       ♡").center(width))  
     print(f"{'Power Used:':<22} {outputs.get('sabatier_power_used_kw', 0):.2f} kW")
