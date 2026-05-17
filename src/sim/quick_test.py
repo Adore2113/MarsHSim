@@ -362,13 +362,8 @@ def print_state(state, outputs, alerts):
     print(f"{'Water Used:':<22} {outputs.get('total_water_consumed_kg', 0):.2f} kg")
     print(f"{'Water Recirculated:':<22} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
 
-    print(f"{'CO2 Consumed:':<22} {outputs.get('total_co2_consumed_kpa', 0):.7f} kPa")
-    print(f"{'O2 Produced:':<22} {outputs.get('total_o2_produced_kpa', 0):.7f} kPa")
-    
-
-    for zone_name, zone in outputs.get("zone_outputs", {}).items():
-        print(f"{zone_name:<22} light: {zone.get('light_exposure', 0):.4f}")
-        print(f"{zone_name:<22} mode:  {zone.get('light_mode', 'none')}")
+    print(f"{'CO2 Consumed:':<22} {outputs.get('total_co2_consumed_kpa', 0):.3f} kPa")
+    print(f"{'O2 Produced:':<22} {outputs.get('total_o2_produced_kpa', 0):.3f} kPa")
 
     print(f"{'Transpiration:':<22} {outputs.get('transpiration_kg', 0):.3f} kg")
     print(f"{'GH Heat Added:':<22} {outputs.get('total_greenhouse_heat_kw', 0):.3f} kW")
