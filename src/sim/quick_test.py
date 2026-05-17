@@ -167,8 +167,8 @@ s0 = Habitat_State(
     current_humidity_pct = 48.0,
     target_humidity_pct = 48.0,
 
-    insulation_strength_kw_per_c = 1.20,
-    thermal_mass_kwh_per_c = 280.0,
+    insulation_strength_kw_per_c = 1.60,
+    thermal_mass_kwh_per_c = 220.0,
 
     radiators = [
         {"id": 1, "status": "standby", "area_m2": 68, "efficiency": 0.95, "dust_factor": 1.0, "type": "primary"},
@@ -193,12 +193,12 @@ s0 = Habitat_State(
 
 #-------------------atmosphere-------------------♡
      #-------gas leak rates---------♡
-    o2_leak_rate_kpa_per_hr = 0.008,
-    n2_leak_rate_kpa_per_hr = 0.009,
-    ar_leak_rate_kpa_per_hr = 0.007,
+    o2_leak_rate_kpa_per_hr = 0.006,
+    n2_leak_rate_kpa_per_hr = 0.007,
+    ar_leak_rate_kpa_per_hr = 0.005,
     ch4_leak_rate_kpa_per_hr = 0.012,
     h2_leak_rate_kpa_per_hr = 0.025,    # hydrogen leaks the fastest
-    co2_leak_rate_kpa_per_hr = 0.006,
+    co2_leak_rate_kpa_per_hr = 0.005,
 
     base_gas_leak_kpa_per_hour = 0.004,
 
@@ -235,18 +235,18 @@ s0 = Habitat_State(
     #------current gas levels------♡
     ar_kpa = 21.6,
     ch4_kpa = 0.0,
-    co2_kpa = 0.4,
+    co2_kpa = 0.6,
     h2_kpa = 0.0,    
     n2_kpa = 18.0,
     o2_kpa = 20.0,
 
     #--------gas in storage--------♡
-    ar_stored_kg = 30.0,
+    ar_stored_kg = 40.0,
     ch4_stored_kg = 0.0,
-    co2_stored_kg = 0.0, 
+    co2_stored_kg = 20.0, 
     h2_stored_kg = 50.0,    # starting with this for Sabatier testing
     n2_stored_kg = 60.0,
-    o2_stored_kg = 800.0,
+    o2_stored_kg = 680.0,
 
     #------gas storage limits------♡
     ar_storage_capacity_kg = 1200.0,
@@ -357,10 +357,19 @@ def print_state(state, outputs, alerts):
     print(("\n♡      [   GREENHOUSE   ]       ♡").center(width))
     print(f"{'Mode:':<22} {outputs.get('greenhouse_mode', 'offline')}")
     print(f"{'Food Produced:':<22} {outputs.get('total_food_produced_kg', 0):.3f} kg")
+
+    print(f"{'Water Needed:':<22} {outputs.get('total_water_needed_kg', 0):.3f} kPa")
     print(f"{'Water Used:':<22} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
+    print(f"{'Water Recirculated:':<22} {outputs.get('total_water_recirculated_kg', 0):.4f} kPa")
+
     print(f"{'CO2 Consumed:':<22} {outputs.get('greenhouse_co2_consumed_kpa', 0):.4f} kPa")
     print(f"{'O2 Produced:':<22} {outputs.get('greenhouse_o2_produced_kpa', 0):.4f} kPa")
-
+    
+    print(f"{'Transpiration:':<22} {outputs.get('transpiration_kg', 0):.3f} kPa")
+    print(f"{'GH Heat Added:':<22} {outputs.get('total_greenhouse_heat_kw', 0):.4f} kPa")
+    print(f"{'GH Power Used:':<22} {outputs.get('total_led_power_kw', 0):.4f} kPa")
+    
+    print("GREENHOUSE ON:", state.greenhouse_on)
     #--------------------sabatier--------------------♡
     print(("\n♡      [    SABATIER     ]       ♡").center(width))  
     print(f"{'Power Used:':<22} {outputs.get('sabatier_power_used_kw', 0):.2f} kW")
@@ -455,9 +464,9 @@ def print_state(state, outputs, alerts):
     
 
 state = s0
-for i in range(200):
+for i in range(576):
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
 
-    if i % 12 == 0:
+    if i % 96 == 0:
         print_state(state, outputs, alerts)
