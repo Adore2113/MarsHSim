@@ -8,6 +8,9 @@ from .alerts import get_alerts, get_status
 
 
 s0 = Habitat_State(
+    #-----------------habitat layout-----------------♡
+    hab_vol_m3 = 2000.0,
+
     #---------------time and daylight----------------♡
     mission_time_s = 0,
 
@@ -22,25 +25,26 @@ s0 = Habitat_State(
     #---------------------crew-----------------------♡
     crew_count = 30,
     crew_activity = "normal",
-  
-    #--------------------habitat---------------------♡
-    hab_vol_m3 = 2000.0,
 
     #------------------greenhouse--------------------♡
-    greenhouse_floor_area_m2 = 250.0,
+    greenhouse_vol_m3 = 1007.0,
+
+    greenhouse_floor_area_m2 = 265.0,
+    greenhouse_height_m = 3.8,
     
-    structural_floor_area_m2 = 90.0,    # floor only
-    container_floor_area_m2 = 110.0,
-    rack_floor_area_m2 = 25.0,
-    rack_bonus_area_m2 = 75.0,
+    structural_area_m2 = 95.0,
+    container_area_m2 = 110.0,
     
-    usable_floor_grow_area_m2 = 225.0,
-    walkway_area_m2 = 25.0,
+    rack_area_m2 = 35.0,
+    rack_bonus_area_m2 = 180.0,
     
-    ceiling_hanging_area_m2 = 40.0,
-    ceiling_bonus_area_m2 = 24.0,
+    usable_floor_grow_area_m2 = 220.0,
+    helix_walkway_area_m2 = 45.0,
     
-    total_effective_grow_area_m2 = 324.0,
+    ceiling_hanging_area_m2 = 70.0,
+    ceiling_bonus_area_m2 = 45.0,
+    
+    total_effective_grow_area_m2 = 515.0,
 
     greenhouse_zones = [
         #------------structural zone-----------------♡
@@ -115,7 +119,7 @@ s0 = Habitat_State(
         {
         "zone": "rack",
         "grow_method": "hydroponic_small_crop_mix",
-        "floor_area_m2": 25.0,
+        "floor_area_m2": 35.0,
         "effective_grow_area_m2": 124.0,
 
         #-----------targets------------♡
@@ -125,9 +129,9 @@ s0 = Habitat_State(
         #------------biology-----------♡
         "base_growth_rate_per_sol": 0.030,
         "base_light_absorption_pct": 0.65,
-        "base_water_needed_per_m2_kg_per_sol": 1.9,
+        "base_water_needed_per_m2_kg_per_sol": 1.95,
         
-        "food_yield_per_m2_kg_per_sol": 0.29,
+        "food_yield_per_m2_kg_per_sol": 0.21,
         "co2_consumed_per_m2_kpa_per_sol": 0.018,
         "o2_produced_per_m2_kpa_per_sol": 0.015,
 
@@ -136,8 +140,8 @@ s0 = Habitat_State(
 
         #----------modifiers-----------♡
         "water_multiplier": 0.9,
-        "growth_rate_multiplier": 0.65,
-        "food_yield_multiplier": 0.75,
+        "growth_rate_multiplier": 0.95,
+        "food_yield_multiplier": 0.95,
 
         #-----------runtime------------♡
         "light_exposure": 0.75,
