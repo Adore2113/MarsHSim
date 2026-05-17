@@ -16,6 +16,10 @@ transpiration_ratio = 0.85
 
 base_power_per_m2_kw = 0.10    # led, pumps, circulation, ect.
 greenhouse_heat_per_m2_kw = 0.015
+
+default_health = 0.98
+default_light_exposure = 0.65
+default_growth_multiplier = 1.0
 #----------------------------------------------------♡
 
 
@@ -91,7 +95,7 @@ def greenhouse_lighting(state, dt_min):
 def greenhouse_zone_growth(zone, zone_light, sol_fraction):
     area_m2 = zone["effective_grow_area_m2"]
     light_exposure = zone_light["light_exposure"]
-    health = zone.get("health", 1.0)
+    health = zone.get("health", default_health)
     
     base_growth_rate = zone["base_growth_rate_per_sol"]
     growth_multiplier = zone.get("growth_rate_multiplier", 1.0)
@@ -118,8 +122,9 @@ def greenhouse_resources(zone, zone_light, sol_fraction):
     base_water_needed = zone["base_water_needed_per_m2_kg_per_sol"]
     water_multiplier = zone.get("water_multiplier", 1.0)
     water_recirculation_efficiency = zone.get("water_recirculation_efficiency", 0.85)
+    
     light_exposure = zone_light["light_exposure"]
-    plant_health = zone.get("health", 1.0)
+    plant_health = zone.get("health", default_health)
 
     water_needed_kg = base_water_needed * area_m2 * water_multiplier * sol_fraction    
     water_consumed_kg = water_needed_kg * (1.0 - water_recirculation_efficiency)    # pct of water not recovered
@@ -157,18 +162,15 @@ def run_greenhouse(state, dt_min):
     hours_per_step = dt_min / 60
     sol_fraction = dt_min / (24 * 60.0)
   
-    if state.greenhouse_on == False:
+    if not state.greenhouse_on:
         return {}, {
             "greenhouse_mode": "offline",
             "total_food_produced_kg": 0.0,
-            "total_water_needed_kg": 0.0,
             "total_water_consumed_kg": 0.0,
-            "total_water_recirculated_kg": 0.0,
-            "total_transpiration_kg": 0.0,
             "total_co2_consumed_kpa": 0.0,
             "total_o2_produced_kpa": 0.0,
+            "transpiration_kg": 0.0,
             "total_greenhouse_heat_kw": 0.0,
-            "total_greenhouse_heat_kwh": 0.0,
             "total_led_power_kw": 0.0,
             "total_led_heat_kw": 0.0,
             "zone_outputs": {}
@@ -224,8 +226,11 @@ def run_greenhouse(state, dt_min):
             "led_level": zone_light["led_level"],
             
             "food_produced_kg": food_produced_kg,
+            
             "water_needed_kg": resources["water_needed_kg"],
+            
             "water_consumed_kg": resources["water_consumed_kg"],
+            
             "water_recirculated_kg": resources["water_recirculated_kg"],
             "transpiration_kg": resources["transpiration_kg"],
             "co2_consumed_kpa": resources["co2_consumed_kpa"],
