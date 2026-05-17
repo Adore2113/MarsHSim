@@ -5,8 +5,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Habitat_State:
-    #--------------------habitat---------------------♡
-    hab_vol_m3: float
+
+    #-----------------habitat layout-----------------♡
+    hab_vol_m3: int
 
     #---------------time and daylight----------------♡
     mission_time_s: int
@@ -24,20 +25,25 @@ class Habitat_State:
     crew_activity: str
 
     #------------------greenhouse--------------------♡
+    greenhouse_vol_m3: int
+
     greenhouse_floor_area_m2: int
+    greenhouse_height_m: int
     
-    structural_floor_area_m2: int
-    container_floor_area_m2: int
-    rack_floor_area_m2: int
+    structural_area_m2: int
+    container_area_m2: int
+    
+    rack_area_m2: int
     rack_bonus_area_m2: int
     
     usable_floor_grow_area_m2: int
-    walkway_area_m2: int
+    helix_walkway_area_m2: int
     
     ceiling_hanging_area_m2: int
     ceiling_bonus_area_m2: int
     
     total_effective_grow_area_m2: int
+
     greenhouse_zones: list
     
     greenhouse_on: bool
