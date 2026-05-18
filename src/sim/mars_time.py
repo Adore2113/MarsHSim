@@ -34,8 +34,12 @@ def current_sol_number(mission_time_s):
 def get_sol_time(state):
     sol_number = state.mission_time_s // seconds_per_sol
     sol_seconds = sol_time_seconds(state.mission_time_s)
-    sol_hour = int(sol_seconds // 3600)
-    minutes = int((sol_seconds % 3600) // 60)
+    
+    mars_hour_length_s = seconds_per_sol/ 24
+    mars_minute_length_s = mars_hour_length_s / 60
+
+    sol_hour = int(sol_seconds // mars_hour_length_s)
+    minutes = int((sol_seconds % mars_hour_length_s) // mars_minute_length_s)
     
     return sol_number, sol_hour, minutes
 
