@@ -1,5 +1,5 @@
 #--------------------imports-------------------------♡
-from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, get_daylight_fraction
+from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, get_daylight_fraction, seconds_per_sol
 #----------------------------------------------------♡
 
 # file for greenhouse system
@@ -160,7 +160,7 @@ def greenhouse_resources(zone, zone_light, sol_fraction):
 #-------------main greenhouse function---------------♡
 def run_greenhouse(state, dt_min):
     hours_per_step = dt_min / 60
-    sol_fraction = dt_min / (24 * 60.0)
+    sol_fraction = dt_min / (seconds_per_sol / 60.0)
   
     if not state.greenhouse_on:
         return {}, {
