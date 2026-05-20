@@ -61,8 +61,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     o2_after_crew_kpa = new_state.o2_kpa - crew_results["o2_drop_kpa"]
     co2_after_crew_kpa = new_state.co2_kpa + crew_results["co2_rise_kpa"]
 
-    o2_after_greenhouse_kpa = o2_after_crew_kpa + greenhouse_outputs.get("total_o2_produced_kpa", 0.0)
-    co2_after_greenhouse_kpa = co2_after_crew_kpa - greenhouse_outputs.get("total_co2_consumed_kpa", 0.0)
+    min_greenhouse_co2_kpa = state.target_co2_kpa - 0.05
+
+    o2_after_greenhouse_kpa = min(state.max_safe_o2_kpa, o2_after_crew_kpa + greenhouse_outputs.get("total_o2_produced_kpa", 0.0))
+    co2_after_greenhouse_kpa = max( min_greenhouse_co2_kpa, co2_after_crew_kpa - greenhouse_outputs.get("total_co2_consumed_kpa", 0.0))
 
     co2_scrubber_updates, co2_scrubber_outputs = run_co2_scrub(new_state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time_s, dt_min)
     oga_updates, oga_outputs = run_oga(new_state, o2_after_greenhouse_kpa, dt_min)
