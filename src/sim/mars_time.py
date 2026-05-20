@@ -27,12 +27,12 @@ def sol_time_seconds(mission_time_s):
 
 #----------------current sol number------------------♡
 def current_sol_number(mission_time_s):
-    return mission_time_s // seconds_per_sol
+    return int(mission_time_s // seconds_per_sol)
 
 
 #----------------24 hour time format-----------------♡ 
 def get_sol_time(state):
-    sol_number = state.mission_time_s // seconds_per_sol
+    sol_number = int(state.mission_time_s // seconds_per_sol)
     sol_seconds = sol_time_seconds(state.mission_time_s)
     
     mars_hour_length_s = seconds_per_sol/ 24
@@ -67,10 +67,10 @@ def get_daylight_fraction(state):
     sun_visibility = -math.tan(latitude_rad) * math.tan(solar_declination_rad)    # how extreme the sun's tilt is vs how extreme the habitat position is
 
     if sun_visibility <= -1.0:
-        return 0.0
+        return 1.0
 
     if sun_visibility >= 1.0:
-        return 1.0
+        return 0.0
 
     sun_visibility_half_rad = math.acos(sun_visibility)
     daylight_fraction = sun_visibility_half_rad / math.pi
@@ -96,7 +96,7 @@ def get_sunlight_amount(state):
     current_sol_seconds = sol_time_seconds(state.mission_time_s)
     sunrise_seconds, sunset_seconds = sunrise_sunset_seconds(state)
 
-    if current_sol_seconds < sunrise_seconds or current_sol_seconds > sunset_seconds:
+    if current_sol_seconds < sunrise_seconds or current_sol_seconds >= sunset_seconds:
         sunlight_amount = 0.0
     
     else:
