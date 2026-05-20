@@ -37,10 +37,13 @@ def run_sabatier(state, dt_min):
     ch4_produced_kg = 0.0
     h2_consumed_kg = 0.0
     co2_consumed_kpa = 0.0
+    co2_consumed_kg = 0.0
     ch4_vented_kg = 0.0
 
     new_ch4_stored_kg = state.ch4_stored_kg
     new_ch4_kpa = state.ch4_kpa
+    new_co2_stored_kg = state.co2_stored_kg
+    new_co2_kpa = state.co2_kpa
 
     if not state.sabatier_on:
         sabatier_mode = "offline"
