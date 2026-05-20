@@ -53,12 +53,13 @@ def run_sabatier(state, dt_min):
         co2_kpa = state.co2_kpa
         h2_kg = state.h2_stored_kg
 
-    #----------------convert to moles---------------♡  
-        co2_g = (co2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass
-        co2_moles = co2_g / co2_molar_mass
+    #----------use co2 from storage first-----------♡  
+        available_co2_kg = state.co2_stored_kg
+        available_h2_kg = state.h2_stored_kg
 
-        h2_g = h2_kg * 1000
-        h2_moles = h2_g / h2_molar_mass
+    #----------------convert to moles---------------♡  
+        co2_moles = (available_co2_kg * 1000) / co2_molar_mass
+        h2_moles = (available_h2_kg * 1000) / h2_molar_mass
 
     #----------------sabatier modes-----------------♡  
         if co2_kpa <= min_co2_for_reaction_kpa and h2_kg <= min_h2_for_reaction_kg:
