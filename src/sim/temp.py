@@ -11,7 +11,7 @@ max_heaters_online = 6
 default_radiator_emission = 0.90
 
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
-w_per_kw = 1000.0   # watts to kilowatts
+w_per_kw = 1000.0
 stefan_boltzmann_const = 5.67e-8
 
 max_daylight_m2_kw = 0.59
