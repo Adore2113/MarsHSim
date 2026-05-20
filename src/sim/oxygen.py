@@ -79,9 +79,42 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         power_used_kw = 0.0
         heat_added_kw = 0.0
 
+    #---------------handling excess o2---------------♡ 
+    new_o2_kpa = o2_after_crew_kpa + o2_added_kpa
+
+    o2_control_mode = "normal"
+    o2_stored_kg = 0.0
+    o2_vented_kg = 0.0
+    new_o2_stored_kg = state.o2_stored_kg
+
+    if new_o2_kpa > state.target_o2_kpa:
+        excess_o2_kpa = new_o2_kpa - state.target_o2_kpa
+
+        excess_o2_moles = (excess_o2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
+        o2_stored_kg = (excess_o2_moles * o2_molar_mass) / 1000
+
+        new_o2_stored_kg = state.o2_stored_kg + o2_stored_kg
+              
+        if new_o2_stored_kg >= state.o2_storage_capacity_kg:
+            o2_control_mode = "venting"
+            
+            o2_leaked_kpa = state.o2_leak_rate_kpa_per_hr * hours_per_step
+            o2_leaked_moles = (o2_leaked_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
+            o2_leaked_kg = (o2_leaked_moles * o2_molar_mass) / 1000
+
+            o2_vented_kg = new_o2_stored_kg - state.o2_storage_capacity_kg + o2_leaked_kg
+            new_o2_stored_kg = state.o2_storage_capacity_kg
+
+        else:
+            o2_control_mode = "storing"
+        
+        new_o2_kpa = state.target_o2_kpa
+
+
     #------------dict for updating state-------------♡ 
     oga_updates = {
-        "o2_kpa": o2_after_crew_kpa + o2_added_kpa,
+        "o2_kpa": new_o2_kpa,
+        "o2_stored_kg": new_o2_stored_kg,
         "h2_stored_kg": min(state.h2_storage_capacity_kg, state.h2_stored_kg + h2_produced_kg)
         }
 
