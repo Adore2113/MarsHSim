@@ -241,11 +241,11 @@ s0 = Habitat_State(
     o2_kpa = 20.0,
 
     #--------gas in storage--------♡
-    ar_stored_kg = 40.0,
+    ar_stored_kg =200.0,
     ch4_stored_kg = 0.0,
     co2_stored_kg = 20.0, 
     h2_stored_kg = 50.0,    # starting with this for Sabatier testing
-    n2_stored_kg = 60.0,
+    n2_stored_kg = 200.0,
     o2_stored_kg = 680.0,
 
     #------gas storage limits------♡
