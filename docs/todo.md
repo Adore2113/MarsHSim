@@ -19,6 +19,8 @@
 
 
 ### Later Focus:
+    ♡ add greenhouse to crew and other things
+
     ♡ continue adding heat generated and heat waste
 
 
