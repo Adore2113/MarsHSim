@@ -870,3 +870,25 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ make a file for debugging, so I can see my outputs closer together per subsystem instead of going through every subsystem every run    
+
+
+##      05/18/2026
+    ♡ instead of making a seperate file for debugging I decided to just temporarily comment out my already set up print function to isolate each susbystem so I can check and see if they're working as I want them to work
+
+    ♡ today I'm going over all of my subsystems and systems to see if they're all behaving and fixing any problems before moving on
+    
+    ♡ I do want to have the greenhouse capable of raising the o2 in the habitat b/c with my hexagon/hive idea for the structure, everything is close together, without seperate buildings so it just makes sense to me that it would be a factor 
+
+#### Next Session:
+    ♡ continue running system checks
+
+
+##      05/20/2026
+    ♡ still going over my values and testing, but I added handling excess o2 to the oxygen.py file
+
+    ♡ while going over the results from each subsystem, I'm realizing that co2 is not being handled right.. I need to fix where the Sabatier is getting it's co2 amount from
+
+    ♡ I made some changes to the Sabatier file and ran a few test for four sols, getting an update every 5 hours while only getting the sol, time and atmosphere info.. co2 is much better, but there are still issues with the buffer gas, as well as a few other things, that I will be working towards fixing
+
+#### Next Session:
+    ♡ fix buffer gas (pressure is low but not changing properly) and then continue running system checks   
