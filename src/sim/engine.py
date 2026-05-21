@@ -56,7 +56,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         #-------------greenhouse--------------♡
     greenhouse_updates, greenhouse_outputs = run_greenhouse(new_state, dt_min)
     new_state = replace(new_state, **greenhouse_updates)
-                        
+
+        #--------------sabatier---------------♡
+    sabatier_updates, sabatier_outputs = run_sabatier(new_state, dt_min)
+
         #-------------atmosphere--------------♡
     o2_after_crew_kpa = new_state.o2_kpa - crew_results["o2_drop_kpa"]
     co2_after_crew_kpa = new_state.co2_kpa + crew_results["co2_rise_kpa"]
@@ -71,10 +74,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
         #-------------buffer gas--------------♡
     buffer_gas_updates, buffer_gas_outputs = run_buffer_gas_control(new_state, dt_min)
-
-        #--------------sabatier---------------♡
-    sabatier_updates, sabatier_outputs = run_sabatier(new_state, dt_min)
-        
+ 
         #--------------humidity---------------♡
     humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], greenhouse_outputs.get("total_transpiration_kg", 0.0), dt_min)
        
