@@ -14,7 +14,7 @@ base_buffer_gas_heat_kw = 1.5
 mca_update_power_kw = 0.1
 
 hysteresis_kpa = 0.05
-safe_usage_ratio = 0.95
+safe_usage_ratio = 0.9
 #---------------------------------------------------♡
 
 
@@ -56,7 +56,7 @@ def buffer_gas_control_kpa(state):
     else:
         buffer_gas_mode = "stable"
         pressure_needed_kpa = 0.0
-   
+
     #------------------adding gas-------------------♡  
     if buffer_gas_mode in ("emergency_add", "add"):
         pressure_to_add_kpa = pressure_needed_kpa
@@ -76,9 +76,9 @@ def buffer_gas_control_kpa(state):
                 
                 total_buffer_gas_added_kpa += n2_to_add_kpa
                 pressure_to_add_kpa -= n2_to_add_kpa
-
+                
         #----------------Argon second---------------♡
-        if pressure_to_add_kpa > 0 and new_ar_kpa < state.target_ar_kpa:
+        if pressure_to_add_kpa > 0.01 and new_ar_kpa < state.target_ar_kpa:
             ar_room_left_kpa = state.target_ar_kpa - new_ar_kpa
             ar_to_add_kpa = min(pressure_to_add_kpa, ar_room_left_kpa)
 
