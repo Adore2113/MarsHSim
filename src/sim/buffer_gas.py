@@ -14,6 +14,7 @@ base_buffer_gas_heat_kw = 1.5
 mca_update_power_kw = 0.1
 
 hysteresis_kpa = 0.05
+safe_usage_ratio = 0.95
 #---------------------------------------------------♡
 
 
@@ -37,6 +38,7 @@ def buffer_gas_control_kpa(state):
     #----------------default values-----------------♡  
     total_buffer_gas_added_kpa = 0.0
     total_buffer_gas_vented_kpa = 0.0
+    buffer_gas_mode = "stable"
 
     #---------------buffer gas modes----------------♡  
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
@@ -53,7 +55,8 @@ def buffer_gas_control_kpa(state):
 
     else:
         buffer_gas_mode = "stable"
-
+        pressure_needed_kpa = 0.0
+   
     #------------------adding gas-------------------♡  
     if buffer_gas_mode in ("emergency_add", "add"):
         pressure_to_add_kpa = pressure_needed_kpa
@@ -63,12 +66,14 @@ def buffer_gas_control_kpa(state):
             n2_room_left_kpa = state.target_n2_kpa - new_n2_kpa
             n2_to_add_kpa = min(pressure_to_add_kpa, n2_room_left_kpa)
 
+        #-------------conversion to kg--------------♡  
             n2_added_moles = (n2_to_add_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
             n2_added_kg = n2_added_moles * n2_molar_mass_kg
 
-            if new_n2_stored_kg >= n2_added_kg:
+            if new_n2_stored_kg >= n2_added_kg * safe_usage_ratio:
                 new_n2_kpa += n2_to_add_kpa
                 new_n2_stored_kg -= n2_added_kg
+                
                 total_buffer_gas_added_kpa += n2_to_add_kpa
                 pressure_to_add_kpa -= n2_to_add_kpa
 
@@ -83,6 +88,7 @@ def buffer_gas_control_kpa(state):
             if new_ar_stored_kg >= ar_added_kg:
                 new_ar_kpa += ar_to_add_kpa
                 new_ar_stored_kg -= ar_added_kg
+                
                 total_buffer_gas_added_kpa += ar_to_add_kpa
                 pressure_to_add_kpa -= ar_to_add_kpa
 
