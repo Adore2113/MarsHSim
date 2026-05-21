@@ -890,5 +890,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I made some changes to the Sabatier file and ran a few test for four sols, getting an update every 5 hours while only getting the sol, time and atmosphere info.. co2 is much better, but there are still issues with the buffer gas, as well as a few other things, that I will be working towards fixing
 
+    ♡ I made some changes to buffer gas, double check them tomorrow    
+
 #### Next Session:
-    ♡ fix buffer gas (pressure is low but not changing properly) and then continue running system checks   
+    ♡ check out buffer gas (pressure is low but not changing properly) and then continue running system checks   
