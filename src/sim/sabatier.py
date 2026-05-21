@@ -17,7 +17,7 @@ h2o_molar_mass = 18.015
 water_kg_per_h2_kg = 0.45
 
 min_h2_for_reaction_kg = 0.05
-min_co2_for_reaction_kpa = 0.05
+min_co2_for_reaction_kg = 0.01
 
 base_sabatier_power_kw = 0.85
 base_sabatier_temp_c = 300.0
@@ -47,28 +47,33 @@ def run_sabatier(state, dt_min):
 
     if not state.sabatier_on:
         sabatier_mode = "offline"
+        sabatier_power_used_kw = 0.0
+        sabatier_heat_added_kw = 0.0
 
     #--------------avaliable reactants--------------♡  
     else:
-        co2_kpa = state.co2_kpa
-        h2_kg = state.h2_stored_kg
+        available_co2_kg = state.co2_stored_kg
+        available_h2_kg = state.h2_stored_kg
 
     #----------use co2 from storage first-----------♡  
         available_co2_kg = state.co2_stored_kg
         available_h2_kg = state.h2_stored_kg
 
     #----------------convert to moles---------------♡  
-        co2_moles = (available_co2_kg * 1000) / co2_molar_mass
-        h2_moles = (available_h2_kg * 1000) / h2_molar_mass
+        co2_g = (available_co2_kg * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass
+        co2_moles = co2_g / co2_molar_mass
+
+        h2_g = available_h2_kg * 1000
+        h2_moles = available_h2_kg / h2_molar_mass
 
     #----------------sabatier modes-----------------♡  
-        if co2_kpa <= min_co2_for_reaction_kpa and h2_kg <= min_h2_for_reaction_kg:
+        if available_co2_kg <= min_co2_for_reaction_kg and available_h2_kg <= min_h2_for_reaction_kg:
             sabatier_mode = "idle"
         
-        elif co2_kpa <= min_co2_for_reaction_kpa * hysteresis:
+        elif available_co2_kg <= min_co2_for_reaction_kg * hysteresis:
             sabatier_mode = "limited_co2"
         
-        elif h2_kg <= min_h2_for_reaction_kg * hysteresis:
+        elif available_h2_kg <= min_h2_for_reaction_kg * hysteresis:
             sabatier_mode = "limited_h2"
         
         else:
@@ -98,11 +103,23 @@ def run_sabatier(state, dt_min):
         water_produced_kg = reactions_available * 2 * h2o_molar_mass * kg_per_g
         ch4_produced_kg = reactions_available * ch4_molar_mass * kg_per_g
         h2_consumed_kg = reactions_available * 4  * h2_molar_mass * kg_per_g
-        co2_consumed_kg = reactions_available * co2_molar_mass * kg_per_g
-        
+        co2_consumed_kg = reactions_available * co2_molar_mass * kg_per_g    
         co2_consumed_kpa = (co2_consumed_kg * r_kpa * (state.hab_temp_c + kelvin_offset) * 1000) / (state.hab_vol_m3 * co2_molar_mass)
         
-        #-----------venting excess Methane---------♡
+        new_co2_stored_kg = max(0.0, state.co2_stored_kg - co2_consumed_kg)
+        new_h2_stored_kg = max(0.0, state.h2_stored_kg - h2_consumed_kg)
+
+        #-------use co2 from atmosphere next-------♡
+        if new_co2_stored_kg <= 0.01 and state.co2_kpa > min_co2_for_reaction_kg:
+            atmosphere_co2_kpa = min(0.12, state.co2_kpa * 0.15)
+            atmosphere_co2_kg = (atmosphere_co2_kpa * state.hab_vol_m3 * co2_molar_mass) / (r_kpa * (state.hab_temp_c + kelvin_offset) * 1000)
+            
+            new_co2_kpa = state.co2_kpa - atmosphere_co2_kpa
+            
+            co2_consumed_kg += atmosphere_co2_kg
+            co2_consumed_kpa = atmosphere_co2_kpa
+
+        #--------------venting Methane-------------♡
         new_ch4_stored_kg = state.ch4_stored_kg + ch4_produced_kg
 
         if new_ch4_stored_kg > state.ch4_storage_capacity_kg:
@@ -114,12 +131,17 @@ def run_sabatier(state, dt_min):
             new_ch4_kpa = state.ch4_kpa + ch4_leaked_kpa
         
         else:
-            new_ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.01)
+            new_ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.008)
    
+    h2_stored_kg = max(0.0, state.h2_stored_kg - h2_consumed_kg)
+    
     #------------dict for updating state-------------♡ 
     sabatier_updates = {
+        "co2_stored_kg": new_co2_stored_kg,
+        "co2_kpa": new_co2_kpa,
         "ch4_kpa": new_ch4_kpa,
         "ch4_stored_kg": new_ch4_stored_kg,
+        "h2_stored_kg": h2_stored_kg,
     }
    
     #-----------dict for printing outputs------------♡ 
@@ -133,6 +155,7 @@ def run_sabatier(state, dt_min):
         "sabatier_ch4_produced_kg": ch4_produced_kg,
         "sabatier_ch4_vented_kg": ch4_vented_kg,
         "sabatier_h2_consumed_kg": h2_consumed_kg,
+        "sabatier_co2_consumed_kg": co2_consumed_kg,
         "sabatier_co2_consumed_kpa": co2_consumed_kpa, 
     }
 
