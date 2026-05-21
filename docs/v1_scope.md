@@ -250,7 +250,7 @@
     ♡ I didn't want to have foods that need a lot of processing, at least to start
 
     ♡ food choices/considerations:
-            - sweet potato (high in calories, higher nutrients than regular potatoes, edible leaves, easy to grow, ect.) 
+            - sweet potato (high in calories, higher nutrients than regular potatoes, edible leaves, easy to grow, ect.): 
                 - can grow vertically
                 -germination 1-14 days, vegetative 2-8 weeks, flowering 6-12 weeks, harvest ~3 months
             
