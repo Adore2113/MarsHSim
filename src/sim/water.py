@@ -129,8 +129,8 @@ def run_wpa(state, dt_min):
 
 
 #---------------update water storage-----------------♡
-def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, greenhouse_water_used_kg, condensate_added_kg):
-    total_recovered_water_kg = (upa_results["recovered_water_kg"] + wpa_results["recovered_water_kg"] + bpa_results["recovered_water_kg"])
+def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, greenhouse_water_used_kg, condensate_added_kg, sabatier_water_produced_kg):
+    total_recovered_water_kg = (upa_results["recovered_water_kg"] + wpa_results["recovered_water_kg"] + bpa_results["recovered_water_kg"] + sabatier_water_produced_kg)
     subsystem_potable_water_used_kg = oga_water_used_kg + greenhouse_water_used_kg
 
     new_potable_water_storage_kg = min(state.potable_water_storage_capacity_kg, max(0.0, crew_water_results["new_potable_water_storage_kg"] - subsystem_potable_water_used_kg + total_recovered_water_kg))
@@ -155,14 +155,14 @@ def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results
 
 
 #----------------run full water system---------------♡
-def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg, greenhouse_water_used_kg, greenhouse_transpiration_kg, dt_min):
+def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg, greenhouse_water_used_kg, greenhouse_transpiration_kg, sabatier_water_produced_kg, dt_min):
     crew_water_results = crew_water_usage(state, crew_results, dt_min)
     
     upa_results = run_upa(state, dt_min)
     bpa_results = run_bpa(state, dt_min)
     wpa_results = run_wpa(state, dt_min)
 
-    water_updates, water_storage_outputs = update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, greenhouse_water_used_kg, condensate_added_kg)
+    water_updates, water_storage_outputs = update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, greenhouse_water_used_kg, condensate_added_kg, sabatier_water_produced_kg)
 
     water_outputs = {
         "potable_water_used_kg": crew_water_results["potable_water_used_kg"],
