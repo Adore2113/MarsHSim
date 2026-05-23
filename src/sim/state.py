@@ -199,4 +199,4 @@ class Habitat_State:
 
     #----------------------isru----------------------♡
     isru_on: bool
-    isru_mode: str
+    isru_pipes: list
