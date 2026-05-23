@@ -16,12 +16,12 @@ h2o_molar_mass = 18.015
 
 water_kg_per_h2_kg = 0.45
 
-min_h2_for_reaction_kg = 0.05
-min_co2_for_reaction_kg = 0.01
+min_h2_for_reaction_kg = 0.012
+min_co2_for_reaction_kg = 0.012
 
 base_sabatier_power_kw = 0.85
 base_sabatier_temp_c = 300.0
-base_sabatier_efficiency = 0.75
+base_sabatier_efficiency = 0.88
 
 hysteresis = 1.5
 #----------------------------------------------------♡
@@ -85,7 +85,7 @@ def run_sabatier(state, dt_min):
         sabatier_heat_added_kw = 0.1
 
     elif sabatier_mode in ("limited_co2", "limited_h2"):
-        sabatier_power_used_kw = base_sabatier_power_kw * 0.55    # use less power
+        sabatier_power_used_kw = base_sabatier_power_kw * 0.80    # use less power
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
 
     elif sabatier_mode == "venting":
