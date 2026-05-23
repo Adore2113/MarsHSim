@@ -2,16 +2,16 @@
 
 
 #--------------------constants-----------------------♡
-upa_recovery_rate = 0.85
+upa_recovery_rate = 0.94
 wpa_recovery_rate = 0.95
-bpa_recovery_rate = 0.60
+bpa_recovery_rate = 0.78
 
 base_upa_power_kw = 0.45
 base_wpa_power_kw = 0.35
 base_bpa_power_kw = 0.75
 
-upa_handling_capacity_per_hour_kg = 6.0
-wpa_handling_capacity_per_hour_kg = 10.0
+upa_handling_capacity_per_hour_kg = 12.0
+wpa_handling_capacity_per_hour_kg = 16.0
 bpa_handling_capacity_per_hour_kg = 0.15
 #----------------------------------------------------♡
 
