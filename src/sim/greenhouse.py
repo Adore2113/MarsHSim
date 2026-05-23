@@ -121,7 +121,7 @@ def greenhouse_resources(zone, zone_light, sol_fraction):
     area_m2 = zone["effective_grow_area_m2"]
     base_water_needed = zone["base_water_needed_per_m2_kg_per_sol"]
     water_multiplier = zone.get("water_multiplier", 1.0)
-    water_recirculation_efficiency = zone.get("water_recirculation_efficiency", 0.85)
+    water_recirculation_efficiency = zone.get("water_recirculation_efficiency", 0.93)
     
     light_exposure = zone_light["light_exposure"]
     plant_health = zone.get("health", default_health)
