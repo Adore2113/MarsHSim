@@ -53,7 +53,7 @@ def pipes_in_use(state):
             new_pipe["status"] = "offline"
             pipes_online_count -= 1
 
-        new_pipes.append(new_pipe)
+    new_pipes.append(new_pipe)
     
     return new_pipes, pipes_online_count
 
