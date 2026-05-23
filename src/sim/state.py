@@ -19,6 +19,7 @@ class Habitat_State:
 
     #--------------------lights----------------------♡
     light_level: float
+    wellness_lights_on: bool
 
     #---------------------crew-----------------------♡
     crew_count: int
@@ -193,8 +194,9 @@ class Habitat_State:
     smoke_ppm: float
     radiation_msv_per_day: float
 
-    #----------------wellness lights-----------------♡
-    wellness_lights_on: bool
-
     #--------------------sabatier--------------------♡
     sabatier_on: bool
+
+    #----------------------isru----------------------♡
+    isru_on: bool
+    isru_mode: str
