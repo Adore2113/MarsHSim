@@ -7,6 +7,7 @@ pipe_retract_time_min = 45    # time to retract
 pipe_efficiency = 0.82
 
 max_pipes_online = 6
+water_to_auto_activate_kg = 1500.0
 #----------------------------------------------------♡
 
 
@@ -15,27 +16,22 @@ def pipes_in_use(state):
     new_pipes = []
     pipes_online_count = sum(1 for pipe in state.isru_pipes if pipe["status"] == "online")
 
-    water_needed_kg = state.potable_water_storage_kg - state.potable_water_storage_capacity_kg
-
     #----------how many pipes needed online----------♡ 
-    if water_needed_kg > 6490.0:
+    if state.potable_water_storage_kg < water_to_auto_activate_kg:
         target_pipes_online = max_pipes_online
-
-    elif water_needed_kg > 5200.0:
-        target_pipes_online = 5
-
-    elif water_needed_kg > 3900.0:
+    
+    elif state.potable_water_storage_kg < 2600.0:
         target_pipes_online = 4
-
-    elif water_needed_kg > 2600.0:
+   
+    elif state.potable_water_storage_kg < 3900.0:
         target_pipes_online = 3
-
-    elif water_needed_kg > 1300.0:
+    
+    elif state.potable_water_storage_kg < 5200.0:
         target_pipes_online = 2
-
+    
     else:
         target_pipes_online = 0
- 
+
     #---------handling primary pipes first----------♡  
     primary_pipes_needed = target_pipes_online
 
@@ -43,9 +39,9 @@ def pipes_in_use(state):
         new_pipe = pipe.copy()
 
     if pipes_online_count < target_pipes_online and new_pipe["status"] == "offline":
-        if new_pipe["type"] == "primary" and primary_needed > 0:
+        if new_pipe["type"] == "primary" and primary_pipes_needed > 0:
             new_pipe["status"] = "online"
-            primary_needed -= 1
+            primary_pipes_needed -= 1
             pipes_online_count += 1
 
         elif new_pipe["type"] == "backup":
