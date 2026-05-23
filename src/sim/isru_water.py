@@ -30,8 +30,28 @@ def run_isru(state, dt_min, isru_mode):
         pipes_active = max_pipes
 
     if pipes_active > 0:
-        power_used_kw = base_heated_pipe_power_kw * pipes_active
         raw_water_kg = base_extract_rate_kg_per_hour * pipes_active
-        water_produced_kg = raw_water_kg * pipe_efficiency
+        water_extracted_kg = raw_water_kg * pipe_efficiency
 
-        
+    #----------power usage / heat per mode----------♡  
+        power_used_kw = base_heated_pipe_power_kw * pipes_active
+        heat_added_kw = power_used_kw * 0.85
+   
+    #------------dict for updating state-------------♡ 
+    isru_updates = {
+        "isru_water_extracted_kg": water_extracted_kg,
+        "pipes_active": pipes_active,
+    }
+    
+    #-----------dict for printing outputs------------♡ 
+    isru_outputs = {
+        "isru_water_extracted_kg": water_extracted_kg,
+        "isru_power_used_kw": power_used_kw,
+        "isru_power_used_kwh": power_used_kw * hours_per_step,
+        "isru_heat_added_kw": heat_added_kw,
+        "isru_heat_added_kwh": heat_added_kw * hours_per_step,
+        "pipes_active": pipes_active,
+        "isru_mode": isru_mode,
+    }
+
+    return isru_updates, isru_outputs
