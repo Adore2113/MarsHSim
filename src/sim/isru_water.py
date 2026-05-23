@@ -72,8 +72,10 @@ def run_isru(state, dt_min):
     heat_added_kw = 0.0
 
     if pipes_online_count > 0:
-        power_used_kw = base_heated_pipe_power_kw * pipes_online_count
         ice_melted_kg = base_extract_rate_kg_per_hour * pipes_online_count
+        water_produced_kg = ice_melted_kg * pipe_efficiency
+
+        power_used_kw = base_heated_pipe_power_kw * pipes_online_count
         heat_added_kw = power_used_kw * 0.85
 
 
