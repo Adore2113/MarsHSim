@@ -81,12 +81,19 @@ def run_isru(state, dt_min):
 
     #------------dict for updating state-------------♡ 
     isru_updates = {
-        ...,
+        "isru_pipes": new_pipes,
+        "isru_water_produced_kg": water_produced_kg,
     }
     
     #-----------dict for printing outputs------------♡ 
     isru_outputs = {
-        ...,
+        "isru_water_produced_kg": water_produced_kg,
+        "isru_power_used_kw": power_used_kw,
+        "isru_power_used_kwh": power_used_kw * hours_per_step,
+
+        "isru_heat_added_kw": heat_added_kw,
+        "isru_heat_added_kwh": heat_added_kw * hours_per_step,
+        "pipes_online_count": pipes_online_count,
     }
 
     return isru_updates, isru_outputs
