@@ -38,22 +38,22 @@ def pipes_in_use(state):
     for pipe in state.isru_pipes:
         new_pipe = pipe.copy()
 
-    if pipes_online_count < target_pipes_online and new_pipe["status"] == "offline":
-        if new_pipe["type"] == "primary" and primary_pipes_needed > 0:
-            new_pipe["status"] = "online"
-            primary_pipes_needed -= 1
-            pipes_online_count += 1
-
-        elif new_pipe["type"] == "backup":
+        if pipes_online_count < target_pipes_online and new_pipe["status"] == "offline":
+            if new_pipe["type"] == "primary" and primary_pipes_needed > 0:
                 new_pipe["status"] = "online"
+                primary_pipes_needed -= 1
                 pipes_online_count += 1
-    
-    elif pipes_online_count > target_pipes_online and new_pipe["status"] == "online":
-        if new_pipe["type"] == "backup" or pipes_online_count > target_pipes_online:
-            new_pipe["status"] = "offline"
-            pipes_online_count -= 1
 
-    new_pipes.append(new_pipe)
+            elif new_pipe["type"] == "backup":
+                    new_pipe["status"] = "online"
+                    pipes_online_count += 1
+    
+        elif pipes_online_count > target_pipes_online and new_pipe["status"] == "online":
+            if new_pipe["type"] == "backup" or pipes_online_count > target_pipes_online:
+                new_pipe["status"] = "offline"
+                pipes_online_count -= 1
+
+        new_pipes.append(new_pipe)
     
     return new_pipes, pipes_online_count
 
