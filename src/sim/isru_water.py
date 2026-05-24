@@ -3,7 +3,8 @@
 #--------------------constants-----------------------♡
 base_heated_pipe_power_kw = 8.5    # per active pipe
 base_extract_rate_kg_per_hour = 15.0    # per pipe when ice is good
-pipe_retract_time_min = 45    # time to retract
+pipe_retract_time_min = 45.0
+pipe_deploy_time_min = 25.0
 pipe_efficiency = 0.82
 
 max_pipes_online = 6
@@ -12,8 +13,22 @@ water_to_auto_activate_kg = 1500.0
 
 
 #--------which pipes are online and how many---------♡
-def pipes_in_use(state):
+def pipes_in_use(state, dt_min):
     new_pipes = []
+    extracting_count = 0
+    deploying_count = 0
+    retracting_count = 0
+
+    for pipe in state.isru_pipes:
+        if pipe["status"] == "extracting":
+            extracting_count += 1
+        
+        elif pipe["status"] == "deploying":
+            deploying_count += 1
+        
+        elif pipe["status"] == "retracting":
+            retracting_count += 1
+
     pipes_online_count = sum(1 for pipe in state.isru_pipes if pipe["status"] == "online")
 
     #----------how many pipes needed online----------♡ 
@@ -32,30 +47,37 @@ def pipes_in_use(state):
     else:
         target_pipes_online = 0
 
-    #---------handling primary pipes first----------♡  
-    primary_pipes_needed = target_pipes_online
-
     for pipe in state.isru_pipes:
         new_pipe = pipe.copy()
+        status = new_pipe.get("status", "offline")
+        
+        timer = new_pipe.get("timer", 0.0)
+        if timer > 0:
+            timer -= dt_min
+            new_pipe["timer"] = max(0.0, timer)
+        
+        elif status == "deploying" and new_pipe["timer"] <= 0:
+            new_pipe["status"] = "extracting"
+            new_pipe["timer"] = max(0.0, timer)
 
-        if pipes_online_count < target_pipes_online and new_pipe["status"] == "offline":
-            if new_pipe["type"] == "primary" and primary_pipes_needed > 0:
-                new_pipe["status"] = "online"
-                primary_pipes_needed -= 1
-                pipes_online_count += 1
+        elif status == "offline" and (extracting_count + deploying_count) < target_pipes_online:
+                new_pipe["status"] = "deploying"
+                new_pipe["timer"] = pipe_deploy_time_min
+                deploying_count += 1
 
-            elif new_pipe["type"] == "backup":
-                    new_pipe["status"] = "online"
-                    pipes_online_count += 1
-    
-        elif pipes_online_count > target_pipes_online and new_pipe["status"] == "online":
-            if new_pipe["type"] == "backup" or pipes_online_count > target_pipes_online:
-                new_pipe["status"] = "offline"
-                pipes_online_count -= 1
-
+        elif status in ("extracting", "deploying") and (extracting_count + deploying_count) > target_pipes_online:
+            if new_pipe["type"] == "backup" or extracting_count > target_pipes_online:
+                new_pipe["status"] = "retracting"
+                new_pipe["timer"] = pipe_retract_time_min
+                
+                if status == "extracting":
+                    extracting_count -= 1
+        
         new_pipes.append(new_pipe)
-    
-    return new_pipes, pipes_online_count
+
+    final_extracting_count = sum(1 for p in new_pipes if p["status"] == "extracting")
+
+    return new_pipes, final_extracting_count
 
 
 #--------------------isru process--------------------♡
