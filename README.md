@@ -8,7 +8,7 @@ I'm building a Mars habitat simulation where a closed system keeps a crew alive 
 ♡♡♡
 </p>
 
-MarsHSim models a self sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2000 m3 habitat on Mars.
+MarsHSim models a self sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2400 m3 habitat on Mars in Arcadia Planitita (47° North, 184° East)
 
 ♡ The focus is on reliability, realism, machine learning integration, reusability, and eventually cost considerations.
 
@@ -72,6 +72,8 @@ My goal is to build something that feels real, structured, autonomous and potent
 ♡ hydrogen byproduct storage
 
 ♡ atmospheric pressure stabilization
+
+♡ water In-Situ Resource Utilization (ISRU)
 
 #### Crew and Habitat:
 ♡ crew metabolism
