@@ -66,7 +66,7 @@ def run_isru(state, dt_min):
     water_added_kg = 0.0
     power_used_kw = 0.0
     heat_added_kw = 0.0
-    new_potable_water_storage_kg = state.potable_water_storage_kg
+    new_raw_isru_water_storage_kg = state.raw_isru_water_storage_kg + water_added_kg
 
     if state.isru_on and pipes_online_count > 0:
         ice_melted_kg = base_extract_rate_kg_per_hour * pipes_online_count * hours_per_step
