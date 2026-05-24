@@ -893,4 +893,28 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ I made some changes to buffer gas, double check them tomorrow    
 
 #### Next Session:
-    ♡ check out buffer gas (pressure is low but not changing properly) and then continue running system checks   
+    ♡ check out buffer gas (pressure is low but not changing properly) and then continue running system checks
+
+
+##      05/22/2026
+    ♡ I added in the Sabatier into water.py, b/c I forgot to add it in the storage update and run_water_system function 
+
+    ♡ while testing the water outputs, I can see that the net loss per sol is way too high, so I'm going to go over some numbers
+
+    ♡ 115.5kg per sol is just the cost of having a 30 person crew
+
+    ♡ I was thinking about other way to recycle and actually get water and I thought about piercing through the surface with two or three heated pipes that siphon up some frozen mars water every so often? retractable pipes so they don't freeze and can be used at will, I'm going to do some reasearch on this
+
+    ♡ going back to In-Situ Resource Utilization (ISRU) to extract water locally, I'm thinking piercing through the surface with two or three heated pipes that siphon up some frozen mars water every so often with retractable pipes so they don't freeze and can be used when wanted and needed to avoid environmental factors
+
+#### Next Session:
+    ♡ start new file for water isru
+
+
+##      05/23/2026
+    ♡ I created a file for handling water extraction and I'm going to make a list in state, similar to the lists I have for the other subsystems and add in each pipe, incase I want to add more later, and of course to have a few as backup
+
+    ♡ I realized that I didn't have water runoff from the greenhouse, so I implemented that today and also fixed and cleaned up water.py, after including the for now very basic isru system
+
+#### Next Session:
+    ♡ fix new variables in engine and update irsu to include pipe retracting and extracting, dust buildup per pipe, efficency loss, ect.
