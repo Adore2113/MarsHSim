@@ -20,6 +20,7 @@ greenhouse_heat_per_m2_kw = 0.015
 default_health = 0.98
 default_light_exposure = 0.65
 default_growth_multiplier = 1.0
+runoff_water_ratio = 0.08
 #----------------------------------------------------♡
 
 
@@ -129,6 +130,7 @@ def greenhouse_resources(zone, zone_light, sol_fraction):
     water_needed_kg = base_water_needed * area_m2 * water_multiplier * sol_fraction    
     water_consumed_kg = water_needed_kg * (1.0 - water_recirculation_efficiency)    # pct of water not recovered
     water_recirculated_kg = water_needed_kg * water_recirculation_efficiency
+    water_runoff_kg = runoff_water_kg = water_needed_kg * runoff_water_ratio
     
     transpiration_kg = water_consumed_kg * transpiration_ratio
     plant_mass_water_kg = water_consumed_kg * (1.0 - transpiration_ratio)
@@ -147,6 +149,7 @@ def greenhouse_resources(zone, zone_light, sol_fraction):
         "water_needed_kg": water_needed_kg,
         "water_consumed_kg": water_consumed_kg,
         "water_recirculated_kg": water_recirculated_kg,
+        "runoff_water_kg": runoff_water_kg,
         "transpiration_kg": transpiration_kg,
         "plant_mass_water_kg": plant_mass_water_kg,
 
@@ -183,6 +186,7 @@ def run_greenhouse(state, dt_min):
     total_water_consumed_kg = 0.0
     total_water_recirculated_kg = 0.0
     total_transpiration_kg = 0.0
+    total_runoff_water_kg = 0.0
 
     total_co2_consumed_kpa = 0.0
     total_o2_produced_kpa = 0.0
@@ -206,7 +210,8 @@ def run_greenhouse(state, dt_min):
         total_water_consumed_kg += resources["water_consumed_kg"]
         total_water_recirculated_kg += resources["water_recirculated_kg"]
         total_transpiration_kg += resources["transpiration_kg"]    
-    
+        total_runoff_water_kg += resources["runoff_water_kg"]
+
         total_co2_consumed_kpa += resources["co2_consumed_kpa"]
         total_o2_produced_kpa += resources["o2_produced_kpa"]
         
@@ -228,11 +233,11 @@ def run_greenhouse(state, dt_min):
             "food_produced_kg": food_produced_kg,
             
             "water_needed_kg": resources["water_needed_kg"],
-            
             "water_consumed_kg": resources["water_consumed_kg"],
-            
             "water_recirculated_kg": resources["water_recirculated_kg"],
             "transpiration_kg": resources["transpiration_kg"],
+            "total_runoff_water_kg": total_runoff_water_kg,
+
             "co2_consumed_kpa": resources["co2_consumed_kpa"],
             "o2_produced_kpa": resources["o2_produced_kpa"],
             
