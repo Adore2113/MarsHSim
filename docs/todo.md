@@ -4,13 +4,10 @@
 
 ### Current Focus:
     ♡ stablize all system logic to make sure things are working as I want them to, specifically:
-        - atmosphere drift
-        - O2 / CO2 balance
-        - battery drain
         - water recovery balance
         - greenhouse behavior over day and night cycles
-        - alert accuracy    
-
+   
+     ♡ update irsu to include pipe retracting and extracting, dust buildup per pipe, efficency loss, ect.
 
 ### Next Focus:
     ♡ add trend tracking to other systems (like "temp trend" in print)
