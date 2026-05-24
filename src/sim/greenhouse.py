@@ -236,7 +236,7 @@ def run_greenhouse(state, dt_min):
             "water_consumed_kg": resources["water_consumed_kg"],
             "water_recirculated_kg": resources["water_recirculated_kg"],
             "transpiration_kg": resources["transpiration_kg"],
-            "total_runoff_water_kg": total_runoff_water_kg,
+            "greenhouse_runoff_water_kg": total_runoff_water_kg,
 
             "co2_consumed_kpa": resources["co2_consumed_kpa"],
             "o2_produced_kpa": resources["o2_produced_kpa"],
