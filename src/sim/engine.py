@@ -12,6 +12,7 @@ from .water import run_water_system
 from .dust import get_dust_accumulation
 from .sabatier import run_sabatier
 from .greenhouse import run_greenhouse
+from .isru_water import run_isru
 #----------------------------------------------------♡
 
 
@@ -77,7 +78,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
  
         #--------------humidity---------------♡
     humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], greenhouse_outputs.get("total_transpiration_kg", 0.0), dt_min)
-       
+
+        #----------------isru-----------------♡
+    isru_updates, isru_outputs = run_isru(new_state, dt_min)
+
         #----------------water----------------♡
     water_updates, water_outputs = run_water_system(
         new_state,
@@ -86,6 +90,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         oga_outputs["water_used_kg"],
         greenhouse_outputs.get("total_water_consumed_kg", 0.0),
         greenhouse_outputs.get("transpiration_kg", 0.0),
+        greenhouse_outputs.get("total_runoff_water_kg", 0.0),
         sabatier_outputs.get("sabatier_water_produced_kg", 0.0),
         dt_min
     )
@@ -135,6 +140,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         **co2_scrubber_updates,
         **buffer_gas_updates,
         **greenhouse_updates,
+        **isru_updates,
 
         "solar_arrays": dust_results["new_solar_arrays"],
         "radiators": dust_results["new_radiators"],
@@ -166,6 +172,9 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     #-----------------humidity (CHX)-----------------♡
     outputs.update(humidity_results)
+
+    #---------------------isru----------------------♡
+    outputs.update(isru_outputs)
 
     #---------------------water----------------------♡
     outputs.update(water_outputs)
