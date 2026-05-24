@@ -200,3 +200,6 @@ class Habitat_State:
     #----------------------isru----------------------♡
     isru_on: bool
     isru_pipes: list
+
+    raw_isru_water_storage_kg: float
+    raw_isru_water_storage_capacity_kg: float
