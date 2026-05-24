@@ -53,12 +53,6 @@ def run_upa(state, dt_min):
         recovered_water_kg = black_water_removed_kg * upa_recovery_rate
         brine_added_kg = black_water_removed_kg  * (1 - upa_recovery_rate)
 
-        if black_water_removed_kg > 0:
-            upa_power_used_kw = base_upa_power_kw
-        
-        else:
-            upa_power_used_kw = 0.0
-
     upa_energy_used_kwh = upa_power_used_kw * hours_per_step
 
     return {
@@ -84,12 +78,6 @@ def run_bpa(state, dt_min):
     if state.brine_storage_kg > 0.1:    
         water_processed_kg = min(state.brine_storage_kg, bpa_handling_capacity_per_hour_kg * hours_per_step)
         recovered_water_kg = water_processed_kg * bpa_recovery_rate
-
-        if water_processed_kg > 0:
-            bpa_power_used_kw = base_bpa_power_kw
-        
-        else:
-            bpa_power_used_kw = 0.0
 
     bpa_energy_used_kwh = bpa_power_used_kw * hours_per_step
 
@@ -125,12 +113,6 @@ def run_wpa(state, dt_min):
         isru_water_removed_kg = min(state.raw_isru_water_storage_kg, remaining_wpa_handling_capacity_kg)
 
         recovered_water_kg = water_processed_kg * wpa_recovery_rate
-
-        if water_processed_kg > 0:
-            wpa_power_used_kw = base_wpa_power_kw
-        
-        else:
-            wpa_power_used_kw = 0.0
 
     wpa_energy_used_kwh = wpa_power_used_kw * hours_per_step
 
