@@ -63,27 +63,35 @@ def run_isru(state, dt_min):
     hours_per_step = dt_min / 60.0
     new_pipes, pipes_online_count = pipes_in_use(state)
 
-    water_produced_kg = 0.0
+    water_added_kg = 0.0
     power_used_kw = 0.0
     heat_added_kw = 0.0
+    new_potable_water_storage_kg = state.potable_water_storage_kg
 
-    if pipes_online_count > 0:
+    if state.isru_on and pipes_online_count > 0:
         ice_melted_kg = base_extract_rate_kg_per_hour * pipes_online_count * hours_per_step
-        water_produced_kg = ice_melted_kg * pipe_efficiency
+        raw_water_added_kg = ice_melted_kg * pipe_efficiency
+
+        storage_room_left_kg = state.potable_water_storage_capacity_kg - state.potable_water_storage_kg
+        water_added_kg = min(raw_water_added_kg, storage_room_left_kg)
+        
+        new_potable_water_storage_kg = state.potable_water_storage_kg + water_added_kg
 
         power_used_kw = base_heated_pipe_power_kw * pipes_online_count
         heat_added_kw = power_used_kw * 0.85
-
+    
+    if not state.isru_on:
+        pipes_online_count = 0
 
     #------------dict for updating state-------------♡ 
     isru_updates = {
         "isru_pipes": new_pipes,
-        "isru_water_produced_kg": water_produced_kg,
+        "potable_water_storage_kg": new_potable_water_storage_kg,
     }
     
     #-----------dict for printing outputs------------♡ 
     isru_outputs = {
-        "isru_water_produced_kg": water_produced_kg,
+        "isru_water_added_kg": water_added_kg,
         "isru_power_used_kw": power_used_kw,
         "isru_power_used_kwh": power_used_kw * hours_per_step,
 
