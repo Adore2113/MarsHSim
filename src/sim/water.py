@@ -97,23 +97,35 @@ def run_bpa(state, dt_min):
 #------------run water processor assembly------------♡
 def run_wpa(state, dt_min):
     hours_per_step = dt_min / 60
-    total_water_input_kg = state.gray_water_storage_kg + state.condensate_storage_kg
+    total_water_input_kg = state.gray_water_storage_kg + state.condensate_storage_kg + state.raw_isru_water_storage_kg
     
     if total_water_input_kg <= 0.1:
-        return {"recovered_water_kg": 0.0, "water_processed_kg": 0.0, "condensate_removed_kg":0.0, "gray_water_removed_kg": 0.0, "wpa_power_used_kw": 0.0, "wpa_energy_used_kwh": 0.0}
+        recovered_water_kg = 0.0
+        water_processed_kg = 0.0
+        condensate_removed_kg = 0.0
+        gray_water_removed_kg = 0.0
+        isru_water_removed_kg = 0.0
 
-    water_processed_kg = min(total_water_input_kg, wpa_handling_capacity_per_hour_kg * hours_per_step)
-    condensate_removed_kg = min(state.condensate_storage_kg, water_processed_kg)
-    remaining_wpa_handling_capacity_kg = water_processed_kg - condensate_removed_kg
-    gray_water_removed_kg = min(state.gray_water_storage_kg, remaining_wpa_handling_capacity_kg)
-    
-    recovered_water_kg = water_processed_kg * wpa_recovery_rate
-
-    if water_processed_kg > 0:
-        wpa_power_used_kw = base_wpa_power_kw
+        wpa_power_used_kw = 0.0
+        wpa_energy_used_kwh = 0.0
     
     else:
-        wpa_power_used_kw = 0.0
+        water_processed_kg = min(total_water_input_kg, wpa_handling_capacity_per_hour_kg * hours_per_step)
+        condensate_removed_kg = min(state.condensate_storage_kg, water_processed_kg)
+        
+        remaining_wpa_handling_capacity_kg = water_processed_kg - condensate_removed_kg
+        gray_water_removed_kg = min(state.gray_water_storage_kg, remaining_wpa_handling_capacity_kg)
+        
+        remaining_wpa_handling_capacity_kg -= gray_water_removed_kg
+        isru_water_removed_kg = min(state.raw_isru_water_storage_kg, remaining_wpa_handling_capacity_kg)
+
+        recovered_water_kg = water_processed_kg * wpa_recovery_rate
+
+        if water_processed_kg > 0:
+            wpa_power_used_kw = base_wpa_power_kw
+        
+        else:
+            wpa_power_used_kw = 0.0
 
     wpa_energy_used_kwh = wpa_power_used_kw * hours_per_step
 
@@ -122,6 +134,7 @@ def run_wpa(state, dt_min):
         "water_processed_kg": water_processed_kg,
         "condensate_removed_kg": condensate_removed_kg,
         "gray_water_removed_kg": gray_water_removed_kg,
+        "isru_water_removed_kg": isru_water_removed_kg,
 
         "wpa_power_used_kw": wpa_power_used_kw,
         "wpa_energy_used_kwh": wpa_energy_used_kwh,
@@ -138,6 +151,8 @@ def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results
     new_black_water_storage_kg = min(state.black_water_storage_capacity_kg, max(0.0, crew_water_results["new_black_water_storage_kg"] - upa_results["black_water_removed_kg"]))
     new_condensate_storage_kg = min(state.condensate_storage_capacity_kg, max(0.0, state.condensate_storage_kg + condensate_added_kg - wpa_results["condensate_removed_kg"]))
     new_brine_storage_kg = min(state.brine_storage_capacity_kg, max(0.0, state.brine_storage_kg + upa_results["brine_added_kg"] - bpa_results["water_processed_kg"]))
+    new_raw_isru_water_storage_kg = min(state.raw_isru_water_storage_capacity_kg, max(0.0, state.raw_isru_water_storage_kg - wpa_results["isru_water_removed_kg"])
+)
 
     #------------dict for updating state-------------♡ 
     state_updates = {
@@ -146,6 +161,7 @@ def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results
         "black_water_storage_kg": new_black_water_storage_kg,
         "condensate_storage_kg": new_condensate_storage_kg,
         "brine_storage_kg": new_brine_storage_kg,
+        "raw_isru_water_storage_kg": new_raw_isru_water_storage_kg,
     }
 
     #-----------dict for printing outputs------------♡ 
