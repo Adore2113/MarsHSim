@@ -306,11 +306,24 @@ s0 = Habitat_State(
     smoke_ppm = 0.0,
     radiation_msv_per_day = 0.7,
 
-    #----------------wellness lights-----------------♡
-
     #--------------------sabatier--------------------♡
-    sabatier_on =True,    # True for testing
-    #------------------------------------------------♡
+    sabatier_on = True,
+   
+    #----------------------isru----------------------♡
+    isru_on = False,
+
+    isru_pipes = [
+        {"id": 1, "status": "offline", "dust_factor": 1.0, "condition": 0.98, "type": "primary"},
+        {"id": 2, "status": "offline", "dust_factor": 1.0, "condition": 0.97, "type": "primary"},
+        {"id": 3, "status": "offline", "dust_factor": 1.0, "condition": 0.97, "type": "primary"},
+        
+        {"id": 4, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
+        {"id": 5, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
+        {"id": 6, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
+    ],
+
+    raw_isru_water_storage_kg = 0.0,
+    raw_isru_water_storage_capacity_kg = 0.0,
     )
 
 
@@ -342,75 +355,77 @@ def print_state(state, outputs, alerts):
     
     #-------------atmosphere / pressure--------------♡
     print(("\n♡      [   ATMOSPHERE    ]       ♡").center(width))  
-    print(f"{'Total Pressure:':<22} {mca(state):.2f} kPa")    
-    print(f"{'Oxygen:':<22} {state.o2_kpa:.2f} kPa")
-    print(f"{'Carbon Dioxide:':<22} {state.co2_kpa:.2f} kPa")
-    print(f"{'Nitrogen:':<22} {state.n2_kpa:.2f} kPa")
-    print(f"{'Argon:':<22} {state.ar_kpa:.2f} kPa\n")
+    # print(f"{'Total Pressure:':<22} {mca(state):.2f} kPa")    
+    # print(f"{'Oxygen:':<22} {state.o2_kpa:.2f} kPa")
+    # print(f"{'Carbon Dioxide:':<22} {state.co2_kpa:.2f} kPa")
+    # print(f"{'Nitrogen:':<22} {state.n2_kpa:.2f} kPa")
+    # print(f"{'Argon:':<22} {state.ar_kpa:.2f} kPa\n")
    
-    print(f"Gas Added: {outputs['total_buffer_gas_added_kpa']:.3f} kPa")
-    print(f"{'Gas Vented:':<22} {outputs.get('total_buffer_gas_vented_kpa', 0.0):.3f} kPa")
-    print(f"Buffer Gas Mode: {outputs['buffer_gas_mode']}")
-    print(f"Pressure Gap: {outputs['pressure_gap_kpa']:.3f} kPa")
+    # print(f"Gas Added: {outputs['total_buffer_gas_added_kpa']:.3f} kPa")
+    # print(f"{'Gas Vented:':<22} {outputs.get('total_buffer_gas_vented_kpa', 0.0):.3f} kPa")
+    # print(f"Buffer Gas Mode: {outputs['buffer_gas_mode']}")
+    # print(f"Pressure Gap: {outputs['pressure_gap_kpa']:.3f} kPa")
 
-    print(f"Total CO2 (atm + stored): {state.co2_kpa:.3f} kPa + {state.co2_stored_kg:.2f} kg")
-    print(f"H2 Stored: {state.h2_stored_kg:.2f} kg")
+    # print(f"Total CO2 (atm + stored): {state.co2_kpa:.3f} kPa + {state.co2_stored_kg:.2f} kg")
+    # print(f"H2 Stored: {state.h2_stored_kg:.2f} kg")
     print(f"Potable Water: {state.potable_water_storage_kg:.1f} kg")
 
     # #-------------------greenhouse-------------------♡
-    # print(("\n♡      [   GREENHOUSE   ]       ♡").center(width))
+    print(("\n♡      [   GREENHOUSE   ]       ♡").center(width))
     # print(f"{'Mode:':<22} {outputs.get('greenhouse_mode', 'offline')}")
     # print(f"{'Food Produced:':<22} {outputs.get('total_food_produced_kg', 0):.3f} kg")
 
-    # print(f"{'Water Needed:':<22} {outputs.get('total_water_needed_kg', 0):.3f} kg")
-    # print(f"{'Water Used:':<22} {outputs.get('total_water_consumed_kg', 0):.2f} kg")
-    # print(f"{'Water Recirculated:':<22} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
+    print(f"{'Water Needed:':<22} {outputs.get('total_water_needed_kg', 0):.3f} kg")
+    print(f"{'Water Used:':<22} {outputs.get('total_water_consumed_kg', 0):.2f} kg")
+    print(f"{'Water Recirculated:':<22} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
 
     # print(f"{'CO2 Consumed:':<22} {outputs.get('total_co2_consumed_kpa', 0):.3f} kPa")
     # print(f"{'O2 Produced:':<22} {outputs.get('total_o2_produced_kpa', 0):.3f} kPa")
 
-    # print(f"{'Transpiration:':<22} {outputs.get('transpiration_kg', 0):.3f} kg")
+    print(f"{'Transpiration:':<22} {outputs.get('transpiration_kg', 0):.3f} kg")
     # print(f"{'GH Heat Added:':<22} {outputs.get('total_greenhouse_heat_kw', 0):.3f} kW")
     # print(f"{'GH Power Used:':<22} {outputs.get('total_led_power_kw', 0):.2f} kW")
     
     # #--------------------sabatier--------------------♡
-    # print(("\n♡      [    SABATIER     ]       ♡").center(width))  
+    print(("\n♡      [    SABATIER     ]       ♡").center(width))  
     # print(f"{'Power Used:':<22} {outputs.get('sabatier_power_used_kw', 0):.2f} kW")
     # print(f"{'Heat Added:':<22} {outputs.get('sabatier_heat_added_kw', 0):.2f} kW")
-    # print(f"{'Water Produced:':<22} {outputs.get('sabatier_water_produced_kg', 0):.2f} kg")
+    print(f"{'Water Produced:':<22} {outputs.get('sabatier_water_produced_kg', 0):.2f} kg")
     # print(f"{'CH4 Produced:':<22} {outputs.get('sabatier_ch4_produced_kg', 0):.2f} kg")
     # print(f"{'CH4 Vented:':<22} {outputs.get('sabatier_ch4_vented_kg', 0):.2f} kg")
     # print(f"{'H2 Consumed:':<22} {outputs.get('sabatier_h2_consumed_kg', 0):.2f} kg")
     # print(f"{'CO2 Consumed:':<22} {outputs.get('sabatier_co2_consumed_kpa', 0):.3f} kPa")
 
     # #-------------------resources--------------------♡
-    # print(("\n♡         [ RESOURCES ]          ♡").center(width))
-    # print(f"{'Potable Water:':<22} {state.potable_water_storage_kg:.2f} kg")
+    print(("\n♡         [ RESOURCES ]          ♡").center(width))
+    print(f"{'Potable Water:':<22} {state.potable_water_storage_kg:.2f} kg")
     # print(f"{'H2 Stored:':<22} {state.h2_stored_kg:.2f} kg")
     # print(f"{'CH4 Stored:':<22} {state.ch4_stored_kg:.2f} kg")    
-    # print(f"{'Gray Water:':<22} {state.gray_water_storage_kg:.2f} kg")
-    # print(f"{'Black Water:':<22} {state.black_water_storage_kg:.2f} kg")
-    # print(f"{'Condensate:':<22} {state.condensate_storage_kg:.2f} kg")
-    # print(f"{'Brine:':<22} {state.brine_storage_kg:.2f} kg")
+    print(f"{'Gray Water:':<22} {state.gray_water_storage_kg:.2f} kg")
+    print(f"{'Black Water:':<22} {state.black_water_storage_kg:.2f} kg")
+    print(f"{'Condensate:':<22} {state.condensate_storage_kg:.2f} kg")
+    print(f"{'Brine:':<22} {state.brine_storage_kg:.2f} kg")
     # print(f"{'Hydrogen Stored:':<22} {state.h2_stored_kg:.2f} kg")
 
-    # #---------------------water----------------------♡
-    # print(("\n♡      [   WATER SYSTEM   ]      ♡").center(width))
-    # print(f"{'Potable Used:':<22} {outputs.get('potable_water_used_kg', 0):.2f} kg")
-    # print(f"{'OGA Water Used:':<22} {outputs.get('oga_water_used_kg', 0):.2f} kg")
-    # print(f"{'Gray Added:':<22} {outputs.get('gray_water_added_kg', 0):.2f} kg")
-    # print(f"{'Black Added:':<22} {outputs.get('black_water_added_kg', 0):.2f} kg")
-    # print(f"{'Condensate Added:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")
+    #---------------------water----------------------♡
+    print(("\n♡      [   WATER SYSTEM   ]      ♡").center(width))
+    print(f"{'Potable Used:':<22} {outputs.get('potable_water_used_kg', 0):.2f} kg")
+    print(f"{'OGA Water Used:':<22} {outputs.get('oga_water_used_kg', 0):.2f} kg")
+    print(f"{'Gray Added:':<22} {outputs.get('gray_water_added_kg', 0):.2f} kg")
+    print(f"{'Black Added:':<22} {outputs.get('black_water_added_kg', 0):.2f} kg")
+    print(f"{'Condensate Added:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")
     
-    # print(f"{'UPA Brine Added:':<22} {outputs.get('upa_brine_added_kg', 0):.2f} kg")
-    # print(f"{'UPA Black Removed:':<22} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
-    # print(f"{'WPA Processed:':<22} {outputs.get('wpa_water_processed_kg', 0):.2f} kg")
-    # print(f"{'BPA Processed:':<22} {outputs.get('bpa_water_processed_kg', 0):.2f} kg")
+    print(f"{'UPA Brine Added:':<22} {outputs.get('upa_brine_added_kg', 0):.2f} kg")
+    print(f"{'UPA Black Removed:':<22} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
+    print(f"{'WPA Processed:':<22} {outputs.get('wpa_water_processed_kg', 0):.2f} kg")
+    print(f"{'BPA Processed:':<22} {outputs.get('bpa_water_processed_kg', 0):.2f} kg")
     
-    # print(f"{'Total Recovered:':<22} {outputs.get('total_recovered_water_kg', 0):.2f} kg")
-    # print(f"{'UPA Recovered:':<22} {outputs.get('upa_recovered_water_kg', 0):.2f} kg")
-    # print(f"{'WPA Recovered:':<22} {outputs.get('wpa_recovered_water_kg', 0):.2f} kg")
-    # print(f"{'BPA Recovered:':<22} {outputs.get('bpa_recovered_water_kg', 0):.2f} kg")
+    print(f"{'Total Recovered:':<22} {outputs.get('total_recovered_water_kg', 0):.2f} kg")
+    print(f"{'UPA Recovered:':<22} {outputs.get('upa_recovered_water_kg', 0):.2f} kg")
+    print(f"{'WPA Recovered:':<22} {outputs.get('wpa_recovered_water_kg', 0):.2f} kg")
+    print(f"{'BPA Recovered:':<22} {outputs.get('bpa_recovered_water_kg', 0):.2f} kg")
+
+    print(f"Sabatier Water Produced: {outputs.get('sabatier_water_produced_kg', 0):.3f} kg")
 
     # #-------------------subsystems-------------------♡
     # print(("\n♡         [  SYSTEMS  ]          ♡").center(width))
@@ -437,7 +452,7 @@ def print_state(state, outputs, alerts):
     # print(f"{'Wellness Lights:':<22} {'ON' if state.wellness_lights_on else 'OFF'}")
 
     # #--------------------thermal---------------------♡
-    # print(("\n♡         [  THERMAL  ]          ♡").center(width))
+    print(("\n♡         [  THERMAL  ]          ♡").center(width))
     # print((f"\n♡  [THERMAL MODE: {outputs['hab_temp_mode']}]  ♡\n").center(width))
     # print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
     # print(f"{'Mars Temp:':<22} {outputs.get('mars_temp_c', state.mars_temp_c):.2f} °C")
@@ -447,8 +462,8 @@ def print_state(state, outputs, alerts):
     # print(f"{'Net Heat:':<22} {outputs.get('net_heat_kw', 0):.2f} kW")
     # print(f"{'Temp Trend:':<20} ~ {temp_change_per_hour:.3f} °C/hr")    
     
-    # print(f"{'Humidity:':<22} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
-    # print(f"{'Vapor Removed:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")
+    print(f"{'Humidity:':<22} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
+    print(f"{'Vapor Removed:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")
     
     # print(f"{'CHX Power Used:':<22} {outputs.get('chx_power_used_kw', 0):.2f} kW")
     # print(f"{'CHX Heat:':<22} {outputs.get('chx_heat_added_kw', 0):.2f} kW")
@@ -471,5 +486,5 @@ for i in range(288 * 5):   # 5 full sols (24h * 12 steps/hour * 5)
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
 
-    if i % 60 == 0:    # every hour = 12, 5 hours = 60
+    if i % 288 == 0:    # every hour = 12, 5 hours = 60, 10 hours = 120
         print_state(state, outputs, alerts)
