@@ -52,6 +52,7 @@ def solar_arrays_online(state):
 
             elif new_array["type"] == "backup" and primary_arrays_needed <= 2:
                 new_array["status"] = "online"
+                primary_arrays_needed -= 1
 
     #---------------switch to standby---------------♡ 
         elif new_array["status"] == "online":
@@ -89,22 +90,11 @@ def solar_generation(state, new_solar_arrays, dt_min):
     return total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array
 
 
-#--------save solar power generated to storage-------♡
-def solar_battery_charge(state, total_solar_generated_kwh):
-    if state.battery_stored_kwh < state.battery_max_capacity_kwh:
-        new_battery_stored_kwh = min(state.battery_max_capacity_kwh, state.battery_stored_kwh + total_solar_generated_kwh)
-
-    else:
-        new_battery_stored_kwh = state.battery_stored_kwh
-    
-    return new_battery_stored_kwh
-
-
 #-----------habitat main light power info------------♡
 def light_system(state, dt_min):
     hours_per_step = dt_min / 60
     _, sol_hour, minutes = get_sol_time(state)
-    
+
     sunlight_amount = get_sunlight_amount(state)
     low_sunlight_streak = state.low_sunlight_streak_sols
 
