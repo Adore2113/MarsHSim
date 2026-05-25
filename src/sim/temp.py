@@ -216,7 +216,8 @@ def radiators_online(state):
         for rad in state.radiators:
             new_rad = rad.copy()
 
-            if new_rad["type"] == "backup" or radiators_not_needed > 0:
+            if radiators_not_needed > 0 and new_rad["status"] == "online":
+                if new_rad["type"] == "backup" or radiators_not_needed > 0:
                     new_rad["status"] = "standby"
                     radiators_not_needed -= 1
                     radiators_online_count -= 1
@@ -363,7 +364,6 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
         "heater_power_kw": heater_power_kw,
         "heater_energy_kwh": heater_energy_kwh,
         
-        "thermal_alerts": hab_temp_mode,
         "net_heat_kw": net_heat_kw,
         "temp_change_c": temp_change_c,
         "hab_temp_mode": hab_temp_mode,
@@ -415,7 +415,7 @@ def run_chx(vapor_removed_kg, dt_min):
 
         chx_waste_heat_added_kw = chx_power_used_kw * base_chx_waste_heat_fraction       
 
-        chx_heat_added_kw = chx_waste_heat_added_kw - chx_cooling_kw
+        chx_heat_added_kw = max(0.0, chx_waste_heat_added_kw - chx_cooling_kw)
         chx_heat_added_kwh = chx_heat_added_kw * hours_per_step
     
     return chx_power_used_kw, chx_energy_used_kwh, chx_cooling_kw, chx_cooling_kwh, chx_heat_added_kw, chx_heat_added_kwh
