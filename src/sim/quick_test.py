@@ -323,7 +323,7 @@ s0 = Habitat_State(
     ],
 
     raw_isru_water_storage_kg = 0.0,
-    raw_isru_water_storage_capacity_kg = 0.0,
+    raw_isru_water_storage_capacity_kg = 1000.0,
     )
 
 
