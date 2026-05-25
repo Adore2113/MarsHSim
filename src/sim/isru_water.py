@@ -55,19 +55,21 @@ def pipes_in_use(state, dt_min):
         if timer > 0:
             timer -= dt_min
             new_pipe["timer"] = max(0.0, timer)
-        
+
+    #--------------changing pipe status--------------♡ 
         if status == "deploying" and new_pipe["timer"] <= 0:
             new_pipe["status"] = "extracting"
             new_pipe["timer"] = 0.0
 
-        if status == "retracting" and new_pipe["timer"] <= 0:
+        elif status == "retracting" and new_pipe["timer"] <= 0:
             new_pipe["status"] = "offline"
             new_pipe["timer"] = 0.0
 
-        elif status == "offline" and (extracting_count + deploying_count) < target_pipes_online:
-                new_pipe["status"] = "deploying"
-                new_pipe["timer"] = pipe_deploy_time_min
-                deploying_count += 1
+        elif status in ("offline", "retracting") and (extracting_count + deploying_count) < target_pipes_online:
+                if new_pipe["type"] == "primary" or (new_pipe["type"] == "backup" and extracting_count == 0):
+                    new_pipe["status"] = "deploying"
+                    new_pipe["timer"] = pipe_deploy_time_min
+                    deploying_count += 1
 
         elif status in ("extracting", "deploying") and (extracting_count + deploying_count) > target_pipes_online:
             if new_pipe["type"] == "backup" or extracting_count > target_pipes_online:
@@ -87,26 +89,46 @@ def pipes_in_use(state, dt_min):
 #--------------------isru process--------------------♡
 def run_isru(state, dt_min):
     hours_per_step = dt_min / 60.0
-    new_pipes, pipes_online_count = pipes_in_use(state, dt_min)
 
+    #--------------default isru values--------------♡
+    isru_mode = "offline"
     water_added_kg = 0.0
     power_used_kw = 0.0
     heat_added_kw = 0.0
+
     new_raw_isru_water_storage_kg = state.raw_isru_water_storage_kg + water_added_kg
+    new_pipes, pipes_extracting = pipes_in_use(state, dt_min)
 
-    if state.isru_on and pipes_online_count > 0:
-        ice_melted_kg = base_extract_rate_kg_per_hour * pipes_online_count * hours_per_step
-        raw_water_added_kg = ice_melted_kg * pipe_efficiency
+    pipes_deploying = sum(1 for p in new_pipes if p["status"] == "deploying")
+    pipes_retracting = sum(1 for p in new_pipes if p["status"] == "retracting")
 
-        storage_room_left_kg = state.raw_isru_water_storage_capacity_kg - state.raw_isru_water_storage_kg
-        water_added_kg = min(raw_water_added_kg, storage_room_left_kg)
-        new_raw_isru_water_storage_kg = state.raw_isru_water_storage_kg + water_added_kg
-        
-        power_used_kw = base_heated_pipe_power_kw * pipes_online_count
-        heat_added_kw = power_used_kw * 0.85
-    
     if not state.isru_on:
-        pipes_online_count = 0
+        irsu_mode = "offline"
+        for pipe in new_pipes:
+            if pipe["status"] in ("deploying", "extracting"):
+                pipe["status"] = "retracting"
+                pipe["timer"] = pipe_retract_time_min
+
+    else:
+        if pipes_extracting == 0 and pipes_deploying == 0:
+            isru_mode = "idle"
+
+    #------------------isru running-----------------♡  
+        else:
+            isru_mode = "running"
+        
+        if pipes_extracting > 0:
+
+            ice_melted_kg = base_extract_rate_kg_per_hour * pipes_extracting * hours_per_step
+            raw_water_added_kg = ice_melted_kg * pipe_efficiency
+
+            storage_room_left_kg = state.raw_isru_water_storage_capacity_kg - state.raw_isru_water_storage_kg
+            water_added_kg = min(raw_water_added_kg, storage_room_left_kg)
+            new_raw_isru_water_storage_kg = state.raw_isru_water_storage_kg + water_added_kg
+            
+            active_pipes = pipes_extracting + pipes_deploying
+            power_used_kw = base_heated_pipe_power_kw * active_pipes
+            heat_added_kw = power_used_kw * 0.85
 
     #------------dict for updating state-------------♡ 
     isru_updates = {
@@ -116,13 +138,16 @@ def run_isru(state, dt_min):
     
     #-----------dict for printing outputs------------♡ 
     isru_outputs = {
+        "isru_mode": isru_mode,
         "isru_raw_water_added_kg": water_added_kg,
         "isru_power_used_kw": power_used_kw,
         "isru_power_used_kwh": power_used_kw * hours_per_step,
-
         "isru_heat_added_kw": heat_added_kw,
         "isru_heat_added_kwh": heat_added_kw * hours_per_step,
-        "pipes_online_count": pipes_online_count,
+        "pipes_extracting": pipes_extracting,
+        "pipes_deploying": pipes_deploying,
+        "pipes_retracting": pipes_retracting,
+        "total_pipes_active": pipes_extracting + pipes_deploying,
     }
 
     return isru_updates, isru_outputs
