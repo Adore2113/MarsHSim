@@ -13,6 +13,10 @@ base_bpa_power_kw = 0.75
 upa_handling_capacity_per_hour_kg = 12.0
 wpa_handling_capacity_per_hour_kg = 16.0
 bpa_handling_capacity_per_hour_kg = 0.15
+
+upa_power_used_fraction = 0.55
+wpa_power_used_fraction = 0.60
+bpa_power_used_fraction = 0.70
 #----------------------------------------------------♡
 
 
@@ -40,18 +44,19 @@ def crew_water_usage(state, crew_results, dt_min):
 #------------run urine processor assembly------------♡
 def run_upa(state, dt_min):
     hours_per_step = dt_min / 60
-
+    
+    upa_mode = "offline"
     recovered_water_kg = 0.0
     brine_added_kg = 0.0
     black_water_removed_kg = 0.0
     upa_power_used_kw = 0.0
-    upa_energy_used_kwh = 0.0
     
-    if state.black_water_storage_kg > 0.1:
+    if state.upa_on and state.black_water_storage_kg > 0.1:
+        upa_mode = "running"
         black_water_removed_kg = min(state.black_water_storage_kg, upa_handling_capacity_per_hour_kg * hours_per_step)
-        
         recovered_water_kg = black_water_removed_kg * upa_recovery_rate
         brine_added_kg = black_water_removed_kg  * (1 - upa_recovery_rate)
+        upa_power_used_kw = base_bpa_power_kw
 
     upa_energy_used_kwh = upa_power_used_kw * hours_per_step
 
@@ -78,8 +83,8 @@ def run_bpa(state, dt_min):
     if state.brine_storage_kg > 0.1:    
         water_processed_kg = min(state.brine_storage_kg, bpa_handling_capacity_per_hour_kg * hours_per_step)
         recovered_water_kg = water_processed_kg * bpa_recovery_rate
-
-    bpa_energy_used_kwh = bpa_power_used_kw * hours_per_step
+        bpa_power_used_kw = base_upa_power_kw
+        bpa_energy_used_kwh = bpa_power_used_kw * hours_per_step
 
     return {
         "recovered_water_kg": recovered_water_kg,
