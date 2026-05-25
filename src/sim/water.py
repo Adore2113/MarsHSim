@@ -47,7 +47,7 @@ def crew_water_usage(state, crew_results, dt_min):
 
 #------------run urine processor assembly------------♡
 def run_upa(state, dt_min):
-    hours_per_step = dt_min / 60.0
+    hours_per_step = dt_min / 60
     
     upa_mode = "offline"
     recovered_water_kg = 0.0
@@ -61,7 +61,6 @@ def run_upa(state, dt_min):
     
     elif state.black_water_storage_kg > 0.1 + upa_hysteresis_kg:
         upa_mode = "running"
-        
         max_available_kg = upa_handling_capacity_per_hour_kg * hours_per_step
         black_water_removed_kg = min(state.black_water_storage_kg, max_available_kg)
         
@@ -102,22 +101,45 @@ def run_upa(state, dt_min):
 def run_bpa(state, dt_min):
     hours_per_step = dt_min / 60
 
+    bpa_mode = "offline"
     recovered_water_kg = 0.0
     water_processed_kg = 0.0
     bpa_power_used_kw = 0.0
     bpa_energy_used_kwh = 0.0
 
-    if state.brine_storage_kg > 0.1:    
-        water_processed_kg = min(state.brine_storage_kg, bpa_handling_capacity_per_hour_kg * hours_per_step)
-        recovered_water_kg = water_processed_kg * bpa_recovery_rate
-        bpa_power_used_kw = base_upa_power_kw
-        bpa_energy_used_kwh = bpa_power_used_kw * hours_per_step
+    if not state.bpa_on:
+        bpa_mode = "offline"
 
+    elif state.brine_storage_kg > 0.1 + bpa_hysteresis_kg:    
+        bpa_mode = "running"
+        max_avaliable_kg = bpa_handling_capacity_per_hour_kg * hours_per_step
+        water_processed_kg = min(state.brine_storage_kg, max_avaliable_kg)
+        recovered_water_kg = water_processed_kg * bpa_recovery_rate
+        
+        if max_avaliable_kg > 0:
+            amount_factor = water_processed_kg / max_avaliable_kg
+        else:
+            amount_factor = 0.0
+        
+        baseline_power = base_bpa_power_kw * (1 - bpa_power_fraction)
+        power_increase = base_bpa_power_kw * bpa_power_fraction * amount_factor
+        
+        bpa_power_used_kw = baseline_power + power_increase
+        bpa_heat_added_kw = bpa_power_used_kw * 0.85
+
+    else:
+            bpa_mode = "idle"
+            bpa_power_used_kw = base_bpa_power_kw * 0.20
+            bpa_heat_added_kw = bpa_power_used_kw * 0.85        
+    
     return {
+        "bpa_mode": bpa_mode,
         "recovered_water_kg": recovered_water_kg,
         "water_processed_kg": water_processed_kg,
         "bpa_power_used_kw": bpa_power_used_kw,
-        "bpa_energy_used_kwh": bpa_energy_used_kwh,
+        "bpa_energy_used_kwh": bpa_power_used_kw * hours_per_step,
+        "bpa_heat_added_kw": bpa_heat_added_kw,
+        "bpa_heat_added_kwh": bpa_heat_added_kw * hours_per_step,
     }
 
 
