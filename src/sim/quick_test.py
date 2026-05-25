@@ -301,6 +301,10 @@ s0 = Habitat_State(
     condensate_storage_capacity_kg = 250.0,
     brine_storage_capacity_kg = 400.0,
 
+    upa_on = True,
+    bpa_on = True,
+    wpa_on = True,
+
     #------------------placeholders------------------♡
     leak_rate_kpa_per_hr = 0.0,
     smoke_ppm = 0.0,
@@ -310,7 +314,7 @@ s0 = Habitat_State(
     sabatier_on = True,
    
     #----------------------isru----------------------♡
-    isru_on = False,
+    isru_on = True,
 
     isru_pipes = [
         {"id": 1, "status": "offline", "dust_factor": 1.0, "condition": 0.98, "type": "primary"},
