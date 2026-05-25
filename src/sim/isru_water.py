@@ -29,8 +29,6 @@ def pipes_in_use(state, dt_min):
         elif pipe["status"] == "retracting":
             retracting_count += 1
 
-    pipes_online_count = sum(1 for pipe in state.isru_pipes if pipe["status"] == "online")
-
     #----------how many pipes needed online----------♡ 
     if state.potable_water_storage_kg < water_to_auto_activate_kg:
         target_pipes_online = max_pipes_online
@@ -103,7 +101,7 @@ def run_isru(state, dt_min):
     pipes_retracting = sum(1 for p in new_pipes if p["status"] == "retracting")
 
     if not state.isru_on:
-        irsu_mode = "offline"
+        isru_mode = "offline"
         for pipe in new_pipes:
             if pipe["status"] in ("deploying", "extracting"):
                 pipe["status"] = "retracting"
