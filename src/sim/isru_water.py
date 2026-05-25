@@ -56,9 +56,13 @@ def pipes_in_use(state, dt_min):
             timer -= dt_min
             new_pipe["timer"] = max(0.0, timer)
         
-        elif status == "deploying" and new_pipe["timer"] <= 0:
+        if status == "deploying" and new_pipe["timer"] <= 0:
             new_pipe["status"] = "extracting"
-            new_pipe["timer"] = max(0.0, timer)
+            new_pipe["timer"] = 0.0
+
+        if status == "retracting" and new_pipe["timer"] <= 0:
+            new_pipe["status"] = "offline"
+            new_pipe["timer"] = 0.0
 
         elif status == "offline" and (extracting_count + deploying_count) < target_pipes_online:
                 new_pipe["status"] = "deploying"
@@ -83,7 +87,7 @@ def pipes_in_use(state, dt_min):
 #--------------------isru process--------------------♡
 def run_isru(state, dt_min):
     hours_per_step = dt_min / 60.0
-    new_pipes, pipes_online_count = pipes_in_use(state)
+    new_pipes, pipes_online_count = pipes_in_use(state, dt_min)
 
     water_added_kg = 0.0
     power_used_kw = 0.0
