@@ -277,11 +277,14 @@ def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg
         "wpa_power_used_kw": wpa_results["wpa_power_used_kw"],
         "wpa_energy_used_kwh": wpa_results["wpa_energy_used_kwh"],
 
+        "bpa_mode": bpa_results["bpa_mode"],
         "bpa_recovered_water_kg": bpa_results["recovered_water_kg"],
         "bpa_water_processed_kg": bpa_results["water_processed_kg"],
         "bpa_power_used_kw": bpa_results["bpa_power_used_kw"],
         "bpa_energy_used_kwh": bpa_results["bpa_energy_used_kwh"],
-
+        "bpa_heat_added_kw": bpa_results["bpa_heat_added_kw"],
+        "bpa_heat_added_kwh": bpa_results["bpa_heat_added_kwh"],
+        
         "total_recovered_water_kg": water_storage_outputs["total_recovered_water_kg"],
     }
 
