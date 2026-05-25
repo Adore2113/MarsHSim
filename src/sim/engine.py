@@ -26,7 +26,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
         
-        #-------time / solar / daylight-------♡
+    #-------time / solar / daylight-------♡
     previous_sol_number = current_sol_number(state.mission_time_s)
     new_sol_number = current_sol_number(next_time_s)
     new_sol_started = new_sol_number != previous_sol_number
@@ -51,17 +51,17 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         low_sunlight_streak_sols = new_low_sunlight_streak_sols
         )
     
-        #----------------crew-----------------♡
+    #----------------crew-----------------♡
     crew_results = total_crew_metabolism(new_state, dt_min) 
 
-        #-------------greenhouse--------------♡
+    #-------------greenhouse--------------♡
     greenhouse_updates, greenhouse_outputs = run_greenhouse(new_state, dt_min)
     new_state = replace(new_state, **greenhouse_updates)
 
-        #--------------sabatier---------------♡
+    #--------------sabatier---------------♡
     sabatier_updates, sabatier_outputs = run_sabatier(new_state, dt_min)
 
-        #-------------atmosphere--------------♡
+    #-------------atmosphere--------------♡
     o2_after_crew_kpa = new_state.o2_kpa - crew_results["o2_drop_kpa"]
     co2_after_crew_kpa = new_state.co2_kpa + crew_results["co2_rise_kpa"]
 
@@ -73,16 +73,16 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     co2_scrubber_updates, co2_scrubber_outputs = run_co2_scrub(new_state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time_s, dt_min)
     oga_updates, oga_outputs = run_oga(new_state, o2_after_greenhouse_kpa, dt_min)
 
-        #-------------buffer gas--------------♡
+    #-------------buffer gas--------------♡
     buffer_gas_updates, buffer_gas_outputs = run_buffer_gas_control(new_state, dt_min)
  
-        #--------------humidity---------------♡
+    #--------------humidity---------------♡
     humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], greenhouse_outputs.get("total_transpiration_kg", 0.0), dt_min)
 
-        #----------------isru-----------------♡
+    #----------------isru-----------------♡
     isru_updates, isru_outputs = run_isru(new_state, dt_min)
 
-        #----------------water----------------♡
+    #----------------water----------------♡
     water_updates, water_outputs = run_water_system(
         new_state,
         crew_results,
@@ -95,10 +95,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         dt_min
     )
 
-        #---------------lights----------------♡
+    #---------------lights----------------♡
     light_results = light_system(new_state, dt_min)
  
-        #--------------thermal----------------♡
+    #--------------thermal----------------♡
     thermal_updates, thermal_outputs = run_thermal_control(
         new_state,
         crew_results["crew_temp_rise_kw"],
@@ -113,10 +113,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         current_sunlight_amount
     )
        
-        #----------------dust-----------------♡
+    #----------------dust-----------------♡
     dust_results = get_dust_accumulation(new_state, dt_min)
 
-        #----------------power----------------♡
+    #----------------power----------------♡
     power_updates, power_outputs = run_system_power(
         new_state,
         co2_scrubber_outputs,
@@ -127,6 +127,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         greenhouse_outputs,
         water_outputs,
         sabatier_outputs,
+        isru_outputs,
         dt_min
     )
 
@@ -153,42 +154,20 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
 #--------------------outputs dict--------------------♡
     outputs = {
-        #----------------crew-----------------♡
         "crew_heat_kw": crew_results["crew_temp_rise_kw"],
-
-        #--------------humidity---------------♡
         "breath_vapor_added_kg": crew_results["breath_vapor_added_kg"],
         "skin_vapor_added_kg": crew_results["skin_vapor_added_kg"],
     }
-
-    #--------------oxygen system / OGA---------------♡
+    
     outputs.update(oga_outputs)
-
-    #------------------co2_scrubber------------------♡
     outputs.update(co2_scrubber_outputs)
-
-    #-------------------buffer gas-------------------♡
     outputs.update(buffer_gas_outputs)
-
-    #-----------------humidity (CHX)-----------------♡
     outputs.update(humidity_results)
-
-    #---------------------isru----------------------♡
     outputs.update(isru_outputs)
-
-    #---------------------water----------------------♡
     outputs.update(water_outputs)
-
-    #-------------------greenhouse-------------------♡
     outputs.update(greenhouse_outputs)
-
-    #--------------------thermal---------------------♡
     outputs.update(thermal_outputs)
-
-    #---------------------power----------------------♡
     outputs.update(power_outputs)
-
-    #-------------------sabatier---------------------♡
     outputs.update(sabatier_outputs)
 
     return new_state, outputs
