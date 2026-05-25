@@ -188,6 +188,10 @@ class Habitat_State:
     black_water_storage_capacity_kg: float
     condensate_storage_capacity_kg: float
     brine_storage_capacity_kg: float 
+
+    upa_on: bool
+    bpa_on: bool
+    wpa_on: bool
     
     #------------------placeholders------------------♡
     leak_rate_kpa_per_hr: float
