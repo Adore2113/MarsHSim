@@ -14,9 +14,13 @@ upa_handling_capacity_per_hour_kg = 12.0
 wpa_handling_capacity_per_hour_kg = 16.0
 bpa_handling_capacity_per_hour_kg = 0.15
 
-upa_power_used_fraction = 0.55
-wpa_power_used_fraction = 0.60
-bpa_power_used_fraction = 0.70
+upa_power_fraction = 0.45
+wpa_power_fraction = 0.50
+bpa_power_fraction = 0.40
+
+upa_hysteresis_kg = 2.0
+wpa_hysteresis_kg = 4.0
+bpa_hysteresis_kg = 2.0
 #----------------------------------------------------♡
 
 
@@ -43,31 +47,54 @@ def crew_water_usage(state, crew_results, dt_min):
 
 #------------run urine processor assembly------------♡
 def run_upa(state, dt_min):
-    hours_per_step = dt_min / 60
+    hours_per_step = dt_min / 60.0
     
     upa_mode = "offline"
     recovered_water_kg = 0.0
     brine_added_kg = 0.0
     black_water_removed_kg = 0.0
     upa_power_used_kw = 0.0
-    
-    if state.upa_on and state.black_water_storage_kg > 0.1:
-        upa_mode = "running"
-        black_water_removed_kg = min(state.black_water_storage_kg, upa_handling_capacity_per_hour_kg * hours_per_step)
-        recovered_water_kg = black_water_removed_kg * upa_recovery_rate
-        brine_added_kg = black_water_removed_kg  * (1 - upa_recovery_rate)
-        upa_power_used_kw = base_bpa_power_kw
+    upa_heat_added_kw = 0.0
 
-    upa_energy_used_kwh = upa_power_used_kw * hours_per_step
+    if not state.upa_on:
+        upa_mode = "offline"
+    
+    elif state.black_water_storage_kg > 0.1 + upa_hysteresis_kg:
+        upa_mode = "running"
+        
+        max_available_kg = upa_handling_capacity_per_hour_kg * hours_per_step
+        black_water_removed_kg = min(state.black_water_storage_kg, max_available_kg)
+        
+        recovered_water_kg = black_water_removed_kg * upa_recovery_rate
+        brine_added_kg = black_water_removed_kg * (1 - upa_recovery_rate)
+        
+        if max_available_kg > 0:
+            amount_factor = black_water_removed_kg / max_available_kg
+
+        else:  
+            amount_factor = 0.0
+
+        baseline_power = base_upa_power_kw * (1 - upa_power_fraction)
+        power_increase = base_upa_power_kw * upa_power_fraction * amount_factor
+        
+        upa_power_used_kw = baseline_power + power_increase
+        upa_heat_added_kw = upa_power_used_kw * 0.85
+
+    else:
+        upa_mode = "idle"
+        upa_power_used_kw = base_upa_power_kw * 0.15
+        upa_heat_added_kw = upa_power_used_kw * 0.85
 
     return {
+    "upa_mode": upa_mode,
     "recovered_water_kg": recovered_water_kg,
     "brine_added_kg": brine_added_kg,
-
     "black_water_removed_kg": black_water_removed_kg,
 
     "upa_power_used_kw": upa_power_used_kw,
-    "upa_energy_used_kwh": upa_energy_used_kwh
+    "upa_energy_used_kwh": upa_power_used_kw * hours_per_step,
+    "upa_heat_added_kw": upa_heat_added_kw,
+    "upa_heat_added_kwh": upa_heat_added_kw * hours_per_step,
     }
 
 
