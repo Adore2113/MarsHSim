@@ -34,15 +34,15 @@ def determine_mars_temp_c(state):
     season = current_mars_season(state)
     sunlight = get_sunlight_amount(state)
 
-    if season == "north_spring":
+    if season == "northern_spring":
         base_temp_c = -10.0
         day_night_variation = 12.0
     
-    elif season == "north_summer":
+    elif season == "northern_summer":
         base_temp_c = 0.0
         day_night_variation = 15.0
     
-    elif season == "north_autumn":
+    elif season == "northern_autumn":
         base_temp_c = -15.0
         day_night_variation = 12.0
     
