@@ -256,19 +256,20 @@ def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg
         "gray_water_added_kg": crew_water_results["gray_water_added_kg"],
         "black_water_added_kg": crew_water_results["black_water_added_kg"],
         "condensate_added_kg": condensate_added_kg,
-        
         "greenhouse_transpiration_kg": greenhouse_transpiration_kg,
         "greenhouse_water_used_kg": greenhouse_water_used_kg,
         "greenhouse_runoff_water_kg": greenhouse_runoff_water_kg,
         "wpa_isru_water_removed_kg": wpa_results["isru_water_removed_kg"],
-
         "oga_water_used_kg": oga_water_used_kg,
 
+        "upa_mode": upa_results["upa_mode"],
         "upa_recovered_water_kg": upa_results["recovered_water_kg"],
         "upa_brine_added_kg": upa_results["brine_added_kg"],
         "upa_black_water_removed_kg": upa_results["black_water_removed_kg"],
         "upa_power_used_kw": upa_results["upa_power_used_kw"],
         "upa_energy_used_kwh": upa_results["upa_energy_used_kwh"],
+        "upa_heat_added_kw": upa_results["upa_heat_added_kw"],
+        "upa_heat_added_kwh": upa_results["upa_heat_added_kwh"],
 
         "wpa_mode": wpa_results["wpa_mode"],
         "wpa_recovered_water_kg": wpa_results["recovered_water_kg"],
@@ -279,7 +280,7 @@ def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg
         "wpa_energy_used_kwh": wpa_results["wpa_energy_used_kwh"],
         "wpa_heat_added_kw": wpa_results["wpa_heat_added_kw"],
         "wpa_heat_added_kwh": wpa_results["wpa_heat_added_kwh"],
-        
+
         "bpa_mode": bpa_results["bpa_mode"],
         "bpa_recovered_water_kg": bpa_results["recovered_water_kg"],
         "bpa_water_processed_kg": bpa_results["water_processed_kg"],
@@ -287,7 +288,7 @@ def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg
         "bpa_energy_used_kwh": bpa_results["bpa_energy_used_kwh"],
         "bpa_heat_added_kw": bpa_results["bpa_heat_added_kw"],
         "bpa_heat_added_kwh": bpa_results["bpa_heat_added_kwh"],
-        
+
         "total_recovered_water_kg": water_storage_outputs["total_recovered_water_kg"],
     }
 
