@@ -20,7 +20,7 @@ bpa_power_fraction = 0.40
 
 upa_hysteresis_kg = 2.0
 wpa_hysteresis_kg = 4.0
-bpa_hysteresis_kg = 2.0
+bpa_hysteresis_kg = 0.5
 #----------------------------------------------------♡
 
 
@@ -105,19 +105,19 @@ def run_bpa(state, dt_min):
     recovered_water_kg = 0.0
     water_processed_kg = 0.0
     bpa_power_used_kw = 0.0
-    bpa_energy_used_kwh = 0.0
+    bpa_heat_added_kw = 0.0
 
     if not state.bpa_on:
         bpa_mode = "offline"
 
     elif state.brine_storage_kg > 0.1 + bpa_hysteresis_kg:    
         bpa_mode = "running"
-        max_avaliable_kg = bpa_handling_capacity_per_hour_kg * hours_per_step
-        water_processed_kg = min(state.brine_storage_kg, max_avaliable_kg)
+        max_available_kg = bpa_handling_capacity_per_hour_kg * hours_per_step
+        water_processed_kg = min(state.brine_storage_kg, max_available_kg)
         recovered_water_kg = water_processed_kg * bpa_recovery_rate
         
-        if max_avaliable_kg > 0:
-            amount_factor = water_processed_kg / max_avaliable_kg
+        if max_available_kg > 0:
+            amount_factor = water_processed_kg / max_available_kg
         else:
             amount_factor = 0.0
         
@@ -164,8 +164,8 @@ def run_wpa(state, dt_min):
     elif total_water_input_kg > 0.1 + wpa_hysteresis_kg:
         wpa_mode = "running"
         
-        max_avaliable_kg = wpa_handling_capacity_per_hour_kg * hours_per_step
-        water_processed_kg = min(total_water_input_kg, max_avaliable_kg)
+        max_available_kg = wpa_handling_capacity_per_hour_kg * hours_per_step
+        water_processed_kg = min(total_water_input_kg, max_available_kg)
         
         condensate_removed_kg = min(state.condensate_storage_kg, water_processed_kg)
         remaining = water_processed_kg - condensate_removed_kg
@@ -177,8 +177,8 @@ def run_wpa(state, dt_min):
 
         recovered_water_kg = water_processed_kg * wpa_recovery_rate
 
-        if max_avaliable_kg > 0:
-            amount_factor = water_processed_kg / max_avaliable_kg
+        if max_available_kg > 0:
+            amount_factor = water_processed_kg / max_available_kg
         else:
             amount_factor = 0.0
 
