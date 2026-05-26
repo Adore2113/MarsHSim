@@ -16,7 +16,7 @@ base_oga_heat_kw = 1.2
 
 safety_backup_water_kg = 30.0
 hysteresis_kpa = 0.002
-water_kg_per_o2_kg = 1.125
+water_kg_per_o2_kg = 1.11   # electrolysis
 #----------------------------------------------------♡
 
 
@@ -31,25 +31,32 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
     water_used_kg = 0.0
     limited_by_water = False 
 
+    sabatier_power_used_kw = 0.0
+    oga_power_used_kw = 0.0
+    oga_heat_added_kw = 0.0
+
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
 
     #-------------------oga modes-------------------♡  
-    if o2_needed_kpa <= hysteresis_kpa:
+    if not state.oga_on:
+        oga_mode = "offline"
+        oga_power_used_kw = 0.0
+        oga_heat_added_kw = 0.0
+
+    elif o2_needed_kpa <= hysteresis_kpa:
         oga_mode = "idle"
+        oga_power_used_kw = 0.15
+        oga_heat_added_kw = 0.4
 
     else:
         oga_mode = "running"
-
-    #------------------oga running------------------♡
-    if oga_mode == "running":
+        
         o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))
         
-        o2_produced_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
-        o2_produced_kg = (o2_produced_moles * o2_molar_mass) / 1000
+        o2_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
+        o2_produced_kg = (o2_moles * o2_molar_mass) / kg_per_g
      
-        h2_produced_moles = o2_produced_moles * 2
-        h2_produced_kg = (h2_produced_moles * h2_molar_mass) / 1000
-    
+        h2_produced_kg = o2_produced_kg * (2 * h2_molar_mass) / o2_molar_mass
         water_used_kg = o2_produced_kg * water_kg_per_o2_kg
 
     #--------------water storage check--------------♡
@@ -62,26 +69,16 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
             h2_produced_kg = 0.0
             o2_added_kpa = 0.0
         
-    #----------power usage / heat per mode----------♡  
-    if oga_mode in ("offline", "idle"):
-        power_used_kw = 0.1
-        heat_added_kw = 0.5
-    
-    elif oga_mode == "limited_water":
-        power_used_kw = base_oga_power_kw * 0.60
-        heat_added_kw = base_oga_heat_kw * 0.60
+            power_used_kw = base_oga_power_kw * 0.55
+            heat_added_kw = base_oga_heat_kw * 0.55
 
-    elif oga_mode == "running":
-        power_used_kw = base_oga_power_kw
-        heat_added_kw = base_oga_heat_kw
-    
-    else:
-        power_used_kw = 0.0
-        heat_added_kw = 0.0
+        else:  
+            power_used_kw = base_oga_power_kw
+            heat_added_kw = base_oga_heat_kw
+
 
     #---------------handling excess o2---------------♡ 
     new_o2_kpa = o2_after_crew_kpa + o2_added_kpa
-
     o2_control_mode = "normal"
     o2_stored_kg = 0.0
     o2_vented_kg = 0.0
