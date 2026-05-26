@@ -69,6 +69,7 @@ class Habitat_State:
     heaters: list
 
     #-------------------atmosphere-------------------♡
+    oga_on: bool
     base_gas_leak_kpa_per_hour: int
 
     #-------gas leak rates---------♡
