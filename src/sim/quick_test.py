@@ -8,8 +8,8 @@ from .alerts import get_alerts, get_status
 
 
 s0 = Habitat_State(
-    #-----------------habitat layout-----------------♡
     hab_vol_m3 = 2000.0,
+    power_mode = "normal",
 
     #---------------time and daylight----------------♡
     mission_time_s = 0,
@@ -192,6 +192,9 @@ s0 = Habitat_State(
     ],
 
 #-------------------atmosphere-------------------♡
+    oga_on = True,
+    base_gas_leak_kpa_per_hour = 0.004,
+
      #-------gas leak rates---------♡
     o2_leak_rate_kpa_per_hr = 0.006,
     n2_leak_rate_kpa_per_hr = 0.007,
@@ -199,8 +202,6 @@ s0 = Habitat_State(
     ch4_leak_rate_kpa_per_hr = 0.012,
     h2_leak_rate_kpa_per_hr = 0.025,    # hydrogen leaks the fastest
     co2_leak_rate_kpa_per_hr = 0.005,
-
-    base_gas_leak_kpa_per_hour = 0.004,
 
     #---------gas targets----------♡    
     target_pressure_kpa = 65.0,

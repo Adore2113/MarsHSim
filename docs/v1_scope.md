@@ -351,7 +351,7 @@
 
 
 ### Sabatier Notes:
-    ♡ reactions_avaliable is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
+    ♡ reactions_available is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
 
 
 

@@ -666,7 +666,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ using a hysteresis to avoid jumpy on and off reactions
 
-    ♡ reactions_avaliable is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
+    ♡ reactions_available is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
 
     ♡ I realize I actually put the mode decision in the main function for running the sabatier and also the OGA actually, and I didn't in the other files. I've been changing things and upgrading how I'm doing things so eventually I will need to go through all of the files that I worked on first.
 
@@ -756,7 +756,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ going to add to my habitat size after I have the greenhouse set up, so for now I'm going to treat it as if it is a seperate building, running on all the same systems
 
-    ♡ I like the idea of the plants having a set percentage of sunlight that is let in, so even if it's low they're still getting at least a good portion of what IS avaliable, but I'm not entirely sure I'll stick with 70
+    ♡ I like the idea of the plants having a set percentage of sunlight that is let in, so even if it's low they're still getting at least a good portion of what IS available, but I'm not entirely sure I'll stick with 70
 
     ♡ trying to set up my file so that it will be easy to incorporate changing seasons and days without sunlight, ect.
 
@@ -917,4 +917,24 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ I realized that I didn't have water runoff from the greenhouse, so I implemented that today and also fixed and cleaned up water.py, after including the for now very basic isru system
 
 #### Next Session:
-    ♡ fix new variables in engine and update irsu to include pipe retracting and extracting, dust buildup per pipe, efficency loss, ect.
+    ♡ add new variables in engine and update irsu to include pipe retracting and extracting, dust buildup per pipe, efficency loss, ect.
+    
+    ♡ include isru to systems in README.md
+
+
+##      05/24/2026
+    ♡ adding in new variables in engine for greenhouse runoff and also water isru
+
+    ♡ added water isru subsystem to readme
+
+
+##      05/25/2026
+    ♡ fixing isru and added modes, and pipe retraction and extraction
+
+    ♡ going over water file, adding hysteresis and updating power used logic to make it more similar to co2_scrub.py
+
+    ♡ updated power usage in water.py
+
+    ♡ updating systems to include low power mode
+
+    ♡ fixed venting logic in oxygen.py
