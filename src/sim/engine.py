@@ -25,7 +25,7 @@ default_dt_min = 5
 def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
-        
+
     #-------time / solar / daylight-------♡
     previous_sol_number = current_sol_number(state.mission_time_s)
     new_sol_number = current_sol_number(next_time_s)
@@ -96,8 +96,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     )
 
     #---------------lights----------------♡
-    light_results = light_system(new_state, dt_min)
- 
+    light_results = light_system(new_state, dt_min, new_state.power_mode)
+
     #--------------thermal----------------♡
     thermal_updates, thermal_outputs = run_thermal_control(
         new_state,
@@ -145,7 +145,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
         "solar_arrays": dust_results["new_solar_arrays"],
         "radiators": dust_results["new_radiators"],
-        "light_level": light_results["final_light_level"],
+        "light_level": light_results["adjusted_light_level"],
         "wellness_lights_on": light_results["wellness_lights_on"],
         "current_humidity_pct": humidity_results["new_humidity_pct"],
     }
