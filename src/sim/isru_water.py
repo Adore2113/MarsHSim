@@ -45,6 +45,12 @@ def pipes_in_use(state, dt_min):
     else:
         target_pipes_online = 0
 
+    if state.power_mode == "low":
+        target_pipes_online = min(target_pipes_online, 2)
+
+    elif state.power_mode == "critical":
+        target_pipes_online = 0
+
     for pipe in state.isru_pipes:
         new_pipe = pipe.copy()
         status = new_pipe.get("status", "offline")
