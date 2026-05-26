@@ -91,10 +91,6 @@ def run_sabatier(state, dt_min):
         sabatier_power_used_kw = base_sabatier_power_kw * 0.80    # use less power
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
 
-    elif sabatier_mode == "venting":
-        sabatier_power_used_kw = base_sabatier_power_kw * 1.25    # more power
-        sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
-
     else:
         sabatier_power_used_kw = base_sabatier_power_kw
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
@@ -132,7 +128,9 @@ def run_sabatier(state, dt_min):
             sabatier_mode = "venting"
             ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
             new_ch4_kpa = state.ch4_kpa + ch4_leaked_kpa
-        
+
+            sabatier_power_used_kw *= 1.12
+
         else:
             new_ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.008)
    
