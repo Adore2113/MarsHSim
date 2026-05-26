@@ -319,7 +319,17 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
     hours_per_step = dt_min / 60.0
     mars_temp_c, mars_temp_k = determine_mars_temp_c(state)
    
-    thermal_state = replace(state, mars_temp_c = mars_temp_c)
+    #-----------------low power mode-----------------♡ 
+    if state.power_mode == "low":
+        thermal_target_temp_c = 21.0
+
+    elif state.power_mode == "critical":
+        thermal_target_temp_c = 19.0
+
+    else:
+        thermal_target_temp_c = state.target_temp_c
+
+    thermal_state = replace(state, mars_temp_c = mars_temp_c, target_temp_c = thermal_target_temp_c)
 
     hab_heat_kw = crew_heat_kw + oga_heat_kw + co2_scrubber_heat_kw + light_heat_kw + wellness_light_heat_kw + chx_heat_added_kw + greenhouse_heat_kw + greenhouse_led_heat_kw
     
