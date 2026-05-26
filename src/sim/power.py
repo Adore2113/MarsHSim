@@ -91,7 +91,7 @@ def solar_generation(state, new_solar_arrays, dt_min):
 
 
 #-----------habitat main light power info------------♡
-def light_system(state, dt_min):
+def light_system(state, dt_min, power_mode):
     hours_per_step = dt_min / 60
     _, sol_hour, minutes = get_sol_time(state)
 
@@ -109,10 +109,7 @@ def light_system(state, dt_min):
 
     sunlight_dimming = sunlight_amount * 0.6    # sunlight level changes light level need for power saving
     light_level_dimmed = base_light_level - sunlight_dimming
-    final_light_level = max(min_light_level, light_level_dimmed)
-
-    light_power_used_kw = base_light_power_kw * final_light_level
-    light_heat_kw =  base_light_heat_kw* final_light_level
+    adjusted_light_level = max(min_light_level, light_level_dimmed)
 
     #----------------wellness lights----------------♡ 
     if low_sunlight_streak >= 3:
@@ -131,6 +128,11 @@ def light_system(state, dt_min):
 
         else:
             wellness_light_level = 0.0
+    
+    adjusted_light_level, wellness_light_level = apply_low_power_mode_lights(power_mode, adjusted_light_level, wellness_light_level)
+
+    light_power_used_kw = base_light_power_kw * adjusted_light_level
+    light_heat_kw =  base_light_heat_kw* adjusted_light_level
 
     w_light_power_used_kw = base_w_light_power_kw * wellness_light_level
     w_light_heat_kw =  base_w_light_heat_kw * wellness_light_level
@@ -139,7 +141,7 @@ def light_system(state, dt_min):
     total_light_heat_kw = light_heat_kw + w_light_heat_kw
 
     return {
-        "final_light_level": final_light_level,
+        "adjusted_light_level": adjusted_light_level,
         "light_heat_kw": light_heat_kw,
         "light_heat_kwh": light_heat_kw * hours_per_step,
         "light_power_used_kw": light_power_used_kw,
@@ -223,6 +225,17 @@ def run_system_power(
     new_battery_stored_kwh = state.battery_stored_kwh + net_energy_kwh
     new_battery_stored_kwh = max(0.0, min(state.battery_max_capacity_kwh, new_battery_stored_kwh))
    
+    battery_percentage = (new_battery_stored_kwh / state.battery_max_capacity_kwh)
+
+    if battery_percentage <= 0.10:
+        power_mode = "critical"
+
+    elif battery_percentage <= 0.25:
+        power_mode = "low"
+
+    else:
+        power_mode = "normal"
+
     total_heat_added_kw = light_results["total_light_heat_kw"]
     total_heat_added_kwh = light_results["total_light_heat_kwh"]
 
@@ -230,6 +243,7 @@ def run_system_power(
     power_updates = {
         "battery_stored_kwh": new_battery_stored_kwh,
         "solar_arrays": new_solar_arrays,
+        "power_mode": power_mode,
     }
     
     #-----------dict for printing outputs------------♡ 
@@ -254,30 +268,15 @@ def run_system_power(
 
     return power_updates, power_outputs
 
-#------------checking power current mode------------♡
-def check_power_mode(state):
-    battery_percentage = state.battery_stored_kwh / state.battery_max_capacity_kwh
-
-    if battery_percentage <= 0.10:
-        power_mode = "critical"
-
-    elif battery_percentage <= 0.25:
-        power_mode = "low"
-    
-    else:
-        power_mode = "normal"
-    
-    return power_mode
-
 
 #------------deciding low power priorites------------♡
-def apply_low_power_mode(power_mode, final_light_level, wellness_light_level):
+def apply_low_power_mode_lights(power_mode, adjusted_light_level, wellness_light_level):
     if power_mode == "low":
-        final_light_level = max(0.02, final_light_level * 0.5)
+        adjusted_light_level = max(0.02, adjusted_light_level * 0.5)
         wellness_light_level = 0.0
     
     elif power_mode == "critical":
-        final_light_level = max(0.02, final_light_level * 0.3)
+        adjusted_light_level = max(0.02, adjusted_light_level * 0.3)
         wellness_light_level = 0.0
 
-    return final_light_level, wellness_light_level
+    return adjusted_light_level, wellness_light_level
