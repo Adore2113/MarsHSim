@@ -57,7 +57,6 @@ def determine_mars_temp_c(state):
     return mars_temp_c, mars_temp_k
 
 
-#------------------solar heat gain-------------------♡
 def get_solar_heat_gain_kw(state):
     effective_area_m2 = sunlight_facing_hab_m2 * state.solar_absorptivity
     transmittance = 0.75    # fraction of how much heat gets through
@@ -67,7 +66,6 @@ def get_solar_heat_gain_kw(state):
     return solar_heat_gain_kw
 
 
-#------------------passive heat loss-----------------♡
 def heat_loss_from_outside_kw(state):
     temp_difference_c = state.hab_temp_c - state.mars_temp_c
 

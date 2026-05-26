@@ -5,9 +5,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Habitat_State:
-
-    #-----------------habitat layout-----------------♡
     hab_vol_m3: int
+    power_mode: str
 
     #---------------time and daylight----------------♡
     mission_time_s: int
