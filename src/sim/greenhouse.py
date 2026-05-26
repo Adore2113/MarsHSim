@@ -59,6 +59,12 @@ def greenhouse_lighting(state, dt_min):
         else:
             light_mode = "sunlight only"
             led_level = 0.0
+        
+        if state.power_mode == "low":
+            led_level *= 0.6
+
+        elif state.power_mode == "critical":
+            led_level *= 0.2
 
         led_power_kw = led_power_per_m2_kw * area_m2 * led_level
         led_heat_kw = led_power_kw * led_heat_ratio
