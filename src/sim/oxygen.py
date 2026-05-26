@@ -24,16 +24,18 @@ water_kg_per_o2_kg = 1.11   # electrolysis
 def run_oga(state, o2_after_crew_kpa, dt_min):
     hours_per_step = dt_min / 60
 
-    #---------------default oga values--------------♡
     oga_mode = "offline"
     o2_added_kpa = 0.0
     h2_produced_kg = 0.0
     water_used_kg = 0.0
     limited_by_water = False 
-
+    o2_vented_kg = 0.0
+    
     sabatier_power_used_kw = 0.0
     oga_power_used_kw = 0.0
     oga_heat_added_kw = 0.0
+    power_used_kw = 0.0
+    heat_added_kw = 0.0
 
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
 
@@ -54,7 +56,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))
         
         o2_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
-        o2_produced_kg = (o2_moles * o2_molar_mass) / kg_per_g
+        o2_produced_kg = (o2_moles * o2_molar_mass) * kg_per_g
      
         h2_produced_kg = o2_produced_kg * (2 * h2_molar_mass) / o2_molar_mass
         water_used_kg = o2_produced_kg * water_kg_per_o2_kg
@@ -79,33 +81,26 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
 
     #---------------handling excess o2---------------♡ 
     new_o2_kpa = o2_after_crew_kpa + o2_added_kpa
-    o2_control_mode = "normal"
-    o2_stored_kg = 0.0
-    o2_vented_kg = 0.0
     new_o2_stored_kg = state.o2_stored_kg
+
+    o2_leak_kpa = state.o2_leak_rate_kpa_per_hr * hours_per_step
 
     if new_o2_kpa > state.target_o2_kpa:
         excess_o2_kpa = new_o2_kpa - state.target_o2_kpa
-
         excess_o2_moles = (excess_o2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
-        o2_stored_kg = (excess_o2_moles * o2_molar_mass) / 1000
+        excess_o2_kg = (excess_o2_moles * o2_molar_mass) * kg_per_g
 
-        new_o2_stored_kg = state.o2_stored_kg + o2_stored_kg
-              
-        if new_o2_stored_kg >= state.o2_storage_capacity_kg:
-            o2_control_mode = "venting"
-            
-            o2_leaked_kpa = state.o2_leak_rate_kpa_per_hr * hours_per_step
-            o2_leaked_moles = (o2_leaked_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
-            o2_leaked_kg = (o2_leaked_moles * o2_molar_mass) / 1000
-
-            o2_vented_kg = new_o2_stored_kg - state.o2_storage_capacity_kg + o2_leaked_kg
-            new_o2_stored_kg = state.o2_storage_capacity_kg
-
-        else:
-            o2_control_mode = "storing"
-        
+        new_o2_stored_kg += excess_o2_kg
         new_o2_kpa = state.target_o2_kpa
+        
+
+        if new_o2_stored_kg > state.o2_storage_capacity_kg:
+            o2_vented_kg = new_o2_stored_kg - state.o2_storage_capacity_kg
+            new_o2_stored_kg = state.o2_storage_capacity_kg
+            
+            oga_power_used_kw += 1.10
+        
+        new_o2_kpa = max(0.0, new_o2_kpa - o2_leak_kpa)
 
 
     #------------dict for updating state-------------♡ 
@@ -128,6 +123,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         "oga_heat_kwh": heat_added_kw * hours_per_step,
         
         "oga_limited_by_water": limited_by_water,
+        "o2_vented_kg": o2_vented_kg,
     }
 
     return oga_updates, oga_outputs
