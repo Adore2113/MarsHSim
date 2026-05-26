@@ -49,8 +49,11 @@ def run_sabatier(state, dt_min):
         sabatier_mode = "offline"
         sabatier_power_used_kw = 0.0
         sabatier_heat_added_kw = 0.0
+    
+    elif state.power_mode == "critical":
+        sabatier_mode = "power_save"
 
-    #--------------avaliable reactants--------------♡  
+    #--------------available reactants--------------♡  
     else:
         available_co2_kg = state.co2_stored_kg
         available_h2_kg = state.h2_stored_kg
@@ -80,7 +83,7 @@ def run_sabatier(state, dt_min):
             sabatier_mode = "running"
 
     #----------power usage / heat per mode----------♡  
-    if sabatier_mode in ("offline", "idle"):
+    if sabatier_mode in ("offline", "idle", "power_save"):
         sabatier_power_used_kw = 0.1
         sabatier_heat_added_kw = 0.1
 
