@@ -15,6 +15,7 @@ mca_update_power_kw = 0.1
 
 hysteresis_kpa = 0.05
 safe_usage_ratio = 0.9
+vent_loss_efficiency = 0.08
 #---------------------------------------------------♡
 
 
@@ -46,11 +47,11 @@ def run_buffer_gas_control(state, dt_min):
     #----------------buffer gas modes---------------♡  
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
         buffer_gas_mode = "emergency_add"
-        pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
+        pressure_to_add_kpa = state.target_pressure_kpa - total_pressure_kpa
     
     elif pressure_gap_kpa > hysteresis_kpa:
         buffer_gas_mode = "add"
-        pressure_needed_kpa = pressure_gap_kpa
+        pressure_to_add_kpa = pressure_gap_kpa
 
     elif pressure_gap_kpa < -hysteresis_kpa:
         buffer_gas_mode = "vent"
@@ -58,16 +59,16 @@ def run_buffer_gas_control(state, dt_min):
 
     else:
         buffer_gas_mode = "stable"
-        pressure_needed_kpa = 0.0
+        pressure_to_add_kpa = 0.0
 
   #------------------adding gas-------------------♡  
     if buffer_gas_mode in ("emergency_add", "add"):
-        pressure_to_add_kpa = pressure_needed_kpa
+        left_to_add_kpa = pressure_to_add_kpa
         
         #--------------Nitrogen first---------------♡  
-        if new_n2_kpa < state.target_n2_kpa and pressure_to_add_kpa > 0.01:
-            n2_room_kpa = state.target_n2_kpa - new_n2_kpa
-            n2_to_add_kpa = min(pressure_to_add_kpa, n2_room_kpa)
+        if new_n2_kpa < state.target_n2_kpa and left_to_add_kpa > 0.01:
+            n2_room_left_kpa = state.target_n2_kpa - new_n2_kpa
+            n2_to_add_kpa = min(left_to_add_kpa, n2_room_left_kpa)
 
             n2_added_moles = (n2_to_add_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
             n2_added_kg = n2_added_moles * n2_molar_mass_kg
@@ -77,35 +78,34 @@ def run_buffer_gas_control(state, dt_min):
                 new_n2_stored_kg -= n2_added_kg
                 
                 total_buffer_gas_added_kpa += n2_to_add_kpa
-                pressure_to_add_kpa -= n2_to_add_kpa
+                left_to_add_kpa -= n2_to_add_kpa
                 
         #----------------Argon second---------------♡
-        if pressure_to_add_kpa > 0.01 and new_ar_kpa < state.target_ar_kpa:
+        if left_to_add_kpa > 0.01 and new_ar_kpa < state.target_ar_kpa:
             ar_room_left_kpa = state.target_ar_kpa - new_ar_kpa
-            ar_to_add_kpa = min(pressure_to_add_kpa, ar_room_left_kpa)
-
+            ar_to_add_kpa = min(left_to_add_kpa, ar_room_left_kpa)
+            
             ar_added_moles = (ar_to_add_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
             ar_added_kg = ar_added_moles * ar_molar_mass_kg
 
             if new_ar_stored_kg >= ar_added_kg * safe_usage_ratio:
                 new_ar_kpa += ar_to_add_kpa
                 new_ar_stored_kg -= ar_added_kg
-                
                 total_buffer_gas_added_kpa += ar_to_add_kpa
-                pressure_to_add_kpa -= ar_to_add_kpa
 
     #---------------venting extra gas---------------♡  
     elif buffer_gas_mode == "vent":
         pressure_to_vent_kpa = -pressure_gap_kpa
-        total_buffer_gas_vented_kpa = 0.0
         
         #-------------vent Argon first--------------♡  
-        if new_ar_kpa > state.target_ar_kpa:
-            ar_to_vent = min(pressure_to_vent_kpa, new_ar_kpa - state.target_ar_kpa)
-            new_ar_kpa -= ar_to_vent
-            pressure_to_vent_kpa -= ar_to_vent * 0.92    # 8% leaks back
-            
-            total_buffer_gas_vented_kpa += ar_to_vent 
+        if new_ar_kpa > state.target_ar_kpa and pressure_to_vent_kpa > 0.01:
+            excess_ar_kpa = new_ar_kpa - state.target_ar_kpa
+            ar_to_vent = min(pressure_to_vent_kpa, excess_ar_kpa)
+            vented_amount_kpa = ar_to_vent * (1 - state.ar_leak_rate_kpa_per_hr)
+            new_ar_kpa -= vented_amount_kpa
+           
+            total_buffer_gas_vented_kpa += vented_amount_kpa
+            left_to_vent_kpa -= vented_amount_kpa 
   
         #-------------venting Nitrogen--------------♡  
         if pressure_to_vent_kpa > 0 and new_n2_kpa > state.target_n2_kpa:
