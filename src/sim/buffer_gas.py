@@ -25,41 +25,25 @@ def mca(state):
     return total_pressure_kpa
 
 
-# #-----------------buffer gas system-----------------♡
-# def run_buffer_gas_control(state, dt_min):
-#     hours = dt_min / 60
+#-----------------buffer gas system-----------------♡
+def run_buffer_gas_control(state, dt_min):
+    hours = dt_min / 60
 
-#     buffer_gas_mode = "stable"
-#     total_buffer_gas_added_kpa = 0.0
-#     total_buffer_gas_vented_kpa = 0.0
-#     pressure_gap_kpa = 0.0
+    buffer_gas_mode = "stable"
+    total_buffer_gas_added_kpa = 0.0
+    total_buffer_gas_vented_kpa = 0.0
+    pressure_gap_kpa = 0.0
 
-#     new_n2_kpa = state.n2_kpa
-#     new_ar_kpa = state.ar_kpa
-#     new_n2_stored_kg = state.n2_stored_kg
-#     new_ar_stored_kg = state.ar_stored_kg
-
-#     #---------calculate pressure difference---------♡  
-#     total_pressure_kpa = mca(state)
-#     pressure_gap_kpa = state.target_pressure_kpa - total_pressure_kpa
-
-
-#--------------stabilizing gas levels---------------♡
-def buffer_gas_control_kpa(state):
     new_n2_kpa = state.n2_kpa
     new_ar_kpa = state.ar_kpa
     new_n2_stored_kg = state.n2_stored_kg
     new_ar_stored_kg = state.ar_stored_kg
 
+    #---------calculate pressure difference---------♡  
     total_pressure_kpa = mca(state)
     pressure_gap_kpa = state.target_pressure_kpa - total_pressure_kpa
 
-    #----------------default values-----------------♡  
-    total_buffer_gas_added_kpa = 0.0
-    total_buffer_gas_vented_kpa = 0.0
-    buffer_gas_mode = "stable"
-
-    #---------------buffer gas modes----------------♡  
+    #----------------buffer gas modes---------------♡  
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
         buffer_gas_mode = "emergency_add"
         pressure_needed_kpa = state.target_pressure_kpa - total_pressure_kpa
@@ -76,16 +60,15 @@ def buffer_gas_control_kpa(state):
         buffer_gas_mode = "stable"
         pressure_needed_kpa = 0.0
 
-    #------------------adding gas-------------------♡  
+  #------------------adding gas-------------------♡  
     if buffer_gas_mode in ("emergency_add", "add"):
         pressure_to_add_kpa = pressure_needed_kpa
         
         #--------------Nitrogen first---------------♡  
-        if new_n2_kpa < state.target_n2_kpa:
-            n2_room_left_kpa = state.target_n2_kpa - new_n2_kpa
-            n2_to_add_kpa = min(pressure_to_add_kpa, n2_room_left_kpa)
+        if new_n2_kpa < state.target_n2_kpa and pressure_to_add_kpa > 0.01:
+            n2_room_kpa = state.target_n2_kpa - new_n2_kpa
+            n2_to_add_kpa = min(pressure_to_add_kpa, n2_room_kpa)
 
-        #-------------conversion to kg--------------♡  
             n2_added_moles = (n2_to_add_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
             n2_added_kg = n2_added_moles * n2_molar_mass_kg
 
