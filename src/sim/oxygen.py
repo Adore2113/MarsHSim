@@ -28,22 +28,18 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
     o2_added_kpa = 0.0
     h2_produced_kg = 0.0
     water_used_kg = 0.0
-    limited_by_water = False 
     o2_vented_kg = 0.0
-    
-    sabatier_power_used_kw = 0.0
+    limited_by_water = False 
+
     oga_power_used_kw = 0.0
     oga_heat_added_kw = 0.0
-    power_used_kw = 0.0
-    heat_added_kw = 0.0
+    sabatier_power_used_kw = 0.0
 
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
 
     #-------------------oga modes-------------------♡  
     if not state.oga_on:
         oga_mode = "offline"
-        oga_power_used_kw = 0.0
-        oga_heat_added_kw = 0.0
 
     elif o2_needed_kpa <= hysteresis_kpa:
         oga_mode = "idle"
@@ -71,12 +67,12 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
             h2_produced_kg = 0.0
             o2_added_kpa = 0.0
         
-            power_used_kw = base_oga_power_kw * 0.55
-            heat_added_kw = base_oga_heat_kw * 0.55
+            oga_power_used_kw = base_oga_power_kw * 0.55
+            oga_heat_added_kw = base_oga_heat_kw * 0.55
 
         else:  
-            power_used_kw = base_oga_power_kw
-            heat_added_kw = base_oga_heat_kw
+            oga_power_used_kw = base_oga_power_kw
+            oga_heat_added_kw = base_oga_heat_kw
 
 
     #---------------handling excess o2---------------♡ 
@@ -92,7 +88,6 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
 
         new_o2_stored_kg += excess_o2_kg
         new_o2_kpa = state.target_o2_kpa
-        
 
         if new_o2_stored_kg > state.o2_storage_capacity_kg:
             o2_vented_kg = new_o2_stored_kg - state.o2_storage_capacity_kg
@@ -100,8 +95,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
             
             oga_power_used_kw += 1.10
         
-        new_o2_kpa = max(0.0, new_o2_kpa - o2_leak_kpa)
-
+    new_o2_kpa = max(0.0, new_o2_kpa - o2_leak_kpa)
 
     #------------dict for updating state-------------♡ 
     oga_updates = {
@@ -117,10 +111,10 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         "h2_produced_kg": h2_produced_kg,
         "water_used_kg": water_used_kg,
         
-        "oga_power_used_kw": power_used_kw,
-        "oga_energy_used_kwh": power_used_kw * hours_per_step,
-        "oga_heat_kw": heat_added_kw,
-        "oga_heat_kwh": heat_added_kw * hours_per_step,
+        "oga_power_used_kw": oga_power_used_kw,
+        "oga_energy_used_kwh": oga_power_used_kw * hours_per_step,
+        "oga_heat_kw": oga_heat_added_kw,
+        "oga_heat_kwh": oga_heat_added_kw * hours_per_step,
         
         "oga_limited_by_water": limited_by_water,
         "o2_vented_kg": o2_vented_kg,
