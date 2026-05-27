@@ -120,34 +120,20 @@ def run_buffer_gas_control(state, dt_min):
     n2_leak_kpa = state.n2_leak_rate_kpa_per_hr * hours_per_step
     ar_leak_kpa = state.ar_leak_rate_kpa_per_hr * hours_per_step
 
-    new_ar_kpa = max(0.0, new_n2_kpa - n2_leak_kpa)
-    new_a2_kpa = max(0.0, new_ar_kpa - ar_leak_kpa)        
+    new_n2_kpa = max(0.0, new_n2_kpa - n2_leak_kpa)
+    new_ar_kpa = max(0.0, new_ar_kpa - ar_leak_kpa)        
 
-    return (new_n2_kpa, new_ar_kpa, new_n2_stored_kg, new_ar_stored_kg, total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, buffer_gas_mode, pressure_gap_kpa)
-      
-
-#----system power consumption and heat produced-----♡
-def buffer_gas_power_and_heat(total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, dt_min):
-    hours_per_step = dt_min / 60
-
-    if total_buffer_gas_added_kpa > 0 or total_buffer_gas_vented_kpa > 0:
-        buffer_gas_heat_per_kpa_kw = base_buffer_gas_heat_kw
-        total_gas_moved_kpa = total_buffer_gas_added_kpa + total_buffer_gas_vented_kpa
-        
-        buffer_gas_heat_added_kw = total_gas_moved_kpa * buffer_gas_heat_per_kpa_kw
-        buffer_gas_heat_added_kwh = buffer_gas_heat_added_kw * hours_per_step
+    total_buffer_gas_moved_kpa = total_buffer_gas_added_kpa + total_buffer_gas_vented_kpa
+    #----------------power and heat-----------------♡  
     
+    if total_buffer_gas_moved_kpa > 0.01:
+        buffer_gas_heat_added_kw = base_buffer_gas_heat_kw * total_buffer_gas_moved_kpa
         buffer_gas_power_used_kw = base_buffer_gas_power_kw
-        buffer_gas_energy_used_kwh = buffer_gas_power_used_kw * hours_per_step
-    
+
     else:
         buffer_gas_heat_added_kw = 0.0
-        buffer_gas_heat_added_kwh = 0.0
-
         buffer_gas_power_used_kw = 0.0
-        buffer_gas_energy_used_kwh = 0.0
     
-    return buffer_gas_heat_added_kw, buffer_gas_heat_added_kwh, buffer_gas_power_used_kw, buffer_gas_energy_used_kwh
 
 
 #-------buffer gas control info per timestep--------♡
