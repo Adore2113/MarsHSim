@@ -101,7 +101,7 @@ def buffer_gas_control_kpa(state):
         if new_ar_kpa > state.target_ar_kpa:
             ar_to_vent = min(pressure_to_vent_kpa, new_ar_kpa - state.target_ar_kpa)
             new_ar_kpa -= ar_to_vent
-            pressure_to_vent_kpa -= (ar_to_vent * 0.8)    # 8% leaks back
+            pressure_to_vent_kpa -= ar_to_vent * 0.92    # 8% leaks back
             
             total_buffer_gas_vented_kpa += ar_to_vent 
   
