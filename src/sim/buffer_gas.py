@@ -10,7 +10,9 @@ n2_molar_mass_kg = 0.028014
 ar_molar_mass_kg = 0.039948
 
 base_buffer_gas_power_kw = 0.84
+gas_moved_power_multiplier = 0.4
 base_buffer_gas_heat_kw = 1.5
+gas_moved_heat_multiplier = 0.9 
 mca_update_power_kw = 0.1
 
 hysteresis_kpa = 0.05
@@ -40,9 +42,11 @@ def run_buffer_gas_control(state, dt_min):
     new_n2_stored_kg = state.n2_stored_kg
     new_ar_stored_kg = state.ar_stored_kg
 
+
     #---------calculate pressure difference---------♡  
     total_pressure_kpa = mca(state)
     pressure_gap_kpa = state.target_pressure_kpa - total_pressure_kpa
+
 
     #----------------buffer gas modes---------------♡  
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
@@ -60,6 +64,7 @@ def run_buffer_gas_control(state, dt_min):
     else:
         buffer_gas_mode = "stable"
         pressure_to_add_kpa = 0.0
+
 
   #-----------------adding buffer gas---------------♡  
     if buffer_gas_mode in ("emergency_add", "add"):
@@ -93,6 +98,7 @@ def run_buffer_gas_control(state, dt_min):
                 new_ar_stored_kg -= ar_added_kg
                 total_buffer_gas_added_kpa += ar_to_add_kpa
 
+
     #---------------venting extra gas---------------♡  
     elif buffer_gas_mode == "vent":
         left_to_vent_kpa = pressure_to_vent_kpa
@@ -116,6 +122,7 @@ def run_buffer_gas_control(state, dt_min):
             new_n2_kpa -= vented_amount_kpa
             total_buffer_gas_vented_kpa += vented_amount_kpa
 
+
     #----------------small gas leaks----------------♡  
     n2_leak_kpa = state.n2_leak_rate_kpa_per_hr * hours_per_step
     ar_leak_kpa = state.ar_leak_rate_kpa_per_hr * hours_per_step
@@ -124,41 +131,41 @@ def run_buffer_gas_control(state, dt_min):
     new_ar_kpa = max(0.0, new_ar_kpa - ar_leak_kpa)        
 
     total_buffer_gas_moved_kpa = total_buffer_gas_added_kpa + total_buffer_gas_vented_kpa
+   
+
     #----------------power and heat-----------------♡  
-    
     if total_buffer_gas_moved_kpa > 0.01:
-        buffer_gas_heat_added_kw = base_buffer_gas_heat_kw * total_buffer_gas_moved_kpa
-        buffer_gas_power_used_kw = base_buffer_gas_power_kw
+        buffer_gas_power_used_kw = base_buffer_gas_power_kw + (gas_moved_power_multiplier * total_buffer_gas_moved_kpa)
+        buffer_gas_heat_added_kw = base_buffer_gas_heat_kw * total_buffer_gas_moved_kpa + (gas_moved_heat_multiplier * total_buffer_gas_moved_kpa)
 
     else:
         buffer_gas_heat_added_kw = 0.0
         buffer_gas_power_used_kw = 0.0
     
 
-
-#-------buffer gas control info per timestep--------♡
-def run_buffer_gas_control(state, dt_min):
-    n2_kpa, ar_kpa, n2_stored_kg, ar_stored_kg, total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, buffer_gas_mode, pressure_gap_kpa = buffer_gas_control_kpa(state) 
-    buffer_gas_heat_added_kw, buffer_gas_heat_added_kwh, buffer_gas_power_used_kw, buffer_gas_energy_used_kwh = buffer_gas_power_and_heat(total_buffer_gas_added_kpa, total_buffer_gas_vented_kpa, dt_min)
-    
     #------------dict for updating state-------------♡ 
     buffer_gas_updates = {
-    "n2_kpa": n2_kpa,
-    "ar_kpa": ar_kpa,
-    "n2_stored_kg": n2_stored_kg,
-    "ar_stored_kg": ar_stored_kg,
+    "n2_kpa": new_n2_kpa,
+    "ar_kpa": new_ar_kpa,
+    "n2_stored_kg": new_n2_stored_kg,
+    "ar_stored_kg": new_ar_stored_kg,
     }
     
+
     #-----------dict for printing outputs------------♡ 
     buffer_gas_outputs = {
-        "total_buffer_gas_added_kpa": total_buffer_gas_added_kpa,
-        "buffer_gas_heat_added_kw": buffer_gas_heat_added_kw,
-        "total_buffer_gas_vented_kpa": total_buffer_gas_vented_kpa,
-        "buffer_gas_heat_added_kwh": buffer_gas_heat_added_kwh,
-        "buffer_gas_power_used_kw": buffer_gas_power_used_kw, 
-        "buffer_gas_energy_used_kwh": buffer_gas_energy_used_kwh,
-        "buffer_gas_mode": buffer_gas_mode, 
-        "pressure_gap_kpa":  pressure_gap_kpa 
+    "buffer_gas_mode": buffer_gas_mode,
+    "total_buffer_gas_added_kpa": total_buffer_gas_added_kpa,
+    "total_buffer_gas_vented_kpa": total_buffer_gas_vented_kpa,
+    "pressure_gap_kpa": pressure_gap_kpa, 
+
+    "n2_leaked_kpa": n2_leak_kpa,
+    "ar_leaked_kpa": ar_leak_kpa,
+
+    "buffer_gas_power_used_kw": buffer_gas_power_used_kw,
+    "buffer_gas_energy_used_kwh": buffer_gas_power_used_kw * hours_per_step,
+    "buffer_gas_heat_added_kw": buffer_gas_heat_added_kw,
+    "buffer_gas_heat_added_kwh": buffer_gas_heat_added_kw * hours_per_step, 
     }   
 
     return buffer_gas_updates, buffer_gas_outputs
