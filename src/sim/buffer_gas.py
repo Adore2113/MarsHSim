@@ -61,7 +61,7 @@ def run_buffer_gas_control(state, dt_min):
         buffer_gas_mode = "stable"
         pressure_to_add_kpa = 0.0
 
-  #------------------adding gas-------------------♡  
+  #-----------------adding buffer gas---------------♡  
     if buffer_gas_mode in ("emergency_add", "add"):
         left_to_add_kpa = pressure_to_add_kpa
         
@@ -95,25 +95,24 @@ def run_buffer_gas_control(state, dt_min):
 
     #---------------venting extra gas---------------♡  
     elif buffer_gas_mode == "vent":
-        pressure_to_vent_kpa = -pressure_gap_kpa
+        left_to_vent_kpa = pressure_to_vent_kpa
         
         #-------------vent Argon first--------------♡  
-        if new_ar_kpa > state.target_ar_kpa and pressure_to_vent_kpa > 0.01:
+        if new_ar_kpa > state.target_ar_kpa and left_to_vent_kpa > 0.01:
             excess_ar_kpa = new_ar_kpa - state.target_ar_kpa
-            ar_to_vent = min(pressure_to_vent_kpa, excess_ar_kpa)
-            vented_amount_kpa = ar_to_vent * (1 - state.ar_leak_rate_kpa_per_hr)
+            ar_to_vent = min(left_to_vent_kpa, excess_ar_kpa)
+
+            vented_amount_kpa = ar_to_vent * (1 - vent_loss_efficiency)
             new_ar_kpa -= vented_amount_kpa
-           
             total_buffer_gas_vented_kpa += vented_amount_kpa
             left_to_vent_kpa -= vented_amount_kpa 
   
         #-------------venting Nitrogen--------------♡  
-        if pressure_to_vent_kpa > 0 and new_n2_kpa > state.target_n2_kpa:
-            n2_to_vent = min(pressure_to_vent_kpa, new_n2_kpa - state.target_n2_kpa)
-            new_n2_kpa -= n2_to_vent
-            new_n2_kpa += (n2_to_vent * 0.98)
+        if left_to_vent_kpa > 0.01 and new_n2_kpa > state.target_n2_kpa:
+            excess_n2_kpa = new_n2_kpa - state.target_n2_kpa
+            n2_to_vent = min(left_to_vent_kpa, excess_n2_kpa)
             
-            total_buffer_gas_vented_kpa += n2_to_vent
+            
             
     else:
         pass
