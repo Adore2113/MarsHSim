@@ -25,6 +25,25 @@ def mca(state):
     return total_pressure_kpa
 
 
+# #-----------------buffer gas system-----------------♡
+# def run_buffer_gas_control(state, dt_min):
+#     hours = dt_min / 60
+
+#     buffer_gas_mode = "stable"
+#     total_buffer_gas_added_kpa = 0.0
+#     total_buffer_gas_vented_kpa = 0.0
+#     pressure_gap_kpa = 0.0
+
+#     new_n2_kpa = state.n2_kpa
+#     new_ar_kpa = state.ar_kpa
+#     new_n2_stored_kg = state.n2_stored_kg
+#     new_ar_stored_kg = state.ar_stored_kg
+
+#     #---------calculate pressure difference---------♡  
+#     total_pressure_kpa = mca(state)
+#     pressure_gap_kpa = state.target_pressure_kpa - total_pressure_kpa
+
+
 #--------------stabilizing gas levels---------------♡
 def buffer_gas_control_kpa(state):
     new_n2_kpa = state.n2_kpa
@@ -85,7 +104,7 @@ def buffer_gas_control_kpa(state):
             ar_added_moles = (ar_to_add_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
             ar_added_kg = ar_added_moles * ar_molar_mass_kg
 
-            if new_ar_stored_kg >= ar_added_kg:
+            if new_ar_stored_kg >= ar_added_kg * safe_usage_ratio:
                 new_ar_kpa += ar_to_add_kpa
                 new_ar_stored_kg -= ar_added_kg
                 
@@ -109,7 +128,7 @@ def buffer_gas_control_kpa(state):
         if pressure_to_vent_kpa > 0 and new_n2_kpa > state.target_n2_kpa:
             n2_to_vent = min(pressure_to_vent_kpa, new_n2_kpa - state.target_n2_kpa)
             new_n2_kpa -= n2_to_vent
-            new_n2_kpa += (n2_to_vent * 0.02)
+            new_n2_kpa += (n2_to_vent * 0.98)
             
             total_buffer_gas_vented_kpa += n2_to_vent
             
