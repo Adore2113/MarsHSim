@@ -6,27 +6,27 @@ from .buffer_gas import mca
 from .alerts import get_alerts, get_status
 #----------------------------------------------------♡
 
-
+#-------------------habitat state--------------------♡
 s0 = Habitat_State(
     hab_vol_m3 = 2000.0,
     power_mode = "normal",
-
-    #---------------time and daylight----------------♡
+  
+    #-------time and daylight------♡
     mission_time_s = 0,
 
     daylight_m2_kw = 0.0,
     peak_sunlight_today = 0.0,
     low_sunlight_streak_sols = 0,
     
-    #--------------------lights----------------------♡
+    #------------lights------------♡
     light_level = 0.0,
     wellness_lights_on = False,
 
-    #---------------------crew-----------------------♡
+    #-------------crew-------------♡
     crew_count = 30,
     crew_activity = "normal",
 
-    #------------------greenhouse--------------------♡
+    #----------greenhouse----------♡
     greenhouse_vol_m3 = 1007.0,
 
     greenhouse_floor_area_m2 = 265.0,
@@ -151,7 +151,7 @@ s0 = Habitat_State(
         }
     ],
     
-    greenhouse_on = True,    # True for testing
+    greenhouse_on = True,
     greenhouse_stage = "starter",
     food_support_level = "partial",
     stored_food_still_needed = True,
@@ -200,7 +200,7 @@ s0 = Habitat_State(
     n2_leak_rate_kpa_per_hr = 0.007,
     ar_leak_rate_kpa_per_hr = 0.005,
     ch4_leak_rate_kpa_per_hr = 0.012,
-    h2_leak_rate_kpa_per_hr = 0.025,    # hydrogen leaks the fastest
+    h2_leak_rate_kpa_per_hr = 0.025,
     co2_leak_rate_kpa_per_hr = 0.005,
 
     #---------gas targets----------♡    
@@ -344,6 +344,7 @@ def print_state(state, outputs, alerts):
     print("Adore2113's MarsHSim".center(width))
     print("♡ " + "-" * 30 + " ♡")
 
+
     #---------------time and daylight----------------♡
     print(f"{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
     # print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.3f} °C")    # change back to 2f
@@ -352,12 +353,14 @@ def print_state(state, outputs, alerts):
     # print(f"{'Low Sun Streak:':<22} {state.low_sunlight_streak_sols} sols")
     # print(f"{'Sunlight per m²:':<22} {state.daylight_m2_kw:.3f} kW")
 
+
     # #----------------habitat status------------------♡
     # print((f"\n♡  [  SYSTEM STATUS: {status}  ]  ♡").center(width))
     
     # if alerts:
     #         print((f"♡      [  ALERT: {status}  ]      ♡").center(width))
     
+
     #-------------atmosphere / pressure--------------♡
     print(("\n♡      [   ATMOSPHERE    ]       ♡").center(width))  
     # print(f"{'Total Pressure:':<22} {mca(state):.2f} kPa")    

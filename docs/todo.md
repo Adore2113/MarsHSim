@@ -7,25 +7,17 @@
         - water recovery balance
         - greenhouse behavior over day and night cycles
    
-     ♡ update irsu to include pipe retracting and extracting, dust buildup per pipe, efficency loss, ect.
+     ♡ update irsu to include dust buildup per pipe, efficency loss, ect.
 
-### Next Focus:
-    ♡ add trend tracking to other systems (like "temp trend" in print)
-
-    ♡ add tank depletion alerts         
+### Next Focus:      
 
 
 ### Later Focus:
     ♡ add greenhouse to crew and other things
 
-    ♡ continue adding heat generated and heat waste
-
+    ♡ add tank depletion alerts   
 
     ♡ add electronic and misc heat and power
-
-
-    ♡ add power priority systems
-
 
     ♡ double check unit consistencies: 
        
@@ -60,7 +52,6 @@
    
     ♡ update alerts: 
         
-        - 
 
 
 ### Eventual Focus:
@@ -152,3 +143,8 @@
         - kWh energy
 
     ♡ move some constants and variables out of greenhouse.py and add them to state variables
+
+    ♡ continue adding heat generated and heat waste
+
+        ♡ add power priority systems
+

@@ -952,4 +952,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I know that turning buffer_gas.py into basically one long code might be different to read, but I think it works with my section headers keeping things organized and hopefully easy to read, I'm also hoping this keeps things a bit neater when it comes to ouputs and variables and such
 
-    ♡ 
+    ♡ two file refactors today
+
+#### Next Session:
+    ♡ test terminal output to adjust numbers!
