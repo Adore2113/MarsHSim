@@ -32,15 +32,6 @@
         - ect.
 
 
-    ♡ consider seperating files for values:
-        
-        - quick_test = starting values
-
-        - state = things that change per timestep
-
-        - separate file = constants, limits, targets
-
-
     ♡ add system efficiency modifiers:
         
         - dust
@@ -147,4 +138,13 @@
     ♡ continue adding heat generated and heat waste
 
         ♡ add power priority systems
+
+    ♡ consider seperating files for values:
+        
+        - quick_test = starting values
+
+        - state = things that change per timestep
+
+        - separate file = constants, limits, targets
+
 
