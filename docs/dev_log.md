@@ -965,5 +965,11 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ this new print file is going to be made with debugging and checking numbers in mind, it will not be organized this way for the actual UI
 
+    ♡ went over output variable names and make them consistent (added, produced, recovered, proccessed, etc)
+
+  ♡ huge refactor day!
+
 #### Next Session:
-    ♡ go over output variable names and make them consistent (added, produced, recovered, proccessed, etc)
+    ♡ make summary print function for each category for debugging, or decide if I'm just going to comment out each one when I want to isolate the subsystems/categories
+
+    ♡ test terminal output to adjust numbers!
