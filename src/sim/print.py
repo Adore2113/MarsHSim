@@ -56,7 +56,6 @@ def print_environment(state, outputs):
 #----------------------------------------------------♡
 
 
-
 #--------------------atmosphere----------------------♡
 def print_atmosphere(state, outputs):
     print_section_header("ATMOSPHERE")
@@ -128,6 +127,7 @@ def print_power(state, outputs):
     print(f"{'CHX Power Used:':<{lw}} {outputs.get('chx_power_used_kw', 0):.2f} kW")
     print(f"{'Rad Power:':<{lw}} {outputs.get('radiator_power_kw', 0):.2f} kW\n")
     print(f"{'Heater Power Used:':<{lw}} {outputs.get('heater_power_kw', 0):.2f} kW")
+    print(f"{'ISRU Power Used:':<{lw}} {outputs.get('isru_power_used_kw', 0):.2f} kW")
 
     print(f"{'Total Energy Used:':<{lw}} {outputs.get('total_energy_used_kwh', 0):.2f} kWh")
 #----------------------------------------------------♡
@@ -152,6 +152,7 @@ def print_thermal(state, outputs):
     print(f"{'Heaters Online:':<22} {outputs.get('heaters_online_count', 0)}")
     print(f"{'Heater Heat:':<22} {outputs.get('heater_heat_kw', 0):.2f} kW")
 
+    print(f"{'ISRU Heat Added:':<{lw}} {outputs.get('isru_heat_added_kw', 0):.2f} kW")
     print(f"{'GH Heat Added:':<22} {outputs.get('total_greenhouse_heat_kw', 0):.3f} kW")
     print(f"{'Heat Added:':<22} {outputs.get('sabatier_heat_added_kw', 0):.2f} kW")
     print(f"{'Scrubber Heat:':<22} {outputs.get('amine_bed_heat_added_kw', 0):.2f} kW")
@@ -174,14 +175,19 @@ def print_water(state, outputs):
     print(f"{'Humidity:':<22} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
     print(f"{'Vapor Removed:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")
 
-
     #----------greenhouse-----------♡
     print(f"{'Water Needed:':<22} {outputs.get('total_water_needed_kg', 0):.3f} kg")
     print(f"{'Water Used:':<22} {outputs.get('total_water_consumed_kg', 0):.2f} kg")
     print(f"{'Water Recirculated:':<22} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
 
-
     #-------------isru--------------♡
+    print(f"{'ISRU Mode:':<{lw}} {outputs.get('isru_mode', 'offline')}")
+    print(f"{'Raw Water Added:':<{lw}} {outputs.get('isru_raw_water_added_kg', 0):.2f} kg")
+    print(f"{'Raw Water Stored:':<{lw}} {state.raw_isru_water_storage_kg:.2f} kg")
+    print(f"{'Pipes Extracting:':<{lw}} {outputs.get('pipes_extracting', 0)}")
+    print(f"{'Pipes Deploying:':<{lw}} {outputs.get('pipes_deploying', 0)}")
+    print(f"{'Pipes Retracting:':<{lw}} {outputs.get('pipes_retracting', 0)}")
+    print(f"{'Total Pipes Active:':<{lw}} {outputs.get('total_pipes_active', 0)}")
 
     #----------processing-----------♡
     print(f"{'UPA Black Removed:':<22} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
@@ -215,19 +221,12 @@ def print_water(state, outputs):
 #----------------------------------------------------♡
 
 
-#-----------------------dust-------------------------♡
-def print_environment(state, outputs):
-    print_section_header("DUST")
-
 #----------------------------------------------------♡
-
-
-#----------------------------------------------------♡
-
 def print_sim(state, outputs):
     ...
-#----------------------------------------------------♡
 
+    
+#----------------------------------------------------♡
 
     # print(f"{'Food Produced:':<22} {outputs.get('total_food_produced_kg', 0):.3f} kg")
     # print(f"{'CO2 Stored:':<{lw}}" f"{state.co2_kpa:.3f} kPa + "f"{state.co2_stored_kg:.2f} kg stored")
