@@ -12,7 +12,6 @@ split = "-" * width
 lw = 22    # label width
 #----------------------------------------------------♡
 
-
 #----------------------header------------------------♡
 def print_header():
     print(deco)
@@ -27,11 +26,12 @@ def print_section_header(title):
     left_space = white_space // 2
     right_space = white_space - left_space
 
-    left_split = "⋙" * left_space
-    right_split = "⋘" * right_space
+    left_split = "»" * left_space
+    right_split = "«" * right_space
 
     print(f"\n{left_split}{title}{right_split}")
 #----------------------------------------------------♡
+
 
 #---------------------full print---------------------♡
 def print_sim(state, outputs, alerts):
@@ -148,9 +148,8 @@ def print_power(state, outputs):
 def print_thermal(state, outputs):
     temp_change_per_hour = outputs.get("temp_change_c", 0) * 12
 
-    print_section_header("THERMAL")
-    print((f"\n♡  [THERMAL MODE: {outputs['hab_temp_mode']}]  ♡\n").center(width))
-
+    print_section_header(f"THERMAL MODE: {outputs['hab_temp_mode']}")
+    
     #----------environment----------♡
     print(f"{'Mars Temp:':<{lw}} {outputs.get('mars_temp_c', state.mars_temp_c):.2f} °C")
     print(f"{'Habitat Temp:':<{lw}} {state.hab_temp_c:.2f} °C")
@@ -177,6 +176,17 @@ def print_thermal(state, outputs):
     print(f"{'Radiator Cooling:':<{lw}} {outputs.get('radiator_heat_rejection_kw', 0):.2f} kW")
 #----------------------------------------------------♡
 
+#-----------------------ISRU-------------------------♡
+def print_isru(state, outputs):
+    print_section_header("ISRU")
+    print(f"{'ISRU Mode:':<{lw}} {outputs.get('isru_mode', 'offline')}")
+
+    print(f"{'Pipes Extracting:':<{lw}} {outputs.get('pipes_extracting', 0)}")
+    print(f"{'Pipes Deploying:':<{lw}} {outputs.get('pipes_deploying', 0)}")
+    print(f"{'Pipes Retracting:':<{lw}} {outputs.get('pipes_retracting', 0)}")
+    print(f"{'Total Pipes Active:':<{lw}} {outputs.get('total_pipes_active', 0)}")
+#----------------------------------------------------♡
+
 #----------------------water-------------------------♡
 def print_water(state, outputs):
     print_section_header("WATER")
@@ -190,15 +200,6 @@ def print_water(state, outputs):
     print(f"{'Water Needed:':<{lw}} {outputs.get('total_water_needed_kg', 0):.3f} kg")
     print(f"{'Water Used:':<{lw}} {outputs.get('total_water_consumed_kg', 0):.2f} kg")
     print(f"{'Water Recirculated:':<{lw}} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
-
-    #-------------isru--------------♡
-    print(f"{'ISRU Mode:':<{lw}} {outputs.get('isru_mode', 'offline')}")
-    print(f"{'Raw Water Added:':<{lw}} {outputs.get('isru_raw_water_added_kg', 0):.2f} kg")
-    print(f"{'Raw Water Stored:':<{lw}} {state.raw_isru_water_storage_kg:.2f} kg")
-    print(f"{'Pipes Extracting:':<{lw}} {outputs.get('pipes_extracting', 0)}")
-    print(f"{'Pipes Deploying:':<{lw}} {outputs.get('pipes_deploying', 0)}")
-    print(f"{'Pipes Retracting:':<{lw}} {outputs.get('pipes_retracting', 0)}")
-    print(f"{'Total Pipes Active:':<{lw}} {outputs.get('total_pipes_active', 0)}")
 
     #----------processing-----------♡
     print(f"{'UPA Black Removed:':<{lw}} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
@@ -221,11 +222,13 @@ def print_water(state, outputs):
     print(f"{'Condensate Added:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
     print(f"{'UPA Brine Added:':<{lw}} {outputs.get('upa_brine_added_kg', 0):.2f} kg")
     print(f"{'Sabatier Water Added:':<{lw}} {outputs.get('sabatier_water_produced_kg', 0):.3f} kg")
-    
+    print(f"{'Raw Water Added:':<{lw}} {outputs.get('isru_raw_water_added_kg', 0):.2f} kg")
+
     #-----------storage-------------♡
     print(f"{'Potable Water:':<{lw}} {state.potable_water_storage_kg:.2f} kg")
     print(f"{'Gray Water:':<{lw}} {state.gray_water_storage_kg:.2f} kg")
     print(f"{'Black Water:':<{lw}} {state.black_water_storage_kg:.2f} kg")
     print(f"{'Condensate:':<{lw}} {state.condensate_storage_kg:.2f} kg")
     print(f"{'Brine:':<{lw}} {state.brine_storage_kg:.2f} kg")
+    print(f"{'Raw Water Stored:':<{lw}} {state.raw_isru_water_storage_kg:.2f} kg")
 #----------------------------------------------------♡
