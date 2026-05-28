@@ -170,52 +170,69 @@ def print_water(state, outputs):
     print_section_header("WATER")
 
     #---------humidity / CHX--------♡
+    print(f"{'Transpiration:':<22} {outputs.get('transpiration_kg', 0):.3f} kg")
+    print(f"{'Humidity:':<22} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
+    print(f"{'Vapor Removed:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")
+
 
     #----------greenhouse-----------♡
-
-    #-----------cooling-------------♡
-    #-----------cooling-------------♡
-    #-----------cooling-------------♡
-    #-----------cooling-------------♡
-    #-----------cooling-------------♡
-
-#-------------------humidity / chx-------------------♡
-def print_environment(state, outputs):
-    print_section_header("HUMIDITY / CHX")
-
-#----------------------water-------------------------♡
-def print_environment(state, outputs):
-    print_section_header("WATER")
-
-    print(f"{'Potable Water:':<{lw}}" f"{state.potable_water_storage_kg:.1f} kg")
+    print(f"{'Water Needed:':<22} {outputs.get('total_water_needed_kg', 0):.3f} kg")
+    print(f"{'Water Used:':<22} {outputs.get('total_water_consumed_kg', 0):.2f} kg")
+    print(f"{'Water Recirculated:':<22} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
 
 
-#-----------------------isru-------------------------♡
-def print_environment(state, outputs):
-    print_section_header("ISRU")
+    #-------------isru--------------♡
 
-#---------------------sabatier-----------------------♡
-def print_environment(state, outputs):
-    print_section_header("SABATIER")
+    #----------processing-----------♡
+    print(f"{'UPA Black Removed:':<22} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
+    print(f"{'WPA Processed:':<22} {outputs.get('wpa_water_processed_kg', 0):.2f} kg")
+    print(f"{'BPA Processed:':<22} {outputs.get('bpa_water_processed_kg', 0):.2f} kg")
+    
 
-#--------------------greenhouse----------------------♡
-def print_environment(state, outputs):
-    print_section_header("GREENHOUSE")
+    #----------water used-----------♡
+    print(f"{'Potable Used:':<22} {outputs.get('potable_water_used_kg', 0):.2f} kg")
+    print(f"{'OGA Water Used:':<22} {outputs.get('oga_water_used_kg', 0):.2f} kg")
+
+    #--------water recovered--------♡
+    print(f"{'Total Recovered:':<22} {outputs.get('total_recovered_water_kg', 0):.2f} kg")
+    print(f"{'UPA Recovered:':<22} {outputs.get('upa_recovered_water_kg', 0):.2f} kg")
+    print(f"{'WPA Recovered:':<22} {outputs.get('wpa_recovered_water_kg', 0):.2f} kg")
+    print(f"{'BPA Recovered:':<22} {outputs.get('bpa_recovered_water_kg', 0):.2f} kg")
+
+    #----------water added----------♡
+    print(f"{'Gray Added:':<22} {outputs.get('gray_water_added_kg', 0):.2f} kg")
+    print(f"{'Black Added:':<22} {outputs.get('black_water_added_kg', 0):.2f} kg")
+    print(f"{'Condensate Added:':<22} {outputs.get('vapor_removed_kg', 0):.2f} kg")
+    print(f"{'Water Produced:':<22} {outputs.get('sabatier_water_produced_kg', 0):.2f} kg")
+    print(f"{'UPA Brine Added:':<22} {outputs.get('upa_brine_added_kg', 0):.2f} kg")
+
+    #-----------storage-------------♡
+    print(f"{'Potable Water:':<22} {state.potable_water_storage_kg:.2f} kg")
+    print(f"{'Gray Water:':<22} {state.gray_water_storage_kg:.2f} kg")
+    print(f"{'Black Water:':<22} {state.black_water_storage_kg:.2f} kg")
+    print(f"{'Condensate:':<22} {state.condensate_storage_kg:.2f} kg")
+    print(f"{'Brine:':<22} {state.brine_storage_kg:.2f} kg")
+#----------------------------------------------------♡
+
 
 #-----------------------dust-------------------------♡
 def print_environment(state, outputs):
     print_section_header("DUST")
 
-#----------------------alerts------------------------♡
-def print_environment(state, outputs):
-    print_section_header("ALERTS")
+#----------------------------------------------------♡
 
+
+
+#----------------------------------------------------♡
 
 def print_sim(state, outputs):
     ...
+#----------------------------------------------------♡
 
 
-
-    #  print(f"{'CO2 Stored:':<{lw}}" f"{state.co2_kpa:.3f} kPa + "f"{state.co2_stored_kg:.2f} kg stored")
-    #print(f"{'CO2 Consumed:':<{lw}} {outputs.get('total_co2_consumed_kpa', 0):.3f} kPa")
+    # print(f"{'Food Produced:':<22} {outputs.get('total_food_produced_kg', 0):.3f} kg")
+    # print(f"{'CO2 Stored:':<{lw}}" f"{state.co2_kpa:.3f} kPa + "f"{state.co2_stored_kg:.2f} kg stored")
+    # print(f"{'CO2 Consumed:':<{lw}} {outputs.get('total_co2_consumed_kpa', 0):.3f} kPa")
     # print((f"\n♡  [THERMAL MODE: {outputs['hab_temp_mode']}]  ♡\n").center(width))
+    # print(f"{'Potable Water:':<{lw}}" f"{state.potable_water_storage_kg:.1f} kg")
+    # print(f"Sabatier Water Produced: {outputs.get('sabatier_water_produced_kg', 0):.3f} kg")

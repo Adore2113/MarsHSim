@@ -958,3 +958,12 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ break up starting variables and print
 
     ♡ test terminal output to adjust numbers!
+
+
+##      05/28/2026
+    ♡ seperating files for print and Habitat State
+
+    ♡ this new print file is going to be made with debugging and checking numbers in mind, it will not be organized this way for the actual UI
+
+#### Next Session:
+    ♡ go over output variable names and make them consistent (added, produced, recovered, proccessed, etc)
