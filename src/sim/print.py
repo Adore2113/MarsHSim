@@ -9,8 +9,6 @@ from .alerts import get_status
 width = 33
 deco = "\n♡ " + "-" * 30 + " ♡"
 split = "-" * width
-left_split = "⋙" * 5
-right_split = "⋘" * 5
 #----------------------------------------------------♡
 
 
@@ -21,11 +19,19 @@ def print_header():
     print(deco)
 #----------------------------------------------------♡
 
-
 #-------------------section header-------------------♡
 def print_section_header(title):
-    print(f"\n{left_split}  {title}  {right_split}")
+    title_text = f"{title}"
+    white_space = width - len(title_text)
+    left_space = white_space // 2
+    right_space = white_space - left_space
+
+    left_split = "⋙" * left_space
+    right_split = "⋘" * right_space
+
+    print(f"\n{left_split}{title}{right_split}")
 #----------------------------------------------------♡
+
 
 
 #------------------time / environment----------------♡
@@ -48,10 +54,6 @@ def print_system_stats(alerts):
     status = get_status(alerts)
     print_section_header(f"SYSTEM STATUS: {status}")
 
-  
-#------------------time / print_environment----------------♡
-def print_environment(state, outputs):
-    print_section_header(time / print_environment)
 
 #--------------------atmosphere----------------------♡
 def print_atmosphere(state, outputs):
@@ -66,7 +68,7 @@ def print_oga(state, outputs):
     print_section_header(oxygen / oga)
 
 #--------------------co2 scrubber--------------------♡
-def print_environment(state, outputs):
+def print_co2_scrub(state, outputs):
     print_section_header(co2 scrubber)
 
 #--------------------buffer gas----------------------♡
