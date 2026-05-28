@@ -33,7 +33,6 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
 
     oga_power_used_kw = 0.0
     oga_heat_added_kw = 0.0
-    sabatier_power_used_kw = 0.0
 
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
 
@@ -66,7 +65,8 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
             water_used_kg = 0.0
             h2_produced_kg = 0.0
             o2_added_kpa = 0.0
-        
+
+    #----------------power and heat-----------------♡
             oga_power_used_kw = base_oga_power_kw * 0.55
             oga_heat_added_kw = base_oga_heat_kw * 0.55
 

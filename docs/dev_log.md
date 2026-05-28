@@ -928,6 +928,10 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ added water isru subsystem to readme
 
 
+#### Next Session:
+    ♡ fix irsu file
+
+
 ##      05/25/2026
     ♡ fixing isru and added modes, and pipe retraction and extraction
 
@@ -938,3 +942,14 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ updating systems to include low power mode
 
     ♡ fixed venting logic in oxygen.py
+
+#### Next Session:
+    ♡ go over vent logic in each file
+
+
+##      05/27/2026
+    ♡ adding vent leaks to buffer_gas.py
+
+    ♡ I know that turning buffer_gas.py into basically one long code might be different to read, but I think it works with my section headers keeping things organized and hopefully easy to read, I'm also hoping this keeps things a bit neater when it comes to ouputs and variables and such
+
+    ♡ 

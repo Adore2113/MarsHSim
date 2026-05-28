@@ -437,9 +437,8 @@ def print_state(state, outputs, alerts):
     # print(f"{'Amine Beds Online:':<22} {outputs.get('beds_online_count', 0)}")
     # print(f"{'CO2 Scrubbed:':<22} {outputs.get('co2_removed_kpa', 0):.3f} kPa")
 
-    # print(f"{'Scrubber Power Used:':<22} {outputs.get('co2_scrubber_power_used_kw', 0):.2f} kW")
-    # print(f"{'Scrubber Heat:':<22} {outputs.get('co2_scrubber_heat_kw', 0):.2f} kW")
-    # print(f"{'Scrubber Energy:':<22} {outputs.get('co2_scrubber_energy_used_kwh', 0):.2f} kWh")
+    # print(f"{'Scrubber Power Used:':<22} {outputs.get('amine_bed_power_used_kw', 0):.2f} kW")
+    # print(f"{'Scrubber Heat:':<22} {outputs.get('amine_bed_heat_added_kw', 0):.2f} kW")
     
     # print(f"{'O2 Added:':<22} {outputs.get('o2_added_kpa', 0):.3f} kPa")
     # print(f"{'OGA Heat:':<22} {outputs.get('oga_heat_kw', 0):.2f} kW")

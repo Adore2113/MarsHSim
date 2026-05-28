@@ -313,7 +313,7 @@ def determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
 
 
 #------running thermal control for one timestep------♡
-def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, light_heat_kw, wellness_light_heat_kw, greenhouse_heat_kw, greenhouse_led_heat_kw, chx_heat_added_kw, dt_min, sunlight_amount):
+def run_thermal_control(state, crew_heat_kw, oga_heat_kw, amine_bed_heat_added_kw, light_heat_kw, wellness_light_heat_kw, greenhouse_heat_kw, greenhouse_led_heat_kw, chx_heat_added_kw, dt_min, sunlight_amount):
     hours_per_step = dt_min / 60.0
     mars_temp_c, mars_temp_k = determine_mars_temp_c(state)
    
@@ -329,7 +329,7 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, co2_scrubber_heat_kw, 
 
     thermal_state = replace(state, mars_temp_c = mars_temp_c, target_temp_c = thermal_target_temp_c)
 
-    hab_heat_kw = crew_heat_kw + oga_heat_kw + co2_scrubber_heat_kw + light_heat_kw + wellness_light_heat_kw + chx_heat_added_kw + greenhouse_heat_kw + greenhouse_led_heat_kw
+    hab_heat_kw = crew_heat_kw + oga_heat_kw + amine_bed_heat_added_kw + light_heat_kw + wellness_light_heat_kw + chx_heat_added_kw + greenhouse_heat_kw + greenhouse_led_heat_kw
     
     solar_heat_gain_kw = get_solar_heat_gain_kw(state)
     

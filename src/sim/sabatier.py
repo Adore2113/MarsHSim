@@ -31,7 +31,6 @@ hysteresis = 1.5
 def run_sabatier(state, dt_min):
     hours_per_step = dt_min / 60
 
-    #------------default sabatier values------------♡  
     sabatier_mode = "offline"
     water_produced_kg = 0.0
     ch4_produced_kg = 0.0
