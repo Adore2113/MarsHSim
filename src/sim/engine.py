@@ -103,7 +103,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         new_state,
         crew_results["crew_temp_rise_kw"],
         oga_outputs["oga_heat_kw"],
-        co2_scrubber_outputs["co2_scrubber_heat_kw"],
+        co2_scrubber_outputs["amine_bed_heat_added_kw"],
         light_results["light_heat_kw"],
         light_results["w_light_heat_kw"],
         greenhouse_outputs.get("total_greenhouse_heat_kw", 0.0),
