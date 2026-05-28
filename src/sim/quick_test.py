@@ -347,11 +347,11 @@ def print_state(state, outputs, alerts):
 
     #---------------time and daylight----------------♡
     print(f"{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
-    # print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.3f} °C")    # change back to 2f
-    # print(f"{'Mars Temp:':<22} {outputs['mars_temp_c']:.2f} °C")
-    # print(f"{'Peak Sun Today:':<22} {state.peak_sunlight_today:.3f} /1.0")
-    # print(f"{'Low Sun Streak:':<22} {state.low_sunlight_streak_sols} sols")
-    # print(f"{'Sunlight per m²:':<22} {state.daylight_m2_kw:.3f} kW")
+    print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.3f} °C")    # change back to 2f
+    print(f"{'Mars Temp:':<22} {outputs['mars_temp_c']:.2f} °C")
+    print(f"{'Peak Sun Today:':<22} {state.peak_sunlight_today:.3f} /1.0")
+    print(f"{'Low Sun Streak:':<22} {state.low_sunlight_streak_sols} sols")
+    print(f"{'Sunlight per m²:':<22} {state.daylight_m2_kw:.3f} kW")
 
 
     # #----------------habitat status------------------♡

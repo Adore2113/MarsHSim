@@ -955,4 +955,6 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ two file refactors today
 
 #### Next Session:
+    ♡ break up starting variables and print
+
     ♡ test terminal output to adjust numbers!
