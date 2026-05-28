@@ -139,39 +139,35 @@ def run_co2_scrub(state, co2_afer_crew_kpa, co2_after_greenhouse_kpa, next_time_
         if next_time_s % bed_switch_interval_s == 0 and next_time_s != 0:    # temporary power increase when beds switch
             co2_scrubber_power_used_kw *= bed_switch_power_multiplier
 
-        amine_bed_power_used_kw = amine_bed_power_used_kw * hours_per_step
-        amine_bed_heat_added_kw = amine_bed_heat_added_kw * hours_per_step
+    amine_bed_power_used_kw = amine_bed_power_used_kw * hours_per_step
+    amine_bed_heat_added_kw = amine_bed_heat_added_kw * hours_per_step
 
 
-#------------co2 removal info per timestep-----------♡
-def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time_s, dt_min):
-    if co2_after_greenhouse_kpa is not None and co2_after_greenhouse_kpa >= 0:
-        co2_for_scrub = co2_after_greenhouse_kpa
-    
-    else:
-        co2_for_scrub = co2_after_crew_kpa
+    #-----------------small gas leaks----------------♡  
+    co2_leak_kpa = state.co2_leak_kpa_per_hr * hours_per_step
+    final_co2_kpa = max(0.0, co2_after_scrub_kpa - co2_leak_kpa)
 
-    max_scrub_kpa, beds_online_count, beds_after_control = co2_scrub_capacity_kpa(state, co2_for_scrub, next_time_s)
-    co2_after_scrub_kpa, co2_removed_kpa, co2_removed_kg, new_co2_stored_kg = co2_removed_and_storage_update(state, co2_for_scrub, max_scrub_kpa)
-    co2_scrubber_heat_kw, co2_scrubber_heat_kwh, co2_scrubber_power_used_kw, co2_scrubber_energy_used_kwh = co2_scrub_power_and_heat(co2_removed_kpa, beds_online_count, next_time_s, dt_min)
 
     #------------dict for updating state-------------♡ 
     co2_scrubber_updates = {
-        "co2_kpa": co2_after_scrub_kpa,
+        "co2_kpa": final_co2_kpa,
         "co2_stored_kg": new_co2_stored_kg,
-        "amine_beds": beds_after_control,
+        "amine_beds": new_beds,
     }
     
+
     #-----------dict for printing outputs------------♡ 
     co2_scrubber_outputs = {
         "co2_removed_kpa": co2_removed_kpa,
         "co2_removed_kg": co2_removed_kg,
-        "co2_scrubber_heat_kw": co2_scrubber_heat_kw,
-        "co2_scrubber_heat_kwh": co2_scrubber_heat_kwh,
-        "co2_scrubber_power_used_kw": co2_scrubber_power_used_kw,
-        "co2_scrubber_energy_used_kwh": co2_scrubber_energy_used_kwh,
+        
         "beds_online_count": beds_online_count,
-        "co2_for_scrub_kpa": co2_for_scrub
+        "co2_for_scrub_kpa": co2_for_scrub,
+        
+        "amine_bed_power_used_kw": amine_bed_power_used_kw,
+        "amine_bed_energy_used_kwh": amine_bed_power_used_kw * hours_per_step,
+        "amine_bed_heat_added_kw": amine_bed_heat_added_kw,
+        "amine_bed_heat_added_kwh": amine_bed_heat_added_kw * hours_per_step,
     }
 
     return co2_scrubber_updates, co2_scrubber_outputs
