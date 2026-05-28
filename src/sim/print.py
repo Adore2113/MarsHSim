@@ -97,8 +97,6 @@ def print_atmosphere(state, outputs):
     print(f"{'CH4 Vented:':<{lw}} {outputs.get('sabatier_ch4_vented_kg', 0):.2f} kg")
     print(f"{'H2 Consumed:':<{lw}} {outputs.get('sabatier_h2_consumed_kg', 0):.2f} kg")
     print(f"{'O2 Produced:':<{lw}} {outputs.get('total_o2_produced_kpa', 0):.3f} kPa")
-
-
 #----------------------------------------------------♡
 
 
@@ -116,8 +114,9 @@ def print_power(state, outputs):
     #-------------stored------------♡
     print(f"{'Battery Stored:':<{lw}} {state.battery_stored_kwh:.2f} kWh")
     
-    #------------lights-------------♡
+    #----------powered on-----------♡
     print(f"{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'OFF'}")
+    print(f"{'Mode:':<22} {outputs.get('greenhouse_mode', 'offline')}")
 
     #-----------power used----------♡
     print(f"{'Total Power Used:':<{lw}} {outputs.get('total_power_used_kw', 0):.2f} kW")
@@ -131,43 +130,54 @@ def print_power(state, outputs):
     print(f"{'Heater Power Used:':<{lw}} {outputs.get('heater_power_kw', 0):.2f} kW")
 
     print(f"{'Total Energy Used:':<{lw}} {outputs.get('total_energy_used_kwh', 0):.2f} kWh")
+#----------------------------------------------------♡
 
 
 #----------------------thermal-----------------------♡
 def print_thermal(state, outputs):
+    temp_change_per_hour = outputs.get("temp_change_c", 0) * 12
+
     print_section_header("THERMAL")
+    #----------environment----------♡
+
     print(f"{'Mars Temp:':<22} {outputs.get('mars_temp_c', state.mars_temp_c):.2f} °C")
     print(f"{'Habitat Temp:':<22} {state.hab_temp_c:.2f} °C")
+    print(f"{'Heat Loss:':<22} {outputs.get('heat_loss_kw', 0):.2f} kW")
 
     print(f"{'Temp Trend:':<20} ~ {temp_change_per_hour:.3f} °C/hr")    
     
     #-----------heat added----------♡
     print(f"{'Net Heat:':<22} {outputs.get('net_heat_kw', 0):.2f} kW")
+    
     print(f"{'Heaters Online:':<22} {outputs.get('heaters_online_count', 0)}")
     print(f"{'Heater Heat:':<22} {outputs.get('heater_heat_kw', 0):.2f} kW")
 
-
     print(f"{'GH Heat Added:':<22} {outputs.get('total_greenhouse_heat_kw', 0):.3f} kW")
-
     print(f"{'Heat Added:':<22} {outputs.get('sabatier_heat_added_kw', 0):.2f} kW")
     print(f"{'Scrubber Heat:':<22} {outputs.get('amine_bed_heat_added_kw', 0):.2f} kW")
-
     print(f"{'Lights Heat:':<22} {outputs.get('light_heat_kw', 0):.2f} kW")
-
-    print(f"{'Heat Loss:':<22} {outputs.get('heat_loss_kw', 0):.2f} kW")
-
     print(f"{'CHX Heat:':<22} {outputs.get('chx_heat_added_kw', 0):.2f} kW")
+    print(f"{'OGA Heat:':<22} {outputs.get('oga_heat_kw', 0):.2f} kW")
 
     #-----------cooling-------------♡
     print(f"{'Radiators Online:':<22} {outputs.get('radiators_online_count', 0)}")
     print(f"{'Rad Cooling:':<22} {outputs.get('radiator_heat_rejection_kw', 0):.2f} kW")
-        
-
-    #-----------power used----------♡
-
-    print(f"{'OGA Heat:':<22} {outputs.get('oga_heat_kw', 0):.2f} kW")
+#----------------------------------------------------♡
 
 
+#----------------------water-------------------------♡
+def print_water(state, outputs):
+    print_section_header("WATER")
+
+    #---------humidity / CHX--------♡
+
+    #----------greenhouse-----------♡
+
+    #-----------cooling-------------♡
+    #-----------cooling-------------♡
+    #-----------cooling-------------♡
+    #-----------cooling-------------♡
+    #-----------cooling-------------♡
 
 #-------------------humidity / chx-------------------♡
 def print_environment(state, outputs):
