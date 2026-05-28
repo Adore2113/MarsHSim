@@ -1,9 +1,8 @@
 #--------------------imports-------------------------♡
 from .state import Habitat_State
 from .engine import step
-from .mars_time import get_sol_time
-from .buffer_gas import mca
-from .alerts import get_alerts, get_status
+from .alerts import get_alerts
+from .print import print_sim
 #----------------------------------------------------♡
 
 #-------------------habitat state--------------------♡
@@ -338,4 +337,4 @@ for i in range(288 * 5):   # 5 full sols (24h * 12 steps/hour * 5)
     alerts = get_alerts(state, outputs)
 
     if i % 288 == 0:    # every hour = 12, 5 hours = 60, 10 hours = 120
-        print_state(state, outputs, alerts)
+        print_sim(state, outputs, alerts)
