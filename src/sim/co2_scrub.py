@@ -41,20 +41,21 @@ def get_co2_scrub_efficiency(co2_kpa):
     return co2_scrub_efficiency
 
 
-#-------------------co2 scrubing---------------------♡
-def run_co2_scrub(state, co2_afer_crew_kpa, co2_after_greenhouse_kpa, next_time_s, dt_min):
+#-------------------co2 scrubbing--------------------♡
+def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time_s, dt_min):
     hours_per_step = dt_min / 60
 
     if co2_after_greenhouse_kpa is not None and co2_after_greenhouse_kpa >= 0:
         co2_for_scrub = co2_after_greenhouse_kpa
     
     else:
-        co2_for_scrub = co2_afer_crew_kpa
+        co2_for_scrub = co2_after_crew_kpa
 
     new_beds = []
     beds_needed_online = 0
     beds_to_deactivate = 0
     target_beds_online = min_beds_online
+    bed_switch = False
     co2_removed_kg = 0.0
 
     removal_power_used_kw = 0.0 
@@ -88,7 +89,7 @@ def run_co2_scrub(state, co2_afer_crew_kpa, co2_after_greenhouse_kpa, next_time_
     if beds_online_count < target_beds_online and co2_above_target_kpa > co2_hysteresis_for_on:
         beds_needed_online = target_beds_online - beds_online_count
     
-    elif beds_online_count > target_beds_online and co2_above_target_kpa > co2_hysteresis_for_off:
+    elif beds_online_count > target_beds_online and co2_above_target_kpa < -co2_hysteresis_for_off:
         beds_to_deactivate = beds_online_count - target_beds_online
 
     for bed in state.amine_beds:
@@ -104,18 +105,17 @@ def run_co2_scrub(state, co2_afer_crew_kpa, co2_after_greenhouse_kpa, next_time_
 
         new_beds.append(new_bed)
     
-    beds_online_count = sum(1 for bed in state.amine_beds if bed["status"] == "online")
+    beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
 
 
     #------------------co2 removal-------------------♡ 
-    max_scrub_kpa = beds_online_count * state.scrub_per_bed_kpa
-    efficiency = get_co2_scrub_efficiency(co2_for_scrub)
-    max_scrub_kpa *= efficiency
-    
+    max_scrub_kpa = beds_online_count * state.scrub_per_bed_kpa * get_co2_scrub_efficiency(co2_for_scrub)
+
     if next_time_s % bed_switch_interval_s == 0 and next_time_s != 0:    # every 55min switch beds w. a brief co2 spike
         max_scrub_kpa *= 0.80
+        bed_switch = True
     
-    co2_removed_kpa = min(max_scrub_kpa, max(0.0, co2_for_scrub - state.target_co2)) 
+    co2_removed_kpa = min(max_scrub_kpa, max(0.0, co2_for_scrub - state.target_co2_kpa)) 
     co2_after_scrub_kpa = co2_for_scrub - co2_removed_kpa
     
     if co2_removed_kpa > 0.0:
@@ -137,14 +137,11 @@ def run_co2_scrub(state, co2_afer_crew_kpa, co2_after_greenhouse_kpa, next_time_
         amine_bed_heat_added_kw = baseline_heat_kw + removal_heat_added_kw
 
         if next_time_s % bed_switch_interval_s == 0 and next_time_s != 0:    # temporary power increase when beds switch
-            co2_scrubber_power_used_kw *= bed_switch_power_multiplier
-
-    amine_bed_power_used_kw = amine_bed_power_used_kw * hours_per_step
-    amine_bed_heat_added_kw = amine_bed_heat_added_kw * hours_per_step
+            amine_bed_power_used_kw *= bed_switch_power_multiplier
 
 
     #-----------------small gas leaks----------------♡  
-    co2_leak_kpa = state.co2_leak_kpa_per_hr * hours_per_step
+    co2_leak_kpa = state.co2_leak_rate_kpa_per_hr * hours_per_step
     final_co2_kpa = max(0.0, co2_after_scrub_kpa - co2_leak_kpa)
 
 
@@ -158,6 +155,7 @@ def run_co2_scrub(state, co2_afer_crew_kpa, co2_after_greenhouse_kpa, next_time_
 
     #-----------dict for printing outputs------------♡ 
     co2_scrubber_outputs = {
+        "bed_switch_this_step": bed_switch,
         "co2_removed_kpa": co2_removed_kpa,
         "co2_removed_kg": co2_removed_kg,
         
