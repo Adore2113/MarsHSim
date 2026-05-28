@@ -67,8 +67,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     min_greenhouse_co2_kpa = state.target_co2_kpa - 0.05
 
-    o2_after_greenhouse_kpa = min(state.max_safe_o2_kpa, o2_after_crew_kpa + greenhouse_outputs.get("total_o2_produced_kpa", 0.0))
-    co2_after_greenhouse_kpa = max( min_greenhouse_co2_kpa, co2_after_crew_kpa - greenhouse_outputs.get("total_co2_consumed_kpa", 0.0))
+    o2_after_greenhouse_kpa = min(state.max_safe_o2_kpa, o2_after_crew_kpa + greenhouse_outputs.get("greenhouse_o2_produced_kpa", 0.0))
+    co2_after_greenhouse_kpa = max( min_greenhouse_co2_kpa, co2_after_crew_kpa - greenhouse_outputs.get("greenhouse_co2_consumed_kpa", 0.0))
 
     co2_scrubber_updates, co2_scrubber_outputs = run_co2_scrub(new_state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time_s, dt_min)
     oga_updates, oga_outputs = run_oga(new_state, o2_after_greenhouse_kpa, dt_min)
@@ -77,7 +77,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     buffer_gas_updates, buffer_gas_outputs = run_buffer_gas_control(new_state, dt_min)
  
     #--------------humidity---------------♡
-    humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], greenhouse_outputs.get("total_transpiration_kg", 0.0), dt_min)
+    humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], greenhouse_outputs.get("greenhouse_transpiration_kg", 0.0), dt_min)
 
     #----------------isru-----------------♡
     isru_updates, isru_outputs = run_isru(new_state, dt_min)
@@ -88,10 +88,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         crew_results,
         humidity_results["vapor_removed_kg"],
         oga_outputs["water_used_kg"],
-        greenhouse_outputs.get("total_water_consumed_kg", 0.0),
-        greenhouse_outputs.get("transpiration_kg", 0.0),
+        greenhouse_outputs.get("greenhouse_water_consumed_kg", 0.0),
+        greenhouse_outputs.get("greenhouse_transpiration_kg", 0.0),
         sabatier_outputs.get("sabatier_water_produced_kg", 0.0),
-        greenhouse_outputs.get("total_runoff_water_kg", 0.0),
+        greenhouse_outputs.get("greenhouse_runoff_water_kg", 0.0),
         dt_min
     )
 
@@ -106,8 +106,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         co2_scrubber_outputs["amine_bed_heat_added_kw"],
         light_results["light_heat_kw"],
         light_results["w_light_heat_kw"],
-        greenhouse_outputs.get("total_greenhouse_heat_kw", 0.0),
-        greenhouse_outputs.get("total_led_heat_kw", 0.0),
+        greenhouse_outputs.get("greenhouse_heat_kw", 0.0),
+        greenhouse_outputs.get("greenhouse_led_heat_kw", 0.0),
         humidity_results["chx_heat_added_kw"],
         dt_min,
         current_sunlight_amount
