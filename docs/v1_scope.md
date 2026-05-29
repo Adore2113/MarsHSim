@@ -38,6 +38,7 @@
     ♡ CO2 scrubber / amine beds
     ♡ Buffer gas control / MCA
     ♡ Sabatier reactor
+    ♡ In-Situ Resource Utilization (ISRU)
     ♡ Water recovery systems (UPA / WPA / BPA)
     ♡ Humidity / CHX
     ♡ Thermal control
@@ -382,8 +383,6 @@
 
     ♡ so the urine goes through the UPA and gets clean water and brine, and the brine goes through the BPA and gets some more clean water and a smaller amount of brine (that's the goal anyway)
 
-    ♡ I read about In-Situ Resource Utilization (ISRU) to extract water locally but I'll worry about that later
-
     ♡ OGA uses potable water
 
     ♡ electrostatic dust repulsion (EDS) b/c of the fact that it's passive
@@ -404,7 +403,16 @@
 
     ♡ eventually have Mars dust storms and things added in with random, maybe wind cleaning off some of the dust from the solar arrays as well
 
+### ISRU Notes:
+    ♡ I read about In-Situ Resource Utilization (ISRU) to extract water locally but I'll worry about that later
 
+    ♡ while testing the water outputs, I can see that the net loss per sol is way too high, so I'm going to go over some numbers
+
+    ♡ 115.5kg per sol is just the cost of having a 30 person crew
+
+    ♡ I was thinking about other way to recycle and actually get water and I thought about piercing through the surface with two or three heated pipes that siphon up some frozen mars water every so often? retractable pipes so they don't freeze and can be used at will, I'm going to do some reasearch on this
+
+    ♡ going back to In-Situ Resource Utilization (ISRU) to extract water locally, I'm thinking piercing through the surface with two or three heated pipes that siphon up some frozen mars water every so often with retractable pipes so they don't freeze and can be used when wanted and needed to avoid environmental factors
 
     
 ### Alert Notes:
