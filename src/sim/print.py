@@ -26,8 +26,8 @@ def print_section_header(title):
     left_space = white_space // 2
     right_space = white_space - left_space
 
-    left_split = "»" * left_space
-    right_split = "«" * right_space
+    left_split = "›" * left_space
+    right_split = "‹" * right_space
 
     print(f"\n{left_split}{title}{right_split}")
 #----------------------------------------------------♡
@@ -38,10 +38,10 @@ def print_sim(state, outputs, alerts):
     print_header()
     print_system_stats(alerts)
     print_environment(state, outputs)
-    print_atmosphere(state, outputs)
-    print_power(state, outputs)
-    print_thermal(state, outputs)
-    print_water(state, outputs)
+    # print_atmosphere(state, outputs)
+#     print_power(state, outputs)
+    # print_thermal(state, outputs)
+    # print_water(state, outputs)
     print (split)
 #----------------------------------------------------♡
 
@@ -52,7 +52,11 @@ def print_system_stats(alerts):
     print_section_header(f"SYSTEM STATUS: {status}")
 
     if alerts:
-        print_section_header(f"ALERT: {status}")
+        for alert in alerts:
+            print(f"\n{alert}⚠".center(width))
+    
+    else:
+        print("\n🙂 ALL SYSTEMS NOMINAL 🙂".center(width))
 #----------------------------------------------------♡
 
 #------------------time / environment----------------♡
@@ -60,7 +64,7 @@ def print_environment(state, outputs):
     sol, hour, minutes = get_sol_time(state)
     temp_change_per_hour = outputs.get("temp_change_c", 0) * 12    # change this later
 
-    print(f"{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
+    print(f"\n{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
     print(f"{'Habitat Temp:':<{lw}} {state.hab_temp_c:.3f} °C")
     print(f"{'Mars Temp:':<{lw}} {outputs['mars_temp_c']:.2f} °C")
     print(f"{'Food Produced:':<{lw}} {outputs.get('total_food_produced_kg', 0):.3f} kg")
@@ -80,14 +84,14 @@ def print_atmosphere(state, outputs):
     print(f"{'Argon:':<{lw}} {state.ar_kpa:.2f} kPa")
     
     #------buffer gas control------♡
-    print(f"{'Buffer Gas Mode:':<{lw}} {outputs['buffer_gas_mode']}")
+    print(f"\n{'Buffer Gas Mode:':<{lw}} {outputs['buffer_gas_mode']}")
     print(f"{'Pressure Gap:':<{lw}} {outputs['pressure_gap_kpa']:.3f} kPa")
     
     print(f"{'Gas Added:':<{lw}} {outputs['total_buffer_gas_added_kpa']:.3f} kPa")
     print(f"{'Gas Vented:':<{lw}} {outputs.get('total_buffer_gas_vented_kpa', 0.0):.3f} kPa")
 
     #----------stored gas----------♡
-    print(f"{'O2 Stored:':<{lw}} {state.o2_stored_kg:.2f} kg")
+    print(f"\n{'O2 Stored:':<{lw}} {state.o2_stored_kg:.2f} kg")
     print(f"{'CO2 Stored:':<{lw}} {state.co2_stored_kg:.2f} kg")
     print(f"{'N2 Stored:':<{lw}} {state.n2_stored_kg:.2f} kg")
     print(f"{'AR Stored:':<{lw}} {state.ar_stored_kg:.2f} kg")
@@ -95,7 +99,7 @@ def print_atmosphere(state, outputs):
     print(f"{'CH4 Stored:':<{lw}} {state.ch4_stored_kg:.2f} kg")    
     
     #-----------gas moved-----------♡
-    print(f"{'Amine Beds Online:':<{lw}} {outputs.get('beds_online_count', 0)}")
+    print(f"\n{'Amine Beds Online:':<{lw}} {outputs.get('beds_online_count', 0)}")
 
     print(f"{'GH CO2':<{lw}} {outputs.get('total_co2_consumed_kpa', 0):.3f} kPa")
     print(f"{'Sabatier CO2:':<{lw}} {outputs.get('sabatier_co2_consumed_kpa', 0):.3f} kPa")
@@ -120,24 +124,24 @@ def print_power(state, outputs):
     print(f"{'Sunlight per m²:':<{lw}} {state.daylight_m2_kw:.3f} kW")
     print(f"{'Low Sun Streak:':<{lw}} {state.low_sunlight_streak_sols} sols")
 
-    print(f"\n{'Solar Arrays Online:':<{lw}} {outputs.get('solar_arrays_online_count', 0)} /10")
+    print(f"{'Solar Arrays Online:':<{lw}} {outputs.get('solar_arrays_online_count', 0)} /10")
     print(f"{'Solar Generated:':<{lw}} {outputs.get('total_solar_generated_kw', 0):.2f} kW")
     #-------------stored------------♡
     print(f"{'Battery Stored:':<{lw}} {state.battery_stored_kwh:.2f} kWh")
     
     #----------powered on-----------♡
-    print(f"{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'OFF'}")
+    print(f"\n{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'OFF'}")
     print(f"{'GH Mode:':<{lw}} {outputs.get('greenhouse_mode', 'offline')}")
 
     #-----------power used----------♡
-    print(f"{'Total Power Used:':<{lw}} {outputs.get('total_power_used_kw', 0):.2f} kW")
+    print(f"\n{'Total Power Used:':<{lw}} {outputs.get('total_power_used_kw', 0):.2f} kW")
 
     print(f"{'GH Power:':<{lw}} {outputs.get('total_led_power_kw', 0):.2f} kW")
     print(f"{'Sabatier Power:':<{lw}} {outputs.get('sabatier_power_used_kw', 0):.2f} kW")
     print(f"{'Scrubber Power:':<{lw}} {outputs.get('amine_bed_power_used_kw', 0):.2f} kW")
     print(f"{'Lights Power:':<{lw}} {outputs.get('light_power_used_kw', 0):.2f} kW")
     print(f"{'CHX Power:':<{lw}} {outputs.get('chx_power_used_kw', 0):.2f} kW")
-    print(f"{'Radiator Power:':<{lw}} {outputs.get('radiator_power_kw', 0):.2f} kW\n")
+    print(f"{'Radiator Power:':<{lw}} {outputs.get('radiator_power_kw', 0):.2f} kW")
     print(f"{'Heater Power:':<{lw}} {outputs.get('heater_power_kw', 0):.2f} kW")
     print(f"{'ISRU Power:':<{lw}} {outputs.get('isru_power_used_kw', 0):.2f} kW")
 
@@ -158,7 +162,7 @@ def print_thermal(state, outputs):
     print(f"{'Temp Trend:':<{lw}} ~ {temp_change_per_hour:.3f} °C/hr")    
     
     #-----------heat added----------♡
-    print(f"{'Net Heat:':<{lw}} {outputs.get('net_heat_kw', 0):.2f} kW")
+    print(f"\n{'Net Heat:':<{lw}} {outputs.get('net_heat_kw', 0):.2f} kW")
     
     print(f"{'Heaters Online:':<{lw}} {outputs.get('heaters_online_count', 0)}")
     print(f"{'Heater Heat:':<{lw}} {outputs.get('heater_heat_kw', 0):.2f} kW")
@@ -172,7 +176,7 @@ def print_thermal(state, outputs):
     print(f"{'OGA Heat:':<{lw}} {outputs.get('oga_heat_kw', 0):.2f} kW")
 
     #-----------cooling-------------♡
-    print(f"{'Radiators Online:':<{lw}} {outputs.get('radiators_online_count', 0)}")
+    print(f"\n{'Radiators Online:':<{lw}} {outputs.get('radiators_online_count', 0)}")
     print(f"{'Radiator Cooling:':<{lw}} {outputs.get('radiator_heat_rejection_kw', 0):.2f} kW")
 #----------------------------------------------------♡
 
@@ -197,12 +201,12 @@ def print_water(state, outputs):
     print(f"{'Vapor Removed:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
 
     #----------greenhouse-----------♡
-    print(f"{'Water Needed:':<{lw}} {outputs.get('total_water_needed_kg', 0):.3f} kg")
+    print(f"\n{'Water Needed:':<{lw}} {outputs.get('total_water_needed_kg', 0):.3f} kg")
     print(f"{'Water Used:':<{lw}} {outputs.get('total_water_consumed_kg', 0):.2f} kg")
     print(f"{'Water Recirculated:':<{lw}} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
 
     #----------processing-----------♡
-    print(f"{'UPA Black Removed:':<{lw}} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
+    print(f"\n{'UPA Black Removed:':<{lw}} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
     print(f"{'WPA Processed:':<{lw}} {outputs.get('wpa_water_processed_kg', 0):.2f} kg")
     print(f"{'BPA Processed:':<{lw}} {outputs.get('bpa_water_processed_kg', 0):.2f} kg")
 
@@ -211,13 +215,13 @@ def print_water(state, outputs):
     print(f"{'OGA Water Used:':<{lw}} {outputs.get('oga_water_used_kg', 0):.2f} kg")
 
     #--------water recovered--------♡
-    print(f"{'Total Recovered:':<{lw}} {outputs.get('total_recovered_water_kg', 0):.2f} kg")
+    print(f"\n{'Total Recovered:':<{lw}} {outputs.get('total_recovered_water_kg', 0):.2f} kg")
     print(f"{'UPA Recovered:':<{lw}} {outputs.get('upa_recovered_water_kg', 0):.2f} kg")
     print(f"{'WPA Recovered:':<{lw}} {outputs.get('wpa_recovered_water_kg', 0):.2f} kg")
     print(f"{'BPA Recovered:':<{lw}} {outputs.get('bpa_recovered_water_kg', 0):.2f} kg")
 
     #----------water added----------♡
-    print(f"{'Gray Added:':<{lw}} {outputs.get('gray_water_added_kg', 0):.2f} kg")
+    print(f"\n{'Gray Added:':<{lw}} {outputs.get('gray_water_added_kg', 0):.2f} kg")
     print(f"{'Black Added:':<{lw}} {outputs.get('black_water_added_kg', 0):.2f} kg")
     print(f"{'Condensate Added:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
     print(f"{'UPA Brine Added:':<{lw}} {outputs.get('upa_brine_added_kg', 0):.2f} kg")
@@ -225,7 +229,7 @@ def print_water(state, outputs):
     print(f"{'Raw Water Added:':<{lw}} {outputs.get('isru_raw_water_added_kg', 0):.2f} kg")
 
     #-----------storage-------------♡
-    print(f"{'Potable Water:':<{lw}} {state.potable_water_storage_kg:.2f} kg")
+    print(f"\n{'Potable Water:':<{lw}} {state.potable_water_storage_kg:.2f} kg")
     print(f"{'Gray Water:':<{lw}} {state.gray_water_storage_kg:.2f} kg")
     print(f"{'Black Water:':<{lw}} {state.black_water_storage_kg:.2f} kg")
     print(f"{'Condensate:':<{lw}} {state.condensate_storage_kg:.2f} kg")
