@@ -2,15 +2,15 @@
 
 ![MarsHSim Banner](assets/github_preview.jpg "MarsHSim")
 
-I'm building a Mars habitat simulation where a closed system keeps a crew alive with no resupply, one subsystem at a time.
+I'm building a Mars habitat simulation where a closed system keeps a crew of 30 alive with no resupply, one subsystem at a time.
 
 <p align="center">
 ♡♡♡
 </p>
 
-MarsHSim models a self sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2400 m3 habitat on Mars in Arcadia Planitita (47° North, 184° East)
+MarsHSim models a self sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2400 m³ habitat on Mars in Arcadia Planitia (47° North, 184° East)
 
-♡ The focus is on reliability, realism, machine learning integration, reusability, and eventually cost considerations.
+♡ The focus is on reliability, realistic subsystem behavior, reusability, and future machine learning integration.
 
 
 ## Overview:
@@ -23,7 +23,7 @@ The system updates continuously using a timestep based simulation, modeling how 
 ♡♡♡
 </p>
 
-My goal is to build something that feels real, structured, autonomous and potentially slighlty interactive on a UI I designed
+My goal is to build something that feels real, structured, autonomous and potentially slightly interactive on a UI I designed
 
 
 ## Systems:
@@ -38,6 +38,7 @@ My goal is to build something that feels real, structured, autonomous and potent
 
 ♡ argon (ar)
 
+
 #### Core life support:
 ♡ amine swing beds
 
@@ -50,6 +51,7 @@ My goal is to build something that feels real, structured, autonomous and potent
 ♡ major constituent analyzer (MCA)
 
 ♡ buffer gas management
+
 
 #### Environmental systems:
 ♡ habitat temperature control
@@ -64,6 +66,7 @@ My goal is to build something that feels real, structured, autonomous and potent
 
 ♡ Mars solar cycles 
 
+
 #### Resource systems:
 ♡ power generation and battery storage
 
@@ -73,7 +76,12 @@ My goal is to build something that feels real, structured, autonomous and potent
 
 ♡ atmospheric pressure stabilization
 
+♡ hydroponics greenhouse
+
 ♡ water In-Situ Resource Utilization (ISRU)
+
+♡ deployable subsurface extraction systems
+
 
 #### Crew and Habitat:
 ♡ crew metabolism
@@ -86,10 +94,6 @@ My goal is to build something that feels real, structured, autonomous and potent
 
 
 ## Planned Features:
-♡ greenhouse (in progress)
-
-♡ food supplies
-
 ♡ environmental monitoring
 
 ♡ emergency scenarios
@@ -109,7 +113,11 @@ My goal is to build something that feels real, structured, autonomous and potent
 
 ## Current Focus:
 
-♡ greenhouse and food production systems  
+♡ testing subsystem interactions and simulation stability
+
+♡ refining system balancing, constants, and resource flow
+
+♡ improving terminal output
 
 ♡ expanding closed loop habitat resource management  
 
@@ -144,13 +152,17 @@ This project is in active development.
 
     - engine.py = main simulation loop and subsystem coordination
 
-    - greenhouse.py = future greenhouse and food production systems
+    - greenhouse.py = hydroponic greenhouse systems
+
+    - isru_water.py = water ISRU extraction and raw water storage
 
     - mars_time.py = Mars sols, LMST, and day/night cycles
 
-    - oxygen_system.py = oxygen generation assembly (OGA) and electrolysis
+    - oxygenpy = oxygen generation assembly (OGA) and electrolysis
 
     - power.py = solar, batteries, power distribution and power consumption
+
+    - print.py = terminal display and simulation output formatting
 
     - quick_test.py = simulation entry point and testing environment (name subject to change..)
 
@@ -158,11 +170,11 @@ This project is in active development.
 
     - state.py = habitat state and tracked simulation variables
 
-    - temp_system.py = habitat thermal control and heat modeling
+    - temp.py = habitat thermal control and heat modeling
 
     - water.py = water storage, recovery, and usage tracking
 
-♡ gitignore  =  ignored files
+♡ .gitignore  =  ignored files
 
 ♡ README.md  =  project overview
 
@@ -189,6 +201,6 @@ My long term goal is to move toward a simulation that can support autonomous dec
 
 For a more detailed breakdown of how this is being built step by step, see my raw development log that I update as I work on it:
 
-docs/dev_log
+docs/dev_log.md
 
 -Adore2113 ♡
