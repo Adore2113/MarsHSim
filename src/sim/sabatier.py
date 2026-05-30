@@ -97,7 +97,9 @@ def run_sabatier(state, dt_min):
         h2_consumed_kg = reactions_available * 4  * h2_molar_mass * kg_per_g
         co2_consumed_kg = reactions_available * co2_molar_mass * kg_per_g    
        
-        co2_consumed_kpa = (co2_consumed_kg * r_kpa * (state.hab_temp_c + kelvin_offset) * 1000) / (state.hab_vol_m3 * co2_molar_mass)
+        co2_moles_consumed = co2_consumed_kg / (co2_molar_mass * kg_per_g)
+
+        co2_consumed_kpa = (co2_moles_consumed * r_kpa * (state.hab_temp_c + kelvin_offset)) / state.hab_vol_m3
         
         new_co2_stored_kg = max(0.0, state.co2_stored_kg - co2_consumed_kg)
         new_h2_stored_kg = max(0.0, state.h2_stored_kg - h2_consumed_kg)
@@ -105,7 +107,10 @@ def run_sabatier(state, dt_min):
         #----use from atmosphere if low storage----♡
         if new_co2_stored_kg <= 0.01 and state.co2_kpa > min_co2_for_reaction_kg:
             atmosphere_co2_kpa = min(0.15, state.co2_kpa * 0.12)
-            atmosphere_co2_kg = (atmosphere_co2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass            
+            atmosphere_co2_moles = (atmosphere_co2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
+
+            atmosphere_co2_kg = (atmosphere_co2_moles * co2_molar_mass * kg_per_g)
+            
             new_co2_kpa = max(0.0, state.co2_kpa - atmosphere_co2_kpa)
             
             co2_consumed_kg += atmosphere_co2_kg
