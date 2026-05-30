@@ -973,3 +973,12 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ make summary print function for each category for debugging, or decide if I'm just going to comment out each one when I want to isolate the subsystems/categories
 
     ♡ test terminal output to adjust numbers!
+
+
+##      05/29/2026
+    ♡ fixing  ch4 venting logic
+
+    ♡ the methane leak is going to only be relevant in future events, maybe
+
+#### Next Session:
+    ♡ continue running system checks
