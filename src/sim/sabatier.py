@@ -137,7 +137,7 @@ def run_sabatier(state, dt_min):
         ch4_pressure_increase_kpa = 0.0
 
         if ch4_produced_kg > 0.001:
-            ch4_moles = ch4_produced_kg / ch4_molar_mass
+            ch4_moles = ch4_produced_kg / (ch4_molar_mass * kg_per_g)
             ch4_pressure_increase_kpa = (ch4_moles * r_kpa * (state.hab_temp_c + kelvin_offset)) / state.hab_vol_m3
     
     #-----------------small gas leaks----------------♡  
