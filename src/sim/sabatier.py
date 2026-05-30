@@ -86,10 +86,9 @@ def run_sabatier(state, dt_min):
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
 
     #---------------running sabatier----------------♡  
-    if sabatier_mode in ("running", "limited_co2", "limited h2"):
-        co2_g = (available_co2_kg * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass
-        co2_moles = co2_g / co2_molar_mass
-        h2_moles = available_h2_kg / h2_molar_mass
+    if sabatier_mode in ("running", "limited_co2", "limited_h2"):
+        co2_moles = available_co2_kg / (co2_molar_mass * kg_per_g)
+        h2_moles = available_h2_kg / (h2_molar_mass * kg_per_g)
 
         reactions_available = min(co2_moles, h2_moles / 4) * base_sabatier_efficiency     # 1 co2 : 4 h2
 
@@ -119,7 +118,7 @@ def run_sabatier(state, dt_min):
             excess_ch4 = new_ch4_stored_kg - (state.ch4_storage_capacity_kg * venting_hysteresis)
             amount_to_vent = min(excess_ch4 * 0.25, 0.8)
             
-            new_co2_stored_kg -= amount_to_vent
+            new_ch4_stored_kg -= amount_to_vent
             ch4_vented_kg += amount_to_vent
             sabatier_mode = "venting"
 
@@ -130,16 +129,17 @@ def run_sabatier(state, dt_min):
             sabatier_mode = "venting"
             sabatier_power_used_kw *= 1.15
         
+        ch4_pressure_increase_kpa = 0.0
 
-        
-            ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
-            new_ch4_kpa = state.ch4_kpa + ch4_leaked_kpa
+        if ch4_produced_kg > 0.001:
+            ch4_moles = ch4_produced_kg / ch4_molar_mass
+            ch4_pressure_increase_kpa = (ch4_moles * r_kpa * (state.hab_temp_c + kelvin_offset)) / state.hab_vol_m3
+    
+    #-----------------small gas leaks----------------♡  
+        ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
+        new_ch4_kpa = state.ch4_kpa + ch4_pressure_increase_kpa + ch4_leaked_kpa
 
 
-
-        else:
-            new_ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.008)
-   
     h2_stored_kg = max(0.0, state.h2_stored_kg - h2_consumed_kg)
     
     #------------dict for updating state-------------♡ 
