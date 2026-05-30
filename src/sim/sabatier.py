@@ -122,16 +122,16 @@ def run_sabatier(state, dt_min):
         if new_ch4_stored_kg > state.ch4_storage_capacity_kg * venting_hysteresis:
             excess_ch4 = new_ch4_stored_kg - (state.ch4_storage_capacity_kg * venting_hysteresis)
             amount_to_vent = min(excess_ch4 * 0.25, 0.8)
-            
             new_ch4_stored_kg -= amount_to_vent
             ch4_vented_kg += amount_to_vent
             sabatier_mode = "venting"
 
         if new_ch4_stored_kg > state.ch4_storage_capacity_kg:
             amount_to_vent = new_ch4_stored_kg - state.ch4_storage_capacity_kg
-            new_ch4_stored_kg = state.ch4_storage_capacity_kg
+            new_ch4_stored_kg -= amount_to_vent
             ch4_vented_kg += amount_to_vent
             sabatier_mode = "venting"
+            
             sabatier_power_used_kw *= 1.15
         
         ch4_pressure_increase_kpa = 0.0
