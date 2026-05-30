@@ -106,9 +106,8 @@ def run_sabatier(state, dt_min):
         #----use from atmosphere if low storage----♡
         if new_co2_stored_kg <= 0.01 and state.co2_kpa > min_co2_for_reaction_kg:
             atmosphere_co2_kpa = min(0.15, state.co2_kpa * 0.12)
-            atmosphere_co2_kg = (atmosphere_co2_kpa * state.hab_vol_m3 * co2_molar_mass) / (r_kpa * (state.hab_temp_c + kelvin_offset) * 1000)
-            
-            new_co2_kpa = state.co2_kpa - atmosphere_co2_kpa
+            atmosphere_co2_kg = (atmosphere_co2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass            
+            new_co2_kpa = max(0.0, state.co2_kpa - atmosphere_co2_kpa)
             
             co2_consumed_kg += atmosphere_co2_kg
             co2_consumed_kpa = atmosphere_co2_kpa
@@ -117,24 +116,26 @@ def run_sabatier(state, dt_min):
         new_ch4_stored_kg = state.ch4_stored_kg + ch4_produced_kg
 
         if new_ch4_stored_kg > state.ch4_storage_capacity_kg * venting_hysteresis:
-            amount_to_vent = min(new_ch4_stored_kg * 0.1, 1.0)
+            excess_ch4 = new_ch4_stored_kg - (state.ch4_storage_capacity_kg * venting_hysteresis)
+            amount_to_vent = min(excess_ch4 * 0.25, 0.8)
+            
             new_co2_stored_kg -= amount_to_vent
             ch4_vented_kg += amount_to_vent
             sabatier_mode = "venting"
 
         if new_ch4_stored_kg > state.ch4_storage_capacity_kg:
             amount_to_vent = new_ch4_stored_kg - state.ch4_storage_capacity_kg
-            new_ch4_stored_kg -= amount_to_vent
-            ch4_vented_kg += new_ch4_stored_kg
-            
-            ch4_vented_kg = new_ch4_stored_kg - state.ch4_storage_capacity_kg
             new_ch4_stored_kg = state.ch4_storage_capacity_kg
-            
+            ch4_vented_kg += amount_to_vent
             sabatier_mode = "venting"
+            sabatier_power_used_kw *= 1.15
+        
+
+        
             ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
             new_ch4_kpa = state.ch4_kpa + ch4_leaked_kpa
 
-            sabatier_power_used_kw *= 1.12
+
 
         else:
             new_ch4_kpa = state.ch4_kpa + (ch4_produced_kg * 0.008)
