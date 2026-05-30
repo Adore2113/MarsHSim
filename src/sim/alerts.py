@@ -5,7 +5,7 @@ def get_status(all_alerts):
     if any("critical" in alert.lower() for alert in all_alerts):
         hab_status = "CRITICAL"
     
-    elif any(alert.startswith("WARNING") for alert in all_alerts):
+    elif any("warning" in alert.lower() for alert in all_alerts):
         hab_status = "WARNING"
 
     else:
