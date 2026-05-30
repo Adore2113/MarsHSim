@@ -24,6 +24,7 @@ base_sabatier_temp_c = 300.0
 base_sabatier_efficiency = 0.88
 
 hysteresis = 1.5
+venting_hysteresis = 0.7
 #----------------------------------------------------♡
 
 
@@ -43,6 +44,7 @@ def run_sabatier(state, dt_min):
     new_ch4_kpa = state.ch4_kpa
     new_co2_stored_kg = state.co2_stored_kg
     new_co2_kpa = state.co2_kpa
+    new_h2_stored_kg = state.h2_stored_kg
 
     if not state.sabatier_on:
         sabatier_mode = "offline"
@@ -56,17 +58,6 @@ def run_sabatier(state, dt_min):
     else:
         available_co2_kg = state.co2_stored_kg
         available_h2_kg = state.h2_stored_kg
-
-    #----------use co2 from storage first-----------♡  
-        available_co2_kg = state.co2_stored_kg
-        available_h2_kg = state.h2_stored_kg
-
-    #----------------convert to moles---------------♡  
-        co2_g = (available_co2_kg * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass
-        co2_moles = co2_g / co2_molar_mass
-
-        h2_g = available_h2_kg * 1000
-        h2_moles = available_h2_kg / h2_molar_mass
 
     #----------------sabatier modes-----------------♡  
         if available_co2_kg <= min_co2_for_reaction_kg and available_h2_kg <= min_h2_for_reaction_kg:
@@ -87,7 +78,7 @@ def run_sabatier(state, dt_min):
         sabatier_heat_added_kw = 0.1
 
     elif sabatier_mode in ("limited_co2", "limited_h2"):
-        sabatier_power_used_kw = base_sabatier_power_kw * 0.80    # use less power
+        sabatier_power_used_kw = base_sabatier_power_kw * 0.75   # use less power
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
 
     else:
@@ -95,21 +86,26 @@ def run_sabatier(state, dt_min):
         sabatier_heat_added_kw = sabatier_power_used_kw * exothermic_reaction
 
     #---------------running sabatier----------------♡  
-    if sabatier_mode in ("running", "limited co2", "limited h2"):
-        reactions_available = min(h2_moles / 4, co2_moles) * base_sabatier_efficiency     # 1 co2 : 4 h2
+    if sabatier_mode in ("running", "limited_co2", "limited h2"):
+        co2_g = (available_co2_kg * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset)) * co2_molar_mass
+        co2_moles = co2_g / co2_molar_mass
+        h2_moles = available_h2_kg / h2_molar_mass
+
+        reactions_available = min(co2_moles, h2_moles / 4) * base_sabatier_efficiency     # 1 co2 : 4 h2
 
         water_produced_kg = reactions_available * 2 * h2o_molar_mass * kg_per_g
         ch4_produced_kg = reactions_available * ch4_molar_mass * kg_per_g
         h2_consumed_kg = reactions_available * 4  * h2_molar_mass * kg_per_g
         co2_consumed_kg = reactions_available * co2_molar_mass * kg_per_g    
+       
         co2_consumed_kpa = (co2_consumed_kg * r_kpa * (state.hab_temp_c + kelvin_offset) * 1000) / (state.hab_vol_m3 * co2_molar_mass)
         
         new_co2_stored_kg = max(0.0, state.co2_stored_kg - co2_consumed_kg)
         new_h2_stored_kg = max(0.0, state.h2_stored_kg - h2_consumed_kg)
 
-        #-------use co2 from atmosphere next-------♡
+        #----use from atmosphere if low storage----♡
         if new_co2_stored_kg <= 0.01 and state.co2_kpa > min_co2_for_reaction_kg:
-            atmosphere_co2_kpa = min(0.12, state.co2_kpa * 0.15)
+            atmosphere_co2_kpa = min(0.15, state.co2_kpa * 0.12)
             atmosphere_co2_kg = (atmosphere_co2_kpa * state.hab_vol_m3 * co2_molar_mass) / (r_kpa * (state.hab_temp_c + kelvin_offset) * 1000)
             
             new_co2_kpa = state.co2_kpa - atmosphere_co2_kpa
@@ -120,7 +116,17 @@ def run_sabatier(state, dt_min):
         #--------------venting Methane-------------♡
         new_ch4_stored_kg = state.ch4_stored_kg + ch4_produced_kg
 
+        if new_ch4_stored_kg > state.ch4_storage_capacity_kg * venting_hysteresis:
+            amount_to_vent = min(new_ch4_stored_kg * 0.1, 1.0)
+            new_co2_stored_kg -= amount_to_vent
+            ch4_vented_kg += amount_to_vent
+            sabatier_mode = "venting"
+
         if new_ch4_stored_kg > state.ch4_storage_capacity_kg:
+            amount_to_vent = new_ch4_stored_kg - state.ch4_storage_capacity_kg
+            new_ch4_stored_kg -= amount_to_vent
+            ch4_vented_kg += new_ch4_stored_kg
+            
             ch4_vented_kg = new_ch4_stored_kg - state.ch4_storage_capacity_kg
             new_ch4_stored_kg = state.ch4_storage_capacity_kg
             
