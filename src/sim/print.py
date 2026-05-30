@@ -38,10 +38,10 @@ def print_sim(state, outputs, alerts):
     print_header()
     print_system_stats(alerts)
     print_environment(state, outputs)
-    # print_atmosphere(state, outputs)
-#     print_power(state, outputs)
-    # print_thermal(state, outputs)
-    # print_water(state, outputs)
+    print_atmosphere(state, outputs)
+    print_power(state, outputs)
+    print_thermal(state, outputs)
+    print_water(state, outputs)
     print (split)
 #----------------------------------------------------♡
 
@@ -53,7 +53,7 @@ def print_system_stats(alerts):
 
     if alerts:
         for alert in alerts:
-            print(f"\n{alert}⚠".center(width))
+            print(f"\n⚠ {alert:<{lw}}")
     
     else:
         print("\n🙂 ALL SYSTEMS NOMINAL 🙂".center(width))
