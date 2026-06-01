@@ -217,7 +217,7 @@ def run_system_power(
     water_outputs.get("wpa_energy_used_kwh", 0.0),
     water_outputs.get("bpa_energy_used_kwh", 0.0),
     sabatier_outputs.get("sabatier_energy_used_kwh", 0.0),
-    isru_outputs.get("isru_energy_used_kwh", 0.0)
+    isru_outputs.get("isru_energy_used_kwh", 0.0),
     )
 
     net_energy_kwh = total_solar_generated_kwh - total_energy_used_kwh
@@ -263,7 +263,8 @@ def run_system_power(
         "greenhouse_led_power_kw": greenhouse_outputs.get("total_led_power_kw", 0.0),
         "greenhouse_led_energy_kwh": greenhouse_outputs.get("total_led_energy_kwh", 0.0),
 
-        **light_results
+        **light_results,
+        "net_energy_kwh": net_energy_kwh,
     }
 
     return power_updates, power_outputs
