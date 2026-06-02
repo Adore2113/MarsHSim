@@ -166,7 +166,7 @@ s0 = Habitat_State(
     current_humidity_pct = 48.0,
     target_humidity_pct = 48.0,
 
-    insulation_strength_kw_per_c = 1.60,
+    insulation_strength_kw_per_c = 1.20,
     thermal_mass_kwh_per_c = 220.0,
 
     radiators = [
@@ -336,5 +336,5 @@ for i in range(288 * 5):   # 5 full sols (24h * 12 steps/hour * 5)
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
 
-    if i % 288 == 0:    # every hour = 12, 5 hours = 60, 10 hours = 120
+    if i % 144 == 0:    # one hour = 12, 5 hours = 60, 10 hours = 120
         print_sim(state, outputs, alerts)
