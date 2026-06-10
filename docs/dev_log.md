@@ -982,3 +982,10 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ continue running system checks
+
+
+##      06/01/2026
+    ♡ running system tests, checking my numbers
+
+##      06/10/2026
+    ♡ back from a trip, back to my simulator

@@ -38,10 +38,10 @@ def print_sim(state, outputs, alerts):
     print_header()
     print_system_stats(alerts)
     print_environment(state, outputs)
-    print_atmosphere(state, outputs)
+    # print_atmosphere(state, outputs)
     print_power(state, outputs)
-    print_thermal(state, outputs)
-    print_water(state, outputs)
+    # print_thermal(state, outputs)
+    # print_water(state, outputs)
     print (split)
 #----------------------------------------------------♡
 
