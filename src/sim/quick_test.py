@@ -3,6 +3,7 @@ from .state import Habitat_State
 from .engine import step
 from .alerts import get_alerts
 from .print import print_sim
+from .mars_time import seconds_per_sol
 #----------------------------------------------------♡
 
 #-------------------habitat state--------------------♡
@@ -332,9 +333,15 @@ s0 = Habitat_State(
 
 
 state = s0
-for i in range(288 * 5):   # 5 full sols (24h * 12 steps/hour * 5)
+previous_sol = -1
+
+for i in range(12000):    # ~40 sols
+
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
 
-    if i % 144 == 0:    # one hour = 12, 5 hours = 60, 10 hours = 120
+    current_sol = int(state.mission_time_s // seconds_per_sol)
+
+    if current_sol != previous_sol:
         print_sim(state, outputs, alerts)
+        previous_sol = current_sol
