@@ -117,7 +117,7 @@ def print_atmosphere(state, outputs):
 #-----------------------power------------------------♡
 def print_power(state, outputs):
     print_section_header("POWER")
-    print(f"Net Energy This Step: {outputs['net_energy_kwh']:.2f} kWh")
+    print(f"Net Energy: {outputs['net_energy_kwh']:.2f} kWh")
     #-------------solar-------------♡
     print(f"{'Peak Sun Today:':<{lw}} {state.peak_sunlight_today:.3f} /1.0")
     print(f"{'Sunlight per m²:':<{lw}} {state.daylight_m2_kw:.3f} kW")
