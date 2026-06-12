@@ -62,13 +62,12 @@ def print_system_stats(alerts):
 #------------------time / environment----------------♡
 def print_environment(state, outputs):
     sol, hour, minutes = get_sol_time(state)
-    temp_change_per_hour = outputs.get("temp_change_c", 0) * 12    # change this later
 
     print(f"\n{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
     print(f"{'Habitat Temp:':<{lw}} {state.hab_temp_c:.3f} °C")
     print(f"{'Mars Temp:':<{lw}} {outputs['mars_temp_c']:.2f} °C")
     print(f"{'Food Produced:':<{lw}} {outputs.get('total_food_produced_kg', 0):.3f} kg")
-
+    print(f"{'Temp Change/h:':<{lw}} {outputs.get('temp_change_c', 0) * 12:.2f} C")
 #----------------------------------------------------♡
 
 #--------------------atmosphere----------------------♡
@@ -118,7 +117,7 @@ def print_atmosphere(state, outputs):
 #-----------------------power------------------------♡
 def print_power(state, outputs):
     print_section_header("POWER")
-
+    print(f"Net Energy This Step: {outputs['net_energy_kwh']:.2f} kWh")
     #-------------solar-------------♡
     print(f"{'Peak Sun Today:':<{lw}} {state.peak_sunlight_today:.3f} /1.0")
     print(f"{'Sunlight per m²:':<{lw}} {state.daylight_m2_kw:.3f} kW")
