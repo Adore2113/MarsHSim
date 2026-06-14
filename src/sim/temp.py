@@ -97,6 +97,7 @@ def heaters_online(state):
     else:
         target_heaters_online = 0
 
+
     #-------handling primary radiators first--------♡ 
     if heaters_online_count < target_heaters_online:
         primary_heaters_needed = target_heaters_online - heaters_online_count
@@ -284,9 +285,9 @@ def determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
         
         heaters_online_count = 0
     
-    temp_without_heaters_c = hab_heat_kw + solar_heat_gain_kw - heat_loss_kw
+    net_heat_without_heaters_kw = hab_heat_kw + solar_heat_gain_kw - heat_loss_kw
 
-    if temp_without_heaters_c < -5.0 and heaters_online_count == 0:
+    if net_heat_without_heaters_kw < -5.0 and heaters_online_count == 0:
         for new_heater in new_heaters:
             if new_heater["status"] == "standby":
                 new_heater["status"] = "online"
@@ -343,6 +344,10 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, amine_bed_heat_added_k
     radiator_power_kw, radiator_energy_kwh = radiator_power(radiators_online_count, dt_min)
 
     net_heat_kw = hab_heat_kw + heater_heat_kw  + solar_heat_gain_kw - heat_loss_kw - radiator_heat_rejection_kw
+    
+    if heaters_online_count > 0 and net_heat_kw < -8.0:
+        pass
+    
     temp_change_c = (net_heat_kw * hours_per_step) / state.thermal_mass_kwh_per_c
     
     new_hab_temp_c = state.hab_temp_c + temp_change_c
