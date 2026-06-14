@@ -216,7 +216,7 @@ def radiators_online(state):
             new_rad = rad.copy()
 
             if radiators_not_needed > 0 and new_rad["status"] == "online":
-                if new_rad["type"] == "backup" or radiators_not_needed > 0:
+                if new_rad["type"] == "backup":
                     new_rad["status"] = "standby"
                     radiators_not_needed -= 1
                     radiators_online_count -= 1
