@@ -98,7 +98,7 @@ def heaters_online(state):
         target_heaters_online = 0
 
 
-    #-------handling primary radiators first--------♡ 
+    #-------handling primary heaters first--------♡ 
     if heaters_online_count < target_heaters_online:
         primary_heaters_needed = target_heaters_online - heaters_online_count
 
@@ -126,7 +126,7 @@ def heaters_online(state):
             new_heater = heater.copy()
   
             if heaters_not_needed > 0 and new_heater["status"] == "online":
-                if new_heater["type"] == "backup" or heaters_not_needed > 0:
+                if new_heater["type"] == "backup":
                     new_heater["status"] = "standby"
                     heaters_not_needed -= 1
                     heaters_online_count -= 1
