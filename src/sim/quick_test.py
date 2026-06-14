@@ -3,7 +3,7 @@ from .state import Habitat_State
 from .engine import step
 from .alerts import get_alerts
 from .print import print_sim
-from .mars_time import seconds_per_sol
+from .mars_time import seconds_per_sol, get_sol_time
 #----------------------------------------------------♡
 
 #-------------------habitat state--------------------♡
@@ -167,8 +167,8 @@ s0 = Habitat_State(
     current_humidity_pct = 48.0,
     target_humidity_pct = 48.0,
 
-    insulation_strength_kw_per_c = 1.20,
-    thermal_mass_kwh_per_c = 220.0,
+    insulation_strength_kw_per_c = 0.65,
+    thermal_mass_kwh_per_c = 95.0,
 
     radiators = [
         {"id": 1, "status": "standby", "area_m2": 68, "efficiency": 0.95, "dust_factor": 1.0, "type": "primary"},
@@ -242,11 +242,11 @@ s0 = Habitat_State(
     o2_kpa = 20.0,
 
     #--------gas in storage--------♡
-    ar_stored_kg =200.0,
+    ar_stored_kg = 400.0,
     ch4_stored_kg = 0.0,
     co2_stored_kg = 20.0, 
     h2_stored_kg = 50.0,    # starting with this for Sabatier testing
-    n2_stored_kg = 200.0,
+    n2_stored_kg = 800.0,
     o2_stored_kg = 680.0,
 
     #------gas storage limits------♡
@@ -333,15 +333,35 @@ s0 = Habitat_State(
 
 
 state = s0
-previous_sol = -1
+last_printed_sol = -1
 
-for i in range(12000):    # ~40 sols
+for i in range(30000):
 
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
 
     current_sol = int(state.mission_time_s // seconds_per_sol)
 
-    if current_sol != previous_sol:
+    _, sol_hour, minutes = get_sol_time(state)
+    if 38 <= current_sol <= 43 and sol_hour in (6, 12):
         print_sim(state, outputs, alerts)
-        previous_sol = current_sol
+    # if sol_hour == 12 and current_sol != last_printed_sol:
+    #     print_sim(state, outputs, alerts)
+    #     last_printed_sol = current_sol
+# ---------------------
+# previous_sol = -1
+# last_print_hour = None
+
+# for i in range(12000):    # 12000 = ~40 sols, 30000 = ~100
+
+#     state, outputs = step(state)
+#     alerts = get_alerts(state, outputs)
+
+#     current_sol = int(state.mission_time_s // seconds_per_sol)
+
+#     #if current_sol != previous_sol:
+#     _, sol_hour, minutes = get_sol_time(state)
+
+#     if sol_hour in (12,) and sol_hour != last_print_hour:
+#         print_sim(state, outputs, alerts)
+#         last_print_hour = sol_hour
