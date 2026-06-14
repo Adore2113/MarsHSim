@@ -346,7 +346,14 @@ def run_thermal_control(state, crew_heat_kw, oga_heat_kw, amine_bed_heat_added_k
     net_heat_kw = hab_heat_kw + heater_heat_kw  + solar_heat_gain_kw - heat_loss_kw - radiator_heat_rejection_kw
     
     if heaters_online_count > 0 and net_heat_kw < -8.0:
-        pass
+        for heater in new_heaters:
+            if heater["status"] == "standby":
+                heater["status"] = "online"
+                heaters_online_count += 1
+
+                heater_heat_kw = heater_heat_added_kw(new_heaters)
+                net_heat_kw = hab_heat_kw + heater_heat_kw + solar_heat_gain_kw - heat_loss_kw - radiator_heat_rejection_kw
+                break
     
     temp_change_c = (net_heat_kw * hours_per_step) / state.thermal_mass_kwh_per_c
     
