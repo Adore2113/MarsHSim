@@ -122,21 +122,22 @@ def heaters_online(state):
 
     #---------------switch to standby---------------♡ 
     elif heaters_online_count > target_heaters_online:
-        heaters_not_needed = heaters_online_count - target_heaters_online 
-            
-        for heater in state.heaters:
-            new_heater = heater.copy()
-  
-            if heaters_not_needed > 0 and new_heater["status"] == "online":
-                if new_heater["type"] == "backup":
-                    new_heater["status"] = "standby"
+        heaters_not_needed = heaters_online_count - target_heaters_online
+
+        for heater in new_heaters:
+            if heaters_not_needed > 0 and heater["status"] == "online":
+                if heater["type"] == "backup":
+                    heater["status"] = "standby"
                     heaters_not_needed -= 1
                     heaters_online_count -= 1
 
-            new_heaters.append(new_heater)
-    
-    else:
-        new_heaters = [heater.copy() for heater in state.heaters]
+        if heaters_not_needed > 0:
+            for heater in new_heaters:
+                if heaters_not_needed > 0 and heater["status"] == "online":
+                    if heater["type"] == "primary":
+                        heater["status"] = "standby"
+                        heaters_not_needed -= 1
+                        heaters_online_count -= 1
 
     return new_heaters, heaters_online_count
 
