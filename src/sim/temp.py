@@ -105,7 +105,6 @@ def heaters_online(state):
     if heaters_online_count < target_heaters_online:
         heaters_needed = target_heaters_online - heaters_online_count
 
-        # First pass: primaries
         for heater in new_heaters:
             if heaters_needed > 0 and heater["status"] == "standby":
                 if heater["type"] == "primary":
@@ -113,7 +112,6 @@ def heaters_online(state):
                     heaters_needed -= 1
                     heaters_online_count += 1
 
-        # Second pass: backups if still needed
         if heaters_needed > 0:
             for heater in new_heaters:
                 if heaters_needed > 0 and heater["status"] == "standby":
