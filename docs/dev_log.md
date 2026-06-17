@@ -989,3 +989,23 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 ##      06/10/2026
     ♡ back from a trip, back to my simulator
+
+##      06/12/2026
+    ♡ fixing my print step in quick_test.py to actually print the current sol, and running my test for the longest time yet (40 sols)
+
+    ♡ Around sol 43, the battery runs too low
+
+
+##      06/14/2026
+    ♡ fixing temp issues, starting with the insulation strength/thermal mass and fixing my heater logic
+
+
+##      06/14/2026
+    ♡ fixing radiator and heaters to make things smooth and effective
+
+    ♡ I'm happy with how the temp system is running for now, so now I'm running atmosphere again
+
+    ♡ fixing buffer gas
+
+#### Next Session:
+    ♡ continue running system checks and fix co2_scrub.py
