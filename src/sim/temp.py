@@ -218,36 +218,21 @@ def radiators_online(state):
     elif radiators_online_count > target_online:
         radiators_not_needed = radiators_online_count - target_online
 
-        for rad in state.radiators:
-            new_rad = rad.copy()
-
-            if radiators_not_needed > 0 and new_rad["status"] == "online":
-                if new_rad["type"] == "backup":
-                    new_rad["status"] = "standby"
+        for rad in new_radiators:
+            if radiators_not_needed > 0 and rad["status"] == "online":
+                if rad["type"] == "backup":
+                    rad["status"] = "standby"
                     radiators_not_needed -= 1
                     radiators_online_count -= 1
 
-            new_radiators.append(new_rad)
-
         if radiators_not_needed > 0:
-            final_radiators = []
-
             for rad in new_radiators:
-                new_rad = rad.copy()
-
-                if radiators_not_needed > 0 and new_rad["status"] == "online":
-                    if new_rad["type"] == "primary":
-                        new_rad["status"] = "standby"
+                if radiators_not_needed > 0 and rad["status"] == "online":
+                    if rad["type"] == "primary":
+                        rad["status"] = "standby"
                         radiators_not_needed -= 1
                         radiators_online_count -= 1
-
-                final_radiators.append(new_rad)
-
-            new_radiators = final_radiators
-
-    else:
-        new_radiators = [rad.copy() for rad in state.radiators]
-
+                        
     return new_radiators, radiators_online_count
 
 #----------------radiatior cooling-------------------♡
