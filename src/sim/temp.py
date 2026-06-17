@@ -182,10 +182,10 @@ def radiators_online(state):
     elif cooling_needed_c > 1.2:
         target_online = 6
     
-    elif cooling_needed_c > 0.6:
+    elif cooling_needed_c > 0.8:
         target_online = 4
     
-    elif cooling_needed_c > 0.2:
+    elif cooling_needed_c > 0.35:
         target_online = 2
     
     else:
