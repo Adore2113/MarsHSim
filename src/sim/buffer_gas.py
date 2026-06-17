@@ -15,7 +15,7 @@ base_buffer_gas_heat_kw = 1.5
 gas_moved_heat_multiplier = 0.9 
 mca_update_power_kw = 0.1
 
-hysteresis_kpa = 0.05
+hysteresis_kpa = 0.09
 safe_usage_ratio = 0.9
 vent_loss_fraction = 0.08
 #---------------------------------------------------♡
@@ -35,10 +35,6 @@ def run_buffer_gas_control(state, dt_min):
     buffer_gas_mode = "stable"
     total_buffer_gas_added_kpa = 0.0
     total_buffer_gas_vented_kpa = 0.0
-    
-    pressure_gap_kpa = 0.0
-    pressure_to_add_kpa = 0.0
-    pressure_to_vent_kpa = 0.0
 
     new_n2_kpa = state.n2_kpa
     new_ar_kpa = state.ar_kpa
@@ -48,11 +44,9 @@ def run_buffer_gas_control(state, dt_min):
     buffer_gas_power_used_kw = mca_update_power_kw
     buffer_gas_heat_added_kw = 0.0
 
-
     #---------calculate pressure difference---------♡  
     total_pressure_kpa = mca(state)
     pressure_gap_kpa = state.target_pressure_kpa - total_pressure_kpa
-
 
     #----------------buffer gas modes---------------♡  
     if total_pressure_kpa <= state.min_safe_pressure_kpa:
@@ -69,10 +63,16 @@ def run_buffer_gas_control(state, dt_min):
 
     else:
         buffer_gas_mode = "stable"
+    
+    #----------------small gas leaks----------------♡  
+    n2_leak_kpa = state.n2_leak_rate_kpa_per_hr * hours_per_step
+    ar_leak_kpa = state.ar_leak_rate_kpa_per_hr * hours_per_step
 
+    new_n2_kpa = max(0.0, new_n2_kpa - n2_leak_kpa)
+    new_ar_kpa = max(0.0, new_ar_kpa - ar_leak_kpa)        
 
   #-----------------adding buffer gas---------------♡  
-    if buffer_gas_mode in ("emergency_add", "add"):
+    if buffer_gas_mode in ("emergency_add", "add") and pressure_to_add_kpa > 0.04:
         left_to_add_kpa = pressure_to_add_kpa
         
         #--------------Nitrogen first---------------♡  
@@ -105,7 +105,7 @@ def run_buffer_gas_control(state, dt_min):
 
 
     #---------------venting extra gas---------------♡  
-    elif buffer_gas_mode == "vent":
+    elif buffer_gas_mode == "vent" and pressure_to_vent_kpa > 0.03:
         left_to_vent_kpa = pressure_to_vent_kpa
         
         #-------------vent Argon first--------------♡  
@@ -128,19 +128,11 @@ def run_buffer_gas_control(state, dt_min):
             total_buffer_gas_vented_kpa += vented_amount_kpa
             left_to_vent_kpa -= vented_amount_kpa
 
-
-    #----------------small gas leaks----------------♡  
-    n2_leak_kpa = state.n2_leak_rate_kpa_per_hr * hours_per_step
-    ar_leak_kpa = state.ar_leak_rate_kpa_per_hr * hours_per_step
-
-    new_n2_kpa = max(0.0, new_n2_kpa - n2_leak_kpa)
-    new_ar_kpa = max(0.0, new_ar_kpa - ar_leak_kpa)        
-
     total_buffer_gas_moved_kpa = total_buffer_gas_added_kpa + total_buffer_gas_vented_kpa
    
 
     #----------------power and heat-----------------♡  
-    if total_buffer_gas_moved_kpa > 0.01:
+    if total_buffer_gas_moved_kpa > 0.05:
         buffer_gas_power_used_kw = base_buffer_gas_power_kw + (gas_moved_power_multiplier * total_buffer_gas_moved_kpa)
         buffer_gas_heat_added_kw = base_buffer_gas_heat_kw * total_buffer_gas_moved_kpa + (gas_moved_heat_multiplier * total_buffer_gas_moved_kpa)
 
