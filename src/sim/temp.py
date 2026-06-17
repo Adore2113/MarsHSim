@@ -170,7 +170,7 @@ def heater_power(new_heaters, dt_min):
 
 #---------------------radiators----------------------♡
 def radiators_online(state):
-    new_radiators = []
+    new_radiators = [rad.copy() for rad in state.radiators]
     radiators_online_count = sum(1 for rad in state.radiators if rad["status"] == "online")
 
     cooling_needed_c = state.hab_temp_c - state.target_temp_c
