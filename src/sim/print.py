@@ -38,9 +38,9 @@ def print_sim(state, outputs, alerts):
     print_header()
     print_system_stats(alerts)
     print_environment(state, outputs)
-    # print_atmosphere(state, outputs)
+    print_atmosphere(state, outputs)
     print_power(state, outputs)
-    # print_thermal(state, outputs)
+    print_thermal(state, outputs)
     # print_water(state, outputs)
     print (split)
 #----------------------------------------------------♡
@@ -129,8 +129,8 @@ def print_power(state, outputs):
     print(f"{'Battery Stored:':<{lw}} {state.battery_stored_kwh:.2f} kWh")
     
     #----------powered on-----------♡
-    print(f"\n{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'OFF'}")
-    print(f"{'GH Mode:':<{lw}} {outputs.get('greenhouse_mode', 'offline')}")
+    # print(f"\n{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'OFF'}")
+    # print(f"{'GH Mode:':<{lw}} {outputs.get('greenhouse_mode', 'offline')}")
 
     #-----------power used----------♡
     print(f"\n{'Total Power Used:':<{lw}} {outputs.get('total_power_used_kw', 0):.2f} kW")
