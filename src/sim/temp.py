@@ -232,7 +232,7 @@ def radiators_online(state):
                         rad["status"] = "standby"
                         radiators_not_needed -= 1
                         radiators_online_count -= 1
-                        
+
     return new_radiators, radiators_online_count
 
 #----------------radiatior cooling-------------------♡
@@ -283,7 +283,7 @@ def determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
     
     elif radiators_online_count > 0:
         new_heaters = []
-        
+
         for heater in state.heaters:
             new_heater = heater.copy()
             new_heater["status"] = "standby"
