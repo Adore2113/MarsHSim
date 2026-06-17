@@ -25,7 +25,8 @@ condensation_heat_kj_per_kg = 2260.0
 
 water_vapor_per_m3 = 0.0008
 
-hysteresis_c = 0.5
+heater_hysteresis_c = 0.5
+radiator_hysteresis_c = -1.3
 #---------------------------------------------------♡
 
 
@@ -77,8 +78,8 @@ def heat_loss_from_outside_kw(state):
 #----------------------heaters-----------------------♡
 def heaters_online(state):
     new_heaters = [heater.copy() for heater in state.heaters]
-    heaters_online_count = sum(1 for heater in state.heaters if heater["status"] == "online")
-    
+    heaters_online_count = sum(1 for heater in new_heaters if heater["status"] == "online")
+   
     heat_needed_c = state.target_temp_c - state.hab_temp_c
    
     #--------how many heaters needed online----------♡ 
@@ -98,7 +99,7 @@ def heaters_online(state):
         target_heaters_online = 0
     
     #-------------------hysteresis---------------------♡ 
-    if heaters_online_count > 0 and heat_needed_c > -hysteresis_c:
+    if heaters_online_count > 0 and heat_needed_c > -heater_hysteresis_c:
         target_heaters_online = max(target_heaters_online, 1)
 
     #-------handling primary heaters first--------♡ 
@@ -182,17 +183,20 @@ def radiators_online(state):
     elif cooling_needed_c > 1.2:
         target_online = 6
     
-    elif cooling_needed_c > 0.8:
+    elif cooling_needed_c > 0.70:
         target_online = 4
     
-    elif cooling_needed_c > 0.35:
+    elif cooling_needed_c > 0.45:
         target_online = 2
+    
+    elif cooling_needed_c > 0.18:
+        target_online = 1
     
     else:
         target_online = 0
 
     #-------------------hysteresis---------------------♡ 
-    if radiators_online_count > 0 and cooling_needed_c > -hysteresis_c:
+    if radiators_online_count > 0 and cooling_needed_c > radiator_hysteresis_c:
         target_online = max(target_online, 1)
     
     #----------handling primary radiators first----------♡ 
@@ -307,10 +311,10 @@ def determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
     elif radiators_online_count > 0:
         hab_temp_mode = "cooling"
 
-    elif state.hab_temp_c < state.target_temp_c - hysteresis_c:
+    elif state.hab_temp_c < state.target_temp_c - heater_hysteresis_c:
         hab_temp_mode = "below_target"
 
-    elif state.hab_temp_c > state.target_temp_c + hysteresis_c:
+    elif state.hab_temp_c > state.target_temp_c - radiator_hysteresis_c:
         hab_temp_mode = "above_target"
 
     else:
