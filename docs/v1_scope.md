@@ -485,3 +485,5 @@
         ♡ oxygen toxicity: dry throat/cough » chest pain » nausea » seizures
 
 
+### UI Notes:
+    ♡ considering different methods of adding my UI idea

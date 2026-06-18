@@ -1000,7 +1000,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ fixing temp issues, starting with the insulation strength/thermal mass and fixing my heater logic
 
 
-##      06/14/2026
+##      06/16/2026
     ♡ fixing radiator and heaters to make things smooth and effective
 
     ♡ I'm happy with how the temp system is running for now, so now I'm running atmosphere again
@@ -1009,3 +1009,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ continue running system checks and fix co2_scrub.py
+
+
+##      06/17/2026
+    ♡ going over co2_scrub because yesterday I noticed
+
+    ♡ I'm starting to consider UI notes, I think it's a good idea to set that up before trying to train an AI so my sim is at least visually entertaining for someone running it. I'm trying to decide what to use for this but so far I'm considering porting to JavaScript and then using HTML, CSS
