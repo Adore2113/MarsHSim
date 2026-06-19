@@ -1015,3 +1015,25 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ going over co2_scrub because yesterday I noticed
 
     ♡ I'm starting to consider UI notes, I think it's a good idea to set that up before trying to train an AI so my sim is at least visually entertaining for someone running it. I'm trying to decide what to use for this but so far I'm considering porting to JavaScript and then using HTML, CSS
+
+
+##      06/19/2026
+    ♡ fixing my sabatier file, made the methane go aove the safe limit, so I'm going to see what I can do with the methane storage and venting 
+
+    ♡ I decided to make sure all c4 is either vented immediately or sent to storage, it's not goin to be added into the cabin atmosphere
+
+    ♡ I fixed the sabatier call in engine.py
+
+    ♡ I noticed my greenhouse is currently producting 75x MORE o2 than my crew of 30  mean, and this is absolutely not right, it doesn't make any sense so I need to fix this
+
+    ♡ the math for zone info:
+    structural: 0.022 kPa/m2/sol × 90 m2  = 1.98 kPa/sol
+    container:  0.020 kPa/m2/sol × 110 m2 = 2.20 kPa/sol
+    rack:       0.015 kPa/m2/sol × 124 m2 = 1.86 kPa/sol
+    total ≈ 6.04 kPa/sol
+
+    ♡ the math for crew o2 demand:
+    0.00011 kPa/hr × 30 crew × ~24.66 hr/sol ≈ 0.081 kPa/sol
+
+    ♡ I'm going to chose that the greenhouse actually produce only 2% of the crew o2 and co2 needs
+    
