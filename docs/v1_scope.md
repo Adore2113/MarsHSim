@@ -127,9 +127,6 @@
 
     ♡ tracking partial pressure changes per timestep instead of mass
 
-    ♡ O2 drop:
-        ~0.0033kPa pp/5min
-
     ♡ 288 five minute intervals in one day
         ~0.0033 * 288 = 0.9504kPa pp/day
 
@@ -209,6 +206,12 @@
 
 #### Greenhouse Notes:
     ♡ these notes are a mess while I organize my thoughts 
+
+    ♡ considering looking at species that make their own structures and systems as inspiration for efficiency
+
+    ♡ Taking the layout into consideration, hydroponics lets me consider other greenhouse layout ideas, so I'm leaning toward a sort of "helix" .. hive, area instead. A layered growing space that spirals inward toward a main central area for utilities, maintenance, water systems, and other things instead of just rows and boxes.
+
+    ♡ I also think it would be easier to visually see/monitor a lot more plants along a gradual slope instead of separate rectangular flat rows and it would potentially work well with the vertical racks and hangers like I wanted.
 
     ♡ considering hydroponics, a set up between waste water and filtering and that filtered water 
 
