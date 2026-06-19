@@ -118,6 +118,7 @@ def run_sabatier(state, dt_min):
             
             new_co2_kpa = max(0.0, state.co2_kpa - atmosphere_co2_kpa)
             co2_consumed_kg += atmosphere_co2_kg
+            new_co2_stored_kg += atmosphere_co2_kg
             co2_consumed_kpa = atmosphere_co2_kpa
 
         #-----------venting Methane outside--------♡
