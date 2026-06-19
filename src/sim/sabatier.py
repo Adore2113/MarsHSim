@@ -24,7 +24,7 @@ base_sabatier_temp_c = 300.0
 base_sabatier_efficiency = 0.88
 
 hysteresis = 1.5
-venting_hysteresis = 0.7
+venting_hysteresis = 0.60
 #----------------------------------------------------♡
 
 
@@ -120,12 +120,13 @@ def run_sabatier(state, dt_min):
             co2_consumed_kg += atmosphere_co2_kg
             co2_consumed_kpa = atmosphere_co2_kpa
 
-        #--------------venting Methane-------------♡
+        #-----------venting Methane outside--------♡
         new_ch4_stored_kg = state.ch4_stored_kg + ch4_produced_kg
 
         if new_ch4_stored_kg > state.ch4_storage_capacity_kg * venting_hysteresis:
             excess_ch4 = new_ch4_stored_kg - (state.ch4_storage_capacity_kg * venting_hysteresis)
-            amount_to_vent = min(excess_ch4 * 0.25, 0.8)
+            
+            amount_to_vent = min(excess_ch4 * 0.85, 3.0)
             new_ch4_stored_kg -= amount_to_vent
             ch4_vented_kg += amount_to_vent
             sabatier_mode = "venting"
@@ -136,18 +137,12 @@ def run_sabatier(state, dt_min):
             ch4_vented_kg += amount_to_vent
             sabatier_mode = "venting"
             
-            sabatier_power_used_kw *= 1.15
-
-        ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
-        new_ch4_kpa = state.ch4_kpa + ch4_leaked_kpa
-   
+            sabatier_power_used_kw *= 1.25
+        
     #-----------------small gas leaks----------------♡  
-        ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
-        new_ch4_kpa = state.ch4_kpa + ch4_pressure_increase_kpa + ch4_leaked_kpa
-
-
-    h2_stored_kg = max(0.0, state.h2_stored_kg - h2_consumed_kg)
-    
+    ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
+    new_ch4_kpa = state.ch4_kpa + ch4_leaked_kpa
+   
     #------------dict for updating state-------------♡ 
     sabatier_updates = {
         "co2_stored_kg": new_co2_stored_kg,
