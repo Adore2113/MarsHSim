@@ -39,9 +39,9 @@ def print_sim(state, outputs, alerts):
     print_system_stats(alerts)
     print_environment(state, outputs)
     print_atmosphere(state, outputs)
-    print_power(state, outputs)
-    print_thermal(state, outputs)
-    print_water(state, outputs)
+    #print_power(state, outputs)
+    #print_thermal(state, outputs)
+    #print_water(state, outputs)
     print (split)
 #----------------------------------------------------♡
 
@@ -81,13 +81,14 @@ def print_atmosphere(state, outputs):
     print(f"{'Carbon Dioxide:':<{lw}} {state.co2_kpa:.2f} kPa")
     print(f"{'Nitrogen:':<{lw}} {state.n2_kpa:.2f} kPa")
     print(f"{'Argon:':<{lw}} {state.ar_kpa:.2f} kPa")
-    
+    print(f"{'Methane:':<{lw}} {state.ch4_kpa:.2f} kPa")
+
     #------buffer gas control------♡
     print(f"\n{'Buffer Gas Mode:':<{lw}} {outputs['buffer_gas_mode']}")
     print(f"{'Pressure Gap:':<{lw}} {outputs['pressure_gap_kpa']:.3f} kPa")
     
-    print(f"{'Gas Added:':<{lw}} {outputs['total_buffer_gas_added_kpa']:.3f} kPa")
-    print(f"{'Gas Vented:':<{lw}} {outputs.get('total_buffer_gas_vented_kpa', 0.0):.3f} kPa")
+    print(f"{'Buffer Gas Added:':<{lw}} {outputs['total_buffer_gas_added_kpa']:.3f} kPa")
+    print(f"{'Buffer Gas Vented:':<{lw}} {outputs.get('total_buffer_gas_vented_kpa', 0.0):.3f} kPa")
 
     #----------stored gas----------♡
     print(f"\n{'O2 Stored:':<{lw}} {state.o2_stored_kg:.2f} kg")
