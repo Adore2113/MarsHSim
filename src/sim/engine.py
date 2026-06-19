@@ -60,6 +60,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
 
     #--------------sabatier---------------♡
     sabatier_updates, sabatier_outputs = run_sabatier(new_state, dt_min)
+    new_state = replace(new_state, **sabatier_updates)
 
     #-------------atmosphere--------------♡
     o2_after_crew_kpa = new_state.o2_kpa - crew_results["o2_drop_kpa"]
