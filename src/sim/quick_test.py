@@ -64,8 +64,8 @@ s0 = Habitat_State(
         "base_water_needed_per_m2_kg_per_sol": 3.4,
         
         "food_yield_per_m2_kg_per_sol": 0.25,
-        "co2_consumed_per_m2_kpa_per_sol": 0.025,
-        "o2_produced_per_m2_kpa_per_sol": 0.022,
+        "co2_consumed_per_m2_kpa_per_sol": 0.00000625,
+        "o2_produced_per_m2_kpa_per_sol":0.0000055,
 
         #----------hydroponics---------♡
         "water_recirculation_efficiency": 0.82,
@@ -98,8 +98,8 @@ s0 = Habitat_State(
         "base_water_needed_per_m2_kg_per_sol": 2.6,
         
         "food_yield_per_m2_kg_per_sol": 0.29,
-        "co2_consumed_per_m2_kpa_per_sol": 0.025,
-        "o2_produced_per_m2_kpa_per_sol": 0.020,
+        "co2_consumed_per_m2_kpa_per_sol": 0.00000625,
+        "o2_produced_per_m2_kpa_per_sol": 0.000005,
 
         #----------hydroponics---------♡
         "water_recirculation_efficiency": 0.88,
@@ -132,8 +132,8 @@ s0 = Habitat_State(
         "base_water_needed_per_m2_kg_per_sol": 1.95,
         
         "food_yield_per_m2_kg_per_sol": 0.21,
-        "co2_consumed_per_m2_kpa_per_sol": 0.018,
-        "o2_produced_per_m2_kpa_per_sol": 0.015,
+        "co2_consumed_per_m2_kpa_per_sol": 0.0000045,
+        "o2_produced_per_m2_kpa_per_sol": 0.00000375,
 
         #----------hydroponics---------♡
         "water_recirculation_efficiency": 0.94,
@@ -199,7 +199,7 @@ s0 = Habitat_State(
     o2_leak_rate_kpa_per_hr = 0.006,
     n2_leak_rate_kpa_per_hr = 0.007,
     ar_leak_rate_kpa_per_hr = 0.005,
-    ch4_leak_rate_kpa_per_hr = 0.001,
+    ch4_leak_rate_kpa_per_hr = 0.0,
     h2_leak_rate_kpa_per_hr = 0.025,
     co2_leak_rate_kpa_per_hr = 0.005,
 
@@ -350,7 +350,7 @@ for i in range(30000):
     #     last_printed_sol = current_sol
 # ---------------------
 # previous_sol = -1
-# last_print_hour = None
+last_print_hour = None
 
 # for i in range(12000):    # 12000 = ~40 sols, 30000 = ~100
 
@@ -360,8 +360,9 @@ for i in range(30000):
 #     current_sol = int(state.mission_time_s // seconds_per_sol)
 
 #     #if current_sol != previous_sol:
-#     _, sol_hour, minutes = get_sol_time(state)
+#_, sol_hour, minutes = get_sol_time(state)
 
 #     if sol_hour in (12,) and sol_hour != last_print_hour:
 #         print_sim(state, outputs, alerts)
 #         last_print_hour = sol_hour
+# ---------------------
