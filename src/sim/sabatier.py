@@ -39,6 +39,8 @@ def run_sabatier(state, dt_min):
     co2_consumed_kpa = 0.0
     co2_consumed_kg = 0.0
     ch4_vented_kg = 0.0
+    ch4_pressure_increase_kpa = 0.0
+
 
     new_ch4_stored_kg = state.ch4_stored_kg
     new_ch4_kpa = state.ch4_kpa
@@ -53,6 +55,8 @@ def run_sabatier(state, dt_min):
     
     elif state.power_mode == "critical":
         sabatier_mode = "power_save"
+        sabatier_power_used_kw = 0.3
+        sabatier_heat_added_kw = 0.2
 
     #--------------available reactants--------------♡  
     else:
@@ -98,9 +102,11 @@ def run_sabatier(state, dt_min):
         co2_consumed_kg = reactions_available * co2_molar_mass * kg_per_g    
        
         co2_moles_consumed = co2_consumed_kg / (co2_molar_mass * kg_per_g)
-
         co2_consumed_kpa = (co2_moles_consumed * r_kpa * (state.hab_temp_c + kelvin_offset)) / state.hab_vol_m3
         
+        ch4_moles_produced = ch4_produced_kg / (ch4_molar_mass * kg_per_g)
+        ch4_pressure_increase_kpa = (ch4_moles_produced * r_kpa * (state.hab_temp_c + kelvin_offset)) / state.hab_vol_m3
+
         new_co2_stored_kg = max(0.0, state.co2_stored_kg - co2_consumed_kg)
         new_h2_stored_kg = max(0.0, state.h2_stored_kg - h2_consumed_kg)
 
@@ -108,11 +114,9 @@ def run_sabatier(state, dt_min):
         if new_co2_stored_kg <= 0.01 and state.co2_kpa > min_co2_for_reaction_kg:
             atmosphere_co2_kpa = min(0.15, state.co2_kpa * 0.12)
             atmosphere_co2_moles = (atmosphere_co2_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
-
             atmosphere_co2_kg = (atmosphere_co2_moles * co2_molar_mass * kg_per_g)
             
             new_co2_kpa = max(0.0, state.co2_kpa - atmosphere_co2_kpa)
-            
             co2_consumed_kg += atmosphere_co2_kg
             co2_consumed_kpa = atmosphere_co2_kpa
 
@@ -133,8 +137,6 @@ def run_sabatier(state, dt_min):
             sabatier_mode = "venting"
             
             sabatier_power_used_kw *= 1.15
-        
-        ch4_pressure_increase_kpa = 0.0
 
         ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
         new_ch4_kpa = state.ch4_kpa + ch4_leaked_kpa
@@ -152,7 +154,7 @@ def run_sabatier(state, dt_min):
         "co2_kpa": new_co2_kpa,
         "ch4_kpa": new_ch4_kpa,
         "ch4_stored_kg": new_ch4_stored_kg,
-        "h2_stored_kg": h2_stored_kg,
+        "h2_stored_kg": new_h2_stored_kg,
     }
    
     #-----------dict for printing outputs------------♡ 
