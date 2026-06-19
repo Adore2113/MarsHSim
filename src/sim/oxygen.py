@@ -10,7 +10,7 @@ kg_per_g = 0.001
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0   # grams per mole
 
-oga_max_o2_output_kpa = 0.5
+oga_max_o2_output_kpa_per_hr = 6.0
 base_oga_power_kw = 2.5
 base_oga_heat_kw = 1.2
 
@@ -48,7 +48,8 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
     else:
         oga_mode = "running"
         
-        o2_added_kpa = min(oga_max_o2_output_kpa, max(0.0, o2_needed_kpa + 0.001))
+        max_o2_this_step_kpa = oga_max_o2_output_kpa_per_hr * hours_per_step
+        o2_added_kpa = min(max_o2_this_step_kpa, max(0.0, o2_needed_kpa + 0.001))
         
         o2_moles = (o2_added_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
         o2_produced_kg = (o2_moles * o2_molar_mass) * kg_per_g
