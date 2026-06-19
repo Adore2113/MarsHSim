@@ -84,7 +84,7 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
     elif co2_above_target_kpa > 0.06:
         target_beds_online = 3
     
-    elif co2_above_target_kpa > 0.25:
+    elif co2_above_target_kpa > 0.03:
         target_beds_online = 2
     
     elif co2_above_target_kpa > 0.012:
