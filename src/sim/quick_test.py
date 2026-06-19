@@ -199,7 +199,7 @@ s0 = Habitat_State(
     o2_leak_rate_kpa_per_hr = 0.006,
     n2_leak_rate_kpa_per_hr = 0.007,
     ar_leak_rate_kpa_per_hr = 0.005,
-    ch4_leak_rate_kpa_per_hr = 0.0,    # figure this out, if I want to have a ch4 leak at all or not
+    ch4_leak_rate_kpa_per_hr = 0.001,
     h2_leak_rate_kpa_per_hr = 0.025,
     co2_leak_rate_kpa_per_hr = 0.005,
 
@@ -236,7 +236,7 @@ s0 = Habitat_State(
     #------current gas levels------♡
     ar_kpa = 21.6,
     ch4_kpa = 0.0,
-    co2_kpa = 0.6,
+    co2_kpa = 0.4,
     h2_kpa = 0.0,    
     n2_kpa = 18.0,
     o2_kpa = 20.0,
