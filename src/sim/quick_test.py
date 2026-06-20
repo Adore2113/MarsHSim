@@ -333,36 +333,30 @@ s0 = Habitat_State(
 
 
 state = s0
+
 last_printed_sol = -1
+critical = False
+was_critical = False
 
-for i in range(30000):
-
+for i in range(30000):    # 30000 steps * 5 min = ~104 sols
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
 
     current_sol = int(state.mission_time_s // seconds_per_sol)
-
     _, sol_hour, minutes = get_sol_time(state)
-    if 38 <= current_sol <= 43 and sol_hour in (6, 12):
+    
+    critical = any("CRITICAL" in alert for alert in alerts)
+
+    #---------------print once per sol---------------♡
+    if sol_hour == 12 and current_sol != last_printed_sol:
         print_sim(state, outputs, alerts)
-    # if sol_hour == 12 and current_sol != last_printed_sol:
-    #     print_sim(state, outputs, alerts)
-    #     last_printed_sol = current_sol
-# ---------------------
-# previous_sol = -1
-last_print_hour = None
-
-# for i in range(12000):    # 12000 = ~40 sols, 30000 = ~100
-
-#     state, outputs = step(state)
-#     alerts = get_alerts(state, outputs)
-
-#     current_sol = int(state.mission_time_s // seconds_per_sol)
-
-#     #if current_sol != previous_sol:
-#_, sol_hour, minutes = get_sol_time(state)
-
-#     if sol_hour in (12,) and sol_hour != last_print_hour:
-#         print_sim(state, outputs, alerts)
-#         last_print_hour = sol_hour
-# ---------------------
+        last_printed_sol = current_sol
+   
+    #----------more prints on critical alerts--------♡
+    elif critical:
+        print_sim(state, outputs, alerts)
+    
+    elif was_critical:
+        print_sim(state, outputs, alerts)
+ 
+    was_critical = critical
