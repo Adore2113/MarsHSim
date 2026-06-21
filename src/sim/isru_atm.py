@@ -86,6 +86,29 @@ def run_sorbent_beds(state, dt_min, co2_intake_kg):
     else:
         target_beds_adsorbing = max_sorbent_beds_adsorbing
  
+    #-------------changing bed status----------------♡
+    if beds_adsorbing_count < target_beds_adsorbing:
+        beds_needed_online = target_beds_adsorbing - beds_adsorbing_count
+ 
+    for bed in state.isru_atm_sorbent_beds:
+        new_bed = bed.copy()
+ 
+        if beds_needed_online > 0 and new_bed["status"] == "standby":
+            new_bed["status"] = "adsorbing"
+            beds_needed_online -= 1
+ 
+        new_beds.append(new_bed)
+ 
+    beds_adsorbing_count = sum(1 for bed in new_beds if bed["status"] == "adsorbing")
+
+    #--------------co2 capture / release-------------♡
+    if beds_adsorbing_count > 0:
+        co2_per_bed_kg = co2_intake_kg / beds_adsorbing_count
+
+    final_beds = []
+ 
+    for bed in new_beds:
+        status = bed["status"]
 
 
 #--------------------isru process--------------------♡
