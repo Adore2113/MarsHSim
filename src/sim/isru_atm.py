@@ -15,6 +15,7 @@ mars_atm_ar_ratio = 0.016
 
 n2_low_storage_kg = 600.0
 ar_low_storage_kg = 300.0
+hysteresis_kg = 1.5    # placeholder
 #----------------------------------------------------♡
 
 
@@ -25,12 +26,22 @@ def compressors_in_use(state, dt_min):
     deploying_count = 0
     retracting_count = 0
 
-    for compressor in state.isru_compressors:
-        if compressor["status"] == "extracting":
+    for comp in state.isru_compressors:
+        if comp["status"] == "extracting":
             extracting_count += 1
  
-        elif compressor["status"] == "deploying":
+        elif comp["status"] == "deploying":
             deploying_count += 1
  
-        elif compressor["status"] == "retracting":
+        elif comp["status"] == "retracting":
             retracting_count += 1
+
+    #-----how many compressors (c) needed online-----♡
+    if state.n2_stored_kg < n2_low_storage_kg or state.ar_stored_kg < ar_low_storage_kg:
+        target_comps_online = max_compressors_online
+
+    elif state.n2_stored_kg < n2_low_storage_kg * hysteresis_kg or state.ar_stored_kg < ar_low_storage_kg * hysteresis_kg:
+        target_comps_online = 2
+ 
+    else:
+        target_comps_online = 0 
