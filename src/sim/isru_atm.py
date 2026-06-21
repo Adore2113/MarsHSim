@@ -120,3 +120,12 @@ def run_isru_atm(state, dt_min):
 
             power_used_kw = base_compressor_power_kw * compressors_extracting
             heat_added_kw = power_used_kw * 0.6
+
+#------------dict for updating state-------------♡
+    isru_atm_updates = {
+        "isru_compressors": new_compressors,
+        "n2_stored_kg": new_n2_stored_kg,
+        "ar_stored_kg": new_ar_stored_kg,
+        "co2_stored_kg": new_co2_stored_kg,
+    }
+    
