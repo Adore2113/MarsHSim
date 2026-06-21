@@ -77,3 +77,19 @@ def run_isru_atm(state, dt_min):
     co2_added_kg = 0.0
     power_used_kw = 0.0
     heat_added_kw = 0.0
+
+    new_n2_stored_kg = state.n2_stored_kg
+    new_ar_stored_kg = state.ar_stored_kg
+    new_co2_stored_kg = state.co2_stored_kg
+
+    new_compressors, compressors_extracting = compressors_in_use(state)
+
+    if not state.isru_atm_on:
+        isru_atm_mode = "offline"
+        for comp in new_compressors:
+            comp["status"] = "offline"
+        compressors_extracting = 0
+ 
+    else:
+        if compressors_extracting == 0:
+            isru_atm_mode = "idle"
