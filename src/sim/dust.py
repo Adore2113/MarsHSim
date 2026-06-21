@@ -9,7 +9,7 @@ base_dust_rate_per_sol = 0.007
 primary_rad_dust_multiplier = 1.12
 backup_rad_dust_multiplier = 0.885
 solar_dust_multiplier = 1.15
-compressor_dust_muliplier = 1.05
+compressor_dust_multiplier = 1.05
 online_multiplier = 1.25    # online systems get dusty a bit faster
 
 min_radiator_efficiency = 0.35
@@ -25,6 +25,7 @@ def get_dust_accumulation(state, dt_min):
 
     new_radiators = []
     new_solar_arrays = []
+    new_compressors = []
 
     #-------------------radiators--------------------♡
     for rad in state.radiators:
@@ -57,8 +58,24 @@ def get_dust_accumulation(state, dt_min):
         
         new_array["dust_factor"] = max(min_solar_efficiency, new_array["dust_factor"] - efficiency_loss)
         new_solar_arrays.append(new_array)
-    
+
+    #----------------isru compressors----------------♡
+        for compressor in state.isru_compressors:
+            new_compressor = compressor.copy()
+
+        dust_rate = base_dust_rate_per_sol * compressor_dust_multiplier
+ 
+        if new_compressor["status"] == "extracting":
+            dust_rate *= online_multiplier
+ 
+        efficiency_loss = dust_rate * sols_per_step
+ 
+        new_compressor["dust_factor"] = max(min_compressor_efficiency, new_compressor["dust_factor"] - efficiency_loss)
+        new_compressors.append(new_compressor)
+
     return {
         "new_radiators": new_radiators,
         "new_solar_arrays": new_solar_arrays,
+        "new_compressors": new_compressors
     }
+    
