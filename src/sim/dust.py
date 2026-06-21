@@ -2,7 +2,6 @@
 from .mars_time import seconds_per_sol
 #----------------------------------------------------♡
 
-# file for all things Mars dust
 
 #--------------------constants-----------------------♡
 base_dust_rate_per_sol = 0.007
@@ -10,10 +9,12 @@ base_dust_rate_per_sol = 0.007
 primary_rad_dust_multiplier = 1.12
 backup_rad_dust_multiplier = 0.885
 solar_dust_multiplier = 1.15
+compressor_dust_muliplier = 1.05
 online_multiplier = 1.25    # online systems get dusty a bit faster
 
 min_radiator_efficiency = 0.35
 min_solar_efficiency = 0.40
+min_compressor_efficiency = 0.45
 #----------------------------------------------------♡
 
 
