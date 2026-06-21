@@ -26,8 +26,6 @@ sorbent_capture_efficiency = 0.85    # ratio of co2 that actually gets trapped o
 def compressors_in_use(state):
     new_compressors = []
     extracting_count = 0
-    deploying_count = 0
-    retracting_count = 0
 
     for comp in state.isru_compressors:
         if comp["status"] == "extracting":
