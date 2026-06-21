@@ -158,10 +158,7 @@ def run_sorbent_beds(state, dt_min, co2_intake_kg):
         "sorbent_co2_captured_kg": co2_captured_kg,
         "sorbent_co2_released_kg": co2_released_kg,
         "sorbent_co2_bypassed_kg": co2_bypassed_kg,
-        "sorbent_beds_adsorbing": sum(1 for bed in final_beds if bed["status"] == "adsorbing"),
-        "sorbent_beds_regenerating": sum(1 for bed in final_beds if bed["status"] == "regenerating"),
-        "sorbent_beds_standby": sum(1 for bed in final_beds if bed["status"] == "standby"),
-    }
+         }
  
     return sorbent_updates, sorbent_outputs
 #----------------------------------------------------♡
@@ -182,6 +179,13 @@ def run_isru_atm(state, dt_min):
     new_n2_stored_kg = state.n2_stored_kg
     new_ar_stored_kg = state.ar_stored_kg
     new_co2_stored_kg = state.co2_stored_kg
+
+    sorbent_updates = {"isru_atm_sorbent_beds": state.isru_atm_sorbent_beds}
+    sorbent_outputs = {
+        "sorbent_co2_captured_kg": 0.0,
+        "sorbent_co2_released_kg": 0.0,
+        "sorbent_co2_bypassed_kg": 0.0,
+        }
 
     new_compressors, compressors_extracting = compressors_in_use(state)
 
