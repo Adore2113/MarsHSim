@@ -67,7 +67,7 @@ def compressors_in_use(state, dt_min):
 
 
 #--------------------isru process--------------------♡
-def run_isru_atmosphere(state, dt_min):
+def run_isru_atm(state, dt_min):
     hours_per_step = dt_min / 60.0
  
     #--------------default isru values--------------♡
@@ -77,4 +77,3 @@ def run_isru_atmosphere(state, dt_min):
     co2_added_kg = 0.0
     power_used_kw = 0.0
     heat_added_kw = 0.0
-        
