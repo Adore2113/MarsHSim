@@ -194,16 +194,18 @@ class Habitat_State:
     wpa_on: bool
     
     #------------------placeholders------------------♡
-    leak_rate_kpa_per_hr: float
-    smoke_ppm: float
     radiation_msv_per_day: float
 
     #--------------------sabatier--------------------♡
     sabatier_on: bool
-
-    #----------------------isru----------------------♡
+    
+    #-------------------isru water-------------------♡
     isru_on: bool
     isru_pipes: list
 
     raw_isru_water_storage_kg: float
     raw_isru_water_storage_capacity_kg: float
+    
+    #---------------isru atmosphere (atm)------------♡
+    isru_atm_on: bool
+    isru_compressors: list
