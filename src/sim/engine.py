@@ -13,6 +13,7 @@ from .dust import get_dust_accumulation
 from .sabatier import run_sabatier
 from .greenhouse import run_greenhouse
 from .isru_water import run_isru
+from .isru_atm import run_isru_atm
 #----------------------------------------------------♡
 
 
