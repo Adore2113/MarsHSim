@@ -8,9 +8,9 @@ compressor_efficiency = 0.78
 # compressor_regen_time_min = 0.0
 
 max_compressors_online = 4
-mars_atm_co2_ratio = 0.95
-mars_atm_n2_ratio = 0.027
-mars_atm_ar_ratio = 0.016
+mars_co2_ratio = 0.95
+mars_n2_ratio = 0.027
+mars_ar_ratio = 0.016
 
 n2_low_storage_kg = 600.0
 ar_low_storage_kg = 300.0
@@ -93,3 +93,30 @@ def run_isru_atm(state, dt_min):
     else:
         if compressors_extracting == 0:
             isru_atm_mode = "idle"
+
+#------------------isru running-----------------♡
+        else:
+            isru_atm_mode = "running"
+            active_extracting = [comp for comp in new_compressors if comp["status"] == "extracting"]
+
+            raw_intake_kg = base_intake_rate_kg_per_hour * compressors_extracting * hours_per_step
+            usable_intake_kg = raw_intake_kg * compressor_efficiency 
+
+            n2_extracted_kg = usable_intake_kg * mars_n2_ratio
+            ar_extracted_kg = usable_intake_kg * mars_ar_ratio
+            co2_extracted_kg = usable_intake_kg * mars_co2_ratio
+ 
+            n2_room_left_kg = state.n2_storage_capacity_kg - state.n2_stored_kg
+            ar_room_left_kg = state.ar_storage_capacity_kg - state.ar_stored_kg
+            co2_room_left_kg = state.co2_storage_capacity_kg - state.co2_stored_kg
+
+            n2_added_kg = min(n2_extracted_kg, n2_room_left_kg)
+            ar_added_kg = min(ar_extracted_kg, ar_room_left_kg)
+            co2_added_kg = min(co2_extracted_kg, co2_room_left_kg)
+ 
+            new_n2_stored_kg = state.n2_stored_kg + n2_added_kg
+            new_ar_stored_kg = state.ar_stored_kg + ar_added_kg
+            new_co2_stored_kg = state.co2_stored_kg + co2_added_kg
+
+            power_used_kw = base_compressor_power_kw * compressors_extracting
+            heat_added_kw = power_used_kw * 0.6
