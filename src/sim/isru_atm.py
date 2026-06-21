@@ -52,6 +52,23 @@ def compressors_in_use(state):
     for comp in state.isru_compressors:
         new_comp= comp.copy()
  
+    
+    #-------------changing compressor status----------♡
+        if online_comp_count < target_comps_online:
+            new_comp["status"] = "extracting"
+            online_comp_count += 1
+ 
+        else:
+            new_comp["status"] = "offline"
+ 
+        new_compressors.append(new_comp)
+ 
+    final_extracting_count = sum(1 for comp in new_compressors if comp["status"] == "extracting")
+ 
+    return new_compressors, final_extracting_count
+#----------------------------------------------------♡
+
+
 
 #--------------------isru process--------------------♡
 def run_isru_atm(state, dt_min):
