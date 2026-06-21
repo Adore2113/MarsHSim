@@ -69,6 +69,24 @@ def compressors_in_use(state):
 #----------------------------------------------------♡
 
 
+#----------------sorbent bed handling----------------♡
+def run_sorbent_beds(state, dt_min, co2_intake_kg):
+    new_beds = []
+    beds_needed_online = 0
+    beds_adsorbing_count = 0
+    co2_captured_kg = 0.0
+    co2_released_kg = 0.0
+
+
+    beds_adsorbing_count = sum(1 for bed in state.isru_atm_sorbent_beds if bed["status"] == "adsorbing")
+ 
+    if co2_intake_kg <= 0.0:
+        target_beds_adsorbing = 0
+ 
+    else:
+        target_beds_adsorbing = max_sorbent_beds_adsorbing
+ 
+
 
 #--------------------isru process--------------------♡
 def run_isru_atm(state, dt_min):
