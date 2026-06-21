@@ -15,6 +15,10 @@ mars_ar_ratio = 0.016
 n2_low_storage_kg = 600.0
 ar_low_storage_kg = 300.0
 hysteresis_kg = 1.5    # placeholder
+
+max_sorbent_beds_adsorbing = 2
+sorbent_regen_time_min = 60.0
+sorbent_capture_efficiency = 0.85    # ratio of co2 that actually gets trapped on the absorbing bed
 #----------------------------------------------------♡
 
 
