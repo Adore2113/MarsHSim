@@ -111,6 +111,62 @@ def run_sorbent_beds(state, dt_min, co2_intake_kg):
         status = bed["status"]
 
 
+    #-----------------adsorbing bed CO2--------------♡
+        if status == "adsorbing":
+            room_left_kg = bed["capacity"] - bed["gas_load"]
+            offered_kg = co2_per_bed_kg * sorbent_capture_efficiency
+            captured_this_bed = min(offered_kg, max(0.0, room_left_kg))
+ 
+            bed["gas_load"] += captured_this_bed
+            co2_captured_kg += captured_this_bed
+ 
+            if bed["gas_load"] >= bed["capacity"]:
+                bed["status"] = "regenerating"
+                bed["regen_timer_min"] = sorbent_regen_time_min
+
+    #-------------------bed regen--------------------♡
+        elif status == "regenerating":
+            timer = bed.get("regen_timer_min", sorbent_regen_time_min)
+ 
+            release_fraction = min(1.0, dt_min / sorbent_regen_time_min)
+            released_this_step = bed["gas_load"] * release_fraction
+ 
+            bed["gas_load"] = max(0.0, bed["gas_load"] - released_this_step)
+            co2_released_kg += released_this_step
+ 
+            timer -= dt_min
+ 
+            if timer <= 0:
+                bed["status"] = "standby"
+                co2_released_kg += bed["gas_load"]    # release whatever's left
+                bed["gas_load"] = 0.0
+                bed["regen_timer_min"] = 0.0
+            else:
+                bed["regen_timer_min"] = timer
+ 
+        final_beds.append(bed)
+    
+    co2_bypassed_kg = max(0.0, co2_intake_kg - co2_captured_kg)
+
+    #------------dict for updating state-------------♡
+    sorbent_updates = {
+        "isru_atm_sorbent_beds": final_beds,
+    }
+ 
+    #-----------dict for printing outputs------------♡
+    sorbent_outputs = {
+        "sorbent_co2_captured_kg": co2_captured_kg,
+        "sorbent_co2_released_kg": co2_released_kg,
+        "sorbent_co2_bypassed_kg": co2_bypassed_kg,
+        "sorbent_beds_adsorbing": sum(1 for bed in final_beds if bed["status"] == "adsorbing"),
+        "sorbent_beds_regenerating": sum(1 for bed in final_beds if bed["status"] == "regenerating"),
+        "sorbent_beds_standby": sum(1 for bed in final_beds if bed["status"] == "standby"),
+    }
+ 
+    return sorbent_updates, sorbent_outputs
+#----------------------------------------------------♡
+
+
 #--------------------isru process--------------------♡
 def run_isru_atm(state, dt_min):
     hours_per_step = dt_min / 60.0
