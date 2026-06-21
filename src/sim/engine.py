@@ -63,6 +63,10 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     sabatier_updates, sabatier_outputs = run_sabatier(new_state, dt_min)
     new_state = replace(new_state, **sabatier_updates)
 
+    #-----------isru atmosphere-----------♡
+    isru_atm_updates, isru_atm_outputs = run_isru_atm(new_state, dt_min)
+    new_state = replace(new_state, **isru_atm_updates)
+
     #-------------atmosphere--------------♡
     o2_after_crew_kpa = new_state.o2_kpa - crew_results["o2_drop_kpa"]
     co2_after_crew_kpa = new_state.co2_kpa + crew_results["co2_rise_kpa"]
@@ -80,8 +84,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
  
     #--------------humidity---------------♡
     humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], greenhouse_outputs.get("greenhouse_transpiration_kg", 0.0), dt_min)
-
-    #----------------isru-----------------♡
+    
+    #-------------isru water--------------♡
     isru_updates, isru_outputs = run_isru(new_state, dt_min)
 
     #----------------water----------------♡
@@ -139,6 +143,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         **thermal_updates,
         **power_updates,
         **sabatier_updates,
+        **isru_atm_updates,
         **oga_updates,
         **co2_scrubber_updates,
         **buffer_gas_updates,
@@ -166,6 +171,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     outputs.update(buffer_gas_outputs)
     outputs.update(humidity_results)
     outputs.update(isru_outputs)
+    outputs.update(isru_atm_outputs)
     outputs.update(water_outputs)
     outputs.update(greenhouse_outputs)
     outputs.update(thermal_outputs)
