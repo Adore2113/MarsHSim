@@ -5,9 +5,8 @@ base_compressor_power_kw = 4.0    # per active compressor
 base_intake_rate_kg_per_hour = 20.0   # raw atmosphere processed per compressor
 compressor_efficiency = 0.78
  
-compressor_deploy_time_min = 15.0
-compressor_retract_time_min = 20.0
- 
+# compressor_regen_time_min = 0.0
+
 max_compressors_online = 4
 mars_atm_co2_ratio = 0.95
 mars_atm_n2_ratio = 0.027
@@ -29,12 +28,6 @@ def compressors_in_use(state, dt_min):
     for comp in state.isru_compressors:
         if comp["status"] == "extracting":
             extracting_count += 1
- 
-        elif comp["status"] == "deploying":
-            deploying_count += 1
- 
-        elif comp["status"] == "retracting":
-            retracting_count += 1
 
     #-----how many compressors (c) needed online-----♡
     if state.n2_stored_kg < n2_low_storage_kg or state.ar_stored_kg < ar_low_storage_kg:
@@ -44,6 +37,18 @@ def compressors_in_use(state, dt_min):
         target_comps_online = 2
  
     else:
-        target_comps_online = 0 
+        target_comps_online = 0
+
+    if state.power_mode == "low":
+        target_comps_online = min(target_comps_online, 1)
+ 
+    elif state.power_mode == "critical":
+        target_comps_online = 0
+ 
+    online_comp_count = 0
+ 
+    for comp in state.isru_compressors:
+        new_comp_list= comp.copy()
+        
     
     
