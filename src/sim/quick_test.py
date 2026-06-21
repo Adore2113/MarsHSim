@@ -307,14 +307,12 @@ s0 = Habitat_State(
     wpa_on = True,
 
     #------------------placeholders------------------♡
-    leak_rate_kpa_per_hr = 0.0,
-    smoke_ppm = 0.0,
     radiation_msv_per_day = 0.7,
 
     #--------------------sabatier--------------------♡
     sabatier_on = True,
-   
-    #----------------------isru----------------------♡
+
+    #-------------------isru water-------------------♡
     isru_on = True,
 
     isru_pipes = [
@@ -329,7 +327,20 @@ s0 = Habitat_State(
 
     raw_isru_water_storage_kg = 0.0,
     raw_isru_water_storage_capacity_kg = 1000.0,
+
+
+    #---------------isru atmosphere (atm)------------♡
+    isru_atm_on = True,
+
+    isru_compressors = [
+        {"id": 1, "status": "offline", "dust_factor": 1.0, "condition": 0.98, "type": "primary"},
+        {"id": 2, "status": "offline", "dust_factor": 1.0, "condition": 0.97, "type": "primary"},
+        
+        {"id": 3, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
+        {"id": 4, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
+    ],
     )
+
 
 
 state = s0
