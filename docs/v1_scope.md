@@ -119,8 +119,7 @@
 
     ♡ kg for storage, kpa for atmosphere
 
-    ♡ adding variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others)
-
+    ♡ adding variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others) - I decided to remove the one for ch4
 
 #### Gas Notes:
     ♡ going to be using Dalton's Law
@@ -144,6 +143,8 @@
         - nitrogen (N2)
             - Mars atmosphere is ~2.7% N2
             - humans are familiar with it
+     
+     ♡ adding ISRU to pull both Ar and N2 from the Mars atmosphere and I am not going to have a timer for the compressors yet, but for future versions I am planning on adding a regen state and using sorbent beds that need a regen cycle between intakes
 
 #### CO2 Scrubbing / Amine Bed Notes:
     ♡ ~0.0029kPa pp/5min
