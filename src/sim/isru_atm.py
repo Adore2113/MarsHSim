@@ -19,7 +19,7 @@ hysteresis_kg = 1.5    # placeholder
 
 
 #----which compressors are online and how many-------♡
-def compressors_in_use(state, dt_min):
+def compressors_in_use(state):
     new_compressors = []
     extracting_count = 0
     deploying_count = 0
