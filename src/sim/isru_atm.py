@@ -53,7 +53,7 @@ def compressors_in_use(state, dt_min):
     #-------------changing compressor status----------♡
         if online_comp_count < target_comps_online:
             new_comp["status"] = "extracting"
-            online_count += 1
+            online_comp_count += 1
  
         else:
             new_comp["status"] = "offline"
