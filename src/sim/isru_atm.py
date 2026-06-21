@@ -64,5 +64,17 @@ def compressors_in_use(state, dt_min):
  
     return new_compressors, final_extracting_count
         
-    
-    
+
+
+#--------------------isru process--------------------♡
+def run_isru_atmosphere(state, dt_min):
+    hours_per_step = dt_min / 60.0
+ 
+    #--------------default isru values--------------♡
+    isru_atm_mode = "offline"
+    n2_added_kg = 0.0
+    ar_added_kg = 0.0
+    co2_added_kg = 0.0
+    power_used_kw = 0.0
+    heat_added_kw = 0.0
+        
