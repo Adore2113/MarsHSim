@@ -180,13 +180,6 @@ def run_isru_atm(state, dt_min):
     new_ar_stored_kg = state.ar_stored_kg
     new_co2_stored_kg = state.co2_stored_kg
 
-    sorbent_updates = {"isru_atm_sorbent_beds": state.isru_atm_sorbent_beds}
-    sorbent_outputs = {
-        "sorbent_co2_captured_kg": 0.0,
-        "sorbent_co2_released_kg": 0.0,
-        "sorbent_co2_bypassed_kg": 0.0,
-        }
-
     new_compressors, compressors_extracting = compressors_in_use(state)
 
     if not state.isru_atm_on:
