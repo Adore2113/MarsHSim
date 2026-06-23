@@ -74,9 +74,8 @@ def run_sorbent_beds(state, dt_min, co2_intake_kg):
     new_beds = []
     beds_needed_online = 0
     beds_adsorbing_count = 0
-    co2_captured_kg = 0.0
+    co2_absorbed_kg = 0.0
     co2_released_kg = 0.0
-
 
     beds_adsorbing_count = sum(1 for bed in state.isru_atm_sorbent_beds if bed["status"] == "adsorbing")
  
@@ -115,10 +114,10 @@ def run_sorbent_beds(state, dt_min, co2_intake_kg):
         if status == "adsorbing":
             room_left_kg = bed["capacity"] - bed["gas_load"]
             offered_kg = co2_per_bed_kg * sorbent_capture_efficiency
-            captured_this_bed = min(offered_kg, max(0.0, room_left_kg))
+            absorbed_this_bed = min(offered_kg, max(0.0, room_left_kg))
  
-            bed["gas_load"] += captured_this_bed
-            co2_captured_kg += captured_this_bed
+            bed["gas_load"] += absorbed_this_bed
+            co2_absorbed_kg += absorbed_this_bed
  
             if bed["gas_load"] >= bed["capacity"]:
                 bed["status"] = "regenerating"
@@ -146,7 +145,7 @@ def run_sorbent_beds(state, dt_min, co2_intake_kg):
  
         final_beds.append(bed)
     
-    co2_bypassed_kg = max(0.0, co2_intake_kg - co2_captured_kg)
+    co2_bypassed_kg = max(0.0, co2_intake_kg - co2_absorbed_kg)
 
     #------------dict for updating state-------------♡
     sorbent_updates = {
@@ -155,7 +154,7 @@ def run_sorbent_beds(state, dt_min, co2_intake_kg):
  
     #-----------dict for printing outputs------------♡
     sorbent_outputs = {
-        "sorbent_co2_captured_kg": co2_captured_kg,
+        "sorbent_co2_absorbed_kg": co2_absorbed_kg,
         "sorbent_co2_released_kg": co2_released_kg,
         "sorbent_co2_bypassed_kg": co2_bypassed_kg,
          }
@@ -173,6 +172,10 @@ def run_isru_atm(state, dt_min):
     n2_added_kg = 0.0
     ar_added_kg = 0.0
     co2_added_kg = 0.0
+
+
+
+
     power_used_kw = 0.0
     heat_added_kw = 0.0
 
