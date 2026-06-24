@@ -122,7 +122,7 @@ class Habitat_State:
     co2_stored_kg: float
     n2_stored_kg: float
     ar_stored_kg: float
-    h2_stored_kg: float    # more of a resource so kg
+    h2_stored_kg: float
     ch4_stored_kg: float
 
     #------gas storage limits------♡
