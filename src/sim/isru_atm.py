@@ -223,7 +223,7 @@ def run_isru_atm(state, dt_min):
             #------------------co2-------------------♡
             co2_extracted_kg = usable_intake_kg * mars_co2_ratio
             co2_released_kg = sorbent_outputs["sorbent_co2_released_kg"]
-            co2_captured_kg = sorbent_outputs["sorbent_co2_captured_kg"]
+            co2_absorbed_kg = sorbent_outputs["sorbent_co2_absorbed_kg"]
             co2_bypassed_kg = sorbent_outputs["sorbent_co2_bypassed_kg"]
             co2_room_left_kg = state.co2_storage_capacity_kg - state.co2_stored_kg
             co2_added_kg = min(co2_extracted_kg, co2_room_left_kg)
@@ -259,7 +259,7 @@ def run_isru_atm(state, dt_min):
         "isru_atm_heat_added_kw": heat_added_kw,
         "isru_atm_heat_added_kwh": heat_added_kw * hours_per_step,
         "compressors_extracting": compressors_extracting,
-        "sorbent_co2_captured_kg": co2_captured_kg,
+        "sorbent_co2_absorbed_kg": co2_absorbed_kg,
         "sorbent_co2_released_kg": co2_released_kg,
         "sorbent_co2_bypassed_kg": co2_bypassed_kg,
         "sorbent_beds_adsorbing": sorbent_beds_adsorbing,
