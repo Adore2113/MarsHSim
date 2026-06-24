@@ -13,7 +13,7 @@ mars_n2_ratio = 0.027
 mars_ar_ratio = 0.016
 
 n2_low_storage_kg = 600.0
-ar_low_storage_kg = 300.0
+ar_low_storage_kg = 400.0
 hysteresis_kg = 1.5    # placeholder
 
 max_sorbent_beds_adsorbing = 2
@@ -178,6 +178,10 @@ def run_isru_atm(state, dt_min):
     sorbent_bed_list = state.isru_atm_sorbent_beds
     power_used_kw = 0.0
     heat_added_kw = 0.0
+    sorbent_beds_adsorbing = sum(1 for bed in sorbent_bed_list if bed["status"] == "adsorbing")
+    sorbent_beds_regenerating = sum(1 for bed in sorbent_bed_list if bed["status"] == "regenerating")
+    sorbent_beds_standby = sum(1 for bed in sorbent_bed_list if bed["status"] == "standby")
+
 
     new_n2_stored_kg = state.n2_stored_kg
     new_ar_stored_kg = state.ar_stored_kg
@@ -216,9 +220,9 @@ def run_isru_atm(state, dt_min):
             #--------------bed updates---------------♡
             sorbent_updates, sorbent_outputs = run_sorbent_beds(state, dt_min, co2_extracted_kg)
             sorbent_bed_list = sorbent_updates["isru_atm_sorbent_beds"]
-            sorbent_beds_adsorbing = sum(1 for bed in sorbent_bed_list if bed["status"] == "adsorbing"),
-            sorbent_beds_regenerating = sum(1 for bed in sorbent_bed_list if bed["status"] == "regenerating"),
-            sorbent_beds_standby = sum(1 for bed in sorbent_bed_list if bed["status"] == "standby"),
+            sorbent_beds_adsorbing = sum(1 for bed in sorbent_bed_list if bed["status"] == "adsorbing")
+            sorbent_beds_regenerating = sum(1 for bed in sorbent_bed_list if bed["status"] == "regenerating")
+            sorbent_beds_standby = sum(1 for bed in sorbent_bed_list if bed["status"] == "standby")
 
             #------------------n2--------------------♡
             n2_room_left_kg = state.n2_storage_capacity_kg - state.n2_stored_kg
