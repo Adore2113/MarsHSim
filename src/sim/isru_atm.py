@@ -14,7 +14,7 @@ mars_ar_ratio = 0.016
 
 n2_low_storage_kg = 600.0
 ar_low_storage_kg = 400.0
-hysteresis_kg = 1.5    # placeholder
+hysteresis_kg = 1.5
 
 max_sorbent_beds_adsorbing = 2
 sorbent_regen_time_min = 60.0
@@ -73,7 +73,6 @@ def compressors_in_use(state):
 def run_sorbent_beds(state, dt_min, co2_intake_kg):
     new_beds = []
     beds_needed_online = 0
-    beds_adsorbing_count = 0
     co2_absorbed_kg = 0.0
     co2_released_kg = 0.0
 
@@ -101,14 +100,11 @@ def run_sorbent_beds(state, dt_min, co2_intake_kg):
     beds_adsorbing_count = sum(1 for bed in new_beds if bed["status"] == "adsorbing")
 
     #--------------co2 capture / release-------------♡
-    if beds_adsorbing_count > 0:
-        co2_per_bed_kg = co2_intake_kg / beds_adsorbing_count
-
+    co2_per_bed_kg = co2_intake_kg / beds_adsorbing_count if beds_adsorbing_count > 0 else 0.0
     final_beds = []
  
     for bed in new_beds:
         status = bed["status"]
-
 
     #-----------------adsorbing bed CO2--------------♡
         if status == "adsorbing":
@@ -182,7 +178,6 @@ def run_isru_atm(state, dt_min):
     sorbent_beds_regenerating = sum(1 for bed in sorbent_bed_list if bed["status"] == "regenerating")
     sorbent_beds_standby = sum(1 for bed in sorbent_bed_list if bed["status"] == "standby")
 
-
     new_n2_stored_kg = state.n2_stored_kg
     new_ar_stored_kg = state.ar_stored_kg
     new_co2_stored_kg = state.co2_stored_kg
@@ -206,9 +201,11 @@ def run_isru_atm(state, dt_min):
 
             dust_impact = sum(comp.get("dust_factor", 1.0) for comp in active_extracting) / len(active_extracting)
 
-            active_beds = sum(1 for bed in state.isru_atm_sorbent_beds if bed["status"] == "adsorbing")
-            effective_extracting = min(compressors_extracting, active_beds)
-
+            current_adsorbing = sum(1 for beds in state.isru_atm_sorbent_beds if beds["status"] == "adsorbing")
+            standby_beds = sum(1 for beds in state.isru_atm_sorbent_beds if beds["status"] == "standby" and beds["type"] == "primary")
+            beds_available_this_step = min(max_sorbent_beds_adsorbing, current_adsorbing + standby_beds)
+            effective_extracting = min(compressors_extracting, beds_available_this_step)
+ 
             raw_intake_kg = base_intake_rate_kg_per_hour * effective_extracting * hours_per_step
             usable_intake_kg = raw_intake_kg * compressor_efficiency * dust_impact
 
@@ -239,7 +236,7 @@ def run_isru_atm(state, dt_min):
             co2_absorbed_kg = sorbent_outputs["sorbent_co2_absorbed_kg"]
             co2_bypassed_kg = sorbent_outputs["sorbent_co2_bypassed_kg"]
             co2_room_left_kg = state.co2_storage_capacity_kg - state.co2_stored_kg
-            co2_added_kg = min(co2_extracted_kg, co2_room_left_kg)
+            co2_added_kg = min(co2_released_kg, co2_room_left_kg)
             new_co2_stored_kg = state.co2_stored_kg + co2_added_kg
             
             #--------------power / heat--------------♡
