@@ -3,9 +3,7 @@
 
 ### Time / Daylight:
     - mission_time_s
-
     - daylight_m2_kw
- 
     - peak_sunlight_today
     - low_sunlight_streak_sols
 
@@ -18,40 +16,31 @@
 
 ### Greenhouse:
     - greenhouse_floor_area_m2
- 
     - structural_floor_area_m2
     - container_floor_area_m2
     - rack_floor_area_m2
     - rack_bonus_area_m2
- 
     - usable_floor_grow_area_m2
     - walkway_area_m2
-
     - ceiling_hanging_area_m2
     - ceiling_bonus_area_m2
- 
     - total_effective_grow_area_m2
     - greenhouse_zones
-
-    - greenhouse_on: bool
+    - greenhouse_on
     - greenhouse_stage
     - food_support_level
-    - stored_food_still_needed: bool
+    - stored_food_still_needed
 
 ### Thermal:
     - hab_temp_c
     - target_temp_c
     - min_comfort_temp_c
     - max_comfort_temp_c
-
     - mars_temp_c
-
     - target_humidity_pct
     - current_humidity_pct
-
     - insulation_strength_kw_per_c
     - thermal_mass_kwh_per_c
-
     - radiators
     - heaters
 
@@ -74,14 +63,13 @@
     - target_ar_kpa
     - target_ch4_kpa
     - target_h2_kpa
-    - 
+
 #### Min Safe Gas Levels:
     - min_safe_pressure_kpa
     - min_safe_o2_kpa
     - min_safe_co2_kpa
     - min_safe_n2_kpa
     - min_safe_ar_kpa
-   
     - min_safe_ch4_kpa
     - min_safe_h2_kpa
     - 
@@ -91,10 +79,9 @@
     - max_safe_co2_kpa
     - max_safe_n2_kpa
     - max_safe_ar_kpa
-    - 
     - max_safe_ch4_kpa
     - max_safe_h2_kpa
-    - 
+ 
 #### Current Gas Levels:
     - o2_kpa
     - co2_kpa
@@ -102,7 +89,7 @@
     - ar_kpa
     - ch4_kpa
     - h2_kpa
-    - 
+ 
 #### Gas in Storage:
     - o2_stored_kg
     - co2_stored_kg
@@ -126,7 +113,6 @@
 #### Power and Solar:
     - battery_max_capacity_kwh
     - battery_stored_kwh 
-    - 
     - solar_arrays
     - solar_absorptivity
 
@@ -144,14 +130,26 @@
     - black_water_storage_capacity_kg
     - condensate_storage_capacity_kg
     - brine_storage_capacity_kg 
-    - 
-#### Placeholders:
-    - leak_rate_kpa_per_hr (deleting soon)
-    - smoke_ppm
+    - upa_on
+    - bpa_on
+    - wpa_on
+
+### Placeholders:
     - radiation_msv_per_day
 
-#### Wellness Lights:
-    - wellness_lights_on: bool
+### Wellness Lights:
+    - wellness_lights_on
 
-#### Sabatier:
-    - sabatier_on: bool
+### Sabatier:
+    - sabatier_on
+
+### Isru Water:
+    - isru_on
+    - isru_pipes
+    - raw_isru_water_storage_kg: float
+    - raw_isru_water_storage_capacity_kg: float
+
+### Isru Atmosphere:
+    - isru_atm_on
+    - isru_compressors
+    - isru_atm_sorbent_beds
