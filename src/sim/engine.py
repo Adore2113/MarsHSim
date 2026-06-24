@@ -134,6 +134,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         water_outputs,
         sabatier_outputs,
         isru_water_outputs,
+        isru_atm_outputs,
         dt_min
     )
 
