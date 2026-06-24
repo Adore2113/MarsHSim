@@ -238,7 +238,7 @@ def run_isru_atm(state, dt_min):
             co2_room_left_kg = state.co2_storage_capacity_kg - state.co2_stored_kg
             co2_added_kg = min(co2_released_kg, co2_room_left_kg)
             new_co2_stored_kg = state.co2_stored_kg + co2_added_kg
-            
+
             #--------------power / heat--------------♡
             power_used_kw = base_compressor_power_kw * compressors_extracting
             heat_added_kw = power_used_kw * 0.6
@@ -259,7 +259,7 @@ def run_isru_atm(state, dt_min):
         "isru_ar_added_kg": ar_added_kg,
         "isru_co2_added_kg": co2_added_kg,
         "isru_atm_power_used_kw": power_used_kw,
-        "isru_atm_power_used_kwh": power_used_kw * hours_per_step,
+        "isru_atm_energy_used_kwh": power_used_kw * hours_per_step,
         "isru_atm_heat_added_kw": heat_added_kw,
         "isru_atm_heat_added_kwh": heat_added_kw * hours_per_step,
         "compressors_extracting": compressors_extracting,
