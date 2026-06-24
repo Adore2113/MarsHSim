@@ -209,3 +209,4 @@ class Habitat_State:
     #---------------isru atmosphere (atm)------------♡
     isru_atm_on: bool
     isru_compressors: list
+    isru_atm_sorbent_beds: list
