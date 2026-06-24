@@ -13,11 +13,7 @@
 
 
 ### Later Focus:
-    ♡ add greenhouse to crew and other things
-
     ♡ add tank depletion alerts   
-
-    ♡ add electronic and misc heat and power
 
     ♡ double check unit consistencies: 
        
@@ -41,7 +37,7 @@
         - environment
 
    
-    ♡ update alerts: 
+    ♡ update alerts
         
 
 
@@ -110,41 +106,4 @@
 
 
     ♡ add rations, maybe?
-
-
-### Completed / Mostly Completed:
-    I should have added this way earlier to track things.. 
-
-    ♡ add greenhouse variables and greenhouse subsystem
-
-    ♡ add greenhouse water, CO2, O2, heat, LED, and transpiration outputs
-
-    ♡ integrate greenhouse with atmosphere, humidity, water, thermal, and power
-
-    ♡ add dust file
-
-    ♡ add Sabatier system
-
-    ♡ update alerts for gas, pressure, water, power, humidity, thermal, and subsystem modes
-
-    ♡ go through many major unit consistency fixes:
-        - kPa atmosphere
-        - kg storage
-        - kW power
-        - kWh energy
-
-    ♡ move some constants and variables out of greenhouse.py and add them to state variables
-
-    ♡ continue adding heat generated and heat waste
-
-        ♡ add power priority systems
-
-    ♡ consider seperating files for values:
-        
-        - quick_test = starting values
-
-        - state = things that change per timestep
-
-        - separate file = constants, limits, targets
-
 
