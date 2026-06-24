@@ -144,7 +144,17 @@
             - Mars atmosphere is ~2.7% N2
             - humans are familiar with it
      
-     ♡ adding ISRU to pull both Ar and N2 from the Mars atmosphere and I am not going to have a timer for the compressors yet, but for future versions I am planning on adding a regen state and using sorbent beds that need a regen cycle between intakes
+     ♡ adding ISRU to pull both Ar and N2 from the Mars atmosphere and sorbent beds that need a regen cycle between intakes
+
+    ♡ I decided I'm going to add the sorbent beds to the isru_atm file
+
+    ♡ I'm going to use five sorbent beds in total, two as backups as I like to have, so there are enough to absorb while another bed regenerates
+
+    ♡ sorbent beds trap CO2 from compressed Mars air before N2/Ar and gets added to storage. This is modeled as a swing bed cycle, like the amine beds in co2_scrub.py.
+
+    ♡ regen stop processing taking that bed fully offline, fewer adsorbing beds online = less raw atmosphere gets processed, meaning less N2 and Ar gets added to storage too
+
+    ♡ unlike isru water pipes that have a real physical deploy/retract travel time, a compressor has no mechanical delay, so it just flips between offline and extracting mode based on target amount needed online for each step
 
 #### CO2 Scrubbing / Amine Bed Notes:
     ♡ ~0.0029kPa pp/5min
