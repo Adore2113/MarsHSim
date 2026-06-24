@@ -122,10 +122,12 @@ def run_isru(state, dt_min):
             isru_mode = "running"
         
         if pipes_extracting > 0:
+            active_extracting = [pipe for pipe in new_pipes if pipe["status"] == "extracting"]
+            dust_impact = sum(pipe.get("dust_factor", 1.0) for pipe in active_extracting) / len(active_extracting)
 
             ice_melted_kg = base_extract_rate_kg_per_hour * pipes_extracting * hours_per_step
-            raw_water_added_kg = ice_melted_kg * pipe_efficiency
-
+            raw_water_added_kg = ice_melted_kg * pipe_efficiency * dust_impact
+            
             storage_room_left_kg = state.raw_isru_water_storage_capacity_kg - state.raw_isru_water_storage_kg
             water_added_kg = min(raw_water_added_kg, storage_room_left_kg)
             new_raw_isru_water_storage_kg = state.raw_isru_water_storage_kg + water_added_kg
