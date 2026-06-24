@@ -147,7 +147,7 @@ def run_isru_water(state, dt_min):
         "isru_mode": isru_mode,
         "isru_raw_water_added_kg": water_added_kg,
         "isru_power_used_kw": power_used_kw,
-        "isru_power_used_kwh": power_used_kw * hours_per_step,
+        "isru_energy_used_kwh": power_used_kw * hours_per_step,
         "isru_heat_added_kw": heat_added_kw,
         "isru_heat_added_kwh": heat_added_kw * hours_per_step,
         "pipes_extracting": pipes_extracting,
