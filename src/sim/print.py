@@ -97,7 +97,19 @@ def print_atmosphere(state, outputs):
     print(f"{'AR Stored:':<{lw}} {state.ar_stored_kg:.2f} kg")
     print(f"{'H2 Stored:':<{lw}} {state.h2_stored_kg:.2f} kg")
     print(f"{'CH4 Stored:':<{lw}} {state.ch4_stored_kg:.2f} kg")    
-    
+
+    #----------stored gas----------♡
+    print(f"\n{'ISRU ATM Mode:':<{lw}} {outputs.get('isru_atm_mode', 'offline')}")
+    print(f"{'Compressors:':<{lw}} {outputs.get('compressors_extracting', 0)}")
+
+    print(f"{'Beds Adsorbing:':<{lw}} {outputs.get('sorbent_beds_adsorbing', 0)}")
+    print(f"{'Beds Regen:':<{lw}} {outputs.get('sorbent_beds_regenerating', 0)}")
+    print(f"{'Beds Standby:':<{lw}} {outputs.get('sorbent_beds_standby', 0)}")
+
+    print(f"{'N2 Added:':<{lw}} {outputs.get('isru_n2_added_kg', 0):.3f} kg")
+    print(f"{'AR Added:':<{lw}} {outputs.get('isru_ar_added_kg', 0):.3f} kg")
+    print(f"{'CO2 Captured:':<{lw}} {outputs.get('sorbent_co2_absorbed_kg', 0):.3f} kg")
+
     #-----------gas moved-----------♡
     print(f"\n{'Amine Beds Online:':<{lw}} {outputs.get('beds_online_count', 0)}")
 
