@@ -66,7 +66,7 @@ def print_environment(state, outputs):
     print(f"\n{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
     print(f"{'Habitat Temp:':<{lw}} {state.hab_temp_c:.3f} °C")
     print(f"{'Mars Temp:':<{lw}} {outputs['mars_temp_c']:.2f} °C")
-    print(f"{'Food Produced:':<{lw}} {outputs.get('total_food_produced_kg', 0):.3f} kg")
+    print(f"{'Food Produced:':<{lw}} {outputs.get('greenhouse_food_produced_kg', 0):.3f} kg")
     print(f"{'Temp Change/h:':<{lw}} {outputs.get('temp_change_c', 0) * 12:.2f} C")
 #----------------------------------------------------♡
 
