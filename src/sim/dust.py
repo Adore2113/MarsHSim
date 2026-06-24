@@ -28,6 +28,7 @@ def get_dust_accumulation(state, dt_min):
     new_radiators = []
     new_solar_arrays = []
     new_compressors = []
+    new_pipes = []
 
     #-------------------radiators--------------------♡
     for rad in state.radiators:
@@ -75,9 +76,24 @@ def get_dust_accumulation(state, dt_min):
     new_compressor["dust_factor"] = max(min_compressor_efficiency, new_compressor["dust_factor"] - efficiency_loss)
     new_compressors.append(new_compressor)
 
+    #----------------isru water pipes----------------♡
+    for pipe in state.isru_pipes:
+        new_pipe = pipe.copy()
+
+        dust_rate = base_dust_rate_per_sol * pipe_dust_multiplier
+
+        if new_pipe["status"] == "extracting":
+            dust_rate *= online_multiplier
+
+        efficiency_loss = dust_rate * sols_per_step
+
+        new_pipe["dust_factor"] = max(min_pipe_efficiency, new_pipe.get("dust_factor", 1.0) - efficiency_loss)
+        new_pipes.append(new_pipe)
+
     return {
         "new_radiators": new_radiators,
         "new_solar_arrays": new_solar_arrays,
-        "new_compressors": new_compressors
+        "new_compressors": new_compressors,
+        "new_pipes": new_pipes,
     }
     
