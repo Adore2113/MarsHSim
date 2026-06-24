@@ -215,7 +215,7 @@ def print_water(state, outputs):
     #----------greenhouse-----------♡
     print(f"\n{'Water Needed:':<{lw}} {outputs.get('total_water_needed_kg', 0):.3f} kg")
     print(f"{'Water Used:':<{lw}} {outputs.get('total_water_consumed_kg', 0):.2f} kg")
-    print(f"{'Water Recirculated:':<{lw}} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
+    print(f"{'GH Recirculated:':<{lw}} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
 
     #----------processing-----------♡
     print(f"\n{'UPA Black Removed:':<{lw}} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
