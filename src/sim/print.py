@@ -142,13 +142,13 @@ def print_power(state, outputs):
     print(f"{'Battery Stored:':<{lw}} {state.battery_stored_kwh:.2f} kWh")
     
     #----------powered on-----------♡
-    # print(f"\n{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'OFF'}")
-    # print(f"{'GH Mode:':<{lw}} {outputs.get('greenhouse_mode', 'offline')}")
+    print(f"\n{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'OFF'}")
+    print(f"{'GH Mode:':<{lw}} {outputs.get('greenhouse_mode', 'offline')}")
 
     #-----------power used----------♡
     print(f"\n{'Total Power Used:':<{lw}} {outputs.get('total_power_used_kw', 0):.2f} kW")
 
-    print(f"{'GH Power:':<{lw}} {outputs.get('total_led_power_kw', 0):.2f} kW")
+    print(f"{'GH Power:':<{lw}} {outputs.get('greenhouse_led_power_kw', 0):.2f} kW")
     print(f"{'Sabatier Power:':<{lw}} {outputs.get('sabatier_power_used_kw', 0):.2f} kW")
     print(f"{'Scrubber Power:':<{lw}} {outputs.get('amine_bed_power_used_kw', 0):.2f} kW")
     print(f"{'Lights Power:':<{lw}} {outputs.get('light_power_used_kw', 0):.2f} kW")
@@ -208,14 +208,15 @@ def print_water(state, outputs):
     print_section_header("WATER")
 
     #---------humidity / CHX--------♡
-    print(f"{'Transpiration:':<{lw}} {outputs.get('transpiration_kg', 0):.3f} kg")
+    print(f"{'Transpiration:':<{lw}} {outputs.get('vapor_added_kg', 0):.3f} kg")
     print(f"{'Humidity:':<{lw}} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
     print(f"{'Vapor Removed:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
 
     #----------greenhouse-----------♡
-    print(f"\n{'Water Needed:':<{lw}} {outputs.get('total_water_needed_kg', 0):.3f} kg")
-    print(f"{'Water Used:':<{lw}} {outputs.get('total_water_consumed_kg', 0):.2f} kg")
-    print(f"{'GH Recirculated:':<{lw}} {outputs.get('total_water_recirculated_kg', 0):.3f} kg")
+    print(f"{'GH Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
+    print(f"\n{'GH Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")
+    print(f"{'GH Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
+    print(f"{'GH Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
 
     #----------processing-----------♡
     print(f"\n{'UPA Black Removed:':<{lw}} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
