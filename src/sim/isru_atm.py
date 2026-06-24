@@ -167,7 +167,7 @@ def run_sorbent_beds(state, dt_min, co2_intake_kg):
 def run_isru_atm(state, dt_min):
     hours_per_step = dt_min / 60.0
  
-    #--------------default isru values--------------♡
+    #--------------default isru values---------------♡
     isru_atm_mode = "offline"
     n2_added_kg = 0.0
     ar_added_kg = 0.0
@@ -195,10 +195,12 @@ def run_isru_atm(state, dt_min):
         if compressors_extracting == 0:
             isru_atm_mode = "idle"
 
-#------------------isru running-----------------♡
+#--------------------isru running--------------------♡
         else:
             isru_atm_mode = "running"
             active_extracting = [comp for comp in new_compressors if comp["status"] == "extracting"]
+
+            #---------------dust impact--------------♡
             dust_impact = sum(comp.get("dust_factor", 1.0) for comp in active_extracting) / len(active_extracting)
 
             active_beds = sum(1 for bed in state.isru_atm_sorbent_beds if bed["status"] == "adsorbing")
@@ -206,35 +208,47 @@ def run_isru_atm(state, dt_min):
 
             raw_intake_kg = base_intake_rate_kg_per_hour * effective_extracting * hours_per_step
             usable_intake_kg = raw_intake_kg * compressor_efficiency * dust_impact
-           
+            #------------------n2-------------------♡
             n2_extracted_kg = usable_intake_kg * mars_n2_ratio
-            ar_extracted_kg = usable_intake_kg * mars_ar_ratio
-            co2_extracted_kg = usable_intake_kg * mars_co2_ratio
- 
             n2_room_left_kg = state.n2_storage_capacity_kg - state.n2_stored_kg
-            ar_room_left_kg = state.ar_storage_capacity_kg - state.ar_stored_kg
-            co2_room_left_kg = state.co2_storage_capacity_kg - state.co2_stored_kg
-
             n2_added_kg = min(n2_extracted_kg, n2_room_left_kg)
-            ar_added_kg = min(ar_extracted_kg, ar_room_left_kg)
-            co2_added_kg = min(co2_extracted_kg, co2_room_left_kg)
- 
             new_n2_stored_kg = state.n2_stored_kg + n2_added_kg
-            new_ar_stored_kg = state.ar_stored_kg + ar_added_kg
-            new_co2_stored_kg = state.co2_stored_kg + co2_added_kg
 
+            #-------------ar-----------♡
+            ar_extracted_kg = usable_intake_kg * mars_ar_ratio
+            ar_room_left_kg = state.ar_storage_capacity_kg - state.ar_stored_kg
+            ar_added_kg = min(ar_extracted_kg, ar_room_left_kg)
+            new_ar_stored_kg = state.ar_stored_kg + ar_added_kg
+
+            #------------------co2-------------------♡
+            co2_extracted_kg = usable_intake_kg * mars_co2_ratio
+            co2_released_kg = sorbent_outputs["sorbent_co2_released_kg"]
+            co2_captured_kg = sorbent_outputs["sorbent_co2_captured_kg"]
+            co2_bypassed_kg = sorbent_outputs["sorbent_co2_bypassed_kg"]
+            co2_room_left_kg = state.co2_storage_capacity_kg - state.co2_stored_kg
+            co2_added_kg = min(co2_extracted_kg, co2_room_left_kg)
+            new_co2_stored_kg = state.co2_stored_kg + co2_added_kg
+            
+            #--------------power / heat--------------♡
             power_used_kw = base_compressor_power_kw * compressors_extracting
             heat_added_kw = power_used_kw * 0.6
 
-#------------dict for updating state-------------♡
+            sorbent_updates, sorbent_outputs = run_sorbent_beds(state, dt_min, co2_extracted_kg)
+            sorbent_bed_list = sorbent_updates["isru_atm_sorbent_beds"]
+            sorbent_beds_adsorbing = sum(1 for bed in sorbent_bed_list if bed["status"] == "adsorbing"),
+            sorbent_beds_regenerating = sum(1 for bed in sorbent_bed_list if bed["status"] == "regenerating"),
+            sorbent_beds_standby = sum(1 for bed in sorbent_bed_list if bed["status"] == "standby"),
+
+#--------------dict for updating state---------------♡
     isru_atm_updates = {
         "isru_compressors": new_compressors,
+        "isru_atm_sorbent_beds": sorbent_bed_list,
         "n2_stored_kg": new_n2_stored_kg,
         "ar_stored_kg": new_ar_stored_kg,
         "co2_stored_kg": new_co2_stored_kg,
     }
 
-#-----------dict for printing outputs------------♡
+#--------------dict for printing outputs-------------♡
     isru_atm_outputs = {
         "isru_atm_mode": isru_atm_mode,
         "isru_n2_added_kg": n2_added_kg,
@@ -245,6 +259,12 @@ def run_isru_atm(state, dt_min):
         "isru_atm_heat_added_kw": heat_added_kw,
         "isru_atm_heat_added_kwh": heat_added_kw * hours_per_step,
         "compressors_extracting": compressors_extracting,
+        "sorbent_co2_captured_kg": co2_captured_kg,
+        "sorbent_co2_released_kg": co2_released_kg,
+        "sorbent_co2_bypassed_kg": co2_bypassed_kg,
+        "sorbent_beds_adsorbing": sorbent_beds_adsorbing,
+        "sorbent_beds_regenerating": sorbent_beds_regenerating,
+        "sorbent_beds_standby": sorbent_beds_standby
     }
  
     return isru_atm_updates, isru_atm_outputs
