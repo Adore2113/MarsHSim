@@ -91,7 +91,7 @@ def pipes_in_use(state, dt_min):
 
 
 #--------------------isru process--------------------♡
-def run_isru(state, dt_min):
+def run_isru_water(state, dt_min):
     hours_per_step = dt_min / 60.0
 
     #--------------default isru values--------------♡
@@ -137,13 +137,13 @@ def run_isru(state, dt_min):
             heat_added_kw = power_used_kw * 0.85
 
     #------------dict for updating state-------------♡ 
-    isru_updates = {
+    isru_water_updates = {
         "isru_pipes": new_pipes,
         "raw_isru_water_storage_kg": new_raw_isru_water_storage_kg,
     }
     
     #-----------dict for printing outputs------------♡ 
-    isru_outputs = {
+    isru_water_outputs = {
         "isru_mode": isru_mode,
         "isru_raw_water_added_kg": water_added_kg,
         "isru_power_used_kw": power_used_kw,
@@ -156,4 +156,4 @@ def run_isru(state, dt_min):
         "total_pipes_active": pipes_extracting + pipes_deploying,
     }
 
-    return isru_updates, isru_outputs
+    return isru_water_updates, isru_water_outputs
