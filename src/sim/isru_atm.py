@@ -200,7 +200,6 @@ def run_isru_atm(state, dt_min):
             isru_atm_mode = "running"
             active_extracting = [comp for comp in new_compressors if comp["status"] == "extracting"]
 
-            #---------------dust impact--------------♡
             dust_impact = sum(comp.get("dust_factor", 1.0) for comp in active_extracting) / len(active_extracting)
 
             active_beds = sum(1 for bed in state.isru_atm_sorbent_beds if bed["status"] == "adsorbing")
@@ -208,13 +207,14 @@ def run_isru_atm(state, dt_min):
 
             raw_intake_kg = base_intake_rate_kg_per_hour * effective_extracting * hours_per_step
             usable_intake_kg = raw_intake_kg * compressor_efficiency * dust_impact
-            #------------------n2-------------------♡
+            
+            #------------------n2--------------------♡
             n2_extracted_kg = usable_intake_kg * mars_n2_ratio
             n2_room_left_kg = state.n2_storage_capacity_kg - state.n2_stored_kg
             n2_added_kg = min(n2_extracted_kg, n2_room_left_kg)
             new_n2_stored_kg = state.n2_stored_kg + n2_added_kg
 
-            #-------------ar-----------♡
+            #------------------ar--------------------♡
             ar_extracted_kg = usable_intake_kg * mars_ar_ratio
             ar_room_left_kg = state.ar_storage_capacity_kg - state.ar_stored_kg
             ar_added_kg = min(ar_extracted_kg, ar_room_left_kg)
