@@ -339,6 +339,15 @@ s0 = Habitat_State(
         {"id": 3, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
         {"id": 4, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
     ],
+
+    isru_atm_sorbent_beds = [
+        {"id": 1, "status": "standby", "capacity": 4.0, "gas_load": 0.0, "type": "primary"},
+        {"id": 2, "status": "standby", "capacity": 4.0, "gas_load": 0.0, "type": "primary"},
+        {"id": 3, "status": "standby", "capacity": 4.0, "gas_load": 0.0, "type": "primary"},
+        
+        {"id": 4, "status": "standby", "capacity": 4.0, "gas_load": 0.0, "type": "backup"},
+        {"id": 5, "status": "standby", "capacity": 4.0, "gas_load": 0.0, "type": "backup"},
+    ]
     )
 
 
