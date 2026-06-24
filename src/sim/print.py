@@ -39,9 +39,9 @@ def print_sim(state, outputs, alerts):
     print_system_stats(alerts)
     print_environment(state, outputs)
     print_atmosphere(state, outputs)
-    #print_power(state, outputs)
-    #print_thermal(state, outputs)
-    #print_water(state, outputs)
+    print_power(state, outputs)
+    print_thermal(state, outputs)
+    print_water(state, outputs)
     print (split)
 #----------------------------------------------------♡
 
@@ -113,18 +113,18 @@ def print_atmosphere(state, outputs):
     #-----------gas moved-----------♡
     print(f"\n{'Amine Beds Online:':<{lw}} {outputs.get('beds_online_count', 0)}")
 
-    print(f"{'GH CO2':<{lw}} {outputs.get('total_co2_consumed_kpa', 0):.3f} kPa")
-    print(f"{'Sabatier CO2:':<{lw}} {outputs.get('sabatier_co2_consumed_kpa', 0):.3f} kPa")
-    print(f"{'CO2 Scrubbed:':<{lw}} {outputs.get('co2_removed_kpa', 0):.3f} kPa")
+    print(f"{'GH CO2':<{lw}} {outputs.get('total_co2_consumed_kpa', 0):.4f} kPa")
+    print(f"{'Sabatier CO2:':<{lw}} {outputs.get('sabatier_co2_consumed_kpa', 0):.4f} kPa")
+    print(f"{'CO2 Scrubbed:':<{lw}} {outputs.get('co2_removed_kpa', 0):.4f} kPa")
 
-    print(f"{'O2 Added:':<{lw}} {outputs.get('o2_added_kpa', 0):.3f} kPa")
+    print(f"{'O2 Added:':<{lw}} {outputs.get('o2_added_kpa', 0):.4f} kPa")
 
-    print(f"{'CH4 Added:':<{lw}} {outputs.get('sabatier_ch4_produced_kg', 0):.2f} kg")
-    print(f"{'CH4 Vented:':<{lw}} {outputs.get('sabatier_ch4_vented_kg', 0):.2f} kg")
+    print(f"{'CH4 Added:':<{lw}} {outputs.get('sabatier_ch4_produced_kg', 0):.4f} kg")
+    print(f"{'CH4 Vented:':<{lw}} {outputs.get('sabatier_ch4_vented_kg', 0):.4f} kg")
    
-    print(f"{'H2 Used:':<{lw}} {outputs.get('sabatier_h2_consumed_kg', 0):.2f} kg")
+    print(f"{'H2 Used:':<{lw}} {outputs.get('sabatier_h2_consumed_kg', 0):.4f} kg")
     
-    print(f"{'O2 Added:':<{lw}} {outputs.get('total_o2_produced_kpa', 0):.3f} kPa")
+    print(f"{'O2 Added:':<{lw}} {outputs.get('total_o2_produced_kpa', 0):.4f} kPa")
 #----------------------------------------------------♡
 
 #-----------------------power------------------------♡
