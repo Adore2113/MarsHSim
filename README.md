@@ -82,6 +82,12 @@ My goal is to build something that feels real, structured, autonomous and potent
 
 ♡ deployable subsurface extraction systems
 
+♡ atmospheric intake and compression
+
+♡ sorbent bed gas separation
+
+♡ atmospheric gas storage
+
 
 #### Crew and Habitat:
 ♡ crew metabolism
@@ -129,10 +135,10 @@ This project is in active development.
 ## Project Structure:
 
 ♡ docs /
-    
-    - todo.md = planned systems, ideas, fixes and future tasks
 
     - dev_log.md = active development log and my thought process
+    
+    - todo.md = planned systems, ideas, fixes and future tasks
 
     - v1_scope.md  =  project info and notes
 
@@ -153,6 +159,8 @@ This project is in active development.
     - engine.py = main simulation loop and subsystem coordination
 
     - greenhouse.py = hydroponic greenhouse systems
+
+    - isru_atm.py = atmospheric intake, sorbent bed CO2 capture, and N2/Ar extraction
 
     - isru_water.py = water ISRU extraction and raw water storage
 
