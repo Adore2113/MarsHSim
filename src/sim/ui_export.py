@@ -6,8 +6,8 @@ from .buffer_gas import mca
 from .alerts import get_status
 #----------------------------------------------------♡
 
-
-ui_data_path = Path("src/ui/data/latest.json")
+base_dir = Path(__file__).resolve().parents[2]
+ui_data_path = base_dir / "ui" / "data" / "latest.json"
 
 
 #----------------just like print.py------------------♡
