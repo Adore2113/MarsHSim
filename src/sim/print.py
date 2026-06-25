@@ -113,7 +113,7 @@ def print_atmosphere(state, outputs):
     #-----------gas moved-----------♡
     print(f"\n{'Amine Beds Online:':<{lw}} {outputs.get('beds_online_count', 0)}")
 
-    print(f"{'GH CO2 Used':<{lw}} {outputs.get('greenhouse_co2_consumed_kpa', 0):.4f} kPa")
+    print(f"{'GH CO2 Used':<{lw}} {outputs.get('greenhouse_co2_consumed_kpa', 0):.8f} kPa")
     print(f"{'Sabatier CO2:':<{lw}} {outputs.get('sabatier_co2_consumed_kpa', 0):.4f} kPa")
     print(f"{'CO2 Scrubbed:':<{lw}} {outputs.get('co2_removed_kpa', 0):.4f} kPa")
 
@@ -124,7 +124,7 @@ def print_atmosphere(state, outputs):
    
     print(f"{'H2 Used:':<{lw}} {outputs.get('sabatier_h2_consumed_kg', 0):.4f} kg")
     
-    print(f"{'GH O2 Added:':<{lw}} {outputs.get('greenhouse_o2_produced_kpa', 0):.4f} kPa")
+    print(f"{'GH O2 Added:':<{lw}} {outputs.get('greenhouse_o2_produced_kpa', 0):.8f} kPa")
 #----------------------------------------------------♡
 
 #-----------------------power------------------------♡
