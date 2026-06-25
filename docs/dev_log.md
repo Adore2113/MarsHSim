@@ -1069,3 +1069,15 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ add dust to isru_atm.py and isru_water.py
+
+
+##      06/24/2026
+    ♡ adding dust to irsu_water.py
+
+    ♡ fixing the variables in print to work with the update greenhouse file
+
+
+##      06/25/2026
+    ♡ starting to work on the UI, using a prototype image I designed in procreate, this will be updated, but the first step is turning my code written in python to json
+
+   ♡ 
