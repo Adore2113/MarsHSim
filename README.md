@@ -172,7 +172,7 @@ This project is in active development.
 
     - print.py = terminal display and simulation output formatting
 
-    - quick_test.py = simulation entry point and testing environment (name subject to change..)
+    - run.py = simulation entry point and testing environment
 
     - sabatier.py = CO2 conversion and methane production systems
 
@@ -194,7 +194,7 @@ This project is in active development.
 Currently running as a terminal based simulation.
 
 Make sure Python is installed, then run:
-    py -m src.sim.quick_test
+    py -m src.sim.run
 
 
 ## Why this project:
