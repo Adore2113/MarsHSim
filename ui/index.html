@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>MarsHSim</title>
   <link rel="stylesheet" href="dashboard.css">
 </head>
-<body>
-  <h1>MarsHSim Dashboard</h1>
 
-  <p id="status"></p>
-  <p id="time"></p>
-  <p id="o2"></p>
-  <p id="co2"></p>
-  <p id="pressure"></p>
-  <p id="temp"></p>
+<body>
+  <div id="dashboard">
+
+    <div id="status-box" class="panel">
+      <p id="status"></p>
+      <p id="time"></p>
+      <p id="temp"></p>
+    </div>
+
+    <div id="atmosphere-box" class="panel">
+      <h2>Atmosphere</h2>
+      <p id="o2"></p>
+      <p id="co2"></p>
+      <p id="pressure"></p>
+    </div>
+
+    <div id="thermal-box" class="panel">
+      <h2>Thermal</h2>
+      <p id="temp"></p>
+    </div>
+
+  </div>
 
   <script src="dashboard.js"></script>
 </body>
+
 </html>
