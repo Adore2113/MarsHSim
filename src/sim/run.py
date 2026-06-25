@@ -4,6 +4,7 @@ from .engine import step
 from .alerts import get_alerts
 from .print import print_sim
 from .mars_time import seconds_per_sol, get_sol_time
+from .ui_export import write_dashboard_json
 #----------------------------------------------------♡
 
 #-------------------habitat state--------------------♡
