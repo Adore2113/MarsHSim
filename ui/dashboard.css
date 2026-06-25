@@ -1,15 +1,73 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #111;
-  color: #FF00A9;
-  margin: 30px;
+    margin: 0;
+    background: black;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-h1 {
-  margin-bottom: 24px;
+#dashboard {
+    position: relative;
+
+    background-image: url("../assets/ui/Bg5.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+    border: 2.5px solid #0BFFEB;
+    box-shadow: 0 0 30px #0BFFEB;
+    box-sizing: border-box;
+
+    align-items: center;
+
+
+    width: 90vw;
+    max-width: 1000px;
+    min-width: 600px;
+
+    height: 52vh;
+    max-height:700px
+
 }
 
-p {
-  font-size: 22px;
-  margin: 10px 0;
+.panel {
+    position: absolute;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(0, 255, 255, 0.12);
+    color: white;
+    font-family: 'Orbitron', monospace;
+}
+
+#status-box {
+    position: absolute;
+
+    font-family: 'Orbitron', monospace;
+    color: white;
+    font-size: 10px;
+
+    top: 05.5%;
+    left: 37%;
+    width: 21%;
+    height: 09%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#atmosphere-box {
+    top: 300px;
+    left: 60px;
+    width: 260px;
+}
+
+#thermal-box {
+    top: 300px;
+    left: 430px;
+    width: 260px;
 }
