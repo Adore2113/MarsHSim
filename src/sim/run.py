@@ -7,6 +7,7 @@ from .mars_time import seconds_per_sol, get_sol_time
 from .ui_export import write_dashboard_json
 #----------------------------------------------------♡
 
+
 #-------------------habitat state--------------------♡
 s0 = Habitat_State(
     hab_vol_m3 = 2000.0,
@@ -371,13 +372,16 @@ for i in range(30000):    # 30000 steps * 5 min = ~104 sols
     #---------------print once per sol---------------♡
     if sol_hour == 12 and current_sol != last_printed_sol:
         print_sim(state, outputs, alerts)
+        write_dashboard_json(state, outputs, alerts)
         last_printed_sol = current_sol
-   
+
     #----------more prints on critical alerts--------♡
     elif critical:
         print_sim(state, outputs, alerts)
-    
+        write_dashboard_json(state, outputs, alerts)
+
     elif was_critical:
         print_sim(state, outputs, alerts)
- 
+        write_dashboard_json(state, outputs, alerts)
+   
     was_critical = critical
