@@ -92,3 +92,65 @@ def write_dashboard_json(state, outputs, alerts):
             "isru_power_kw": outputs.get("isru_power_used_kw", 0),
             "total_energy_used_kwh": outputs.get("total_energy_used_kwh", 0),
         },
+
+        "thermal": {
+            "mode": outputs.get("hab_temp_mode"),
+            "mars_temp_c": outputs.get("mars_temp_c", state.mars_temp_c),
+            "habitat_temp_c": state.hab_temp_c,
+            "heat_loss_kw": outputs.get("heat_loss_kw", 0),
+            "temp_trend_c_per_hr": outputs.get("temp_change_c", 0) * 12,
+            "net_heat_kw": outputs.get("net_heat_kw", 0),
+            "heaters_online": outputs.get("heaters_online_count", 0),
+            "heater_heat_kw": outputs.get("heater_heat_kw", 0),
+            "isru_heat_kw": outputs.get("isru_heat_added_kw", 0),
+            "gh_heat_kw": outputs.get("total_greenhouse_heat_kw", 0),
+            "sabatier_heat_kw": outputs.get("sabatier_heat_added_kw", 0),
+            "amine_bed_heat_kw": outputs.get("amine_bed_heat_added_kw", 0),
+            "light_heat_kw": outputs.get("light_heat_kw", 0),
+            "chx_heat_kw": outputs.get("chx_heat_added_kw", 0),
+            "oga_heat_kw": outputs.get("oga_heat_kw", 0),
+            "radiators_online": outputs.get("radiators_online_count", 0),
+            "radiator_cooling_kw": outputs.get("radiator_heat_rejection_kw", 0),
+        },
+
+        "water": {
+            "vapor_added_kg": outputs.get("vapor_added_kg", 0),
+            "humidity_pct": outputs.get("new_humidity_pct", state.current_humidity_pct),
+            "vapor_removed_kg": outputs.get("vapor_removed_kg", 0),
+            "gh_transpiration_kg": outputs.get("greenhouse_transpiration_kg", 0),
+            "gh_water_needed_kg": outputs.get("greenhouse_water_needed_kg", 0),
+            "gh_water_used_kg": outputs.get("greenhouse_water_consumed_kg", 0),
+            "gh_recirculated_kg": outputs.get("greenhouse_water_recirculated_kg", 0),
+
+            "upa_black_removed_kg": outputs.get("upa_black_water_removed_kg", 0),
+            "wpa_processed_kg": outputs.get("wpa_water_processed_kg", 0),
+            "bpa_processed_kg": outputs.get("bpa_water_processed_kg", 0),
+
+            "potable_used_kg": outputs.get("potable_water_used_kg", 0),
+            "oga_water_used_kg": outputs.get("oga_water_used_kg", 0),
+
+            "total_recovered_kg": outputs.get("total_recovered_water_kg", 0),
+            "upa_recovered_kg": outputs.get("upa_recovered_water_kg", 0),
+            "wpa_recovered_kg": outputs.get("wpa_recovered_water_kg", 0),
+            "bpa_recovered_kg": outputs.get("bpa_recovered_water_kg", 0),
+
+            "gray_added_kg": outputs.get("gray_water_added_kg", 0),
+            "black_added_kg": outputs.get("black_water_added_kg", 0),
+            "condensate_added_kg": outputs.get("vapor_removed_kg", 0),
+            "upa_brine_added_kg": outputs.get("upa_brine_added_kg", 0),
+            "sabatier_water_added_kg": outputs.get("sabatier_water_produced_kg", 0),
+            "raw_water_added_kg": outputs.get("isru_raw_water_added_kg", 0),
+
+            "potable_water_kg": state.potable_water_storage_kg,
+            "gray_water_kg": state.gray_water_storage_kg,
+            "black_water_kg": state.black_water_storage_kg,
+            "condensate_kg": state.condensate_storage_kg,
+            "brine_kg": state.brine_storage_kg,
+            "raw_water_kg": state.raw_isru_water_storage_kg,
+        },
+    }
+
+    UI_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(UI_DATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
