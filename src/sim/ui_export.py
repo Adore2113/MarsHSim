@@ -7,7 +7,7 @@ from .alerts import get_status
 #----------------------------------------------------♡
 
 
-UI_DATA_PATH = Path("src/ui/data/latest.json")
+ui_data_path = Path("src/ui/data/latest.json")
 
 
 #----------------just like print.py------------------♡
@@ -150,7 +150,7 @@ def write_dashboard_json(state, outputs, alerts):
         },
     }
 
-    UI_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+    ui_data_path.parent.mkdir(parents=True, exist_ok=True)
 
-    with open(UI_DATA_PATH, "w", encoding="utf-8") as f:
+    with open(ui_data_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
