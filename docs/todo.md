@@ -3,14 +3,11 @@
 #### I will be adding and removing from this. I needed somewhere to organize my ideas and thoughts
 
 ### Current Focus:
-    ♡ stablize all system logic to make sure things are working as I want them to, specifically:
-        - water recovery balance
-        - greenhouse behavior over day and night cycles
-   
-     ♡ update irsu to include dust buildup per pipe, efficency loss, ect.
+    ♡ start protoype ui
+     
 
 ### Next Focus:      
-
+    ♡ update dust file
 
 ### Later Focus:
     ♡ add tank depletion alerts   
@@ -39,7 +36,6 @@
    
     ♡ update alerts
         
-
 
 ### Eventual Focus:
     ♡ add to file for handling dust:
