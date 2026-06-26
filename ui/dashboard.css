@@ -30,45 +30,42 @@ body {
     background-repeat: no-repeat;
  
     border: 2px solid #0BFFEB;
-    box-shadow: 0 0 30px #0BFFEB, inset 0 0 60px rgba(11,255,235,0.04);    /* only 4% opacity on the inside, might remove later */
+    box-shadow: 0 0 30px #0BFFEB, inset 0 0 60px rgba(11,255,235,0.04);
+       /* only 4% opacity on the inside, might remove later */
 }
 
 .panel {
     position: absolute;
-    padding: 18px;
+    padding: clamp(6px, 1.2%, 14px);
     border-radius: 18px;
-    background: rgba(0, 255, 255, 0.12);
+    
     color: white;
+
     font-family: 'Orbitron', monospace;
+
+    font-size: clamp(9px, 1.1vw, 13px);
+    line-height: 1.55;
+
+    border: 1px solid rgba(11, 255, 235, 0.35);
+
 }
 
 #status-box {
-    position: absolute;
-
-    top: 5.5%;
+    top: 5.2%;
     left: 37%;
-    width: 21%;
-    height: auto;
-    min-height: 9%;
+    width: 26%;
+    height: 18%;
 
-    padding: 0;
-    
-
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+
 }
 
 #status-box-p {
-    margin: 0;
-    padding: 0;
-    line-height: 1.2;
-    font-family: 'Orbitron', monospace;
-    color: white;
-    font-size: 10px;
-    text-align: center;
-
-
+    width: 100%;
 }
 
 
