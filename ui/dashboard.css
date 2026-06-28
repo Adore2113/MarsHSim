@@ -53,6 +53,25 @@ body {
     overflow-y: auto;
 }
 
+.panel::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+}
+
+.panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.panel::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 8px;
+}
+
+.panel::-webkit-scrollbar-thumb:hover {
+    background: #00FFCC;
+    box-shadow: 0 0 20px #FF00BF, 0 0 40px #FF00BF, 0 0 40px #FF00BF;
+}
+
 
 /* --------status box--------- */
 #status-box {
