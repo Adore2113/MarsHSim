@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <title>MarsHSim</title>
   <link rel="stylesheet" href="dashboard.css">
-  
-  <!-- oribtron font-->
+
+  <!---------oribtron font--------->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- share tech font-->
+  <!--------share tech font-------->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
   
-  <!-- share tech monospaced font-->
+  <!---share tech monospaced font-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -25,20 +25,15 @@
 <body>
   <div id="dashboard">
 
-    <div id="status-box" class="panel">
+  <!-------top center: status------>
+  <div id="status-box" class="panel">
       <p id="status-box-p"></p>
     </div>
 
-    <div id="atmosphere-box" class="panel">
-      <h2>Atmosphere</h2>
-      <p id="o2"></p>
-      <p id="co2"></p>
-      <p id="pressure"></p>
-    </div>
-
-    <div id="thermal-box" class="panel">
-      <h2>Thermal</h2>
-      <p id="temp"></p>
+  <!------left top: atmosphere----->
+    <div id="atm-box" class="panel">
+      <h2>Atmosphere:</h2>
+      <p id="atm-p"></p>
     </div>
 
   </div>
