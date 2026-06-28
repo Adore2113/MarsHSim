@@ -73,6 +73,23 @@ body {
 }
 
 
+.panel h2 {
+    color: white;
+    font-family: "Share Tech Mono", monospace;
+    font-size: clamp(6px, 0.8cqw, 11px);
+    line-height: 1.55;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    
+    margin-bottom:  clamp(2px, 0.3cqw, 5px);
+    padding-bottom: clamp(2px, 0.02cqw, 4px);
+    position:s sticky;
+    top: 0;
+    
+    border: 1px solid rgba(11, 255, 235, 0.35);
+    z-index: 1;
+}
+
 /* --------status box--------- */
 #status-box {
     container-type: inline-size;
