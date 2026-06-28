@@ -5,6 +5,7 @@
     padding: 0;
 }
 
+
 /* --------whole page--------- */
 body {
     background: black;
@@ -16,6 +17,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 
 /* ---------dashboard--------- */
 #dashboard {
@@ -36,23 +38,27 @@ body {
     box-shadow: 0 0 30px #0BFFEB, inset 0 0 60px rgba(11,255,235,0.04);    /* only 4% opacity on the inside, might remove later */
 }
 
+/* ----------panels----------- */
 .panel {
     position: absolute;
-    padding: clamp(6px, 1.2%, 14px);
-    border-radius: 18px;
+    padding: clamp(4px, 0.8cqw, 10px);
+    border-radius: 6px;
     
     color: white;
-
-    font-family: 'Orbitron', monospace;
-
-    font-size: clamp(9px, 1.1vw, 13px);
+    font-family: "Share Tech Mono", monospace;
+    font-size: clamp(6px, 0.75cqw, 11px);
     line-height: 1.55;
 
     border: 1px solid rgba(11, 255, 235, 0.35);
-
+    overflow-y: auto;
 }
 
+
+/* --------status box--------- */
 #status-box {
+    container-type: inline-size;
+    container-name: status-box;
+    
     top: 5.2%;
     left: 37%;
     width: 26%;
@@ -84,21 +90,20 @@ body {
     color: white;
 
     font-family: "Share Tech Mono", monospace;
-    font-size: clamp(10px, 1.1vw, 13px);
-    line-height: 1.30;
+    font-size: clamp(10px, 6.5cqw, 20px);
+    line-height: 1.50;
 
 }
-
 
 
 #atmosphere-box {
-    top: 300px;
-    left: 60px;
-    width: 260px;
+    bottom: 5%;
+    left: 5%;
+    width: 26%;
 }
 
 #thermal-box {
-    top: 300px;
-    left: 430px;
-    width: 260px;
+    bottom: 5%;
+    left: 35%;
+    width: 24%;
 }
