@@ -11,6 +11,10 @@ function pos_neg(val) {
   return val >= 0 ? "+" : "";
 }
 
+function pct(val, total) {
+  if (total == null || total === 0) return "-";
+  return ((val / total) * 100).toFixed(0) + "%";
+}
 
 //---------------------------------------------------♡
 
