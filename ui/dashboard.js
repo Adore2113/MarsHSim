@@ -16,6 +16,12 @@ function pct(val, total) {
   return ((val / total) * 100).toFixed(0) + "%";
 }
 
+function set(id,html) {
+  const el_id = document.getElementById(id);
+  if (el_id) el_id.innerHTML = html;
+}
+
+
 //---------------------------------------------------♡
 
 async function loadDashboard() {
