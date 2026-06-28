@@ -6,15 +6,11 @@ const alerts = data.system_status.alerts.length > 0
     ? data.system_status.alerts.join("<br>")
     : "No alerts";
 
-  document.getElementById("status-box-p").innerHTML =
+  document.getElementById("status-p").innerHTML =
     `Status: ${data.system_status.status}<br>` +
     `Alerts: ${alerts}<br>` +
-    `Sol: ${data.environment.sol}<br>` +
-    `LMST: ${data.environment.lmst}<br>` +
+    `Sol ${data.environment.sol} | ${data.environment.lmst} LMST<br>` +
     `Mars Temp: ${data.environment.mars_temp_c.toFixed(1)} °C`;
-
-  document.getElementById("time").textContent =
-    `Sol ${data.environment.sol} | ${data.environment.lmst} LMST`;
 
   document.getElementById("o2").textContent =
     `O₂: ${data.atmosphere.oxygen_kpa.toFixed(2)} kPa`;
