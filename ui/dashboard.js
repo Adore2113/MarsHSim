@@ -1,8 +1,18 @@
+//-------------------constants-----------------------♡
 const update_sec = 3000;    // update panels every 3 seconds
+//---------------------------------------------------♡
 
+//---------------------helpers-----------------------♡
 function decimal_fmt(val, decimals = 2) {
   return typeof val === "number" ? val.toFixed(decimals) : "-";
 } 
+
+function pos_neg(val) {
+  return val >= 0 ? "+" : "";
+}
+
+
+//---------------------------------------------------♡
 
 async function loadDashboard() {
   const response = await fetch("data/latest.json");
