@@ -1,3 +1,9 @@
+const update_sec = 3000;    // update panels every 3 seconds
+
+function decimal_fmt(val, decimals = 2) {
+  return typeof val === "number" ? val.toFixed(decimals) : "-";
+} 
+
 async function loadDashboard() {
   const response = await fetch("data/latest.json");
   const data = await response.json();
