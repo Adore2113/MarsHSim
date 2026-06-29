@@ -1,13 +1,11 @@
-//-------------------constants-----------------------♡
 const update_sec = 3000;    // update panels every 3 seconds
-//---------------------------------------------------♡
 
 //---------------------helpers-----------------------♡
-function decimal_fmt(val, decimals = 2) {
+function decimalFmt(val, decimals = 2) {
   return typeof val === "number" ? val.toFixed(decimals) : "-";
 } 
 
-function pos_neg(val) {
+function posNeg(val) {
   return val >= 0 ? "+" : "";
 }
 
@@ -16,18 +14,41 @@ function pct(val, total) {
   return ((val / total) * 100).toFixed(0) + "%";
 }
 
-function set(id,html) {
-  const el_id = document.getElementById(id);
-  if (el_id) el_id.innerHTML = html;
+function set(id, html) {
+  const elId = document.getElementById(id);
+  if (elId) elId.innerHTML = html;
 }
 
+function setClass(id, cls) {
+  const elId = document.getElementById(id);
+  if (!elId) return;
+  
+  elId.classList.remove("nominal", "warning", "critical");
 
-//---------------------------------------------------♡
+  if (cls) {
+      elId.classList.add(cls);
+}
+}
 
 async function loadDashboard() {
-  const response = await fetch("data/latest.json");
-  const data = await response.json();
+  let data;
+  try {
+      const res = await fetch("data/latest.json?" + Date.now());
+      data = await res.json();
+  } catch (error) {
+      console.warn("Could not load latest.json:", error);
+      return;
+  }
 
+  const sys_s   = data.system_status;
+  const env = data.environment;
+  const atm = data.atmosphere;
+  const pwr = data.power;
+  const thm = data.thermal;
+  const wtr = data.water;
+//---------------------------------------------------♡
+
+//---------------------status------------------------♡
 const alerts = data.system_status.alerts.length > 0
     ? data.system_status.alerts.join("<br>")
     : "No alerts";
