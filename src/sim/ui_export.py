@@ -116,6 +116,7 @@ def write_dashboard_json(state, outputs, alerts):
             "wellness_lights": state.wellness_lights_on,
 
             "total_power_used_kw": op.get("total_power_used_kw", 0),
+            "oga_power_kw": op.get("oga_power_used_kw", 0),
             "scrubber_power_kw": op.get("amine_bed_power_used_kw", 0),
             "lights_power_kw": op.get("light_power_used_kw", 0),
             "chx_power_kw": op.get("chx_power_used_kw", 0),
