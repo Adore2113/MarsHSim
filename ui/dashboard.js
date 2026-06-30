@@ -66,19 +66,37 @@ async function loadDashboard() {
 
   //---------atmosphere----------//
   set("atm-p",
-    `Total Pressure: ${(atm.total_pressure_kpa)} kPa<br>` +
-    `Oxygen: ${(atm.oxygen_kpa)} kPa<br>` +
-    `Carbon Dioxide: ${(atm.carbon_dioxide_kpa)} kPa<br>` +
-    `Nitrogen: ${(atm.nitrogen_kpa)} kPa<br>` +
-    `Argon: ${(atm.argon_kpa)} kPa<br>` +
-    `Methane: ${(atm.methane_kpa)} kPa<br>` +
+    `Total Pressure: ${decFmt(atm.total_pressure_kpa)} kPa<br>` +
+    `Oxygen: ${decFmt(atm.oxygen_kpa)} kPa<br>` +
+    `Carbon Dioxide: ${decFmt(atm.carbon_dioxide_kpa)} kPa<br>` +
+    `Nitrogen: ${decFmt(atm.nitrogen_kpa)} kPa<br>` +
+    `Argon: ${decFmt(atm.argon_kpa)} kPa<br>` +
+    `Methane: ${decFmt(atm.methane_kpa)} kPa<br>` +
     `<br>` +
-    `Buffer Mode: ${(atm.buffer_gas_mode)} kPa<br>` +
-    `Pressure Gap: ${(atm.pressure_gap_kpa)} kPa<br>` +
-    `Gas Added: ${(atm.buffer_gas_added_kpa)} kPa<br>` +
-    `Gas Vented: ${(atm.buffer_gas_vented_kpa)} kPa<br>` +
+
+    `Buffer Mode: ${atm.buffer_gas_mode ?? "-"}<br>` +
+    `Pressure Gap: ${decFmt(atm.pressure_gap_kpa, 3)} kPa<br>` +
+    `Gas Added: ${decFmt(atm.buffer_gas_added_kpa, 3)} kPa<br>` +
+    `Gas Vented: ${decFmt(atm.buffer_gas_vented_kpa, 3)} kPa<br>` +
     `<br>` +   
 
+    `O₂ Stored: ${decFmt(atm.o2_stored_kg)} kg<br>` +
+    `CO₂ Stored: ${decFmt(atm.co2_stored_kg)} kg<br>` +
+    `N₂ Stored: ${decFmt(atm.n2_stored_kg)} kg<br>` +
+    `Ar Stored: ${decFmt(atm.ar_stored_kg)} kg<br>` +
+    `H₂ Stored: ${decFmt(atm.h2_stored_kg, 3)} kg<br>` +
+    `CH₄ Stored: ${decFmt(atm.ch4_stored_kg)} kg<br>` +
+    `<br>` +   
+
+    `Amine Beds: ${atm.amine_beds_online ?? 0}<br>` +
+    `CO₂ Scrubbed: ${decFmt(atm.co2_scrubbed_kpa, 4)} kPa<br>` +
+    `<br>` +   
+
+    `OGA Mode: ${atm.oga_mode ?? "-"}<br>` +
+    `O₂ Added: ${decFmt(atm.o2_added_kpa, 4)} kPa<br>` +
+    `H₂ Added: ${decFmt(atm.h2_produced_kg, 4)} kg<br>` +
+    `OGA Water Used: ${decFmt(atm.oga_water_used_kg, 3)} kg<br>` +
+    `Amine Beds: ${atm.oga_limited_by_water ?? "YES" : "no"}`
   );
 
   //----------sabatier-----------//
