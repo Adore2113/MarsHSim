@@ -96,7 +96,7 @@ async function loadDashboard() {
     `O₂ Added: ${decFmt(atm.o2_added_kpa, 4)} kPa<br>` +
     `H₂ Added: ${decFmt(atm.h2_produced_kg, 4)} kg<br>` +
     `OGA Water Used: ${decFmt(atm.oga_water_used_kg, 3)} kg<br>` +
-    `Amine Beds: ${atm.oga_limited_by_water ?? "YES" : "no"}`
+    `Amine Beds: ${atm.oga_limited_by_water ? "YES" : "no"}`
   );
 
   //----------sabatier-----------//
