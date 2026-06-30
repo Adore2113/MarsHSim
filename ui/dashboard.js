@@ -1,6 +1,6 @@
 const update_sec = 3000;    // update panels every 3 seconds
 
-function decimalFmt(val, decimals = 2) {
+function decFmt(val, decimals = 2) {
   return typeof val === "number" ? val.toFixed(decimals) : "-";
 } 
 
@@ -60,8 +60,8 @@ async function loadDashboard() {
   set("status-p",
     `Status: ${ss.status}<br>` +
     `Sol ${ss.sol} | ${ss.lmst} LMST<br>` +
-    `Habitat Temp: ${decimalFmt(ss.habitat_temp_c, 1)} °C<br>` +
-    `Mars Temp: ${decimalFmt(ss.mars_temp_c, 1)} °C`
+    `Habitat Temp: ${decFmt(ss.habitat_temp_c, 1)} °C<br>` +
+    `Mars Temp: ${decFmt(ss.mars_temp_c, 1)} °C`
   );
 
   //---------atmosphere----------//
