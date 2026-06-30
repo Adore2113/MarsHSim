@@ -96,10 +96,20 @@ async function loadDashboard() {
     `O₂ Added: ${decFmt(atm.o2_added_kpa, 4)} kPa<br>` +
     `H₂ Added: ${decFmt(atm.h2_produced_kg, 4)} kg<br>` +
     `OGA Water Used: ${decFmt(atm.oga_water_used_kg, 3)} kg<br>` +
-    `Amine Beds: ${atm.oga_limited_by_water ? "YES" : "no"}`
+    `Water Limited: ${atm.oga_limited_by_water ? "YES" : "no"}`
   );
 
   //----------sabatier-----------//
+set("sab-p",
+  `Mode: ${sab.sabatier_mode ?? "-"}<br>` +
+ // `CO₂ Used: ${decFmt(sab.sabatier_co2_consumed_kpa, 4)} kPa<br>` + //
+  `CO₂ Used: ${decFmt(sab.sabatier_co2_consumed_kg, 4)} kg<br>` +
+  `H₂ Used: ${decFmt(sab.h2_used_kg, 4)} kg<br>` +
+  `<br>` + 
+  `CH₄ Added: ${decFmt(sab.ch4_added_kg, 4)} kg<br>` +
+  `CH₄ Vented: ${decFmt(sab.ch4_vented_kg, 4)} kg<br>` +
+  `Water Produced: ${decFmt(sab.sabatier_water_produced_kg, 4)} kg`
+);
 
   //------------water------------//
 
