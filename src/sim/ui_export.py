@@ -59,11 +59,14 @@ def write_dashboard_json(state, outputs, alerts):
         },
     #-----------sabatier-----------♡
         "sabatier": {
-            "sabatier_co2_kpa": op.get("sabatier_co2_consumed_kpa", 0),
+            "sabatier_mode": op.get("sabatier_mode", "offline"),
+            "sabatier_co2_consumed_kpa": op.get("sabatier_co2_consumed_kpa", 0),
+            "sabatier_co2_consumed_kg": op.get("sabatier_co2_consumed_kg", 0),
             "ch4_added_kg": op.get("sabatier_ch4_produced_kg", 0),
             "ch4_vented_kg": op.get("sabatier_ch4_vented_kg", 0),
             "h2_used_kg": op.get("sabatier_h2_consumed_kg", 0),
-            "sabatier_water_added_kg": op.get("sabatier_water_produced_kg", 0),
+            "sabatier_water_produced_kg": op.get("sabatier_water_produced_kg", 0),
+            "sabatier_power_kw": op.get("sabatier_power_kw", 0),
         },
 
     #------------water-------------♡
