@@ -66,7 +66,6 @@ def write_dashboard_json(state, outputs, alerts):
             "ch4_vented_kg": op.get("sabatier_ch4_vented_kg", 0),
             "h2_used_kg": op.get("sabatier_h2_consumed_kg", 0),
             "sabatier_water_produced_kg": op.get("sabatier_water_produced_kg", 0),
-            "sabatier_power_kw": op.get("sabatier_power_kw", 0),
         },
 
     #------------water-------------♡
@@ -158,13 +157,21 @@ def write_dashboard_json(state, outputs, alerts):
         "isru": {
             "isru_atm_mode": op.get("isru_atm_mode", "offline"),
             "compressors": op.get("compressors_extracting", 0),
-            "beds_adsorbing": op.get("sorbent_beds_adsorbing", 0),
-            "beds_regen": op.get("sorbent_beds_regenerating", 0),
-            "beds_standby": op.get("sorbent_beds_standby", 0),
+            "sorbent_beds_adsorbing": op.get("sorbent_beds_adsorbing", 0),
+            "sorbent_beds_regen": op.get("sorbent_beds_regenerating", 0),
+            "sorbent_beds_standby": op.get("sorbent_beds_standby", 0),
 
             "n2_added_kg": op.get("isru_n2_added_kg", 0),
             "ar_added_kg": op.get("isru_ar_added_kg", 0),
-            "co2_captured_kg": op.get("sorbent_co2_absorbed_kg", 0),
+            "co2_absorbed_kg": op.get("sorbent_co2_absorbed_kg", 0),
+            "co2_released_kg": op.get("sorbent_co2_released_kg", 0),
+            "co2_bypassed_kg": op.get("sorbent_co2_bypassed_kg", 0),
+        
+            "isru_water_mode": op.get("isru_water_mode", "offline"),
+            "pipes_extracting": op.get("pipes_extracting", 0),
+            "pipes_deploying": op.get("pipes_deploying", 0),
+            "pipes_retracting": op.get("pipes_retracting", 0),
+            "raw_water_added_kg": op.get("isru_raw_water_added_kg", 0),        
         },
 
     #----------greenhouse----------♡
