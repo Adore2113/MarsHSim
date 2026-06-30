@@ -108,14 +108,20 @@ set("sab-p",
   `CO₂ Used: ${decFmt(sab.sabatier_co2_consumed_kg, 4)} kg<br>` +
   `H₂ Used: ${decFmt(sab.h2_used_kg, 4)} kg<br>` +
   `<br>` + 
-  
+
   `CH₄ Added: ${decFmt(sab.ch4_added_kg, 4)} kg<br>` +
   `CH₄ Vented: ${decFmt(sab.ch4_vented_kg, 4)} kg<br>` +
   `Water Produced: ${decFmt(sab.sabatier_water_produced_kg, 4)} kg`
 );
 
   //------------water------------//
+set("water-p",
+  `Humidity: ${decFmt(water.humidity_pct, 1)} %<br>` +
+  `Vapor Added: ${decFmt(water.vapor_added_kg, 3)} kg<br>` +
+  `Vapor Removed: ${decFmt(water.vapor_removed_kg, 3)} kg<br>` +
+  `<br>` +
 
+);
   //------------power------------//
 
   //----------thermal------------//
