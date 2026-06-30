@@ -56,11 +56,12 @@ async function loadDashboard() {
     ? data.system_status.alerts.join("<br>")
     : "No alerts";
 
-  document.getElementById("status-p").innerHTML =
+  set("status-p",
     `Status: ${data.system_status.status}<br>` +
     `Alerts: ${alerts}<br>` +
-    `Sol ${env.sol} | ${env.lmst} LMST<br>` +
-    `Mars Temp: ${env.mars_temp_c.toFixed(1)} °C`;
+    `Sol ${data.system_status.sol} | ${data.system_status.lmst} LMST<br>` +
+    `Mars Temp: ${decimalFmt(data.system_status.mars_temp_c, 1)} °C`
+  );
 
   //---------atmosphere----------//
 
@@ -76,17 +77,6 @@ async function loadDashboard() {
 
   //---------greenhouse----------//
 
-  document.getElementById("o2").textContent =
-    `O₂: ${data.atmosphere.oxygen_kpa.toFixed(2)} kPa`;
-
-  document.getElementById("co2").textContent =
-    `CO₂: ${data.atmosphere.carbon_dioxide_kpa.toFixed(2)} kPa`;
-
-  document.getElementById("pressure").textContent =
-    `Pressure: ${data.atmosphere.total_pressure_kpa.toFixed(2)} kPa`;
-
-  document.getElementById("temp").textContent =
-    `Hab Temp: ${env.habitat_temp_c.toFixed(2)} °C`;
 }
 
 loadDashboard();
