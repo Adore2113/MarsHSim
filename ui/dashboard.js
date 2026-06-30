@@ -40,6 +40,7 @@ async function loadDashboard() {
       return;
   }
 
+  const ss = data.system_status;
   const atm = data.atmosphere;
   const sab = data.sabatier;
   const water = data.water;
@@ -52,15 +53,15 @@ async function loadDashboard() {
 //---------------------------------------------------♡
 
   //-----------status------------//
-  const alerts = data.system_status.alerts.length > 0
-    ? data.system_status.alerts.join("<br>")
+  const alerts = ss.alerts.length > 0
+    ? ss.alerts.join("<br>")
     : "No alerts";
 
   set("status-p",
-    `Status: ${data.system_status.status}<br>` +
-    `Alerts: ${alerts}<br>` +
-    `Sol ${data.system_status.sol} | ${data.system_status.lmst} LMST<br>` +
-    `Mars Temp: ${decimalFmt(data.system_status.mars_temp_c, 1)} °C`
+    `Status: ${ss.status}<br>` +
+    `Sol ${ss.sol} | ${ss.lmst} LMST<br>` +
+    `Habitat Temp: ${decimalFmt(ss.habitat_temp_c, 1)} °C<br>` +
+    `Mars Temp: ${decimalFmt(ss.mars_temp_c, 1)} °C`
   );
 
   //---------atmosphere----------//
