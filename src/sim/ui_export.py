@@ -134,18 +134,22 @@ def write_dashboard_json(state, outputs, alerts):
             "temp_change_per_hour_c": op.get("temp_change_c", 0) * 12,
             "mars_temp_c": op.get("mars_temp_c", state.mars_temp_c),
             "habitat_temp_c": state.hab_temp_c,
-            "heat_loss_kw": op.get("heat_loss_kw", 0),
             "temp_trend_c_per_hr": op.get("temp_change_c", 0) * 12,
+            "heat_loss_kw": op.get("heat_loss_kw", 0),
             "net_heat_kw": op.get("net_heat_kw", 0),
+            
             "heaters_online": op.get("heaters_online_count", 0),
             "heater_heat_kw": op.get("heater_heat_kw", 0),
+            
             "isru_heat_kw": op.get("isru_heat_added_kw", 0),
+            "isru_atm_heat_kw": op.get("isru_atm_heat_added_kw", 0),
             "amine_bed_heat_kw": op.get("amine_bed_heat_added_kw", 0),
             "light_heat_kw": op.get("light_heat_kw", 0),
             "chx_heat_kw": op.get("chx_heat_added_kw", 0),
             "gh_heat_kw": op.get("total_greenhouse_heat_kw", 0),
             "sabatier_heat_kw": op.get("sabatier_heat_added_kw", 0),
             "oga_heat_kw": op.get("oga_heat_kw", 0),
+            
             "radiators_online": op.get("radiators_online_count", 0),
             "radiator_cooling_kw": op.get("radiator_heat_rejection_kw", 0),
         },
