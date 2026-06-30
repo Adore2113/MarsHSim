@@ -1,6 +1,5 @@
 const update_sec = 3000;    // update panels every 3 seconds
 
-//---------------------------------------------------♡
 function decimalFmt(val, decimals = 2) {
   return typeof val === "number" ? val.toFixed(decimals) : "-";
 } 
@@ -26,7 +25,8 @@ function setClass(id, cls) {
   elId.classList.remove("nominal", "warning", "critical");
 
   if (cls) {
-      elId.classList.add(cls);
+    elId.classList.add(cls);
+  }
 }
 
 //---------------------------------------------------♡
@@ -40,9 +40,15 @@ async function loadDashboard() {
       return;
   }
 
-  const env = data.environment;
   const atm = data.atmosphere;
-  const thm = data.thermal;
+  const sab = data.sabatier;
+  const water = data.water;
+  const power = data.power;
+  const thermal = data.thermal;
+  const isru = data.isru;
+  const gh = data.greenhouse;
+
+
 //---------------------------------------------------♡
 
   //-----------status------------//
@@ -58,17 +64,13 @@ async function loadDashboard() {
 
   //---------atmosphere----------//
 
-  //------------power------------//
-
-  //----------thermal------------//
-
   //----------sabatier-----------//
 
   //------------water------------//
 
   //------------power------------//
 
-  //-----------thermal-----------//
+  //----------thermal------------//
 
   //------------isru-------------//
 
@@ -86,5 +88,5 @@ async function loadDashboard() {
   document.getElementById("temp").textContent =
     `Hab Temp: ${env.habitat_temp_c.toFixed(2)} °C`;
 }
-}
+
 loadDashboard();
