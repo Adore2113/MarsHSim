@@ -53,7 +53,7 @@ def write_dashboard_json(state, outputs, alerts):
             "oga_mode": op.get("oga_mode", "offline"),
             "o2_added_kpa": op.get("o2_added_kpa", 0),
             "h2_produced": op.get("h2_produced", 0),
-            "oga_water_used_kg": op.get("oga_water_used_kg", 0),
+            "oga_water_used_kg": op.get("water_used_kg", 0),
             "oga_limited_by_water": op.get("oga_limited_by_water", False),
 
         },
@@ -81,6 +81,10 @@ def write_dashboard_json(state, outputs, alerts):
             "bpa_processed_kg": op.get("bpa_water_processed_kg", 0),
 
             "potable_used_kg": op.get("potable_water_used_kg", 0),
+            "oga_water_used_kg": op.get("water_used_kg", 0),
+           
+            "sabatier_water_added_kg": op.get("sabatier_water_produced_kg", 0),
+            "raw_water_added_kg": op.get("isru_raw_water_added_kg", 0),
 
             "total_recovered_kg": op.get("total_recovered_water_kg", 0),
             "upa_recovered_kg": op.get("upa_recovered_water_kg", 0),
@@ -91,7 +95,6 @@ def write_dashboard_json(state, outputs, alerts):
             "black_added_kg": op.get("black_water_added_kg", 0),
             "condensate_added_kg": op.get("vapor_removed_kg", 0),
             "upa_brine_added_kg": op.get("upa_brine_added_kg", 0),
-            "raw_water_added_kg": op.get("isru_raw_water_added_kg", 0),
 
             "potable_water_kg": state.potable_water_storage_kg,
             "gray_water_kg": state.gray_water_storage_kg,
