@@ -65,6 +65,16 @@ async function loadDashboard() {
   );
 
   //---------atmosphere----------//
+  set("atm-p",
+    `Total Pressure: ${(atm.total_pressure_kpa)} kPa<br>` +
+    `Oxygen: ${(atm.oxygen_kpa)} kPa<br>` +
+    `Carbon Dioxide: ${(atm.carbon_dioxide_kpa)} kPa<br>` +
+    `Nitrogen: ${(atm.nitrogen_kpa)} kPa<br>` +
+    `Argon: ${(atm.argon_kpa)} kPa<br>` +
+    `Methane: ${(atm.methane_kpa)} kPa<br>` +
+    `<br>` +
+
+  );
 
   //----------sabatier-----------//
 
