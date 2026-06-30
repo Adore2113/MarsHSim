@@ -52,7 +52,9 @@ def write_dashboard_json(state, outputs, alerts):
             
             "oga_mode": op.get("oga_mode", "offline"),
             "o2_added_kpa": op.get("o2_added_kpa", 0),
-
+            "h2_produced": op.get("h2_produced", 0),
+            "oga_water_used_kg": op.get("oga_water_used_kg", 0),
+            "oga_limited_by_water": op.get("oga_limited_by_water", False),
 
         },
     #-----------sabatier-----------♡
@@ -76,7 +78,6 @@ def write_dashboard_json(state, outputs, alerts):
             "bpa_processed_kg": op.get("bpa_water_processed_kg", 0),
 
             "potable_used_kg": op.get("potable_water_used_kg", 0),
-            "oga_water_used_kg": op.get("oga_water_used_kg", 0),
 
             "total_recovered_kg": op.get("total_recovered_water_kg", 0),
             "upa_recovered_kg": op.get("upa_recovered_water_kg", 0),
