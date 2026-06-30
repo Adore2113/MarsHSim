@@ -73,6 +73,11 @@ async function loadDashboard() {
     `Argon: ${(atm.argon_kpa)} kPa<br>` +
     `Methane: ${(atm.methane_kpa)} kPa<br>` +
     `<br>` +
+    `Buffer Mode: ${(atm.buffer_gas_mode)} kPa<br>` +
+    `Pressure Gap: ${(atm.pressure_gap_kpa)} kPa<br>` +
+    `Gas Added: ${(atm.buffer_gas_added_kpa)} kPa<br>` +
+    `Gas Vented: ${(atm.buffer_gas_vented_kpa)} kPa<br>` +
+    `<br>` +   
 
   );
 
