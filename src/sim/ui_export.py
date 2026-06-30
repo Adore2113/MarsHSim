@@ -176,14 +176,14 @@ def write_dashboard_json(state, outputs, alerts):
 
     #----------greenhouse----------♡
         "greenhouse": {
+            "greenhouse_mode": op.get("greenhouse_mode", "offline"),
             "food_produced_kg": op.get("greenhouse_food_produced_kg", 0),
             "gh_co2_used_kpa": op.get("greenhouse_co2_consumed_kpa", 0),
             "gh_o2_added_kpa": op.get("greenhouse_o2_produced_kpa", 0),
-            "greenhouse_mode": op.get("greenhouse_mode", "offline"),
             "gh_transpiration_kg": op.get("greenhouse_transpiration_kg", 0),
             "gh_water_needed_kg": op.get("greenhouse_water_needed_kg", 0),
             "gh_water_used_kg": op.get("greenhouse_water_consumed_kg", 0),
-            "gh_recirculated_kg": op.get("greenhouse_water_recirculated_kg", 0),
+            "gh_water_recirculated_kg": op.get("greenhouse_water_recirculated_kg", 0),
         },
     }
 
