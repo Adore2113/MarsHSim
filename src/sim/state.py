@@ -200,7 +200,7 @@ class Habitat_State:
     sabatier_on: bool
     
     #-------------------isru water-------------------♡
-    isru_on: bool
+    isru_water_on: bool
     isru_pipes: list
 
     raw_isru_water_storage_kg: float
