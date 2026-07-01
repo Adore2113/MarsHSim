@@ -119,8 +119,7 @@ set("sab-p",
 
   `CH₄ Added: ${decFmt(sab.ch4_added_kg, 4)} kg<br>` +
   `CH₄ Vented: ${decFmt(sab.ch4_vented_kg, 4)} kg<br>` +
-  `Water Added: ${decFmt(sab.sabatier_water_produced_kg, 4)} kg`
-  );
+  `Water Added: ${decFmt(sab.sabatier_water_added_kg, 4)} kg`  );
 
 
   //------------water------------//
@@ -184,11 +183,12 @@ set("power-p",
   `Greenhouse: ${decFmt(power.gh_power_kw)} kW<br>` +
   
   `ISRU water: ${decFmt(power.isru_water_power_kw)} kW<br>` +
-  `IRSU atmosphere: ${decFmt(power.isru_atm_power_kw)} kW<br>` +
+  `ISRU atmosphere: ${decFmt(power.isru_atm_power_kw)} kW<br>` +
   `<br>` +
   
   `Total Energy: ${decFmt(power.total_energy_used_kwh, 3)} kWh`
 );
+
 
   //----------thermal------------//
 set("thermal-p",
@@ -210,12 +210,13 @@ set("thermal-p",
   `CHX Heat: ${decFmt(thermal.chx_heat_kw)} kW<br>` +
   `GH Heat: ${decFmt(thermal.gh_heat_kw, 3)} kW<br>` +
   `ISRU Water Heat: ${decFmt(thermal.isru_water_heat_kw)} kW<br>` +
-  `ISRU ATM Heat: ${decFmt(thermal.isru_atm_heat_kw)} kW<br>` +
+  `ISRU Atmosphere Heat: ${decFmt(thermal.isru_atm_heat_kw)} kW<br>` +
   `<br>` + 
 
   `Radiators: ${thermal.radiators_online ?? 0} / 7<br>` +
   `Radiator Cooling: ${decFmt(thermal.radiator_cooling_kw)} kW`
 );
+
 
   //------------isru-------------//
 set("isru-p",
@@ -236,6 +237,7 @@ set("isru-p",
   `Pipes Retracting: ${isru_w.pipes_retracting ?? 0}<br>` +
   `Raw Water Added: ${decFmt(isru_w.raw_water_added_kg, 3)} kg`
   );
+
 
   //---------greenhouse----------//
 set("gh-p",
