@@ -161,15 +161,15 @@ set("water-p",
 
   //------------power------------//
 set("power-p",
-  `Net Energy: ${sign(power.net_energy_kwh)} ${decFmt(power.net_energy_kwh)} kWh<br>` +
+  `Net Energy: ${posNeg(power.net_energy_kwh)} ${decFmt(power.net_energy_kwh)} kWh<br>` +
   `Battery: ${decFmt(power.battery_stored_kwh, 0)} kWh (${pct(power.battery_stored_kwh, power.battery_capacity_kwh)})<br>` +
 
-  `Solar Arrays: ${power.solar_arrays_online ??"-"} / 10<br>` +
+  `Solar Arrays: ${power.solar_arrays_online ?? "-"} / 10<br>` +
   `Solar Generated: ${decFmt(power.solar_generated_kw)} kW<br>` +
-  `Sunlight per m²: ${decFmt(power.peak_sun_today, 3)} kW<br>` +
+  `Sunlight per m²: ${decFmt(power.sunlight_per_m2_kw, 3)} kW<br>` +
   `Peak Sun Today: ${decFmt(power.peak_sun_today, 3)} / 1.0<br>` +
   `Low Sun Streak: ${power.low_sun_streak_sols ?? 0} sols<br>` +
-  `Wellness Lights: ${power.wellness_lights ? "ON" : "off"}br>` +
+  `Wellness Lights: ${power.wellness_lights ? "ON" : "off"}<br>` +
   `<br>` +
 
   `Total Power Used: ${decFmt(power.total_power_used_kw)} kW<br>` +
@@ -183,8 +183,11 @@ set("power-p",
   `Heaters: ${decFmt(power.heater_power_kw)} kW<br>` +
   `Greenhouse: ${decFmt(power.gh_power_kw)} kW<br>` +
   
-  `ISRU water: ${decFmt(power.isru_power_kw)} kW<br>` +
-  `IRSU atmosphere: ${decFmt(power.isru_atm_power_kw)} kW<br>`
+  `ISRU water: ${decFmt(power.isru_water_power_kw)} kW<br>` +
+  `IRSU atmosphere: ${decFmt(power.isru_atm_power_kw)} kW<br>` +
+  `<br>` +
+  
+  `Total Energy: ${decFmt(power.total_energy_used_kwh, 3)} kWh`
 );
 
   //----------thermal------------//
