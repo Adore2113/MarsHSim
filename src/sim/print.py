@@ -85,28 +85,28 @@ def print_atmosphere(state, outputs):
     print(f"{'Nitrogen:':<{lw}} {state.n2_kpa:.2f} kPa")
     print(f"{'Argon:':<{lw}} {state.ar_kpa:.2f} kPa")
     print(f"{'Methane:':<{lw}} {state.ch4_kpa:.2f} kPa")
-
+    
     #------buffer gas control------♡
-    print(f"\n{'Buffer Gas Mode:':<{lw}} {outputs['buffer_gas_mode']}")
-    print(f"{'Pressure Gap:':<{lw}} {outputs['pressure_gap_kpa']:.3f} kPa")
-    print(f"{'Buffer Gas Added:':<{lw}} {outputs['total_buffer_gas_added_kpa']:.3f} kPa")
-    print(f"{'Buffer Gas Vented:':<{lw}} {outputs.get('total_buffer_gas_vented_kpa', 0.0):.3f} kPa")
-
+    print(f"\n{'Buffer Gas Mode:':<{lw}} {outputs.get('buffer_gas_mode', '-')}")
+    print(f"{'Pressure Gap:':<{lw}} {outputs.get('pressure_gap_kpa', 0):.3f} kPa")
+    print(f"{'Buffer Gas Added:':<{lw}} {outputs.get('total_buffer_gas_added_kpa', 0):.3f} kPa")
+    print(f"{'Buffer Gas Vented:':<{lw}} {outputs.get('total_buffer_gas_vented_kpa', 0):.3f} kPa")
+   
     #----------stored gas----------♡
-    print(f"\n{'O2 Stored:':<{lw}} {state.o2_stored_kg:.2f} kg")
-    print(f"{'CO2 Stored:':<{lw}} {state.co2_stored_kg:.2f} kg")
-    print(f"{'N2 Stored:':<{lw}} {state.n2_stored_kg:.2f} kg")
-    print(f"{'AR Stored:':<{lw}} {state.ar_stored_kg:.2f} kg")
-    print(f"{'H2 Stored:':<{lw}} {state.h2_stored_kg:.2f} kg")
-    print(f"{'CH4 Stored:':<{lw}} {state.ch4_stored_kg:.2f} kg")    
-
+    print(f"\n{'O₂ Stored:':<{lw}} {state.o2_stored_kg:.2f} kg")
+    print(f"{'CO₂ Stored:':<{lw}} {state.co2_stored_kg:.2f} kg")
+    print(f"{'N₂ Stored:':<{lw}} {state.n2_stored_kg:.2f} kg")
+    print(f"{'Ar Stored:':<{lw}} {state.ar_stored_kg:.2f} kg")
+    print(f"{'H₂ Stored:':<{lw}} {state.h2_stored_kg:.2f} kg")
+    print(f"{'CH₄ Stored:':<{lw}} {state.ch4_stored_kg:.2f} kg")
+   
     #-----------gas moved-----------♡
-    print(f"\n{'Amine Beds Online:':<{lw}} {outputs.get('beds_online_count', 0)}")
-    bed_switch = "YES" if outputs.get("bed_switch_this_step", False) else "no"
-    print(f"{'Bed Switch This Step:':<{lw}} {bed_switch}")
-    print(f"{'CO2 Scrubbed:':<{lw}} {outputs.get('co2_removed_kpa', 0):.4f} kPa")
-    print(f"{'CO2 Scrubbed:':<{lw}} {outputs.get('co2_removed_kg', 0):.4f} kg")
-
+    print(f"\n{'Amine Beds:':<{lw}} {outputs.get('beds_online_count', 0)}")
+    print(f"{'Bed Switch:':<{lw}} {'YES' if outputs.get('bed_switch_this_step', False) else 'no'}")
+    print(f"{'CO₂ Scrubbed:':<{lw}} {outputs.get('co2_removed_kpa', 0):.4f} kPa")
+    print(f"{'CO₂ Scrubbed:':<{lw}} {outputs.get('co2_removed_kg', 0):.4f} kg")
+    
+    
     print(f"{'GH CO2 Used':<{lw}} {outputs.get('greenhouse_co2_consumed_kpa', 0):.8f} kPa")
     print(f"{'Sabatier CO2:':<{lw}} {outputs.get('sabatier_co2_consumed_kpa', 0):.4f} kPa")
 
