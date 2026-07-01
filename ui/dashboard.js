@@ -230,11 +230,11 @@ set("isru-p",
   `CO₂ Bypassed: ${decFmt(isru_a.co2_bypassed_kg, 3)} kg<br>` +
   `<br>` +
 
-  `Water Mode: ${iw.isru_water_mode ?? "—"}<br>` +
-  `Pipes Extracting: ${iw.pipes_extracting ?? 0}<br>` +
-  `Pipes Deploying: ${iw.pipes_deploying ?? 0}<br>` +
-  `Pipes Retracting: ${iw.pipes_retracting ?? 0}<br>` +
-  `Raw Water Added: ${decFmt(iw.raw_water_added_kg, 3)} kg`
+  `Water Mode: ${isru_w.isru_water_mode ?? "—"}<br>` +
+  `Pipes Extracting: ${isru_w.pipes_extracting ?? 0}<br>` +
+  `Pipes Deploying: ${isru_w.pipes_deploying ?? 0}<br>` +
+  `Pipes Retracting: ${isru_w.pipes_retracting ?? 0}<br>` +
+  `Raw Water Added: ${decFmt(isru_w.raw_water_added_kg, 3)} kg`
   );
 
   //---------greenhouse----------//
