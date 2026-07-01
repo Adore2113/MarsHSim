@@ -39,6 +39,7 @@ def print_sim(state, outputs, alerts):
     print_system_stats(alerts, state, outputs)
     print_atmosphere(state, outputs)
     print_oga(outputs)
+    print_sabatier(outputs)
     print_power(state, outputs)
     print_thermal(state, outputs)
     print_water(state, outputs)
@@ -122,7 +123,7 @@ def print_atmosphere(state, outputs):
 
 
 #------------------------OGA-------------------------♡
-def print_oga(outputs):
+def print_oga(outputs): 
     print_section_header("OGA")
     print(f"{'OGA Mode:':<{lw}} {outputs.get('oga_mode', 'offline')}")
     print(f"{'O₂ Added:':<{lw}} {outputs.get('o2_added_kpa', 0):.4f} kPa")
@@ -130,6 +131,20 @@ def print_oga(outputs):
     print(f"{'H₂ Added:':<{lw}} {outputs.get('h2_produced_kg', 0):.4f} kg")
     print(f"{'OGA Water Used:':<{lw}} {outputs.get('oga_water_used_kg', 0):.3f} kg")
     print(f"{'Water Limited:':<{lw}} {'YES' if outputs.get('oga_limited_by_water', False) else 'no'}")
+#----------------------------------------------------♡
+
+
+#---------------------sabatier-----------------------♡
+def print_sabatier(outputs):
+    print_section_header("SABATIER")
+    print(f"{'Mode:':<{lw}} {outputs.get('sabatier_mode', 'offline')}")
+    print(f"\n{'CO₂ Used:':<{lw}} {outputs.get('sabatier_co2_consumed_kg', 0):.4f} kg")
+    print(f"{'H₂ Used:':<{lw}} {outputs.get('sabatier_h2_consumed_kg', 0):.4f} kg")
+    print(f"\n{'CH₄ Added:':<{lw}} {outputs.get('sabatier_ch4_produced_kg', 0):.4f} kg")
+    print(f"{'CH₄ Vented:':<{lw}} {outputs.get('sabatier_ch4_vented_kg', 0):.4f} kg")
+    print(f"{'Water Added:':<{lw}} {outputs.get('sabatier_water_produced_kg', 0):.4f} kg")
+#----------------------------------------------------♡
+
 
 #-----------------------power------------------------♡
 def print_power(state, outputs):
