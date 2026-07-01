@@ -24,8 +24,8 @@ function setClass(id, cls) {
   if (!elId) return;
   elId.classList.remove("nominal", "warning", "critical");
   if (cls) elId.classList.add(cls);
-  }
 }
+
 
 //---------------------------------------------------♡
 async function loadDashboard() {
@@ -50,8 +50,10 @@ async function loadDashboard() {
   const gh = data.greenhouse;
 //---------------------------------------------------♡
 
+
   //-----------status------------//
   const alerts = ss.alerts.length > 0
+  
     ? ss.alerts.join("<br>")
     : "No alerts";
 
@@ -107,6 +109,7 @@ async function loadDashboard() {
  
   //----------sabatier-----------//
 set("sab-p",
+  
   `Mode: ${sab.sabatier_mode ?? "-"}<br>` +
   `<br>` + 
 
@@ -116,16 +119,15 @@ set("sab-p",
 
   `CH₄ Added: ${decFmt(sab.ch4_added_kg, 4)} kg<br>` +
   `CH₄ Vented: ${decFmt(sab.ch4_vented_kg, 4)} kg<br>` +
-  `Water Produced: ${decFmt(sab.sabatier_water_produced_kg, 4)} kg`
+  `Water Added: ${decFmt(sab.sabatier_water_produced_kg, 4)} kg`
   );
 
-  
+
   //------------water------------//
 set("water-p",
   `Humidity: ${decFmt(water.humidity_pct, 1)} %<br>` +
   `Vapor Added: ${decFmt(water.vapor_added_kg, 3)} kg<br>` +
   `Vapor Removed: ${decFmt(water.vapor_removed_kg, 3)} kg<br>` +
-  `Potable Used: ${decFmt(water.potable_used_kg, 2)} kg<br>` +
   `<br>` +
 
   `UPA Processed: ${decFmt(water.upa_black_removed_kg, 3)} kg<br>` +
@@ -133,30 +135,34 @@ set("water-p",
   `BPA Processed: ${decFmt(water.bpa_processed_kg, 3)} kg<br>` +
   `<br>` +
 
+  `Potable Used: ${decFmt(water.potable_used_kg, 2)} kg<br>` +
+  `<br>` +
+
   `Total Recovered: ${decFmt(water.total_recovered_kg, 3)} kg<br>` +
   `UPA Recovered: ${decFmt(water.upa_recovered_kg, 3)} kg<br>` +
   `WPA Recovered: ${decFmt(water.wpa_recovered_kg, 3)} kg<br>` +
   `BPA Recovered: ${decFmt(water.bpa_recovered_kg, 3)} kg<br>` +
   `<br>` +
+
   `Gray Added: ${decFmt(water.gray_added_kg, 3)} kg<br>` +
   `Black Added: ${decFmt(water.black_added_kg, 3)} kg<br>` +
   `Condensate Added: ${decFmt(water.condensate_added_kg, 3)} kg<br>` +
   `UPA Brine Added: ${decFmt(water.upa_brine_added_kg, 3)} kg<br>` +
-  `Raw Water Added: ${decFmt(water.raw_water_added_kg, 3)} kg<br>` +
   `<br>` +
 
-  `Potable Stored: ${decFmt(water.potable_water_kg, 2)} kg<br>` +
+  `Potable Stored: ${decFmt(water.potable_water_kg, 0)} kg<br>` +
   `Gray Stored: ${decFmt(water.gray_water_kg, 2)} kg<br>` +
   `Black Stored: ${decFmt(water.black_water_kg, 2)} kg<br>` +
   `Condensate Stored: ${decFmt(water.condensate_kg, 3)} kg<br>` +
   `Brine Stored: ${decFmt(water.brine_kg, 3)} kg<br>` +
   `Raw Water Stored: ${decFmt(water.raw_water_kg, 2)} kg`
   );
+
+
   //------------power------------//
 set("power-p",
-  `Net Energy: ${posNeg(power.net_energy_kwh)} $ {decFmt(power.net_energy_kwh)}<br>` +
-  `Battery Stored: ${decFmt(power.battery_stored_kwh, 0)} kWh` +
-  `<br>` +
+  `Net Energy: ${sign(power.net_energy_kwh)} ${decFmt(power.net_energy_kwh)} kWh<br>` +
+  `Battery: ${decFmt(power.battery_stored_kwh, 0)} kWh (${pct(power.battery_stored_kwh, power.battery_capacity_kwh)})<br>` +
 
   `Solar Arrays: ${power.solar_arrays_online ??"-"} / 10<br>` +
   `Solar Generated: ${decFmt(power.solar_generated_kw)} kW<br>` +
