@@ -87,6 +87,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     
     #-------------isru water--------------♡
     isru_water_updates, isru_water_outputs = run_isru_water(new_state, dt_min)
+    new_state = replace(new_state, **isru_water_updates)
 
     #----------------water----------------♡
     water_updates, water_outputs = run_water_system(
@@ -115,6 +116,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         greenhouse_outputs.get("greenhouse_heat_kw", 0.0),
         greenhouse_outputs.get("greenhouse_led_heat_kw", 0.0),
         humidity_results["chx_heat_added_kw"],
+        isru_water_outputs["isru_water_heat_added_kw"],
+        isru_atm_outputs["isru_atm_heat_added_kw"],
         dt_min,
         current_sunlight_amount
     )
