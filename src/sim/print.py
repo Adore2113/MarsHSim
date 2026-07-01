@@ -70,8 +70,6 @@ def print_system_stats(alerts, state, outputs):
 #----------------------------------------------------♡
 
 
-
-    print(f"{'Food Produced:':<{lw}} {outputs.get('greenhouse_food_produced_kg', 0):.3f} kg")
     print(f"{'Temp Change/h:':<{lw}} {outputs.get('temp_change_c', 0) * 12:.2f} C")
 
 #--------------------atmosphere----------------------♡
@@ -160,17 +158,8 @@ def print_water(state, outputs):
     print(f"{'WPA Processed:':<{lw}} {outputs.get('wpa_water_processed_kg', 0):.2f} kg")
     print(f"{'BPA Processed:':<{lw}} {outputs.get('bpa_water_processed_kg', 0):.2f} kg")
 
-
     #----------water used-----------♡
     print(f"\n{'Potable Used:':<{lw}} {outputs.get('potable_water_used_kg', 0):.2f} kg")
-
-
-    #----------greenhouse-----------♡
-    print(f"{'GH Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
-    print(f"\n{'GH Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")
-    print(f"{'GH Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
-    print(f"{'GH Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
-
 
     #--------water recovered--------♡
     print(f"\n{'Total Recovered:':<{lw}} {outputs.get('total_recovered_water_kg', 0):.2f} kg")
@@ -183,30 +172,40 @@ def print_water(state, outputs):
     print(f"{'Black Added:':<{lw}} {outputs.get('black_water_added_kg', 0):.2f} kg")
     print(f"{'Condensate Added:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
     print(f"{'UPA Brine Added:':<{lw}} {outputs.get('upa_brine_added_kg', 0):.2f} kg")
-    print(f"{'Sabatier Water Added:':<{lw}} {outputs.get('sabatier_water_produced_kg', 0):.3f} kg")
-    print(f"{'Raw Water Added:':<{lw}} {outputs.get('isru_raw_water_added_kg', 0):.2f} kg")
-
+   
     #-----------storage-------------♡
-    print(f"\n{'Potable Water:':<{lw}} {state.potable_water_storage_kg:.2f} kg")
-    print(f"{'Gray Water:':<{lw}} {state.gray_water_storage_kg:.2f} kg")
-    print(f"{'Black Water:':<{lw}} {state.black_water_storage_kg:.2f} kg")
-    print(f"{'Condensate:':<{lw}} {state.condensate_storage_kg:.2f} kg")
-    print(f"{'Brine:':<{lw}} {state.brine_storage_kg:.2f} kg")
-    print(f"{'Raw Water Stored:':<{lw}} {state.raw_isru_water_storage_kg:.2f} kg")
-#----------------------------------------------------♡
+    print(f"\n{'Potable Stored:':<{lw}} {state.potable_water_storage_kg:.0f} kg")
+    print(f"{'Gray Stored:':<{lw}} {state.gray_water_storage_kg:.2f} kg")
+    print(f"{'Black Stored:':<{lw}} {state.black_water_storage_kg:.2f} kg")
+    print(f"{'Condensate Stored:':<{lw}} {state.condensate_storage_kg:.2f} kg")
+    print(f"{'Brine Stored:':<{lw}} {state.brine_storage_kg:.2f} kg")
+    print(f"{'Raw Water Stored:':<{lw}} {state.raw_isru_water_storage_kg:.2f} kg")#----------------------------------------------------♡
+
+
+    #----------greenhouse-----------♡
+    print(f"{'GH Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
+    print(f"\n{'GH Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")
+    print(f"{'GH Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
+    print(f"{'GH Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
+    print(f"{'Food Produced:':<{lw}} {outputs.get('greenhouse_food_produced_kg', 0):.3f} kg")
+
 
 
 #-----------------------power------------------------♡
 def print_power(state, outputs):
     print_section_header("POWER")
-    print(f"Net Energy: {outputs['net_energy_kwh']:.2f} kWh")
-    #-------------solar-------------♡
-    print(f"{'Peak Sun Today:':<{lw}} {state.peak_sunlight_today:.3f} /1.0")
-    print(f"{'Sunlight per m²:':<{lw}} {state.daylight_m2_kw:.3f} kW")
-    print(f"{'Low Sun Streak:':<{lw}} {state.low_sunlight_streak_sols} sols")
+    print(f"{'Net Energy:':<{lw}} {outputs.get('net_energy_kwh', 0):.2f} kWh")
+    print(f"{'Battery Stored:':<{lw}} {state.battery_stored_kwh:.2f} kWh")
+    print(f"{'Battery Capacity:':<{lw}} {state.battery_capacity_kwh:.0f} kWh")
 
-    print(f"{'Solar Arrays Online:':<{lw}} {outputs.get('solar_arrays_online_count', 0)} /10")
+    #-------------solar-------------♡
+    print(f"\n{'Solar Arrays:':<{lw}} {outputs.get('solar_arrays_online_count', 0)} / 10")
     print(f"{'Solar Generated:':<{lw}} {outputs.get('total_solar_generated_kw', 0):.2f} kW")
+    print(f"{'Sunlight per m²:':<{lw}} {state.daylight_m2_kw:.3f} kW")
+    print(f"{'Peak Sun Today:':<{lw}} {state.peak_sunlight_today:.3f} / 1.0")
+    print(f"{'Low Sun Streak:':<{lw}} {state.low_sunlight_streak_sols} sols")
+    print(f"{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'off'}")
+
     #-------------stored------------♡
     print(f"{'Battery Stored:':<{lw}} {state.battery_stored_kwh:.2f} kWh")
     
