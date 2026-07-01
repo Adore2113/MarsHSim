@@ -192,8 +192,15 @@ set("power-p",
 
   //----------thermal------------//
 set("thermal-p",
-
-  );
+  `Mode: ${thermal.mode ?? "—"}<br>` +
+  `Hab Temp: ${decFmt(thermal.habitat_temp_c)} °C<br>` +
+  `Mars Temp: ${decFmt(thermal.mars_temp_c, 1)} °C<br>` +
+  `Temp Trend: ${sign(thermal.temp_trend_c_per_hr)}${decFmt(thermal.temp_trend_c_per_hr, 3)} °C/hr<br>` +
+  `Heat Loss: ${decFmt(thermal.heat_loss_kw)} kW<br>` +
+  `Net Heat: ${decFmt(thermal.net_heat_kw)} kW<br>` +
+  `<br>` + 
+   
+);
 
   //------------isru-------------//
 set("isru-p",
