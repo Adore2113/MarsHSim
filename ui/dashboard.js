@@ -219,15 +219,15 @@ set("thermal-p",
 
   //------------isru-------------//
 set("isru-p",
-  `Atmosphere Mode: ${ia.isru_atm_mode ?? "—"}<br>` +
-  `Compressors: ${ia.compressors ?? 0}<br>` +
-  `Sorbent Beds ↓/↺/⏸: ${ia.sorbent_beds_adsorbing ?? 0} / ${ia.sorbent_beds_regen ?? 0} / ${ia.sorbent_beds_standby ?? 0}<br>` +
-  `N₂ Added: ${decFmt(ia.n2_added_kg, 3)} kg<br>` +
-  `Ar Added: ${decFmt(ia.ar_added_kg, 3)} kg<br>` +
-  `CO₂ Added: ${decFmt(ia.co2_added_kg, 3)} kg<br>` +
-  `CO₂ Absorbed: ${decFmt(ia.co2_absorbed_kg, 3)} kg<br>` +
-  `CO₂ Released: ${decFmt(ia.co2_released_kg, 3)} kg<br>` +
-  `CO₂ Bypassed: ${decFmt(ia.co2_bypassed_kg, 3)} kg<br>` +
+  `Atmosphere Mode: ${isru_a.isru_atm_mode ?? "—"}<br>` +
+  `Compressors: ${isru_a.compressors ?? 0}<br>` +
+  `Sorbent Beds ↓/↺/⏸: ${isru_a.sorbent_beds_adsorbing ?? 0} / ${isru_a.sorbent_beds_regen ?? 0} / ${isru_a.sorbent_beds_standby ?? 0}<br>` +
+  `N₂ Added: ${decFmt(isru_a.n2_added_kg, 3)} kg<br>` +
+  `Ar Added: ${decFmt(isru_a.ar_added_kg, 3)} kg<br>` +
+  `CO₂ Added: ${decFmt(isru_a.co2_added_kg, 3)} kg<br>` +
+  `CO₂ Absorbed: ${decFmt(isru_a.co2_absorbed_kg, 3)} kg<br>` +
+  `CO₂ Released: ${decFmt(isru_a.co2_released_kg, 3)} kg<br>` +
+  `CO₂ Bypassed: ${decFmt(isru_a.co2_bypassed_kg, 3)} kg<br>` +
   `<br>` +
 
   `Water Mode: ${iw.isru_water_mode ?? "—"}<br>` +
