@@ -104,7 +104,6 @@ set("sab-p",
   `Mode: ${sab.sabatier_mode ?? "-"}<br>` +
   `<br>` + 
 
- // `CO₂ Used: ${decFmt(sab.sabatier_co2_consumed_kpa, 4)} kPa<br>` + //
   `CO₂ Used: ${decFmt(sab.sabatier_co2_consumed_kg, 4)} kg<br>` +
   `H₂ Used: ${decFmt(sab.h2_used_kg, 4)} kg<br>` +
   `<br>` + 
@@ -148,7 +147,7 @@ set("water-p",
   );
   //------------power------------//
 set("power-p",
-  `Net Energy: ${sign(power.net_energy_kwh)} $ {decFmt(power.net_energy_kwh)}<br>` +
+  `Net Energy: ${posNeg(power.net_energy_kwh)} $ {decFmt(power.net_energy_kwh)}<br>` +
   `Battery Stored: ${decFmt(power.battery_stored_kwh, 0)} kWh`
   `<br>` +
 
