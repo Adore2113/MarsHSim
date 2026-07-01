@@ -315,7 +315,7 @@ s0 = Habitat_State(
     sabatier_on = True,
 
     #-------------------isru water-------------------♡
-    isru_on = True,
+    isru_water_on = True,
 
     isru_pipes = [
         {"id": 1, "status": "offline", "dust_factor": 1.0, "condition": 0.98, "type": "primary"},
