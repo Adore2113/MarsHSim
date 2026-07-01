@@ -40,11 +40,12 @@ def print_sim(state, outputs, alerts):
     print_atmosphere(state, outputs)
     print_oga(outputs)
     print_sabatier(outputs)
+    print_water(state, outputs)
     print_power(state, outputs)
     print_thermal(state, outputs)
-    print_water(state, outputs)
-    print_isru_water(state, outputs)
-    print_isru_atm(state, outputs)
+    print_isru_water(outputs)
+    print_isru_atm(outputs)
+    greenhouse(outputs)
     print (split)
 #----------------------------------------------------♡
 
@@ -69,8 +70,6 @@ def print_system_stats(alerts, state, outputs):
 
 #----------------------------------------------------♡
 
-
-    print(f"{'Temp Change/h:':<{lw}} {outputs.get('temp_change_c', 0) * 12:.2f} C")
 
 #--------------------atmosphere----------------------♡
 def print_atmosphere(state, outputs):
@@ -104,19 +103,6 @@ def print_atmosphere(state, outputs):
     print(f"{'Bed Switch:':<{lw}} {'YES' if outputs.get('bed_switch_this_step', False) else 'no'}")
     print(f"{'CO₂ Scrubbed:':<{lw}} {outputs.get('co2_removed_kpa', 0):.4f} kPa")
     print(f"{'CO₂ Scrubbed:':<{lw}} {outputs.get('co2_removed_kg', 0):.4f} kg")
-    
-    
-    print(f"{'GH CO2 Used':<{lw}} {outputs.get('greenhouse_co2_consumed_kpa', 0):.8f} kPa")
-    print(f"{'Sabatier CO2:':<{lw}} {outputs.get('sabatier_co2_consumed_kpa', 0):.4f} kPa")
-
-    print(f"{'O2 Added:':<{lw}} {outputs.get('o2_added_kpa', 0):.4f} kPa")
-
-    print(f"{'CH4 Added:':<{lw}} {outputs.get('sabatier_ch4_produced_kg', 0):.4f} kg")
-    print(f"{'CH4 Vented:':<{lw}} {outputs.get('sabatier_ch4_vented_kg', 0):.4f} kg")
-   
-    print(f"{'H2 Used:':<{lw}} {outputs.get('sabatier_h2_consumed_kg', 0):.4f} kg")
-    
-    print(f"{'GH O2 Added:':<{lw}} {outputs.get('greenhouse_o2_produced_kpa', 0):.8f} kPa")
 #----------------------------------------------------♡
 
 
@@ -179,16 +165,8 @@ def print_water(state, outputs):
     print(f"{'Black Stored:':<{lw}} {state.black_water_storage_kg:.2f} kg")
     print(f"{'Condensate Stored:':<{lw}} {state.condensate_storage_kg:.2f} kg")
     print(f"{'Brine Stored:':<{lw}} {state.brine_storage_kg:.2f} kg")
-    print(f"{'Raw Water Stored:':<{lw}} {state.raw_isru_water_storage_kg:.2f} kg")#----------------------------------------------------♡
-
-
-    #----------greenhouse-----------♡
-    print(f"{'GH Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
-    print(f"\n{'GH Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")
-    print(f"{'GH Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
-    print(f"{'GH Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
-    print(f"{'Food Produced:':<{lw}} {outputs.get('greenhouse_food_produced_kg', 0):.3f} kg")
-
+    print(f"{'Raw Water Stored:':<{lw}} {state.raw_isru_water_storage_kg:.2f} kg")
+#----------------------------------------------------♡
 
 
 #-----------------------power------------------------♡
@@ -255,26 +233,46 @@ def print_thermal(state, outputs):
 
 
 #---------------------ISRU water---------------------♡
-def print_isru_water(state, outputs):
-    print_section_header("ISRU water")
-    print(f"{'ISRU Water Mode:':<{lw}} {outputs.get('isru_water_mode', 'offline')}")
+def print_isru_water(outputs):
+    print_section_header("ISRU WATER")
 
-    print(f"{'Total Pipes Active:':<{lw}} {outputs.get('total_pipes_active', 0)}")
+    print(f"{'Mode:':<{lw}} {outputs.get('isru_water_mode', 'offline')}")
     print(f"{'Pipes Extracting:':<{lw}} {outputs.get('pipes_extracting', 0)}")
     print(f"{'Pipes Deploying:':<{lw}} {outputs.get('pipes_deploying', 0)}")
     print(f"{'Pipes Retracting:':<{lw}} {outputs.get('pipes_retracting', 0)}")
+    print(f"{'Raw Water Added:':<{lw}} {outputs.get('isru_raw_water_added_kg', 0):.3f} kg")
 #----------------------------------------------------♡
 
+
 #----------------------ISRU atm----------------------♡
-def print_isru_atm(state, outputs):
-    print_section_header("ISRU atmosphere")
-    print(f"\n{'ISRU ATM Mode:':<{lw}} {outputs.get('isru_atm_mode', 'offline')}")
+def print_isru_atm(outputs):
+    print(f"{'Mode:':<{lw}} {outputs.get('isru_atm_mode', 'offline')}")
     print(f"{'Compressors Extracting:':<{lw}} {outputs.get('compressors_extracting', 0)}")
 
     print(f"{'Sorbent Beds Adsorbing:':<{lw}} {outputs.get('sorbent_beds_adsorbing', 0)}")
-    print(f"{'Sorbent Beds Regen:':<{lw}} {outputs.get('sorbent_beds_regenerating', 0)}")
+    print(f"{'Sorbent Beds Regenerating:':<{lw}} {outputs.get('sorbent_beds_regenerating', 0)}")
     print(f"{'Sorbent Beds Standby:':<{lw}} {outputs.get('sorbent_beds_standby', 0)}")
 
-    print(f"{'N2 Added:':<{lw}} {outputs.get('isru_atm_n2_added_kg', 0):.3f} kg")
-    print(f"{'AR Added:':<{lw}} {outputs.get('isru_atm_ar_added_kg', 0):.3f} kg")
-    print(f"{'CO2 Absorbed:':<{lw}} {outputs.get('sorbent_co2_absorbed_kg', 0):.3f} kg")
+    print(f"{'N₂ Added:':<{lw}} {outputs.get('isru_atm_n2_added_kg', 0):.3f} kg")
+    print(f"{'Ar Added:':<{lw}} {outputs.get('isru_atm_ar_added_kg', 0):.3f} kg")
+    print(f"{'CO₂ Added:':<{lw}} {outputs.get('isru_atm_co2_added_kg', 0):.3f} kg")
+
+    print(f"{'CO₂ Absorbed:':<{lw}} {outputs.get('sorbent_co2_absorbed_kg', 0):.3f} kg")
+    print(f"{'CO₂ Released:':<{lw}} {outputs.get('sorbent_co2_released_kg', 0):.3f} kg")
+    print(f"{'CO₂ Bypassed:':<{lw}} {outputs.get('sorbent_co2_bypassed_kg', 0):.3f} kg")
+
+
+    #----------------------ISRU atm----------------------♡
+def greenhouse(outputs):
+    print_section_header("GREENHOUSE")
+
+    print(f"{'Mode:':<{lw}} {outputs.get('greenhouse_mode', 'offline')}")
+    print(f"{'Food Produced:':<{lw}} {outputs.get('greenhouse_food_produced_kg', 0):.3f} kg")
+
+    print(f"\n{'CO₂ Consumed:':<{lw}} {outputs.get('greenhouse_co2_consumed_kpa', 0):.7f} kPa")
+    print(f"{'O₂ Produced:':<{lw}} {outputs.get('greenhouse_o2_produced_kpa', 0):.7f} kPa")
+
+    print(f"\n{'Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
+    print(f"{'Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")
+    print(f"{'Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.3f} kg")
+    print(f"{'Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
