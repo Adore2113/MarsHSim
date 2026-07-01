@@ -9,6 +9,8 @@
 ### Next Focus:      
     ♡ update dust file
 
+    ♡ randomize temps
+
 ### Later Focus:
     ♡ add tank depletion alerts   
 

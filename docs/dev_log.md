@@ -1080,4 +1080,28 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      06/25/2026
     ♡ starting to work on the UI, using a prototype image I designed in procreate, this will be updated, but the first step is turning my code written in python to json
 
-   ♡ 
+   ♡ added ui_export and started on the visuals
+
+#### Next Session:
+    ♡ continue working on dashboard panels
+
+
+##      06/28/2026
+    ♡ I've been working on the visuals so there hasn't been a to log here
+
+    ♡ I am going to make this so that the dashbaord updates every three seconds to start, and I'll adjust this as I go
+
+    ♡ I want to use snake case for js, but I know camelCase is best practice, so I'll stick with that
+
+
+##      06/30/2026
+    ♡ I am deciding how to categorize my variables in the ui panels
+
+    ♡ right now I'm putting amine beds in the atmosphere panel, but I think I'll add two more panels for OGA and amine beds after I finish putting all of my variables in dashboard.js
+
+    ♡ I need to decide if I want to keep the water outputs in water, but that's 27 lines which is a lot for on panel, so I need to choose if I want to keep them in water, or put them in their corrosponding panels
+
+    ♡ realized that I didn't rename my isru water variables to include the word water after adding isru_atm
+
+#### Next Session:
+    ♡ continue adding to dashboard.js and consider fixing output in print and ui_export.py to be in the same order

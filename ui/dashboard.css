@@ -90,6 +90,11 @@ body {
     z-index: 1;
 }
 
+.panel-p {
+    margin: 0;
+}
+
+
 /* --------status box--------- */
 #status-box {
     container-type: inline-size;
@@ -111,7 +116,7 @@ body {
     backdrop-filter: none;
 }
 
-#status-box-p {
+#status-p {
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -128,8 +133,15 @@ body {
     font-family: "Share Tech Mono", monospace;
     font-size: clamp(10px, 6.5cqw, 20px);
     line-height: 1.50;
-
 }
+
+/* --------status box--------- */
+/* --------atmosphere--------- */
+/* --------status box--------- */
+/* --------status box--------- */
+/* --------status box--------- */
+/* --------status box--------- */
+
 
 
 #atmosphere-box {
