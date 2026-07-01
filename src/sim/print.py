@@ -206,8 +206,8 @@ def print_isru_atm(state, outputs):
     print(f"{'Sorbent Beds Regen:':<{lw}} {outputs.get('sorbent_beds_regenerating', 0)}")
     print(f"{'Sorbent Beds Standby:':<{lw}} {outputs.get('sorbent_beds_standby', 0)}")
 
-    print(f"{'N2 Added:':<{lw}} {outputs.get('isru_n2_added_kg', 0):.3f} kg")
-    print(f"{'AR Added:':<{lw}} {outputs.get('isru_ar_added_kg', 0):.3f} kg")
+    print(f"{'N2 Added:':<{lw}} {outputs.get('isru_atm_n2_added_kg', 0):.3f} kg")
+    print(f"{'AR Added:':<{lw}} {outputs.get('isru_atm_ar_added_kg', 0):.3f} kg")
     print(f"{'CO2 Absorbed:':<{lw}} {outputs.get('sorbent_co2_absorbed_kg', 0):.3f} kg")
 
 #----------------------water-------------------------♡
