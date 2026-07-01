@@ -127,6 +127,12 @@ set("water-p",
   `BPA Processed: ${decFmt(water.bpa_processed_kg, 3)} kg<br>` +
   `<br>` +
 
+  `Total Recovered: ${decFmt(water.total_recovered_kg, 3)} kg<br>` +
+  `UPA Recovered: ${decFmt(water.upa_recovered_kg, 3)} kg<br>` +
+  `WPA Recovered: ${decFmt(water.wpa_recovered_kg, 3)} kg<br>` +
+  `BPA Recovered: ${decFmt(water.bpa_recovered_kg, 3)} kg<br>` +
+  `<br>` +
+
   //------------power------------//
 
   //----------thermal------------//
