@@ -42,6 +42,8 @@ def print_sim(state, outputs, alerts):
     print_power(state, outputs)
     print_thermal(state, outputs)
     print_water(state, outputs)
+    print_isru_water(state, outputs)
+    print_isru_atm(state, outputs)
     print (split)
 #----------------------------------------------------♡
 
@@ -98,18 +100,6 @@ def print_atmosphere(state, outputs):
     print(f"{'H2 Stored:':<{lw}} {state.h2_stored_kg:.2f} kg")
     print(f"{'CH4 Stored:':<{lw}} {state.ch4_stored_kg:.2f} kg")    
 
-    #----------stored gas----------♡
-    print(f"\n{'ISRU ATM Mode:':<{lw}} {outputs.get('isru_atm_mode', 'offline')}")
-    print(f"{'Compressors:':<{lw}} {outputs.get('compressors_extracting', 0)}")
-
-    print(f"{'Beds Adsorbing:':<{lw}} {outputs.get('sorbent_beds_adsorbing', 0)}")
-    print(f"{'Beds Regen:':<{lw}} {outputs.get('sorbent_beds_regenerating', 0)}")
-    print(f"{'Beds Standby:':<{lw}} {outputs.get('sorbent_beds_standby', 0)}")
-
-    print(f"{'N2 Added:':<{lw}} {outputs.get('isru_n2_added_kg', 0):.3f} kg")
-    print(f"{'AR Added:':<{lw}} {outputs.get('isru_ar_added_kg', 0):.3f} kg")
-    print(f"{'CO2 Captured:':<{lw}} {outputs.get('sorbent_co2_absorbed_kg', 0):.3f} kg")
-
     #-----------gas moved-----------♡
     print(f"\n{'Amine Beds Online:':<{lw}} {outputs.get('beds_online_count', 0)}")
 
@@ -155,7 +145,8 @@ def print_power(state, outputs):
     print(f"{'CHX Power:':<{lw}} {outputs.get('chx_power_used_kw', 0):.2f} kW")
     print(f"{'Radiator Power:':<{lw}} {outputs.get('radiator_power_kw', 0):.2f} kW")
     print(f"{'Heater Power:':<{lw}} {outputs.get('heater_power_kw', 0):.2f} kW")
-    print(f"{'ISRU Power:':<{lw}} {outputs.get('isru_power_used_kw', 0):.2f} kW")
+    print(f"{'ISRU Water Power:':<{lw}} {outputs.get('isru_water_power_used_kw', 0):.2f} kW")
+    print(f"{'ISRU ATM Power:':<{lw}} {outputs.get('isru_atm_power_used_kw', 0):.2f} kW")
 
     print(f"{'Total Energy Used:':<{lw}} {outputs.get('total_energy_used_kwh', 0):.2f} kWh")
 #----------------------------------------------------♡
@@ -179,7 +170,9 @@ def print_thermal(state, outputs):
     print(f"{'Heaters Online:':<{lw}} {outputs.get('heaters_online_count', 0)}")
     print(f"{'Heater Heat:':<{lw}} {outputs.get('heater_heat_kw', 0):.2f} kW")
 
-    print(f"{'ISRU Heat:':<{lw}} {outputs.get('isru_heat_added_kw', 0):.2f} kW")
+    print(f"{'ISRU Water Heat:':<{lw}} {outputs.get('isru_water_heat_added_kw', 0):.2f} kW")
+    print(f"{'ISRU ATM Heat:':<{lw}} {outputs.get('isru_atm_heat_added_kw', 0):.2f} kW")
+
     print(f"{'GH Heat:':<{lw}} {outputs.get('total_greenhouse_heat_kw', 0):.3f} kW")
     print(f"{'Sabatier Heat:':<{lw}} {outputs.get('sabatier_heat_added_kw', 0):.2f} kW")
     print(f"{'Amine Bed Heat:':<{lw}} {outputs.get('amine_bed_heat_added_kw', 0):.2f} kW")
@@ -192,16 +185,30 @@ def print_thermal(state, outputs):
     print(f"{'Radiator Cooling:':<{lw}} {outputs.get('radiator_heat_rejection_kw', 0):.2f} kW")
 #----------------------------------------------------♡
 
-#-----------------------ISRU-------------------------♡
-def print_isru(state, outputs):
-    print_section_header("ISRU")
-    print(f"{'ISRU Mode:':<{lw}} {outputs.get('isru_mode', 'offline')}")
+#---------------------ISRU water---------------------♡
+def print_isru_water(state, outputs):
+    print_section_header("ISRU water")
+    print(f"{'ISRU Water Mode:':<{lw}} {outputs.get('isru_water_mode', 'offline')}")
 
+    print(f"{'Total Pipes Active:':<{lw}} {outputs.get('total_pipes_active', 0)}")
     print(f"{'Pipes Extracting:':<{lw}} {outputs.get('pipes_extracting', 0)}")
     print(f"{'Pipes Deploying:':<{lw}} {outputs.get('pipes_deploying', 0)}")
     print(f"{'Pipes Retracting:':<{lw}} {outputs.get('pipes_retracting', 0)}")
-    print(f"{'Total Pipes Active:':<{lw}} {outputs.get('total_pipes_active', 0)}")
 #----------------------------------------------------♡
+
+#----------------------ISRU atm----------------------♡
+def print_isru_atm(state, outputs):
+    print_section_header("ISRU atmosphere")
+    print(f"\n{'ISRU ATM Mode:':<{lw}} {outputs.get('isru_atm_mode', 'offline')}")
+    print(f"{'Compressors Extracting:':<{lw}} {outputs.get('compressors_extracting', 0)}")
+
+    print(f"{'Sorbent Beds Adsorbing:':<{lw}} {outputs.get('sorbent_beds_adsorbing', 0)}")
+    print(f"{'Sorbent Beds Regen:':<{lw}} {outputs.get('sorbent_beds_regenerating', 0)}")
+    print(f"{'Sorbent Beds Standby:':<{lw}} {outputs.get('sorbent_beds_standby', 0)}")
+
+    print(f"{'N2 Added:':<{lw}} {outputs.get('isru_n2_added_kg', 0):.3f} kg")
+    print(f"{'AR Added:':<{lw}} {outputs.get('isru_ar_added_kg', 0):.3f} kg")
+    print(f"{'CO2 Absorbed:':<{lw}} {outputs.get('sorbent_co2_absorbed_kg', 0):.3f} kg")
 
 #----------------------water-------------------------♡
 def print_water(state, outputs):
