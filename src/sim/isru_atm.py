@@ -255,9 +255,9 @@ def run_isru_atm(state, dt_min):
 #--------------dict for printing outputs-------------♡
     isru_atm_outputs = {
         "isru_atm_mode": isru_atm_mode,
-        "isru_n2_added_kg": n2_added_kg,
-        "isru_ar_added_kg": ar_added_kg,
-        "isru_co2_added_kg": co2_added_kg,
+        "isru_atm_n2_added_kg": n2_added_kg,
+        "isru_atm_ar_added_kg": ar_added_kg,
+        "isru_atm_co2_added_kg": co2_added_kg,
         "isru_atm_power_used_kw": power_used_kw,
         "isru_atm_energy_used_kwh": power_used_kw * hours_per_step,
         "isru_atm_heat_added_kw": heat_added_kw,
