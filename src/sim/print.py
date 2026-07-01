@@ -146,6 +146,53 @@ def print_sabatier(outputs):
 #----------------------------------------------------♡
 
 
+#----------------------water-------------------------♡
+def print_water(state, outputs):
+    print_section_header("WATER")
+
+    #---------humidity / CHX--------♡
+    print(f"{'Vapor Added:':<{lw}} {outputs.get('vapor_added_kg', 0):.3f} kg")
+    print(f"{'Humidity:':<{lw}} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
+    print(f"{'Vapor Removed:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
+
+    #----------greenhouse-----------♡
+    print(f"{'GH Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
+    print(f"\n{'GH Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")
+    print(f"{'GH Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
+    print(f"{'GH Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
+
+    #----------processing-----------♡
+    print(f"\n{'UPA Black Removed:':<{lw}} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
+    print(f"{'WPA Processed:':<{lw}} {outputs.get('wpa_water_processed_kg', 0):.2f} kg")
+    print(f"{'BPA Processed:':<{lw}} {outputs.get('bpa_water_processed_kg', 0):.2f} kg")
+
+    #----------water used-----------♡
+    print(f"{'Potable Used:':<{lw}} {outputs.get('potable_water_used_kg', 0):.2f} kg")
+
+    #--------water recovered--------♡
+    print(f"\n{'Total Recovered:':<{lw}} {outputs.get('total_recovered_water_kg', 0):.2f} kg")
+    print(f"{'UPA Recovered:':<{lw}} {outputs.get('upa_recovered_water_kg', 0):.2f} kg")
+    print(f"{'WPA Recovered:':<{lw}} {outputs.get('wpa_recovered_water_kg', 0):.2f} kg")
+    print(f"{'BPA Recovered:':<{lw}} {outputs.get('bpa_recovered_water_kg', 0):.2f} kg")
+
+    #----------water added----------♡
+    print(f"\n{'Gray Added:':<{lw}} {outputs.get('gray_water_added_kg', 0):.2f} kg")
+    print(f"{'Black Added:':<{lw}} {outputs.get('black_water_added_kg', 0):.2f} kg")
+    print(f"{'Condensate Added:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
+    print(f"{'UPA Brine Added:':<{lw}} {outputs.get('upa_brine_added_kg', 0):.2f} kg")
+    print(f"{'Sabatier Water Added:':<{lw}} {outputs.get('sabatier_water_produced_kg', 0):.3f} kg")
+    print(f"{'Raw Water Added:':<{lw}} {outputs.get('isru_raw_water_added_kg', 0):.2f} kg")
+
+    #-----------storage-------------♡
+    print(f"\n{'Potable Water:':<{lw}} {state.potable_water_storage_kg:.2f} kg")
+    print(f"{'Gray Water:':<{lw}} {state.gray_water_storage_kg:.2f} kg")
+    print(f"{'Black Water:':<{lw}} {state.black_water_storage_kg:.2f} kg")
+    print(f"{'Condensate:':<{lw}} {state.condensate_storage_kg:.2f} kg")
+    print(f"{'Brine:':<{lw}} {state.brine_storage_kg:.2f} kg")
+    print(f"{'Raw Water Stored:':<{lw}} {state.raw_isru_water_storage_kg:.2f} kg")
+#----------------------------------------------------♡
+
+
 #-----------------------power------------------------♡
 def print_power(state, outputs):
     print_section_header("POWER")
@@ -238,49 +285,3 @@ def print_isru_atm(state, outputs):
     print(f"{'N2 Added:':<{lw}} {outputs.get('isru_atm_n2_added_kg', 0):.3f} kg")
     print(f"{'AR Added:':<{lw}} {outputs.get('isru_atm_ar_added_kg', 0):.3f} kg")
     print(f"{'CO2 Absorbed:':<{lw}} {outputs.get('sorbent_co2_absorbed_kg', 0):.3f} kg")
-
-#----------------------water-------------------------♡
-def print_water(state, outputs):
-    print_section_header("WATER")
-
-    #---------humidity / CHX--------♡
-    print(f"{'Vapor Added:':<{lw}} {outputs.get('vapor_added_kg', 0):.3f} kg")
-    print(f"{'Humidity:':<{lw}} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
-    print(f"{'Vapor Removed:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
-
-    #----------greenhouse-----------♡
-    print(f"{'GH Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
-    print(f"\n{'GH Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")
-    print(f"{'GH Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
-    print(f"{'GH Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
-
-    #----------processing-----------♡
-    print(f"\n{'UPA Black Removed:':<{lw}} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
-    print(f"{'WPA Processed:':<{lw}} {outputs.get('wpa_water_processed_kg', 0):.2f} kg")
-    print(f"{'BPA Processed:':<{lw}} {outputs.get('bpa_water_processed_kg', 0):.2f} kg")
-
-    #----------water used-----------♡
-    print(f"{'Potable Used:':<{lw}} {outputs.get('potable_water_used_kg', 0):.2f} kg")
-
-    #--------water recovered--------♡
-    print(f"\n{'Total Recovered:':<{lw}} {outputs.get('total_recovered_water_kg', 0):.2f} kg")
-    print(f"{'UPA Recovered:':<{lw}} {outputs.get('upa_recovered_water_kg', 0):.2f} kg")
-    print(f"{'WPA Recovered:':<{lw}} {outputs.get('wpa_recovered_water_kg', 0):.2f} kg")
-    print(f"{'BPA Recovered:':<{lw}} {outputs.get('bpa_recovered_water_kg', 0):.2f} kg")
-
-    #----------water added----------♡
-    print(f"\n{'Gray Added:':<{lw}} {outputs.get('gray_water_added_kg', 0):.2f} kg")
-    print(f"{'Black Added:':<{lw}} {outputs.get('black_water_added_kg', 0):.2f} kg")
-    print(f"{'Condensate Added:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
-    print(f"{'UPA Brine Added:':<{lw}} {outputs.get('upa_brine_added_kg', 0):.2f} kg")
-    print(f"{'Sabatier Water Added:':<{lw}} {outputs.get('sabatier_water_produced_kg', 0):.3f} kg")
-    print(f"{'Raw Water Added:':<{lw}} {outputs.get('isru_raw_water_added_kg', 0):.2f} kg")
-
-    #-----------storage-------------♡
-    print(f"\n{'Potable Water:':<{lw}} {state.potable_water_storage_kg:.2f} kg")
-    print(f"{'Gray Water:':<{lw}} {state.gray_water_storage_kg:.2f} kg")
-    print(f"{'Black Water:':<{lw}} {state.black_water_storage_kg:.2f} kg")
-    print(f"{'Condensate:':<{lw}} {state.condensate_storage_kg:.2f} kg")
-    print(f"{'Brine:':<{lw}} {state.brine_storage_kg:.2f} kg")
-    print(f"{'Raw Water Stored:':<{lw}} {state.raw_isru_water_storage_kg:.2f} kg")
-#----------------------------------------------------♡
