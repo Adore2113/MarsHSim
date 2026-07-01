@@ -132,7 +132,14 @@ set("water-p",
   `WPA Recovered: ${decFmt(water.wpa_recovered_kg, 3)} kg<br>` +
   `BPA Recovered: ${decFmt(water.bpa_recovered_kg, 3)} kg<br>` +
   `<br>` +
+  `Gray Added: ${decFmt(water.gray_added_kg, 3)} kg<br>` +
+  `Black Added: ${decFmt(water.black_added_kg, 3)} kg<br>` +
+  `Condensate Added: ${decFmt(water.condensate_added_kg, 3)} kg<br>` +
+  `UPA Brine Added: ${decFmt(water.upa_brine_added_kg, 3)} kg<br>` +
+  `Raw Water Added: ${decFmt(water.raw_water_added_kg, 3)} kg<br>` +
+  `<br>` +
 
+);
   //------------power------------//
 
   //----------thermal------------//
