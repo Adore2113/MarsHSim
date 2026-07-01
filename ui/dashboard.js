@@ -40,14 +40,14 @@ async function loadDashboard() {
 
   const ss = data.system_status;
   const atm = data.atmosphere;
+  const oga = data.oga;
   const sab = data.sabatier;
   const water = data.water;
   const power = data.power;
   const thermal = data.thermal;
-  const isru = data.isru;
+  const isru_w = data.isru_water;
+  const isru_a = data.isru_arm;
   const gh = data.greenhouse;
-
-
 //---------------------------------------------------♡
 
   //-----------status------------//
@@ -61,6 +61,7 @@ async function loadDashboard() {
     `Habitat Temp: ${decFmt(ss.habitat_temp_c, 1)} °C<br>` +
     `Mars Temp: ${decFmt(ss.mars_temp_c, 1)} °C`
   );
+
 
   //---------atmosphere----------//
   set("atm-p",
@@ -76,7 +77,7 @@ async function loadDashboard() {
     `Pressure Gap: ${decFmt(atm.pressure_gap_kpa, 3)} kPa<br>` +
     `Gas Added: ${decFmt(atm.buffer_gas_added_kpa, 3)} kPa<br>` +
     `Gas Vented: ${decFmt(atm.buffer_gas_vented_kpa, 3)} kPa<br>` +
-    `<br>` +   
+    `<br>` +
 
     `O₂ Stored: ${decFmt(atm.o2_stored_kg)} kg<br>` +
     `CO₂ Stored: ${decFmt(atm.co2_stored_kg)} kg<br>` +
@@ -84,19 +85,26 @@ async function loadDashboard() {
     `Ar Stored: ${decFmt(atm.ar_stored_kg)} kg<br>` +
     `H₂ Stored: ${decFmt(atm.h2_stored_kg, 3)} kg<br>` +
     `CH₄ Stored: ${decFmt(atm.ch4_stored_kg)} kg<br>` +
-    `<br>` +   
+    `<br>` +
 
     `Amine Beds: ${atm.amine_beds_online ?? 0}<br>` +
+    `Bed Switch: ${atm.bed_switch_this_step ? "YES" : "no"}<br>` +
     `CO₂ Scrubbed: ${decFmt(atm.co2_scrubbed_kpa, 4)} kPa<br>` +
-    `<br>` +   
+    `CO₂ Scrubbed: ${decFmt(atm.co2_scrubbed_kg, 4)} kg<br>`
+  );
 
+
+  //----------OGA-----------//
+ set("oga-p",
     `OGA Mode: ${atm.oga_mode ?? "-"}<br>` +
     `O₂ Added: ${decFmt(atm.o2_added_kpa, 4)} kPa<br>` +
+    `O₂ Vented:      ${decFmt(oga.o2_vented_kg, 4)} kg<br>` +
     `H₂ Added: ${decFmt(atm.h2_produced_kg, 4)} kg<br>` +
     `OGA Water Used: ${decFmt(atm.oga_water_used_kg, 3)} kg<br>` +
     `Water Limited: ${atm.oga_limited_by_water ? "YES" : "no"}`
-  );
+ );
 
+ 
   //----------sabatier-----------//
 set("sab-p",
   `Mode: ${sab.sabatier_mode ?? "-"}<br>` +
@@ -111,6 +119,7 @@ set("sab-p",
   `Water Produced: ${decFmt(sab.sabatier_water_produced_kg, 4)} kg`
   );
 
+  
   //------------water------------//
 set("water-p",
   `Humidity: ${decFmt(water.humidity_pct, 1)} %<br>` +
