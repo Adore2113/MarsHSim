@@ -206,27 +206,20 @@ def print_power(state, outputs):
     print(f"{'Low Sun Streak:':<{lw}} {state.low_sunlight_streak_sols} sols")
     print(f"{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'off'}")
 
-    #-------------stored------------♡
-    print(f"{'Battery Stored:':<{lw}} {state.battery_stored_kwh:.2f} kWh")
-    
-    #----------powered on-----------♡
-    print(f"\n{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'OFF'}")
-    print(f"{'GH Mode:':<{lw}} {outputs.get('greenhouse_mode', 'offline')}")
-
     #-----------power used----------♡
     print(f"\n{'Total Power Used:':<{lw}} {outputs.get('total_power_used_kw', 0):.2f} kW")
+    print(f"{'OGA:':<{lw}} {outputs.get('oga_power_used_kw', 0):.2f} kW")
+    print(f"{'Sabatier:':<{lw}} {outputs.get('sabatier_power_used_kw', 0):.2f} kW")
+    print(f"{'CO₂ Scrubber:':<{lw}} {outputs.get('amine_bed_power_used_kw', 0):.2f} kW")
+    print(f"{'Lights:':<{lw}} {outputs.get('light_power_used_kw', 0):.2f} kW")
+    print(f"{'CHX:':<{lw}} {outputs.get('chx_power_used_kw', 0):.2f} kW")
+    print(f"{'Greenhouse:':<{lw}} {outputs.get('greenhouse_led_power_kw', 0):.2f} kW")
+    print(f"{'Radiators:':<{lw}} {outputs.get('radiator_power_kw', 0):.2f} kW")
+    print(f"{'Heaters:':<{lw}} {outputs.get('heater_power_kw', 0):.2f} kW")
+    print(f"{'ISRU Water:':<{lw}} {outputs.get('isru_water_power_used_kw', 0):.2f} kW")
+    print(f"{'ISRU Atmosphere:':<{lw}} {outputs.get('isru_atm_power_used_kw', 0):.2f} kW")
 
-    print(f"{'GH Power:':<{lw}} {outputs.get('greenhouse_led_power_kw', 0):.2f} kW")
-    print(f"{'Sabatier Power:':<{lw}} {outputs.get('sabatier_power_used_kw', 0):.2f} kW")
-    print(f"{'Scrubber Power:':<{lw}} {outputs.get('amine_bed_power_used_kw', 0):.2f} kW")
-    print(f"{'Lights Power:':<{lw}} {outputs.get('light_power_used_kw', 0):.2f} kW")
-    print(f"{'CHX Power:':<{lw}} {outputs.get('chx_power_used_kw', 0):.2f} kW")
-    print(f"{'Radiator Power:':<{lw}} {outputs.get('radiator_power_kw', 0):.2f} kW")
-    print(f"{'Heater Power:':<{lw}} {outputs.get('heater_power_kw', 0):.2f} kW")
-    print(f"{'ISRU Water Power:':<{lw}} {outputs.get('isru_water_power_used_kw', 0):.2f} kW")
-    print(f"{'ISRU ATM Power:':<{lw}} {outputs.get('isru_atm_power_used_kw', 0):.2f} kW")
-
-    print(f"{'Total Energy Used:':<{lw}} {outputs.get('total_energy_used_kwh', 0):.2f} kWh")
+    print(f"\n{'Total Energy Used:':<{lw}} {outputs.get('total_energy_used_kwh', 0):.3f} kWh")
 #----------------------------------------------------♡
 
 #----------------------thermal-----------------------♡
