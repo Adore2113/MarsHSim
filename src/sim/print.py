@@ -225,9 +225,7 @@ def print_power(state, outputs):
 
 #----------------------thermal-----------------------♡
 def print_thermal(state, outputs):
-    temp_change_per_hour = outputs.get("temp_change_c", 0) * 12
-
-    print_section_header(f"THERMAL MODE: {outputs['hab_temp_mode']}")
+    print_section_header("THERMAL")
     
     print(f"{'Mode:':<{lw}} {outputs.get('hab_temp_mode', '—')}")
     print(f"{'Hab Temp:':<{lw}} {state.hab_temp_c:.2f} °C")
@@ -235,7 +233,8 @@ def print_thermal(state, outputs):
     print(f"{'Temp Trend:':<{lw}} {outputs.get('temp_change_c', 0) * 12:.3f} °C/hr")
     print(f"{'Heat Loss:':<{lw}} {outputs.get('heat_loss_kw', 0):.2f} kW")
     print(f"{'Net Heat:':<{lw}} {outputs.get('net_heat_kw', 0):.2f} kW")
-    
+
+    #-----------heating-------------♡
     print(f"\n{'Heaters Online:':<{lw}} {outputs.get('heaters_online_count', 0)} / 6")
     print(f"{'Heater Heat:':<{lw}} {outputs.get('heater_heat_kw', 0):.2f} kW")
 
