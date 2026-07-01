@@ -112,7 +112,7 @@ set("sab-p",
   `CH₄ Added: ${decFmt(sab.ch4_added_kg, 4)} kg<br>` +
   `CH₄ Vented: ${decFmt(sab.ch4_vented_kg, 4)} kg<br>` +
   `Water Produced: ${decFmt(sab.sabatier_water_produced_kg, 4)} kg`
-);
+  );
 
   //------------water------------//
 set("water-p",
@@ -145,15 +145,26 @@ set("water-p",
   `Condensate Stored: ${decFmt(water.condensate_kg, 3)} kg<br>` +
   `Brine Stored: ${decFmt(water.brine_kg, 3)} kg<br>` +
   `Raw Water Stored: ${decFmt(water.raw_water_kg, 2)} kg`
-
-);
+  );
   //------------power------------//
+set("power-p",
+
+  );
 
   //----------thermal------------//
+set("thermal-p",
+
+  );
 
   //------------isru-------------//
+set("isru-p",
+
+  );
 
   //---------greenhouse----------//
+set("gh-p",
+
+  );
 
 }
 
