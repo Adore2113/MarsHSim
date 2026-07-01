@@ -199,7 +199,18 @@ set("thermal-p",
   `Heat Loss: ${decFmt(thermal.heat_loss_kw)} kW<br>` +
   `Net Heat: ${decFmt(thermal.net_heat_kw)} kW<br>` +
   `<br>` + 
-   
+
+  `Heaters Online: ${thermal.heaters_online ?? 0}<br>` +
+  `Heater Heat: ${decFmt(thermal.heater_heat_kw)} kW<br>` +
+  `OGA Heat: ${decFmt(thermal.oga_heat_kw)} kW<br>` +
+  `Sabatier Heat: ${decFmt(thermal.sabatier_heat_kw)} kW<br>` +
+  `Amine Bed Heat: ${decFmt(thermal.amine_bed_heat_kw)} kW<br>` +
+  `Light Heat: ${decFmt(thermal.light_heat_kw)} kW<br>` +
+  `CHX Heat: ${decFmt(thermal.chx_heat_kw)} kW<br>` +
+  `GH Heat: ${decFmt(thermal.gh_heat_kw, 3)} kW<br>` +
+  `ISRU Water Heat: ${decFmt(thermal.isru_water_heat_kw)} kW<br>` +
+  `ISRU ATM Heat: ${decFmt(thermal.isru_atm_heat_kw)} kW<br>` +
+
 );
 
   //------------isru-------------//
