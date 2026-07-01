@@ -95,7 +95,7 @@ def run_isru_water(state, dt_min):
     hours_per_step = dt_min / 60.0
 
     #--------------default isru values--------------♡
-    isru_mode = "offline"
+    isru_water_mode = "offline"
     water_added_kg = 0.0
     power_used_kw = 0.0
     heat_added_kw = 0.0
@@ -106,8 +106,8 @@ def run_isru_water(state, dt_min):
     pipes_deploying = sum(1 for p in new_pipes if p["status"] == "deploying")
     pipes_retracting = sum(1 for p in new_pipes if p["status"] == "retracting")
 
-    if not state.isru_on:
-        isru_mode = "offline"
+    if not state.isru_water_on:
+        isru_water_mode = "offline"
         for pipe in new_pipes:
             if pipe["status"] in ("deploying", "extracting"):
                 pipe["status"] = "retracting"
@@ -115,11 +115,11 @@ def run_isru_water(state, dt_min):
 
     else:
         if pipes_extracting == 0 and pipes_deploying == 0:
-            isru_mode = "idle"
+            isru_water_mode = "idle"
 
     #------------------isru running-----------------♡  
         else:
-            isru_mode = "running"
+            isru_water_mode = "running"
         
         if pipes_extracting > 0:
             active_extracting = [pipe for pipe in new_pipes if pipe["status"] == "extracting"]
@@ -144,12 +144,12 @@ def run_isru_water(state, dt_min):
     
     #-----------dict for printing outputs------------♡ 
     isru_water_outputs = {
-        "isru_mode": isru_mode,
+        "isru_water_mode": isru_water_mode,
         "isru_raw_water_added_kg": water_added_kg,
-        "isru_power_used_kw": power_used_kw,
-        "isru_energy_used_kwh": power_used_kw * hours_per_step,
-        "isru_heat_added_kw": heat_added_kw,
-        "isru_heat_added_kwh": heat_added_kw * hours_per_step,
+        "isru_water_power_used_kw": power_used_kw,
+        "isru_water_energy_used_kwh": power_used_kw * hours_per_step,
+        "isru_water_heat_added_kw": heat_added_kw,
+        "isru_water_heat_added_kwh": heat_added_kw * hours_per_step,
         "pipes_extracting": pipes_extracting,
         "pipes_deploying": pipes_deploying,
         "pipes_retracting": pipes_retracting,
