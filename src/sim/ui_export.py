@@ -48,23 +48,29 @@ def write_dashboard_json(state, outputs, alerts):
             "ch4_stored_kg": state.ch4_stored_kg,
 
             "amine_beds_online": op.get("beds_online_count", 0),
+            "bed_switch_this_step": op.get("bed_switch_this_step", False),
             "co2_scrubbed_kpa": op.get("co2_removed_kpa", 0),
-            
+            "co2_scrubbed_kg": op.get("co2_removed_kg", 0),
+        },
+
+    #--------------OGA-------------♡
+        "oga" : {
             "oga_mode": op.get("oga_mode", "offline"),
             "o2_added_kpa": op.get("o2_added_kpa", 0),
+            "o2_vented_kg": op.get("o2_vented_kg", 0),
             "h2_added_kg": op.get("h2_produced_kg", 0),
-            "oga_water_used_kg": op.get("water_used_kg", 0),
             "oga_limited_by_water": op.get("oga_limited_by_water", False),
-
+            "oga_water_used_kg": op.get("water_used_kg", 0),
         },
+        
     #-----------sabatier-----------♡
         "sabatier": {
             "sabatier_mode": op.get("sabatier_mode", "offline"),
-           # "sabatier_co2_consumed_kpa": op.get("sabatier_co2_consumed_kpa", 0),
             "sabatier_co2_consumed_kg": op.get("sabatier_co2_consumed_kg", 0),
             "ch4_added_kg": op.get("sabatier_ch4_produced_kg", 0),
             "ch4_vented_kg": op.get("sabatier_ch4_vented_kg", 0),
             "h2_used_kg": op.get("sabatier_h2_consumed_kg", 0),
+            "sabatier_water_added_kg": op.get("sabatier_water_produced_kg", 0),
             "sabatier_water_produced_kg": op.get("sabatier_water_produced_kg", 0),
         },
 
@@ -80,11 +86,7 @@ def write_dashboard_json(state, outputs, alerts):
             "bpa_processed_kg": op.get("bpa_water_processed_kg", 0),
 
             "potable_used_kg": op.get("potable_water_used_kg", 0),
-            "oga_water_used_kg": op.get("oga_water_used_kg", 0),
            
-            "sabatier_water_added_kg": op.get("sabatier_water_produced_kg", 0),
-            "raw_water_added_kg": op.get("isru_raw_water_added_kg", 0),
-
             "total_recovered_kg": op.get("total_recovered_water_kg", 0),
             "upa_recovered_kg": op.get("upa_recovered_water_kg", 0),
             "wpa_recovered_kg": op.get("wpa_recovered_water_kg", 0),
@@ -106,24 +108,27 @@ def write_dashboard_json(state, outputs, alerts):
     #------------power-------------♡
         "power": {
             "net_energy_kwh": op.get("net_energy_kwh", 0),
-            "peak_sun_today": state.peak_sunlight_today,
-            "sunlight_per_m2_kw": state.daylight_m2_kw,
-            "low_sun_streak_sols": state.low_sunlight_streak_sols,
+            "battery_stored_kwh": state.battery_stored_kwh,
+
             "solar_arrays_online": op.get("solar_arrays_online_count", 0),
             "solar_generated_kw": op.get("total_solar_generated_kw", 0),
-            "battery_stored_kwh": state.battery_stored_kwh,
+            "sunlight_per_m2_kw": state.daylight_m2_kw,
+            "peak_sun_today": state.peak_sunlight_today,
+            "low_sun_streak_sols": state.low_sunlight_streak_sols,
             "wellness_lights": state.wellness_lights_on,
 
             "total_power_used_kw": op.get("total_power_used_kw", 0),
             "oga_power_kw": op.get("oga_power_used_kw", 0),
+            "sabatier_power_kw": op.get("sabatier_power_used_kw", 0),
+
             "scrubber_power_kw": op.get("amine_bed_power_used_kw", 0),
             "lights_power_kw": op.get("light_power_used_kw", 0),
             "chx_power_kw": op.get("chx_power_used_kw", 0),
-            "sabatier_power_kw": op.get("sabatier_power_used_kw", 0),
             "gh_power_kw": op.get("greenhouse_led_power_kw", 0),
             "radiator_power_kw": op.get("radiator_power_kw", 0),
             "heater_power_kw": op.get("heater_power_kw", 0),
-            "isru_power_kw": op.get("isru_power_used_kw", 0),
+            "isru_water_power_kw": op.get("isru_water_power_used_kw", 0),
+            "isru_atm_power_kw": op.get("isru_atm_power_used_kw", 0),
             "total_energy_used_kwh": op.get("total_energy_used_kwh", 0),
         },
 
@@ -140,7 +145,7 @@ def write_dashboard_json(state, outputs, alerts):
             "heaters_online": op.get("heaters_online_count", 0),
             "heater_heat_kw": op.get("heater_heat_kw", 0),
             
-            "isru_heat_kw": op.get("isru_heat_added_kw", 0),
+            "isru_water_heat_kw": op.get("isru_water_heat_added_kw", 0),
             "isru_atm_heat_kw": op.get("isru_atm_heat_added_kw", 0),
             "amine_bed_heat_kw": op.get("amine_bed_heat_added_kw", 0),
             "light_heat_kw": op.get("light_heat_kw", 0),
@@ -153,25 +158,31 @@ def write_dashboard_json(state, outputs, alerts):
             "radiator_cooling_kw": op.get("radiator_heat_rejection_kw", 0),
         },
 
-    #-------------isru-------------♡
-        "isru": {
-            "isru_atm_mode": op.get("isru_atm_mode", "offline"),
-            "compressors": op.get("compressors_extracting", 0),
-            "sorbent_beds_adsorbing": op.get("sorbent_beds_adsorbing", 0),
-            "sorbent_beds_regen": op.get("sorbent_beds_regenerating", 0),
-            "sorbent_beds_standby": op.get("sorbent_beds_standby", 0),
-
-            "n2_added_kg": op.get("isru_n2_added_kg", 0),
-            "ar_added_kg": op.get("isru_ar_added_kg", 0),
-            "co2_absorbed_kg": op.get("sorbent_co2_absorbed_kg", 0),
-            "co2_released_kg": op.get("sorbent_co2_released_kg", 0),
-            "co2_bypassed_kg": op.get("sorbent_co2_bypassed_kg", 0),
-        
+    #----------isru water----------♡
+        "isru_water": {
             "isru_water_mode": op.get("isru_water_mode", "offline"),
             "pipes_extracting": op.get("pipes_extracting", 0),
             "pipes_deploying": op.get("pipes_deploying", 0),
             "pipes_retracting": op.get("pipes_retracting", 0),
             "raw_water_added_kg": op.get("isru_raw_water_added_kg", 0),        
+        },
+
+    #-----------isru atm-----------♡
+      "isru_atm": {
+        "isru_atm_mode": op.get("isru_atm_mode", "offline"),
+        "compressors": op.get("compressors_extracting", 0),
+
+        "sorbent_beds_adsorbing": op.get("sorbent_beds_adsorbing", 0),
+        "sorbent_beds_regen": op.get("sorbent_beds_regenerating", 0),
+        "sorbent_beds_standby": op.get("sorbent_beds_standby", 0),
+
+        "n2_added_kg": op.get("isru_atm_n2_added_kg", 0),
+        "ar_added_kg": op.get("isru_atm_ar_added_kg", 0),
+        "co2_added_kg": op.get("isru_atm_co2_added_kg", 0),
+
+        "co2_absorbed_kg": op.get("sorbent_co2_absorbed_kg", 0),
+        "co2_released_kg": op.get("sorbent_co2_released_kg", 0),
+        "co2_bypassed_kg": op.get("sorbent_co2_bypassed_kg", 0),
         },
 
     #----------greenhouse----------♡
