@@ -116,12 +116,17 @@ set("sab-p",
 
   //------------water------------//
 set("water-p",
-  `Humidity: ${decFmt(water.humidity_pct, 1)} %<br>` +
+  `Humidity: ${pct(water.humidity_pct, 1)} %<br>` +
   `Vapor Added: ${decFmt(water.vapor_added_kg, 3)} kg<br>` +
   `Vapor Removed: ${decFmt(water.vapor_removed_kg, 3)} kg<br>` +
+  `Potable Used: ${decFmt(water.potable_used_kg, 2)} kg<br>` +
   `<br>` +
 
-);
+  `UPA Processed: ${decFmt(water.upa_black_removed_kg, 3)} kg<br>` +
+  `WPA Processed: ${decFmt(water.wpa_processed_kg, 3)} kg<br>` +
+  `BPA Processed: ${decFmt(water.bpa_processed_kg, 3)} kg<br>` +
+  `<br>` +
+
   //------------power------------//
 
   //----------thermal------------//
