@@ -151,9 +151,19 @@ def print_water(state, outputs):
     print_section_header("WATER")
 
     #---------humidity / CHX--------♡
-    print(f"{'Vapor Added:':<{lw}} {outputs.get('vapor_added_kg', 0):.3f} kg")
+    print(f"{'Vapor Added:':<{lw}} {outputs.get('vapor_added_kg', 0):.2f} kg")
     print(f"{'Humidity:':<{lw}} {outputs.get('new_humidity_pct', state.current_humidity_pct):.2f} %")
-    print(f"{'Vapor Removed:':<{lw}} {outputs.get('vapor_removed_kg', 0):.2f} kg")
+    print(f"{'Vapor Removed:':<{lw}} {outputs.get('vapor_removed_kg', 0):.3f} kg")
+
+    #----------processing-----------♡
+    print(f"\n{'UPA Processed:':<{lw}} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
+    print(f"{'WPA Processed:':<{lw}} {outputs.get('wpa_water_processed_kg', 0):.2f} kg")
+    print(f"{'BPA Processed:':<{lw}} {outputs.get('bpa_water_processed_kg', 0):.2f} kg")
+
+
+    #----------water used-----------♡
+    print(f"\n{'Potable Used:':<{lw}} {outputs.get('potable_water_used_kg', 0):.2f} kg")
+
 
     #----------greenhouse-----------♡
     print(f"{'GH Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
@@ -161,13 +171,6 @@ def print_water(state, outputs):
     print(f"{'GH Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.2f} kg")
     print(f"{'GH Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
 
-    #----------processing-----------♡
-    print(f"\n{'UPA Black Removed:':<{lw}} {outputs.get('upa_black_water_removed_kg', 0):.2f} kg")
-    print(f"{'WPA Processed:':<{lw}} {outputs.get('wpa_water_processed_kg', 0):.2f} kg")
-    print(f"{'BPA Processed:':<{lw}} {outputs.get('bpa_water_processed_kg', 0):.2f} kg")
-
-    #----------water used-----------♡
-    print(f"{'Potable Used:':<{lw}} {outputs.get('potable_water_used_kg', 0):.2f} kg")
 
     #--------water recovered--------♡
     print(f"\n{'Total Recovered:':<{lw}} {outputs.get('total_recovered_water_kg', 0):.2f} kg")
