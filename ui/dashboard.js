@@ -59,6 +59,7 @@ async function loadDashboard() {
 
   set("status-p",
     `Status: ${ss.status}<br>` +
+    `Alerts:<br>${alerts}<br>` +
     `Sol ${ss.sol} | ${ss.lmst} LMST<br>` +
     `Habitat Temp: ${decFmt(ss.habitat_temp_c, 1)} °C<br>` +
     `Mars Temp: ${decFmt(ss.mars_temp_c, 1)} °C`
