@@ -148,6 +148,9 @@ set("water-p",
   );
   //------------power------------//
 set("power-p",
+  `Net Energy: ${sign(power.net_energy_kwh)} $ {decFmt(power.net_energy_kwh)}<br>` +
+  `Battery Stored: ${decFmt(power.battery_stored_kwh, 0)} kWh`
+  `<br>` +
 
   );
 
