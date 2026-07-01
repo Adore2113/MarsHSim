@@ -202,6 +202,7 @@ set("thermal-p",
 
   `Heaters Online: ${thermal.heaters_online ?? 0}<br>` +
   `Heater Heat: ${decFmt(thermal.heater_heat_kw)} kW<br>` +
+  
   `OGA Heat: ${decFmt(thermal.oga_heat_kw)} kW<br>` +
   `Sabatier Heat: ${decFmt(thermal.sabatier_heat_kw)} kW<br>` +
   `Amine Bed Heat: ${decFmt(thermal.amine_bed_heat_kw)} kW<br>` +
@@ -210,7 +211,10 @@ set("thermal-p",
   `GH Heat: ${decFmt(thermal.gh_heat_kw, 3)} kW<br>` +
   `ISRU Water Heat: ${decFmt(thermal.isru_water_heat_kw)} kW<br>` +
   `ISRU ATM Heat: ${decFmt(thermal.isru_atm_heat_kw)} kW<br>` +
+  `<br>` + 
 
+  `Radiators: ${thermal.radiators_online ?? 0} / 7<br>` +
+  `Radiator Cooling: ${decFmt(thermal.radiator_cooling_kw)} kW`
 );
 
   //------------isru-------------//
