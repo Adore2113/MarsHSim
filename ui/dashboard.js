@@ -46,7 +46,7 @@ async function loadDashboard() {
   const power = data.power;
   const thermal = data.thermal;
   const isru_w = data.isru_water;
-  const isru_a = data.isru_arm;
+  const isru_a = data.isru_atm;
   const gh = data.greenhouse;
 //---------------------------------------------------♡
 
@@ -98,12 +98,12 @@ async function loadDashboard() {
 
   //----------OGA-----------//
  set("oga-p",
-    `OGA Mode: ${atm.oga_mode ?? "-"}<br>` +
-    `O₂ Added: ${decFmt(atm.o2_added_kpa, 4)} kPa<br>` +
-    `O₂ Vented:      ${decFmt(oga.o2_vented_kg, 4)} kg<br>` +
-    `H₂ Added: ${decFmt(atm.h2_produced_kg, 4)} kg<br>` +
-    `OGA Water Used: ${decFmt(atm.oga_water_used_kg, 3)} kg<br>` +
-    `Water Limited: ${atm.oga_limited_by_water ? "YES" : "no"}`
+    `OGA Mode: ${oga.oga_mode ?? "-"}<br>` +
+    `O₂ Added: ${decFmt(oga.o2_added_kpa, 4)} kPa<br>` +
+    `O₂ Vented: ${decFmt(oga.o2_vented_kg, 4)} kg<br>` +
+    `H₂ Added: ${decFmt(oga.h2_added_kg, 4)} kg<br>` +
+    `OGA Water Used: ${decFmt(oga.oga_water_used_kg, 3)} kg<br>` +
+    `Water Limited: ${oga.oga_limited_by_water ? "YES" : "no"}`
  );
 
  
@@ -161,7 +161,7 @@ set("water-p",
 
   //------------power------------//
 set("power-p",
-  `Net Energy: ${posNeg(power.net_energy_kwh)} ${decFmt(power.net_energy_kwh)} kWh<br>` +
+  `Net Energy: ${posNeg(power.net_energy_kwh)}${decFmt(power.net_energy_kwh)} kWh<br>` +
   `Battery: ${decFmt(power.battery_stored_kwh, 0)} kWh (${pct(power.battery_stored_kwh, power.battery_capacity_kwh)})<br>` +
 
   `Solar Arrays: ${power.solar_arrays_online ?? "-"} / 10<br>` +
@@ -255,3 +255,4 @@ set("gh-p",
 }
 
 loadDashboard();
+setInterval(loadDashboard, update_sec);
