@@ -160,7 +160,20 @@ set("power-p",
   `Wellness Lights: ${power.wellness_lights ? "ON" : "off"}br>` +
   `<br>` +
 
-  );
+  `Total Power Used: ${decFmt(power.total_power_used_kw)} kW<br>` +
+  `OGA: ${decFmt(power.oga_power_kw)} kW<br>` +
+  `Sabatier: ${decFmt(power.sabatier_power_kw)} kW<br>`
+  `CO₂ Scrubber: ${decFmt(power.scrubber_power_kw)} kW<br>`
+  `Lights: ${decFmt(power.lights_power_kw)} kW<br>`
+  
+  `CHX: ${decFmt(power.chx_power_kw)} kW<br>`
+  `Radiators: ${decFmt(power.radiator_power_kw)} kW<br>`
+  `Heaters: ${decFmt(power.heater_power_kw)} kW<br>`
+  `Greenhouse: ${decFmt(power.gh_power_kw)} kW<br>`
+  
+  `ISRU water: ${decFmt(power.isru_power_kw)} kW<br>`
+  `IRSU atmosphere: ${decFmt(power.isru_atm_power_kw)} kW<br>`
+);
 
   //----------thermal------------//
 set("thermal-p",
