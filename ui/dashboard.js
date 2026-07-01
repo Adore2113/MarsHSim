@@ -139,6 +139,13 @@ set("water-p",
   `Raw Water Added: ${decFmt(water.raw_water_added_kg, 3)} kg<br>` +
   `<br>` +
 
+  `Potable Stored: ${decFmt(water.potable_water_kg, 2)} kg<br>` +
+  `Gray Stored: ${decFmt(water.gray_water_kg, 2)} kg<br>` +
+  `Black Stored: ${decFmt(water.black_water_kg, 2)} kg<br>` +
+  `Condensate Stored: ${decFmt(water.condensate_kg, 3)} kg<br>` +
+  `Brine Stored: ${decFmt(water.brine_kg, 3)} kg<br>` +
+  `Raw Water Stored: ${decFmt(water.raw_water_kg, 2)} kg`
+
 );
   //------------power------------//
 
