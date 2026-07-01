@@ -1,15 +1,16 @@
 const update_sec = 3000;    // update panels every 3 seconds
 
+//----------------------helpers----------------------♡
 function decFmt(val, decimals = 2) {
   return typeof val === "number" ? val.toFixed(decimals) : "-";
 } 
 
 function posNeg(val) {
-  return val >= 0 ? "+" : "";
+  return typeof val === "number" && val >= 0 ? "+" : "";
 }
 
 function pct(val, total) {
-  if (total == null || total === 0) return "-";
+  if (!total) return "-";
   return ((val / total) * 100).toFixed(0) + "%";
 }
 
@@ -21,11 +22,8 @@ function set(id, html) {
 function setClass(id, cls) {
   const elId = document.getElementById(id);
   if (!elId) return;
-  
   elId.classList.remove("nominal", "warning", "critical");
-
-  if (cls) {
-    elId.classList.add(cls);
+  if (cls) elId.classList.add(cls);
   }
 }
 
@@ -115,7 +113,7 @@ set("sab-p",
 
   //------------water------------//
 set("water-p",
-  `Humidity: ${pct(water.humidity_pct, 1)} %<br>` +
+  `Humidity: ${decFmt(water.humidity_pct, 1)} %<br>` +
   `Vapor Added: ${decFmt(water.vapor_added_kg, 3)} kg<br>` +
   `Vapor Removed: ${decFmt(water.vapor_removed_kg, 3)} kg<br>` +
   `Potable Used: ${decFmt(water.potable_used_kg, 2)} kg<br>` +
@@ -148,7 +146,7 @@ set("water-p",
   //------------power------------//
 set("power-p",
   `Net Energy: ${posNeg(power.net_energy_kwh)} $ {decFmt(power.net_energy_kwh)}<br>` +
-  `Battery Stored: ${decFmt(power.battery_stored_kwh, 0)} kWh`
+  `Battery Stored: ${decFmt(power.battery_stored_kwh, 0)} kWh` +
   `<br>` +
 
   `Solar Arrays: ${power.solar_arrays_online ??"-"} / 10<br>` +
@@ -161,16 +159,16 @@ set("power-p",
 
   `Total Power Used: ${decFmt(power.total_power_used_kw)} kW<br>` +
   `OGA: ${decFmt(power.oga_power_kw)} kW<br>` +
-  `Sabatier: ${decFmt(power.sabatier_power_kw)} kW<br>`
-  `CO₂ Scrubber: ${decFmt(power.scrubber_power_kw)} kW<br>`
-  `Lights: ${decFmt(power.lights_power_kw)} kW<br>`
+  `Sabatier: ${decFmt(power.sabatier_power_kw)} kW<br>` +
+  `CO₂ Scrubber: ${decFmt(power.scrubber_power_kw)} kW<br>` +
+  `Lights: ${decFmt(power.lights_power_kw)} kW<br>` +
   
-  `CHX: ${decFmt(power.chx_power_kw)} kW<br>`
-  `Radiators: ${decFmt(power.radiator_power_kw)} kW<br>`
-  `Heaters: ${decFmt(power.heater_power_kw)} kW<br>`
-  `Greenhouse: ${decFmt(power.gh_power_kw)} kW<br>`
+  `CHX: ${decFmt(power.chx_power_kw)} kW<br>` +
+  `Radiators: ${decFmt(power.radiator_power_kw)} kW<br>` +
+  `Heaters: ${decFmt(power.heater_power_kw)} kW<br>` +
+  `Greenhouse: ${decFmt(power.gh_power_kw)} kW<br>` +
   
-  `ISRU water: ${decFmt(power.isru_power_kw)} kW<br>`
+  `ISRU water: ${decFmt(power.isru_power_kw)} kW<br>` +
   `IRSU atmosphere: ${decFmt(power.isru_atm_power_kw)} kW<br>`
 );
 
