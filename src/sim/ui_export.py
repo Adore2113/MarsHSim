@@ -60,7 +60,7 @@ def write_dashboard_json(state, outputs, alerts):
             "o2_vented_kg": op.get("o2_vented_kg", 0),
             "h2_added_kg": op.get("h2_produced_kg", 0),
             "oga_limited_by_water": op.get("oga_limited_by_water", False),
-            "oga_water_used_kg": op.get("water_used_kg", 0),
+            "oga_water_used_kg": op.get("oga_water_used_kg", 0),
         },
         
     #-----------sabatier-----------♡
@@ -71,7 +71,6 @@ def write_dashboard_json(state, outputs, alerts):
             "ch4_vented_kg": op.get("sabatier_ch4_vented_kg", 0),
             "h2_used_kg": op.get("sabatier_h2_consumed_kg", 0),
             "sabatier_water_added_kg": op.get("sabatier_water_produced_kg", 0),
-            "sabatier_water_produced_kg": op.get("sabatier_water_produced_kg", 0),
         },
 
     #------------water-------------♡
