@@ -45,7 +45,7 @@ def print_sim(state, outputs, alerts):
     print_thermal(state, outputs)
     print_isru_water(outputs)
     print_isru_atm(outputs)
-    greenhouse(outputs)
+    print_greenhouse(outputs)
     print (split)
 #----------------------------------------------------♡
 
@@ -66,7 +66,7 @@ def print_system_stats(alerts, state, outputs):
     
     print(f"\n{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
     print(f"{'Habitat Temp:':<{lw}} {state.hab_temp_c:.3f} °C")
-    print(f"{'Mars Temp:':<{lw}} {outputs['mars_temp_c']:.2f} °C")
+    print(f"{'Mars Temp:':<{lw}} {outputs.get('mars_temp_c', state.mars_temp_c):.2f} °C")
 
 #----------------------------------------------------♡
 
@@ -246,6 +246,8 @@ def print_isru_water(outputs):
 
 #----------------------ISRU atm----------------------♡
 def print_isru_atm(outputs):
+    print_section_header("ISRU ATM")
+    
     print(f"{'Mode:':<{lw}} {outputs.get('isru_atm_mode', 'offline')}")
     print(f"{'Compressors Extracting:':<{lw}} {outputs.get('compressors_extracting', 0)}")
 
@@ -260,10 +262,11 @@ def print_isru_atm(outputs):
     print(f"{'CO₂ Absorbed:':<{lw}} {outputs.get('sorbent_co2_absorbed_kg', 0):.3f} kg")
     print(f"{'CO₂ Released:':<{lw}} {outputs.get('sorbent_co2_released_kg', 0):.3f} kg")
     print(f"{'CO₂ Bypassed:':<{lw}} {outputs.get('sorbent_co2_bypassed_kg', 0):.3f} kg")
+#----------------------------------------------------♡
 
 
-    #----------------------ISRU atm----------------------♡
-def greenhouse(outputs):
+#--------------------greenhouse----------------------♡
+def print_greenhouse(outputs):
     print_section_header("GREENHOUSE")
 
     print(f"{'Mode:':<{lw}} {outputs.get('greenhouse_mode', 'offline')}")
@@ -276,3 +279,4 @@ def greenhouse(outputs):
     print(f"{'Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")
     print(f"{'Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.3f} kg")
     print(f"{'Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
+#----------------------------------------------------♡
