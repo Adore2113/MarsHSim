@@ -155,9 +155,9 @@ set("power-p",
   `Solar Arrays: ${power.solar_arrays_online ??"-"} / 10<br>` +
   `Solar Generated: ${decFmt(power.solar_generated_kw)} kW<br>` +
   `Sunlight per m²: ${decFmt(power.peak_sun_today, 3)} kW<br>` +
-  `Peak Sun Today: ${decFmt(power.peak_sun_today, 3)} kg<br>` +
-  `Low Sun Streak: ${power.low_sun_streak_sols ?? 0} kg<br>` +
-  `Wellness Lights: ${power.wellness_lights ? "ON" : "off"} kg<br>` +
+  `Peak Sun Today: ${decFmt(power.peak_sun_today, 3)} / 1.0<br>` +
+  `Low Sun Streak: ${power.low_sun_streak_sols ?? 0} sols<br>` +
+  `Wellness Lights: ${power.wellness_lights ? "ON" : "off"}br>` +
   `<br>` +
 
   );
