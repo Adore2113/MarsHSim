@@ -54,7 +54,7 @@ async function loadDashboard() {
   //-----------status------------//
   const alerts = ss.alerts.length > 0
   
-    ? ss.alerts.join("<br>")
+    ? ss.alerts.join(",")
     : "No alerts";
 
   set("status-p",
@@ -163,7 +163,8 @@ set("water-p",
 set("power-p",
   `Net Energy: ${posNeg(power.net_energy_kwh)}${decFmt(power.net_energy_kwh)} kWh<br>` +
   `Battery: ${decFmt(power.battery_stored_kwh, 0)} kWh (${pct(power.battery_stored_kwh, power.battery_capacity_kwh)})<br>` +
-
+  `<br>` +
+  
   `Solar Arrays: ${power.solar_arrays_online ?? "-"} / 10<br>` +
   `Solar Generated: ${decFmt(power.solar_generated_kw)} kW<br>` +
   `Sunlight per m²: ${decFmt(power.sunlight_per_m2_kw, 3)} kW<br>` +
