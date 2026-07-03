@@ -178,7 +178,39 @@ body {
 }
 
 /*-------------OGA-------------*/
+#oga-box {
+    top: 66%;
+    left: 80.2%;
+    width: 16.8%;
+    height: 24%;
 
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    /* background: rgba(252, 255, 49, 0.2); */
+}
+
+#oga-p {
+    /*background: rgba(0, 255, 0, 0.2);*/
+    box-sizing: border-box;
+    width: 100%;
+
+    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
+    padding: 0;
+
+    display: block;
+    text-align: left;
+
+    color: white;
+
+    font-family: "Share Tech Mono", monospace;
+    font-size: clamp(8px, 1cqw, 10px);
+    line-height: 1.25;
+
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+}
 
 /*----------sabatier-----------*/
 
