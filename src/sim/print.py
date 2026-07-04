@@ -174,7 +174,7 @@ def print_power(state, outputs):
     print_section_header("POWER")
     print(f"{'Net Energy:':<{lw}} {outputs.get('net_energy_kwh', 0):.2f} kWh")
     print(f"{'Battery Stored:':<{lw}} {state.battery_stored_kwh:.2f} kWh")
-    print(f"{'Battery Capacity:':<{lw}} {state.battery_capacity_kwh:.0f} kWh")
+    print(f"{'Battery Capacity:':<{lw}} {state.battery_max_capacity_kwh:.0f} kWh")
 
     #-------------solar-------------♡
     print(f"\n{'Solar Arrays:':<{lw}} {outputs.get('solar_arrays_online_count', 0)} / 10")
