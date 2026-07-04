@@ -26,6 +26,15 @@ The system updates continuously using a timestep based simulation, modeling how 
 My goal is to build something that feels real, structured, autonomous and potentially slightly interactive on a UI I designed
 
 
+## Dashboard
+
+MarsHSim includes an early browser based monitoring dashboard.
+
+The current dashboard is a visual prototype designed to display the simulator's state in a more immersive way than the terminal output. It reads simulation data exported to JSON and shows all the important habitat systems and information.
+
+The interface is still under active development. My current focus is on refining the layout, improving responsiveness, expanding subsystem displays, and eventually adding interactive monitoring and controls.
+
+
 ## Systems:
 
 #### Atmospheric gases:
