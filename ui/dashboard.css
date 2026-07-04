@@ -41,6 +41,8 @@ body {
 /*-----------panels------------*/
 .panel {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     padding: clamp(2px, 0.4cqw, 4px);
     border-radius: 6px;
     
@@ -75,6 +77,7 @@ body {
 
 
 .panel h2 {
+    flex-shrink: 0;
     color: white;
     font-family: "Orbitron", sans-serif;
     font-size: clamp(7px, 1.15cqw, 14px);
@@ -100,6 +103,11 @@ body {
     margin: 0;
 }
 
+.panel-content {
+    overflow-y: auto;
+    flex: 1;
+    padding: clamp(3px, 0.5cqw, 7px) clamp(4px, 0.6cqw, 8px);
+}
 
 /*---------status box----------*/
 #status-box {
@@ -248,7 +256,39 @@ body {
 }
 
 /*------------water------------*/
+#water-box {
+    top: 46%;
+    left: 41.5%;
+    width: 16.8%;
+    height: 44%;
 
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    background: rgba(252, 255, 49, 0.2);
+}
+
+#water-p {
+    /*background: rgba(0, 255, 0, 0.2);*/
+    box-sizing: border-box;
+    width: 100%;
+
+    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
+    padding: 0;
+
+    display: block;
+    text-align: left;
+
+    color: white;
+
+    font-family: "Share Tech Mono", monospace;
+    font-size: clamp(8px, 1cqw, 10px);
+    line-height: 1.25;
+
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+}
 
 /*------------power------------*/
 
