@@ -241,4 +241,6 @@ docs/dev_log.md
 
 -Adore2113 ♡
 
+♡♡♡
+
 <img align="right" src="assets/me_for_readme.gif" width="280">
