@@ -191,11 +191,25 @@ This project is in active development.
 
 ## Running the Simulation
 
-Currently running as a terminal based simulation.
+My simulator includes a browser-based dashboard, but can also be run as a terminal based simulation.
 
-Make sure Python is installed, then run:
+### 1. Make sure Python is installed, then run:
     py -m src.sim.run
 
+-this will run the terminal based simulation-
+
+### 2. Run:
+    python -m http.server 8000
+
+### 3. Open dashboard:
+
+open new tab in your browser and got to: Open your browser and navigate to:
+
+    http://localhost:8000/ui/
+
+The dashboard displays the latest simulation output from `ui/data/latest.json`.
+
+-it will refresh every few seconds while the simulation is running soon-
 
 ## Why this project:
 
