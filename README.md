@@ -27,7 +27,6 @@ My goal is to build something that feels real, structured, autonomous and potent
 
 
 ## Systems:
-<img align="right" src="assets/me_for_readme.gif" width="280">
 
 #### Atmospheric gases:
 ♡ oxygen (o2)
@@ -190,6 +189,20 @@ This project is in active development.
 
 ♡ requirements.txt  =  project dependencies
 
+♡ ui /
+
+    - index.html = dashboard page structure
+
+    - dashboard.css = dashboard layout, panel styling, and visual design
+
+    - dashboard.js = loads simulation JSON data and updates dashboard panels
+
+♡ ui / data /
+
+    - latest.json = most recent simulation state for the dashboard
+
+    - history.json = saved simulation history over time
+
 ## Running the Simulation
 
 My simulator includes a browser-based dashboard, but can also be run as a terminal based simulation.
@@ -227,3 +240,5 @@ For a more detailed breakdown of how this is being built step by step, see my ra
 docs/dev_log.md
 
 -Adore2113 ♡
+
+<img align="right" src="assets/me_for_readme.gif" width="280">
