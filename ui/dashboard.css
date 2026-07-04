@@ -73,8 +73,6 @@ body {
 .panel-content::-webkit-scrollbar-thumb {
     background: rgba(11, 255, 235, 0.5);
     border-radius: 8px;
-}.panel-content::-webkit-scrollbar-thumb:active {
-    background: #00FFCC;
     box-shadow: 0 0 20px #FF00BF,
                 0 0 40px #FF00BF;
 }
@@ -191,15 +189,15 @@ body {
 
 /*-------------OGA-------------*/
 #oga-box {
-    top: 73%;
-    left: 80.2%;
+    top: 3%;
+    left: 81%;
     width: 16.8%;
-    height: 21.85%;
+    height: 21.89%;
 
     background: transparent;
     border: none;
     backdrop-filter: none;
-    background: rgba(252, 255, 49, 0.2);
+    background: rgb(255, 14, 155);
 }
 
 #oga-p {
@@ -226,15 +224,16 @@ body {
 
 /*----------sabatier-----------*/
 #sab-box {
-    top: 66%;
-    left: 3%;
+    top: 69%;
+    left: 81%;
     width: 16.8%;
-    height: 24%;
+    height: 26.2%;
 
     background: transparent;
     border: none;
     backdrop-filter: none;
-    background: rgba(252, 255, 49, 0.2);
+    background: rgb(255, 14, 155);
+
 }
 
 #sab-p {
@@ -401,10 +400,11 @@ body {
 
 /*---------greenhouse----------*/
 #gh-box {
-    top: 3%;
-    left: 80.2%;
+    top: 66%;
+    left: 3%;
     width: 16.8%;
     height: 24%;
+
 
     background: transparent;
     border: none;
