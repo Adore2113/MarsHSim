@@ -108,7 +108,7 @@ def write_dashboard_json(state, outputs, alerts):
         "power": {
             "net_energy_kwh": op.get("net_energy_kwh", 0),
             "battery_stored_kwh": state.battery_stored_kwh,
-            "battery_capacity_kwh": state.battery_capacity_kwh,
+            "battery_capacity_kwh": state.battery_max_capacity_kwh,
 
             "solar_arrays_online": op.get("solar_arrays_online_count", 0),
             "solar_generated_kw": op.get("total_solar_generated_kw", 0),
