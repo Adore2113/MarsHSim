@@ -27,7 +27,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
     oga_mode = "offline"
     o2_added_kpa = 0.0
     h2_produced_kg = 0.0
-    water_used_kg = 0.0
+    oga_water_used_kg = 0.0
     o2_vented_kg = 0.0
     limited_by_water = False 
 
@@ -55,15 +55,15 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         o2_produced_kg = (o2_moles * o2_molar_mass) * kg_per_g
      
         h2_produced_kg = o2_produced_kg * (2 * h2_molar_mass) / o2_molar_mass
-        water_used_kg = o2_produced_kg * water_kg_per_o2_kg
+        oga_water_used_kg = o2_produced_kg * water_kg_per_o2_kg
 
     #--------------water storage check--------------♡
-        min_water_needed_kg = water_used_kg + (state.crew_count * 2.0) + safety_backup_water_kg
+        min_water_needed_kg = oga_water_used_kg + (state.crew_count * 2.0) + safety_backup_water_kg
         
         if state.potable_water_storage_kg < min_water_needed_kg:
             oga_mode = "limited_water"
             limited_by_water = True
-            water_used_kg = 0.0
+            oga_water_used_kg = 0.0
             h2_produced_kg = 0.0
             o2_added_kpa = 0.0
 
@@ -110,7 +110,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         "oga_mode": oga_mode,
         "o2_added_kpa": o2_added_kpa,
         "h2_produced_kg": h2_produced_kg,
-        "water_used_kg": water_used_kg,
+        "oga_water_used_kg": oga_water_used_kg,
         
         "oga_power_used_kw": oga_power_used_kw,
         "oga_energy_used_kwh": oga_power_used_kw * hours_per_step,
