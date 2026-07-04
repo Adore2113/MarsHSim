@@ -166,7 +166,7 @@ This project is in active development.
 
     - mars_time.py = Mars sols, LMST, and day/night cycles
 
-    - oxygenpy = oxygen generation assembly (OGA) and electrolysis
+    - oxygen.py = oxygen generation assembly (OGA) and electrolysis
 
     - power.py = solar, batteries, power distribution and power consumption
 
@@ -180,6 +180,8 @@ This project is in active development.
 
     - temp.py = habitat thermal control and heat modeling
 
+    - ui_export.py = writes the latest simulation state and subsystem outputs to the latest.json
+
     - water.py = water storage, recovery, and usage tracking
 
 ♡ .gitignore  =  ignored files
@@ -187,7 +189,6 @@ This project is in active development.
 ♡ README.md  =  project overview
 
 ♡ requirements.txt  =  project dependencies
-
 
 ## Running the Simulation
 
