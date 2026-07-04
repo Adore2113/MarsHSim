@@ -112,7 +112,6 @@ async function loadDashboard() {
 set("sab-p",
   
   `Mode: ${sab.sabatier_mode ?? "-"}<br>` +
-  `<br>` + 
 
   `CO₂ Used: ${decFmt(sab.sabatier_co2_consumed_kg, 4)} kg<br>` +
   `H₂ Used: ${decFmt(sab.h2_used_kg, 4)} kg<br>` +
@@ -224,7 +223,12 @@ set("thermal-p",
 set("isru-p",
   `Atmosphere Mode: ${isru_a.isru_atm_mode ?? "—"}<br>` +
   `Compressors: ${isru_a.compressors ?? 0}<br>` +
-  `Sorbent Beds ↓/↺/⏸: ${isru_a.sorbent_beds_adsorbing ?? 0} / ${isru_a.sorbent_beds_regen ?? 0} / ${isru_a.sorbent_beds_standby ?? 0}<br>` +
+    `<br>` + 
+  `Sorbent Beds Absoring: ${isru_a.sorbent_beds_adsorbing ?? 0}<br>` +
+  `Sorbent Beds on Regen: ${isru_a.sorbent_beds_regen ?? 0}<br>` +
+  `Sorbent Beds on Standby: ${isru_a.sorbent_beds_standby ?? 0}<br>` +
+  `<br>` + 
+
   `N₂ Added: ${decFmt(isru_a.n2_added_kg, 3)} kg<br>` +
   `Ar Added: ${decFmt(isru_a.ar_added_kg, 3)} kg<br>` +
   `CO₂ Added: ${decFmt(isru_a.co2_added_kg, 3)} kg<br>` +

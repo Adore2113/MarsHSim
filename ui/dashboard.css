@@ -57,6 +57,7 @@ body {
 
 /*---------scrollbars----------*/
 .panel-content {
+    padding: clamp(1px, 0.3cqw, 4px) 0px clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
     overflow-y: auto;
     flex: 1;
 }
@@ -71,7 +72,7 @@ body {
 
 .panel-content::-webkit-scrollbar-thumb {
     background: rgba(11, 255, 235, 0.5);
-    border-radius: 8px;
+    border-radius: 0px;
     /* box-shadow: 0 0 20px #FF00BF,
                 0 0 40px #FF00BF; */
 }
@@ -87,7 +88,7 @@ body {
     text-transform: uppercase;
 
     margin: -3px 0 clamp(4px, 0.6cqw, 10px) 0;
-    padding: 0px;
+    padding: clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
     position: sticky;
     top: 0;
     
@@ -145,7 +146,7 @@ body {
     color: white;
 
     font-family: "Share Tech Mono", monospace;
-    font-size: clamp(10px, 6.5cqw, 20px);
+    font-size: clamp(10px, 6.5cqw, 14px);
     line-height: 1.25;
 }
 
@@ -177,7 +178,7 @@ body {
     color: white;
 
     font-family: "Share Tech Mono", monospace;
-    font-size: clamp(8px, 1cqw, 17px);
+    font-size: clamp(8px, 1cqw, 10px);
     line-height: 1.25;
 
     background: transparent;
