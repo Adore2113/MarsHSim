@@ -56,23 +56,27 @@ body {
 }
 
 /*---------scrollbars----------*/
-.panel::-webkit-scrollbar {
+.panel-content {
+    overflow-y: auto;
+    flex: 1;
+    padding: clamp(3px, 0.5cqw, 7px) clamp(4px, 0.6cqw, 8px);
+}
+
+.panel-content::-webkit-scrollbar {
     width: 4px;
-    height: 8px;
 }
 
-.panel::-webkit-scrollbar-track {
+.panel-content::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.panel::-webkit-scrollbar-thumb {
-    background: transparent;
+.panel-content::-webkit-scrollbar-thumb {
+    background: rgba(11, 255, 235, 0.5);
     border-radius: 8px;
-}
-
-.panel::-webkit-scrollbar-thumb:hover {
+}.panel-content::-webkit-scrollbar-thumb:active {
     background: #00FFCC;
-    box-shadow: 0 0 20px #FF00BF, 0 0 40px #FF00BF, 0 0 40px #FF00BF;
+    box-shadow: 0 0 20px #FF00BF,
+                0 0 40px #FF00BF;
 }
 
 
