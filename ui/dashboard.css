@@ -43,7 +43,7 @@ body {
     position: absolute;
     display: flex;
     flex-direction: column;
-    padding: clamp(2px, 0.4cqw, 4px);
+    padding: 0;
     border-radius: 6px;
     
     color: white;
@@ -59,7 +59,6 @@ body {
 .panel-content {
     overflow-y: auto;
     flex: 1;
-    padding: clamp(3px, 0.5cqw, 7px) clamp(4px, 0.6cqw, 8px);
 }
 
 .panel-content::-webkit-scrollbar {
@@ -73,8 +72,8 @@ body {
 .panel-content::-webkit-scrollbar-thumb {
     background: rgba(11, 255, 235, 0.5);
     border-radius: 8px;
-    box-shadow: 0 0 20px #FF00BF,
-                0 0 40px #FF00BF;
+    /* box-shadow: 0 0 20px #FF00BF,
+                0 0 40px #FF00BF; */
 }
 
 
@@ -107,7 +106,7 @@ body {
 .panel-content {
     overflow-y: auto;
     flex: 1;
-    padding: clamp(3px, 0.5cqw, 7px) clamp(4px, 0.6cqw, 8px);
+    padding: clamp(1px, 0.3cqw, 4px) clamp(1px, 0.3cqw, 4px) clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
 }
 
 /*---------status box----------*/
@@ -190,7 +189,7 @@ body {
 #oga-box {
     top: 3%;
     left: 81%;
-    width: 16.8%;
+    width: 17.5%;
     height: 21.89%;
 
     overflow: hidden;
@@ -217,7 +216,7 @@ body {
     color: white;
 
     font-family: "Share Tech Mono", monospace;
-    font-size: clamp(8px, 1cqw, 10px);
+    font-size: clamp(8.2px, 1cqw, 15px);
     line-height: 1.25;
 
     background: transparent;
@@ -229,7 +228,7 @@ body {
 #sab-box {
     top: 69%;
     left: 81%;
-    width: 16.8%;
+    width: 17.5%;
     height: 26.2%;
 
     overflow: hidden;
@@ -244,7 +243,7 @@ body {
 }
 
 #sab-p {
-    /*background: rgba(0, 255, 0, 0.2);*/
+    border: 0px solid;
     box-sizing: border-box;
     width: 100%;
 
@@ -257,7 +256,7 @@ body {
     color: white;
 
     font-family: "Share Tech Mono", monospace;
-    font-size: clamp(8px, 1cqw, 10px);
+    font-size: clamp(8.2px, 1cqw, 15px);
     line-height: 1.25;
 
     background: transparent;
