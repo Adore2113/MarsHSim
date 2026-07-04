@@ -92,7 +92,6 @@ body {
     position: sticky;
     top: 0;
     
-    
     border: 1px solid rgba(11, 255, 235, 0.35);
     z-index: 1;
 
@@ -179,7 +178,7 @@ body {
     color: white;
 
     font-family: "Share Tech Mono", monospace;
-    font-size: clamp(8px, 1cqw, 10px);
+    font-size: clamp(8px, 1cqw, 17px);
     line-height: 1.25;
 
     background: transparent;
@@ -193,6 +192,10 @@ body {
     left: 81%;
     width: 16.8%;
     height: 21.89%;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 
     background: transparent;
     border: none;
@@ -228,6 +231,10 @@ body {
     left: 81%;
     width: 16.8%;
     height: 26.2%;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 
     background: transparent;
     border: none;
