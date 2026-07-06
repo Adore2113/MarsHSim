@@ -1105,3 +1105,16 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ continue adding to dashboard.js and consider fixing output in print and ui_export.py to be in the same order
+
+
+##      07/01/2026
+    ♡ added to dashboard.js and started considering dashboard changes, like expanding screens and adding two more for the oga and isru
+
+#### Next Session:
+    ♡ work on dashboard.css
+
+
+##      07/04/2026
+    ♡ lots of changes to make to the dashboard including addin two more screens, one for the greenhouse and one for the habitat log, so status and alerts can move to the log, and it will update with any complaints from the crew about symptoms from pressure or hunger, ect. and if the system needs to do anything in states of emergency
+
+    
