@@ -82,18 +82,18 @@ async function loadDashboard() {
     `Gas Vented: ${decFmt(atm.buffer_gas_vented_kpa, 3)} kPa<br>` +
     `<br>` +
 
+    `Amine Beds: ${atm.amine_beds_online ?? 0}<br>` +
+    `Bed Switch: ${atm.bed_switch_this_step ? "YES" : "no"}<br>` +
+    `CO₂ Scrubbed: ${decFmt(atm.co2_scrubbed_kpa, 4)} kPa<br>` +
+    `CO₂ Scrubbed: ${decFmt(atm.co2_scrubbed_kg, 4)} kg<br>` +
+    `<br>` +
+
     `O₂ Stored: ${decFmt(atm.o2_stored_kg)} kg<br>` +
     `CO₂ Stored: ${decFmt(atm.co2_stored_kg)} kg<br>` +
     `N₂ Stored: ${decFmt(atm.n2_stored_kg)} kg<br>` +
     `Ar Stored: ${decFmt(atm.ar_stored_kg)} kg<br>` +
     `H₂ Stored: ${decFmt(atm.h2_stored_kg, 3)} kg<br>` +
-    `CH₄ Stored: ${decFmt(atm.ch4_stored_kg)} kg<br>` +
-    `<br>` +
-
-    `Amine Beds: ${atm.amine_beds_online ?? 0}<br>` +
-    `Bed Switch: ${atm.bed_switch_this_step ? "YES" : "no"}<br>` +
-    `CO₂ Scrubbed: ${decFmt(atm.co2_scrubbed_kpa, 4)} kPa<br>` +
-    `CO₂ Scrubbed: ${decFmt(atm.co2_scrubbed_kg, 4)} kg<br>`
+    `CH₄ Stored: ${decFmt(atm.ch4_stored_kg)} kg<br>`
   );
 
 
