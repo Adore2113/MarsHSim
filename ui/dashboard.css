@@ -29,7 +29,7 @@ body {
     width: min(95vw, calc(90vh * (16/9)));
     height: min(90vh, calc(95vw / (16/9)));
  
-    background-image: url("../assets/ui/Bg5.jpg");
+    background-image: url("../assets/ui/B4.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -48,11 +48,18 @@ body {
     
     color: white;
     font-family: "Share Tech Mono", monospace;
-    font-size: clamp(9px, 1.9cqmin, 19px);
+    font-size: clamp(8px, 1.9cqmin, 19px);
     line-height: 1.55;
 
     border: 1px solid rgba(11, 255, 235, 0.35);
     overflow-y: auto;
+    transition: all 0.3s ease;
+}
+
+.panel:hover {
+    box-shadow: 
+        0 0 30px rgba(0, 255, 204, 0.6),
+        inset 0 0 40px rgba(0, 255, 204, 0.2);
 }
 
 /*---------scrollbars----------*/
@@ -380,10 +387,12 @@ body {
 
 /*------------isru-------------*/
 #isru-box {
-    top: 3%;
-    left: 81%;
-    width: 18%;
-    height: 56.8%;
+    top: 4%;
+    left: 79.8%;
+    width: 20%;
+    height: 55.23%;
+    transform: rotate(-1.6deg);
+    transform-origin: right center;
 
     background: transparent;
     border: none;
@@ -395,6 +404,8 @@ body {
     /*background: rgba(0, 255, 0, 0.2);*/
     box-sizing: border-box;
     width: 100%;
+    transform: rotate(-1deg);
+    transform-origin: left center;
 
     margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
     padding: 0;
