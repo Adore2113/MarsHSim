@@ -405,9 +405,7 @@ body {
     backdrop-filter: none;
 }
 
-
-/*------------isru-------------*/
-
+/*-------------isru / greenhouse panels-------------*/
 #isru-box {
     top: 3.4%;
     left: 79.4%;
@@ -424,13 +422,26 @@ body {
     /* background: rgb(255, 14, 155); */
 }
 
+#gh-box {
+    top: 61%;
+    left: 81%;
+    width: 18%;
+    height: 36%;
+
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    background: rgb(255, 14, 155);
+}
+
+
+/*-------------headers---------------*/
 #gh-box h2,
 #isru-box h2 {
     padding-top: clamp(15px, 3vh, 35px);
     margin: 0;
     position: static;
     flex-shrink: 0;
-
     text-shadow: 2px 2px 4px #048c8f;
 }
 
@@ -438,9 +449,9 @@ body {
 #isru-p {
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
-
 }
 
+/*-----------hover effect------------*/
 #gh-box::before,
 #isru-box::before {
     content: "";
@@ -459,17 +470,4 @@ body {
 #gh-box:hover::before,
 #isru-box:hover::before {
     opacity: 1;
-}
-
-/*---------greenhouse----------*/
-#gh-box {
-    top: 61%;
-    left: 81%;
-    width: 18%;
-    height: 36%;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-    background: rgb(255, 14, 155);
 }
