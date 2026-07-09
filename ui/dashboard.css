@@ -407,10 +407,13 @@ body {
 
 /*-------------isru / greenhouse panels-------------*/
 #isru-box {
+    /*---postion---*/
     top: 3.4%;
     left: 79.4%;
     width: 20.2%;
     height: 56.3%;
+
+    /*--transform--*/
     clip-path: polygon(0% 4.5%, 96.8% 0%, 97% 100%, 0% 100%);
     transform: perspective(1500px) rotateY(-14deg) skewY(-4.9deg);
     transform-origin: left top;
@@ -419,15 +422,22 @@ body {
     background: transparent;
     border: none;
     backdrop-filter: none;
-    /* background: rgb(255, 14, 155); */
 }
 
 #gh-box {
-    top: 61%;
-    left: 81%;
-    width: 18%;
-    height: 36%;
+    /*---postion---*/
+    top: 60%;
+    left: 79.8%;
+    width: 20%;
+    height: 35.3%;
 
+    /*--transform--*/
+    clip-path: polygon(0% 5%, 96.8% 0%, 97% 100%, 0% 92%);
+    transform: perspective(1500px) rotateY(-20deg) skewY(1deg);
+    transform-origin: left top;
+    overflow: visible;
+
+    /*--visuals--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
@@ -438,6 +448,7 @@ body {
 /*-------------headers---------------*/
 #gh-box h2,
 #isru-box h2 {
+    /*---postion---*/
     padding-top: clamp(15px, 3vh, 35px);
     margin: 0;
     position: static;
@@ -445,8 +456,19 @@ body {
     text-shadow: 2px 2px 4px #048c8f;
 }
 
+#gh-box h2{
+    /*---postion---*/
+    padding-top: clamp(15px, 3vh, 35px);
+    margin: 0;
+    position: static;
+    flex-shrink: 0;
+    text-shadow: 2px 2px 4px #048c8f;
+}
+
+
 #gh-p,
 #isru-p {
+    /*---postion---*/
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
 }
@@ -455,6 +477,7 @@ body {
 #gh-box::before,
 #isru-box::before {
     content: "";
+    /*---postion---*/
     position: absolute;
     inset: -8px;
     background: rgba(7, 242, 222, 0.163);
