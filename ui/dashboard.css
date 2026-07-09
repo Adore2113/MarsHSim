@@ -422,10 +422,19 @@ body {
     background: transparent;
     border: none;
     backdrop-filter: none;
-    background: rgb(255, 14, 155);
+    /* background: rgb(255, 14, 155); */
 }
 
+#isru-box h2 {
+    padding-top: clamp(15px, 3vh, 35px);
+    margin: 0;
+    position: static;
+    flex-shrink: 0;
+}
 
+#isru-box #isru-p {
+    position: static;
+}
 
 /*---------greenhouse----------*/
 #gh-box {
