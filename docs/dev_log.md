@@ -1117,4 +1117,6 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      07/04/2026
     ♡ lots of changes to make to the dashboard including addin two more screens, one for the greenhouse and one for the habitat log, so status and alerts can move to the log, and it will update with any complaints from the crew about symptoms from pressure or hunger, ect. and if the system needs to do anything in states of emergency
 
-    
+
+##      07/08/2026
+    ♡ I worked on the dashboard image and added a new palle, as well as angled some screens for better readability, as well as making some other layout changes
