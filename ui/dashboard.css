@@ -411,13 +411,13 @@ body {
 
 /*------------isru-------------*/
 #isru-box {
-    top: 3.8%;
+    top: 3.4%;
     left: 79.4%;
     width: 20.2%;
-    height: 54.5%;
-    clip-path: polygon(0% 03%, 95.5% 0%, 96.5% 100%, 0% 100%);
-    transform: perspective(1500px) rotateY(-14deg);
-    transform-origin: left center;
+    height: 56.3%;
+    clip-path: polygon(0% 4.5%, 96.8% 0%, 97% 100%, 0% 100%);
+    transform: perspective(1500px) rotateY(-14deg) skewY(-4.9deg);
+    transform-origin: left top;
 
     background: transparent;
     border: none;
@@ -425,15 +425,6 @@ body {
     background: rgb(255, 14, 155);
 }
 
-#isru-p {
-    background: rgba(0, 255, 0, 0.2);
-    box-sizing: border-box;
-    width: 100%;
-    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
-    padding: 0;
-
-    line-height: 1.25;
-}
 
 
 /*---------greenhouse----------*/
@@ -448,4 +439,3 @@ body {
     backdrop-filter: none;
     background: rgb(255, 14, 155);
 }
-
