@@ -80,9 +80,7 @@ body {
 }
 
 .panel:hover {
-    box-shadow: 
-        0 0 30px rgba(0, 255, 204, 0.6),
-        inset 0 0 40px rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), inset 0 0 40px rgba(0, 255, 204, 0.2);
 }
 
 /*---------scrollbars----------*/
@@ -126,10 +124,9 @@ body {
     border: 1px solid rgba(11, 255, 235, 0.35);
     z-index: 1;
 
-    background: rgba(11, 255, 235, 0.35);
     border: none;
     backdrop-filter: none;
-    text-shadow: 0 0 2px #06e4b7;
+    text-shadow: 0 0 2px #03b591;
 }
 
 .panel-p {
@@ -418,6 +415,7 @@ body {
     clip-path: polygon(0% 4.5%, 96.8% 0%, 97% 100%, 0% 100%);
     transform: perspective(1500px) rotateY(-14deg) skewY(-4.9deg);
     transform-origin: left top;
+    overflow: visible;
 
     background: transparent;
     border: none;
@@ -425,15 +423,40 @@ body {
     /* background: rgb(255, 14, 155); */
 }
 
+#gh-box h2,
 #isru-box h2 {
     padding-top: clamp(15px, 3vh, 35px);
     margin: 0;
     position: static;
     flex-shrink: 0;
+
+    text-shadow: 2px 2px 4px #048c8f;
 }
 
-#isru-box #isru-p {
+#gh-p,
+#isru-p {
     position: static;
+    text-shadow: 2px 2px 4px #02b1b4;
+
+}
+
+#gh-box::before,
+#isru-box::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    background: rgba(7, 242, 222, 0.163);
+    filter: blur(12px);
+    transform: inherit;
+    transform-origin: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+#gh-box:hover::before,
+#isru-box:hover::before {
+    opacity: 2;
 }
 
 /*---------greenhouse----------*/
