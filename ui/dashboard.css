@@ -90,6 +90,7 @@ body {
     color: white;
     font-family: "Orbitron", sans-serif;
     font-size: clamp(7px, 1.15cqw, 14px);
+    font-weight: 700;
     line-height: 1.60;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -105,6 +106,7 @@ body {
     background: rgba(11, 255, 235, 0.35);
     border: none;
     backdrop-filter: none;
+    text-shadow: 0 0 2px #06e4b7;
 }
 
 .panel-p {
@@ -157,7 +159,6 @@ body {
     font-size: clamp(10px, 6.5cqw, 14px);
     line-height: 1.25;
 }
-
 
 /*---------atmosphere----------*/
 #atm-box {
@@ -387,12 +388,13 @@ body {
 
 /*------------isru-------------*/
 #isru-box {
-    top: 4%;
-    left: 79.8%;
-    width: 20%;
-    height: 55.23%;
-    transform: rotate(-1.6deg);
-    transform-origin: right center;
+    top: 3.8%;
+    left: 79.4%;
+    width: 20.2%;
+    height: 54.5%;
+    clip-path: polygon(0% 03%, 95.5% 0%, 96.5% 100%, 0% 100%);
+    transform: perspective(1500px) rotateY(-14deg);
+    transform-origin: left center;
 
     background: transparent;
     border: none;
@@ -404,9 +406,6 @@ body {
     /*background: rgba(0, 255, 0, 0.2);*/
     box-sizing: border-box;
     width: 100%;
-    transform: rotate(-1deg);
-    transform-origin: left center;
-
     margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
     padding: 0;
 
@@ -458,4 +457,12 @@ body {
     background: transparent;
     border: none;
     backdrop-filter: none;
+}
+
+
+.panel {
+    box-shadow: 
+        0 0 25px rgba(11, 255, 235, 0.5),
+        inset 0 0 25px rgba(11, 255, 235, 0.1);
+    backdrop-filter: blur(4px);
 }
