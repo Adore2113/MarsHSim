@@ -407,6 +407,7 @@ body {
 
 
 /*------------isru-------------*/
+
 #isru-box {
     top: 3.4%;
     left: 79.4%;
@@ -454,9 +455,10 @@ body {
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
+
 #gh-box:hover::before,
 #isru-box:hover::before {
-    opacity: 2;
+    opacity: 1;
 }
 
 /*---------greenhouse----------*/
