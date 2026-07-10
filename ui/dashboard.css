@@ -428,26 +428,25 @@ body {
 
 /*-----header------*/
 #isru-box h2 {
-transform-origin: left top;
-    /* transform: perspective(1400px) rotateY(-20deg) skewY(-8deg); */
-    padding-top: 25%;
     margin: 0;
-    padding-left: 3px;
+    padding: 25% 3% 1%;
     position: static;
     flex-shrink: 0;
+
+    transform: none;
     text-shadow: 2px 2px 4px #048c8f;
+    color: rgb(44, 5, 45);
 }
 
 
 /*----contents-----*/
 #isru-p {
-    transform-origin: left top;
-    /* transform: perspective(1400px) rotateY(-20deg) skewY(-8deg); */
-    /* padding-left: 1px;
-    padding-top: 10px;
-    padding-bottom: 10px; */
+    transform: none;
+    margin: 0;
+    padding: 0 3% 3%;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
+    color: rgb(44, 5, 45);
 }
 
 
