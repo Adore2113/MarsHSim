@@ -407,14 +407,14 @@ body {
 
 /*-------------isru / greenhouse panels-------------*/
 #isru-box {
-    top: 0.65%;
+    top: 0.68%;
     left: 79.69%;
     width: 19.16%;
-    height: 59.26%;
+    height: 59.20%;
     
     /*---postion---*/
-    clip-path: polygon(0.0% 15.0%, 99.0% 9%, 100.0% 99.8%, 1.1% 100.0%);
-    transform: perspective(1400px) rotateY(-22deg) skewY(-8deg);
+    clip-path: polygon(0.0% 15.0%, 99.0% 9%, 100.0% 97%, 1.1% 100.0%);
+    transform: perspective(1300px) rotateY(-22deg) skewY(-4.3deg);
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: visible;
@@ -438,12 +438,11 @@ body {
     color: rgb(44, 5, 45);
 }
 
-
 /*----contents-----*/
 #isru-p {
     transform: none;
     margin: 0;
-    padding: 0 3% 3%;
+    padding: 0% 3% 3%;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
     color: rgb(44, 5, 45);
@@ -454,44 +453,50 @@ body {
 /*---------greenhouse----------*/
 #gh-box {
     /*---postion---*/
-    top: 60%;
+    top: 60.3%;
     left: 79.8%;
     width: 20%;
-    height: 35.3%;
+    height: 36.8%;
 
     /*----shape----*/
-    clip-path: polygon(0% 5%, 96.8% 0%, 97% 100%, 0% 92%);
-    transform: perspective(1500px) rotateY(-19deg) skewY(0deg);
+    clip-path: polygon(0% 5%, 96.8% 3.4%, 96% 96%, 0% 93%);
+    transform: perspective(1100px) rotateY(-22deg) skewY(0.7deg);
+    
     transform-origin: left top;
+    transform-style: preserve-3d; 
     overflow: visible;
 
     /*--visuals--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
-    background: rgb(255, 14, 155);
+    /* background: rgb(255, 14, 155); */
 }
 
 
 /*-----header------*/
-/* #gh-box h2{
-    transform-origin: left top;
-    transform: perspective(500px) rotateY(0.5deg) skewY(1deg);
-    padding-top: 6%;
-    padding-left: 2px;
-
+#gh-box h2{
+    margin: 0;
+    padding: 5% 3% 1%;
     position: static;
     flex-shrink: 0;
+
+    transform: none;
     text-shadow: 2px 2px 4px #048c8f;
-} */
+    color: rgb(44, 5, 45);
+}
 
 /*----contents-----*/
-/* #gh-p{
-    transform-origin: left top;
-    transform: perspective(500px) rotateY(-3deg) skewY(1deg);
+#gh-p{
+    transform: none;
+    margin: 0;
+    padding: 0% 0% 3%;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
-} */
+   
+    color: rgb(44, 5, 45);
+
+}
 
 
 
