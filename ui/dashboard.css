@@ -29,7 +29,7 @@ body {
     width: min(95vw, calc(90vh * (16/9)));
     height: min(90vh, calc(95vw / (16/9)));
  
-    background-image: url("../assets/ui/B4.jpg");
+    background-image: url("../assets/ui/1bg.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -407,23 +407,52 @@ body {
 
 /*-------------isru / greenhouse panels-------------*/
 #isru-box {
+    top: 0.65%;
+    left: 79.69%;
+    width: 19.16%;
+    height: 59.26%;
+    
     /*---postion---*/
-    top: 3.4%;
-    left: 79.4%;
-    width: 20.2%;
-    height: 56.3%;
-
-    /*--transform--*/
-    clip-path: polygon(0% 4.5%, 96.8% 0%, 97% 100%, 0% 100%);
-    transform: perspective(1500px) rotateY(-14deg) skewY(-4.9deg);
+    clip-path: polygon(0.0% 15.0%, 99.0% 9%, 100.0% 99.8%, 1.1% 100.0%);
+    transform: perspective(1400px) rotateY(-22deg) skewY(-8deg);
     transform-origin: left top;
+    transform-style: preserve-3d; 
     overflow: visible;
-
+    
+    /*--visuals--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
+    /* background: rgb(255, 14, 155); */
 }
 
+/*-----header------*/
+#isru-box h2 {
+transform-origin: left top;
+    /* transform: perspective(1400px) rotateY(-20deg) skewY(-8deg); */
+    padding-top: 25%;
+    margin: 0;
+    padding-left: 3px;
+    position: static;
+    flex-shrink: 0;
+    text-shadow: 2px 2px 4px #048c8f;
+}
+
+
+/*----contents-----*/
+#isru-p {
+    transform-origin: left top;
+    /* transform: perspective(1400px) rotateY(-20deg) skewY(-8deg); */
+    /* padding-left: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px; */
+    position: static;
+    text-shadow: 2px 2px 4px #02b1b4;
+}
+
+
+
+/*---------greenhouse----------*/
 #gh-box {
     /*---postion---*/
     top: 60%;
@@ -431,9 +460,9 @@ body {
     width: 20%;
     height: 35.3%;
 
-    /*--transform--*/
+    /*----shape----*/
     clip-path: polygon(0% 5%, 96.8% 0%, 97% 100%, 0% 92%);
-    transform: perspective(1500px) rotateY(-20deg) skewY(1deg);
+    transform: perspective(1500px) rotateY(-19deg) skewY(0deg);
     transform-origin: left top;
     overflow: visible;
 
@@ -445,42 +474,35 @@ body {
 }
 
 
-/*-------------headers---------------*/
-#gh-box h2,
-#isru-box h2 {
-    /*---postion---*/
-    padding-top: clamp(15px, 3vh, 35px);
-    margin: 0;
+/*-----header------*/
+/* #gh-box h2{
+    transform-origin: left top;
+    transform: perspective(500px) rotateY(0.5deg) skewY(1deg);
+    padding-top: 6%;
+    padding-left: 2px;
+
     position: static;
     flex-shrink: 0;
     text-shadow: 2px 2px 4px #048c8f;
-}
+} */
 
-#gh-box h2{
-    /*---postion---*/
-    padding-top: clamp(15px, 3vh, 35px);
-    margin: 0;
-    position: static;
-    flex-shrink: 0;
-    text-shadow: 2px 2px 4px #048c8f;
-}
-
-
-#gh-p,
-#isru-p {
-    /*---postion---*/
+/*----contents-----*/
+/* #gh-p{
+    transform-origin: left top;
+    transform: perspective(500px) rotateY(-3deg) skewY(1deg);
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
-}
+} */
+
+
 
 /*-----------hover effect------------*/
 #gh-box::before,
 #isru-box::before {
     content: "";
-    /*---postion---*/
     position: absolute;
     inset: -8px;
-    background: rgba(7, 242, 222, 0.163);
+    background: rgb(9, 184, 219);
     filter: blur(12px);
     transform: inherit;
     transform-origin: inherit;
