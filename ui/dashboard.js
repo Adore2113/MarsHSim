@@ -115,7 +115,6 @@ set("sab-p",
 
   `CO₂ Used: ${decFmt(sab.sabatier_co2_consumed_kg, 4)} kg<br>` +
   `H₂ Used: ${decFmt(sab.h2_used_kg, 4)} kg<br>` +
-  `<br>` + 
 
   `CH₄ Added: ${decFmt(sab.ch4_added_kg, 4)} kg<br>` +
   `CH₄ Vented: ${decFmt(sab.ch4_vented_kg, 4)} kg<br>` +
@@ -248,17 +247,16 @@ set("isru-p",
   //---------greenhouse----------//
 set("gh-p",
   `Mode: ${gh.greenhouse_mode ?? "—"}<br>` +
-  `Food Produced: ${decFmt(gh.food_produced_kg, 3)} kg<br>` +
+  `Food Produced: ${decFmt(gh.food_produced_kg, 3)} kg<br>`+
   `<br>` +
 
-  `CO₂ Consumed: ${decFmt(gh.gh_co2_used_kpa, 7)} kPa<br>` +
-  `O₂ Produced: ${decFmt(gh.gh_o2_added_kpa, 7)} kPa<br>` +
-  `<br>` +
-  
   `Transpiration: ${decFmt(gh.gh_transpiration_kg, 3)} kg<br>` +
   `Water Needed: ${decFmt(gh.gh_water_needed_kg, 3)} kg<br>` +
   `Water Used: ${decFmt(gh.gh_water_used_kg, 3)} kg<br>` +
-  `Recirculated: ${decFmt(gh.gh_water_recirculated_kg, 3)} kg`
+  `Recirculated: ${decFmt(gh.gh_water_recirculated_kg, 3)} kg<br>` +
+
+  `CO₂ Consumed: ${decFmt(gh.gh_co2_used_kpa, 7)} kPa<br>` +
+  `O₂ Produced: ${decFmt(gh.gh_o2_added_kpa, 7)} kPa<br>` 
   );
 }
 
