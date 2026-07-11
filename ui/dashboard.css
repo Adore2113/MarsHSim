@@ -427,8 +427,8 @@ body {
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: visible;
-    
     padding-bottom: 1%;
+    
     /*--visuals--*/
     background: transparent;
     border: none;
@@ -456,6 +456,50 @@ body {
     /* color: rgb(44, 5, 45); */
 }
 
+
+
+/*---------greenhouse----------*/
+#gh-box {
+    /*---postion---*/
+    top: 25.6%;
+    left: 80.8%;
+    width: 18.7%;
+    height: 24.2%;
+
+    /*----shape----*/
+    clip-path: polygon(0% 0%, 100% 3%, 100% 91%, 0% 92%);
+    transform: perspective(1100px) rotateY(-25deg) skewY(0.2deg);
+    transform-origin: left top;
+    transform-style: preserve-3d; 
+    overflow: visible;
+    padding-bottom: 1%;
+
+    /*--visuals--*/
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    background: rgb(255, 14, 155);
+}
+
+
+/*-----header------*/
+#isru-hox h2,
+#gh-box h2 {
+    transform: none;
+    position: static;
+    text-shadow: 2px 2px 4px #02b1b4;
+    
+    /* color: rgb(44, 5, 45); */
+}
+
+/*----contents-----*/
+#gh-p {
+    transform: none;
+    position: static;
+    text-shadow: 2px 2px 4px #02b1b4;
+    
+    /* color: rgb(44, 5, 45); */
+}
 
 /*-----------hover effect------------*/
 #gh-box::before,
