@@ -241,28 +241,6 @@ body {
     background: rgb(255, 14, 155);
 }
 
-#oga-p {
-    /*background: rgba(0, 255, 0, 0.2);*/
-    box-sizing: border-box;
-    width: 100%;
-
-    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
-    padding: 0;
-
-    display: block;
-    text-align: left;
-
-    color: white;
-
-    font-family: "Share Tech Mono", monospace;
-    /* font-size: clamp(8.2px, 1cqw, 15px); */
-    line-height: 1.25;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-}
-
 
 /*----------sabatier-----------*/
 #sab-box {
@@ -280,28 +258,6 @@ body {
     backdrop-filter: none;
     background: rgb(255, 14, 155);
 
-}
-
-#sab-p {
-    border: 0px solid;
-    box-sizing: border-box;
-    width: 100%;
-
-    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
-    padding: 0;
-
-    display: block;
-    text-align: left;
-
-    color: white;
-
-    font-family: "Share Tech Mono", monospace;
-    /* font-size: clamp(8.2px, 1cqw, 15px); */
-    line-height: 1.25;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
 }
 
 
@@ -463,7 +419,8 @@ body {
 
 /*-----header------*/
 #isru-box h2,
-#gh-box h2 {
+#gh-box h2,
+#oga-box h2  {
     transform: none;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
@@ -473,7 +430,8 @@ body {
 
 /*----contents-----*/
 #isru-p,
-#gh-p {
+#gh-p,
+#oga-p {
     transform: none;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
@@ -482,8 +440,10 @@ body {
 }
 
 /*-----------hover effect------------*/
+#isru-box::before, 
 #gh-box::before,
-#isru-box::before {
+#sab-box::before,
+#oga-box::before {
     content: "";
     position: absolute;
     inset: -8px;
@@ -496,8 +456,9 @@ body {
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
-
+#isru-box:hover::before, 
 #gh-box:hover::before,
-#isru-box:hover::before {
+#oga-box:hover::before,
+#sab-box:hover::before {
     opacity: 1;
 }
