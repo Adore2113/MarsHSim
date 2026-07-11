@@ -420,7 +420,8 @@ body {
 /*-----header------*/
 #isru-box h2,
 #gh-box h2,
-#oga-box h2  {
+#oga-box h2,
+#sab-box h2  {
     transform: none;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
@@ -428,10 +429,12 @@ body {
     /* color: rgb(44, 5, 45); */
 }
 
+
 /*----contents-----*/
 #isru-p,
 #gh-p,
-#oga-p {
+#oga-p,
+#sab-p  {
     transform: none;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
@@ -442,8 +445,8 @@ body {
 /*-----------hover effect------------*/
 #isru-box::before, 
 #gh-box::before,
-#sab-box::before,
-#oga-box::before {
+#oga-box::before,
+#sab-box::before {
     content: "";
     position: absolute;
     inset: -8px;
