@@ -116,7 +116,7 @@ body {
     letter-spacing: 0.08em;
     text-transform: uppercase;
 
-    margin: -3px 0 clamp(4px, 0.6cqw, 10px) 0;
+    margin: -3px 0 clamp(4px, 0.6cqw, 1px) 0;
     padding: clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
     position: sticky;
     top: 0;
@@ -415,19 +415,20 @@ body {
 
 /*-------------isru / greenhouse panels-------------*/
 #isru-box {
+    /*---postion---*/
     top: 1.6%;
     left: 80.8%;
     width: 18.7%;
     height: 23.5%;
-    
-    /*---postion---*/
+
+    /*----shape----*/
     clip-path: polygon(0% 0%, 100% 2.5%, 100% 90%, 0% 93.2%);
- 
     transform: perspective(1100px) rotateY(-25deg) skewY(0.2deg);
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: visible;
     
+    padding-bottom: 1%;
     /*--visuals--*/
     background: transparent;
     border: none;
@@ -437,28 +438,23 @@ body {
 
 /*-----header------*/
 #isru-box h2 {
-
-    position: sticky;
+    padding-bottom: 0;
+    position: static;
     flex-shrink: 0;
-
     transform: none;
     text-shadow: 2px 2px 4px #048c8f;
-    
+
     /* color: rgb(44, 5, 45); */
 }
 
 /*----contents-----*/
 #isru-p {
     transform: none;
-    margin: 0;
-    padding: 0% 0% 0%;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
     
     /* color: rgb(44, 5, 45); */
 }
-
-
 
 
 /*-----------hover effect------------*/
