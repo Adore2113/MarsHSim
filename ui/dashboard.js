@@ -248,12 +248,12 @@ set("isru-p",
 set("gh-p",
   `Mode: ${gh.greenhouse_mode ?? "—"}<br>` +
   `Food Produced: ${decFmt(gh.food_produced_kg, 3)} kg<br>`+
-  `<br>` +
 
   `Transpiration: ${decFmt(gh.gh_transpiration_kg, 3)} kg<br>` +
   `Water Needed: ${decFmt(gh.gh_water_needed_kg, 3)} kg<br>` +
   `Water Used: ${decFmt(gh.gh_water_used_kg, 3)} kg<br>` +
   `Recirculated: ${decFmt(gh.gh_water_recirculated_kg, 3)} kg<br>` +
+  `<br>` +
 
   `CO₂ Consumed: ${decFmt(gh.gh_co2_used_kpa, 7)} kPa<br>` +
   `O₂ Produced: ${decFmt(gh.gh_o2_added_kpa, 7)} kPa<br>` 
