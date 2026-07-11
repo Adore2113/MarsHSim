@@ -314,27 +314,15 @@ body {
     /* background: rgb(255, 14, 155); */
 }
 
-#water-p {
-    /*background: rgba(0, 255, 0, 0.2);*/
-    box-sizing: border-box;
-    width: 100%;
-
-    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
-    padding: 0;
-
-    display: block;
-    text-align: left;
-
-    color: white;
-
-    font-family: "Share Tech Mono", monospace;
-    /* font-size: clamp(8px, 1cqw, 10px); */
-    line-height: 1.25;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
+#water-p  {
+    padding-bottom: 1px;
+    transform: none;
+    position: static;
+    text-shadow: 2px 2px 4px #02b1b4;
+    
+    /* color: rgb(44, 5, 45); */
 }
+
 /*-----------------------------*/
 
 
@@ -450,7 +438,8 @@ body {
 /*-----header------*/
 #isru-box h2,
 #oga-box h2,
-#sab-box h2  {
+#sab-box h2,
+#water-p  {
     transform: none;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
@@ -474,7 +463,8 @@ body {
 #isru-box::before, 
 #gh-box::before,
 #oga-box::before,
-#sab-box::before {
+#sab-box::before,
+#water-box::before {
     content: "";
     position: absolute;
     inset: -8px;
@@ -491,6 +481,7 @@ body {
 #isru-box:hover::before, 
 #gh-box:hover::before,
 #oga-box:hover::before,
-#sab-box:hover::before {
+#sab-box:hover::before,
+#water-box:hover::before {
     opacity: 1;
 }
