@@ -140,7 +140,7 @@ body {
 
 
 /*---------status box----------*/
-#status-box {
+/* #status-box {
     container-type: inline-size;
     container-name: status-box;
     
@@ -177,11 +177,11 @@ body {
     font-family: "Share Tech Mono", monospace;
     font-size: clamp(10px, 6.5cqw, 14px);
     line-height: 1.25;
-}
+} */
 
 /*---------atmosphere----------*/
 
-#atm-box {
+/* #atm-box {
     top: 53.3%;
     left: 21.8%;
     width: 18%;
@@ -198,10 +198,10 @@ body {
     border: none;
     backdrop-filter: none;
     background: rgb(255, 14, 155);
-}
-
+} */
+/* 
 #atm-p {
-    /*background: rgba(0, 255, 0, 0.2);*/
+    background: rgba(0, 255, 0, 0.2);
     box-sizing: border-box;
     width: 100%;
 
@@ -214,21 +214,100 @@ body {
     color: white;
 
     font-family: "Share Tech Mono", monospace;
-    /* font-size: clamp(8px, 1cqw, 10px); */
+    font-size: clamp(8px, 1cqw, 10px);
     line-height: 1.25;
 
     background: transparent;
     border: none;
     backdrop-filter: none;
-}
+} */
 
-/*------------water------------*/
-#water-box {
+
+/*------------power------------*/
+/* #power-box {
     top: 50%;
-    left: 40%;
+    left: 60.5%;
     width: 19%;
     height: 42%;
 
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    background: rgb(255, 14, 155);
+} */
+
+/* #power-p {
+    box-sizing: border-box;
+    width: 100%;
+
+    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
+    padding: 0;
+
+    display: block;
+    text-align: left;
+
+    color: white;
+
+    font-family: "Share Tech Mono", monospace;
+    line-height: 1.25;
+
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+} */
+    
+
+/*-----------thermal-----------*/
+/* #thermal-box {
+    top: 2%;
+    left: 1%;
+    width: 18%;
+    height: 46%;
+
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    background: rgb(255, 14, 155);
+} */
+
+/* #thermal-p {
+    box-sizing: border-box;
+    width: 100%;
+
+    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
+    padding: 0;
+
+    display: block;
+    text-align: left;
+
+    color: white;
+
+    font-family: "Share Tech Mono", monospace;
+    line-height: 1.25;
+
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+} */
+
+/*-------------first row right panels---------------*/
+/*------------water------------*/
+#water-box {
+    /*---postion---*/
+    top: 54%;
+    left: 60.5%;
+    width: 19.2%;
+    height: 40.5%;
+
+    /*----shape----*/
+    clip-path: polygon(0% 0%, 100% 2.5%, 100% 90%, 0% 93.2%);
+    transform: perspective(1300px) rotateY(-23deg) skewY(0deg);
+    transform-origin: left top;
+    transform-style: preserve-3d; 
+    overflow: visible;
+    padding-bottom: 1%;
+    
+    /*--visuals--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
@@ -256,85 +335,10 @@ body {
     border: none;
     backdrop-filter: none;
 }
+/*-----------------------------*/
 
 
-/*------------power------------*/
-#power-box {
-    top: 50%;
-    left: 60.5%;
-    width: 19%;
-    height: 42%;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-    background: rgb(255, 14, 155);
-}
-
-#power-p {
-    /*background: rgba(0, 255, 0, 0.2);*/
-    box-sizing: border-box;
-    width: 100%;
-
-    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
-    padding: 0;
-
-    display: block;
-    text-align: left;
-
-    color: white;
-
-    font-family: "Share Tech Mono", monospace;
-    /* font-size: clamp(8px, 1cqw, 10px); */
-    line-height: 1.25;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-}
-    
-
-/*-----------thermal-----------*/
-#thermal-box {
-    top: 2%;
-    left: 1%;
-    width: 18%;
-    height: 46%;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-    background: rgb(255, 14, 155);
-}
-
-#thermal-p {
-    /*background: rgba(0, 255, 0, 0.2);*/
-    box-sizing: border-box;
-    width: 100%;
-
-    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
-    padding: 0;
-
-    display: block;
-    text-align: left;
-
-    color: white;
-
-    font-family: "Share Tech Mono", monospace;
-    /* font-size: clamp(8px, 1cqw, 10px); */
-    line-height: 1.25;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-}
-
-
-
-
-
-/*--------------furthest right panels---------------*/
-
+/*--------------second row right panels-------------*/
 /*------------isru-------------*/
 #isru-box {
     /*---postion---*/
@@ -384,7 +388,7 @@ body {
 }
 
 #gh-box h2 {
-    margin: -3px;
+    margin: -3px 0px 1px;
     transform: none;
     position: static;
     text-shadow: 2px 2px 4px #02b1b4;
@@ -483,6 +487,7 @@ body {
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
+
 #isru-box:hover::before, 
 #gh-box:hover::before,
 #oga-box:hover::before,
