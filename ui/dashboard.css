@@ -297,11 +297,11 @@ body {
     top: 54%;
     left: 60.5%;
     width: 19.2%;
-    height: 40.5%;
+    height: 40.6%;
 
     /*----shape----*/
-    clip-path: polygon(0% 0%, 100% 2.5%, 100% 90%, 0% 93.2%);
-    transform: perspective(1300px) rotateY(-23deg) skewY(0deg);
+    clip-path: polygon(0% 0%, 97.5% 2.2%, 97.5% 93.5%, 0% 93.8%);
+    transform: perspective(1400px) rotateY(-10deg) skewY(0.1deg);
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: visible;
@@ -311,7 +311,7 @@ body {
     background: transparent;
     border: none;
     backdrop-filter: none;
-    background: rgb(255, 14, 155);
+    /* background: rgb(255, 14, 155); */
 }
 
 #water-p {
@@ -374,7 +374,7 @@ body {
 
     /*----shape----*/
     clip-path: polygon(0% 0%, 100% 3%, 100% 91%, 0% 92%);
-    transform: perspective(1300px) rotateY(-24deg) skewY(0.5deg);
+    transform: perspective(1300px) rotateY(-24deg) skewY(0.3deg);
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: hidden;
@@ -406,7 +406,7 @@ body {
     
     /*----shape----*/    
     clip-path: polygon(0% 0%, 100% 2.5%, 100% 91%, 0% 91.5%);
-    transform: perspective(1300px) rotateY(-24deg) skewY(0.6deg);
+    transform: perspective(1300px) rotateY(-24deg) skewY(0.3deg);
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: hidden;
@@ -432,7 +432,7 @@ body {
     clip-path: polygon(0% 0%, 100% 4%, 100% 91%, 0% 91.5%);
     /* clip-path: polygon(0% 0%, 100% 2.5%, 100% 100%, 0% 94%); */
 
-    transform: perspective(1300px) rotateY(-24deg) skewY(0.7deg);
+    transform: perspective(1300px) rotateY(-24deg) skewY(0.4deg);
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: hidden;
