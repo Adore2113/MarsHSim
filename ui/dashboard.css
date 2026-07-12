@@ -140,12 +140,7 @@ body {
 
 
 /*-------------------LEFT PANELS--------------------*/
-
-
-
-
 /*---------ATMOSPHERE----------*/
-
 #atm-box {
     /*---POSTION---*/
     top: 1.5%;
@@ -178,7 +173,41 @@ body {
     
     /* color: rgb(44, 5, 45); */
 }
+/*-----------------------------*/
 
+/*---------SECOND TOP----------*/
+/* PLACEHOLDER */
+
+ /* #PLACEHOLDER-box {
+---POSTION---
+    top: 25.3%;
+    left: 1.1%;
+    width: 21.2%;
+    height: 26.2%;
+
+----SHAPE----
+    clip-path: polygon(0% 5.5%, 100% 0%, 100% 91%, 0% 92%);
+    transform: perspective(1300px) rotateY(25deg) skewY(0.3deg);
+    transform-origin: left top;
+    transform-style: preserve-3d; 
+    overflow: hidden;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    
+--VISUALS--
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+
+    background: rgb(255, 14, 155);
+}    */
+
+/* #PLACEHOLDER-p {
+    transform: none;
+    position: static;
+    text-shadow: 2px 2px 4px #02b1b4;
+} */
+/*-----------------------------*/
 
 
 /*---------------TOP CENTER PANELS------------------*/
