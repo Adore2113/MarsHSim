@@ -4,9 +4,9 @@
     margin: 0;
     padding: 0;
 }
+/*-----------------------------*/
 
-
-/*---------WHOLE PAGE----------*/
+/*------------PAGE-------------*/
 body {
     background: black;
     width: 100vw;
@@ -17,7 +17,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-
+/*-----------------------------*/
 
 /*----------DASHBOARD----------*/
 #dashboard {
@@ -34,29 +34,35 @@ body {
     background-position: center;
     background-repeat: no-repeat;
  
-    border: 2px solid #0BFFEB;
+    border: 0.2px solid #0BFFEB;
     box-shadow: 0 0 30px #0BFFEB, inset 0 0 60px rgba(11,255,235,0.04);    /* only 4% opacity on the inside, might remove later */
 }
 
 /*-----------PANELS------------*/
 .panel {
+    /*---POSTION---*/
     position: absolute;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    border-radius: 6px;
-    
+
+    /*---TEXT----*/
     color: white;
     font-family: "Share Tech Mono", monospace;
     font-size: clamp(8px, 1.9cqmin, 19px);
     line-height: 1.25;
 
+    /*---BORDER---*/
     border: 1px solid rgba(11, 255, 235, 0.35);
     overflow-y: auto;
     transition: all 0.3s ease;
 
+    /*--VISUALS--*/
     box-shadow: 0 0 25px rgba(11, 255, 235, 0.5), inset 0 0 25px rgba(11, 255, 235, 0.1);
     backdrop-filter: blur(4px);
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+
 }
 
 .panel-p {
@@ -157,11 +163,6 @@ body {
     padding-bottom: 1%;
     padding-top: 2px;
     
-    /*--VISUALS--*/
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-
     /* background: rgb(255, 14, 155); */
 }
 
@@ -194,11 +195,6 @@ body {
     padding-bottom: 1%;
     padding-top: 1%;
     
---VISUALS--
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-
     background: rgb(255, 14, 155);
 }    */
 
@@ -226,11 +222,6 @@ body {
     padding-bottom: 1.1%;
     padding-top: 0.5%;
     
---VISUALS--
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-
     background: rgb(255, 14, 155);
 }
 
@@ -260,11 +251,6 @@ body {
     padding-bottom: 1%;
     padding-top: 0.8%;
     
-    --VISUALS--
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-
     background: rgb(255, 14, 155);
 } */
 /* 
@@ -301,10 +287,6 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
 
     /* background: rgb(255, 14, 155); */
 }
@@ -358,10 +340,6 @@ body {
     overflow: hidden;
     padding: 0.2% 0% 1.2%;
     
-    /*--VISUALS--*/
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
     /* background: rgb(255, 14, 155); */
 }
 
@@ -418,10 +396,6 @@ body {
     overflow: hidden;
     padding-bottom: 1.2%;
     
-    /*--VISUALS--*/
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
     /* background: rgb(255, 14, 155); */
 }
 
@@ -452,11 +426,7 @@ body {
     transform-style: preserve-3d; 
     overflow: hidden;
     padding-bottom: 1%;
-    
-    /*--VISUALS--*/
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
+
     /* background: rgb(255, 14, 155); */
 }
 /*-----------------------------*/
@@ -477,10 +447,6 @@ body {
     overflow: hidden;
     padding-bottom: 1%;
 
-    /*--VISUALS--*/
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
     /* background: rgb(255, 14, 155); */
 }
 
@@ -508,10 +474,6 @@ body {
     overflow: hidden;
     padding-bottom: 1%;
 
-    /*--VISUALS--*/
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
     /* background: rgb(255, 14, 155); */
 }
 /*-----------------------------*/
@@ -533,10 +495,6 @@ body {
     overflow: hidden;
     padding-bottom: 1%;
 
-    /*--VISUALS--*/
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
     /* background: rgb(255, 14, 155); */
 }
 /*-----------------------------*/
