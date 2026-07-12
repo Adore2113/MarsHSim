@@ -140,63 +140,57 @@ body {
 
 
 /*-------------------LEFT PANELS--------------------*/
-/*----------TOP LEFT----------*/
-    /* PLACEHOLDER */
-    /*---POSTION---*/
-    /* top: 1.5%;
-    left: 60.5%;
-    width: 19%;
-    height: 13.5%; */
-/*-----------------------------*/
+
 
 
 
 /*---------ATMOSPHERE----------*/
 
-/* #atm-box {
-    top: 53.3%;
-    left: 21.8%;
-    width: 18%;
-    height: 42%;
+#atm-box {
+    /*---POSTION---*/
+    top: 1.5%;
+    left: 1.1%;
+    width: 21%;
+    height: 24.8%;
 
-    clip-path: polygon(0% 0%, 96.8% 4%, 96% 96%, 0% 93%);
-    transform: perspective(1100px) rotateY(-22deg) skewY(0.7deg);
-    
+    /*----SHAPE----*/
+    clip-path: polygon(0% 4%, 100% 0%, 100% 95%, 0% 93%);
+    transform: perspective(1300px) rotateY(23deg) skewY(0deg);
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: hidden;
-
+    padding-bottom: 1%;
+    padding-top: 2px;
+    
+    /*--VISUALS--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
-    background: rgb(255, 14, 155);
-} */
-/* 
+
+    /* background: rgb(255, 14, 155); */
+}
+
 #atm-p {
-    background: rgba(0, 255, 0, 0.2);
-    box-sizing: border-box;
-    width: 100%;
-
-    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
-    padding: 0;
-
-    display: block;
-    text-align: left;
-
-    color: white;
-
-    font-family: "Share Tech Mono", monospace;
-    font-size: clamp(8px, 1cqw, 10px);
-    line-height: 1.25;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-} */
+    /* padding: 1px, 0px, 1px; */
+    transform: none;
+    position: static;
+    text-shadow: 2px 2px 4px #02b1b4;
+    
+    /* color: rgb(44, 5, 45); */
+}
 
 
 
 /*---------------TOP CENTER PANELS------------------*/
+/*---------TOP RIGHT----------*/
+    /* PLACEHOLDER */
+    /*---POSTION---*/
+/*   top: 1.5%;
+    left: 20.5%;
+    width: 19%;
+    height: 13.5%; */
+/*-----------------------------*/
+
 /*---------STATUS BOX----------*/
 #status-box {
     top: 1.4%;
@@ -235,7 +229,16 @@ body {
     font-size: clamp(10px, 6.5cqw, 14px);
     line-height: 1.23;
 }
+/*-----------------------------*/
 
+/*----------TOP LEFT----------*/
+    /* PLACEHOLDER */
+    /*---POSTION---*/
+    /* top: 1.5%;
+    left: 60.5%;
+    width: 19%;
+    height: 13.5%; */
+/*-----------------------------*/
 
 
 /*-------------BOTTOM CENTER PANELS-----------------*/
