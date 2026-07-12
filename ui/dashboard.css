@@ -282,7 +282,7 @@ body {
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: visible;
-    padding-bottom: 1.2%;
+    padding: 0.2% 0% 1.2%;
     
     /*--VISUALS--*/
     background: transparent;
