@@ -37,8 +37,9 @@ body {
     border: 0.2px solid #0BFFEB;
     box-shadow: 0 0 30px #0BFFEB, inset 0 0 60px rgba(11,255,235,0.04);    /* only 4% opacity on the inside, might remove later */
 }
+/*-----------------------------*/
 
-/*-----------PANELS------------*/
+/*-------PANELS / BOXES--------*/
 .panel {
     /*---POSTION---*/
     position: absolute;
@@ -64,30 +65,29 @@ body {
     backdrop-filter: none;
 
 }
+/*-----------------------------*/
 
+/*---------PANEL TEXT----------*/
 .panel-p {
+    /*---POSTION---*/
     box-sizing: border-box;
     width: 100%;
     margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
-    padding: 0;
-
     display: block;
+    position: static;
+    transform: none;
+    
+    /*---TEXT----*/
     text-align: left;
-
     color: white;
-
     font-family: "Share Tech Mono", monospace;
-    /* font-size: clamp(8px, 1cqw, 10px); */
     line-height: 1.25;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
+    /* font-size: clamp(8px, 1cqw, 10px); */
+    
+    /*--VISUALS--*/
+    text-shadow: 2px 2px 4px #02b1b4;
 }
-
-.panel:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), inset 0 0 40px rgba(0, 255, 204, 0.2);
-}
+/*-----------------------------*/
 
 /*---------SCROLLBARS----------*/
 .panel-content {
@@ -110,7 +110,39 @@ body {
     /* box-shadow: 0 0 20px #FF00BF,
                 0 0 40px #FF00BF; */
 }
+/*-----------------------------*/
 
+/*-----------HOVER EFFECT------------*/
+/* .panel:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), 
+    inset 0 0 40px rgba(0, 255, 204, 0.2);
+} */
+
+#isru-box::before, 
+#gh-box::before,
+#oga-box::before,
+#sab-box::before,
+#water-box::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    background: rgb(9, 184, 219);
+    filter: blur(12px);
+    transform: inherit;
+    transform-origin: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+#isru-box:hover::before, 
+#gh-box:hover::before,
+#oga-box:hover::before,
+#sab-box:hover::before,
+#water-box:hover::before {
+    opacity: 1;
+}
 
 .panel h2 {
     flex-shrink: 0;
@@ -523,31 +555,4 @@ body {
     text-shadow: 2px 2px 4px #02b1b4;
     
     /* color: rgb(44, 5, 45); */
-}
-
-/*-----------HOVER EFFECT------------*/
-#isru-box::before, 
-#gh-box::before,
-#oga-box::before,
-#sab-box::before,
-#water-box::before {
-    content: "";
-    position: absolute;
-    inset: -8px;
-    background: rgb(9, 184, 219);
-    filter: blur(12px);
-    transform: inherit;
-    transform-origin: inherit;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-#isru-box:hover::before, 
-#gh-box:hover::before,
-#oga-box:hover::before,
-#sab-box:hover::before,
-#water-box:hover::before {
-    opacity: 1;
 }
