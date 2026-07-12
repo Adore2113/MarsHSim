@@ -139,49 +139,6 @@ body {
 }
 
 
-/*---------STATUS BOX----------*/
-#status-box {
-    container-type: inline-size;
-    container-name: status-box;
-    
-    top: 1.4%;
-    left: 40.4%;
-    width: 19.2%;
-    height: 13.8%;
-
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-
-    /* background: rgb(255, 14, 155); */
-
-}
-
-#status-p {
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-
-    padding: clamp(2px, 5.2%, 4px);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    color: white;
-
-    font-family: "Share Tech Mono", monospace;
-    font-size: clamp(10px, 6.5cqw, 14px);
-    line-height: 1.23;
-
-}
 
 /*---------ATMOSPHERE----------*/
 
@@ -295,11 +252,62 @@ body {
 } */
 
 
-/*-----------------CENTER PANELS--------------------*/
+/*---------------TOP CENTER PANELS------------------*/
+/*---------STATUS BOX----------*/
+#status-box {
+    container-type: inline-size;
+    container-name: status-box;
+    
+    top: 1.4%;
+    left: 40.4%;
+    width: 19.2%;
+    height: 13.8%;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+
+    /* background: rgb(255, 14, 155); */
+
+}
+
+#status-p {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    padding: clamp(2px, 5.2%, 4px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    font-family: "Share Tech Mono", monospace;
+    font-size: clamp(10px, 6.5cqw, 14px);
+    line-height: 1.23;
+
+}
 
 
 
-/*-------------FIRST ROW RIGHT PANELS---------------*/
+/*-------------BOTTOM CENTER PANELS-----------------*/
+
+
+
+/*-------------------LEFT PANELS--------------------*/
+
+
+
+/*-------------------RIGHT PANELS-------------------*/
 #water-box {
     /*---POSTION---*/
     top: 54%;
