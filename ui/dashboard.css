@@ -1,12 +1,13 @@
-/*------------RESET------------*/
+/*--------------------SIM RESET---------------------*/
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-/*-----------------------------*/
+/*--------------------------------------------------*/
 
-/*------------PAGE-------------*/
+
+/*-----------------------PAGE-----------------------*/
 body {
     background: black;
     width: 100vw;
@@ -17,9 +18,10 @@ body {
     justify-content: center;
     align-items: center;
 }
-/*-----------------------------*/
+/*--------------------------------------------------*/
 
-/*----------DASHBOARD----------*/
+
+/*--------------------DASHBOARD---------------------*/
 #dashboard {
     position: relative;
 
@@ -37,9 +39,10 @@ body {
     border: 0.2px solid #0BFFEB;
     box-shadow: 0 0 30px #0BFFEB, inset 0 0 60px rgba(11,255,235,0.04);    /* only 4% opacity on the inside, might remove later */
 }
-/*-----------------------------*/
+/*--------------------------------------------------*/
 
-/*-------PANELS / BOXES--------*/
+
+/*------------------PANELS / BOXES------------------*/
 .panel {
     /*---POSTION---*/
     position: absolute;
@@ -65,9 +68,36 @@ body {
     backdrop-filter: none;
 
 }
-/*-----------------------------*/
+/*--------------------------------------------------*/
 
-/*---------PANEL TEXT----------*/
+
+/*----------------------HEADER----------------------*/
+.panel h2 {
+    flex-shrink: 0;
+    color: white;
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(7px, 1.15cqw, 14px);
+    font-weight: 700;
+    line-height: 1.60;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    padding: clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
+    position: static;
+    
+    border: 1px solid rgba(11, 255, 235, 0.35);
+    z-index: 1;
+    margin: 0px;
+    border: none;
+    backdrop-filter: none;
+    text-shadow: 0 0 2px #03b591;
+    transform: none;
+    text-shadow: 2px 2px 4px #02b1b4;
+}
+/*--------------------------------------------------*/
+
+
+/*-----------------PANEL PARAGRAPH-----------------*/
 .panel-p {
     /*---POSTION---*/
     box-sizing: border-box;
@@ -87,9 +117,19 @@ body {
     /*--VISUALS--*/
     text-shadow: 2px 2px 4px #02b1b4;
 }
-/*-----------------------------*/
+/*--------------------------------------------------*/
 
-/*---------SCROLLBARS----------*/
+
+/*------------------PANEL CONTEXT-------------------*/
+.panel-content {
+    overflow-y: auto;
+    flex: 1;
+    padding: clamp(1px, 0.3cqw, 4px) clamp(1px, 0.3cqw, 4px) clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
+}
+/*--------------------------------------------------*/
+
+
+/*--------------------SCROLLBARS--------------------*/
 .panel-content {
     padding: clamp(1px, 0.3cqw, 4px) 0px clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
     overflow-y: auto;
@@ -105,24 +145,15 @@ body {
 }
 
 .panel-content::-webkit-scrollbar-thumb {
-    background: rgba(11, 255, 235, 0.5);
+    background: rgba(8, 136, 125, 0.722);
     border-radius: 0px;
     /* box-shadow: 0 0 20px #FF00BF,
                 0 0 40px #FF00BF; */
 }
-/*-----------------------------*/
+/*--------------------------------------------------*/
 
-/*-----------HOVER EFFECT------------*/
-/* .panel:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), 
-    inset 0 0 40px rgba(0, 255, 204, 0.2);
-} */
-
-#isru-box::before, 
-#gh-box::before,
-#oga-box::before,
-#sab-box::before,
-#water-box::before {
+/*------------------HOVER EFFECTS-------------------*/
+.panel-content::before {
     content: "";
     position: absolute;
     inset: -8px;
@@ -136,48 +167,20 @@ body {
     pointer-events: none;
 }
 
-#isru-box:hover::before, 
-#gh-box:hover::before,
-#oga-box:hover::before,
-#sab-box:hover::before,
-#water-box:hover::before {
+.panel-content:hover::before {
     opacity: 1;
 }
 
-.panel h2 {
-    flex-shrink: 0;
-    color: white;
-    font-family: "Orbitron", sans-serif;
-    font-size: clamp(7px, 1.15cqw, 14px);
-    font-weight: 700;
-    line-height: 1.60;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+/* .panel:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), 
+    inset 0 0 40px rgba(0, 255, 204, 0.2);
+} */
 
-    margin: -3px;
-    padding: clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
-    position: static;
-    
-    border: 1px solid rgba(11, 255, 235, 0.35);
-    z-index: 1;
-
-    border: none;
-    backdrop-filter: none;
-    text-shadow: 0 0 2px #03b591;
-}
-
-.panel-p {
-    margin: 0;
-}
-
-.panel-content {
-    overflow-y: auto;
-    flex: 1;
-    padding: clamp(1px, 0.3cqw, 4px) clamp(1px, 0.3cqw, 4px) clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
-}
+/*--------------------------------------------------*/
 
 
-/*-------------------LEFT PANELS--------------------*/
+/*-LEFT PANELS*/
+/*---------------------TOP LEFT---------------------*/
 /*---------ATMOSPHERE----------*/
 #atm-box {
     /*---POSTION---*/
@@ -197,20 +200,10 @@ body {
     
     /* background: rgb(255, 14, 155); */
 }
+/*--------------------------------------------------*/
 
-#atm-p {
-    /* padding: 1px, 0px, 1px; */
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-    
-    /* color: rgb(44, 5, 45); */
-}
-/*-----------------------------*/
-
-/*-------SECOND TOP LEFT-------*/
-/* PLACEHOLDER */
-
+/*---------------SECOND FROM TOP LEFT----------------*/
+/*---------PLACEHOLDER---------*/
  /* #PLACEHOLDER-box {
 ---POSTION---
     top: 25.3%;
@@ -229,15 +222,10 @@ body {
     
     background: rgb(255, 14, 155);
 }    */
+/*--------------------------------------------------*/
 
-/* #PLACEHOLDER-p {
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-} */
-/*-----------------------------*/
-
-/*-------THIRD DOWN LEFT-------*/
+/*------------------THIRD DOWN LEFT------------------*/
+/*---------PLACEHOLDER---------*/
 /* #PLACEHOLDER-box {
 ---POSTION---
     top: 50.5%;
@@ -256,17 +244,10 @@ body {
     
     background: rgb(255, 14, 155);
 }
+/*---------------------------------------------------*/
 
-#PLACEHOLDER-p {
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-    
-    color: rgb(44, 5, 45);
-} */
-/*-----------------------------*/
-
-/*--------BOTTOM LEFT----------*/
+/*--------------------BOTTOM LEFT--------------------*/
+/*---------PLACEHOLDER---------*/
 /* #PLACEHOLDER-box {
     ---POSTION---
     top: 75%;
@@ -285,28 +266,22 @@ body {
     
     background: rgb(255, 14, 155);
 } */
-/* 
-#PLACEHOLDER-p {
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-    
-    color: rgb(44, 5, 45);
-} */
-/*-----------------------------*/
 /*--------------------------------------------------*/
 
 
-/*---------------TOP CENTER PANELS------------------*/
-/*---------TOP RIGHT----------*/
-    /* PLACEHOLDER */
-    /*---POSTION---*/
-/*   top: 1.5%;
+/*-TOP CENTER PANELS-*/
+/*-----------------LEFT TOP CENTER------------------*/
+/*---------PLACEHOLDER---------*/
+/* #PLACEHOLDER-box {
+    ---POSTION---
+    top: 1.5%;
     left: 20.5%;
     width: 19%;
-    height: 13.5%; */
-/*-----------------------------*/
+    height: 13.5%;
+} */
+/*--------------------------------------------------*/
 
+/*--------------------TOP CENTER--------------------*/
 /*---------STATUS BOX----------*/
 #status-box {
     top: 1.4%;
@@ -341,20 +316,22 @@ body {
     font-size: clamp(10px, 6.5cqw, 14px);
     line-height: 1.16;
 }
-/*-----------------------------*/
+/*--------------------------------------------------*/
 
-/*----------TOP LEFT----------*/
-    /* PLACEHOLDER */
-    /*---POSTION---*/
-    /* top: 1.5%;
+/*---------------------TOP LEFT---------------------*/
+/*---------PLACEHOLDER---------*/
+/* #PLACEHOLDER-box {
+    ---POSTION---
+    top: 1.5%;
     left: 60.5%;
     width: 19%;
-    height: 13.5%; */
-/*-----------------------------*/
+    height: 13.5%;
+} */
 /*--------------------------------------------------*/
 
 
-/*-------------BOTTOM CENTER PANELS-----------------*/
+/*-BOTTOM CENTER PANELS-*/
+/*----------------LEFT BOTTOM CENTER----------------*/
 /*-----------THERMAL-----------*/
 #thermal-box {
     /*---POSTION---*/
@@ -374,17 +351,9 @@ body {
     
     /* background: rgb(255, 14, 155); */
 }
+/*--------------------------------------------------*/
 
-#thermal-p {
-    /* padding: 1px, 0px, 1px; */
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-    
-    /* color: rgb(44, 5, 45); */
-}
-/*-----------------------------*/
-
+/*---------------MIDDLE BOTTOM CENTER---------------*/
 /*------------POWER------------*/
 #power-box {
     /*---POSTION---*/
@@ -401,16 +370,9 @@ body {
 
     /* background: rgb(255, 14, 155); */
 }
+/*--------------------------------------------------*/
 
-#power-p {
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-    
-    /* color: rgb(44, 5, 45); */
-}
-/*-----------------------------*/
-
+/*---------------RIGHT BOTTOM CENTER----------------*/
 /*------------WATER------------*/
 #water-box {
     /*---POSTION---*/
@@ -430,19 +392,11 @@ body {
     
     /* background: rgb(255, 14, 155); */
 }
-
-#water-p  {
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-    
-    /* color: rgb(44, 5, 45); */
-}
-/*-----------------------------*/
 /*--------------------------------------------------*/
 
 
-/*-------------------RIGHT PANELS-------------------*/
+/*-RIGHT PANELS-*/
+/*--------------------TOP RIGHT--------------------*/
 /*------------ISRU-------------*/
 #isru-box {
     /*---POSTION---*/
@@ -461,8 +415,9 @@ body {
 
     /* background: rgb(255, 14, 155); */
 }
-/*-----------------------------*/
+/*--------------------------------------------------*/
 
+/*--------------SECOND FROM TOP RIGHT---------------*/
 /*---------GREENHOUSE----------*/
 #gh-box {
     /*---POSTION---*/
@@ -481,16 +436,9 @@ body {
 
     /* background: rgb(255, 14, 155); */
 }
+/*--------------------------------------------------*/
 
-#gh-box h2 {
-    margin: -3px 0px 1px;
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-    /* color: rgb(44, 5, 45); */
-}
-/*-----------------------------*/
-
+/*-----------------THIRD DOWN RIGHT-----------------*/
 /*----------SABATIER-----------*/
 #sab-box {
     top: 50.2%;
@@ -508,8 +456,9 @@ body {
 
     /* background: rgb(255, 14, 155); */
 }
-/*-----------------------------*/
+/*--------------------------------------------------*/
 
+/*-------------------BOTTOM RIGHT-------------------*/
 /*-------------OGA-------------*/
 #oga-box {
     top: 74.9%;
@@ -529,30 +478,4 @@ body {
 
     /* background: rgb(255, 14, 155); */
 }
-/*-----------------------------*/
 /*--------------------------------------------------*/
-
-
-/*-----HEADER------*/
-#isru-box h2,
-#oga-box h2,
-#sab-box h2,
-#water-p  {
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-    margin: 0px;
-    /* color: rgb(44, 5, 45); */
-}
-
-/*----CONTENTS-----*/
-#isru-p,
-#gh-p,
-#oga-p,
-#sab-p  {
-    transform: none;
-    position: static;
-    text-shadow: 2px 2px 4px #02b1b4;
-    
-    /* color: rgb(44, 5, 45); */
-}
