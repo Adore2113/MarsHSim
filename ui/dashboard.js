@@ -72,11 +72,11 @@ async function loadDashboard() {
     `Oxygen: ${decFmt(atm.oxygen_kpa)} kPa<br>` +
     `Carbon Dioxide: ${decFmt(atm.carbon_dioxide_kpa)} kPa<br>` +
     `Nitrogen: ${decFmt(atm.nitrogen_kpa)} kPa<br>` +
-    `Argon: ${decFmt(atm.argon_kpa)} kPa<br>` +
-    `Methane: ${decFmt(atm.methane_kpa)} kPa<br>` +
     `<br>` +
 
     `Buffer Mode: ${atm.buffer_gas_mode ?? "-"}<br>` +
+    `Argon: ${decFmt(atm.argon_kpa)} kPa<br>` +
+    `Methane: ${decFmt(atm.methane_kpa)} kPa<br>` +
     `Pressure Gap: ${decFmt(atm.pressure_gap_kpa, 3)} kPa<br>` +
     `Gas Added: ${decFmt(atm.buffer_gas_added_kpa, 3)} kPa<br>` +
     `Gas Vented: ${decFmt(atm.buffer_gas_vented_kpa, 3)} kPa<br>` +
