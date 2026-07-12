@@ -1,4 +1,4 @@
-/*------------reset------------*/
+/*------------RESET------------*/
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -6,7 +6,7 @@
 }
 
 
-/*---------whole page----------*/
+/*---------WHOLE PAGE----------*/
 body {
     background: black;
     width: 100vw;
@@ -19,7 +19,7 @@ body {
 }
 
 
-/*----------dashboard----------*/
+/*----------DASHBOARD----------*/
 #dashboard {
     position: relative;
 
@@ -38,7 +38,7 @@ body {
     box-shadow: 0 0 30px #0BFFEB, inset 0 0 60px rgba(11,255,235,0.04);    /* only 4% opacity on the inside, might remove later */
 }
 
-/*-----------panels------------*/
+/*-----------PANELS------------*/
 .panel {
     position: absolute;
     display: flex;
@@ -83,7 +83,7 @@ body {
     box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), inset 0 0 40px rgba(0, 255, 204, 0.2);
 }
 
-/*---------scrollbars----------*/
+/*---------SCROLLBARS----------*/
 .panel-content {
     padding: clamp(1px, 0.3cqw, 4px) 0px clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
     overflow-y: auto;
@@ -139,15 +139,15 @@ body {
 }
 
 
-/*---------status box----------*/
-/* #status-box {
+/*---------STATUS BOX----------*/
+#status-box {
     container-type: inline-size;
     container-name: status-box;
     
-    top: 5.2%;
-    left: 37%;
-    width: 26%;
-    height: 18%;
+    top: 1.4%;
+    left: 40.4%;
+    width: 19.2%;
+    height: 13.8%;
 
     overflow: hidden;
     display: flex;
@@ -158,6 +158,9 @@ body {
     background: transparent;
     border: none;
     backdrop-filter: none;
+
+    /* background: rgb(255, 14, 155); */
+
 }
 
 #status-p {
@@ -176,10 +179,11 @@ body {
 
     font-family: "Share Tech Mono", monospace;
     font-size: clamp(10px, 6.5cqw, 14px);
-    line-height: 1.25;
-} */
+    line-height: 1.23;
 
-/*---------atmosphere----------*/
+}
+
+/*---------ATMOSPHERE----------*/
 
 /* #atm-box {
     top: 53.3%;
@@ -223,7 +227,7 @@ body {
 } */
 
 
-/*------------power------------*/
+/*------------POWER------------*/
 /* #power-box {
     top: 50%;
     left: 60.5%;
@@ -257,7 +261,7 @@ body {
 } */
     
 
-/*-----------thermal-----------*/
+/*-----------THERMAL-----------*/
 /* #thermal-box {
     top: 2%;
     left: 1%;
@@ -290,16 +294,20 @@ body {
     backdrop-filter: none;
 } */
 
-/*-------------first row right panels---------------*/
-/*------------water------------*/
+
+/*-----------------CENTER PANELS--------------------*/
+
+
+
+/*-------------FIRST ROW RIGHT PANELS---------------*/
 #water-box {
-    /*---postion---*/
+    /*---POSTION---*/
     top: 54%;
     left: 60.5%;
     width: 19.2%;
     height: 40.6%;
 
-    /*----shape----*/
+    /*----SHAPE----*/
     clip-path: polygon(0% 0%, 97.5% 2.2%, 97.5% 93.5%, 0% 93.8%);
     transform: perspective(1400px) rotateY(-10deg) skewY(0.1deg);
     transform-origin: left top;
@@ -307,7 +315,7 @@ body {
     overflow: visible;
     padding-bottom: 1%;
     
-    /*--visuals--*/
+    /*--VISUALS--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
@@ -322,20 +330,29 @@ body {
     
     /* color: rgb(44, 5, 45); */
 }
-
 /*-----------------------------*/
 
 
-/*--------------second row right panels-------------*/
-/*------------isru-------------*/
+/*----------TOP RIGHT----------*/
+    /* PLACEHOLDER */
+    /*---POSTION---*/
+    /* top: 1.5%;
+    left: 60.5%;
+    width: 19%;
+    height: 13.5%; */
+/*-----------------------------*/
+
+
+/*--------------SECOND ROW RIGHT PANELS-------------*/
+/*------------ISRU-------------*/
 #isru-box {
-    /*---postion---*/
+    /*---POSTION---*/
     top: 1.6%;
     left: 80.8%;
     width: 18.7%;
     height: 23.5%;
 
-    /*----shape----*/
+    /*----SHAPE----*/
     clip-path: polygon(0% 0%, 100% 2.5%, 100% 90%, 0% 93.2%);
     transform: perspective(1300px) rotateY(-23deg) skewY(0deg);
     transform-origin: left top;
@@ -343,7 +360,7 @@ body {
     overflow: visible;
     padding-bottom: 1%;
     
-    /*--visuals--*/
+    /*--VISUALS--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
@@ -352,15 +369,15 @@ body {
 /*-----------------------------*/
 
 
-/*---------greenhouse----------*/
+/*---------GREENHOUSE----------*/
 #gh-box {
-    /*---postion---*/
+    /*---POSTION---*/
     top: 25.6%;
     left: 80.8%;
     width: 18.7%;
     height: 24.2%;
 
-    /*----shape----*/
+    /*----SHAPE----*/
     clip-path: polygon(0% 0%, 100% 3%, 100% 91%, 0% 92%);
     transform: perspective(1300px) rotateY(-24deg) skewY(0.3deg);
     transform-origin: left top;
@@ -368,7 +385,7 @@ body {
     overflow: hidden;
     padding-bottom: 1%;
 
-    /*--visuals--*/
+    /*--VISUALS--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
@@ -385,14 +402,14 @@ body {
 /*-----------------------------*/
 
 
-/*----------sabatier-----------*/
+/*----------SABATIER-----------*/
 #sab-box {
     top: 50.2%;
     left: 80.8%;
     width: 18.7%;
     height: 24.4%;
     
-    /*----shape----*/    
+    /*----SHAPE----*/    
     clip-path: polygon(0% 0%, 100% 2.5%, 100% 91%, 0% 91.5%);
     transform: perspective(1300px) rotateY(-24deg) skewY(0.3deg);
     transform-origin: left top;
@@ -400,7 +417,7 @@ body {
     overflow: hidden;
     padding-bottom: 1%;
 
-    /*--visuals--*/
+    /*--VISUALS--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
@@ -416,7 +433,7 @@ body {
     width: 18.7%;
     height: 24%;
     
-    /*----shape----*/    
+    /*----SHAPE----*/    
     clip-path: polygon(0% 0%, 100% 4%, 100% 91%, 0% 91.5%);
     /* clip-path: polygon(0% 0%, 100% 2.5%, 100% 100%, 0% 94%); */
 
@@ -426,7 +443,7 @@ body {
     overflow: hidden;
     padding-bottom: 1%;
 
-    /*--visuals--*/
+    /*--VISUALS--*/
     background: transparent;
     border: none;
     backdrop-filter: none;
@@ -435,7 +452,7 @@ body {
 /*-----------------------------*/
 
 
-/*-----header------*/
+/*-----HEADER------*/
 #isru-box h2,
 #oga-box h2,
 #sab-box h2,
@@ -447,7 +464,7 @@ body {
     /* color: rgb(44, 5, 45); */
 }
 
-/*----contents-----*/
+/*----CONTENTS-----*/
 #isru-p,
 #gh-p,
 #oga-p,
@@ -459,7 +476,7 @@ body {
     /* color: rgb(44, 5, 45); */
 }
 
-/*-----------hover effect------------*/
+/*-----------HOVER EFFECT------------*/
 #isru-box::before, 
 #gh-box::before,
 #oga-box::before,
