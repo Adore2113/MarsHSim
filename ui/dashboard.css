@@ -175,7 +175,7 @@ body {
 }
 /*-----------------------------*/
 
-/*---------SECOND TOP----------*/
+/*-------SECOND TOP LEFT-------*/
 /* PLACEHOLDER */
 
  /* #PLACEHOLDER-box {
@@ -208,6 +208,40 @@ body {
     text-shadow: 2px 2px 4px #02b1b4;
 } */
 /*-----------------------------*/
+
+/*-------THIRD DOWN LEFT-------*/
+/* #PLACEHOLDER-box {
+---POSTION---
+    top: 50.5%;
+    left: 1.1%;
+    width: 21.2%;
+    height: 26%;
+
+----SHAPE----
+    clip-path: polygon(0% 4.5%, 100% 0%, 100% 92%, 0% 92%);
+    transform: perspective(1300px) rotateY(25deg) skewY(-0.3deg);
+    transform-origin: left top;
+    transform-style: preserve-3d; 
+    overflow: hidden;
+    padding-bottom: 1.1%;
+    padding-top: 0.5%;
+    
+--VISUALS--
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+
+    background: rgb(255, 14, 155);
+}
+
+#PLACEHOLDER-p {
+    transform: none;
+    position: static;
+    text-shadow: 2px 2px 4px #02b1b4;
+    
+    color: rgb(44, 5, 45);
+} */
+
 
 
 /*---------------TOP CENTER PANELS------------------*/
@@ -256,7 +290,7 @@ body {
 
     font-family: "Share Tech Mono", monospace;
     font-size: clamp(10px, 6.5cqw, 14px);
-    line-height: 1.23;
+    line-height: 1.16;
 }
 /*-----------------------------*/
 
@@ -268,7 +302,7 @@ body {
     width: 19%;
     height: 13.5%; */
 /*-----------------------------*/
-
+/*--------------------------------------------------*/
 
 /*-------------BOTTOM CENTER PANELS-----------------*/
 /*-----------THERMAL-----------*/
@@ -363,7 +397,7 @@ body {
     /* color: rgb(44, 5, 45); */
 }
 /*-----------------------------*/
-
+/*--------------------------------------------------*/
 
 
 /*-------------------RIGHT PANELS-------------------*/
@@ -390,7 +424,6 @@ body {
     /* background: rgb(255, 14, 155); */
 }
 /*-----------------------------*/
-
 
 /*---------GREENHOUSE----------*/
 #gh-box {
@@ -424,7 +457,6 @@ body {
 }
 /*-----------------------------*/
 
-
 /*----------SABATIER-----------*/
 #sab-box {
     top: 50.2%;
@@ -447,7 +479,6 @@ body {
     /* background: rgb(255, 14, 155); */
 }
 /*-----------------------------*/
-
 
 /*-------------OGA-------------*/
 #oga-box {
@@ -473,6 +504,7 @@ body {
     /* background: rgb(255, 14, 155); */
 }
 /*-----------------------------*/
+/*--------------------------------------------------*/
 
 
 /*-----HEADER------*/
