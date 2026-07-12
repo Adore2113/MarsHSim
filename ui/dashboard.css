@@ -184,47 +184,10 @@ body {
 } */
 
 
-/*------------POWER------------*/
-/* #power-box {
-    top: 50%;
-    left: 60.5%;
-    width: 19%;
-    height: 42%;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-    background: rgb(255, 14, 155);
-} */
-
-/* #power-p {
-    box-sizing: border-box;
-    width: 100%;
-
-    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
-    padding: 0;
-
-    display: block;
-    text-align: left;
-
-    color: white;
-
-    font-family: "Share Tech Mono", monospace;
-    line-height: 1.25;
-
-    background: transparent;
-    border: none;
-    backdrop-filter: none;
-} */
-    
-
 
 /*---------------TOP CENTER PANELS------------------*/
 /*---------STATUS BOX----------*/
 #status-box {
-    container-type: inline-size;
-    container-name: status-box;
-    
     top: 1.4%;
     left: 40.4%;
     width: 19.2%;
@@ -301,8 +264,39 @@ body {
 }
 /*-----------------------------*/
 
+/*------------POWER------------*/
+#power-box {
+    top: 50%;
+    left: 60.5%;
+    width: 19%;
+    height: 42%;
 
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    background: rgb(255, 14, 155);
+}
 
+#power-p {
+    box-sizing: border-box;
+    width: 100%;
+
+    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
+    padding: 0;
+
+    display: block;
+    text-align: left;
+
+    color: white;
+
+    font-family: "Share Tech Mono", monospace;
+    line-height: 1.25;
+
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+}
+/*-----------------------------*/
 
 /*------------WATER------------*/
 #water-box {
