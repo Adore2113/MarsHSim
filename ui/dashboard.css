@@ -51,8 +51,10 @@ body {
 
     /*---TEXT----*/
     color: white;
+    font-family: "Orbitron", sans-serif;
+
     font-family: "Share Tech Mono", monospace;
-    font-size: clamp(8px, 1.9cqmin, 19px);
+    font-size: clamp(8px, 1.2cqw, 19px);
     line-height: 1.25;
 
     /*---BORDER---*/
@@ -66,14 +68,19 @@ body {
     background: transparent;
     border: none;
     backdrop-filter: none;
-
 }
 /*--------------------------------------------------*/
 
 
 /*----------------------HEADER----------------------*/
 .panel h2 {
+    /*---POSTION---*/
     flex-shrink: 0;
+    padding: clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
+    position: static;
+    z-index: 1;
+
+    /*---TEXT----*/
     color: white;
     font-family: "Orbitron", sans-serif;
     font-size: clamp(7px, 1.15cqw, 14px);
@@ -82,15 +89,10 @@ body {
     letter-spacing: 0.08em;
     text-transform: uppercase;
 
-    padding: clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
-    position: static;
-    
-    border: 1px solid rgba(11, 255, 235, 0.35);
-    z-index: 1;
+    /*--VISUALS--*/
     margin: 0px;
     border: none;
     backdrop-filter: none;
-    text-shadow: 0 0 2px #03b591;
     transform: none;
     text-shadow: 2px 2px 4px #02b1b4;
 }
@@ -102,7 +104,7 @@ body {
     /*---POSTION---*/
     box-sizing: border-box;
     width: 100%;
-    margin: -3px 0 clamp(2px, 0.5cqw, 8px) 0;
+    margin: -3px 0 clamp(3px, 0.5cqw, 8px) 0;
     display: block;
     position: static;
     transform: none;
@@ -152,6 +154,7 @@ body {
 }
 /*--------------------------------------------------*/
 
+
 /*------------------HOVER EFFECTS-------------------*/
 .panel-content::before {
     content: "";
@@ -175,7 +178,6 @@ body {
     box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), 
     inset 0 0 40px rgba(0, 255, 204, 0.2);
 } */
-
 /*--------------------------------------------------*/
 
 
