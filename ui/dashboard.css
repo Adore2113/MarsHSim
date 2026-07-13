@@ -49,7 +49,6 @@ body {
 
     /*---TEXT----*/
     color: white;
-    font-family: "Orbitron", sans-serif;
 
     font-family: "Share Tech Mono", monospace;
     font-size: clamp(8px, 1.2cqw, 19px);
@@ -67,7 +66,6 @@ body {
     border: none;
     backdrop-filter: none;
 
-        
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: hidden;
@@ -80,13 +78,14 @@ body {
 .panel h2 {
     /*---POSTION---*/
     flex-shrink: 0;
-    padding: clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
+    padding: clamp(0.5px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
     position: static;
     z-index: 1;
 
     /*---TEXT----*/
     color: white;
     font-family: "Orbitron", sans-serif;
+    
     font-size: clamp(7px, 1.15cqw, 14px);
     font-weight: 700;
     line-height: 1.60;
@@ -103,7 +102,7 @@ body {
 /*--------------------------------------------------*/
 
 
-/*-----------------PANEL PARAGRAPH-----------------*/
+/*--------------------PANEL TEXT--------------------*/
 .panel-p {
     /*---POSTION---*/
     box-sizing: border-box;
