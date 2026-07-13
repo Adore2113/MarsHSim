@@ -1120,3 +1120,18 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 ##      07/08/2026
     ♡ I worked on the dashboard image and added a new palle, as well as angled some screens for better readability, as well as making some other layout changes
+
+
+##      07/10/2026
+    ♡ I did some perspective updates with the dashboard image and I still need to add more screens for crew and mission log, and fix the image more, the three uploaded are only prototype images
+
+##      07/12/2026
+    ♡ the last few days have been refining my layout image and deciding on panel amount and also panel placement
+
+    ♡ I decided I'm going to add a panel for the crew information on one side of the status panel and a panel for the alerts on the other side
+
+    ♡ I'm going to be adding crew scheduling, maintenance, and a few updates, with any complaints or any positive feedback from the crew when things are running well
+
+    ♡ I added to the todo list with update alerts to include things like stats evening out (co2 returned to normal range, etc.), buffer gas injections complete, isru pipes retracted, isru pipes deployed
+    
+    ♡ I need to decide if the middle panel is actually gong to be a mission log and decide what will be split between the mission log updates and the alerts section
