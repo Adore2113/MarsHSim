@@ -303,11 +303,13 @@ body {
 /*--------------------TOP CENTER--------------------*/
 /*---------STATUS BOX----------*/
 #status-box {
+    /* ---POSTION--- */
     top: 1.4%;
     left: 40.4%;
     width: 19.2%;
     height: 13.8%;
-
+    
+    /*--VISUALS--*/
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -338,14 +340,27 @@ body {
 /*--------------------------------------------------*/
 
 /*---------------------TOP LEFT---------------------*/
-/*---------PLACEHOLDER---------*/
-/* #PLACEHOLDER-box {
-    ---POSTION---
+/*---------ALERTS---------*/
+#alerts-box {
+    /* ---POSTION--- */
     top: 1.5%;
     left: 60.5%;
-    width: 19%;
-    height: 13.5%;
-} */
+    width: 19.2%;
+    height: 13.9%;
+
+    /*----SHAPE----*/
+    clip-path: polygon(0% 0%, 97.5% 2%, 97.5% 93.5%, 0% 95%);
+    transform: perspective(1450px) rotateY(-10deg) skewY(0.15deg);
+    
+    /*--VISUALS--*/
+    transform-origin: left top;
+    transform-style: preserve-3d; 
+    overflow: hidden;
+    padding-bottom: 1.2%;
+
+    /* background: rgb(255, 14, 155); */
+
+}
 /*--------------------------------------------------*/
 
 
@@ -362,7 +377,8 @@ body {
     /*----SHAPE----*/
     clip-path: polygon(0% 2%, 97.5% 0%, 97.5% 93.5%, 0% 94%);
     transform: perspective(1450px) rotateY(10deg) skewY(-0.1deg);
-
+    
+    /*--VISUALS--*/
     transform-origin: left top;
     transform-style: preserve-3d; 
     overflow: hidden;
