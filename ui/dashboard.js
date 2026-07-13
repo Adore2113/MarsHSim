@@ -52,24 +52,31 @@ async function loadDashboard() {
 
 
   //-----------status------------//
-  const alerts = ss.alerts.length > 0
-  
-    ? ss.alerts.join(",")
-    : "No alerts";
-
   set("status-p",
     `Status: ${ss.status}<br>` +
-    `Alerts:${alerts}<br>` +
     `Sol ${ss.sol} | ${ss.lmst} LMST<br>` +
     `Habitat Temp: ${decFmt(ss.habitat_temp_c, 1)} °C<br>` +
     `Mars Temp: ${decFmt(ss.mars_temp_c, 1)} °C`
   );
 
+  
+  //-----------alerts------------//
+  const alerts = ss.alerts.length > 0
+
+    ? ss.alerts.join(",")
+    : "No alerts";
+
+  set("alerts-p",
+    `Alerts:${alerts}<br>`
+  );
+
+
   //------------crew-------------//
-set("crew-p",
-      `Crew Count: 30 <br>` +  //remove hardcoding later//
-      `Activity: normal <br>`
-    )
+  set("crew-p",
+        `Crew Count: 30 <br>` + 
+        `Activity: normal <br>`
+  ); //remove hardcoding later//
+
 
   //---------atmosphere----------//
   set("atm-p",
