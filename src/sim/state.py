@@ -175,7 +175,6 @@ class Habitat_State:
     solar_absorptivity: float
 
     #---------------------water----------------------♡
-    #-------water in storage-------♡
     potable_water_storage_kg: float
     gray_water_storage_kg: float
     black_water_storage_kg: float   
