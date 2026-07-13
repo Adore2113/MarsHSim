@@ -65,6 +65,10 @@ async function loadDashboard() {
     `Mars Temp: ${decFmt(ss.mars_temp_c, 1)} °C`
   );
 
+  //------------crew-------------//
+set("crew-p",
+      `Crew Count: 30 <br>`  //remove hardcoding later//
+)
 
   //---------atmosphere----------//
   set("atm-p",
