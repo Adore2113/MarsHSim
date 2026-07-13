@@ -67,8 +67,9 @@ async function loadDashboard() {
 
   //------------crew-------------//
 set("crew-p",
-      `Crew Count: 30 <br>`  //remove hardcoding later//
-)
+      `Crew Count: 30 <br>` +  //remove hardcoding later//
+      `Activity: normal <br>`
+    )
 
   //---------atmosphere----------//
   set("atm-p",
