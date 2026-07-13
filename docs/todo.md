@@ -3,7 +3,7 @@
 #### I will be adding and removing from this. I needed somewhere to organize my ideas and thoughts
 
 ### Current Focus:
-    ♡ start protoype ui
+    ♡ protoype ui
      
 
 ### Next Focus:      
@@ -11,22 +11,19 @@
 
     ♡ randomize temps
 
+    ♡ update alerts to include things like stats evening out (co2 returned to normal range, etc.)
+
+    ♡ update alerts to include buffer gas injections complete, isru pipes retracted, isru pipes deployes
+
+    ♡ decide if the middle panel is actually gong to be a mission log and decide what will be split between the mission log updates and the alerts section
+
+    ♡ add crew scheduling, maintenance, and a few updates, with any complaints or any positive feedback from the crew when things are running well
+
 ### Later Focus:
     ♡ add tank depletion alerts   
 
     ♡ double check unit consistencies: 
-       
-        - kpa
-        
-        - kg
-        
-        - kw
-        
-        - kwh
-
-        - ect.
-
-
+    
     ♡ add system efficiency modifiers:
         
         - dust
@@ -104,4 +101,6 @@
 
 
     ♡ add rations, maybe?
+
+    ♡ add rover that goes and finds things
 
