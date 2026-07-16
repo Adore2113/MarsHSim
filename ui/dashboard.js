@@ -53,13 +53,13 @@ async function loadDashboard() {
 
   //-----------status------------//
   set("status-p",
-    `Status: ${ss.status}<br>` +
     `Sol ${ss.sol} | ${ss.lmst} LMST<br>` +
-    `Habitat Temp: ${decFmt(ss.habitat_temp_c, 1)} °C<br>` +
-    `Mars Temp: ${decFmt(ss.mars_temp_c, 1)} °C`
+    `Season: 123456<br>` +
+    `Crew Count: 30 <br>` +
+    `Crew Activity: placeholder <br>`
   );
 
-  
+
   //-----------alerts------------//
   const alerts = ss.alerts.length > 0
 
@@ -67,15 +67,17 @@ async function loadDashboard() {
     : "No alerts";
 
   set("alerts-p",
+    `Status: ${ss.status}<br>` +
     `Alerts:${alerts}<br>`
   );
 
-
-  //------------crew-------------//
-  set("crew-p",
-        `Crew Count: 30 <br>` + 
-        `Activity: normal <br>`
-  ); //remove hardcoding later//
+  //--------Surface Conditions---------//
+  set("surface-p",
+    `Peak Sun Today: ${decFmt(power.peak_sun_today, 3)} / 1.0<br>` +
+    `Sunlight per m²: ${decFmt(power.sunlight_per_m2_kw, 3)} kW<br>` +
+    `Low Sun Streak: ${power.low_sun_streak_sols ?? 0} sols<br>`+
+    `Dust Storm Risk: 00%<br>`
+  ); //figure out what else goes here later//
 
 
   //---------atmosphere----------//
@@ -177,9 +179,6 @@ set("power-p",
   
   `Solar Arrays: ${power.solar_arrays_online ?? "-"} / 10<br>` +
   `Solar Generated: ${decFmt(power.solar_generated_kw)} kW<br>` +
-  `Sunlight per m²: ${decFmt(power.sunlight_per_m2_kw, 3)} kW<br>` +
-  `Peak Sun Today: ${decFmt(power.peak_sun_today, 3)} / 1.0<br>` +
-  `Low Sun Streak: ${power.low_sun_streak_sols ?? 0} sols<br>` +
   `Wellness Lights: ${power.wellness_lights ? "ON" : "off"}<br>` +
   `<br>` +
 
