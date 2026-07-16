@@ -229,8 +229,18 @@ set("thermal-p",
 );
 
 
-  //------------isru-------------//
-set("isru-p",
+//---------isru water----------//
+set("isru-water-p",
+  `Water Mode: ${isru_w.isru_water_mode ?? "—"}<br>` +
+  `Pipes Extracting: ${isru_w.pipes_extracting ?? 0}<br>` +
+  `Pipes Deploying: ${isru_w.pipes_deploying ?? 0}<br>` +
+  `Pipes Retracting: ${isru_w.pipes_retracting ?? 0}<br>` +
+  `Raw Water Added: ${decFmt(isru_w.raw_water_added_kg, 3)} kg`
+  );
+
+
+  //----------isru atm-----------//
+  set("isru-atm-p",
   `Atmosphere Mode: ${isru_a.isru_atm_mode ?? "—"}<br>` +
   `Compressors: ${isru_a.compressors ?? 0}<br>` +
     `<br>` + 
@@ -244,16 +254,8 @@ set("isru-p",
   `CO₂ Added: ${decFmt(isru_a.co2_added_kg, 3)} kg<br>` +
   `CO₂ Absorbed: ${decFmt(isru_a.co2_absorbed_kg, 3)} kg<br>` +
   `CO₂ Released: ${decFmt(isru_a.co2_released_kg, 3)} kg<br>` +
-  `CO₂ Bypassed: ${decFmt(isru_a.co2_bypassed_kg, 3)} kg<br>` +
-  `<br>` +
-
-  `Water Mode: ${isru_w.isru_water_mode ?? "—"}<br>` +
-  `Pipes Extracting: ${isru_w.pipes_extracting ?? 0}<br>` +
-  `Pipes Deploying: ${isru_w.pipes_deploying ?? 0}<br>` +
-  `Pipes Retracting: ${isru_w.pipes_retracting ?? 0}<br>` +
-  `Raw Water Added: ${decFmt(isru_w.raw_water_added_kg, 3)} kg`
+  `CO₂ Bypassed: ${decFmt(isru_a.co2_bypassed_kg, 3)} kg<br>`
   );
-
 
   //---------greenhouse----------//
 set("gh-p",
