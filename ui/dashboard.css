@@ -259,9 +259,10 @@ body {
 
 
 /*-TOP CENTER PANELS-*/
+
 /*-----------------LEFT TOP CENTER------------------*/
-/*------------CREW-------------*/
-#crew-box {
+/*-----SURFACE CONDITIONS------*/
+#surface-box {
     /*---POSTION---*/
     top: 1.5%;
     left: 20.5%;
@@ -271,8 +272,10 @@ body {
     /*----SHAPE----*/
     clip-path: polygon(0% 0%, 98% 1%, 98% 100%, 0% 100%);
     transform: perspective(1450px) rotateY(10deg) skewY(-0.1deg);
+    padding-bottom: 0%;
 
-    /* background: rgb(255, 14, 155); */
+
+    background: rgb(255, 14, 155);
 }
 
 /*--------------------TOP CENTER--------------------*/
@@ -285,16 +288,17 @@ body {
     height: 13.8%;
     
     /*--VISUALS--*/
-    overflow: hidden;
+    /* overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     text-align: center;
+    container-type: inline-size;
 
     /* background: rgb(255, 14, 155); */
 }
 
-#status-p {
+/* #status-p {
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -311,7 +315,7 @@ body {
     font-family: "Share Tech Mono", monospace;
     font-size: clamp(10px, 6.5cqw, 14px);
     line-height: 1.16;
-}
+} */
 
 /*---------------------TOP LEFT---------------------*/
 /*---------ALERTS---------*/
