@@ -92,6 +92,7 @@ body {
     letter-spacing: 0.08em;
     text-transform: uppercase;
 
+    
     /*--VISUALS--*/
     margin: 0px;
     border: none;
@@ -127,7 +128,7 @@ body {
 
 /*------------------PANEL CONTEXT-------------------*/
 .panel-content {
-    padding: clamp(0.px, 0.3cqw, 4px) 0px clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
+    padding: clamp(0px, 0.3cqw, 4px) 0px clamp(1px, 0.3cqw, 4px) clamp(2px, 0.4cqw, 6px);
     overflow-y: auto;
     flex: 1;
 }
@@ -233,28 +234,25 @@ body {
     padding-top: 0.5%;
     
     background: rgb(255, 14, 155);
-}
+} /*
 
 /*--------------------BOTTOM LEFT--------------------*/
 /*---------PLACEHOLDER---------*/
-/* #PLACEHOLDER-box {
-    ---POSTION---
+#isru-atm-box {
+    /* ---POSTION--- */
     top: 75%;
     left: 1.1%;
     width: 21.2%;
     height: 25.5%;
 
-    ----SHAPE----
+    /* ----SHAPE---- */
     clip-path: polygon(0% 6%, 100% 0%, 100% 92%, 0% 92%);
     transform: perspective(1300px) rotateY(25deg) skewY(-0.4deg);
-    transform-origin: left top;
-    transform-style: preserve-3d; 
-    overflow: hidden;
-    padding-bottom: 1%;
-    padding-top: 0.8%;
+   
+    padding-top: 0.5%;
     
     background: rgb(255, 14, 155);
-} */
+}
 /*--------------------------------------------------*/
 
 
@@ -275,7 +273,7 @@ body {
     padding-bottom: 0%;
 
 
-    background: rgb(255, 14, 155);
+    /* background: rgb(255, 14, 155); */
 }
 
 /*--------------------TOP CENTER--------------------*/
