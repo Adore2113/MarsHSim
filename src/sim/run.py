@@ -20,6 +20,7 @@ s0 = Habitat_State(
     peak_sunlight_today = 0.0,
     low_sunlight_streak_sols = 0,
     
+    dust_storm_risk_pct = 0.0,
     #------------lights------------♡
     light_level = 0.0,
     wellness_lights_on = False,
