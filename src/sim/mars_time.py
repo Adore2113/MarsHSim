@@ -45,21 +45,27 @@ def get_sol_time(state):
     
     return sol_number, sol_hour, minutes
 
-
-#----------------current season angle----------------♡ 
-def get_season_angle_deg(mission_time_s):
-    season_angle_deg = (mission_time_s * degrees_per_second) % 360
+#-----areocentric solar longitude (season angle)-----♡ 
+def true_to_mean_anomaly_deg(true_anomaly_deg, eccentricity):
+    # true anomaly deg: actual position angle in orbit
+    # mean anomaly deg: time based orbital progress angle
+    # eccentricity: how not circular the orbit is
     
-    return season_angle_deg
+    true_anomaly_rad = math.radians(true_anomaly_deg)
+    eccentric_anomaly_rad = 2 * math.atan2 (math.sqrt(1 - eccentricity) * math.sin(true_anomaly_rad / 2), math.sqrt(1 + eccentricity) * math.cos(true_anomaly_rad / 2))
 
-#----------------current season angle----------------♡ 
+    mean_anomaly_rad = eccentric_anomaly_rad - eccentricity * math.sin(eccentric_anomaly_rad)
+    mean_anomaly_deg = math.degrees(mean_anomaly_rad) % 360
 
+    return mean_anomaly_deg
 
+def mean_to_true_anomaly_deg(true_anomaly_deg, eccentricity):
+    ...
 
 #-------how far the sun is shifted in the sky--------♡ 
 def get_solar_decline_deg(state):
-    season_angle_deg = get_season_angle_deg(state.mission_time_s)
-    solar_decline_deg = mars_axial_tilt_deg * math.sin(math.radians(season_angle_deg))
+    season_angle_deg = get_ls_deg(state.mission_time_s)
+    solar_decline_deg = mars_axial_tilt_deg * math.sin(math.radians(ls_deg))
 
     return solar_decline_deg
 
