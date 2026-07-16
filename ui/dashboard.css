@@ -229,7 +229,7 @@ body {
     transform: perspective(1300px) rotateY(25deg) skewY(-0.3deg);
 
     
-    background: rgb(255, 14, 155);
+    /* background: rgb(255, 14, 155); */
 } /*
 
 /*--------------------BOTTOM LEFT--------------------*/
@@ -247,7 +247,7 @@ body {
    
     padding-top: 0.5%;
     
-    background: rgb(255, 14, 155);
+    /* background: rgb(255, 14, 155); */
 }
 /*--------------------------------------------------*/
 
@@ -381,8 +381,8 @@ body {
 
 /*-RIGHT PANELS-*/
 /*--------------------TOP RIGHT--------------------*/
-/*------------ISRU-------------*/
-#isru-box {
+/*------------PLACEHOLDER-------------*/
+#placeholder {
     /*---POSTION---*/
     top: 1.6%;
     left: 80.8%;
@@ -428,8 +428,8 @@ body {
 }
 
 /*-------------------BOTTOM RIGHT-------------------*/
-/*-------------OGA-------------*/
-#oga-box {
+/*----------ISRU WATER---------*/
+#isru-water-box {
     top: 74.9%;
     left: 80.8%;
     width: 18.7%;
