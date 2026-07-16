@@ -9,14 +9,16 @@ sols_per_year = 668.599     # one full Mars orbit
 seconds_per_mars_year = sols_per_year * seconds_per_sol
 degrees_per_second = 360.0 / seconds_per_mars_year
 
-# habitat location = 47° North, 184° East (Arcadia Planitia)
+# habitat location (Arcadia Planitia)
 latitude_north_deg = 47.0
 longitude_east_deg = 184.0
 
 mars_axial_tilt_deg = 25.19    # how much Mars is tilted for changing sun angle 
+mars_orbit_eccentricity = 0.0934
+mars_ls_perihelion_deg = 251.0    # ls = areocentric solar longitude (season angle), perihelion = closest to the sun
+
 max_daylight_m2_kw = 0.57
 low_sunlight_kw = 0.3    # < 0.3 sunlight per m2 = low sunlight
-
 #----------------------------------------------------♡
 
 
@@ -49,6 +51,9 @@ def get_season_angle_deg(mission_time_s):
     season_angle_deg = (mission_time_s * degrees_per_second) % 360
     
     return season_angle_deg
+
+#----------------current season angle----------------♡ 
+
 
 
 #-------how far the sun is shifted in the sky--------♡ 
@@ -123,7 +128,6 @@ def get_daylight_per_m2_kw(state):
 #--------------define northern seasons---------------♡
 def current_mars_season(state):
     season_angle_deg = get_season_angle_deg(state.mission_time_s)
-    # ls = areocentric solar longitude (season angle)
 
     if 0 <= season_angle_deg < 90:
         return "northern_spring" 
