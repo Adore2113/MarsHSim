@@ -216,28 +216,24 @@ body {
 }    */
 
 /*------------------THIRD DOWN LEFT------------------*/
-/*---------PLACEHOLDER---------*/
-/* #PLACEHOLDER-box {
----POSTION---
+/*-------------OGA-------------*/
+#oga-box {
+/* ---POSTION--- */
     top: 50.5%;
     left: 1.1%;
     width: 21.2%;
     height: 26%;
 
-----SHAPE----
+/* ----SHAPE---- */
     clip-path: polygon(0% 4.5%, 100% 0%, 100% 92%, 0% 92%);
     transform: perspective(1300px) rotateY(25deg) skewY(-0.3deg);
-    transform-origin: left top;
-    transform-style: preserve-3d; 
-    overflow: hidden;
-    padding-bottom: 1.1%;
-    padding-top: 0.5%;
+
     
     background: rgb(255, 14, 155);
 } /*
 
 /*--------------------BOTTOM LEFT--------------------*/
-/*---------PLACEHOLDER---------*/
+/*-----------ISRU ATM----------*/
 #isru-atm-box {
     /* ---POSTION--- */
     top: 75%;
