@@ -14,8 +14,10 @@ latitude_north_deg = 47.0
 longitude_east_deg = 184.0
 
 mars_axial_tilt_deg = 25.19    # how much Mars is tilted for changing sun angle 
-mars_orbit_eccentricity = 0.0934
+mars_orbital_eccentricity = 0.0934
 mars_ls_perihelion_deg = 251.0    # ls = areocentric solar longitude (season angle), perihelion = closest to the sun
+mars_ls_at_perihelion_deg = 251.0    # ls value at perihelion, anchoring real Mars seasonal timing
+mars_mean_anomaly_at_epoch_deg = 98.658    # mean anomaly at mission_time_s = 0
 
 max_daylight_m2_kw = 0.57
 low_sunlight_kw = 0.3    # < 0.3 sunlight per m2 = low sunlight
@@ -45,6 +47,7 @@ def get_sol_time(state):
     
     return sol_number, sol_hour, minutes
 
+
 #-----areocentric solar longitude (season angle)-----♡ 
 def true_to_mean_anomaly_deg(true_anomaly_deg, eccentricity):
     # true anomaly deg: actual position angle in orbit
@@ -64,6 +67,7 @@ def true_to_mean_anomaly_deg(true_anomaly_deg, eccentricity):
     
     return mean_anomaly_deg
 
+#----------------------------------------------------♡
 def mean_to_true_anomaly_deg(mean_anomaly_deg, eccentricity):
     mean_anomaly_rad = math.radians(mean_anomaly_deg % 360)
     eccentric_anomaly_rad = mean_anomaly_rad
@@ -83,6 +87,9 @@ def mean_to_true_anomaly_deg(mean_anomaly_deg, eccentricity):
     true_anolamly_deg = math.degrees(true_anomanly_rad) % 360
 
     return true_anolamly_deg
+
+#----------------------------------------------------♡
+def get_ls_deg(mission_time_s):
 
 #-------how far the sun is shifted in the sky--------♡ 
 def get_solar_decline_deg(state):
