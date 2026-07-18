@@ -11,8 +11,10 @@ class Habitat_State:
     #---------------time and daylight----------------♡
     mission_time_s: int
 
+    ls_deg: float
+    current_season: str
+
     daylight_m2_kw: float
-    
     peak_sunlight_today: float
     low_sunlight_streak_sols: int
 
