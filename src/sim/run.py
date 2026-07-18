@@ -16,6 +16,9 @@ s0 = Habitat_State(
     #-------time and daylight------♡
     mission_time_s = 0,
 
+    ls_deg = 0,
+    current_season = "northern_spring" ,
+
     daylight_m2_kw = 0.0,
     peak_sunlight_today = 0.0,
     low_sunlight_streak_sols = 0,
