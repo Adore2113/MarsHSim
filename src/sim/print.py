@@ -66,8 +66,9 @@ def print_system_stats(alerts, state, outputs):
     
     print(f"\n{'Sol:':<19} {sol} | {hour:02d}:{minutes:02d} LMST")
     print(f"{'Habitat Temp:':<{lw}} {state.hab_temp_c:.3f} °C")
+    print(f"{'Season:':<{lw}} {state.current_season.replace('_', ' ')}")
     print(f"{'Mars Temp:':<{lw}} {outputs.get('mars_temp_c', state.mars_temp_c):.2f} °C")
-
+    # outputs.get('dust_storm_risk_pct')
 #----------------------------------------------------♡
 
 
