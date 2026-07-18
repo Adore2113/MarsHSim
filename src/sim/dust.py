@@ -66,15 +66,15 @@ def get_dust_accumulation(state, dt_min):
     for compressor in state.isru_compressors:
         new_compressor = compressor.copy()
 
-    dust_rate = base_dust_rate_per_sol * compressor_dust_multiplier
+        dust_rate = base_dust_rate_per_sol * compressor_dust_multiplier
 
-    if new_compressor["status"] == "extracting":
-        dust_rate *= online_multiplier
+        if new_compressor["status"] == "extracting":
+            dust_rate *= online_multiplier
 
-    efficiency_loss = dust_rate * sols_per_step
+        efficiency_loss = dust_rate * sols_per_step
 
-    new_compressor["dust_factor"] = max(min_compressor_efficiency, new_compressor["dust_factor"] - efficiency_loss)
-    new_compressors.append(new_compressor)
+        new_compressor["dust_factor"] = max(min_compressor_efficiency, new_compressor["dust_factor"] - efficiency_loss)
+        new_compressors.append(new_compressor)
 
     #----------------isru water pipes----------------♡
     for pipe in state.isru_pipes:
