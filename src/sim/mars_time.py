@@ -15,9 +15,8 @@ longitude_east_deg = 184.0
 
 mars_axial_tilt_deg = 25.19    # how much Mars is tilted for changing sun angle 
 mars_orbital_eccentricity = 0.0934
-mars_ls_perihelion_deg = 251.0    # ls = areocentric solar longitude (season angle), perihelion = closest to the sun
-mars_ls_at_perihelion_deg = 251.0    # ls value at perihelion, anchoring real Mars seasonal timing
-mars_mean_anomaly_at_epoch_deg = 98.658    # mean anomaly at mission_time_s = 0
+mars_ls_at_perihelion_deg = 251.0    # ls = areocentric solar longitude (season angle), perihelion = closest to the sun
+mars_mean_anomaly_at_start_deg = 98.658    # mean anomaly at mission_time_s = 0
 
 max_daylight_m2_kw = 0.57
 low_sunlight_kw = 0.3    # < 0.3 sunlight per m2 = low sunlight
@@ -67,7 +66,6 @@ def true_to_mean_anomaly_deg(true_anomaly_deg, eccentricity):
     
     return mean_anomaly_deg
 
-#----------------------------------------------------♡
 def mean_to_true_anomaly_deg(mean_anomaly_deg, eccentricity):
     mean_anomaly_rad = math.radians(mean_anomaly_deg % 360)
     eccentric_anomaly_rad = mean_anomaly_rad
@@ -84,20 +82,43 @@ def mean_to_true_anomaly_deg(mean_anomaly_deg, eccentricity):
     cos_part = math.sqrt(1 - eccentricity) * math.cos(half_eccentric_anomaly_rad)
     
     true_anomaly_rad = 2 * math.atan2(sin_part, cos_part)    
-    true_anolamly_deg = math.degrees(true_anomanly_rad) % 360
+    true_anolamly_deg = math.degrees(true_anomaly_rad) % 360
 
     return true_anolamly_deg
 
-#----------------------------------------------------♡
+
+#------------------get season angle------------------♡ 
 def get_ls_deg(mission_time_s):
+    mean_anomaly_deg = (mars_mean_anomaly_at_start_deg + mission_time_s * degrees_per_second) % 360
+    true_anomaly_deg = mean_to_true_anomaly_deg(mean_anomaly_deg, mars_orbital_eccentricity)
+    ls_deg = (true_anomaly_deg + mars_ls_at_perihelion_deg) % 360
+    
+    return ls_deg
+
+
+#--------------define northern seasons---------------♡
+def current_mars_season(state):
+    ls_deg = get_ls_deg(state.mission_time_s)
+
+    if 0 <= ls_deg < 90:
+        return "northern_spring" 
+    
+    elif 90 <= ls_deg < 180:
+        return "northern_summer" 
+    
+    elif 180 <= ls_deg < 270:
+        return "northern_autumn" 
+    
+    else:
+        return "northern_winter"
+
 
 #-------how far the sun is shifted in the sky--------♡ 
 def get_solar_decline_deg(state):
-    season_angle_deg = get_ls_deg(state.mission_time_s)
+    ls_deg = get_ls_deg(state.mission_time_s)
     solar_decline_deg = mars_axial_tilt_deg * math.sin(math.radians(ls_deg))
 
     return solar_decline_deg
-
 
 #----------what fraction of sol is daylight----------♡ 
 def get_daylight_fraction(state):
@@ -159,23 +180,6 @@ def get_daylight_per_m2_kw(state):
     
     return daylight_per_m2
 
-
-#--------------define northern seasons---------------♡
-def current_mars_season(state):
-    season_angle_deg = get_season_angle_deg(state.mission_time_s)
-
-    if 0 <= season_angle_deg < 90:
-        return "northern_spring" 
-    
-    elif 90 <= season_angle_deg < 180:
-        return "northern_summer" 
-    
-    elif 180 <= season_angle_deg < 270:
-        return "northern_autumn" 
-    
-    else:
-        return "northern_winter"
-    
 
 #--------------low sunlight streak info--------------♡
 def get_low_sunlight_streak(state):
