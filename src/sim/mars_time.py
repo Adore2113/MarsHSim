@@ -54,10 +54,10 @@ def true_to_mean_anomaly_deg(true_anomaly_deg, eccentricity):
     true_anomaly_rad = math.radians(true_anomaly_deg)
     half_true_anomaly_rad = true_anomaly_rad / 2
     
-    sin_term = math.sqrt(1 - eccentricity) * math.sin(half_true_anomaly_rad)
-    cos_term = math.sqrt(1 + eccentricity) * math.cos(half_true_anomaly_rad)
+    sin_part = math.sqrt(1 - eccentricity) * math.sin(half_true_anomaly_rad)
+    cos_part = math.sqrt(1 + eccentricity) * math.cos(half_true_anomaly_rad)
 
-    eccentric_anomaly_rad = 2 * math.atan2(sin_term, cos_term)
+    eccentric_anomaly_rad = 2 * math.atan2(sin_part, cos_part)
 
     mean_anomaly_rad = eccentric_anomaly_rad - eccentricity * math.sin(eccentric_anomaly_rad)
     mean_anomaly_deg = math.degrees(mean_anomaly_rad) % 360
@@ -69,12 +69,17 @@ def mean_to_true_anomaly_deg(mean_anomaly_deg, eccentricity):
     eccentric_anomaly_rad = mean_anomaly_rad
 
     for _ in range(5):
-        kepler_error = (eccentric_anomaly_rad - eccentricity * math.sin(eccentric_anomaly_rad) - mean_anomaly_rad)
-        kepler_slope = (1 - eccentricity * math.cos(eccentric_anomaly_rad))
-
+        kepler_error = eccentric_anomaly_rad - eccentricity * math.sin(eccentric_anomaly_rad) - mean_anomaly_rad
+        kepler_slope = 1 - eccentricity * math.cos(eccentric_anomaly_rad)
+        
         eccentric_anomaly_rad -= kepler_error / kepler_slope
 
-    true_anomanly_rad = 2 * math.atan2 (math.sqrt(1 + eccentricity) * math.sin(eccentric_anomaly_rad / 2), math.sqrt(1 - eccentricity) * math.cos(eccentric_anomaly_rad / 2))
+    half_eccentric_anomaly_rad = eccentric_anomaly_rad / 2
+
+    sin_part = math.sqrt(1 + eccentricity) * math.sin(half_eccentric_anomaly_rad)
+    cos_part = math.sqrt(1 - eccentricity) * math.cos(half_eccentric_anomaly_rad)
+    
+    true_anomaly_rad = 2 * math.atan2(sin_part, cos_part)    
     true_anolamly_deg = math.degrees(true_anomanly_rad) % 360
 
     return true_anolamly_deg
