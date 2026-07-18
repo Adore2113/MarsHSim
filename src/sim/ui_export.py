@@ -26,6 +26,16 @@ def write_dashboard_json(state, outputs, alerts):
             "mars_temp_c": op.get("mars_temp_c", state.mars_temp_c),
         },
 
+    #------external conditions------♡
+        "surface": {
+            "peak_sun_today": state.peak_sunlight_today,
+            "sunlight_per_m2_kw": state.daylight_m2_kw,
+            "low_sun_streak_sols": state.low_sunlight_streak_sols,
+            "dust_storm_risk_pct": state.dust_storm_risk_pct,
+            "season": state.current_season,
+            "ls_deg": round(state.ls_deg, 1),
+    },
+
     #----------atmosphere----------♡
         "atmosphere": {
             "total_pressure_kpa": mca(state),
@@ -112,9 +122,6 @@ def write_dashboard_json(state, outputs, alerts):
 
             "solar_arrays_online": op.get("solar_arrays_online_count", 0),
             "solar_generated_kw": op.get("total_solar_generated_kw", 0),
-            "sunlight_per_m2_kw": state.daylight_m2_kw,
-            "peak_sun_today": state.peak_sunlight_today,
-            "low_sun_streak_sols": state.low_sunlight_streak_sols,
             "wellness_lights": state.wellness_lights_on,
 
             "total_power_used_kw": op.get("total_power_used_kw", 0),
