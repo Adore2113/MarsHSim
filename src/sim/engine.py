@@ -6,7 +6,7 @@ from .buffer_gas import run_buffer_gas_control
 from .co2_scrub import run_co2_scrub
 from .crew import total_crew_metabolism
 from .power import light_system, run_system_power
-from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, current_sol_number, get_low_sunlight_streak
+from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, current_sol_number, get_low_sunlight_streak, get_ls_deg, current_mars_season
 from .temp import run_thermal_control, update_humidity
 from .water import run_water_system
 from .dust import get_dust_accumulation
@@ -45,12 +45,17 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
         new_low_sunlight_streak_sols = state.low_sunlight_streak_sols
 
+    new_ls_deg = get_ls_deg(new_state.mission_time_s)
+    new_season = current_mars_season(new_state)
+
     new_state = replace(
-        new_state, 
-        daylight_m2_kw = new_daylight_per_m2_kw, 
-        peak_sunlight_today = new_peak_sunlight_today, 
-        low_sunlight_streak_sols = new_low_sunlight_streak_sols
-        )
+    new_state, 
+    daylight_m2_kw = new_daylight_per_m2_kw, 
+    peak_sunlight_today = new_peak_sunlight_today, 
+    low_sunlight_streak_sols = new_low_sunlight_streak_sols,
+    ls_deg = new_ls_deg,
+    current_season = new_season
+    )
     
     #----------------crew-----------------♡
     crew_results = total_crew_metabolism(new_state, dt_min) 
