@@ -64,6 +64,20 @@ def true_to_mean_anomaly_deg(true_anomaly_deg, eccentricity):
     
     return mean_anomaly_deg
 
+def mean_to_true_anomaly_deg(mean_anomaly_deg, eccentricity):
+    mean_anomaly_rad = math.radians(mean_anomaly_deg % 360)
+    eccentric_anomaly_rad = mean_anomaly_rad
+
+    for _ in range(5):
+        kepler_error = (eccentric_anomaly_rad - eccentricity * math.sin(eccentric_anomaly_rad) - mean_anomaly_rad)
+        kepler_slope = (1 - eccentricity * math.cos(eccentric_anomaly_rad))
+
+        eccentric_anomaly_rad -= kepler_error / kepler_slope
+
+    true_anomanly_rad = 2 * math.atan2 (math.sqrt(1 + eccentricity) * math.sin(eccentric_anomaly_rad / 2), math.sqrt(1 - eccentricity) * math.cos(eccentric_anomaly_rad / 2))
+    true_anolamly_deg = math.degrees(true_anomanly_rad) % 360
+
+    return true_anolamly_deg
 
 #-------how far the sun is shifted in the sky--------♡ 
 def get_solar_decline_deg(state):
