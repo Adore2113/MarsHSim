@@ -1125,6 +1125,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      07/10/2026
     ♡ I did some perspective updates with the dashboard image and I still need to add more screens for crew and mission log, and fix the image more, the three uploaded are only prototype images
 
+
 ##      07/12/2026
     ♡ the last few days have been refining my layout image and deciding on panel amount and also panel placement
 
@@ -1134,4 +1135,43 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I added to the todo list with update alerts to include things like stats evening out (co2 returned to normal range, etc.), buffer gas injections complete, isru pipes retracted, isru pipes deployed
     
-    ♡ I need to decide if the middle panel is actually gong to be a mission log and decide what will be split between the mission log updates and the alerts section
+#### Next Session: 
+    ♡ decide if the middle panel is actually gong to be a mission log and decide what will be split between the mission log updates and the alerts section
+
+
+##      07/14/2026
+    ♡ creating event.py for the mission/event log file, I want to only show the last 50-100 latest events 
+
+
+##      07/16/2026
+    ♡ I broke my ISRU panels up into two seperate panels, I would like to keep the atmosphere things together, I think
+
+    ♡ I'm going to implement seasons into my sim before adding anything else. After doing some research I realized that I had my get_season_angle_deg wrong, because Mars doesn't move around the Sun at a constant speed moving faster near perihelion and slower near aphelion, which affects seasonal timing, dust storm season, solar energy and some of the other systems I have set up
+    
+    ♡ Reading about Kepler's equation:
+
+    M = E − e sin(E)
+
+    M = Mean Anomaly
+    E = Eccentric Anomaly
+    e = Orbital Eccentricity
+
+    ♡ I'm considering the options I have for this.. there's the Newton Raphson for eccentric anomaly E. Starting with E = M, each iteration calculates the current wrong answer and divides it by the 'slope' for a better estimate:
+    
+    new estimate = old estimate - error / slope
+    
+    ♡ The other option is fixed-point iteration, which rearranges Kepler's equation into:
+
+    E = M + e sin(E)
+
+    But that seems very... inefficient.
+   
+    ♡ the eccentricity for Mars is low, so this shouldn't take too many tries to get close using Newton Raphson 
+
+    ♡ anomaly = the angular distance from it's last perihelion
+
+
+##      07/16/2026
+    ♡ finished adding seasons
+
+    ♡ I'm reading about atmospheric opactiy, and tau (how much sunligt the atmosphere blocks before it reaches the ground), low: 0.2 - 0.5, medium: 0.8 - 1.5 for dusty skies and high:  2 - 5 for major dust storms, these are related to seasons so I figured it was a good next step
