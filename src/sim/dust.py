@@ -1,5 +1,6 @@
 #--------------------imports-------------------------♡
 import math
+import random
 from .mars_time import seconds_per_sol
 #----------------------------------------------------♡
 
@@ -52,8 +53,27 @@ def get_storm_season_probability(ls_deg):
 def get_storm_chance_today(ls_deg):
     season_probability = get_storm_season_probability(ls_deg)
     storm_chance_today = base_storm_probability + seasonal_probability_bonus * season_probability
-
+    
     return storm_chance_today
+
+
+#--------------did a storm start today---------------♡
+def roll_for_storm(ls_deg):
+    storm_chance_today = get_storm_chance_today(ls_deg)
+    roll = random.random()
+    
+    storm_started = roll < storm_chance_today
+
+    return storm_started
+
+
+#--------------get atmosphere opacity----------------♡
+
+
+
+#-------------------storm status---------------------♡
+
+
 
 
 #-----------------dust accumulation------------------♡
