@@ -28,11 +28,14 @@ storm_season_ls_end_deg = 330.0
 tau_dusty_threshold = 0.65    # between low and medium
 tau_storm_threshold = 1.75    # between medium and high
 tau_max_storm = 5.0
+
+storm_chance_at_all = 0.001
+storm_chance_storm_season = 0.02
 #----------------------------------------------------♡
 
 
-#---------------storm season strength----------------♡
-def get_storm_season_strength(ls_deg):
+#-----------storm probability for seasons------------♡
+def get_storm_season_probability(ls_deg):
     if ls_deg < storm_season_ls_start_deg or ls_deg > storm_season_ls_end_deg:
         return 0.0
 
@@ -40,9 +43,17 @@ def get_storm_season_strength(ls_deg):
     season_length_deg = storm_season_ls_end_deg - storm_season_ls_start_deg
     percent_through_season = degrees_into_season / season_length_deg
 
-    storm_season_strength = math.sin(math.pi * percent_through_season)
+    storm_season_probability = math.sin(math.pi * percent_through_season)
 
-    return storm_season_strength
+    return storm_season_probability
+
+
+#--------------storm likelihood per sol--------------♡
+def storm_chance_today(ls_deg):
+    season_probability = get_storm_season_probability(ls_deg)
+    chance_today = storm_chance_at_all + storm_chance_storm_season * season_probability
+
+
 
 
 #-----------------dust accumulation------------------♡
