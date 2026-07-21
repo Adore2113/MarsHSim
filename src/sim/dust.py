@@ -6,6 +6,7 @@ from .mars_time import seconds_per_sol
 
 
 #--------------------constants-----------------------♡
+#--------dust build up---------♡
 base_dust_rate_per_sol = 0.007
 
 primary_rad_dust_multiplier = 1.12
@@ -20,18 +21,20 @@ min_solar_efficiency = 0.40
 min_compressor_efficiency = 0.45
 min_pipe_efficiency = 0.50
 
+#---------atm opacity----------♡
 clear_sky_tau = 0.35
 storm_season_tau = 1.15
-
-storm_season_ls_start_deg = 180.0
-storm_season_ls_end_deg = 330.0
 
 base_clear_opacity_tau = 0.35
 base_storm_season_opacity_tau = 1.15
 
-dusty_threshold_tau = 0.65    # between low and medium
-storm_threshold_tau = 1.75    # between medium and high
-max_storm_tau = 5.0
+dusty_opacity_tau = 0.65    # between low and medium
+storm_opacity_tau = 1.75    # between medium and high
+max_storm_opacity_tau = 5.0
+
+#--------storm season----------♡
+storm_season_ls_start_deg = 180.0
+storm_season_ls_end_deg = 330.0
 
 base_storm_probability = 0.001
 seasonal_probability_bonus = 0.02
@@ -78,8 +81,15 @@ def get_dust_opacity(ls_deg):
     return opacity_tau
 
 #-------------------storm status---------------------♡
+def get_storm_status(opacity_tau):
+    if opacity_tau >= storm_opacity_tau:
+        return "storm"
+    
+    elif opacity_tau >= dusty_opacity_tau:
+        return "dusty"
 
-
+    else:
+        return "clear"
 
 
 #-----------------dust accumulation------------------♡
