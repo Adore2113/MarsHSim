@@ -38,6 +38,8 @@ storm_season_ls_end_deg = 330.0
 
 base_storm_probability = 0.001
 seasonal_probability_bonus = 0.02
+
+storm_end_probability = 0.15
 #----------------------------------------------------♡
 
 
@@ -73,13 +75,6 @@ def roll_for_storm(ls_deg):
     return storm_started
 
 
-#-----------get atmospheric dust opacity-------------♡
-def get_dust_opacity(ls_deg):
-    storm_probability = get_storm_season_probability(ls_deg)
-    opacity_tau = base_clear_opacity_tau + (base_storm_season_opacity_tau - base_clear_opacity_tau) * storm_probability
-
-    return opacity_tau
-
 #-------------------storm status---------------------♡
 def get_storm_status(opacity_tau):
     if opacity_tau >= storm_opacity_tau:
@@ -90,6 +85,14 @@ def get_storm_status(opacity_tau):
 
     else:
         return "clear"
+    
+
+#-----------get atmospheric dust opacity-------------♡
+def get_dust_opacity(ls_deg):
+    storm_probability = get_storm_season_probability(ls_deg)
+    opacity_tau = base_clear_opacity_tau + (base_storm_season_opacity_tau - base_clear_opacity_tau) * storm_probability
+
+    return opacity_tau
 
 
 #-----------------dust accumulation------------------♡
