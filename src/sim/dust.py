@@ -29,8 +29,8 @@ tau_dusty_threshold = 0.65    # between low and medium
 tau_storm_threshold = 1.75    # between medium and high
 tau_max_storm = 5.0
 
-storm_chance_at_all = 0.001
-storm_chance_storm_season = 0.02
+base_storm_probability = 0.001
+seasonal_probability_bonus = 0.02
 #----------------------------------------------------♡
 
 
@@ -49,11 +49,11 @@ def get_storm_season_probability(ls_deg):
 
 
 #--------------storm likelihood per sol--------------♡
-def storm_chance_today(ls_deg):
+def get_storm_chance_today(ls_deg):
     season_probability = get_storm_season_probability(ls_deg)
-    chance_today = storm_chance_at_all + storm_chance_storm_season * season_probability
+    storm_chance_today = base_storm_probability + seasonal_probability_bonus * season_probability
 
-
+    return storm_chance_today
 
 
 #-----------------dust accumulation------------------♡
