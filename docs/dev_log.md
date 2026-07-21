@@ -1171,7 +1171,22 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ anomaly = the angular distance from it's last perihelion
 
 
-##      07/16/2026
+##      07/18/2026
     ♡ finished adding seasons
 
-    ♡ I'm reading about atmospheric opactiy, and tau (how much sunligt the atmosphere blocks before it reaches the ground), low: 0.2 - 0.5, medium: 0.8 - 1.5 for dusty skies and high:  2 - 5 for major dust storms, these are related to seasons so I figured it was a good next step
+    ♡ I'm reading about atmospheric opactiy, and tau (how much sunlight the atmosphere blocks before it reaches the ground and optical depth being tau the number used to use the amount), low: 0.2 - 0.5, medium: 0.8 - 1.5 for dusty skies and high:  2 - 5 for major dust storms, these are related to seasons so I figured it was a good next step
+
+
+##      07/20/2026
+    ♡ I wanted to have a percentage of how far Mar's is through it's storm season
+
+    ♡ I'm going to add random dust storms right now, while I'm working on season changes and atmospheric opacity, checking if Mar's is in storm season, how far through it it is, and also have random wheather b/c predictable wheather is not realistic
+
+    ♡ roll_for_storm is both accurate and a nod to dnd
+
+    ♡ I find myself getting more used to python now and getting more comfortable doing things that I was worried I wouldn't understand later, like not wanting to return before the end of the function, adding more lines of code which isn't neccessary, I am looking back at my older code and seeing where it can be improved, which seems like a big milestone
+
+    ♡ I need to start considering the ways this simulation can go wrong before I get there
+
+    ♡ the storm opacity is going to be hardcoded for V1
+    
