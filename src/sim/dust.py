@@ -26,9 +26,12 @@ storm_season_tau = 1.15
 storm_season_ls_start_deg = 180.0
 storm_season_ls_end_deg = 330.0
 
-tau_dusty_threshold = 0.65    # between low and medium
-tau_storm_threshold = 1.75    # between medium and high
-tau_max_storm = 5.0
+base_clear_opacity_tau = 0.35
+base_storm_season_opacity_tau = 1.15
+
+dusty_threshold_tau = 0.65    # between low and medium
+storm_threshold_tau = 1.75    # between medium and high
+max_storm_tau = 5.0
 
 base_storm_probability = 0.001
 seasonal_probability_bonus = 0.02
@@ -67,9 +70,12 @@ def roll_for_storm(ls_deg):
     return storm_started
 
 
-#--------------get atmosphere opacity----------------♡
+#-----------get atmospheric dust opacity-------------♡
+def get_dust_opacity(ls_deg):
+    storm_probability = get_storm_season_probability(ls_deg)
+    opacity_tau = base_clear_opacity_tau + (base_storm_season_opacity_tau - base_clear_opacity_tau) * storm_probability
 
-
+    return opacity_tau
 
 #-------------------storm status---------------------♡
 
