@@ -9,7 +9,7 @@ from .power import light_system, run_system_power
 from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, current_sol_number, get_low_sunlight_streak, get_ls_deg, current_mars_season
 from .temp import run_thermal_control, update_humidity
 from .water import run_water_system
-from .dust import get_dust_accumulation
+from .dust import get_dust_accumulation, update_dust_and_storms
 from .sabatier import run_sabatier
 from .greenhouse import run_greenhouse
 from .isru_water import run_isru_water
@@ -26,27 +26,34 @@ default_dt_min = 5
 def step(state: Habitat_State, dt_min: int = default_dt_min):
     dt_s = int(dt_min * 60)
     next_time_s = state.mission_time_s + dt_s
-
-    #-------time / solar / daylight-------♡
+   
+    #-------------time / sol--------------♡
     previous_sol_number = current_sol_number(state.mission_time_s)
     new_sol_number = current_sol_number(next_time_s)
     new_sol_started = new_sol_number != previous_sol_number
 
     new_state = replace(state, mission_time_s = next_time_s)
 
+    #-----solar / daylight / opacity------♡
     current_sunlight_amount = get_sunlight_amount(new_state)
     new_daylight_per_m2_kw = get_daylight_per_m2_kw(new_state)
+    new_ls_deg = get_ls_deg(new_state.mission_time_s)
+    new_season = current_mars_season(new_state)
 
     if new_sol_started:
         new_peak_sunlight_today = current_sunlight_amount
         new_low_sunlight_streak_sols = get_low_sunlight_streak(new_state)
-    
+        new_storm_active, new_storm_sols_passed, new_storm_tau, new_dust_opacity_tau, new_storm_status = update_dust_and_storms(new_ls_deg, state.storm_active, state.storm_sols_passed, state.storm_tau)
+
     else:
         new_peak_sunlight_today = max(state.peak_sunlight_today, current_sunlight_amount)
         new_low_sunlight_streak_sols = state.low_sunlight_streak_sols
+        new_storm_active = state.storm_active
+        new_storm_sols_passed = state.storm_sols_passed
+        new_storm_tau = state.storm_tau
+        new_dust_opacity_tau = state.dust_opacity_tau
+        new_storm_status = state.storm_status
 
-    new_ls_deg = get_ls_deg(new_state.mission_time_s)
-    new_season = current_mars_season(new_state)
 
     new_state = replace(
     new_state, 
@@ -54,7 +61,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     peak_sunlight_today = new_peak_sunlight_today, 
     low_sunlight_streak_sols = new_low_sunlight_streak_sols,
     ls_deg = new_ls_deg,
-    current_season = new_season
+
     )
     
     #----------------crew-----------------♡
