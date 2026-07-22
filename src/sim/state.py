@@ -8,13 +8,18 @@ class Habitat_State:
     hab_vol_m3: int
     power_mode: str
 
-    #---------------time and daylight----------------♡
+    #-------------time / daylight / dust-------------♡
     mission_time_s: int
 
     ls_deg: float
     current_season: str
+    
     storm_active: bool
     storm_sols_passed: int
+    storm_tau: float
+    dust_opacity_tau: float
+    storm_status: str
+
 
     daylight_m2_kw: float
     peak_sunlight_today: float
