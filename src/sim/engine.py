@@ -61,7 +61,12 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     peak_sunlight_today = new_peak_sunlight_today, 
     low_sunlight_streak_sols = new_low_sunlight_streak_sols,
     ls_deg = new_ls_deg,
-
+    current_season = new_season,
+    storm_active = new_storm_active,
+    storm_sols_passed = new_storm_sols_passed,
+    storm_tau = new_storm_tau,
+    dust_opacity_tau = new_dust_opacity_tau,
+    storm_status = new_storm_status,
     )
     
     #----------------crew-----------------♡
