@@ -22,9 +22,6 @@ min_compressor_efficiency = 0.45
 min_pipe_efficiency = 0.50
 
 #---------atm opacity----------♡
-clear_sky_tau = 0.35
-storm_season_tau = 1.15
-
 base_clear_opacity_tau = 0.35
 base_storm_season_opacity_tau = 1.15
 
