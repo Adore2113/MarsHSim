@@ -18,6 +18,12 @@ s0 = Habitat_State(
 
     ls_deg = 0,
     current_season = "northern_spring" ,
+    
+    storm_active = False,
+    storm_sols_passed = 0,
+    storm_tau = 0.0,
+    dust_opacity_tau = 0.35,
+    storm_status = "clear",
 
     daylight_m2_kw = 0.0,
     peak_sunlight_today = 0.0,
