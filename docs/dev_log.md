@@ -1189,4 +1189,17 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ I need to start considering the ways this simulation can go wrong before I get there
 
     ♡ the storm opacity is going to be hardcoded for V1
-    
+
+
+##      07/21/2026
+    ♡ the severity of the same storm stays the same for v1
+
+    ♡ my ui_export.py file is messy right now and unorganized, while I make other changes and make more decisions about the panels for the ui, so I'm going to wait to update that for now and add the dust/storm updates to the alerts.py
+
+    ♡ I've used dust and storm as the same thing in the file, hopefully that isn't confusing for anyone checking it out, I might change this even though the storms on Mars are dust storms
+
+    ♡ I've decided to make a seperate file that updates the probability/prediction logicm like the chances of a sotrm today, thermal issues, ect.
+
+    ♡ keeping events.py for when I add in Murphy's Law disasters
+
+    ♡ I'm going to focus on making the mission log next and make some decisions there
