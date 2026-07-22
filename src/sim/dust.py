@@ -106,13 +106,15 @@ def update_dust_and_storms(ls_deg, storm_active, storm_sols_passed, storm_tau):
         if storm_starts_today:
             new_storm_active = True
             new_sols_passed = 1
+            new_storm_tau = random.uniform(storm_opacity_cutoff, max_storm_opacity_tau)
 
         else:
             new_storm_active = False
             new_sols_passed = 0
+            new_storm_tau = 0.0
 
     if new_storm_active:
-        opacity_tau = random.uniform(storm_tau, max_storm_opacity_tau)
+        opacity_tau = new_storm_tau
 
     else:
         opacity_tau = get_dust_opacity(ls_deg)
