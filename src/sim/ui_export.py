@@ -31,9 +31,13 @@ def write_dashboard_json(state, outputs, alerts):
             "peak_sun_today": state.peak_sunlight_today,
             "sunlight_per_m2_kw": state.daylight_m2_kw,
             "low_sun_streak_sols": state.low_sunlight_streak_sols,
-            "dust_storm_risk_pct": state.dust_storm_risk_pct,
             "season": state.current_season,
             "ls_deg": round(state.ls_deg, 1),
+
+            "dust_opacity_tau": round(state.dust_opacity_tau, 3),
+            "storm_status": state.storm_status,
+            "storm_active": state.storm_active,
+            "storm_sols_passed": state.storm_sols_passed,
     },
 
     #----------atmosphere----------♡
