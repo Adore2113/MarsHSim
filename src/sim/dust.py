@@ -121,7 +121,7 @@ def update_dust_and_storms(ls_deg, storm_active, storm_sols_passed, storm_tau):
 
     storm_status = get_storm_status(opacity_tau)
 
-    return new_storm_active, new_sols_passed, opacity_tau, storm_status
+    return new_storm_active, new_sols_passed, new_storm_tau, opacity_tau, storm_status
 
 
 #-----------get atmospheric dust opacity-------------♡
