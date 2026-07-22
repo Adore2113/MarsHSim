@@ -158,6 +158,16 @@ def get_humidity_alerts(state):
     return humidity_alerts
 
 
+#--------------------dust alerts---------------------♡
+def get_dust_alerts(state):
+    dust_alerts = []
+
+    if state.storm_status == "storm":
+        dust_alerts.append("WARNING: Dust storm in progress")
+
+    return dust_alerts
+
+
 #-----------------all alerts update-----------------♡
 def get_alerts(state, outputs):
     alerts = []
