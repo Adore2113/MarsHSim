@@ -25,8 +25,6 @@ class Habitat_State:
     peak_sunlight_today: float
     low_sunlight_streak_sols: int
 
-    dust_storm_risk_pct: float
-
     #--------------------lights----------------------♡
     light_level: float
     wellness_lights_on: bool
