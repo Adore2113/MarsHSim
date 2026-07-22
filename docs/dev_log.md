@@ -1203,3 +1203,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ keeping events.py for when I add in Murphy's Law disasters
 
     ♡ I'm going to focus on making the mission log next and make some decisions there
+
+    ♡ while going over my isru files, the pipes in my isru file are set up so that they can switch their decision to deploy or retract, incase of low water emergencies
+
+    ♡ I am considering if all of a sudden the pipes are deploying and the low power mode hits or I lose power if the pipes don't retract, they will freeze or use a lot of power with the heated pipes, but retracting doesn't use power in v1, which I'm questioning now
