@@ -22,11 +22,12 @@ min_compressor_efficiency = 0.45
 min_pipe_efficiency = 0.50
 
 #---------atm opacity----------♡
+# v1
 base_clear_opacity_tau = 0.35
 base_storm_season_opacity_tau = 1.15
 
-dusty_opacity_tau = 0.65    # between low and medium
-storm_opacity_tau = 1.75    # between medium and high
+dust_opacity_cutoff = 0.65    # between low and medium
+storm_opacity_cutoff = 1.75    # between medium and high
 max_storm_opacity_tau = 5.0
 
 #--------storm season----------♡
@@ -74,10 +75,10 @@ def roll_for_storm(ls_deg):
 
 #-------------------storm status---------------------♡
 def get_storm_status(opacity_tau):
-    if opacity_tau >= storm_opacity_tau:
+    if opacity_tau >= storm_opacity_cutoff:
         return "storm"
     
-    elif opacity_tau >= dusty_opacity_tau:
+    elif opacity_tau >= dust_opacity_cutoff:
         return "dusty"
 
     else:
@@ -85,17 +86,19 @@ def get_storm_status(opacity_tau):
     
 
 #-------------storm update for one sol---------------♡
-def update_dust_and_storms(ls_deg, storm_active, storm_sols_passed):
+def update_dust_and_storms(ls_deg, storm_active, storm_sols_passed, storm_tau):
     if storm_active:
         storm_ends_today = random.random() < storm_end_probability
 
         if storm_ends_today:
             new_storm_active = False
             new_sols_passed = 0
+            new_storm_tau = 0.0
 
         else:
             new_storm_active = True
             new_sols_passed = storm_sols_passed + 1
+            new_storm_tau = storm_tau    # v1
 
     else:
         storm_starts_today = roll_for_storm(ls_deg)
@@ -109,7 +112,7 @@ def update_dust_and_storms(ls_deg, storm_active, storm_sols_passed):
             new_sols_passed = 0
 
     if new_storm_active:
-        opacity_tau = random.uniform(storm_opacity_tau, max_storm_opacity_tau)
+        opacity_tau = random.uniform(storm_tau, max_storm_opacity_tau)
 
     else:
         opacity_tau = get_dust_opacity(ls_deg)
