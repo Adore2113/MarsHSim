@@ -14,7 +14,7 @@ class Habitat_State:
     ls_deg: float
     current_season: str
     storm_active: bool
-    storm_sols_remaining: int
+    storm_sols_passed: int
 
     daylight_m2_kw: float
     peak_sunlight_today: float
