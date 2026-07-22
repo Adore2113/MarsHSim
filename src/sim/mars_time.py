@@ -82,9 +82,9 @@ def mean_to_true_anomaly_deg(mean_anomaly_deg, eccentricity):
     cos_part = math.sqrt(1 - eccentricity) * math.cos(half_eccentric_anomaly_rad)
     
     true_anomaly_rad = 2 * math.atan2(sin_part, cos_part)    
-    true_anolamly_deg = math.degrees(true_anomaly_rad) % 360
+    true_anomaly_deg = math.degrees(true_anomaly_rad) % 360
 
-    return true_anolamly_deg
+    return true_anomaly_deg
 
 
 #------------------get season angle------------------♡ 
