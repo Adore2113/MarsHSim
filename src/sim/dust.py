@@ -84,6 +84,41 @@ def get_storm_status(opacity_tau):
         return "clear"
     
 
+#-------------storm update for one sol---------------♡
+def update_dust_and_storms(ls_deg, storm_active, storm_sols_passed):
+    if storm_active:
+        storm_ends_today = random.random() < storm_end_probability
+
+        if storm_ends_today:
+            new_storm_active = False
+            new_sols_passed = 0
+
+        else:
+            new_storm_active = True
+            new_sols_passed = storm_sols_passed + 1
+
+    else:
+        storm_starts_today = roll_for_storm(ls_deg)
+
+        if storm_starts_today:
+            new_storm_active = True
+            new_sols_passed = 1
+
+        else:
+            new_storm_active = False
+            new_sols_passed = 0
+
+    if new_storm_active:
+        opacity_tau = random.uniform(storm_opacity_tau, max_storm_opacity_tau)
+
+    else:
+        opacity_tau = get_dust_opacity(ls_deg)
+
+    storm_status = get_storm_status(opacity_tau)
+
+    return new_storm_active, new_sols_passed, opacity_tau, storm_status
+
+
 #-----------get atmospheric dust opacity-------------♡
 def get_dust_opacity(ls_deg):
     storm_probability = get_storm_season_probability(ls_deg)
