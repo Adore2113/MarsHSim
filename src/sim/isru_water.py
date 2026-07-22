@@ -44,12 +44,15 @@ def pipes_in_use(state, dt_min):
     
     else:
         target_pipes_online = 0
-
+     
+    #----------checking habitat power mode-----------♡ 
     if state.power_mode == "low":
         target_pipes_online = min(target_pipes_online, 2)
 
     elif state.power_mode == "critical":
         target_pipes_online = 0
+
+    water_emergency = state.potable_water_storage_kg < water_to_auto_activate_kg
 
     for pipe in state.isru_pipes:
         new_pipe = pipe.copy()
@@ -58,7 +61,8 @@ def pipes_in_use(state, dt_min):
         timer = new_pipe.get("timer", 0.0)
         if timer > 0:
             timer -= dt_min
-            new_pipe["timer"] = max(0.0, timer)
+        
+        new_pipe["timer"] = max(0.0, timer)
 
     #--------------changing pipe status--------------♡ 
         if status == "deploying" and new_pipe["timer"] <= 0:
@@ -70,7 +74,10 @@ def pipes_in_use(state, dt_min):
             new_pipe["timer"] = 0.0
 
         elif status in ("offline", "retracting") and (extracting_count + deploying_count) < target_pipes_online:
-                if new_pipe["type"] == "primary" or (new_pipe["type"] == "backup" and extracting_count == 0):
+                if status == "retracting" and not water_emergency:
+                    pass
+
+                elif new_pipe["type"] == "primary" or (new_pipe["type"] == "backup" and extracting_count == 0):
                     new_pipe["status"] = "deploying"
                     new_pipe["timer"] = pipe_deploy_time_min
                     deploying_count += 1
