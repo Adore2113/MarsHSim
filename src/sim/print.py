@@ -50,6 +50,36 @@ def print_sim(state, outputs, alerts):
 #----------------------------------------------------♡
 
 
+#--------------------sol summary---------------------♡
+def print_sol_summary(sol_totals, sol):
+    print_section_header(f"SOL {sol} SUMMARY")
+
+    print(f"{'Solar Generated:':<{lw}} {sol_totals['solar_generated_kwh']:.2f} kWh")
+    print(f"{'Total Power Used:':<{lw}} {sol_totals['energy_used_kwh']:.2f} kWh")
+    print(f"{'Net Energy:':<{lw}} {sol_totals['net_energy_kwh']:.2f} kWh")
+
+    print(f"\n{'OGA:':<{lw}} {sol_totals['oga_energy_kwh']:.2f} kWh")
+    print(f"{'Sabatier:':<{lw}} {sol_totals['sabatier_energy_kwh']:.2f} kWh")
+    print(f"{'CO₂ Scrubber:':<{lw}} {sol_totals['amine_bed_energy_kwh']:.2f} kWh")
+    print(f"{'Lights:':<{lw}} {sol_totals['lights_energy_kwh']:.2f} kWh")
+    print(f"{'CHX:':<{lw}} {sol_totals['chx_energy_kwh']:.2f} kWh")
+    print(f"{'Greenhouse LEDs:':<{lw}} {sol_totals['greenhouse_led_energy_kwh']:.2f} kWh")
+    print(f"{'Radiators:':<{lw}} {sol_totals['radiator_energy_kwh']:.2f} kWh")
+    print(f"{'Heaters:':<{lw}} {sol_totals['heater_energy_kwh']:.2f} kWh")
+    print(f"{'ISRU Water:':<{lw}} {sol_totals['isru_water_energy_kwh']:.2f} kWh")
+    print(f"{'ISRU Atmosphere:':<{lw}} {sol_totals['isru_atm_energy_kwh']:.2f} kWh")
+
+
+    print(f"\n{'Water Recovered:':<{lw}} {sol_totals['water_recovered_kg']:.2f} kg")
+    print(f"{'Potable Water Used:':<{lw}} {sol_totals['potable_water_used_kg']:.2f} kg")
+    print(f"{'Greenhouse Water Used:':<{lw}} {sol_totals['greenhouse_water_used_kg']:.2f} kg")
+    print(f"{'Raw ISRU Water Added:':<{lw}} {sol_totals['isru_water_added_kg']:.2f} kg")
+
+    print(f"\n{'CO₂ Scrubbed:':<{lw}} {sol_totals['co2_scrubbed_kg']:.2f} kg")
+    print(f"{'Food Produced:':<{lw}} {sol_totals['food_produced_kg']:.2f} kg")
+#----------------------------------------------------♡
+
+
 #-------------------system status--------------------♡
 def print_system_stats(alerts, state, outputs):
     status = get_status(alerts)
