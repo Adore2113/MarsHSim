@@ -178,5 +178,6 @@ def get_alerts(state, outputs):
     alerts.extend(get_water_alerts(state))
     alerts.extend(get_subsystem_alerts(state, outputs))
     alerts.extend(get_humidity_alerts(state))
+    alerts.extend(get_dust_alerts(state))
 
     return alerts
