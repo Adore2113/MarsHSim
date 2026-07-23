@@ -305,6 +305,17 @@ def determine_thermal_mode(state, heat_loss_kw, hab_heat_kw, solar_heat_gain_kw)
                 
                 break
 
+    #-------radiators off when heater turns on------♡ 
+        if radiators_online_count > 0:
+            new_radiators = []
+            
+            for rad in state.radiators:
+                new_rad = rad.copy()
+                new_rad["status"] = "standby"
+                new_radiators.append(new_rad)
+            
+            radiators_online_count = 0
+
     if heaters_online_count > 0:
         hab_temp_mode = "heating"
 
