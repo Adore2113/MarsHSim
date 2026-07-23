@@ -2,7 +2,7 @@
 from .state import Habitat_State
 from .engine import step
 from .alerts import get_alerts
-from .print import print_sim
+from .print import print_sim, print_sol_summary
 from .mars_time import seconds_per_sol, get_sol_time
 from .ui_export import write_dashboard_json
 #----------------------------------------------------♡
@@ -369,28 +369,81 @@ last_printed_sol = -1
 critical = False
 was_critical = False
 
-for i in range(30000):    # 30000 steps * 5 min = ~104 sols
+sol_totals = {
+    "solar_generated_kwh": 0.0,
+    "energy_used_kwh": 0.0,
+    "net_energy_kwh": 0.0,
+    "water_recovered_kg": 0.0,
+    "potable_water_used_kg": 0.0,
+    "greenhouse_water_used_kg": 0.0,
+    "isru_water_added_kg": 0.0,
+    "co2_scrubbed_kg": 0.0,
+    "food_produced_kg": 0.0,
+
+    "oga_energy_kwh": 0.0,
+    "sabatier_energy_kwh": 0.0,
+    "amine_bed_energy_kwh": 0.0,
+    "lights_energy_kwh": 0.0,
+    "chx_energy_kwh": 0.0,
+    "greenhouse_led_energy_kwh": 0.0,
+    "radiator_energy_kwh": 0.0,
+    "heater_energy_kwh": 0.0,
+    "isru_water_energy_kwh": 0.0,
+    "isru_atm_energy_kwh": 0.0,
+}
+
+for i in range(888):    # 30000 steps * 5 min = ~104 sols
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
-
     current_sol = int(state.mission_time_s // seconds_per_sol)
     _, sol_hour, minutes = get_sol_time(state)
     
+    sol_totals["solar_generated_kwh"] += outputs.get("total_solar_generated_kwh", 0.0)
+    sol_totals["energy_used_kwh"] += outputs.get("total_energy_used_kwh", 0.0)
+    sol_totals["net_energy_kwh"] += outputs.get("net_energy_kwh", 0.0)
+    sol_totals["water_recovered_kg"] += outputs.get("total_recovered_water_kg", 0.0)
+    sol_totals["potable_water_used_kg"] += outputs.get("potable_water_used_kg", 0.0)
+    sol_totals["greenhouse_water_used_kg"] += outputs.get("greenhouse_water_consumed_kg", 0.0)
+    sol_totals["isru_water_added_kg"] += outputs.get("isru_raw_water_added_kg", 0.0)
+    sol_totals["co2_scrubbed_kg"] += outputs.get("co2_removed_kg", 0.0)
+    sol_totals["food_produced_kg"] += outputs.get("greenhouse_food_produced_kg", 0.0)
+
+    sol_totals["oga_energy_kwh"] += outputs.get("oga_energy_used_kwh", 0.0)
+    sol_totals["sabatier_energy_kwh"] += outputs.get("sabatier_energy_used_kwh", 0.0)
+    sol_totals["amine_bed_energy_kwh"] += outputs.get("amine_bed_energy_used_kwh", 0.0)
+    sol_totals["lights_energy_kwh"] += outputs.get("light_energy_used_kwh", 0.0)
+    sol_totals["chx_energy_kwh"] += outputs.get("chx_energy_used_kwh", 0.0)
+    sol_totals["greenhouse_led_energy_kwh"] += outputs.get("greenhouse_led_energy_kwh", 0.0)
+    sol_totals["radiator_energy_kwh"] += outputs.get("radiator_energy_kwh", 0.0)
+    sol_totals["heater_energy_kwh"] += outputs.get("heater_energy_kwh", 0.0)
+    sol_totals["isru_water_energy_kwh"] += outputs.get("isru_water_energy_used_kwh", 0.0)
+    sol_totals["isru_atm_energy_kwh"] += outputs.get("isru_atm_energy_used_kwh", 0.0)
+
     critical = any("CRITICAL" in alert for alert in alerts)
 
     #---------------print once per sol---------------♡
     if sol_hour == 12 and current_sol != last_printed_sol:
         print_sim(state, outputs, alerts)
+        print_sol_summary(sol_totals, last_printed_sol if last_printed_sol >= 0 else current_sol)
         write_dashboard_json(state, outputs, alerts)
         last_printed_sol = current_sol
+        
+        sol_totals = {key: 0.0 for key in sol_totals}
+
+    was_critical = critical
+
+
+
+
+
+
 
     #----------more prints on critical alerts--------♡
-    elif critical:
-        print_sim(state, outputs, alerts)
-        write_dashboard_json(state, outputs, alerts)
+    # elif critical:
+    #     print_sim(state, outputs, alerts)
+    #     write_dashboard_json(state, outputs, alerts)
 
-    elif was_critical:
-        print_sim(state, outputs, alerts)
-        write_dashboard_json(state, outputs, alerts)
+    # elif was_critical:
+    #     print_sim(state, outputs, alerts)
+    #     write_dashboard_json(state, outputs, alerts)
    
-    was_critical = critical
