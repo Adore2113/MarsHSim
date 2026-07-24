@@ -22,33 +22,33 @@ default_light_exposure = 0.65
 default_growth_multiplier = 1.0
 runoff_water_ratio = 0.08
 
-base_light_hours_per_sol = 16.0    # test and try 12 or 14
-hour_lights_start_hour = 5
+base_gh_light_hours_per_sol = 16.0    # test and try 12 or 14
+gh_light_start_hour = 5
 #----------------------------------------------------♡
 
 
 #--------------------timed lights--------------------♡
-def get_timed_gh_lights(state, light_hours_per_sol):
+def are_timed_gh_lights_on(state, gh_light_hours_per_sol):
     _, sol_hour, minutes = get_sol_time(state)
-    hour_now = sol_hour + (minutes / 60)
+    current_hour = sol_hour + (minutes / 60)
 
-    hour_lights_end_hour = (hour_lights_start_hour + light_hours_per_sol) % 24
+    gh_lights_end_hour = (gh_light_start_hour + gh_light_hours_per_sol) % 24
     
-    if hour_lights_start_hour < hour_lights_end_hour:
-        if hour_lights_start_hour <= hour_now < hour_lights_end_hour:
-            timed_gh_lights = True
-            
+    if gh_light_start_hour < gh_lights_end_hour:
+        if gh_light_start_hour <= current_hour < gh_lights_end_hour:
+            timed_gh_lights_on = True
+
         else:
-            timed_gh_lights = False
+            timed_gh_lights_on = False
 
     else:
-        if hour_now >= hour_lights_start_hour or hour_now < hour_lights_end_hour:
-            timed_gh_lights = True
+        if current_hour >= gh_light_start_hour or current_hour < gh_lights_end_hour:
+            timed_gh_lights_on = True
 
         else:
-            timed_gh_lights = False
+            timed_gh_lights_on = False
 
-    return timed_gh_lights
+    return timed_gh_lights_on
 
 #----------------greenhouse lighting-----------------♡
 def greenhouse_lighting(state, dt_min):
@@ -67,20 +67,24 @@ def greenhouse_lighting(state, dt_min):
         zone_name = zone["zone"]
         area_m2 = zone["effective_grow_area_m2"]
 
-        light_target_kw = zone.get("light_target_kw_per_m2", 0.70)
+        light_target_kw_per_m2 = zone.get("light_target_kw_per_m2", 0.70)
         light_absorption = zone.get("base_light_absorption_pct", 0.70)
+        gh_light_hours_per_sol = zone.get("gh_light_hours_per_sol", base_gh_light_hours_per_sol)
 
         day_length_bonus = 0.70 + (0.30 * daylight_fraction)
+        effective_light_kw_per_m2 = natural_light_kw_per_m2 * light_absorption * day_length_bonus
 
-        effective_light_kw = natural_light_kw_per_m2 * light_absorption * day_length_bonus
+        if not are_timed_gh_lights_on(state, gh_light_hours_per_sol):
+            light_mode = "dark cycle"
+            led_level = 0.0
 
-        if effective_light_kw <= min_useful_sunlight_per_m2_kw:
-            light_mode = "low sunlight"
+        elif effective_light_kw_per_m2 <= min_useful_sunlight_per_m2_kw:
+            light_mode = "full led support"
             led_level = 1.0
 
-        elif effective_light_kw < light_target_kw:
+        elif effective_light_kw_per_m2 < light_target_kw_per_m2:
             light_mode = "led support"
-            led_level = (light_target_kw - effective_light_kw) / light_target_kw
+            led_level = (light_target_kw_per_m2 - effective_light_kw_per_m2) / light_target_kw_per_m2
 
         else:
             light_mode = "sunlight only"
@@ -98,11 +102,11 @@ def greenhouse_lighting(state, dt_min):
         total_led_power_kw += led_power_kw
         total_led_heat_kw += led_heat_kw
         
-        light_exposure = min(1.0, effective_light_kw / light_target_kw + led_level)
+        light_exposure = min(1.0, effective_light_kw_per_m2 / light_target_kw_per_m2 + led_level)
 
         zone_lighting[zone_name] = {
             "light_mode": light_mode,
-            "effective_light_kw": effective_light_kw,
+            "effective_light_kw_per_m2": effective_light_kw_per_m2,
             
             "led_level": led_level,
             "led_power_kw": led_power_kw,
