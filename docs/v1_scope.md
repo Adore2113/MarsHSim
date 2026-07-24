@@ -315,10 +315,12 @@
     ♡ dry fruits = good for seeds and plant reproduction,  fruit protect their seeds well    
 
     ♡ plant disease, labor hours, morale value, spoilage rate, water use, ect. 
+    
+    ♡ I set up to be running with daylight, but now I'm thinking about having the lights on a 12 hour cycle, but also turn off if not needed(23/06/2026)
 
 
 ### Ration Notes:
-    ♡ lentils/beans
+    ♡ lentils/beans ?
 
 
 ### Crew Notes:
