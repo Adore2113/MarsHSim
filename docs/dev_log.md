@@ -1207,3 +1207,23 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ while going over my isru files, the pipes in my isru file are set up so that they can switch their decision to deploy or retract, incase of low water emergencies
 
     ♡ I am considering if all of a sudden the pipes are deploying and the low power mode hits or I lose power if the pipes don't retract, they will freeze or use a lot of power with the heated pipes, but retracting doesn't use power in v1, which I'm questioning now
+
+
+##      07/22/2026
+    ♡ today I was thinking about my power reserves and power set up, I am really starting to consider what can ruin my simulation and I need to consider more of a crew psycholoy as well
+
+    ♡ I realized today I still had some variable name mismatches in my power file, I need to go over my power set up because now that I see the real amount of power being used, I need to consider more power
+
+
+##      07/23/2026
+    ♡ since adding in seasons, the daily solar power isn't going to be enough for even daily consumption, I need to consider more options for power
+
+    ♡ I'm going to add a funcion in my print file to show totals for each sol
+
+    ♡ my sim is running on average:  Solar Generated = 559.26 kwh, Total Power Used = 649.12 kWh, Net Energy = -89.86 kWh 
+
+    ♡ I isolated the subsystems and the greenhouse power is taking up about 86% of the power, I have it set up to be running with daylight, but now I'm thinking about having the lights on a 12 hour cycle
+
+    ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've manaed to get the Greenhouse energy usage to : 260.46 kwh, instead of 360kwh+
+
+    ♡ I am reading about RTG, considering more arrays
