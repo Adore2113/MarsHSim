@@ -1222,8 +1222,12 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ my sim is running on average:  Solar Generated = 559.26 kwh, Total Power Used = 649.12 kWh, Net Energy = -89.86 kWh 
 
-    ♡ I isolated the subsystems and the greenhouse power is taking up about 86% of the power, I have it set up to be running with daylight, but now I'm thinking about having the lights on a 12 hour cycle
+    ♡ I isolated the subsystems and the greenhouse power is taking up a high percentage of the power, I have it set up to be running with daylight, but now I'm thinking about having the lights on a 12 hour cycle
 
-    ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've manaed to get the Greenhouse energy usage to : 260.46 kwh, instead of 360kwh+
+    ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've manaed to get the Greenhouse energy usage to : 260.46 kwh, instead of 325.55kwh
 
-    ♡ I am reading about RTG, considering more arrays
+    ♡ I am reading about RTG, considering more arrays, maybe  like I mentioned in the past.. 
+
+
+##      07/23/2026
+    ♡ 
