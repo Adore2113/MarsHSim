@@ -1,5 +1,5 @@
 #--------------------imports-------------------------♡
-from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, get_daylight_fraction, seconds_per_sol
+from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, get_daylight_fraction, seconds_per_sol, get_sol_time
 #----------------------------------------------------♡
 
 # file for greenhouse system
@@ -21,8 +21,34 @@ default_health = 0.98
 default_light_exposure = 0.65
 default_growth_multiplier = 1.0
 runoff_water_ratio = 0.08
+
+base_light_hours_per_sol = 16.0    # test and try 12 or 14
+hour_lights_start_hour = 5
 #----------------------------------------------------♡
 
+
+#--------------------timed lights--------------------♡
+def get_timed_gh_lights(state, light_hours_per_sol):
+    _, sol_hour, minutes = get_sol_time(state)
+    hour_now = sol_hour + (minutes / 60)
+
+    hour_lights_end_hour = (hour_lights_start_hour + light_hours_per_sol) % 24
+    
+    if hour_lights_start_hour < hour_lights_end_hour:
+        if hour_lights_start_hour <= hour_now < hour_lights_end_hour:
+            timed_gh_lights = True
+            
+        else:
+            timed_gh_lights = False
+
+    else:
+        if hour_now >= hour_lights_start_hour or hour_now < hour_lights_end_hour:
+            timed_gh_lights = True
+
+        else:
+            timed_gh_lights = False
+
+    return timed_gh_lights
 
 #----------------greenhouse lighting-----------------♡
 def greenhouse_lighting(state, dt_min):
