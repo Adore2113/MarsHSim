@@ -229,11 +229,13 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ updated state variables file to include the new power variables I've been using from state and removed them out of the placeholder value section
 
-    ♡ started solar function in power.py but I need to decide how many panels I want, so far for my habitat size, I think I'll choose.. 30-40 smaller panels to make maintenance and repair easier(?)
+    ♡ since I want to have solar, I'm going to need to have a huge battery storage for when there are dust storms and other impacting factors (I still have an injury, I am doing small blocks of code at a time) 
+    
+    ♡  making the battery capacity 4000.0 kWh for now
 
-    ♡ I am going to model the solar panels in a similar way to the amine beds list, where I can have each panel have a status, how much a panel can make in direct 100% sunlight, its efficiency, amount of dust build up and just its overall condition for repair use when I get to that
+    ♡ I chose the starting amounts for some power variables and made a separate file for the OGA and water electrolysis
 
-    ♡ changing from my idea of 30-40 panels to 10 larger ones at least for V1, to avoid my code being messy and harder to manage
+    ♡ added power consumed to lights function
 
     ♡ ***while looking at the amine bed list, I'm not happy with how it's running right now b/c of how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that***
 
@@ -1182,3 +1184,17 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 ##      07/24/2026
     ♡ I change the crop ligting down to 
+
+
+##      07/25/2026
+    ♡ I've started designing a 50-acre solar field. I actually chose 50 acres because of where I grew up. I can picture the size and I can definitely see that being a manageable area for this.
+
+    ♡ Right now, the design consists of 101, 250 solar panels organized into 2,250 arrays, grouped into 50 independent control blocks of 45 arrays each. This should make maintenance, fault isolation, and power management much more practical than treating the entire field as one massive solar farm. I'm setting the panels
+
+    ♡ I plan on using electrostatic dust shields, vibration cleaning which I looed at previously as well as protective covers, and a system that sets off a scheduled flip upside down and a cover that protects the arrays from damage and extra dust buildup when they are offline and weight-sensor-triggered panel flips, that briefly flip upside down and back up after so much build up. 
+
+    ♡ maintenance itself will consume power and temporarily take equipment offline, creating another engineering trade off for the habitat.
+
+    ♡ add these to v1_scope notes ^
+
+    ♡ making a seperate file for the solar fields 
