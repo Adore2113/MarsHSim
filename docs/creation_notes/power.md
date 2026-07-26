@@ -9,10 +9,10 @@
         -array tilt
 
     ♡ maintenance itself will consume power and temporarily take equipment offline, creating another engineering trade off for the habitat.
-### -------------------------------------------------
+### ----------------------------------------
 
 ### Arcadia Planitia 50 Acre Solar Plan (25/07/2026):
-### -------------------------------------------------
+### ----------------------------------------
 #### Land area:
     ♡ 50 acres 
     ♡ 20.23 hectares
@@ -43,14 +43,14 @@
         - 45 arrays × 45 panels = 2,025 panels/block
         - 89.9 m² × 45 ≈ 4,046 m²/block
 
-### -------------------------------------------------
+### ----------------------------------------
 #### Power Production:
     ♡ typical operating capacity w. ~ 70% online:
            2.5–2.7 MW
     ♡ full-capacity continuous average: 
           ~ 3.6–3.8 MW
 
-### -------------------------------------------------
+### ----------------------------------------
 #### Seasonal Operating:
 #### N Summer: 
     ♡ 1,575 arrays online (35 blocks)
@@ -97,7 +97,7 @@
             0.9–3.9 kWh + 0.03–0.15 kWh
             ≈ 0.9–4.1 kWh
 
-### -------------------------------------------------
+### ----------------------------------------
 #### Electrodynamic Dust Shield (EDS):
     ♡ uses a travelling electric field to lift and push dust from the panel surface
     ♡ can be scheduled or triggered by weight or dust sensors
@@ -139,7 +139,7 @@
         - 40–180 W/array + 20–100 W/array = 60–280 W/array
         - 0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array
     
-### -------------------------------------------------
+### ----------------------------------------
 #### Flip & Cover Assumptions:
     ♡ preliminary estimates
     ♡ these values will be updated as I continue designing the flip and cover mechanisms
@@ -211,14 +211,16 @@
         - 100–150 W/array + 25–40 W/array = 125–190 W/array
         - 3–13 Wh/array + 0.1–0.5 Wh/array = 3.1–13.5 Wh/array
 
-### -------------------------------------------------
+### ----------------------------------------
 ### Arcadia Planitia 50 Acre Solar Design Decisions:
 #### Why 50 acres?
-        ♡ I chose 50 acres partly because it is a land size I grew up around
+        ♡ I chose 50 acres because it's a land size I grew up around
         
         ♡ I can picture its scale clearly, which makes the solar field easier for me to understand and design
         
         ♡ it feels large enough to support the habitat while still being a manageable area
+
+        ♡ it didn't seem like overkill (maybe seems modest) after looking into the sizes of some solar farms on Earth
 
 #### Why divide the field into arrays and control blocks?
         ♡ the design consists of 101,250 solar panels organized into 2,250 arrays
@@ -233,4 +235,66 @@
 
 #### Why use multiple dust-removal systems?
 
-    ♡ I plan on using electrostatic dust shields, vibration cleaning which I looked at previously as well as protective covers, and a system that sets off a scheduled flip upside down and a cover that protects the arrays from damage and extra dust buildup when they are offline and weight-sensor-triggered panel flips, that briefly flip upside down and back up after so much build up. 
+        ♡ Mars dust can reduce solar output and interfere with exposed equipment
+
+        ♡ no single cleaning method can handle every condition
+
+        ♡ I felt like I needed as many dust removal plans as possible
+
+        ♡ electrodynamic dust shields can move fine dust from the panel surface     
+
+        ♡ vibration cleaning can help loosen dust that remains attached
+
+        ♡ array flips can release heavier buildup using gravity and movement
+
+        ♡ back up, incase one system fails or isn't enough
+
+#### Why include protective covers?
+        ♡ to protect from storm debris and dust, less wear on the panels and mostly to avoid breakage
+
+        ♡ arrays that are offline don't need to remain exposed
+        
+        ♡ sliding covers can reduce additional dust accumulation
+
+        ♡ I didn't want to add parts that were expensive, could break, and/or would require more maintenance
+
+        ♡ the covers mechanically latch after moving so they don't continuously consume power
+
+#### Why make maintenance consume power?
+        ♡ realism
+
+        ♡ cleaning, flipping, and covering the arrays shouldn't happen for free
+
+        ♡ maintenance consumes energy and temporarily removes equipment from being avaliable sometimes
+
+        ♡ a trade-off between spending power on maintenance & lower solar production now vs more damage later
+
+
+#### Why use scheduled and sensor-triggered maintenance?
+        ♡ scheduled maintenance provides regular cleaning before efficiency drops too low
+
+        ♡ to preserve panels for as long as possible
+
+        ♡ dust or weight sensors allow the system to react to faster buildup between scheduled maintenance
+
+        ♡ using both methods avoids relying entirely on a schedule or sensor readings
+
+        ♡ back up, incase one system fails or isn't enough
+
+#### Why tilt the panels 30° southward?
+        ♡ The southward tilt is supposed to improve sun exposure at the habitat N Arcadia Planitia location
+
+        ♡ I read that tilted panels ~ 30° southward keep minimum irradiance in the 20–60 W/m² typically even in storms
+
+        ♡ The tilt might help the wind remove loose dust from the panel surface
+
+        ♡ I'm considering angle changes after seasonal production is tested in the simulation
+
+### ----------------------------------------
+#### Notes:
+##### Future Considerations:
+        ♡ I haven't decided which material the covers will be
+        
+        ♡ how to handle damaged equipment
+
+        ♡ consider changing angles a bit per season, and by how much
