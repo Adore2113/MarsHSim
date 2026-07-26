@@ -51,7 +51,7 @@
           ~ 3.6–3.8 MW
 
 ### ----------------------------------------
-#### Seasonal Operating:
+#### Seasonal Operation:
 #### N Summer: 
     ♡ 1,575 arrays online (35 blocks)
     ♡ 675 arrays offline (15 blocks)
@@ -83,8 +83,8 @@
             ≈ 1.7–7.3 kWh
 
 #### N Winter:
-    ♡ 1,935 arrays onlin (~ 43 blocks)
-    ♡ 315 arrays offline (~ 7 blocks)
+    ♡ 1,935 arrays online (43 blocks)
+    ♡ 315 arrays offline (7 blocks)
     ♡ transition energy: ~ 1.0–4.3 kWh
     ♡ calculation:
         -flips:
@@ -94,11 +94,11 @@
             315 arrays × 0.1–0.5 Wh/array = 31.5–157.5 Wh
             ≈ 0.03–0.16 kWh
         -combined:
-            0.9–3.9 kWh + 0.03–0.15 kWh
-            ≈ 0.9–4.1 kWh
+            0.95–4.10 kWh + 0.03–0.16 kWh ≈ 0.98–4.26 kWh
+            ≈ 1.0–4.3 kWh
 
 ### ----------------------------------------
-#### Electrodynamic Dust Shield (EDS):
+#### Electrodynamic Dust Shields (EDS):
     ♡ uses a travelling electric field to lift and push dust from the panel surface
     ♡ can be scheduled or triggered by weight or dust sensors
     ♡ NASA describes EDS as using high voltage but low current, making these values estimates
@@ -125,14 +125,14 @@
 
 #### EDS & Vibration Combined Cleaning:
     ♡ can be scheduled or triggered by weight or dust sensors
-    ♡ these values represents a typical cleaning cycle
+    ♡ these values represent a typical cleaning cycle
     ♡ the systems are not expected to operate at their individual maximums simultaneously
     ♡ run time: 1–3 minutes
     ♡ power: 
           ~ 60–250 W/array (estimated)
     ♡ energy: 
           ~ 2–12 Wh/array/cycle (estimated)
-    ♡ combined estimates:
+    ♡ theoretical combined range:
         - power: 60–280 W/array
         - energy: 0.8–16.7 Wh/array/cycle
     ♡ calculation:
@@ -227,11 +227,11 @@
         
         ♡ the arrays are grouped into 50 independent control blocks of 45 arrays each
         
-        ♡ this should make maintenance, fault isolation, seasonal operation, and power management more practical
+        ♡ this should make maintenance, fault isolation, seasonal operation and power management more practical
         
         ♡ control blocks can be taken offline at a larger scale
         
-        ♡ more managable, instead of turning panels or arrays off individually
+        ♡ more manageable, instead of turning panels or arrays off individually
 
 #### Why use multiple dust-removal systems?
 
@@ -247,7 +247,7 @@
 
         ♡ array flips can release heavier buildup using gravity and movement
 
-        ♡ back up, incase one system fails or isn't enough
+        ♡ backup, in case one system fails or can't remove a certain type of buildup
 
 #### Why include protective covers?
         ♡ to protect from storm debris and dust, less wear on the panels and mostly to avoid breakage
@@ -256,16 +256,16 @@
         
         ♡ sliding covers can reduce additional dust accumulation
 
-        ♡ I didn't want to add parts that were expensive, could break, and/or would require more maintenance
+        ♡ I wanted the cover to be as simple as possible so it wouldn't add to cost, power use or maintenance
 
         ♡ the covers mechanically latch after moving so they don't continuously consume power
 
 #### Why make maintenance consume power?
         ♡ realism
 
-        ♡ cleaning, flipping, and covering the arrays shouldn't happen for free
+        ♡ cleaning, flipping and covering the arrays shouldn't happen for free
 
-        ♡ maintenance consumes energy and temporarily removes equipment from being avaliable sometimes
+        ♡ maintenance consumes energy and temporarily removes equipment from being available sometimes
 
         ♡ a trade-off between spending power on maintenance & lower solar production now vs more damage later
 
@@ -279,14 +279,14 @@
 
         ♡ using both methods avoids relying entirely on a schedule or sensor readings
 
-        ♡ back up, incase one system fails or isn't enough
+        ♡ backup, in case one system fails or isn't enough
 
 #### Why tilt the panels 30° southward?
         ♡ The southward tilt is supposed to improve sun exposure at the habitat N Arcadia Planitia location
 
-        ♡ I read that tilted panels ~ 30° southward keep minimum irradiance in the 20–60 W/m² typically even in storms
+        ♡ I read that tilted panels ~ 30° southward keep minimum irradiance in the 20–60 W/m² during severe dust-storm conditions
 
-        ♡ The tilt might help the wind remove loose dust from the panel surface
+        ♡ The tilt might help loose dust slide or be carried off of the panel surface
 
         ♡ I'm considering angle changes after seasonal production is tested in the simulation
 
@@ -297,4 +297,4 @@
         
         ♡ how to handle damaged equipment
 
-        ♡ consider changing angles a bit per season, and by how much
+        ♡ consider changing angles a bit per season and by how much
