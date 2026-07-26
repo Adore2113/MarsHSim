@@ -328,48 +328,10 @@
 
 
 ### Power Notes:
-    ♡ lights will dim at 9:30pm (21:30) and they will brighten at 6:00am
-
-    ♡ battery capacity: 4000.0 kWh (for now)
-
-    ♡ changing from 30-40 smaller panels to 10 larger ones
-
-    ♡ solar panels modeled similarly to amine beds:
-        - each panel has a status
-        - power output in full sunlight
-        - efficiency
-        - dust build up
-        - overall condition (for future repair handling)
-    
-    ♡ I thought about having panels on the outside of my habitat that are foil on one side and black on the other (like a car window shield), that could be flipped like a billboard (one of the ones that have two images on them and they flip to reveal the other image)
-
-    ♡ I want the lights to adjust to time as well as sunlight level and never go below 0.2 light level
-
-    ♡ 0.3 as a daytime light level support if there is enough sunlight
-
-    ♡ an emergency minimum with enough sunlight will be 0.1 in case of very low power
-
-    ♡ normal:
-        - obviously everything runs as it should
-
-    ♡ low:
-        - lights dim
-        - disable wellness lights
-        - keep life support and everything else running
-
-    ♡ critical:
-        - lights turned down to minimum
-        - reduce non-essential systems (implementing this later)
-        - prioritize OGA and co2 scrubber
-
-
-### Printing Notes:
-
-
+##### moved to power.md
 
 ### Sabatier Notes:
     ♡ reactions_available is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
-
 
 
 ### Thermal Notes:
