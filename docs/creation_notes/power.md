@@ -90,6 +90,44 @@
         ♡ combined:
             0.9–3.9 kWh + 0.03–0.15 kWh
             ≈ 0.9–4.1 kWh
+
+### -------------------------------------------------
+#### Electrostatic Dust Shields(EDS):
+    ♡ uses an electric wave to push dust from the panel surface
+    ♡ can be scheduled or triggered by weight or dust sensors
+    ♡ run time: ~ 1–5 minutes
+    ♡ power: 
+            ~ 40–180 W/array while active
+    ♡ energy: 
+            ~ 0.7–15 Wh/array/cycle
+    ♡ calculation:
+            -40 W/array × (1 min ÷ 60) ≈ 0.67 Wh/array
+            -180 W/array × (5 min ÷ 60) = 15 Wh/array
+
+#### Vibration Cleaning:
+    ♡ uses piezoelectric actuators or small motors to shake dust loose
+    ♡ can be scheduled or triggered by weight or dust sensors
+    ♡ run time: 20–60 seconds
+    ♡ power: 
+            ~ 20–100 W/array while active
+    ♡ energy: 
+            ~ 0.1–1.7 Wh/array/cycle
+    ♡ calculation:
+            -20 W/array × (20 s ÷ 3600) ≈ 0.11 Wh/array
+            -100 W/array × (60 s ÷ 3600) ≈ 1.67 Wh/array
+
+#### EDS & Vibration Combined Cleaning:
+    ♡ can be scheduled or triggered by weight or dust sensors
+    ♡ these values represents a typical cleaning cycle
+    ♡ the systems are not expected to operate at their individual maximums simultaneously
+    ♡ run time: 1–3 minutes
+    ♡ power: 
+            ~ 60–250 W/array (estimated)
+    ♡ energy: 
+            ~ 2–12 Wh/array/cycle (estimated)
+    ♡ calculation:
+            -40–180 W/array + 20–100 W/array = 60–280 W/array
+            -0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array
     
 ### -------------------------------------------------
 #### Arcadia Planitia 50 Acre Solar Plan Notes:
