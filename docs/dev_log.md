@@ -256,7 +256,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      04/03/2026
     ♡ updated power_system.py and added a solar generation function and fixed the other no longer needed variables from the other files that had to do w. solar power.
 
-    ♡ using 0.50kw of sunlight for every 1 square meter (m2) for now, b/c my research showed that Mars sunlight is btwn 0.4 - 0.6 kw / 1 m2 during daytime
+    ♡ using 0.50kw of sunlight for every 1 square meter (m²) for now, b/c my research showed that Mars sunlight is btwn 0.4 - 0.6 kw / 1 m² during daytime
 
 #### Next Session:
     ♡ work on power_system.py and figure out where I want daylight calculated (maybe state, or make a new separate file for handling calculating times of day, days and other related things)
@@ -803,7 +803,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      05/16/2026
      ♡  while going over the total habitat volume in m3, I'm thinking that the crew can live w. smaller living quarters and I'm going to make the greenhouse a bit bigger b/c it is crucial for long term survival, and I'm considering storage areas being a bit bigger as well..
 
-    ♡ I was reading about how much room a person typically needs/person for psychological wellbeing. I read it was 300m2 pp but that seems really unrealistic for Mars
+    ♡ I was reading about how much room a person typically needs/person for psychological wellbeing. I read it was 300m² pp but that seems really unrealistic for Mars
 
     ♡ research on the height requirements for ideal psychological wellbeing vertically, people seem to do better w. "void" spaces (taller living areas), but also considering that I can't have an unrealistically tall habitat, so I keep trying to go for the minimum for psychological wellbeing long-term so I'm going w. .. 4m? maybe.. 3.8 (though the habitat would need to be partially buried, but I'm not simulating structural engineering right now)    
 
@@ -980,9 +980,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ I noticed my greenhouse is currently producting 75x MORE o2 than my crew of 30  mean, and this is absolutely not right, it doesn't make any sense so I need to fix this
 
     ♡ the math for zone info:
-    structural: 0.022 kPa/m2/sol × 90 m2  = 1.98 kPa/sol
-    container:  0.020 kPa/m2/sol × 110 m2 = 2.20 kPa/sol
-    rack:       0.015 kPa/m2/sol × 124 m2 = 1.86 kPa/sol
+    structural: 0.022 kPa/m²/sol × 90 m²  = 1.98 kPa/sol
+    container:  0.020 kPa/m²/sol × 110 m² = 2.20 kPa/sol
+    rack:       0.015 kPa/m²/sol × 124 m² = 1.86 kPa/sol
     total ≈ 6.04 kPa/sol
 
     ♡ the math for crew o2 demand:
@@ -1199,40 +1199,41 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ making a seperate file for the solar fields
 
-    ♡ I read that in Arcadia Planitia, even during global dust storms, tilted panels ~ 30° southward keep minimum irradiance from dropping extremely low even still in the 20–60 W/m2 range in the worst conditions
+    ♡ I read that in Arcadia Planitia, even during global dust storms, tilted panels ~ 30° southward keep minimum irradiance from dropping extremely low even still in the 20–60 W/m² range in the worst conditions
 
     ---------------------------------------------------
 
-    ♡ Arcadia Planitia Solar Plan
+    ♡ Arcadia Planitia 50acre Solar Plan
 
-    ♡ I read that even during global dust storms, tilted panels ( ~ 30° southward) keep minimum irradiance in the 20–60 W/m2 range under worst conditions.
+    ♡ I read that even during global dust storms, tilted panels (~ 30° southward) keep minimum irradiance in the 20–60 W/m² range under worst conditions.
 
     ♡ Land area: 
         -50 acres 
         -20.23 hectares
-        - ~ 202,300 m2
+        - ~ 202,300 m²
 
     ♡ Panels:
         -total panels: 101,250
-        -panels per array: 45
-        - ~ 2.0 m²/panel
+        -panels/array: 45
+        -tilted ~ 30° southward
+        -land area: ~ 2.0 m²/panel
         -large ground-mounted size
         -calculation: 
-            ♡ 202,300 m2 ÷ 2,250 arrays ≈ 89.9 m2/array
-            ♡ 89.9 ÷ 45 ≈ 2.0 m2/panel
+                ♡ 202,300 m² ÷ 2,250 arrays ≈ 89.9 m²/array
+                ♡ 89.9 ÷ 45 ≈ 2.0 m²/panel
 
     ♡ Arrays:
         -total arrays: 2,250
         -panels/array: 45
-        - ~ 89.9 m²/array
+        -land area: ~ 89.9 m²/array
         -calculation:
             ♡ 202,300 m² ÷ 2,250 ≈ 89.9 m²/array 
 
 
     ♡ Control blocks: 
         -total control blocks: 50
-        -45 arrays per block
-        -2,025 panels per block
+        -arrays/block: 45 
+        -panels/block: 2,025 
         -calculation:
             ♡ 45 arrays × 45 panels = 2,025 panels/block
             ♡ 89.9 m² × 45 ≈ 4,046 m²/block
@@ -1245,82 +1246,91 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ---------------------------------------------------
 
     ♡ Seasonal Operating:
-    
-        -N Summer: 
-            ♡ 1,575 arrays online (35 blocks)
-            ♡ 675 arrays offline (15 blocks)
-            ♡ transition energy (flips + covers): ~ 2.1–9.1 kWh
-            ♡ calculation:
-                -flips: ♡ 675 arrays × 3–13 Wh/array = 2,025–8,775 Wh ≈ 2.0–8.8 kWh
-                -covers: 675 arrays × 0.1–0.5 Wh/array = 68–338 Wh ≈ 0.07–0.34 kWh
-                -combined: 2.0–8.8 kWh + 0.07–0.34 kWh ≈ 2.1–9.1 kWh
+    ♡ N Summer: 
+        -1,575 arrays online (35 blocks)
+        -675 arrays offline (15 blocks)
+        -transition energy (flips + covers): ~ 2.1–9.1 kWh
+        -calculation:
+                ♡ flips: 675 arrays × 3–13 Wh/array = 2,025–8,775 Wh ≈ 2.0–8.8 kWh
+                ♡ covers: 675 arrays × 0.1–0.5 Wh/array = 68–338 Wh ≈ 0.07–0.34 kWh
+                ♡ combined: 2.0–8.8 kWh + 0.07–0.34 kWh ≈ 2.1–9.1 kWh
 
-        -Spring/Autumn:
-            ♡ 1,710 arrays online (38 blocks)
-            ♡ 540 arrays offline (12 blocks)
-            ♡ transition energy: ≈ 1.7–7.3 kWh
-            ♡ calculation:
-                -flips: 540 arrays × 3–13 Wh/array = 1,620–7,020 Wh ≈ 1.6–7.0 kWh
-                -covers: 540 arrays × 0.1–0.5 Wh/array = 54–270 Wh ≈ 0.05–0.27 kWh
-                -combined: 1.6–7.0 kWh + 0.05–0.27 kWh ≈ 1.7–7.3 kWh
+    ♡ Spring/Autumn:
+        -1,710 arrays online (38 blocks)
+        -540 arrays offline (12 blocks)
+        -transition energy: ≈ 1.7–7.3 kWh
+        -calculation:
+                ♡ flips: 540 arrays × 3–13 Wh/array = 1,620–7,020 Wh ≈ 1.6–7.0 kWh
+                ♡ covers: 540 arrays × 0.1–0.5 Wh/array = 54–270 Wh ≈ 0.05–0.27 kWh
+                ♡ combined: 1.6–7.0 kWh + 0.05–0.27 kWh ≈ 1.7–7.3 kWh
 
-        -N Winter:
-            ♡ 1,950 arrays online (~ 43–44 blocks)
-            ♡ 300 arrays offline (~ 6–7 blocks)
-            ♡ transition energy: ~ 0.9–4.1 kWh
-            ♡ calculation:
-                -flips: 300 arrays × 3–13 Wh/array = 900–3,900 Wh ≈ 0.9–3.9 kWh
-                -covers 300 arrays × 0.1–0.5 Wh/array = 30–150 Wh ≈ 0.03–0.15 kWh
-                -combined 0.9–3.9 kWh + 0.03–0.15 kWh ≈ 0.9–4.1 kWh
+    ♡ N Winter:
+        -1,950 arrays online (~ 43–44 blocks)
+        -300 arrays offline (~ 6–7 blocks)
+        -transition energy: ~ 0.9–4.1 kWh
+        -calculation:
+                ♡ flips: 300 arrays × 3–13 Wh/array = 900–3,900 Wh ≈ 0.9–3.9 kWh
+                ♡ covers 300 arrays × 0.1–0.5 Wh/array = 30–150 Wh ≈ 0.03–0.15 kWh
+                ♡ combined 0.9–3.9 kWh + 0.03–0.15 kWh ≈ 0.9–4.1 kWh
+
+    ---------------------------------------------------
+
+    ♡ Electrostatic Dust Shields(EDS):
+        -use an electric wave to push dust from the panel surface
+        -can be scheduled or triggered by weight or dust sensors
+        -run time: ~ 1–5 minutes
+        -power: 
+                ♡ ~ 40–180 W/array while active
+        -energy: 
+                ♡ ~ 0.7–15 Wh/array/cycle
+        -calculation:
+                ♡ 40 W/array × (1 min ÷ 60) ≈ 0.67 Wh/array
+                ♡ 180 W/array × (5 min ÷ 60) = 15 Wh/array
+
+    ♡ Vibration Cleaning:
+        -uses piezoelectric actuators or small motors to shake dust loose
+        -can be scheduled or triggered by weight or dust sensors
+        -run time: 20–60 seconds
+        -power: 
+                ♡ ~ 20–100 W/array while active
+        -energy: 
+                ♡ ~ 0.1–1.7 Wh/array/cycle
+        -calculation:
+                ♡ 20 W/array × (20 s ÷ 3600) ≈ 0.11 Wh/array
+                ♡ 100 W/array × (60 s ÷ 3600) ≈ 1.67 Wh/array
+
+    ♡ EDS & Vibration Combined Cleaning:
+        -can be scheduled or triggered by weight or dust sensors
+        -these values represents a typical cleaning cycle
+        -the systems are not expected to operate at their individual maximums simultaneously
+        -run time: 1–3 minutes
+        -power: 
+                ♡ ~ 60–250 W/array (estimated)
+        -energy: 
+                ♡ ~ 2–12 Wh/array/cycle (estimated)
+        -calculation:
+                ♡ 40–180 W/array + 20–100 W/array = 60–280 W/array*
+                ♡ 0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array*
 
     ---------------------------------------------------
 
-    ♡ Dust & Protection:
-        -Electrostatic Dust Shields(EDS):
-            ♡ use an electric wave to push dust from the panel surface
-            ♡ can be scheduled or triggered by weight or dust sensors
-            ♡ power usage: ~ 40–180 W/array while active
-            ♡ run time: 1–5 minutes
-            ♡ energy usage: ~ 0.7–15 Wh/array per cycle
-            ♡ calculation:
-                -40 W/array × (1 min ÷ 60) ≈ 0.67 Wh/array
-                -180 W/array × (5 min ÷ 60) = 15 Wh/array
-
-        -Vibration Cleaning:
-            ♡ uses piezoelectric actuators or small motors to shake dust loose
-            ♡ can be scheduled or triggered by weight or dust sensors
-            ♡ power usage: ~ 20–100 W/array while active
-            ♡ run time: 20–60 seconds
-            ♡ energy usage: ~ 0.1–1.7 Wh/array per cycle
-            ♡ calculation:
-                -20 W/array × (20 s ÷ 3600) ≈ 0.11 Wh/array
-                -100 W/array × (60 s ÷ 3600) ≈ 1.67 Wh/array
-
-        -EDS & Vibration Combined Cleaning:
-            ♡ can be scheduled or triggered by weight or dust sensors
-            ♡ power: ~ 60–250 W/array
-            ♡ run time: 1–3 minutes
-            ♡ energy: ~ 2–12 Wh/array per cycle
-            ♡ calculation:
-                -40–180 W/array + 20–100 W/array = 60–280 W/array*
-                -0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array*
-
-    ---------------------------------------------------
+    ♡reliminary estimates
+    ♡These values will be updated as I continue designing the flip and cover mechanisms.
 
     ♡ Array Flip:
         -array flips upside down, releasing dust
         -the array can return upright after the cleaning flip
         -can be scheduled or triggered by weight or dust sensors
-        -total run time: ~ 2–5 minutes
-        -average power: 
+        -run time: ~ 2–5 minutes
+        -power: 
                 ♡  100–150 W/array while moving
                 ♡ ~ 2.2–3.3 W/panel
                 ♡ ~ 4.5–6.75 kW/block
         -energy: 
-                ♡ ~ 3–13 Wh/array per complete flip
+                ♡ ~ 3–13 Wh/array/complete flip
                 ♡ ~ 0.07–0.29 Wh/panel
                 ♡ ~ 0.14–0.59 kWh/block
-        -cperation:
+        -operation:
                 ♡ start up: ~ 150–300 W/array, run time: ~1 –3 seconds
                 ♡ actual rotation: ~ 80–180 W/array, run time: ~ 2–5 minutes
                 ♡ idle: ~ 0 W
@@ -1333,17 +1343,16 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ Protective Covers:
         -one sliding cover/array
-        -covers and protect arrays while offline
+        -protects arrays while offline against debris and storm damage
         -reduces dust accumulation
-        -protects against debris and storm damage
         -can be scheduled or triggered by weight/dust sensors
-        -total run time: ~ 15–30 seconds
-        -average power: 
+        -run time: ~ 15–30 seconds
+        -power: 
                 ♡ ~ 25–40 W/array while moving
                 ♡ ~ 0.56–0.89 W/panel
                 ♡ ~ 1.13–1.80 kW/block
         -energy: 
-                ♡ ~ 0.1–0.5 Wh/array per opening or closing
+                ♡ ~ 0.1–0.5 Wh/array/opening or closing
                 ♡ ~ 0.002–0.011 Wh/panel
                 ♡ ~ 0.0045–0.0225 kWh/block
         -operation:
@@ -1356,23 +1365,29 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
                 ♡ 0.1–0.5 Wh/array ÷ 45 panels ≈ 0.002–0.011 Wh/panel
                 ♡ 0.1–0.5 Wh/array × 45 arrays/block ≈ 4.5–22.5 Wh/block ≈ 0.0045–0.0225 kWh/block
 
-    -Array Flip & Cover Combined:
-        ♡ can be scheduled or triggered by weight/dust sensors
-        ♡ the flip mechanism uses almost all of the energy
-        ♡ calculation:
-            -20 W × 20 s = 400 J ≈ 0.11 Wh
-            -100 W × 60 s = 6,000 J ≈ 1.67 Wh
 
-        ♡ power usage:
-            -power:
-                ♡ total average: ~ 125–190 W/array
-                ♡ run time: ~ 35–90 seconds
-            
-            -energy: 
-                ♡ ~ 80–150 Wh/array 
+    ♡ Array Flip & Protective Cover:
+        -can be scheduled or triggered by weight or dust sensors
+        -these values are for quick reference, the systems actually run one after the other
+        -power: 
+                ♡ ~ 125–190 W/array
+                ♡ flip: 100–150 W/array
+                ♡ cover: 25–40 W/array
+        -run time: 
+                ♡ ~ 2.25–5.5 minutes
+        -energy: 
+                ♡ ~ 3.1–13.5 Wh/array/complete cycle
+        -calculation:
+                ♡ 100–150 W/array + 25–40 W/array = 125–190 W/array
+                ♡ 3–13 Wh/array + 0.1–0.5 Wh/array = 3.1–13.5 Wh/array
                 
+    ---------------------------------------------------
 
 #### Next Session:
     ♡ go over notes about solar power and power in v1_scope.md and add these notes there, try to organize a bit (I like to reorganize my notes after doing more research and making new notes) 
+
+
+##      07/26/2026
+    ♡ organizing notes and files before implementing updated 50acre solarplan
 
 
