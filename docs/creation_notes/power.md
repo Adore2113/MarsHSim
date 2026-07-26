@@ -40,13 +40,13 @@
 ### -------------------------------------------------
 #### Power Production:
     ♡ typical operating capacity w. ~ 70% online:
-            2.5–2.7 MW
+           2.5–2.7 MW
     ♡ full-capacity continuous average: 
           ~ 3.6–3.8 MW
 
 ### -------------------------------------------------
 #### Seasonal Operating:
-##### N Summer: 
+#### N Summer: 
     ♡ 1,575 arrays online (35 blocks)
     ♡ 675 arrays offline (15 blocks)
     ♡ transition energy (flips + covers): ~ 2.1–9.1 kWh
@@ -61,7 +61,7 @@
             2.0–8.8 kWh + 0.07–0.34 kWh
              ≈ 2.1–9.1 kWh
 
-##### Spring/Autumn:
+#### Spring/Autumn:
     ♡ 1,710 arrays online (38 blocks)
     ♡ 540 arrays offline (12 blocks)
     ♡ transition energy: ≈ 1.7–7.3 kWh
@@ -76,7 +76,7 @@
             1.6–7.0 kWh + 0.05–0.27 kWh
             ≈ 1.7–7.3 kWh
 
-##### N Winter:
+#### N Winter:
     ♡ 1,950 arrays online (~ 43–44 blocks)
     ♡ 300 arrays offline (~ 6–7 blocks)
     ♡ transition energy: ~ 0.9–4.1 kWh
@@ -101,8 +101,8 @@
     ♡ energy: 
           ~ 0.7–15 Wh/array/cycle
     ♡ calculation:
-          - 40 W/array × (1 min ÷ 60) ≈ 0.67 Wh/array
-          - 180 W/array × (5 min ÷ 60) = 15 Wh/array
+        - 40 W/array × (1 min ÷ 60) ≈ 0.67 Wh/array
+        - 180 W/array × (5 min ÷ 60) = 15 Wh/array
 
 #### Vibration Cleaning:
     ♡ uses piezoelectric actuators or small motors to shake dust loose
@@ -113,8 +113,8 @@
     ♡ energy: 
           ~ 0.1–1.7 Wh/array/cycle
     ♡ calculation:
-          - 20 W/array × (20 s ÷ 3600) ≈ 0.11 Wh/array
-          - 100 W/array × (60 s ÷ 3600) ≈ 1.67 Wh/array
+        - 20 W/array × (20 s ÷ 3600) ≈ 0.11 Wh/array
+        - 100 W/array × (60 s ÷ 3600) ≈ 1.67 Wh/array
 
 #### EDS & Vibration Combined Cleaning:
     ♡ can be scheduled or triggered by weight or dust sensors
@@ -126,8 +126,8 @@
     ♡ energy: 
           ~ 2–12 Wh/array/cycle (estimated)
     ♡ calculation:
-            - 40–180 W/array + 20–100 W/array = 60–280 W/array
-            - 0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array
+        - 40–180 W/array + 20–100 W/array = 60–280 W/array
+        - 0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array
     
 ### -------------------------------------------------
 #### Assumptions:
@@ -140,22 +140,22 @@
     ♡ can be scheduled or triggered by weight or dust sensors
     ♡ run time: ~ 2–5 minutes
     ♡ power: 
-            -  100–150 W/array while moving
-            - ~ 2.2–3.3 W/panel
-            - ~ 4.5–6.75 kW/block
+        -  100–150 W/array while moving
+        - ~ 2.2–3.3 W/panel
+        - ~ 4.5–6.75 kW/block
     ♡ energy: 
-            - ~ 3–13 Wh/array/complete flip
-            - ~ 0.07–0.29 Wh/panel
-            - ~ 0.14–0.59 kWh/block
+        - ~ 3–13 Wh/array/complete flip
+        - ~ 0.07–0.29 Wh/panel
+        - ~ 0.14–0.59 kWh/block
     ♡ operation:
-            - start up: ~ 150–300 W/array, run time: ~1 –3 seconds
-            - actual rotation: ~ 80–180 W/array, run time: ~ 2–5 minutes
-            - idle: ~ 0 W
+        - start up: ~ 150–300 W/array, run time: ~1 –3 seconds
+        - actual rotation: ~ 80–180 W/array, run time: ~ 2–5 minutes
+        - idle: ~ 0 W
     ♡  calculation:
-            - 100 W/array × (2 min ÷ 60) ≈ 3.33 Wh/array (rounding to 3)
-            - 150 W/array × (5 min ÷ 60) = 12.5 Wh/array (rounding to 13)
-            - 3–13 Wh/array ÷ 45 panels ≈ 0.07–0.29 Wh/panel
-            - 3–13 Wh/array × 45 arrays/block ≈ 135–585 Wh/block
+        - 100 W/array × (2 min ÷ 60) ≈ 3.33 Wh/array (rounding to 3)
+        - 150 W/array × (5 min ÷ 60) = 12.5 Wh/array (rounding to 13)
+        - 3–13 Wh/array ÷ 45 panels ≈ 0.07–0.29 Wh/panel
+        - 3–13 Wh/array × 45 arrays/block ≈ 135–585 Wh/block
                 ≈ 0.14–0.59 kWh/block
 
 
@@ -166,22 +166,22 @@
     ♡ can be scheduled or triggered by weight/dust sensors
     ♡ run time: ~ 15–30 seconds
     ♡ power: 
-            - ~ 25–40 W/array while moving
-            - ~ 0.56–0.89 W/panel
-            - ~ 1.13–1.80 kW/block
+        - ~ 25–40 W/array while moving
+        - ~ 0.56–0.89 W/panel
+        - ~ 1.13–1.80 kW/block
     ♡ energy: 
-            - ~ 0.1–0.5 Wh/array/opening or closing
-            - ~ 0.002–0.011 Wh/panel
-            - ~ 0.0045–0.0225 kWh/block
+        - ~ 0.1–0.5 Wh/array/opening or closing
+        - ~ 0.002–0.011 Wh/panel
+        - ~ 0.0045–0.0225 kWh/block
     ♡ operation:
-            - start up: ~ 40–80 W/array, run time: ~ 1–3 seconds
-            - sliding: ~ 25–40 W/array, run time: ~ 10–30 seconds
-            - holding: ~ 0 W once mechanically latched
+        - start up: ~ 40–80 W/array, run time: ~ 1–3 seconds
+        - sliding: ~ 25–40 W/array, run time: ~ 10–30 seconds
+        - holding: ~ 0 W once mechanically latched
     ♡ calculation:
-            - 25 W/array × (15 s ÷ 3600) ≈ 0.10 Wh/array
-            - 40 W/array × (30 s ÷ 3600) ≈ 0.33 Wh/array
-            - 0.1–0.5 Wh/array ÷ 45 panels ≈ 0.002–0.011 Wh/panel
-            - 0.1–0.5 Wh/array × 45 arrays/block ≈ 4.5–22.5 Wh/block
+        - 25 W/array × (15 s ÷ 3600) ≈ 0.10 Wh/array
+        - 40 W/array × (30 s ÷ 3600) ≈ 0.33 Wh/array
+        - 0.1–0.5 Wh/array ÷ 45 panels ≈ 0.002–0.011 Wh/panel
+        - 0.1–0.5 Wh/array × 45 arrays/block ≈ 4.5–22.5 Wh/block
                 ≈ 0.0045–0.0225 kWh/block
 
 
@@ -190,15 +190,15 @@
     ♡ these values are for quick reference, the systems actually run one after the other
     ♡ power: 
           ~ 125–190 W/array
-            ♡ flip: 100–150 W/array
-            ♡ cover: 25–40 W/array
+        - flip: 100–150 W/array
+        - cover: 25–40 W/array
     ♡ run time: 
           ~ 2.25–5.5 minutes
     ♡ energy: 
           ~ 3.1–13.5 Wh/array/complete cycle
     ♡ calculation:
-            ♡ 100–150 W/array + 25–40 W/array = 125–190 W/array
-            ♡ 3–13 Wh/array + 0.1–0.5 Wh/array = 3.1–13.5 Wh/array
+        - 100–150 W/array + 25–40 W/array = 125–190 W/array
+        - 3–13 Wh/array + 0.1–0.5 Wh/array = 3.1–13.5 Wh/array
 
 ### -------------------------------------------------
 #### Arcadia Planitia 50 Acre Solar Plan Notes:
