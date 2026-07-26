@@ -26,7 +26,7 @@ condensation_heat_kj_per_kg = 2260.0
 water_vapor_per_m3 = 0.0008
 
 heater_hysteresis_c = 0.5
-radiator_hysteresis_c = -1.3
+radiator_hysteresis_c = 0.10    # radiator shut off range
 #---------------------------------------------------♡
 
 
@@ -249,7 +249,7 @@ def rad_heat_rejection_kw(state, mars_temp_k, new_radiators):
         if rad["status"] == "online":
             covered_area_m2 = rad["area_m2"] * rad["dust_factor"]
             
-            effective_emission = default_radiator_emission * rad["efficiency"]
+            effective_emission = default_radiator_emission * rad["efficiency"] * rad["dust_factor"]
             
             rad_temp_difference = hab_temp_k ** 4 - mars_temp_k ** 4
 
