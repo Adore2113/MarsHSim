@@ -16,7 +16,7 @@
     ♡ total panels: 101,250
     ♡ panels/array: 45
     ♡ tilt: 30° southward
-    ♡ land area: ~ 2.0 m²/panel
+    ♡ allocated field area: ~ 2.0 m²/panel
     ♡ large ground-mounted size
     ♡ calculation: 
         - 202,300 m² ÷ 2,250 arrays ≈ 89.9 m²/array
@@ -25,7 +25,7 @@
 #### Arrays:
     ♡ total arrays: 2,250
     ♡ panels/array: 45
-    ♡ land area: ~ 89.9 m²/array
+    ♡ allocated field area: ~ 89.9 m²/array
     ♡ calculation:
           202,300 m² ÷ 2,250 ≈ 89.9 m²/array 
 
@@ -77,22 +77,22 @@
             ≈ 1.7–7.3 kWh
 
 #### N Winter:
-    ♡ 1,950 arrays online (~ 43–44 blocks)
-    ♡ 300 arrays offline (~ 6–7 blocks)
-    ♡ transition energy: ~ 0.9–4.1 kWh
+    ♡ 1,935 arrays onlin (~ 43 blocks)
+    ♡ 315 arrays offline (~ 7 blocks)
+    ♡ transition energy: ~ 1.0–4.3 kWh
     ♡ calculation:
         -flips:
-            300 arrays × 3–13 Wh/array = 900–3,900 Wh
-            ≈ 0.9–3.9 kWh
+            315 arrays × 3–13 Wh/array = 945–4,095 Wh
+            ≈ 0.95–4.10 kWh
         -covers:
-            300 arrays × 0.1–0.5 Wh/array = 30–150 Wh
-            ≈ 0.03–0.15 kWh
+            315 arrays × 0.1–0.5 Wh/array = 31.5–157.5 Wh
+            ≈ 0.03–0.16 kWh
         -combined:
             0.9–3.9 kWh + 0.03–0.15 kWh
             ≈ 0.9–4.1 kWh
 
 ### -------------------------------------------------
-#### Electrostatic Dust Shields(EDS):
+#### Electrodynamic Dust Shield (EDS):
     ♡ uses an electric wave to push dust from the panel surface
     ♡ can be scheduled or triggered by weight or dust sensors
     ♡ run time: ~ 1–5 minutes
@@ -125,6 +125,9 @@
           ~ 60–250 W/array (estimated)
     ♡ energy: 
           ~ 2–12 Wh/array/cycle (estimated)
+    ♡ combined estimates:
+        - power: 60–280 W/array
+        - energy: 0.8–16.7 Wh/array/cycle
     ♡ calculation:
         - 40–180 W/array + 20–100 W/array = 60–280 W/array
         - 0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array
