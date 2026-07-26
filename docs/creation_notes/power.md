@@ -212,6 +212,91 @@
         - 3–13 Wh/array + 0.1–0.5 Wh/array = 3.1–13.5 Wh/array
 
 ### ----------------------------------------
+#### Lighting System:
+    ♡ 
+    
+    ♡ planned automatic lighting schedule:
+            -brighten at 6:00 AM
+            -dim at 9:30 PM (21:30)
+
+    ♡ adaptive lighting based on available sunlight
+
+### ----------------------------------------
+#### Future Considerations:
+        ♡ I haven't decided which material the covers will be
+        
+        ♡ how to handle damaged equipment
+
+        ♡ consider changing angles a bit per season and by how much
+
+        ♡ start looking into realistic battery reserves and how much space they take up
+        
+        ♡ figure out a subsystem power priority system:
+            -priority 0:
+                -oxygen generation
+                -CO₂ scrubbing
+
+            -priority 1:
+                -thermal control
+                -water systems
+
+            -priority 2:
+                -greenhouse
+                -lighting support
+
+            -priority 3:
+                -comfort systems
+                -wellness lighting
+
+
+
+### ----------------------------------------
+### Early Power System Ideas:
+#### Initial Solar Plan:
+        ♡ planned to use 30–40 smaller solar panels
+        
+        ♡ later simplified to 10 larger panels
+        
+        ♡ eventually implemented my 50 acre solar plan
+
+#### Battery Plan:
+        ♡ battery capacity: 4000.0 kWh
+
+#### Solar Panel Model:
+        ♡ solar panels modeled similarly to amine beds:
+            - each panel has a status
+            - power output in full sunlight
+            - efficiency
+            - dust build up
+            - overall condition (for future repair handling)
+
+#### Alternative Solar Plans:
+        ♡ I thought about having panels on the outside of my habitat that are foil on one side and black on the other (like a car window shield), that could be flipped like a billboard (one of the ones that have two images on them and they flip to reveal the other image)
+        
+        ♡ decided to go with a dedicated ground-mounted solar field instead, the other idea has more parts among other potential issues and I want the most daylight possible to reach the inside of the habitat     
+
+#### Low Power Mode:
+        ♡ normal
+
+        ♡ low:
+            -dim habitat lighting
+            -disable wellness lights
+            -maintain life support and other essential systems
+
+        ♡ critical/emergency:
+            -reduce lighting to the minimum
+            -prioritize the OGA and CO₂ scrubbers
+            -reduce non-essential systems (planned for future implementation)
+
+#### Lighting:
+        ♡ light level goes from 0-1
+
+        ♡ minimum light levels:
+            -daytime support: 0.30 (when sufficient sunlight is available)
+            -minimum lighting: 0.20
+            -emergency lighting: 0.10 (during severe power shortages, if sufficient sunlight is available)
+
+### ----------------------------------------
 ### Arcadia Planitia 50 Acre Solar Design Decisions:
 #### Why 50 acres?
         ♡ I chose 50 acres because it's a land size I grew up around
@@ -239,7 +324,7 @@
 
         ♡ no single cleaning method can handle every condition
 
-        ♡ I felt like I needed as many dust removal plans as possible
+        ♡ no single system is likely to handle every situation
 
         ♡ electrodynamic dust shields can move fine dust from the panel surface     
 
@@ -265,7 +350,7 @@
 
         ♡ cleaning, flipping and covering the arrays shouldn't happen for free
 
-        ♡ maintenance consumes energy and temporarily removes equipment from being available sometimes
+        ♡ maintenance consumes energy and temporarily removes equipment from service
 
         ♡ a trade-off between spending power on maintenance & lower solar production now vs more damage later
 
@@ -291,10 +376,40 @@
         ♡ I'm considering angle changes after seasonal production is tested in the simulation
 
 ### ----------------------------------------
-#### Notes:
-##### Future Considerations:
-        ♡ I haven't decided which material the covers will be
-        
-        ♡ how to handle damaged equipment
+### Power System Notes:
+###### 03/29/2026:
+        ♡ battery capacity 4000.0 kWh
 
-        ♡ consider changing angles a bit per season and by how much
+        ♡ started power_system.py
+        
+        ♡  since I want to have solar, I'm going to need to have a huge battery storage for when there are dust storms and other impacting factors
+
+###### 04/03/2026:
+    ♡ using 0.50kw of sunlight for every 1 square meter (m²) for now, b/c my research showed that Mars sunlight is btwn 0.4 - 0.6 kw / 1 m² during daytime
+
+###### 04/05/2026:
+    ♡ the lighting function will react and adjust to the level of daylight
+
+###### 04/10/2026:
+    ♡ solar power will recharge habitat batteries
+
+###### 05/25/2026:
+    ♡ updating systems to include low power mode
+
+###### 07/21/2026:
+    ♡ considering if all of a sudden the pipes are deploying and the low power mode hits or I lose power if the pipes don't retract, they will freeze or use a lot of power w. the heated pipes, but retracting doesn't use power in v1, which I'm questioning now
+
+###### 07/22/2026:
+    ♡ today I was thinking about my power reserves and power set up, I am really starting to consider what can ruin my simulation and I need to consider more of a crew psycholoy as well
+
+###### 07/23/2026:
+    ♡ since adding in seasons, the daily solar power isn't going to be enough for even daily consumption, I need to consider more options for power
+
+    ♡ my sim is running on average:  Solar Generated = 559.26 kwh, Total Power Used = 649.12 kWh, Net Energy = -89.86 kWh
+
+    ♡ I isolated the subsystems and the greenhouse power is taking up a high percentage of the power, I have it set up to be running w. daylight, but now I'm thinking about having the lights on a 12 hour cycle
+
+    ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've manaed to get the Greenhouse energy usage to : 260.46 kwh, instead of 325.55kwh
+
+###### 07/25/2026
+    ♡ I am reading about RTG, considering more arrays, maybe  like I mentioned in the past.. 
