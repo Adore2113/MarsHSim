@@ -9,7 +9,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     
     ♡ going to be using Dalton's Law 
 
-    ♡ researched net habitat volume/crew member (average minimum of 25m3 pp), and I'm happy w. keeping the habitat size at 2000m3 (~ 66 m3 pp)    
+    ♡ researched net habitat volume/crew member (average minimum of 25m3 pp) and I'm happy w. keeping the habitat size at 2000m3 (~ 66 m3 pp)    
 
 #### Next Session:
     ♡  continue w. atmosphere
@@ -37,7 +37,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ NASA references: crew co2 production is around 1kg pp/day
 
-    ♡ researched o2 regeneration and electrolysis w. focus on Oxygen Generation Assembly (OGA), MOXIE like Solid Oxide Electrolysis (SOXE), and Sabatier co2 reduction + electrolysis
+    ♡ researched o2 regeneration and electrolysis w. focus on Oxygen Generation Assembly (OGA), MOXIE like Solid Oxide Electrolysis (SOXE) and Sabatier co2 reduction + electrolysis
 
     ♡ making separate functions for managing and checking gases
 
@@ -56,7 +56,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I know that chemistry ratios use moles, but I really wanted to stick to kPa and kilograms (kg) to avoid my code being more complex, so I'll figure out the conversions to avoid that
 
-    ♡ made the scrubber unable to remove more co2 than exists, and changed the kPa values to move 4 decimal places instead of two, updated target based co2 and oxygen control, added target gases as global variables in engine.py
+    ♡ made the scrubber unable to remove more co2 than exists and changed the kPa values to move 4 decimal places instead of two, updated target based co2 and oxygen control, added target gases as global variables in engine.py
 
     ♡ adding in the hydrogen that the OGA electrolysis makes and venting it FOR NOW and will do research on how I can use it later on (Sabatier?)
 
@@ -111,7 +111,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      03/15/2026
     ♡ finished maintenance
 
-    ♡ continuing w. mca, and adding another function to handle buffer gas
+    ♡ continuing w. mca and adding another function to handle buffer gas
 
     ♡ I am aware that my alert function in engine.py is going to need more work but I will focus more on that after I have more of my code implemented (I feel like this is a good call)
 
@@ -120,19 +120,19 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      03/17/2026
-    ♡ yesterday I mapped out a better plan for the rest of my simulator, and I decided to clean it up as I go today.. I realize I made a lot of mistakes earlier, but I'm noticing them and fixing them now
+    ♡ yesterday I mapped out a better plan for the rest of my simulator and I decided to clean it up as I go today.. I realize I made a lot of mistakes earlier, but I'm noticing them and fixing them now
 
     ♡ moving to temp management today and thermal control, I decided to get the main ideas down using radiators and do more research into other ideas later on
 
-    ♡ cleaned up my code and moved the variables to the other files where they belong, and referenced them properly in engine.py
+    ♡ cleaned up my code and moved the variables to the other files where they belong and referenced them properly in engine.py
 
     ♡ while adding the temp variables to run_oga, I decided to rename a few variables to make reading/going over my code later easier and I also decided to make these functions more efficient overall
 
-    ♡ I'm not sure if I already stated this, but the OGA is capped at 0.004 (for now) so that the OGA has to take its time to catch back up so that it doesn't run a huge amount of power and it seems unrealistic
+    ♡ I'm not sure if I already stated this, but the OGA is capped at 0.004 (for now) so that the OGA has to take its time to catch backup so that it doesn't run a huge amount of power and it seems unrealistic
 
     ♡ I decided to use a dictionary in the run_oga function to keep it more manageable and neat
 
-    ♡ continuing to fix my code functions, and will remember to stay consistent w. the names and structure moving forward
+    ♡ continuing to fix my code functions and will remember to stay consistent w. the names and structure moving forward
 
     ♡ really happy w. my progress today and will continue implementing thermal control and temp management tomorrow
 
@@ -143,7 +143,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      03/18/2026
     ♡ deciding if I should add heat output into current functions, or have its own. I'm going to keep adding to the proper functions
 
-    ♡ adding heat produced by amine beds w. exothermic absorption (the amine molecules catch the co2 which releases heat), and regeneration
+    ♡ adding heat produced by amine beds w. exothermic absorption (the amine molecules catch the co2 which releases heat) and regeneration
 
     ♡ wrote a first version of a readme.md file and decided to make my project public today!
 
@@ -205,7 +205,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ realizing that the file for the oxygen system has separate functions and the buffer gas file has one solid function, so I might end up breaking up that long function into a few smaller ones for readability and also b/c I will be adding more to this function
 
-    ♡ broke up one long buffer gas system function into smaller ones for readability, organization, and future handling
+    ♡ broke up one long buffer gas system function into smaller ones for readability, organization and future handling
 
 #### Next Session:
     ♡ break up co2 scrubber system into different functions to match the other files and then add power usage, eventually continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar
@@ -214,7 +214,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      03/28/2026
     ♡ making crew metabolism into its own file for organization and considering breaking it into smaller functions for quicker/easier readability as I add to the file
 
-    ♡ breaking up the co2 scrubber system into different functions and adding heat, taking into consideration that I want there to be a baseline power/online bed like there is for heat, power usage used on actual co2 removed, emergency events, and full power loss (these last two will be handled later though)
+    ♡ breaking up the co2 scrubber system into different functions and adding heat, taking into consideration that I want there to be a baseline power/online bed like there is for heat, power usage used on actual co2 removed, emergency events and full power loss (these last two will be handled later though)
 
     ♡ added power usage to co2 scrubber, updated engine and quick_test to work w. the file properly
 
@@ -239,7 +239,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ ***while looking at the amine bed list, I'm not happy w. how it's running right now b/c of how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that***
 
-    ♡ I fixed a lot of my code today and added solar list of dictionaries, updated the amine list of dictionaries and made a crew metabolism dictionary, fixed some typos and learned a lot about organizing files, name consistency, code consistency, not going overboard too fast, and file setup
+    ♡ I fixed a lot of my code today and added solar list of dictionaries, updated the amine list of dictionaries and made a crew metabolism dictionary, fixed some typos and learned a lot about organizing files, name consistency, code consistency, not going overboard too fast and file setup
 
 #### Next Session:
     ♡ work on power_system.py
@@ -247,6 +247,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 ##      03/30/2026
     ♡ starting by reviewing my code and I see some areas I need to fix b/c of the changes I made last night, starting w. how my amine beds function
+
+#### Next Session:
+    ♡ update solar array list
 
 
 ##      03/31/2026
@@ -383,7 +386,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I like how clean the dictionaries look in engine.py so I think if my returns return four or more variables, I'm going to make it into a dictionary (starting w. power_system.py w. lights and wellness lights)
     
-    ♡ I cleaned up engine.py but quit pushing commits in the messy middle incase I had to undo everything I did anyway, but I got it sorted out and organized
+    ♡ I cleaned up engine.py but quit pushing commits in the messy middle in case I had to undo everything I did anyway, but I got it sorted out and organized
 
     ♡ reviewing notes that I wrote and moving onto temp_system.py
 
@@ -402,7 +405,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      04/15/2026
     ♡ fixed insulation and thermal mass values
 
-    ♡ adding electric heaters and radiators, and I want to make both of them like I did some of the other systems w. lists (amine beds, ect.)
+    ♡ adding electric heaters and radiators and I want to make both of them like I did some of the other systems w. lists (amine beds, ect.)
 
 #### Next Session:
     ♡ finish adding heat and cooling to power_system
@@ -428,7 +431,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      04/18/2026
     ♡ starting w. my temp file
 
-    ♡ I'm going to keep the radiators using the habitat temp directly to run, and focus on adding in the electric heaters until then
+    ♡ I'm going to keep the radiators using the habitat temp directly to run and focus on adding in the electric heaters until then
 
     ♡ I am going to worry about emergencies later and just get the foundation down first, but I did add another two radiators to the radiator list
 
@@ -493,12 +496,12 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ continue working on water_system.py:
         - add new results to print function
         - add condensate
-        - change oga to use water usage from water_system file, and remove its own storage variable
+        - change oga to use water usage from water_system file and remove its own storage variable
         - don't forget about the CHX
 
 
 ##      04/23/2026
-    ♡ adding condensate/CHX to water_system and engine, and made OGA use potable water
+    ♡ adding condensate/CHX to water_system and engine and made OGA use potable water
 
     ♡ added new results to print function
 
@@ -524,7 +527,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
         
         - dust repellent coatings for sure that will need to be redone over a certain amount of times(?)
 
-    ♡ started adding back up radiators and heaters
+    ♡ started adding backup radiators and heaters
 
     ♡ started file for handling dust
 
@@ -580,7 +583,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      04/28/2026
     ♡ mostly a research day about Mars and seasons, temperature, atmosphere and more on systems that would be needed in a real Mars habitat
 
-    ♡ lot's of whiteboard notes, and new considerations regarding handling gases and future dust and other events
+    ♡ lot's of whiteboard notes and new considerations regarding handling gases and future dust and other events
 
     ♡ created a new file for the Sabatier
 
@@ -593,9 +596,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      04/29/2026
     ♡ starting file for Sabatier
 
-    ♡ sorted v1_scope file into a to do file and dev_log b/c everything together was getting messy, hard to look back on, and way too long
+    ♡ sorted v1_scope file into a to do file and dev_log b/c everything together was getting messy, hard to look back on and way too long
 
-    ♡ learning that I like consistency and how important it is, and that it's okay to refactor and organize.. my next project I will be more prepared
+    ♡ learning that I like consistency and how important it is and that it's okay to refactor and organize.. my next project I will be more prepared
 
 
 #### Next Session:
@@ -611,7 +614,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ updated OGA logic, by removing the pa conversation at all and made r for the universal gas constant in kpa instead
 
-    ♡ I am going to keep h2 stored in kg and also I'm going to make the methane(ch4) storage to be in kg b/c these are being treated as resources, and I read that the Sabatier uses mass ratios, not pressure ratios
+    ♡ I am going to keep h2 stored in kg and also I'm going to make the methane(ch4) storage to be in kg b/c these are being treated as resources and I read that the Sabatier uses mass ratios, not pressure ratios
 
     ♡ if I need to convert them at any time, I'll just use the conversion and put it up as a constant in the file
 
@@ -621,9 +624,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ reactions_available is how many times stoichiometric reaction can happen w. a ratio of 1 co2 : 4 h2
 
-    ♡ I realize I actually put the mode decision in the main function for running the sabatier and also the OGA actually, and I didn't in the other files. I've been changing things and upgrading how I'm doing things so eventually I will need to go through all of the files that I worked on first.
+    ♡ I realize I actually put the mode decision in the main function for running the sabatier and also the OGA actually and I didn't in the other files. I've been changing things and upgrading how I'm doing things so eventually I will need to go through all of the files that I worked on first.
 
-    ♡ waiting to do that though ^ b/c refactoring and editing has taken up enough time for the time being, and I want to focus on getting some main systemsfigured out. 
+    ♡ waiting to do that though ^ b/c refactoring and editing has taken up enough time for the time being and I want to focus on getting some main systemsfigured out. 
 
     ♡ I thought adding a little bit of a leak while venting the ch4 was realistic, so I might add this to the other systems that vent
 
@@ -632,7 +635,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ figure out what to put gases at in quick_test for starting values
 
-    ♡ figure out values for new commented out variables in state and quick_test, and if I really even need them
+    ♡ figure out values for new commented out variables in state and quick_test and if I really even need them
     
     ♡ add a little bit of a leak while venting
 
@@ -649,7 +652,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ figure out what to put gases at in quick_test for starting values
 
-    ♡ figure out values for new commented out variables in state and quick_test, and if I really even need them
+    ♡ figure out values for new commented out variables in state and quick_test and if I really even need them
     
     ♡ add a little bit of a leak while venting
 
@@ -657,7 +660,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      05/03/2026
     ♡ updating print to show sabatier information
 
-    ♡ I decided to track gases in the atmosphere in kpa, and h2 and ch4 in kg for storage, and I'm not 100% sure about the other ones yet
+    ♡ I decided to track gases in the atmosphere in kpa and h2 and ch4 in kg for storage and I'm not 100% sure about the other ones yet
 
     ♡ going to keep things consistent: kg for storage, kpa for atmosphere
 
@@ -669,7 +672,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ figure out what to put gases at in quick_test for starting values
 
-    ♡ figure out values for new commented out variables in state and quick_test, and if I really even need them
+    ♡ figure out values for new commented out variables in state and quick_test and if I really even need them
     
     ♡ add a little bit of a leak while venting
 
@@ -679,16 +682,16 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ considering adding a file for handling helper logic, to make things like handling primary systems and stuff before backups
 
-    ♡ updated current systems to return output and update dicts, and updated engine.py to accommodate that
+    ♡ updated current systems to return output and update dicts and updated engine.py to accommodate that
 
     ♡ I realized that I have been wasting a lot of time refactoring and trying to keep my files consistent, which I'm sure is a good thing later on, but for now there's a lot to be done so I'm going to switch focus a
 
 #### Next Session:
-    ♡ finish updating current systems to return output and update dicts, and updated engine.py to accommodate that, left off on oga and getting the code to run, pick back up tomorrow, and fix printing issues
+    ♡ finish updating current systems to return output and update dicts and updated engine.py to accommodate that, left off on oga and getting the code to run, pick backup tomorrow and fix printing issues
 
 
 ##      05/06/2026
-    ♡ finished updating current systems to return output and update dicts, and updated engine.py to accommodate that
+    ♡ finished updating current systems to return output and update dicts and updated engine.py to accommodate that
 
     ♡ I need to look over mars_time.py and go over that logic again, but I might wait until I get the greenhouse and other systems set up
 
@@ -754,7 +757,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      05/13/2026
-    ♡ adding in hydroponics to the greenhouse list, and starting from greenhouse lighting to make the greenhouse file be how I want it to be
+    ♡ adding in hydroponics to the greenhouse list and starting from greenhouse lighting to make the greenhouse file be how I want it to be
 
     ♡ I didn't want the multipliers in the constants like some other files, b/c they are different for each zone 
 
@@ -766,7 +769,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      05/14/2026
-    ♡ less focused on matching files, and more focused on accurate logic now
+    ♡ less focused on matching files and more focused on accurate logic now
 
     ♡ going over all of my files and checking logic and structure before moving on
 
@@ -801,13 +804,13 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      05/16/2026
-     ♡  while going over the total habitat volume in m3, I'm thinking that the crew can live w. smaller living quarters and I'm going to make the greenhouse a bit bigger b/c it is crucial for long term survival, and I'm considering storage areas being a bit bigger as well..
+     ♡  while going over the total habitat volume in m3, I'm thinking that the crew can live w. smaller living quarters and I'm going to make the greenhouse a bit bigger b/c it is crucial for long term survival and I'm considering storage areas being a bit bigger as well..
 
     ♡ I was reading about how much room a person typically needs/person for psychological wellbeing. I read it was 300m² pp but that seems really unrealistic for Mars
 
     ♡ research on the height requirements for ideal psychological wellbeing vertically, people seem to do better w. "void" spaces (taller living areas), but also considering that I can't have an unrealistically tall habitat, so I keep trying to go for the minimum for psychological wellbeing long-term so I'm going w. .. 4m? maybe.. 3.8 (though the habitat would need to be partially buried, but I'm not simulating structural engineering right now)    
 
-    ♡ I'm also reading about the thickness that a Mars habitat would have to be, w. a focus on protection from radiation depending on materials used. I'm trying to figure out where the line is between believable Mars habitat, and overcomplicating my entire simulation.. For now I'm going to choose some loose numbers and estimates and continue
+    ♡ I'm also reading about the thickness that a Mars habitat would have to be, w. a focus on protection from radiation depending on materials used. I'm trying to figure out where the line is between believable Mars habitat and overcomplicating my entire simulation.. For now I'm going to choose some loose numbers and estimates and continue
 
     ♡ I'm only going to focus on the variables that I currently have and make sure I'm happy w. the numbers and targets and I'll consider spatial realism more later
 
@@ -815,11 +818,11 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ considering looking at species that make their own structures and systems as inspiration for efficiency
 
-    ♡ Taking the layout into consideration, hydroponics lets me consider other greenhouse layout ideas, so I'm leaning toward a sort of "helix" .. hive, area instead. A layered growing space that spirals inward toward a main central area for utilities, maintenance, water systems, and other things instead of just rows and boxes.
+    ♡ Taking the layout into consideration, hydroponics lets me consider other greenhouse layout ideas, so I'm leaning toward a sort of "helix" .. hive, area instead. A layered growing space that spirals inward toward a main central area for utilities, maintenance, water systems and other things instead of just rows and boxes.
 
     ♡ I also think it would be easier to visually see/monitor a lot more plants along a gradual slope instead of separate rectangular flat rows and it would potentially work well w. the vertical racks and hangers like I wanted.
 
-    ♡ As far as the quick_test file goes, as of right now, it's messy and I will clean it up soon, and the variables won't be printed to so many floating point decimals on the UI, it's mostly for debugging and making sure everything is working as it should
+    ♡ As far as the quick_test file goes, as of right now, it's messy and I will clean it up soon and the variables won't be printed to so many floating point decimals on the UI, it's mostly for debugging and making sure everything is working as it should
 
 #### Next Session:
     ♡ make a file for debugging, so I can see my outputs closer together/subsystem instead of going through every subsystem every run    
@@ -865,7 +868,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      05/23/2026
-    ♡ I created a file for handling water extraction and I'm going to make a list in state, similar to the lists I have for the other subsystems and add in each pipe, incase I want to add more later, and of course to have a few as backup
+    ♡ I created a file for handling water extraction and I'm going to make a list in state, similar to the lists I have for the other subsystems and add in each pipe, in case I want to add more later and of course to have a few as backup
 
     ♡ I realized that I didn't have water runoff from the greenhouse, so I implemented that today and also fixed and cleaned up water.py, after including the for now very basic isru system
 
@@ -886,7 +889,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      05/25/2026
-    ♡ fixing isru and added modes, and pipe retraction and extraction
+    ♡ fixing isru and added modes and pipe retraction and extraction
 
     ♡ going over water file, adding hysteresis and updating power used logic to make it more similar to co2_scrub.py
 
@@ -944,7 +947,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ back from a trip, back to my simulator
 
 ##      06/12/2026
-    ♡ fixing my print step in quick_test.py to actually print the current sol, and running my test for the longest time yet (40 sols)
+    ♡ fixing my print step in quick_test.py to actually print the current sol and running my test for the longest time yet (40 sols)
 
     ♡ Around sol 43, the battery runs too low
 
@@ -977,7 +980,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I fixed the sabatier call in engine.py
 
-    ♡ I noticed my greenhouse is currently producting 75x MORE o2 than my crew of 30  mean, and this is absolutely not right, it doesn't make any sense so I need to fix this
+    ♡ I noticed my greenhouse is currently producting 75x MORE o2 than my crew of 30  mean and this is absolutely not right, it doesn't make any sense so I need to fix this
 
     ♡ the math for zone info:
     structural: 0.022 kPa/m²/sol × 90 m²  = 1.98 kPa/sol
@@ -997,7 +1000,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ I am not going to have a timer for the compressors yet, but for future versions I am planning on adding a regen state and usig absorption/sorbent beds that need a regen cycle between intakes
 
 #### Next Session:
-    ♡ add isru_atm to power, bugger gas, and other gas handling files and update isru_outputs and updates to include 'water'
+    ♡ add isru_atm to power, bugger gas and other gas handling files and update isru_outputs and updates to include 'water'
 
 
 ##      06/21/2026
@@ -1042,7 +1045,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      06/28/2026
     ♡ I've been working on the visuals so there hasn't been a to log here
 
-    ♡ I am going to make this so that the dashbaord updates every three seconds to start, and I'll adjust this as I go
+    ♡ I am going to make this so that the dashbaord updates every three seconds to start and I'll adjust this as I go
 
     ♡ I want to use snake case for js, but I know camelCase is best practice, so I'll stick w. that
 
@@ -1068,7 +1071,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      07/04/2026
-    ♡ lots of changes to make to the dashboard including addin two more screens, one for the greenhouse and one for the habitat log, so status and alerts can move to the log, and it will update w. any complaints from the crew about symptoms from pressure or hunger, ect. and if the system needs to do anything in states of emergency
+    ♡ lots of changes to make to the dashboard including addin two more screens, one for the greenhouse and one for the habitat log, so status and alerts can move to the log and it will update w. any complaints from the crew about symptoms from pressure or hunger, ect. and if the system needs to do anything in states of emergency
 
 
 ##      07/08/2026
@@ -1076,7 +1079,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      07/10/2026
-    ♡ I did some perspective updates w. the dashboard image and I still need to add more screens for crew and mission log, and fix the image more, the three uploaded are only prototype images
+    ♡ I did some perspective updates w. the dashboard image and I still need to add more screens for crew and mission log and fix the image more, the three uploaded are only prototype images
 
 
 ##      07/12/2026
@@ -1084,7 +1087,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I decided I'm going to add a panel for the crew information on one side of the status panel and a panel for the alerts on the other side
 
-    ♡ I'm going to be adding crew scheduling, maintenance, and a few updates, w. any complaints or any positive feedback from the crew when things are running well
+    ♡ I'm going to be adding crew scheduling, maintenance and a few updates, w. any complaints or any positive feedback from the crew when things are running well
 
     ♡ I added to the todo list w. update alerts to include things like stats evening out (co2 returned to normal range, etc.), buffer gas injections complete, isru pipes retracted, isru pipes deployed
     
@@ -1127,13 +1130,13 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      07/18/2026
     ♡ finished adding seasons
 
-    ♡ I'm reading about atmospheric opactiy, and tau (how much sunlight the atmosphere blocks before it reaches the ground and optical depth being tau the number used to use the amount), low: 0.2 - 0.5, medium: 0.8 - 1.5 for dusty skies and high:  2 - 5 for major dust storms, these are related to seasons so I figured it was a good next step
+    ♡ I'm reading about atmospheric opactiy and tau (how much sunlight the atmosphere blocks before it reaches the ground and optical depth being tau the number used to use the amount), low: 0.2 - 0.5, medium: 0.8 - 1.5 for dusty skies and high:  2 - 5 for major dust storms, these are related to seasons so I figured it was a good next step
 
 
 ##      07/20/2026
     ♡ I wanted to have a percentage of how far Mar's is through it's storm season
 
-    ♡ I'm going to add random dust storms right now, while I'm working on season changes and atmospheric opacity, checking if Mar's is in storm season, how far through it it is, and also have random wheather b/c predictable wheather is not realistic
+    ♡ I'm going to add random dust storms right now, while I'm working on season changes and atmospheric opacity, checking if Mar's is in storm season, how far through it it is and also have random wheather b/c predictable wheather is not realistic
 
     ♡ roll_for_storm is both accurate and a nod to dnd
 
@@ -1157,7 +1160,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I'm going to focus on making the mission log next and make some decisions there
 
-    ♡ while going over my isru files, the pipes in my isru file are set up so that they can switch their decision to deploy or retract, incase of low water emergencies
+    ♡ while going over my isru files, the pipes in my isru file are set up so that they can switch their decision to deploy or retract, in case of low water emergencies
 
     ♡ I am considering if all of a sudden the pipes are deploying and the low power mode hits or I lose power if the pipes don't retract, they will freeze or use a lot of power w. the heated pipes, but retracting doesn't use power in v1, which I'm questioning now
 
@@ -1189,9 +1192,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      07/25/2026
     ♡ I've started designing a 50-acre solar field. I actually chose 50 acres b/c of where I grew up. I can picture the size and I can definitely see that being a manageable area for this.
 
-    ♡ Right now, the design consists of 101, 250 solar panels organized into 2,250 arrays, grouped into 50 independent control blocks of 45 arrays each. This should make maintenance, fault isolation, and power management much more practical than treating the entire field as one massive solar farm. I'm setting the panels
+    ♡ Right now, the design consists of 101, 250 solar panels organized into 2,250 arrays, grouped into 50 independent control blocks of 45 arrays each. This should make maintenance, fault isolation and power management much more practical than treating the entire field as one massive solar farm. I'm setting the panels
 
-    ♡ I plan on using electrostatic dust shields, vibration cleaning which I looed at previously as well as protective covers, and a system that sets off a scheduled flip upside down and a cover that protects the arrays from damage and extra dust buildup when they are offline and weight-sensor-triggered panel flips, that briefly flip upside down and back up after so much build up. 
+    ♡ I plan on using electrostatic dust shields, vibration cleaning which I looked at previously as well as protective covers and a system that sets off a scheduled flip upside down and a cover that protects the arrays from damage and extra dust buildup when they are offline and weight-sensor-triggered panel flips, that briefly flip upside down and backup after so much build up. 
 
     ♡ maintenance itself will consume power and temporarily take equipment offline, creating another engineering trade off for the habitat.
 
@@ -1313,9 +1316,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
                 ♡ 0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array*
 
     ---------------------------------------------------
-
-    ♡reliminary estimates
-    ♡These values will be updated as I continue designing the flip and cover mechanisms.
+    ♡ Assumptions:
+        -preliminary estimates
+        -these values will be updated as I continue designing the flip and cover mechanisms.
 
     ♡ Array Flip:
         -array flips upside down, releasing dust
@@ -1388,6 +1391,8 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      07/26/2026
-    ♡ organizing notes and files before implementing updated 50acre solarplan
+    ♡ organizing notes and files before implementing updated 50acre solar plan
+
+    ♡ I've decided to move my notes out of v1_scope.md and create a file called creation_notes and have a file for the systems so I can quick reference them, I need to decide if they all get their own files with current notes and note histories, or one large file. Seperate files seems more efficient but it adds more folders and I haven't decided if that's unappealing or not 
 
 
