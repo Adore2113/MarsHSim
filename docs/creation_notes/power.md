@@ -2,6 +2,12 @@
 ### General Notes:
     ♡ I read that even during global dust storms, tilted panels (~ 30° southward) keep minimum irradiance in the 20–60 W/m² range under worst conditions.
 
+    ♡ Actual irradiance will depend on:
+        -season
+        -solar angle
+        -atmospheric dust opacity
+        -array tilt
+
     ♡ maintenance itself will consume power and temporarily take equipment offline, creating another engineering trade off for the habitat.
 ### -------------------------------------------------
 
@@ -93,8 +99,9 @@
 
 ### -------------------------------------------------
 #### Electrodynamic Dust Shield (EDS):
-    ♡ uses an electric wave to push dust from the panel surface
+    ♡ uses a travelling electric field to lift and push dust from the panel surface
     ♡ can be scheduled or triggered by weight or dust sensors
+    ♡ NASA describes EDS as using high voltage but low current, making these values estimates
     ♡ run time: ~ 1–5 minutes
     ♡ power: 
           ~ 40–180 W/array while active
@@ -133,9 +140,10 @@
         - 0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array
     
 ### -------------------------------------------------
-#### Assumptions:
+#### Flip & Cover Assumptions:
     ♡ preliminary estimates
     ♡ these values will be updated as I continue designing the flip and cover mechanisms
+    ♡ power estimates include movement only unless otherwise stated
 
 #### Array Flip:
     ♡ array flips upside down, releasing dust
@@ -204,9 +212,25 @@
         - 3–13 Wh/array + 0.1–0.5 Wh/array = 3.1–13.5 Wh/array
 
 ### -------------------------------------------------
-#### Arcadia Planitia 50 Acre Solar Plan Notes:
-    ♡ I chose 50 acres b/c of where I grew up. I can picture the size and I can definitely see that being a manageable area for this.
+### Arcadia Planitia 50 Acre Solar Design Decisions:
+#### Why 50 acres?
+        ♡ I chose 50 acres partly because it is a land size I grew up around
+        
+        ♡ I can picture its scale clearly, which makes the solar field easier for me to understand and design
+        
+        ♡ it feels large enough to support the habitat while still being a manageable area
 
-    ♡ the design consists of 101, 250 solar panels organized into 2,250 arrays, grouped into 50 independent control blocks of 45 arrays each. This should make maintenance, fault isolation, and power management much more practical than treating the entire field as one massive solar farm. I'm setting the panels
+#### Why divide the field into arrays and control blocks?
+        ♡ the design consists of 101,250 solar panels organized into 2,250 arrays
+        
+        ♡ the arrays are grouped into 50 independent control blocks of 45 arrays each
+        
+        ♡ this should make maintenance, fault isolation, seasonal operation, and power management more practical
+        
+        ♡ control blocks can be taken offline at a larger scale
+        
+        ♡ more managable, instead of turning panels or arrays off individually
+
+#### Why use multiple dust-removal systems?
 
     ♡ I plan on using electrostatic dust shields, vibration cleaning which I looked at previously as well as protective covers, and a system that sets off a scheduled flip upside down and a cover that protects the arrays from damage and extra dust buildup when they are offline and weight-sensor-triggered panel flips, that briefly flip upside down and back up after so much build up. 
