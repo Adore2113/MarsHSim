@@ -90,6 +90,11 @@
         ♡ combined:
             0.9–3.9 kWh + 0.03–0.15 kWh
             ≈ 0.9–4.1 kWh
+    
+### -------------------------------------------------
+#### Arcadia Planitia 50 Acre Solar Plan Notes:
+    ♡ I chose 50 acres b/c of where I grew up. I can picture the size and I can definitely see that being a manageable area for this.
 
+    ♡ the design consists of 101, 250 solar panels organized into 2,250 arrays, grouped into 50 independent control blocks of 45 arrays each. This should make maintenance, fault isolation, and power management much more practical than treating the entire field as one massive solar farm. I'm setting the panels
 
-
+    ♡ I plan on using electrostatic dust shields, vibration cleaning which I looked at previously as well as protective covers, and a system that sets off a scheduled flip upside down and a cover that protects the arrays from damage and extra dust buildup when they are offline and weight-sensor-triggered panel flips, that briefly flip upside down and back up after so much build up. 
