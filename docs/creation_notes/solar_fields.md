@@ -212,122 +212,122 @@
 
 ### ----------------------------------------
 #### Future Considerations:
-        ♡ I haven't decided which material the covers will be
+    ♡ I haven't decided which material the covers will be
         
-        ♡ how to handle damaged equipment
+    ♡ how to handle damaged equipment
 
-        ♡ consider changing angles a bit per season and by how much
+    ♡ consider changing angles a bit per season and by how much
 
 
 
 ### ----------------------------------------
 ### Early Power System Ideas:
 #### Initial Solar Plan:
-        ♡ planned to use 30–40 smaller solar panels
+    ♡ planned to use 30–40 smaller solar panels
         
-        ♡ later simplified to 10 larger panels
+    ♡ later simplified to 10 larger panels
 
 #### Solar Panel Model:
-        ♡ solar panels modeled similarly to amine beds:
-            - each panel has a status
-            - power output in full sunlight
-            - efficiency
-            - dust build up
-            - overall condition (for future repair handling)
+    ♡ solar panels modeled similarly to amine beds:
+        - each panel has a status
+        - power output in full sunlight
+        - efficiency
+        - dust build up
+        - overall condition (for future repair handling)
 
 #### Alternative Solar Plans:
-        ♡ I thought about having panels on the outside of my habitat that are foil on one side and black on the other (like a car window shield), that could be flipped like a billboard (one of the ones that have two images on them and they flip to reveal the other image)
+    ♡ I thought about having panels on the outside of my habitat that are foil on one side and black on the other (like a car window shield), that could be flipped like a billboard (one of the ones that have two images on them and they flip to reveal the other image)
         
-        ♡ decided to go with a dedicated ground-mounted solar field instead, the other idea has more parts among other potential issues and I want the most daylight possible to reach the inside of the habitat     
+    ♡ decided to go with a dedicated ground-mounted solar field instead, the other idea has more parts among other potential issues and I want the most daylight possible to reach the inside of the habitat     
 
 ### ----------------------------------------
 ### Arcadia Planitia 50 Acre Solar Design Decisions:
 #### Why 50 acres?
-        ♡ I chose 50 acres because it's a land size I grew up around
+    ♡ I chose 50 acres because it's a land size I grew up around
         
-        ♡ I can picture its scale clearly, which makes the solar field easier for me to understand and design
+    ♡ I can picture its scale clearly, which makes the solar field easier for me to understand and design
         
-        ♡ it feels large enough to support the habitat while still being a manageable area
+    ♡ it feels large enough to support the habitat while still being a manageable area
 
-        ♡ it didn't seem like overkill (maybe seems modest) after looking into the sizes of some solar farms on Earth
+    ♡ it didn't seem like overkill (maybe seems modest) after looking into the sizes of some solar farms on Earth
 
 #### Why divide the field into arrays and control blocks?
-        ♡ the design consists of 101,250 solar panels organized into 2,250 arrays
+    ♡ the design consists of 101,250 solar panels organized into 2,250 arrays
         
-        ♡ the arrays are grouped into 50 independent control blocks of 45 arrays each
+    ♡ the arrays are grouped into 50 independent control blocks of 45 arrays each
         
-        ♡ this should make maintenance, fault isolation, seasonal operation and power management more practical
+    ♡ this should make maintenance, fault isolation, seasonal operation and power management more practical
         
-        ♡ control blocks can be taken offline at a larger scale
+    ♡ control blocks can be taken offline at a larger scale
         
-        ♡ more manageable, instead of turning panels or arrays off individually
+    ♡ more manageable, instead of turning panels or arrays off individually
 
 #### Why use multiple dust-removal systems?
 
-        ♡ Mars dust can reduce solar output and interfere with exposed equipment
+    ♡ Mars dust can reduce solar output and interfere with exposed equipment
 
-        ♡ no single cleaning method can handle every condition
+    ♡ no single cleaning method can handle every condition
 
-        ♡ no single system is likely to handle every situation
+    ♡ no single system is likely to handle every situation
 
-        ♡ electrodynamic dust shields can move fine dust from the panel surface     
+    ♡ electrodynamic dust shields can move fine dust from the panel surface     
 
-        ♡ vibration cleaning can help loosen dust that remains attached
+    ♡ vibration cleaning can help loosen dust that remains attached
 
-        ♡ array flips can release heavier buildup using gravity and movement
+    ♡ array flips can release heavier buildup using gravity and movement
 
-        ♡ backup, in case one system fails or can't remove a certain type of buildup
+    ♡ backup, in case one system fails or can't remove a certain type of buildup
 
 #### Why include protective covers?
-        ♡ to protect from storm debris and dust, less wear on the panels and mostly to avoid breakage
+    ♡ to protect from storm debris and dust, less wear on the panels and mostly to avoid breakage
 
-        ♡ arrays that are offline don't need to remain exposed
+    ♡ arrays that are offline don't need to remain exposed
         
-        ♡ sliding covers can reduce additional dust accumulation
+    ♡ sliding covers can reduce additional dust accumulation
 
-        ♡ I wanted the cover to be as simple as possible so it wouldn't add to cost, power use or maintenance
+    ♡ I wanted the cover to be as simple as possible so it wouldn't add to cost, power use or maintenance
 
-        ♡ the covers mechanically latch after moving so they don't continuously consume power
+    ♡ the covers mechanically latch after moving so they don't continuously consume power
 
 #### Why make maintenance consume power?
-        ♡ realism
+    ♡ realism
 
-        ♡ cleaning, flipping and covering the arrays shouldn't happen for free
+    ♡ cleaning, flipping and covering the arrays shouldn't happen for free
 
-        ♡ maintenance consumes energy and temporarily removes equipment from service
+    ♡ maintenance consumes energy and temporarily removes equipment from service
 
-        ♡ a trade-off between spending power on maintenance & lower solar production now vs more damage later
+    ♡ a trade-off between spending power on maintenance & lower solar production now vs more damage later
 
 
 #### Why use scheduled and sensor-triggered maintenance?
-        ♡ scheduled maintenance provides regular cleaning before efficiency drops too low
+    ♡ scheduled maintenance provides regular cleaning before efficiency drops too low
 
-        ♡ to preserve panels for as long as possible
+    ♡ to preserve panels for as long as possible
 
-        ♡ dust or weight sensors allow the system to react to faster buildup between scheduled maintenance
+    ♡ dust or weight sensors allow the system to react to faster buildup between scheduled maintenance
 
-        ♡ using both methods avoids relying entirely on a schedule or sensor readings
+    ♡ using both methods avoids relying entirely on a schedule or sensor readings
 
-        ♡ backup, in case one system fails or isn't enough
+    ♡ backup, in case one system fails or isn't enough
 
 #### Why tilt the panels 30° southward?
-        ♡ The southward tilt is supposed to improve sun exposure at the habitat N Arcadia Planitia location
+    ♡ The southward tilt is supposed to improve sun exposure at the habitat N Arcadia Planitia location
 
-        ♡ I read that tilted panels ~ 30° southward keep minimum irradiance in the 20–60 W/m² during severe dust-storm conditions
+    ♡ I read that tilted panels ~ 30° southward keep minimum irradiance in the 20–60 W/m² during severe dust-storm conditions
 
-        ♡ The tilt might help loose dust slide or be carried off of the panel surface
+    ♡ The tilt might help loose dust slide or be carried off of the panel surface
 
-        ♡ I'm considering angle changes after seasonal production is tested in the simulation
+    ♡ I'm considering angle changes after seasonal production is tested in the simulation
 
 ### ----------------------------------------
 ### Dev Log notes:
 ###### 03/29/2026:
-        ♡ battery capacity 4000.0 kWh
+    ♡ battery capacity 4000.0 kWh
 
-        ♡ started power_system.py
+    ♡ started power_system.py
 
 ###### 04/03/2026:
-        ♡ using 0.50kw of sunlight for every 1 square meter (m²) for now, b/c my research showed that Mars sunlight is btwn 0.4-0.6 kw / 1 m² during daytime
+    ♡ using 0.50kw of sunlight for every 1 square meter (m²) for now, b/c my research showed that Mars sunlight is btwn 0.4-0.6 kw / 1 m² during daytime
 
 ###### 07/23/2026:
     ♡ since adding in seasons, the daily solar power isn't going to be enough for even daily consumption, I need to consider more options for power
