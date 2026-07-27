@@ -9,6 +9,7 @@
         -array tilt
 
     ♡ maintenance itself will consume power and temporarily take equipment offline, creating another engineering trade off for the habitat.
+
 ### ----------------------------------------
 
 ## Arcadia Planitia 50 Acre Solar Plan (25/07/2026):
@@ -42,14 +43,18 @@
         - 45 arrays × 45 panels = 2,025 panels/block
         - 89.9 m² × 45 ≈ 4,046 m²/block
 
+
 ### ----------------------------------------
+
 #### Power Production:
     ♡ typical operating capacity w. ~ 70% online:
            2.5–2.7 MW
     ♡ full-capacity continuous average: 
           ~ 3.6–3.8 MW
 
+
 ### ----------------------------------------
+
 #### Seasonal Operation:
 #### N Summer: 
     ♡ 1,575 arrays online (35 blocks)
@@ -96,7 +101,9 @@
             0.95–4.10 kWh + 0.03–0.16 kWh ≈ 0.98–4.26 kWh
             ≈ 1.0–4.3 kWh
 
+
 ### ----------------------------------------
+
 #### Electrodynamic Dust Shields (EDS):
     ♡ uses a travelling electric field to lift and push dust from the panel surface
     ♡ can be scheduled or triggered by weight or dust sensors
@@ -138,7 +145,9 @@
         - 40–180 W/array + 20–100 W/array = 60–280 W/array
         - 0.7–15 Wh/array + 0.1–1.7 Wh/array = 0.8–16.7 Wh/array
     
+
 ### ----------------------------------------
+
 #### Flip & Cover Assumptions:
     ♡ preliminary estimates
     ♡ these values will be updated as I continue designing the flip and cover mechanisms
@@ -168,7 +177,6 @@
         - 3–13 Wh/array × 45 arrays/block ≈ 135–585 Wh/block
                 ≈ 0.14–0.59 kWh/block
 
-
 #### Protective Covers:
     ♡ one sliding cover/array
     ♡ protects arrays while offline against debris and storm damage
@@ -194,7 +202,6 @@
         - 0.1–0.5 Wh/array × 45 arrays/block ≈ 4.5–22.5 Wh/block
                 ≈ 0.0045–0.0225 kWh/block
 
-
 #### Array Flip & Protective Cover:
     ♡ can be scheduled or triggered by weight or dust sensors
     ♡ these values are for quick reference, the systems actually run one after the other
@@ -210,7 +217,9 @@
         - 100–150 W/array + 25–40 W/array = 125–190 W/array
         - 3–13 Wh/array + 0.1–0.5 Wh/array = 3.1–13.5 Wh/array
 
+
 ### ----------------------------------------
+
 #### Future Considerations:
     ♡ I haven't decided which material the covers will be
         
@@ -219,8 +228,8 @@
     ♡ consider changing angles a bit per season and by how much
 
 
-
 ### ----------------------------------------
+
 ### Early Power System Ideas:
 #### Initial Solar Plan:
     ♡ planned to use 30–40 smaller solar panels
@@ -240,7 +249,9 @@
         
     ♡ decided to go with a dedicated ground-mounted solar field instead, the other idea has more parts among other potential issues and I want the most daylight possible to reach the inside of the habitat     
 
+
 ### ----------------------------------------
+
 ### Arcadia Planitia 50 Acre Solar Design Decisions:
 #### Why 50 acres?
     ♡ I chose 50 acres because it's a land size I grew up around
@@ -319,7 +330,9 @@
 
     ♡ I'm considering angle changes after seasonal production is tested in the simulation
 
+
 ### ----------------------------------------
+
 ### Dev Log notes:
 ###### 03/29/2026:
     ♡ battery capacity 4000.0 kWh
