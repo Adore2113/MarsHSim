@@ -25,17 +25,19 @@
     ♡ room layout: not finalized
 
 #### Main Lights:
-    ♡ current values are preliminary
     ♡ maximum light level: 1.0
     ♡ minimum normal light level: 0.2
     ♡ full lighting power: 2.0 kW
     ♡ full lighting heat output: 0.5 kW
-    ♡ current values are preliminary
     ♡ calculation:
         - power:
             2.0 kW × adjusted light level
         - heat:
             0.5 kW × adjusted light level
+        - minimum normal power:
+            2.0 kW × 0.2 = 0.4 kW
+        - minimum normal heat:
+            0.5 kW × 0.2 = 0.1 kW
 
 #### Main Lighting Schedule:
     ♡ crew awake hours: 06:00–21:30 LMST
