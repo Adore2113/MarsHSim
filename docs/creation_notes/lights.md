@@ -13,17 +13,16 @@
     ♡ natural sunlight reduces the amount of artificial lighting required
 
     ♡ main habitat lighting and wellness lighting are modeled as separate loads
+
+    ♡ power values will be recalculated once the habitat floor area and layout are designed
     
 ### ----------------------------------------
 
 ## Habitat Lighting Plan:
-#### Area:
+#### Habitat:
     ♡ habitat pressurized volume: 2,400 m³
-    ♡ total floor area and room layout have not been finalized
-
-    ♡ lighting is currently modeled as one combined habitat load
-
-    ♡ power values will be recalculated once the habitat floor area and layout are designed
+    ♡ floor area: not finalized
+    ♡ room layout: not finalized
 
 #### Main Lights:
     ♡ current values are preliminary
@@ -49,3 +48,13 @@
         - heat:
             0.1 kW × wellness light level
 
+### ----------------------------------------
+#### Lighting Schedule:
+    ♡ crew awake hours: 06:00–21:30 LMST
+    ♡ full light period: 15.5 hours/sol
+    ♡ dim light period: 8.5 hours/sol
+    ♡ daytime base light level: 1.0
+    ♡ nighttime base light level: 0.2
+    ♡ calculation:
+        - 21.5 hours - 6.0 hours = 15.5 hours full-light period
+        - 24.0 hours - 15.5 hours = 8.5 hours dim-light period
