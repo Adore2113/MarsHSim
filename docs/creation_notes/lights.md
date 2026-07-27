@@ -58,3 +58,12 @@
     ♡ calculation:
         - 21.5 hours - 6.0 hours = 15.5 hours full-light period
         - 24.0 hours - 15.5 hours = 8.5 hours dim-light period
+
+#### Sunlight Dimming:
+    ♡ sunlight amount range: 0.0–1.0
+    ♡ maximum sunlight dimming: 0.6
+    ♡ minimum normal light level: 0.2
+    ♡ calculation:
+        - sunlight dimming = sunlight amount × 0.6
+        - adjusted light level = base light level - sunlight dimming
+        - final light level = max(0.2, adjusted light level)
