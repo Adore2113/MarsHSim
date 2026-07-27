@@ -244,6 +244,9 @@
 ### ----------------------------------------
 
 ### Dev Log notes:
+###### 04/05/2026:
+        ♡ the lighting function will react and adjust to the level of daylight
+
 ###### 05/08/2026:
     ♡ started light for the greenhouse
 
@@ -253,5 +256,10 @@
 ###### 06/23/2026:
     ♡ I set up to be running with daylight, but now I'm thinking about having the lights on a 12 hour cycle, but also turn off if not needed
 
-###### 26/07/2026:
+###### 07/23/2026:
+        ♡ I isolated the subsystems and the greenhouse power is taking up a high percentage of the power, I have it set up to be running w. daylight, but now I'm thinking about having the lights on a 12 hour cycle
+
+        ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've manaed to get the Greenhouse energy usage to : 260.46 kwh, instead of 325.55kwh
+
+###### 07/26/2026:
     ♡ greenhouse habitat lighting will sync with the rest of the habitat when plant lighting is not producing light
