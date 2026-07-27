@@ -71,22 +71,25 @@
 
     ♡ decide on heated pipe behavior during low power mode
 
-    ♡ reconcile crew psychology / morale considerations with power availability (mentioned 07/22/2026 dev log)
+    ♡ go over crew psychology / morale considerations with power availability (mentioned 07/22/2026 dev log)
 
     ♡ consider whether battery capacity needs to scale with the 50 acre solar plan's seasonal changes
 
 
 ### ----------------------------------------
 ### Early Power System Ideas:
+    ♡ light level range: 0–1
+    ♡ minimum light levels:
+        - daytime support: 0.30 (when enough sunlight is available)
+        - minimum lighting: 0.20
+        - emergency lighting: 0.10 (severe power shortages, if enough sunlight is available)
 
-#### Battery Plan:
     ♡ battery capacity: 4000.0 kWh
 
 ### ----------------------------------------
 ### Power System Notes:
 ###### 03/29/2026:
     ♡ battery capacity 4000.0 kWh
-
 
 ###### 04/10/2026:
     ♡ solar power will recharge habitat batteries
