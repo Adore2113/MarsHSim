@@ -39,6 +39,20 @@
         - minimum normal heat:
             0.5 kW × 0.2 = 0.1 kW
 
+
+#### Wellness Lights:
+    ♡ activated after prolonged periods of low natural sunlight
+    ♡ full wellness light level: 1.0
+    ♡ inactive wellness light level: 0.0
+    ♡ full wellness lighting power: 0.5 kW
+    ♡ full wellness lighting heat output: 0.1 kW
+    ♡ calculation:
+        - power:
+            0.5 kW × wellness light level
+        - heat:
+            0.1 kW × wellness light level
+
+### ----------------------------------------
 #### Main Lighting Schedule:
     ♡ crew awake hours: 06:00–21:30 LMST
     ♡ full light period: 15.5 hours/sol
@@ -46,8 +60,8 @@
     ♡ daytime base light level: 1.0
     ♡ nighttime base light level: 0.2
     ♡ calculation:
-        - 21.5 hours - 6.0 hours = 15.5 hours full-light period
-        - 24.0 hours - 15.5 hours = 8.5 hours dim-light period
+        - 21.5 hours - 6.0 hours = 15.5 hours full light period
+        - 24.0 hours - 15.5 hours = 8.5 hours dim light period
 
 #### Sunlight Dimming:
     ♡ sunlight amount range: 0.0–1.0
@@ -59,16 +73,7 @@
         - final light level = max(0.2, adjusted light level)
 
 
-### ----------------------------------------
-#### Wellness Lights:
-    ♡ activated after prolonged periods of low natural sunlight
-    ♡ full wellness lighting power: 0.5 kW
-    ♡ full wellness lighting heat output: 0.1 kW
-    ♡ calculation:
-        - power:
-            0.5 kW × wellness light level
-        - heat:
-            0.1 kW × wellness light level
+
 
 ### ----------------------------------------
 #### Greenhouse Plant Lights:
