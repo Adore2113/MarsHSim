@@ -9,7 +9,7 @@
 
 ### ----------------------------------------
  
-## Habitat Power System Plan (date TBD):
+## Habitat Power System Plan:
 #### Battery Storage:
     ♡ current battery capacity: 4000.0 kWh (03/29/2026)
     ♡ to do: chemistry/type, mass, volume, charge/discharge rate limits
