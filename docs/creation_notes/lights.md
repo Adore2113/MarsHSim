@@ -55,7 +55,7 @@
 ### ----------------------------------------
 
 #### Main Lighting Schedule:
-    ♡ crew awake hours: 06:00–21:30 LMST
+    ♡ crew awake hours: 6:00–21:30 LMST
     ♡ full light period: 15.5 hours/sol
     ♡ dim light period: 8.5 hours/sol
     ♡ daytime base light level: 1.0
@@ -111,13 +111,13 @@
             full LED power × 16 hours
 
 #### Greenhouse Plant Lighting Schedule:
-    ♡ plant light start time: 05:00 LMST
+    ♡ plant light start time: 5:00 LMST
     ♡ plant light end time: 21:00 LMST
     ♡ full plant light period: 16 hours/sol
     ♡ dark cycle: 8 hours/sol
     ♡ calculation:
         - plant light end:
-            05:00 + 16 hours = 21:00 LMST
+            5:00 + 16 hours = 21:00 LMST
         - dark cycle:
             24 hours - 16 hours = 8 hours
 
@@ -263,3 +263,5 @@
 
 ###### 07/26/2026:
     ♡ greenhouse habitat lighting will sync with the rest of the habitat when plant lighting is not producing light
+
+    ♡ 
