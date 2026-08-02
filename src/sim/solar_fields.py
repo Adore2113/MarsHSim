@@ -40,6 +40,8 @@ clear_sy_peak_irradiance_w_per_m2 = 350.0   # clear sol average ~ 112 W/m2
 base_block_dust_rate_per_sol = 0.006    # open panels
 min_operating_efficiency = 0.55    # when cleaning becomes mandatory
 cleaning_trigger_dust_factor = 0.75
+
+dust_factor_restored = 0.35
 #---------------------------------------------------♡
 
 
@@ -61,7 +63,7 @@ def get_target_blocks_online(state):
         return target_seasonal_blocks_online
 
 
-#----------flip blocks to match target----------♡
+#------------flip blocks to match target------------♡
 def manage_block_flips(state, dt_min):
     hours_per_step = dt_min / 60.0
 
@@ -99,8 +101,24 @@ def manage_block_flips(state, dt_min):
         flip_power_used_kw = 0.0
 
     return new_blocks_online, blocks_up_count, flips_this_step, flip_energy_used_kwh, flip_power_used_kw
-# -------------------------------------------♡
 
+
+#------------dust build up and cleaning-------------♡
+def dust_and_cleaning(new_blocks, dt_min):
+    hours_per_step = dt_min / 60.0
+    seconds_per_step = dt_min * 60.0
+    sols_per_step = seconds_per_step / 88775.244
+
+    cleaned_this_step = 0
+
+    for block in new_blocks:
+        if block["flip_position"] == "up":
+            dust_loss = base_block_dust_rate_per_sol * sols_per_step
+            block["dust_factor"] = max(min_irradiance_w_per_m2, block["dust_factor"] - dust_loss)
+
+            if block["dust_factor"] <= cleaning_trigger_dust_factor:
+                block["dust_factor"] = min(1.0, block["dust_factor"] + dust_factor_restored)
+                cleanings_this_step += 1
 
 
 
