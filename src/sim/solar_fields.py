@@ -19,8 +19,8 @@ total_blocks = 50
 arrays_per_block = 45
 
 #-----block targets-----♡
+target_seasonal_blocks_online = 38
 target_summer_blocks_online = 35
-target_spring_autumn_blocks_online = 38
 target_winter_blocks_online = 43
 
 flip_energy_per_block_kwh = 0.365
@@ -43,7 +43,23 @@ cleaning_trigger_dust_factor = 0.75
 #---------------------------------------------------♡
 
 
-#---------------blocks needed online----------------♡
+#---------------target blocks online----------------♡
+def get_target_blocks_online(state):
+    is_daytime = get_sunlight_amount(state) > 0.0
+
+    if not is_daytime:
+        return 0
+
+    season = current_mars_season(state)
+    if season == "northern_summer":
+        return target_summer_blocks_online
+
+    elif season == "northern_winter":
+        return target_winter_blocks_online
+
+    else:
+        return target_seasonal_blocks_online
+
 
 
 
