@@ -31,10 +31,14 @@ default_tilt_deg = 30.0
 summer_tilt_deg = 20.0  # placeholder
 winter_tilt_deg = 40.0  # placeholder
 
+#--------panel performance---------♡
+solar_conversion_ratio = 0.20
+min_irradiance_w_per_m2 = 20.0
+clear_sy_peak_irradiance_w_per_m2 = 350.0   # clear sol average ~ 112 W/m2
+
+
 #-----------dust buildup-----------♡
 base_block_dust_rate_per_sol = 0.006    # open panels
 min_operating_efficiency = 0.55    # when cleaning becomes mandatory
 cleaning_trigger_dust_factor = 0.75
-
-
 #---------------------------------------------------♡
