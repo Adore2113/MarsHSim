@@ -61,7 +61,15 @@ def get_target_blocks_online(state):
         return target_seasonal_blocks_online
 
 
+#----------flip blocks to match target----------♡
+def manage_block_flips(state, dt_min):
+    hours_per_step = dt_min / 60.0
 
+    new_blocks_online = [block.copy() for block in state.solar_blocks]
+    blocks_up_count = sum(1 for block in new_blocks_online if block["flip_position"] == "up")
+
+    target_blocks_online = get_target_blocks_online(state)
+    flips_this_step = 0
 
 #---------------------------------------------------♡
 
