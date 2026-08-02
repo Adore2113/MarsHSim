@@ -48,7 +48,6 @@ dust_factor_restored = 0.35
 #---------------target blocks online----------------♡
 def get_target_blocks_online(state):
     is_daytime = get_sunlight_amount(state) > 0.0
-
     if not is_daytime:
         return 0
 
@@ -67,8 +66,8 @@ def get_target_blocks_online(state):
 def manage_block_flips(state, dt_min):
     hours_per_step = dt_min / 60.0
 
-    new_blocks_online = [block.copy() for block in state.solar_blocks]
-    blocks_up_count = sum(1 for block in new_blocks_online if block["flip_position"] == "up")
+    new_blocks = [block.copy() for block in state.solar_blocks]
+    blocks_up_count = sum(1 for block in new_blocks if block["flip_position"] == "up")
 
     target_blocks_online = get_target_blocks_online(state)
     flips_this_step = 0
@@ -76,7 +75,7 @@ def manage_block_flips(state, dt_min):
     if blocks_up_count < target_blocks_online:
         blocks_needed_up = target_blocks_online - blocks_up_count
 
-        for block in new_blocks_online:
+        for block in new_blocks:
             if blocks_needed_up > 0 and block["flip_position"] == "down":
                 block["flip_position"] = "up"
                 blocks_needed_up -= 1
@@ -86,7 +85,7 @@ def manage_block_flips(state, dt_min):
     elif blocks_up_count > target_blocks_online:
         blocks_needed_down = blocks_up_count - target_blocks_online
 
-        for block in new_blocks_online:
+        for block in new_blocks:
             if blocks_needed_down > 0 and block["flip_position"] == "up":
                 block["flip_position"] = "down"
                 blocks_needed_down -= 1
@@ -100,18 +99,18 @@ def manage_block_flips(state, dt_min):
     else:
         flip_power_used_kw = 0.0
 
-    return new_blocks_online, blocks_up_count, flips_this_step, flip_energy_used_kwh, flip_power_used_kw
+    return new_blocks, blocks_up_count, flips_this_step, flip_energy_used_kwh, flip_power_used_kw
 
 
 #------------dust build up and cleaning-------------♡
-def dust_and_cleaning(new_blocks_online, dt_min):
+def dust_and_cleaning(new_blocks, dt_min):
     hours_per_step = dt_min / 60.0
     seconds_per_step = dt_min * 60.0
     sols_per_step = seconds_per_step / 88775.244
 
     cleaned_this_step = 0
 
-    for block in new_blocks_online:
+    for block in new_blocks:
         if block["flip_position"] == "up":
             dust_loss = base_block_dust_rate_per_sol * sols_per_step
             block["dust_factor"] = max(min_irradiance_w_per_m2, block["dust_factor"] - dust_loss)
@@ -127,6 +126,23 @@ def dust_and_cleaning(new_blocks_online, dt_min):
     else:
         cleaning_power_used_kw  = 0.0
     
-    return new_blocks_online, cleaned_this_step, cleaning_energy_used_kwh, cleaning_power_used_kw
+    return new_blocks, cleaned_this_step, cleaning_energy_used_kwh, cleaning_power_used_kw
+
+
+#------------field power generation-----------------♡
+def get_block_generation(state, new_blocks, dt_min):
+    hours_per_step = dt_min / 60.0
+    sunlight_amount = get_sunlight_amount(state)
+
+    base_irradiance_w_per_m2 = clear_sy_peak_irradiance_w_per_m2 * sunlight_amount
+
+    if sunlight_amount > 0.0:
+        irradiance_w_per_m2 = max(base_irradiance_w_per_m2, min_irradiance_w_per_m2)
+    
+    else:
+        irradiance_w_per_m2 = 0.0
+
+    total_field_power_generated_kw = 0.0
+
 
 #---------------------------------------------------♡
