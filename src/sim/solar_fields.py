@@ -104,14 +104,14 @@ def manage_block_flips(state, dt_min):
 
 
 #------------dust build up and cleaning-------------♡
-def dust_and_cleaning(new_blocks, dt_min):
+def dust_and_cleaning(new_blocks_online, dt_min):
     hours_per_step = dt_min / 60.0
     seconds_per_step = dt_min * 60.0
     sols_per_step = seconds_per_step / 88775.244
 
     cleaned_this_step = 0
 
-    for block in new_blocks:
+    for block in new_blocks_online:
         if block["flip_position"] == "up":
             dust_loss = base_block_dust_rate_per_sol * sols_per_step
             block["dust_factor"] = max(min_irradiance_w_per_m2, block["dust_factor"] - dust_loss)
