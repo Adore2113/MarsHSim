@@ -91,6 +91,14 @@ def manage_block_flips(state, dt_min):
                 blocks_up_count -= 1
                 flips_this_step += 1
 
+    flip_energy_used_kwh = flips_this_step * (flip_energy_per_block_kwh + cover_energy_per_block_kwh)
+    if hours_per_step > 0:
+        flip_power_used_kw = flip_energy_used_kwh / hours_per_step
+    
+    else:
+        flip_power_used_kw = 0.0
+
+    return new_blocks_online, blocks_up_count, flips_this_step, flip_energy_used_kwh, flip_power_used_kw
 # -------------------------------------------♡
 
 
