@@ -179,8 +179,16 @@ class Habitat_State:
     #-----------------power / solar------------------♡
     battery_max_capacity_kwh: float
     battery_stored_kwh: float 
-    
-    solar_arrays: list
+
+    #-----solar fields----♡
+    land_area_acres: float
+    land_area_hectares: float
+    land_area_m2: float
+    block_area_m2: float
+
+    solar_blocks: list
+    arrays_per_block: int
+
     solar_absorptivity: float
 
     #---------------------water----------------------♡
