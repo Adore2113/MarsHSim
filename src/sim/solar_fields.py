@@ -71,7 +71,27 @@ def manage_block_flips(state, dt_min):
     target_blocks_online = get_target_blocks_online(state)
     flips_this_step = 0
 
-#---------------------------------------------------♡
+    if blocks_up_count < target_blocks_online:
+        blocks_needed_up = target_blocks_online - blocks_up_count
+
+        for block in new_blocks_online:
+            if blocks_needed_up > 0 and block["flip_position"] == "down":
+                block["flip_position"] = "up"
+                blocks_needed_up -= 1
+                blocks_up_count += 1
+                flips_this_step += 1
+    
+    elif blocks_up_count > target_blocks_online:
+        blocks_needed_down = blocks_up_count - target_blocks_online
+
+        for block in new_blocks_online:
+            if blocks_needed_down > 0 and block["flip_position"] == "up":
+                block["flip_position"] = "down"
+                blocks_needed_down -= 1
+                blocks_up_count -= 1
+                flips_this_step += 1
+
+# -------------------------------------------♡
 
 
 
