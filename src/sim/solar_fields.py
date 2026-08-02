@@ -28,7 +28,13 @@ cover_energy_per_block_kwh = 0.0135
 cleaning_energy_per_block_kwh = 0.365
 
 default_tilt_deg = 30.0
-summer_tilt_deg = 20.0
-winter_tilt_deg = 40.0
+summer_tilt_deg = 20.0  # placeholder
+winter_tilt_deg = 40.0  # placeholder
+
+#-----------dust buildup-----------♡
+base_block_dust_rate_per_sol = 0.006    # open panels
+min_operating_efficiency = 0.55    # when cleaning becomes mandatory
+cleaning_trigger_dust_factor = 0.75
+
 
 #---------------------------------------------------♡
