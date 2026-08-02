@@ -8,6 +8,22 @@ from .ui_export import write_dashboard_json
 #----------------------------------------------------♡
 
 
+#---------------solar field list---------------------♡
+solar_block_list = []
+
+for block_id in range(1, 51):
+    solar_block_list.append({
+        "id": block_id,
+        "status": "online",
+        "flip_position": "up",
+        "cover_closed": False,
+        "tilt_deg": 30,
+        "dust_factor": 1.0,
+        "efficiency": 0.85,
+    })
+#----------------------------------------------------♡
+
+
 #-------------------habitat state--------------------♡
 s0 = Habitat_State(
     hab_vol_m3 = 2000.0,
@@ -284,19 +300,13 @@ s0 = Habitat_State(
     battery_max_capacity_kwh = 1300.0,
     battery_stored_kwh = 1100.0,
     
-    solar_arrays = [
-        {"id": 1, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
-        {"id": 2, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
-        {"id": 3, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
-        {"id": 4, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
-        {"id": 5, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
-        {"id": 6, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
-        {"id": 7, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
-        {"id": 8, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "primary"},
-
-        {"id": 9, "status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "backup"},
-        {"id": 10,"status": "standby", "area_m2": 50, "efficiency": 0.28, "dust_factor": 1.0, "type": "backup"}
-    ], 
+    land_area_acres = 50.0,
+    land_area_hectares = 20.23,
+    land_area_m2 = 202343.0,
+    block_area_m2 = 4046.0,
+    
+    solar_blocks = solar_block_list,
+    arrays_per_block = 45,
     
     solar_absorptivity = 0.68,
     
@@ -316,9 +326,6 @@ s0 = Habitat_State(
     upa_on = True,
     bpa_on = True,
     wpa_on = True,
-
-    #------------------placeholders------------------♡
-    radiation_msv_per_day = 0.7,
 
     #--------------------sabatier--------------------♡
     sabatier_on = True,
@@ -368,6 +375,7 @@ state = s0
 last_printed_sol = -1
 critical = False
 was_critical = False
+last_printed_temp_c = state.hab_temp_c
 
 sol_totals = {
     "solar_generated_kwh": 0.0,
@@ -419,15 +427,25 @@ for i in range(888):    # 30000 steps * 5 min = ~104 sols
     sol_totals["isru_water_energy_kwh"] += outputs.get("isru_water_energy_used_kwh", 0.0)
     sol_totals["isru_atm_energy_kwh"] += outputs.get("isru_atm_energy_used_kwh", 0.0)
 
+
     critical = any("CRITICAL" in alert for alert in alerts)
 
     #---------------print once per sol---------------♡
     if sol_hour == 12 and current_sol != last_printed_sol:
+        temp_change_c = state.hab_temp_c - last_printed_temp_c
+        temp_lost_c = max(last_printed_temp_c - state.hab_temp_c, 0.0)
+        
         print_sim(state, outputs, alerts)
         print_sol_summary(sol_totals, last_printed_sol if last_printed_sol >= 0 else current_sol)
+       
+        print(f"Habitat temperature change: {temp_change_c:+.2f} °C")
+        print(f"Habitat temperature lost:   {temp_lost_c:.2f} °C")
+
         write_dashboard_json(state, outputs, alerts)
-        last_printed_sol = current_sol
         
+        last_printed_sol = current_sol
+        last_printed_temp_c = state.hab_temp_c
+
         sol_totals = {key: 0.0 for key in sol_totals}
 
     was_critical = critical
