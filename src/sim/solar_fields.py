@@ -32,6 +32,7 @@ summer_tilt_deg = 20.0  # placeholder
 winter_tilt_deg = 40.0  # placeholder
 
 #---panel performance---♡
+panel_efficiency = 0.20
 solar_conversion_ratio = 0.20
 min_irradiance_w_per_m2 = 20.0
 clear_sy_peak_irradiance_w_per_m2 = 350.0   # clear sol average ~ 112 W/m2
@@ -144,5 +145,13 @@ def get_block_generation(state, new_blocks, dt_min):
 
     total_field_power_generated_kw = 0.0
 
+    for block in new_blocks:
+        if block["flip_position"] == "up":
+            block_power_kw = ((irradiance_w_per_m2 / 1000.0) * block_area_m2 * panel_efficiency * block["dust_factor"])
+            total_field_power_generated_kw += block_power_kw
+
+    total_field_energy_generated_kwh = total_field_power_generated_kw * hours_per_step
+
+    return total_field_power_generated_kw, total_field_energy_generated_kwh
 
 #---------------------------------------------------♡
