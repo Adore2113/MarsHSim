@@ -19,13 +19,16 @@ total_blocks = 50
 arrays_per_block = 45
 
 #----------block targets-----------♡
-default_tilt_deg = 30.0
+target_summer_blocks_online = 35
+target_spring_autumn_blocks_online = 38
+target_winter_blocks_online = 43
+
 flip_energy_per_block_kwh = 0.365
 cover_energy_per_block_kwh = 0.0135
 cleaning_energy_per_block_kwh = 0.365
 
-target_summer_blocks_online = 35
-target_spring_autumn_blocks_online = 38
-target_winter_blocks_online = 43
+default_tilt_deg = 30.0
+summer_tilt_deg = 20.0
+winter_tilt_deg = 40.0
 
 #---------------------------------------------------♡
