@@ -18,7 +18,7 @@ area_per_panel_m2 = 89.9
 total_blocks = 50
 arrays_per_block = 45
 
-#----------block targets-----------♡
+#-----block targets-----♡
 target_summer_blocks_online = 35
 target_spring_autumn_blocks_online = 38
 target_winter_blocks_online = 43
@@ -31,14 +31,25 @@ default_tilt_deg = 30.0
 summer_tilt_deg = 20.0  # placeholder
 winter_tilt_deg = 40.0  # placeholder
 
-#--------panel performance---------♡
+#---panel performance---♡
 solar_conversion_ratio = 0.20
 min_irradiance_w_per_m2 = 20.0
 clear_sy_peak_irradiance_w_per_m2 = 350.0   # clear sol average ~ 112 W/m2
 
-
-#-----------dust buildup-----------♡
+#-----dust buildup------♡
 base_block_dust_rate_per_sol = 0.006    # open panels
 min_operating_efficiency = 0.55    # when cleaning becomes mandatory
 cleaning_trigger_dust_factor = 0.75
+#---------------------------------------------------♡
+
+
+#---------------blocks needed online----------------♡
+
+
+
+#---------------------------------------------------♡
+
+
+
+
 #---------------------------------------------------♡
