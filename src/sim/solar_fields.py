@@ -120,6 +120,13 @@ def dust_and_cleaning(new_blocks_online, dt_min):
                 block["dust_factor"] = min(1.0, block["dust_factor"] + dust_factor_restored)
                 cleanings_this_step += 1
 
+    cleaning_energy_used_kwh = cleanings_this_step * cleaning_energy_per_block_kwh
+    if hours_per_step > 0:
+        cleaning_power_used_kw  = cleaning_energy_used_kwh / hours_per_step
+    
+    else:
+        cleaning_power_used_kw  = 0.0
+    return new_blocks_online, cleanings_this_step, cleaning_energy_used_kwh, cleaning_power_used_kw
 
 
 #---------------------------------------------------♡
