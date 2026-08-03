@@ -1,21 +1,15 @@
 #--------------------imports-------------------------♡
 from .mars_time import get_sol_time, get_sunlight_amount
+from .solar_field import run_solar_field
 #----------------------------------------------------♡
 
-
 #--------------------constants-----------------------♡
-min_arrays_online = 6
-max_arrays_online = 10
 min_light_level = 0.2
-
-base_light_power_kw = 2.0
-base_light_heat_kw = 0.5
-
 base_w_light_power_kw = 0.5
 base_w_light_heat_kw = 0.1
 
-min_light_level = 0.2
-solar_hysteresis = 0.05
+base_light_power_kw = 2.0
+base_light_heat_kw = 0.5
 #---------------------------------------------------♡
 
 
@@ -71,7 +65,7 @@ def solar_arrays_online(state):
 
 #--------calculate solar power generated amount-------♡
 def solar_generation(state, new_solar_arrays, dt_min):
-    hours_per_step = dt_min / 60
+    hours_per_step = dt_min / 60.0
     power_generated_per_array = []
     total_solar_generated_kw = 0.0
 
@@ -92,7 +86,7 @@ def solar_generation(state, new_solar_arrays, dt_min):
 
 #-----------habitat main light power info------------♡
 def light_system(state, dt_min, power_mode):
-    hours_per_step = dt_min / 60
+    hours_per_step = dt_min / 60.0
     _, sol_hour, minutes = get_sol_time(state)
 
     sunlight_amount = get_sunlight_amount(state)
