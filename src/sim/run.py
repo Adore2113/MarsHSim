@@ -29,7 +29,7 @@ s0 = Habitat_State(
     hab_vol_m3 = 2000.0,
     power_mode = "normal",
   
-    #-------time and daylight------♡
+    #-------------time / daylight / dust-------------♡
     mission_time_s = 0,
 
     ls_deg = 0,
@@ -45,15 +45,18 @@ s0 = Habitat_State(
     peak_sunlight_today = 0.0,
     low_sunlight_streak_sols = 0,
 
-    #------------lights------------♡
+
+    #--------------------lights----------------------♡
     light_level = 0.0,
     wellness_lights_on = False,
 
-    #-------------crew-------------♡
+
+    #---------------------crew-----------------------♡
     crew_count = 30,
     crew_activity = "normal",
 
-    #----------greenhouse----------♡
+
+    #------------------greenhouse--------------------♡
     greenhouse_vol_m3 = 1007.0,
     greenhouse_floor_area_m2 = 265.0,
     greenhouse_height_m = 3.8,
@@ -107,6 +110,7 @@ s0 = Habitat_State(
         "growth_progress": 0.35,
         "harvest_ready": False,
         },
+        
         #-------------container zone-----------------♡
         {
         "zone": "container",
@@ -141,6 +145,7 @@ s0 = Habitat_State(
         "growth_progress": 0.42,
         "harvest_ready": False,
         },
+
         #----------------rack zone-------------------♡
         {
         "zone": "rack",
@@ -182,6 +187,7 @@ s0 = Habitat_State(
     food_support_level = "partial",
     stored_food_still_needed = True,
 
+
     #--------------------thermal---------------------♡
     hab_temp_c = 23.0,
     target_temp_c = 23.0,
@@ -217,7 +223,8 @@ s0 = Habitat_State(
         {"id": 6, "status": "standby", "power_kw": 8.0, "efficiency": 0.98, "type": "backup"},
     ],
 
-#-------------------atmosphere-------------------♡
+
+    #-------------------atmosphere-------------------♡
     oga_on = True,
     base_gas_leak_kpa_per_hour = 0.004,
 
@@ -283,6 +290,7 @@ s0 = Habitat_State(
     n2_storage_capacity_kg = 2000.0,
     o2_storage_capacity_kg = 1500.0,
 
+
     #------------------amine_beds--------------------♡
     amine_beds = [
         {"id": 1, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "primary"},
@@ -295,10 +303,13 @@ s0 = Habitat_State(
     ],
     scrub_per_bed_kpa = 0.0035,
 
-    #-----------------power / solar------------------♡
+
+    #---------------------power----------------------♡
     primary_battery_max_capacity_kwh = 25000.0,
-    primary_battery_stored_kwh = 1100.0,
+    primary_battery_stored_kwh = 20000.0,
     
+    battery_bank_max_capacity_kwh = 1500000.0,
+    battery_bank_stored_kwh = 1500000.0,
 
     land_area_acres = 50.0,
     land_area_hectares = 20.23,
@@ -309,7 +320,8 @@ s0 = Habitat_State(
     arrays_per_block = 45,
     
     solar_absorptivity = 0.68,
-    
+
+
     #---------------------water----------------------♡
     potable_water_storage_kg = 5000.0,
     gray_water_storage_kg = 0.0,
@@ -327,8 +339,10 @@ s0 = Habitat_State(
     bpa_on = True,
     wpa_on = True,
 
+
     #--------------------sabatier--------------------♡
     sabatier_on = True,
+
 
     #-------------------isru water-------------------♡
     isru_water_on = True,
