@@ -20,7 +20,6 @@ class Habitat_State:
     dust_opacity_tau: float
     storm_status: str
 
-
     daylight_m2_kw: float
     peak_sunlight_today: float
     low_sunlight_streak_sols: int
@@ -177,8 +176,8 @@ class Habitat_State:
     scrub_per_bed_kpa: float
 
     #-----------------power / solar------------------♡
-    battery_max_capacity_kwh: float
-    battery_stored_kwh: float 
+    primary_battery_max_capacity_kwh: float
+    primary_battery_stored_kwh: float 
 
     #-----solar fields----♡
     land_area_acres: float
@@ -210,7 +209,7 @@ class Habitat_State:
     wpa_on: bool
     
     #------------------placeholders------------------♡
-    radiation_msv_per_day: float
+    #radiation_msv_per_day: float
 
     #--------------------sabatier--------------------♡
     sabatier_on: bool
