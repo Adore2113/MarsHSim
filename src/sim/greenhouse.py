@@ -5,25 +5,28 @@ from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, get_daylight
 # file for greenhouse system
 
 #--------------------constants-----------------------♡
+#------sunlight & lighting------♡
 best_sunlight_per_m2_kw = 0.45
 min_useful_sunlight_per_m2_kw = 0.15
 
 base_heat_light_power_usage_kw = 0.12
-
 led_power_per_m2_kw = 0.12
 led_heat_ratio = 0.68
+
+base_gh_light_hours_per_sol = 16.0    # test and try 12 or 14
+gh_light_start_hour = 5
+
+#------greenhouse operation-----♡
 transpiration_ratio = 0.85
 
 base_power_per_m2_kw = 0.10    # led, pumps, circulation, ect.
 greenhouse_heat_per_m2_kw = 0.015
 
+runoff_water_ratio = 0.08
+#--------crop model------------♡
 default_health = 0.98
 default_light_exposure = 0.65
 default_growth_multiplier = 1.0
-runoff_water_ratio = 0.08
-
-base_gh_light_hours_per_sol = 16.0    # test and try 12 or 14
-gh_light_start_hour = 5
 #----------------------------------------------------♡
 
 
@@ -198,7 +201,7 @@ def greenhouse_resources(zone, zone_light, sol_fraction):
 
 #-------------main greenhouse function---------------♡
 def run_greenhouse(state, dt_min):
-    hours_per_step = dt_min / 60
+    hours_per_step = dt_min / 60.0
     sol_fraction = dt_min / (seconds_per_sol / 60.0)
   
     if not state.greenhouse_on:
