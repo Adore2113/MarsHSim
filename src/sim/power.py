@@ -33,8 +33,20 @@ def manage_battery_bank(state, net_energy_kwh, dt_min):
     primary_after_net_kwh = state.primary_battery_stored_kwh + net_energy_kwh
     primary_after_net_kwh =max(0.0, min(primary_max_kwh, primary_after_net_kwh))
 
-    primary__pct = primary_after_net_kwh / primary_max_kwh
+    primary_pct = primary_after_net_kwh / primary_max_kwh
     secondary_pct = state.battery_bank_stored_kwh / secondary_max_kwh
+
+    bank_transfer_kwh = 0.0
+
+    if primary_pct >= primary_high_threshold_pct:
+        excess_above_threshold_kw = primary_after_net_kwh - (primary_max_kwh * primary_high_threshold_pct)
+        room_in_secondary_kwh = secondary_max_kwh - state.battery_bank_stored_kwh
+
+        bank_transfer_kwh = min(excess_above_threshold_kwh, room_in_secondary_kwh, max_transfer_kwh)
+
+        new_primary_kwh = primary_after_net_kwh - bank_transfer_kwh
+        new_secondary_kwh = state.battery_bank_stored_Kwh + bank_transfer_kwh
+        
 
 
 #---------------------------------------------------♡
