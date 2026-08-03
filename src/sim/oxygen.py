@@ -1,28 +1,31 @@
 # file for Oxygen Generation Assembly (OGA) & Water Electrolysis
 
-
 #--------------------constants-----------------------♡
+#---------conversions---------♡
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 pa_per_kpa = 1000.0   # kilopascals to pascals
 r_kpa = 0.008314   # universal gas constant, 8.314 / 1000
 kg_per_g = 0.001
 
+#------electrochemistry-------♡
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0   # grams per mole
+water_kg_per_o2_kg = 1.11   # electrolysis
 
+#------oga operation----------♡
 oga_max_o2_output_kpa_per_hr = 6.0
 base_oga_power_kw = 2.5
 base_oga_heat_kw = 1.2
 
+#-------control logic---------♡
 safety_backup_water_kg = 30.0
 hysteresis_kpa = 0.002
-water_kg_per_o2_kg = 1.11   # electrolysis
 #----------------------------------------------------♡
 
 
 #------------oxygen regeneration process-------------♡
 def run_oga(state, o2_after_crew_kpa, dt_min):
-    hours_per_step = dt_min / 60
+    hours_per_step = dt_min / 60.0
 
     oga_mode = "offline"
     o2_added_kpa = 0.0
@@ -36,7 +39,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
 
     o2_needed_kpa = state.target_o2_kpa - o2_after_crew_kpa
 
-    #-------------------oga modes-------------------♡  
+    #-------------------oga modes--------------------♡  
     if not state.oga_on:
         oga_mode = "offline"
 
@@ -57,7 +60,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         h2_produced_kg = o2_produced_kg * (2 * h2_molar_mass) / o2_molar_mass
         oga_water_used_kg = o2_produced_kg * water_kg_per_o2_kg
 
-    #--------------water storage check--------------♡
+    #--------------water storage check---------------♡
         min_water_needed_kg = oga_water_used_kg + (state.crew_count * 2.0) + safety_backup_water_kg
         
         if state.potable_water_storage_kg < min_water_needed_kg:
@@ -67,7 +70,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
             h2_produced_kg = 0.0
             o2_added_kpa = 0.0
 
-    #----------------power and heat-----------------♡
+    #----------------power and heat------------------♡
             oga_power_used_kw = base_oga_power_kw * 0.55
             oga_heat_added_kw = base_oga_heat_kw * 0.55
 
