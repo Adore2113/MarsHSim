@@ -19,7 +19,7 @@ area_per_array_m2 = 89.9
 total_blocks = 50
 arrays_per_block = 45
 
-#-----block targets-----♡
+#--------block targets---------♡
 target_seasonal_blocks_online = 38
 target_summer_blocks_online = 35
 target_winter_blocks_online = 43
@@ -42,7 +42,7 @@ panel_flip_up_sunlight = 0.02
 storm_protection_tau = 1.75
 
 #-----dust buildup------♡
-base_block_dust_rate_per_sol = 0.006    # open panels
+base_block_dust_rate_per_sol = 0.006    # open panel buildup
 minimum_safe_dust_factor = 0.55
 cleaning_trigger_dust_factor = 0.75
 
@@ -82,11 +82,6 @@ def get_target_blocks_online(state):
 
     return target_seasonal_blocks_online
 
-
-# -duration
-# -queue
-# -maximum number of simultaneous cleanings
-# -cleaning availability state
 
 #------------flip blocks to match target------------♡
 def manage_block_flips(state, dt_min):
@@ -177,7 +172,6 @@ def get_block_generation(state, new_blocks, dt_min):
     return total_field_power_generated_kw, total_field_energy_generated_kwh
 
 
-#---------------------------------------------------♡
 def run_solar_field(state, dt_min):
     new_blocks, blocks_up_count, flips_this_step, flip_energy_used_kwh, flip_power_used_kw = manage_block_flips(state, dt_min)
     new_blocks, cleaned_this_step, cleaning_energy_used_kwh, cleaning_power_used_kw = dust_and_cleaning(new_blocks, dt_min)
@@ -212,3 +206,5 @@ def run_solar_field(state, dt_min):
 #    ♡ emergency override
 #    ♡ low sunlight override
 #    ♡ mechanical wear
+#---------------------------------------------------♡
+
