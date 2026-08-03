@@ -171,7 +171,7 @@ def get_block_generation(state, new_blocks, dt_min):
 
     return total_field_power_generated_kw, total_field_energy_generated_kwh
 
-
+#----------------run solar field--------------------♡
 def run_solar_field(state, dt_min):
     new_blocks, blocks_up_count, flips_this_step, flip_energy_used_kwh, flip_power_used_kw = manage_block_flips(state, dt_min)
     new_blocks, cleaned_this_step, cleaning_energy_used_kwh, cleaning_power_used_kw = dust_and_cleaning(new_blocks, dt_min)
@@ -180,10 +180,10 @@ def run_solar_field(state, dt_min):
     solar_maintenance_power_used_kw = flip_power_used_kw + cleaning_power_used_kw
     solar_maintenance_energy_used_kwh = flip_energy_used_kwh + cleaning_energy_used_kwh
 
-    #------------dict for updating state-------------♡ 
+    #------------dict for updating state------------♡ 
     solar_field_updates = {"solar_blocks": new_blocks,}
 
-    #-----------dict for printing outputs------------♡ 
+    #-----------dict for printing outputs-----------♡ 
     solar_field_outputs = {
         "blocks_online_count": blocks_up_count,
         "blocks_flipped_this_step": flips_this_step,
