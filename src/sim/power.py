@@ -28,42 +28,42 @@ def manage_battery_bank(state, net_energy_kwh, dt_min):
     hours_per_step = dt_min / 60.0
     max_transfer_kwh = max_transfer_speed_kw * hours_per_step
     primary_max_kwh = state.primary_battery_max_capacity_kwh
-    secondary_max_kwh = state.battery_bank_max_capacity_kwh
+    bank_max_kwh = state.battery_bank_max_capacity_kwh
 
     primary_after_net_kwh = state.primary_battery_stored_kwh + net_energy_kwh
-    primary_after_net_kwh =max(0.0, min(primary_max_kwh, primary_after_net_kwh))
+    primary_after_net_kwh = max(0.0, min(primary_max_kwh, primary_after_net_kwh))
 
     primary_pct = primary_after_net_kwh / primary_max_kwh
-    secondary_pct = state.battery_bank_stored_kwh / secondary_max_kwh
+    bank_pct = state.battery_bank_stored_kwh / bank_max_kwh
 
     bank_transfer_kwh = 0.0
 
     if primary_pct >= primary_high_threshold_pct:
         excess_above_threshold_kwh = primary_after_net_kwh - (primary_max_kwh * primary_high_threshold_pct)
-        room_in_secondary_kwh = secondary_max_kwh - state.battery_bank_stored_kwh
+        room_in_bank_kwh = bank_max_kwh - state.battery_bank_stored_kwh
 
-        bank_transfer_kwh = min(excess_above_threshold_kwh, room_in_secondary_kwh, max_transfer_kwh)
+        bank_transfer_kwh = min(excess_above_threshold_kwh, room_in_bank_kwh, max_transfer_kwh)
 
         new_primary_kwh = primary_after_net_kwh - bank_transfer_kwh
-        new_secondary_kwh = state.battery_bank_stored_kwh + bank_transfer_kwh
+        new_bank_kwh = state.battery_bank_stored_kwh + bank_transfer_kwh
 
-    elif primary_pct <= primary_low_threshold_pct and secondary_pct > secondary_reserve_floor_pct:
+    elif primary_pct <= primary_low_threshold_pct and bank_pct > secondary_reserve_floor_pct:
         deficit_kwh = (primary_max_kwh * primary_low_threshold_pct) - primary_after_net_kwh
 
         if primary_pct <= primary_critical_pct:
             deficit_kwh *= 1.5
 
-        secondary_available_kwh = state.battery_bank_stored_kwh - (secondary_max_kwh * secondary_reserve_floor_pct)
-        bank_transfer_kwh = -min(deficit_kwh, secondary_available_kwh, max_transfer_kwh)
+        bank_available_kwh = state.battery_bank_stored_kwh - (bank_max_kwh * secondary_reserve_floor_pct)
+        bank_transfer_kwh = -min(deficit_kwh, bank_available_kwh, max_transfer_kwh)
 
         new_primary_kwh = min(primary_max_kwh, primary_after_net_kwh - bank_transfer_kwh)
-        new_secondary_kwh = state.battery_bank_stored_kwh + bank_transfer_kwh
+        new_bank_kwh = state.battery_bank_stored_kwh + bank_transfer_kwh
 
     else: 
         new_primary_kwh = primary_after_net_kwh
-        new_secondary_kwh = state.battery_bank_stored_kwh
+        new_bank_kwh = state.battery_bank_stored_kwh
 
-    return new_primary_kwh, new_secondary_kwh, bank_transfer_kwh
+    return new_primary_kwh, new_bank_kwh, bank_transfer_kwh
 
 
 #---------------------------------------------------♡
