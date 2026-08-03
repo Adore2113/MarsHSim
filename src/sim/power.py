@@ -23,6 +23,24 @@ primary_critical_pct = 0.20    # emergency, heavier pull from secondary
 #---------------------------------------------------♡
 
 
+#---------------battery power flow------------------♡
+def manage_battery_bank(state, net_energy_kwh, dt_min):
+    hours_per_step = dt_min / 60.0
+    max_transfer_kwh = max_transfer_speed_kw * hours_per_step
+    primary_max_kwh = state.primary_battery_max_capacity_kwh
+    secondary_max_kwh = state.battery_bank_max_capacity_kwh
+
+    primary_after_net_kwh = state.primary_battery_stored_kwh + net_energy_kwh
+    primary_after_net_kwh =max(0.0, min(primary_max_kwh, primary_after_net_kwh))
+
+    primary__pct = primary_after_net_kwh / primary_max_kwh
+    secondary_pct = state.battery_bank_stored_kwh / secondary_max_kwh
+
+
+#---------------------------------------------------♡
+#---------------------------------------------------♡
+
+
 #-----------habitat main light power info------------♡
 def light_system(state, dt_min, power_mode):
     hours_per_step = dt_min / 60.0
