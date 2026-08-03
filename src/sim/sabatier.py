@@ -1,13 +1,14 @@
 # file for handling recycling co2 into water and methane (CH4)
 
-
 #--------------------constants-----------------------♡
+#---------conversions----------♡
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 r_kpa = 0.008314   # universal gas constant, 8.314 / 1000 
 pa_per_kpa = 1000.0
 kg_per_g = 0.001
-exothermic_reaction = 0.65
 
+#------reaction chemistry------♡
+exothermic_reaction = 0.65
 h2_molar_mass = 2.016   # 1 mole h2 = 2.016g b/c h2 = 2 hydrogen atoms (1.008 g/mol each)
 o2_molar_mass = 32.0   # grams per mole
 co2_molar_mass = 44.01
@@ -16,13 +17,16 @@ h2o_molar_mass = 18.015
 
 water_kg_per_h2_kg = 0.45
 
+#------reaction limits---------♡
 min_h2_for_reaction_kg = 0.012
 min_co2_for_reaction_kg = 0.012
 
+#-----reactor operation--------♡
 base_sabatier_power_kw = 0.85
 base_sabatier_temp_c = 300.0
 base_sabatier_efficiency = 0.88
 
+#--------control logic---------♡
 hysteresis = 1.5
 venting_hysteresis = 0.60
 #----------------------------------------------------♡
@@ -30,7 +34,7 @@ venting_hysteresis = 0.60
 
 #----------------co2 + h2 = ch4 + H2o----------------♡
 def run_sabatier(state, dt_min):
-    hours_per_step = dt_min / 60
+    hours_per_step = dt_min / 60.0
 
     sabatier_mode = "offline"
     water_produced_kg = 0.0
