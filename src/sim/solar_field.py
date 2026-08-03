@@ -1,5 +1,6 @@
 #--------------------imports-------------------------♡
-from .mars_time import get_sunlight_amount, current_mars_season
+import math
+from .mars_time import get_sunlight_amount, current_mars_season, get_sol_time, seconds_per_sol
 #----------------------------------------------------♡
 
 #--------------------constants-----------------------♡
@@ -8,10 +9,10 @@ land_area_hectares = 20.23
 land_area_m2 = 202300.0
 block_area_m2 = 4046.0
 
-total_panels = 101250.0
+total_panels = 101250
 area_per_panel_m2 = 2.0
 
-total_arrays = 2250.0
+total_arrays = 2250
 panels_per_array = 45
 area_per_array_m2 = 89.9
 
@@ -36,6 +37,10 @@ solar_conversion_ratio = 0.20   # panel efficiency
 min_irradiance_w_per_m2 = 20.0
 clear_sky_peak_irradiance_w_per_m2 = 350.0   # clear sol average ~ 112 W/m2
 
+panel_flip_down_time = 20.0    # 20:00 LMST
+panel_flip_up_sunlight = 0.02
+storm_protection_tau = 1.75
+
 #-----dust buildup------♡
 base_block_dust_rate_per_sol = 0.006    # open panels
 min_operating_efficiency = 0.55    # when cleaning becomes mandatory
@@ -47,19 +52,36 @@ dust_factor_restored = 0.35
 
 #---------------target blocks online----------------♡
 def get_target_blocks_online(state):
-    is_daytime = get_sunlight_amount(state) > 0.0
-    if not is_daytime:
+    sunlight_amount = get_sunlight_amount(state)
+    _, lmst_hour, lmst_minute = get_sol_time(state)
+    lmst_decimal_hour = lmst_hour + lmst_minute / 60.0
+
+    #-----panel protection-----♡
+    storm_active = getattr(state, "storm_active", False)
+    opacity_tau = getattr(state, "opacity_tau", 0.0)
+
+    dangerous_storm = (storm_active or opacity_tau >= storm_protection_tau)
+
+    if dangerous_storm:
+        return 0
+    
+    #-----timed panel flip-----♡
+    if lmst_decimal_hour >= panel_flip_down_time:
         return 0
 
+    if sunlight_amount < panel_flip_up_sunlight:
+        return 0
+    
+    #---season panel targets---♡
     season = current_mars_season(state)
+
     if season == "northern_summer":
         return target_summer_blocks_online
 
     elif season == "northern_winter":
         return target_winter_blocks_online
 
-    else:
-        return target_seasonal_blocks_online
+    return target_seasonal_blocks_online
 
 
 #------------flip blocks to match target------------♡
@@ -106,7 +128,7 @@ def manage_block_flips(state, dt_min):
 def dust_and_cleaning(new_blocks, dt_min):
     hours_per_step = dt_min / 60.0
     seconds_per_step = dt_min * 60.0
-    sols_per_step = seconds_per_step / 88775.244
+    sols_per_step = seconds_per_step / seconds_per_sol
 
     cleaned_this_step = 0
 
@@ -135,12 +157,7 @@ def get_block_generation(state, new_blocks, dt_min):
     sunlight_amount = get_sunlight_amount(state)
 
     base_irradiance_w_per_m2 = clear_sky_peak_irradiance_w_per_m2 * sunlight_amount
-
-    if sunlight_amount > 0.0:
-        irradiance_w_per_m2 = max(base_irradiance_w_per_m2, min_irradiance_w_per_m2)
-    
-    else:
-        irradiance_w_per_m2 = 0.0
+    irradiance_w_per_m2 = (clear_sky_peak_irradiance_w_per_m2 * sunlight_amount)    
 
     total_field_power_generated_kw = 0.0
 
@@ -180,3 +197,12 @@ def run_solar_field(state, dt_min):
     }
 
     return solar_field_updates, solar_field_outputs
+
+#---------------------------------------------------♡
+# V2: Solar field wind protection:
+#    ♡ sustained wind detection
+#    ♡ gust detection
+#    ♡ automatic protective flipping
+#    ♡ emergency override
+#    ♡ low sunlight override
+#    ♡ mechanical wear
