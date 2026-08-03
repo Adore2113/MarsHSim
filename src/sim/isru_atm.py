@@ -1,24 +1,27 @@
 # file for handling in-situ resource utilization for Ar and N2 extraction
 
 #--------------------constants-----------------------♡
+#--------compressors--------♡
 base_compressor_power_kw = 4.0    # per active compressor
 base_intake_rate_kg_per_hour = 20.0   # raw atmosphere processed per compressor
 compressor_efficiency = 0.78
- 
-# compressor_regen_time_min = 0.0
 
 max_compressors_online = 4
+
+#-----mars atmosphere-------♡
 mars_co2_ratio = 0.95
 mars_n2_ratio = 0.027
 mars_ar_ratio = 0.016
 
-n2_low_storage_kg = 600.0
-ar_low_storage_kg = 400.0
-hysteresis_kg = 1.5
-
+#------gas separation-------♡
 max_sorbent_beds_adsorbing = 2
 sorbent_regen_time_min = 60.0
 sorbent_capture_efficiency = 0.85    # ratio of co2 that actually gets trapped on the absorbing bed
+
+#------control logic--------♡
+n2_low_storage_kg = 600.0
+ar_low_storage_kg = 400.0
+hysteresis_kg = 1.5
 #----------------------------------------------------♡
 
 
