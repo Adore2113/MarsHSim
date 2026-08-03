@@ -1,6 +1,6 @@
 #--------------------imports-------------------------♡
 import math
-from .mars_time import get_sunlight_amount, current_mars_season, get_sol_time, seconds_per_sol
+from .mars_time import get_sunlight_amount, current_mars_season, get_sol_time, seconds_per_sol, get_solar_decline_deg, latitude_north_deg
 #----------------------------------------------------♡
 
 #--------------------constants-----------------------♡
@@ -49,6 +49,21 @@ cleaning_trigger_dust_factor = 0.75
 dust_factor_restored = 0.35
 #---------------------------------------------------♡
 
+#---------------seasonal tilt angles----------------♡
+def get_season_tilt_deg(state):
+    season = current_mars_season(state)
+    if season == "northern_summer":
+        return summer_tilt_deg
+
+    elif season == "northern_winter":
+        return winter_tilt_deg
+
+    return default_tilt_deg
+
+
+#--------------tilt to sun efficiency---------------♡
+
+
 
 #---------------target blocks online----------------♡
 def get_target_blocks_online(state):
@@ -73,7 +88,6 @@ def get_target_blocks_online(state):
     
     #---season panel targets---♡
     season = current_mars_season(state)
-
     if season == "northern_summer":
         return target_summer_blocks_online
 
