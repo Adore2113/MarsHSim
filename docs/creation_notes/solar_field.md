@@ -244,7 +244,7 @@
 
 ### ----------------------------------------
 
-### Early Power System Ideas:
+### Design Evolution
 #### Initial Solar Plan:
     ♡ planned to use 30–40 smaller solar panels
         
