@@ -10,6 +10,16 @@ base_w_light_heat_kw = 0.1
 
 base_light_power_kw = 2.0
 base_light_heat_kw = 0.5
+
+#---------backup bank----------♡
+max_transfer_speed_kw = 5000.0    # speed the power moves from bank - primary
+secondary_reserve_floor_pct = 0.10    # keep 10% if not in emergency
+
+#-------primary battery--------♡
+primary_high_threshold_pct = 0.95    # start sending power to secondary
+primary_low_threshold_pct = 0.25    # start pulling from secondary
+primary_critical_pct = 0.20    # emergency, heavier pull from secondary
+
 #---------------------------------------------------♡
 
 
