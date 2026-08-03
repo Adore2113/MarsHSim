@@ -6,6 +6,7 @@ from .mars_time import get_sunlight_amount, current_mars_season, get_sol_time, s
 # file for handling solar field and arrays/blocks
 
 #--------------------constants-----------------------♡
+#---------field layout---------♡
 land_area_acres = 50.0
 land_area_hectares = 20.23
 land_area_m2 = 202300.0
@@ -21,33 +22,32 @@ area_per_array_m2 = 89.9
 total_blocks = 50
 arrays_per_block = 45
 
-#--------block targets---------♡
+#------seasonal operation------♡
 target_seasonal_blocks_online = 38
 target_summer_blocks_online = 35
 target_winter_blocks_online = 43
-
-flip_energy_per_block_kwh = 0.365
-cover_energy_per_block_kwh = 0.0135
-cleaning_energy_per_block_kwh = 0.365
 
 default_tilt_deg = 30.0
 summer_tilt_deg = 20.0  # placeholder
 winter_tilt_deg = 40.0  # placeholder
 
-#---panel performance---♡
-solar_conversion_ratio = 0.20   # panel efficiency
-min_irradiance_w_per_m2 = 20.0
-clear_sky_peak_irradiance_w_per_m2 = 350.0   # clear sol average ~ 112 W/m2
+#------panel operation---------♡
+flip_energy_per_block_kwh = 0.365
+cover_energy_per_block_kwh = 0.0135
+cleaning_energy_per_block_kwh = 0.365
 
 panel_flip_down_time = 20.0    # 20:00 LMST
 panel_flip_up_sunlight = 0.02
 storm_protection_tau = 1.75
 
-#-----dust buildup------♡
+#-----panel performance--------♡
+solar_conversion_ratio = 0.20   # panel efficiency
+min_irradiance_w_per_m2 = 20.0
+clear_sky_peak_irradiance_w_per_m2 = 350.0   # clear sol average ~ 112 W/m2
+
 base_block_dust_rate_per_sol = 0.006    # open panel buildup
 minimum_safe_dust_factor = 0.55
 cleaning_trigger_dust_factor = 0.75
-
 dust_factor_restored = 0.35
 #----------------------------------------------------♡
 
