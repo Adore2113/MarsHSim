@@ -400,7 +400,7 @@ sol_totals = {
     "isru_atm_energy_kwh": 0.0,
 }
 
-for i in range(888):    # 30000 steps * 5 min = ~104 sols
+for i in range(14440):    # 30000 steps * 5 min = ~104 sols
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
     current_sol = int(state.mission_time_s // seconds_per_sol)
@@ -436,7 +436,7 @@ for i in range(888):    # 30000 steps * 5 min = ~104 sols
         temp_lost_c = max(last_printed_temp_c - state.hab_temp_c, 0.0)
         
         print_sim(state, outputs, alerts)
-        print_sol_summary(sol_totals, last_printed_sol if last_printed_sol >= 0 else current_sol)
+        print_sol_summary(state, sol_totals)
        
         print(f"Habitat temperature change: {temp_change_c:+.2f} °C")
         print(f"Habitat temperature lost:   {temp_lost_c:.2f} °C")
