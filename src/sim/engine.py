@@ -171,7 +171,6 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         **greenhouse_updates,
         **isru_water_updates,
 
-        "solar_arrays": dust_results["new_solar_arrays"],
         "radiators": dust_results["new_radiators"],
         "isru_compressors": dust_results["new_compressors"],
         "light_level": light_results["adjusted_light_level"],
