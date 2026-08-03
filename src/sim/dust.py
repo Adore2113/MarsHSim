@@ -4,9 +4,10 @@ import random
 from .mars_time import seconds_per_sol
 #----------------------------------------------------♡
 
+# file for handling dust buildup and storms
 
 #--------------------constants-----------------------♡
-#--------dust build up---------♡
+#--------dust buildup---------♡
 base_dust_rate_per_sol = 0.007
 
 primary_rad_dust_multiplier = 1.12
@@ -19,8 +20,7 @@ min_radiator_efficiency = 0.35
 min_compressor_efficiency = 0.45
 min_pipe_efficiency = 0.50
 
-#---------atm opacity----------♡
-# v1
+#-----atmospheric opacity-----♡
 base_clear_opacity_tau = 0.35
 base_storm_season_opacity_tau = 1.15
 
@@ -34,7 +34,6 @@ storm_season_ls_end_deg = 330.0
 
 base_storm_probability = 0.001
 seasonal_probability_bonus = 0.02
-
 storm_end_probability = 0.15
 #----------------------------------------------------♡
 
