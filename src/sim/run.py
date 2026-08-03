@@ -55,7 +55,6 @@ s0 = Habitat_State(
 
     #----------greenhouse----------♡
     greenhouse_vol_m3 = 1007.0,
-
     greenhouse_floor_area_m2 = 265.0,
     greenhouse_height_m = 3.8,
     
@@ -297,9 +296,10 @@ s0 = Habitat_State(
     scrub_per_bed_kpa = 0.0035,
 
     #-----------------power / solar------------------♡
-    battery_max_capacity_kwh = 1300.0,
-    battery_stored_kwh = 1100.0,
+    primary_battery_max_capacity_kwh = 25000.0,
+    primary_battery_stored_kwh = 1100.0,
     
+
     land_area_acres = 50.0,
     land_area_hectares = 20.23,
     land_area_m2 = 202343.0,
@@ -401,7 +401,7 @@ sol_totals = {
 }
 
 sols_printed = 0
-max_sols_to_print = 10
+max_sols_to_print = 5
 max_possible_steps = max_sols_to_print * 400    # print up to 400, but the break later stops it
 
 for i in range(max_possible_steps):
