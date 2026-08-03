@@ -400,7 +400,11 @@ sol_totals = {
     "isru_atm_energy_kwh": 0.0,
 }
 
-for i in range(14440):    # 30000 steps * 5 min = ~104 sols
+sols_printed = 0
+max_sols_to_print = 10
+max_possible_steps = max_sols_to_print * 400    # print up to 400, but the break later stops it
+
+for i in range(max_possible_steps):
     state, outputs = step(state)
     alerts = get_alerts(state, outputs)
     current_sol = int(state.mission_time_s // seconds_per_sol)
@@ -445,8 +449,11 @@ for i in range(14440):    # 30000 steps * 5 min = ~104 sols
         
         last_printed_sol = current_sol
         last_printed_temp_c = state.hab_temp_c
+        sols_printed += 1
 
         sol_totals = {key: 0.0 for key in sol_totals}
+        if sols_printed >= max_sols_to_print:
+            break
 
     was_critical = critical
 
