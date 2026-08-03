@@ -13,77 +13,6 @@ base_light_heat_kw = 0.5
 #---------------------------------------------------♡
 
 
-#-----------which solar arrays are online------------♡
-def solar_arrays_online(state):
-    new_solar_arrays = []
-    solar_arrays_online_count = 0
-
-    battery_pct = state.battery_stored_kwh / state.battery_max_capacity_kwh
-    
-    #---------how many arrays needed online---------♡  
-    if state.daylight_m2_kw < 0.1:
-        target_arrays_online = 0
-    
-    elif battery_pct < (0.25 - solar_hysteresis):
-        target_arrays_online = max_arrays_online
-    
-    elif battery_pct < (0.50 - solar_hysteresis):
-        target_arrays_online = 8
-    
-    else:
-        target_arrays_online = min_arrays_online
-
-    #---------handling primary arrays first---------♡  
-    primary_arrays_needed = target_arrays_online
-
-    for array in state.solar_arrays:
-        new_array = array.copy()
-
-        if new_array["status"] == "standby" and primary_arrays_needed > 0:
-            if new_array["type"] == "primary":
-                new_array["status"] = "online"
-                primary_arrays_needed -= 1
-
-            elif new_array["type"] == "backup" and primary_arrays_needed <= 2:
-                new_array["status"] = "online"
-                primary_arrays_needed -= 1
-
-    #---------------switch to standby---------------♡ 
-        elif new_array["status"] == "online":
-            if solar_arrays_online_count >= target_arrays_online:
-                
-                if new_array["type"] == "backup" or solar_arrays_online_count > target_arrays_online:
-                    new_array["status"] = "standby"
-
-        if new_array["status"] == "online":
-            solar_arrays_online_count += 1
-
-        new_solar_arrays.append(new_array)
-
-    return new_solar_arrays, solar_arrays_online_count
-
-
-#--------calculate solar power generated amount-------♡
-def solar_generation(state, new_solar_arrays, dt_min):
-    hours_per_step = dt_min / 60.0
-    power_generated_per_array = []
-    total_solar_generated_kw = 0.0
-
-    for array in new_solar_arrays:
-        if array["status"] == "online":
-            power_generated_kw = (state.daylight_m2_kw * array["area_m2"] * array["efficiency"] * array["dust_factor"])
-
-        else:
-            power_generated_kw = 0.0
-
-        power_generated_per_array.append({"id": array["id"], "power_generated_kw": power_generated_kw})
-        total_solar_generated_kw += power_generated_kw
-        
-    total_solar_generated_kwh = total_solar_generated_kw * hours_per_step
-
-    return total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array
-
-
 #-----------habitat main light power info------------♡
 def light_system(state, dt_min, power_mode):
     hours_per_step = dt_min / 60.0
@@ -154,13 +83,13 @@ def light_system(state, dt_min, power_mode):
 
 
 #------------------total power usage-----------------♡
-def get_total_power_usage(amine_bed_power_used_kw, oga_power_used_kw, light_power_used_kw, w_light_power_used_kw, greenhouse_led_power_kw, radiator_power_kw, heater_power_kw, chx_power_used_kw, upa_power_used_kw, wpa_power_used_kw, bpa_power_used_kw, sabatier_power_used_kw, isru_water_power_used_kw, isru_atm_power_used_kw):
-    total_power_used_kw = (amine_bed_power_used_kw + oga_power_used_kw + light_power_used_kw + w_light_power_used_kw + greenhouse_led_power_kw + radiator_power_kw + heater_power_kw + chx_power_used_kw  + upa_power_used_kw + wpa_power_used_kw + bpa_power_used_kw + sabatier_power_used_kw + isru_water_power_used_kw + isru_atm_power_used_kw)
+def get_total_power_usage(amine_bed_power_used_kw, oga_power_used_kw, light_power_used_kw, w_light_power_used_kw, greenhouse_led_power_kw, radiator_power_kw, heater_power_kw, chx_power_used_kw, upa_power_used_kw, wpa_power_used_kw, bpa_power_used_kw, sabatier_power_used_kw, isru_water_power_used_kw, isru_atm_power_used_kw, solar_field_power_used_kw):
+    total_power_used_kw = (amine_bed_power_used_kw + oga_power_used_kw + light_power_used_kw + w_light_power_used_kw + greenhouse_led_power_kw + radiator_power_kw + heater_power_kw + chx_power_used_kw  + upa_power_used_kw + wpa_power_used_kw + bpa_power_used_kw + sabatier_power_used_kw + isru_water_power_used_kw + isru_atm_power_used_kw + solar_field_power_used_kw)
 
     return total_power_used_kw
 
-def get_total_energy_usage(amine_bed_energy_used_kwh, oga_energy_used_kwh, light_energy_used_kwh, w_light_energy_used_kwh, greenhouse_led_energy_kwh, radiator_energy_kwh, heater_energy_kwh, chx_energy_used_kwh, upa_energy_used_kwh, wpa_energy_used_kwh, bpa_energy_used_kwh, sabatier_energy_used_kwh, isru_water_energy_used_kwh, isru_atm_energy_used_kwh):
-    total_energy_used_kwh = (amine_bed_energy_used_kwh + oga_energy_used_kwh + light_energy_used_kwh + w_light_energy_used_kwh + greenhouse_led_energy_kwh + radiator_energy_kwh + heater_energy_kwh + chx_energy_used_kwh + upa_energy_used_kwh + wpa_energy_used_kwh + bpa_energy_used_kwh + sabatier_energy_used_kwh + isru_water_energy_used_kwh + isru_atm_energy_used_kwh)  
+def get_total_energy_usage(amine_bed_energy_used_kwh, oga_energy_used_kwh, light_energy_used_kwh, w_light_energy_used_kwh, greenhouse_led_energy_kwh, radiator_energy_kwh, heater_energy_kwh, chx_energy_used_kwh, upa_energy_used_kwh, wpa_energy_used_kwh, bpa_energy_used_kwh, sabatier_energy_used_kwh, isru_water_energy_used_kwh, isru_atm_energy_used_kwh, solar_field_energy_used_kwh):
+    total_energy_used_kwh = (amine_bed_energy_used_kwh + oga_energy_used_kwh + light_energy_used_kwh + w_light_energy_used_kwh + greenhouse_led_energy_kwh + radiator_energy_kwh + heater_energy_kwh + chx_energy_used_kwh + upa_energy_used_kwh + wpa_energy_used_kwh + bpa_energy_used_kwh + sabatier_energy_used_kwh + isru_water_energy_used_kwh + isru_atm_energy_used_kwh + solar_field_energy_used_kwh)  
 
     return total_energy_used_kwh
 
@@ -180,11 +109,10 @@ def run_system_power(
     dt_min
     ):
 
-    new_solar_arrays, solar_arrays_online_count = solar_arrays_online(state) 
-    total_solar_generated_kw, total_solar_generated_kwh, power_generated_per_array = solar_generation(state, new_solar_arrays, dt_min)
+    solar_field_updates, solar_field_outputs = run_solar_field(state, dt_min)
 
     total_power_used_kw = get_total_power_usage(
-        co2_results["amine_bed_power_used_kw"],
+         co2_results["amine_bed_power_used_kw"],
         oga_results["oga_power_used_kw"],
         light_results["light_power_used_kw"],
         light_results["w_light_power_used_kw"],
@@ -198,6 +126,7 @@ def run_system_power(
         sabatier_outputs.get("sabatier_power_used_kw", 0.0),
         isru_water_outputs.get("isru_water_power_used_kw", 0.0),
         isru_atm_outputs.get("isru_atm_power_used_kw", 0.0),
+        solar_field_outputs["solar_field_power_used_kw"],
     )
 
     total_energy_used_kwh = get_total_energy_usage(
@@ -215,7 +144,11 @@ def run_system_power(
     sabatier_outputs.get("sabatier_energy_used_kwh", 0.0),
     isru_water_outputs.get("isru_water_energy_used_kwh", 0.0),
     isru_atm_outputs.get("isru_atm_energy_used_kwh", 0.0),
+    solar_field_outputs["solar_field_energy_used_kwh"],
     )
+
+    total_solar_generated_kw = solar_field_outputs["solar_field_generated_kw"]
+    total_solar_generated_kwh = solar_field_outputs["solar_field_generated_kwh"]
 
     net_energy_kwh = total_solar_generated_kwh - total_energy_used_kwh
    
@@ -239,14 +172,15 @@ def run_system_power(
     #------------dict for updating state-------------♡ 
     power_updates = {
         "battery_stored_kwh": new_battery_stored_kwh,
-        "solar_arrays": new_solar_arrays,
         "power_mode": power_mode,
+        **solar_field_updates,
     }
     
     #-----------dict for printing outputs------------♡ 
     power_outputs = {
-        "solar_arrays_online_count": solar_arrays_online_count,
-        "power_generated_per_array":  power_generated_per_array,
+        "blocks_online_count": solar_field_outputs["blocks_online_count"],
+        "blocks_flipped_this_step": solar_field_outputs["blocks_flipped_this_step"],
+        "blocks_cleaned_this_step": solar_field_outputs["blocks_cleaned_this_step"],
 
         "total_solar_generated_kw": total_solar_generated_kw,
         "total_solar_generated_kwh": total_solar_generated_kwh,
@@ -256,6 +190,9 @@ def run_system_power(
         
         "total_heat_added_kw": total_heat_added_kw,
         "total_heat_added_kwh": total_heat_added_kwh,
+
+        "solar_field_power_used_kw": solar_field_outputs["solar_field_power_used_kw"],
+        "solar_field_energy_used_kwh": solar_field_outputs["solar_field_energy_used_kwh"],
 
         **light_results,
         "net_energy_kwh": net_energy_kwh,
