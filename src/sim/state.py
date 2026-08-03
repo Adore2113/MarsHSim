@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 #----------------------------------------------------♡
 
-
+#----------------Hab State Class---------------------♡
 @dataclass
 class Habitat_State:
     hab_vol_m3: int
@@ -24,13 +24,16 @@ class Habitat_State:
     peak_sunlight_today: float
     low_sunlight_streak_sols: int
 
+
     #--------------------lights----------------------♡
     light_level: float
     wellness_lights_on: bool
 
+
     #---------------------crew-----------------------♡
     crew_count: int
     crew_activity: str
+
 
     #------------------greenhouse--------------------♡
     greenhouse_vol_m3: int
@@ -59,6 +62,7 @@ class Habitat_State:
     food_support_level: str
     stored_food_still_needed: bool
 
+
     #--------------------thermal---------------------♡
     hab_temp_c: float
     target_temp_c: float
@@ -75,6 +79,7 @@ class Habitat_State:
 
     radiators: list
     heaters: list
+
 
     #-------------------atmosphere-------------------♡
     oga_on: bool
@@ -171,11 +176,12 @@ class Habitat_State:
             return 0
         return 100 * self.ar_kpa / self.total_pressure_kpa
 
-    #------------------amine_beds--------------------♡
+    #----------amine beds----------♡
     amine_beds: list
     scrub_per_bed_kpa: float
 
-    #-----------------power / solar------------------♡
+
+    #---------------------power----------------------♡
     primary_battery_max_capacity_kwh: float
     primary_battery_stored_kwh: float 
 
@@ -189,6 +195,7 @@ class Habitat_State:
     arrays_per_block: int
 
     solar_absorptivity: float
+
 
     #---------------------water----------------------♡
     potable_water_storage_kg: float
@@ -207,20 +214,20 @@ class Habitat_State:
     upa_on: bool
     bpa_on: bool
     wpa_on: bool
-    
-    #------------------placeholders------------------♡
-    #radiation_msv_per_day: float
+
 
     #--------------------sabatier--------------------♡
     sabatier_on: bool
-    
+
+
     #-------------------isru water-------------------♡
     isru_water_on: bool
     isru_pipes: list
 
     raw_isru_water_storage_kg: float
     raw_isru_water_storage_capacity_kg: float
-    
+
+
     #---------------isru atmosphere (atm)------------♡
     isru_atm_on: bool
     isru_compressors: list
