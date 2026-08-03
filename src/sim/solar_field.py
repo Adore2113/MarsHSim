@@ -13,14 +13,14 @@ land_area_m2 = 202300.0
 block_area_m2 = 4046.0
 
 total_panels = 101250
-area_per_panel_m2 = 2.0
-
 total_arrays = 2250
-panels_per_array = 45
-area_per_array_m2 = 89.9
-
 total_blocks = 50
+
+panels_per_array = 45
 arrays_per_block = 45
+
+area_per_panel_m2 = 2.0
+area_per_array_m2 = 89.9
 
 #------seasonal operation------♡
 target_seasonal_blocks_online = 38
