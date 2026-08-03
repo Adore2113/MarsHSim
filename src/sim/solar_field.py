@@ -62,7 +62,16 @@ def get_season_tilt_deg(state):
 
 
 #--------------tilt to sun efficiency---------------♡
+def get_tilt_efficiency_factor(state, tilt_deg):
+    solar_decline_deg = get_solar_decline_deg(state)
+    noon_sun_elevation_deg = 90.0 - abs(latitude_north_deg - solar_decline_deg)
+    
+    optimal_tilt_deg = 90.0 - noon_sun_elevation_deg
 
+    tilt_mismatch_deg = abs(tilt_deg - optimal_tilt_deg)
+    tilt_efficiency_factor = max(0.7, math.cos(math.radians(tilt_mismatch_deg)))
+
+    return tilt_efficiency_factor
 
 
 #---------------target blocks online----------------♡
