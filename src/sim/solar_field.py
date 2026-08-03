@@ -43,7 +43,7 @@ storm_protection_tau = 1.75
 
 #-----dust buildup------♡
 base_block_dust_rate_per_sol = 0.006    # open panels
-min_operating_efficiency = 0.55    # when cleaning becomes mandatory
+minimum_safe_dust_factor = 0.55
 cleaning_trigger_dust_factor = 0.75
 
 dust_factor_restored = 0.35
@@ -58,9 +58,8 @@ def get_target_blocks_online(state):
 
     #-----panel protection-----♡
     storm_active = getattr(state, "storm_active", False)
-    opacity_tau = getattr(state, "opacity_tau", 0.0)
-
-    dangerous_storm = (storm_active or opacity_tau >= storm_protection_tau)
+    dust_opacity_tau = state.dust_opacity_tau
+    dangerous_storm = (storm_active or dust_opacity_tau >= storm_protection_tau)
 
     if dangerous_storm:
         return 0
@@ -68,7 +67,7 @@ def get_target_blocks_online(state):
     #-----timed panel flip-----♡
     if lmst_decimal_hour >= panel_flip_down_time:
         return 0
-
+    
     if sunlight_amount < panel_flip_up_sunlight:
         return 0
     
@@ -83,6 +82,11 @@ def get_target_blocks_online(state):
 
     return target_seasonal_blocks_online
 
+
+# -duration
+# -queue
+# -maximum number of simultaneous cleanings
+# -cleaning availability state
 
 #------------flip blocks to match target------------♡
 def manage_block_flips(state, dt_min):
@@ -135,7 +139,7 @@ def dust_and_cleaning(new_blocks, dt_min):
     for block in new_blocks:
         if block["flip_position"] == "up":
             dust_loss = base_block_dust_rate_per_sol * sols_per_step
-            block["dust_factor"] = max(0.0, block["dust_factor"] - dust_loss)
+            block["dust_factor"] = max(minimum_safe_dust_factor, block["dust_factor"] - dust_loss)
 
             if block["dust_factor"] <= cleaning_trigger_dust_factor:
                 block["dust_factor"] = min(1.0, block["dust_factor"] + dust_factor_restored)
@@ -156,9 +160,11 @@ def get_block_generation(state, new_blocks, dt_min):
     hours_per_step = dt_min / 60.0
     sunlight_amount = get_sunlight_amount(state)
 
-    base_irradiance_w_per_m2 = clear_sky_peak_irradiance_w_per_m2 * sunlight_amount
-    irradiance_w_per_m2 = (clear_sky_peak_irradiance_w_per_m2 * sunlight_amount)    
-
+    dust_opacity_tau = state.dust_opacity_tau
+    atmospheric_transmission = math.exp(-0.5 * dust_opacity_tau)    # sunlight that actually reaches the panels
+    irradiance_w_per_m2 = clear_sky_peak_irradiance_w_per_m2 * sunlight_amount * atmospheric_transmission
+    irradiance_w_per_m2 = max(irradiance_w_per_m2, min_irradiance_w_per_m2)
+    
     total_field_power_generated_kw = 0.0
 
     for block in new_blocks:
