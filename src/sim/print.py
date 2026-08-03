@@ -51,7 +51,8 @@ def print_sim(state, outputs, alerts):
 
 
 #--------------------sol summary---------------------♡
-def print_sol_summary(sol_totals, sol):
+def print_sol_summary(state, sol_totals):
+    sol, _, _ = get_sol_time(state)
     print_section_header(f"SOL {sol} SUMMARY")
 
     print(f"{'Solar Generated:':<{lw}} {sol_totals['solar_generated_kwh']:.2f} kWh")
@@ -208,13 +209,15 @@ def print_power(state, outputs):
     print(f"{'Battery Capacity:':<{lw}} {state.battery_max_capacity_kwh:.0f} kWh")
 
     #-------------solar-------------♡
-    print(f"\n{'Solar Arrays:':<{lw}} {outputs.get('solar_arrays_online_count', 0)} / 10")
+    print(f"\n{'Solar Blocks Online:':<{lw}} {outputs.get('blocks_online_count', 0)} / 50")
+    print(f"{'Blocks Flipped:':<{lw}} {outputs.get('blocks_flipped_this_step', 0)}")
+    print(f"{'Blocks Cleaned:':<{lw}} {outputs.get('blocks_cleaned_this_step', 0)}")
     print(f"{'Solar Generated:':<{lw}} {outputs.get('total_solar_generated_kw', 0):.2f} kW")
-    print(f"{'Sunlight per m²:':<{lw}} {state.daylight_m2_kw:.3f} kW")
+    print(f"{'Solar Field Maintenance:':<{lw}} {outputs.get('solar_field_power_used_kw', 0):.2f} kW")
     print(f"{'Peak Sun Today:':<{lw}} {state.peak_sunlight_today:.3f} / 1.0")
     print(f"{'Low Sun Streak:':<{lw}} {state.low_sunlight_streak_sols} sols")
     print(f"{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'off'}")
-
+    
     #-----------power used----------♡
     print(f"\n{'Total Power Used:':<{lw}} {outputs.get('total_power_used_kw', 0):.2f} kW")
     print(f"{'OGA:':<{lw}} {outputs.get('oga_power_used_kw', 0):.2f} kW")
