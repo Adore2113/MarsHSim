@@ -3,6 +3,8 @@ import math
 from .mars_time import get_sunlight_amount, current_mars_season, get_sol_time, seconds_per_sol, get_solar_decline_deg, latitude_north_deg
 #----------------------------------------------------♡
 
+# file for handling solar field and arrays/blocks
+
 #--------------------constants-----------------------♡
 land_area_acres = 50.0
 land_area_hectares = 20.23
@@ -47,9 +49,9 @@ minimum_safe_dust_factor = 0.55
 cleaning_trigger_dust_factor = 0.75
 
 dust_factor_restored = 0.35
-#---------------------------------------------------♡
+#----------------------------------------------------♡
 
-#---------------seasonal tilt angles----------------♡
+#---------------seasonal tilt angles-----------------♡
 def get_season_tilt_deg(state):
     season = current_mars_season(state)
     if season == "northern_summer":
@@ -61,7 +63,7 @@ def get_season_tilt_deg(state):
     return default_tilt_deg
 
 
-#--------------tilt to sun efficiency---------------♡
+#--------------tilt to sun efficiency----------------♡
 def get_tilt_efficiency_factor(state, tilt_deg):
     solar_decline_deg = get_solar_decline_deg(state)
     noon_sun_elevation_deg = 90.0 - abs(latitude_north_deg - solar_decline_deg)
@@ -74,7 +76,7 @@ def get_tilt_efficiency_factor(state, tilt_deg):
     return tilt_efficiency_factor
 
 
-#---------------target blocks online----------------♡
+#---------------target blocks online-----------------♡
 def get_target_blocks_online(state):
     sunlight_amount = get_sunlight_amount(state)
     _, lmst_hour, lmst_minute = get_sol_time(state)
@@ -106,7 +108,7 @@ def get_target_blocks_online(state):
     return target_seasonal_blocks_online
 
 
-#------------flip blocks to match target------------♡
+#------------flip blocks to match target-------------♡
 def manage_block_flips(state, dt_min):
     hours_per_step = dt_min / 60.0
 
@@ -146,7 +148,7 @@ def manage_block_flips(state, dt_min):
     return new_blocks, blocks_up_count, flips_this_step, flip_energy_used_kwh, flip_power_used_kw
 
 
-#------------dust build up and cleaning-------------♡
+#------------dust build up and cleaning--------------♡
 def dust_and_cleaning(new_blocks, dt_min):
     hours_per_step = dt_min / 60.0
     seconds_per_step = dt_min * 60.0
@@ -173,13 +175,17 @@ def dust_and_cleaning(new_blocks, dt_min):
     return new_blocks, cleaned_this_step, cleaning_energy_used_kwh, cleaning_power_used_kw
 
 
-#------------field power generation-----------------♡
+#------------field power generation------------------♡
 def get_block_generation(state, new_blocks, dt_min):
     hours_per_step = dt_min / 60.0
     sunlight_amount = get_sunlight_amount(state)
 
     dust_opacity_tau = state.dust_opacity_tau
     atmospheric_transmission = math.exp(-0.5 * dust_opacity_tau)    # sunlight that actually reaches the panels
+    
+    tilt_deg = get_season_tilt_deg(state)
+    tilt_efficiency_factor = get_tilt_efficiency_factor(state, tilt_deg)
+
     irradiance_w_per_m2 = clear_sky_peak_irradiance_w_per_m2 * sunlight_amount * atmospheric_transmission
     irradiance_w_per_m2 = max(irradiance_w_per_m2, min_irradiance_w_per_m2)
     
@@ -194,7 +200,8 @@ def get_block_generation(state, new_blocks, dt_min):
 
     return total_field_power_generated_kw, total_field_energy_generated_kwh
 
-#----------------run solar field--------------------♡
+
+#----------------run solar field---------------------♡
 def run_solar_field(state, dt_min):
     new_blocks, blocks_up_count, flips_this_step, flip_energy_used_kwh, flip_power_used_kw = manage_block_flips(state, dt_min)
     new_blocks, cleaned_this_step, cleaning_energy_used_kwh, cleaning_power_used_kw = dust_and_cleaning(new_blocks, dt_min)
@@ -203,10 +210,10 @@ def run_solar_field(state, dt_min):
     solar_maintenance_power_used_kw = flip_power_used_kw + cleaning_power_used_kw
     solar_maintenance_energy_used_kwh = flip_energy_used_kwh + cleaning_energy_used_kwh
 
-    #------------dict for updating state------------♡ 
+    #------------dict for updating state-------------♡ 
     solar_field_updates = {"solar_blocks": new_blocks,}
 
-    #-----------dict for printing outputs-----------♡ 
+    #-----------dict for printing outputs------------♡ 
     solar_field_outputs = {
         "blocks_online_count": blocks_up_count,
         "blocks_flipped_this_step": flips_this_step,
@@ -221,7 +228,7 @@ def run_solar_field(state, dt_min):
 
     return solar_field_updates, solar_field_outputs
 
-#---------------------------------------------------♡
+#----------------------------------------------------♡
 # V2: Solar field wind protection:
 #    ♡ sustained wind detection
 #    ♡ gust detection
@@ -229,5 +236,5 @@ def run_solar_field(state, dt_min):
 #    ♡ emergency override
 #    ♡ low sunlight override
 #    ♡ mechanical wear
-#---------------------------------------------------♡
+#----------------------------------------------------♡
 
