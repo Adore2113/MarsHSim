@@ -205,8 +205,8 @@ def print_water(state, outputs):
 def print_power(state, outputs):
     print_section_header("POWER")
     print(f"{'Net Energy:':<{lw}} {outputs.get('net_energy_kwh', 0):.2f} kWh")
-    print(f"{'Battery Stored:':<{lw}} {state.battery_stored_kwh:.2f} kWh")
-    print(f"{'Battery Capacity:':<{lw}} {state.battery_max_capacity_kwh:.0f} kWh")
+    print(f"{'Battery Stored:':<{lw}} {state.primary_battery_stored_kwh:.2f} kWh")
+    print(f"{'Battery Capacity:':<{lw}} {state.primary_battery_max_capacity_kwh:.0f} kWh")
 
     #-------------solar-------------♡
     print(f"\n{'Solar Blocks Online:':<{lw}} {outputs.get('blocks_online_count', 0)} / 50")
@@ -217,7 +217,7 @@ def print_power(state, outputs):
     print(f"{'Peak Sun Today:':<{lw}} {state.peak_sunlight_today:.3f} / 1.0")
     print(f"{'Low Sun Streak:':<{lw}} {state.low_sunlight_streak_sols} sols")
     print(f"{'Wellness Lights:':<{lw}} {'ON' if state.wellness_lights_on else 'off'}")
-    
+
     #-----------power used----------♡
     print(f"\n{'Total Power Used:':<{lw}} {outputs.get('total_power_used_kw', 0):.2f} kW")
     print(f"{'OGA:':<{lw}} {outputs.get('oga_power_used_kw', 0):.2f} kW")
