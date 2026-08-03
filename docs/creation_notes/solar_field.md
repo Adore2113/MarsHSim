@@ -266,7 +266,7 @@
 
 ### ----------------------------------------
 
-### Arcadia Planitia 50 Acre Solar Design Decisions:
+### Design Decisions:
 #### Why 50 acres?
     ♡ I chose 50 acres because it's a land size I grew up around
         
@@ -344,6 +344,19 @@
 
     ♡ I'm considering angle changes after seasonal production is tested in the simulation
 
+#### Why flip the panels at night and during storms?
+    ♡ nighttime is a predictable period when the arrays are not generating power
+
+    ♡ flipping during severe storms helps protect the active panel surface from abrasive dust and debris
+
+    ♡ cleaning at night avoids interrupting daytime power production
+
+    ♡ it reduces unnecessary environmental exposure, which may increase equipment longevity
+
+    ♡ to simplify V1 by using a fixed daily schedule
+
+    ♡ more advanced environmental decision making can be added in future versions
+
 
 ### ----------------------------------------
 
@@ -362,8 +375,16 @@
 ###### 08/02/2026
     ♡ choosing the mid point to the estimates in my notes for variable values
 
-    ♡ I'm going to stick with a hardcoded tilt angle for v1 instead of adding in the sun's elevation angle
-
     ♡ I considered adding the wind speed to solar_field.py to inlcude them flipping when so much wind has picked up, but I feel like this could cause problems, like constant fliping and covering, and potentially missing out on sunlight in crucial conditions, along with wasted energy and mechanical wear.. this could have an option to be overwritten during low sol streaks, and set so the wind would have to be very harsh for them to cover
 
-    ♡ right now I have ~ 69,000 + kWh/sol extra beign generated, b/c I haven't set up a true power storage system and a separate large capacity power storage that only fills once the primary is topped off, and only sends it back into the primary storage battery
+    ♡ chose midpoint values from research estimates for the initial V1 implementation
+
+    ♡ designed nighttime panel behavior
+        - panels flip at a scheduled nighttime time
+        - panels return upright when daylight is detected
+        - daytime dust storms trigger protective flipping
+        - future versions may also react to severe wind conditions
+
+    ♡ current simulation generates just over ~ 69,000 kWh/sol of excess power:
+        - large scale energy storage has not been implemented yet
+        - plan to add secondary long term storage that fills only after the main battery reaches capacity
