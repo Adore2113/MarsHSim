@@ -64,7 +64,7 @@ def get_gas_alerts(state):
 #--------------------power alerts-------------------♡
 def get_power_alerts(state):
     power_alerts = []
-    battery_pct = state.battery_stored_kwh / state.battery_max_capacity_kwh
+    battery_pct = state.primary_battery_stored_kwh / state.primary_battery_max_capacity_kwh
 
     if battery_pct <= 0.10:
         power_alerts.append("CRITICAL: Battery power critical")
