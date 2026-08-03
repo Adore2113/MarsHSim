@@ -146,12 +146,12 @@ class Habitat_State:
     ch4_storage_capacity_kg: float
     h2_storage_capacity_kg: float
 
-
-    #------pressure percentages w. Dalton's Law------♡
+    #-----------pressure-----------♡
     @property
     def total_pressure_kpa(self) -> float:
         return self.o2_kpa + self.co2_kpa + self.n2_kpa + self.ar_kpa + self.ch4_kpa + self.h2_kpa
-
+    
+    #------pct w. Dalton's Law-----♡
     @property
     def o2_percent(self):
         if self.total_pressure_kpa == 0:
@@ -184,6 +184,9 @@ class Habitat_State:
     #---------------------power----------------------♡
     primary_battery_max_capacity_kwh: float
     primary_battery_stored_kwh: float 
+
+    battery_bank_max_capacity_kwh: float
+    battery_bank_stored_kwh: float
 
     #-----solar fields----♡
     land_area_acres: float
