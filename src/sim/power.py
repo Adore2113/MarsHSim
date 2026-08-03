@@ -152,10 +152,10 @@ def run_system_power(
 
     net_energy_kwh = total_solar_generated_kwh - total_energy_used_kwh
    
-    new_battery_stored_kwh = state.battery_stored_kwh + net_energy_kwh
-    new_battery_stored_kwh = max(0.0, min(state.battery_max_capacity_kwh, new_battery_stored_kwh))
+    new_primary_battery_stored_kwh = state.primary_battery_stored_kwh + net_energy_kwh
+    new_primary_battery_stored_kwh = max(0.0, min(state.primary_battery_max_capacity_kwh, new_primary_battery_stored_kwh))
    
-    battery_percentage = (new_battery_stored_kwh / state.battery_max_capacity_kwh)
+    battery_percentage = (new_primary_battery_stored_kwh / state.primary_battery_max_capacity_kwh)
 
     if battery_percentage <= 0.10:
         power_mode = "critical"
@@ -171,7 +171,7 @@ def run_system_power(
 
     #------------dict for updating state-------------♡ 
     power_updates = {
-        "battery_stored_kwh": new_battery_stored_kwh,
+        "primary_battery_stored_kwh": new_primary_battery_stored_kwh,
         "power_mode": power_mode,
         **solar_field_updates,
     }
