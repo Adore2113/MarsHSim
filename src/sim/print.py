@@ -4,6 +4,7 @@ from .buffer_gas import mca
 from .alerts import get_status
 #----------------------------------------------------♡
 
+# file for terminal output
 
 #--------------------constants-----------------------♡
 width = 33
@@ -17,7 +18,6 @@ def print_header():
     print(deco)
     print("Adore2113's MarsHSim".center(width))
     print(deco)
-#----------------------------------------------------♡
 
 #-------------------section header-------------------♡
 def print_section_header(title):
@@ -205,8 +205,12 @@ def print_water(state, outputs):
 def print_power(state, outputs):
     print_section_header("POWER")
     print(f"{'Net Energy:':<{lw}} {outputs.get('net_energy_kwh', 0):.2f} kWh")
-    print(f"{'Battery Stored:':<{lw}} {state.primary_battery_stored_kwh:.2f} kWh")
-    print(f"{'Battery Capacity:':<{lw}} {state.primary_battery_max_capacity_kwh:.0f} kWh")
+    print(f"{'Primary Battery Stored:':<{lw}} {state.primary_battery_stored_kwh:.2f} kWh")
+    print(f"{'Primary Battery Capacity:':<{lw}} {state.primary_battery_max_capacity_kwh:.0f} kWh")
+
+    print(f"\n{'Bank Stored:':<{lw}} {state.battery_bank_stored_kwh:,.2f} kWh")
+    print(f"{'Bank Capacity:':<{lw}} {state.battery_bank_max_capacity_kwh:,.0f} kWh")
+    print(f"{'Bank Transfer:':<{lw}} {outputs.get('battery_bank_transfer_kwh', 0):+.2f} kWh")
 
     #-------------solar-------------♡
     print(f"\n{'Solar Blocks Online:':<{lw}} {outputs.get('blocks_online_count', 0)} / 50")
