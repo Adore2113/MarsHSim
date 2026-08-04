@@ -1210,37 +1210,53 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      07/26/2026
     ♡ organizing notes and files before implementing updated 50acre solar plan
 
-    ♡ I've decided to move my notes out of v1_scope.md and create a file called creation_notes and have a file for the systems so I can quick reference them, I need to decide if they all get their own files with current notes and note histories, or one large file. Seperate files seems more efficient but it adds more folders and I haven't decided if that's unappealing or not 
+    ♡ I've decided to move my notes out of v1_scope.md and create a file called creation_notes and have a file for the systems so I can quick reference them, I need to decide if they all get their own files w. current notes and note histories, or one large file. Seperate files seems more efficient but it adds more folders and I haven't decided if that's unappealing or not 
 
 
 ##      07/30/2026
-    ♡ consider moving the venting air to clean solar panels??
+    ♡ reasearch day
 
 
 ##      08/02/2026
-    ♡ starting to implement my 50 acre solar plan starting with updating state and run.py before adding to solar_field.py , I'm wondering if some of these variables should be in state, or in their own relevant files
+    ♡ starting to implement my 50 acre solar plan starting w. updating state and run.py before adding to solar_field.py , I'm wondering if some of these variables should be in state, or in their own relevant files
 
     ♡ my state variables are the values that change during the simulation, but also vairables that I chose, not universal known constants
 
-    ♡ I'm chosing to stick with consistency at this point, especially b/c state isn't really that long
+    ♡ I'm chosing to stick w. consistency at this point, especially b/c state isn't really that long
 
     ♡ choosing the mid point to the estimates in my notes for variable values
 
-    ♡ I'm going to stick with a hardcoded tilt angle for v1 instead of adding in the sun's elevation angle
+    ♡ I'm going to stick w. a hardcoded tilt angle for v1 instead of adding in the sun's elevation angle
 
-    ♡ I'm consiering what happens with my panels at night, I was thinking they be flipped and covered at night but that would be a lot of wear on the panels over time.. I suppose this is okay for v1 but needs to be revisited
+    ♡ I'm consiering what happens w. my panels at night, I was thinking they be flipped and covered at night but that would be a lot of wear on the panels over time.. I suppose this is okay for v1 but needs to be revisited
 
     ♡ I'm going to have them flip over at a certain time per night and flip back over when it senses daylight, and when the habitat is in a storm situation during the day while the panels are flipped up, they will flip over and protect themselves, perhaps after they detect high wind, the habitat could detect this and they would flip for this too
 
     ♡ add wind calculations to mars_time.py for v2?
 
-    ♡ I considered adding the wind speed to solar_field.py to inlcude them flipping when so much wind has picked up, but I feel like this could cause problems, like constant fliping and covering, and potentially missing out on sunlight in crucial conditions, along with wasted energy and mechanical wear.. this could have an option to be overwritten during low sol streaks, and set so the wind would have to be very harsh for them to cover
+    ♡ I considered adding the wind speed to solar_field.py to inlcude them flipping when so much wind has picked up, but I feel like this could cause problems, like constant fliping and covering, and potentially missing out on sunlight in crucial conditions, along w. wasted energy and mechanical wear.. this could have an option to be overwritten during low sol streaks, and set so the wind would have to be very harsh for them to cover
 
     ♡ I need to add cleaning/fliping: duration, queue, maximum number of simultaneous cleanings and cleaning availability state
 
     ♡ I updated the files to now run the updated solar field and removed the old array variables and system, now I need to incorporate the tilt
 
-    ♡ right now I have ~ 69,000 + kWh/sol extra beign generated, b/c I haven't set up a true power storage system and a separate large capacity power storage that only fills once the primary is topped off, and only sends it back into the primary storage battery
+    ♡ right now I have ~ 69,000 + kWh/sol extra being generated, b/c I haven't set up a true power storage system and a separate large capacity power storage that only fills once the primary is topped off, and only sends it back into the primary storage battery
 
 #### Next Session:
-    ♡ start incorporating battery and power storage as mentioned above, continue sorting notes starting with lights and greenhouse
+    ♡ start incorporating battery and power storage as mentioned above, continue sorting notes starting w. updating solar_fields.md and then lights and greenhouse
+
+
+##      08/03/2026
+    ♡ I'm going to set the primary battery at 25,000 kWh for now, until I have the true average energy used from longer testing and thes econday I'm going to set for 1,500,000 kWh (1.5 GWh)  (I might move this up to 2,000,000 kWh), which might seem excessive but I'm going for long-term w. no resupply
+
+    ♡ there will be thresholds for the power pulls and when to accept charging for the second battery
+
+    ♡ renamed battery_max_capacity_kwh to primary_battery_max_capacity_kwh
+
+    ♡ seperating habitat lighting into it's own file, I'll probably leave the greenhouse lights in the greenhouse file though
+
+    ♡ I'm considering files for constants b/c some of my files have a ton, but I'm not sure which seems more cluttered.. more files or longer constants
+
+
+##      08/04/2026
+    ♡ 
