@@ -25,6 +25,7 @@
 
 #### Main Lights:
     ♡ light level scales power and heat proportionally
+
     ♡ maximum light level: 1.0
     ♡ minimum normal light level: 0.2
     ♡ full lighting power: 2.0 kW
@@ -41,6 +42,7 @@
 
 #### Wellness Lights:
     ♡ activated after prolonged periods of low natural sunlight to support crew wellness
+
     ♡ full wellness light level: 1.0
     ♡ inactive wellness light level: 0.0
     ♡ full wellness lighting power: 0.5 kW
@@ -54,7 +56,7 @@
 
 ### ----------------------------------------
 
-#### Main Lighting Schedule:
+#### Main Light Schedule:
     ♡ crew awake hours: 6:00–21:30 LMST
     ♡ full light period: 15.5 hours/sol
     ♡ dim light period: 8.5 hours/sol
@@ -76,13 +78,18 @@
 
 ### ----------------------------------------
 
-#### Wellness Lighting Operation:
-    ♡ activation trigger: 3 consecutive low sunlight sols
+#### Wellness Light Operation:
+    ♡ activation trigger: 3 consecutive low sunlight sols 
+    
     ♡ deactivation trigger: 1 or fewer consecutive low sunlight sols
+    
     ♡ previous state maintained at: 2 consecutive low sunlight sols
-    ♡ power while active: 0.5 kW
-    ♡ heat output while active: 0.1 kW
-    ♡ calculation:
+
+    ♡ follows the current habitat power mode
+
+    ♡ disabled during low and critical power modes
+    
+    ♡ calculation (when active):
         - active power:
             0.5 kW × 1.0 = 0.5 kW
         - active heat:
@@ -95,101 +102,37 @@
 
 ### ----------------------------------------
 
-#### Greenhouse Plant Lights:
-    ♡ artificial grow lights
-    ♡ plant lights are separate from main habitat lights
-    ♡ total effective grow area: not finalized
-    ♡ LED power density: 0.12 kW/m²
-    ♡ LED heat ratio: 0.68
-    ♡ full LED light level: 1.0
-    ♡ calculation:
-        - full LED power:
-            effective grow area × 0.12 kW/m²
-        - LED heat output:
-            full LED power × 0.68
-        - full cycle energy:
-            full LED power × 16 hours
+#### Greenhouse Lights:
+    ♡ plant lighting is now in greenhouse.md
 
-#### Greenhouse Plant Lighting Schedule:
-    ♡ plant light start time: 5:00 LMST
-    ♡ plant light end time: 21:00 LMST
-    ♡ full plant light period: 16 hours/sol
-    ♡ dark cycle: 8 hours/sol
-    ♡ calculation:
-        - plant light end:
-            5:00 + 16 hours = 21:00 LMST
-        - dark cycle:
-            24 hours - 16 hours = 8 hours
-
-#### Greenhouse Plant Lighting Modes:
-    ♡ dark cycle:
-        - plant LED level: 0.0
-
-    ♡ full LED support:
-        - used when effective sunlight is at or below 0.15 kW/m²
-        - plant LED level: 1.0
-
-    ♡ LED support:
-        - used when sunlight is useful but below the plant light target
-        - LED level changes according to the remaining light requirement
-
-    ♡ sunlight only:
-        - used when effective natural sunlight meets or exceeds the light target
-        - plant LED level: 0.0
-
-    ♡ calculation:
-        - effective natural light:
-            natural light per m² × light absorption × day-length bonus
-
-        - partial LED support:
-            (light target - effective natural light) ÷ light target
-
-
-#### Greenhouse Habitat Lighting:
-    ♡ greenhouse habitat lighting is currently part of the main habitat light system
-    ♡ while greenhouse plant lights are producing light:
-            - greenhouse habitat lights remain off
-    ♡ when greenhouse plant lights are off:
-            - follows the current habitat light level
-            - follows the current habitat power mode
-    ♡ calculation:
-        - plant lights producing light:
-                greenhouse habitat light level = 0.0
-
-        - plant lights not producing light:
-                greenhouse habitat light level = adjusted habitat light level
+    ♡ greenhouse habitat lighting follows the current habitat lighting level whenever the plant lights are off
 
 
 ### ----------------------------------------
 
 #### Low Power Operation:
     ♡ main habitat lighting is reduced during low and critical power modes
+
     ♡ wellness lighting is disabled during low and critical power modes
-    ♡ greenhouse plant lighting is reduced separately by the greenhouse system
 
 #### Low Power Mode:
     ♡ main habitat light multiplier: 0.5
     ♡ wellness light level: 0.0
-    ♡ greenhouse plant light multiplier: 0.6
     ♡ calculation:
         - main lights:
                 adjusted light level × 0.5
         - wellness lights:
                 1.0 × 0.0 = 0.0
-        - greenhouse plant lights:
-                LED level × 0.6
 
 #### Critical Power Mode:
     ♡ main habitat light multiplier: 0.3
     ♡ wellness light level: 0.0
-    ♡ greenhouse plant light multiplier: 0.2
     ♡ calculation:
         - main lights:
             adjusted light level × 0.3
         - wellness lights:
             1.0 × 0.0 = 0.0
-        - greenhouse plant lights:
-            LED level × 0.2
+
 
 ### ----------------------------------------
 
@@ -197,8 +140,6 @@
     ♡ calculate the total habitat floor area
 
     ♡ separate habitat lighting into physical zones
-
-    ♡ calculate the greenhouse habitat lighting area separately
 
     ♡ replace preliminary lighting capacity values with area based calculations
 
@@ -209,11 +150,23 @@
         -maintenance areas
         -sleeping areas
 
-    ♡ give wellness lights the same turn off schedule for night time
+    ♡ give wellness lights a nighttime shutoff schedule
+
 
 ### ----------------------------------------
 
-### Lighting Design Decisions:
+### Design Evolution
+#### Early Lighting System:
+    ♡ habitat lighting originally lived inside power.py
+
+    ♡ later moved into its own file lights.py
+
+    ♡ greenhouse lighting is still with the greenhouse subsystem
+
+
+### ----------------------------------------
+
+### Design Decisions:
 #### Why wellness lights?
     ♡ I considered seasonal changes on Earth and how people can be affected by long periods without enough natural sunlight
 
@@ -222,23 +175,12 @@
     ♡ mock sunlight is better than no sunlight during
       prolonged dark periods
 
-#### Why timed greenhouse lights?
-    ♡ constant lights were taking up too much power (this was before my upgraded 50acre solar plan)
+#### Why separate habitat lighting and wellness lighting?
+    ♡ habitat lighting powers the whole habitat
 
-    ♡ plants require a controlled photoperiod rather than continuous lighting
+    ♡ wellness lighting only exists to support crew health during prolonged low sunlight
 
-    ♡ timed lighting allows crops to receive consistent lighting even when natural daylight changes by season
-
-    ♡ the dark cycle gives crops a regular period without plant lighting
-
-    ♡ natural sunlight can reduce the amount of LED support required during the scheduled light period
-
-#### Why sync greenhouse habitat lights?
-    ♡ greenhouse plant lights already provide visibility while they are active
-
-    ♡ keeping the habitat lights off during that time avoids unnecessary duplicate lighting
-
-    ♡ when the plant lights are off, the greenhouse follows the same lighting conditions as the rest of the habitat
+    ♡ separating them allows wellness lighting to be disabled during low power without affecting normal habitat operation
 
 
 ### ----------------------------------------
@@ -264,4 +206,8 @@
 ###### 07/26/2026:
     ♡ greenhouse habitat lighting will sync with the rest of the habitat when plant lighting is not producing light
 
-    ♡ 
+
+###### 08/03/2026:
+    ♡ separated habitat lighting into its own subsystem
+
+    ♡ greenhouse lighting remains with the greenhouse subsystem
