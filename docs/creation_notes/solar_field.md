@@ -375,7 +375,7 @@
 ###### 08/02/2026
     ♡ choosing the mid point to the estimates in my notes for variable values
 
-    ♡ I considered adding the wind speed to solar_field.py to inlcude them flipping when so much wind has picked up, but I feel like this could cause problems, like constant fliping and covering, and potentially missing out on sunlight in crucial conditions, along with wasted energy and mechanical wear.. this could have an option to be overwritten during low sol streaks, and set so the wind would have to be very harsh for them to cover
+    ♡ considered automatic wind based panel protection but decided against it for now b/c of unnecessary flipping, energy use and mechanical wear
 
     ♡ chose midpoint values from research estimates for the initial V1 implementation
 
