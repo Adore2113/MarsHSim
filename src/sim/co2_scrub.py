@@ -1,24 +1,27 @@
 # file for co2 removal and amine bed functions
 
-
 #--------------------constants-----------------------♡
+#---------conversions---------♡
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 pa_per_kpa = 1000.0   # kilopascals to pascals
 r_kpa = 0.008314   # universal gas constant, 8.314 / 1000
 kg_per_g = 0.001
 co2_molar_mass = 0.04401    # kg per mole
 
+#--------amine beds----------♡
 min_beds_online = 2
 max_beds_online = 6
 bed_switch_interval_s = 3300
 bed_switch_power_multiplier = 1.25
 
+#------power & heat----------♡
 base_power_per_bed_kw = 0.65
 base_heat_per_bed_kw = 0.35
 
 power_per_kpa_removed_kw = 4.2
 heat_per_kpa_removed_kw = 1.8
 
+#------control logic---------♡
 co2_hysteresis_for_on = 0.05
 co2_hysteresis_for_off = 0.03
 #----------------------------------------------------♡
