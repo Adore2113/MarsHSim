@@ -134,7 +134,7 @@
 
 #### Early Lighting Assumptions:
     ♡ light level range:
-        0.0–1.0
+        0.0 – 1.0
 
     ♡ minimum lighting:
         0.20
@@ -153,7 +153,7 @@
 
     ♡ I needed to consider long term energy storage
 
-    ♡ it helps out when there are sols without sunlight for solar array regen and storms
+    ♡ it helps during prolonged dust storms, solar array regen and sols with low solar production
 
 #### Why charge the primary battery first?
      ♡ the habitat should always maintain a highly available working battery
@@ -207,9 +207,9 @@
     ♡ average simulation before implementing the 50-acre solar field:
         - solar Generated: 559.26 kWh
         - total Energy Used: 649.12 kWh
-        - net Energy:-89.86 kWh
+        - net Energy: 89.86 kWh
     
-###### 08/03/2026
+###### 08/03/2026:
     ♡ increased the temporary primary battery capacity to 25,000 kWh
 
     ♡ set the secondary battery bank to 1,500,000 kWh (1.5 GWh) for long term habitat survival
