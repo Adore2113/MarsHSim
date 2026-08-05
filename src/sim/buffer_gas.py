@@ -1,6 +1,5 @@
 # file for Major Constituent Analyzer and buffer gas control
 
-
 #--------------------constants-----------------------♡
 kelvin_offset = 273.15   # add to celsius to convert to kelvin
 pa_per_kpa = 1000.0   # kilopascals to pascals
@@ -30,7 +29,7 @@ def mca(state):
 
 #-----------------buffer gas system-----------------♡
 def run_buffer_gas_control(state, dt_min):
-    hours_per_step = dt_min / 60
+    hours_per_step = dt_min / 60.0
 
     buffer_gas_mode = "stable"
     total_buffer_gas_added_kpa = 0.0
