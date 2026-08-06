@@ -105,22 +105,82 @@
  
 ### ----------------------------------------
 
+
+ 
+### ----------------------------------------
+
+## Greenhouse Lighting Plan:
 #### Light Operation:
     ♡ LEDs offset lower natural light
 
+    ♡ full LED light level: 1.0
+    ♡ LED power density: 0.12 kW/m²
+    ♡ LED heat ratio: 0.68
+    ♡ LED support fills whatever gap is left below each zone's light target
+    
     ♡ effective light per zone:
-        natural_light_kw_per_m2 × light_absorption × day_length_bonus
+        - default zone light target: 0.70 kW/m²
+        - default zone light absorption: 70%
+
+        - best sunlight: 0.45 kW/m²
+        - minimum useful sunlight: 0.15 kW/m²
 
     ♡ day_length_bonus:
-        0.70 + (0.30 × daylight_fraction)
+        - used to adjust effective natural light according to the current amount of daylight
+
+        - minimum day length value: 0.70
+        - daylight contribution: 0.30
 
     ♡ calculation:
+        - effective light per zone:
+            natural_light_kw_per_m2 × light_absorption × day_length_bonus
+
         - shortest daylight fraction:
             0.70 × natural light
 
         - longest daylight fraction:
             1.00 × natural light
 
-        - LED support fills whatever gap is left below each zone's light target
- 
-### ----------------------------------------
+        - day_length_bonus: 
+            0.70 + (0.30 × daylight_fraction)
+        
+
+#### Plant Lighting Schedule:
+    ♡ full plant light period: 16 hours/sol
+    ♡ plant light start time: 5:00 LMST
+    ♡ plant light end time: 21:00 LMST
+    ♡ calculation: 
+        - light end hour: 
+            (5 + 16) % 24 = 21:00
+
+        - lights on: 
+            05:00–21:00
+
+        - lights off: 
+            21:00–05:00
+
+#### Light Modes:
+    ♡ dark cycle: 
+        - dark cycle: 8 hours/sol
+        - outside scheduled hours, LEDs off
+
+    ♡ full led support: 
+        - used when effective natural light is at or below 0.15 kW/m²
+
+        - plant LED level: 1.0
+
+    ♡ led support:
+        - effective light below the zone's target, LEDs scale to fill the gap
+
+    ♡ sunlight only:
+        - effective light ≥ the zone's target, LEDs off
+
+    ♡ calculation (led support level):
+        - (light_target − effective_light) ÷ light_target
+
+#### Power Mode Dimming:
+    ♡ normal: full led level
+    ♡ low power mode: led level × 0.6
+    ♡ critical power mode: led level × 0.2
+
+
