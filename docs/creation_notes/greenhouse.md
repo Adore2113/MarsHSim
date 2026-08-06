@@ -368,3 +368,51 @@
             plant water uptake × 0.15
 
 ### ----------------------------------------
+
+## CO₂ & O₂ Model:
+#### Photosynthesis:
+    ♡ greenhouse gas exchange depends on plant health and light exposure
+
+    ♡ calculations are performed separately for each greenhouse zone
+
+    ♡ calculation:
+        - photosynthesis factor:
+            light exposure × plant health
+
+        - CO₂ consumed:
+            CO₂ consumption rate per m² per sol × growing area × sol fraction × photosynthesis factor
+
+        - O₂ produced:
+            O₂ production rate per m² per sol × growing area × sol fraction × photosynthesis factor
+
+
+#### Gas Exchange Target:
+    ♡ crew count: 30
+
+    ♡ current crew O₂ demand: 
+        0.00011 kPa/hour/person
+
+    ♡ Mars sol length: 
+        ~ 24.66 hours
+
+    ♡ target greenhouse contribution:
+        ~ 2% of crew O₂ and CO₂ needs
+
+    ♡ calculation:
+        - crew O₂ demand:
+            0.00011 kPa/hour/person × 30 people × 24.66 hours/sol
+            ≈ 0.0814 kPa/sol
+
+        - target greenhouse contribution:
+            0.0814 kPa/sol × 0.02
+            ≈ 0.00163 kPa/sol
+
+        - approximate average target rate across 324 m²:
+            0.00163 kPa/sol ÷ 324 m²
+            ≈ 0.00000503 kPa/m²/sol
+
+    ♡ this average is only a preliminary target
+
+    ♡ final zone rates still need to preserve differences between the structural, container and rack zones
+
+### ----------------------------------------
