@@ -151,29 +151,10 @@
 
 ## Power Usage:        
 #### Plant Light Power:
-    ♡ plant lighting power depends on effective grow area and LED level
-    
     ♡ LED power density: 0.12 kW/m²
-    
-    ♡ calculation:
-        - full LED power: 
-            - effective grow area × 0.12 kW/m²
 
-        - adjusted LED power: 
-            - full LED power × LED level
+    ♡ plant lighting power depends on effective grow area and LED level
 
-        - full cycle energy: 
-            - adjusted LED power × 16 hours
-    
-    ♡ calculation using the current total modeled grow area:
-        - full LED power: 
-            324 m² × 0.12 kW/m² = 38.88 kW
-
-        - maximum energy over the full 16 hour light period: 
-            38.88 kW × 16 hours = 622.08 kWh/sol
-    
-    ♡ this is the theoretical maximum if all three zones use full LED support for the whole scheduled period
-    
     ♡ natural sunlight and partial LED support reduce actual energy use
 
     ♡ measured average, 16-hour schedule (current):
@@ -181,6 +162,13 @@
 
     ♡ measured average, before the 16-hour schedule: 
         ~ 325.6 kWh/sol
+    
+    ♡ calculation:
+        - full LED power: 
+            324 m² × 0.12 kW/m² = 38.88 kW
+
+        - maximum energy over the full 16 hour light period: 
+            38.88 kW × 16 hours = 622.08 kWh/sol
 
 #### Greenhouse Habitat Lighting:
     ♡ greenhouse habitat lighting is part of the main habitat lighting system
@@ -204,7 +192,10 @@
 
 ## Heat Generated:
 #### Plant Light Heat:
+    ♡ LED waste heat: ~ 26.4 kW
     ♡ LED heat ratio: 0.68
+    ♡ structural heat: ~ 4.9 kW
+
     ♡ calculation:
         - LED heat output: 
             plant LED power × 0.68
@@ -215,7 +206,26 @@
         - maximum heat energy over 16 hours:
             26.44 kW × 16 hours ≈ 423.01 kWh/sol
 
-    ♡ structural heat:
-        0.015 kW/m² × 324 m² ≈ 4.9 kW
+        - LED heat: 
+            38.88 kW × 0.68 (waste heat ratio) ≈ 26.4 kW
+
+        -structural heat:
+            0.015 kW/m² × 324 m² ≈ 4.9 kW
 
 ### ----------------------------------------
+
+## Low Power Operation:
+#### Low Power Mode:
+    ♡ greenhouse plant light multiplier: 0.6
+    ♡ calculation:
+        - adjusted LED level:
+            normal LED level × 0.6
+ 
+#### Critical Power Mode:
+    ♡ greenhouse plant light multiplier: 0.2
+    ♡ calculation:
+        - adjusted LED level:
+            normal LED level × 0.2
+
+### ----------------------------------------
+
