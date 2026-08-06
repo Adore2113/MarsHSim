@@ -199,3 +199,23 @@
         
         - plant lights not producing light: 
             greenhouse habitat light level = adjusted habitat light level
+
+### ----------------------------------------
+
+## Heat Generated:
+#### Plant Light Heat:
+    ♡ LED heat ratio: 0.68
+    ♡ calculation:
+        - LED heat output: 
+            plant LED power × 0.68
+
+        - maximum heat output at 38.88 kW:
+            38.88 kW × 0.68 = 26.44 kW
+
+        - maximum heat energy over 16 hours:
+            26.44 kW × 16 hours ≈ 423.01 kWh/sol
+
+    ♡ structural heat:
+        0.015 kW/m² × 324 m² ≈ 4.9 kW
+
+### ----------------------------------------
