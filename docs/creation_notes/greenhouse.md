@@ -72,36 +72,6 @@
 
     ♡ moved to Future Considerations for now
 
-### ----------------------------------------
- 
-#### Power Production:
-    ♡ measured average, 16-hour base light schedule (current):
-          ~ 260.5 kWh/sol
-
-    ♡ measured average, before the 16-hour schedule:
-          ~ 325.6 kWh/sol
-
-    ♡ peak draw, full LED across all zones:
-          ~ 71.3 kW
-
-    ♡ calculation:
-        - base (pumps, circulation, etc.): 
-            0.10 kW/m² × 324 m² = 32.4 kW
-
-        - LED, full support: 
-            0.12 kW/m² × 324 m² = 38.88 kW
-
-        - peak: 
-            32.4 + 38.88 ≈ 71.3 kW
- 
-#### Heat Load:
-    ♡ LED waste heat: ~ 26.4 kW
-    ♡ structural heat: ~ 4.9 kW
-    ♡ calculation (at full LED support):
-        - LED heat: 
-            38.88 kW × 0.68 (waste heat ratio) ≈ 26.4 kW
-        - structural heat: 
-            0.015 kW/m² × 324 m² ≈ 4.9 kW
  
 ### ----------------------------------------
 
@@ -144,7 +114,6 @@
         - day_length_bonus: 
             0.70 + (0.30 × daylight_fraction)
         
-
 #### Plant Lighting Schedule:
     ♡ full plant light period: 16 hours/sol
     ♡ plant light start time: 5:00 LMST
@@ -160,14 +129,20 @@
             21:00–05:00
 
 #### Light Modes:
+    ♡ Power Mode Dimming:
+        - normal: 
+            full led level (1.0)
+        - low power mode:
+            led level × 0.6
+        - critical power mode:
+            led level × 0.2
+
     ♡ dark cycle: 
         - dark cycle: 8 hours/sol
         - outside scheduled hours, LEDs off
 
     ♡ full led support: 
         - used when effective natural light is at or below 0.15 kW/m²
-
-        - plant LED level: 1.0
 
     ♡ led support:
         - effective light below the zone's target, LEDs scale to fill the gap
@@ -177,10 +152,3 @@
 
     ♡ calculation (led support level):
         - (light_target − effective_light) ÷ light_target
-
-#### Power Mode Dimming:
-    ♡ normal: full led level
-    ♡ low power mode: led level × 0.6
-    ♡ critical power mode: led level × 0.2
-
-
