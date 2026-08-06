@@ -23,7 +23,8 @@
     ♡ height: 3.8 m
     ♡ calculation:
         - volume:
-            265 m² × 3.8 m = 1,007 m³
+            265 m² × 3.8 m
+            = 1,007 m³
 
 #### Grow area:
     ♡ 324 m² total effective grow area
@@ -35,7 +36,9 @@
             110 m²
         - rack: 
             124 m²
-        - 90 + 110 + 124 = 324 m²
+        - total:
+            90 + 110 + 124
+            = 324 m²
 
 #### Zones:
     ♡ total model grow area: 324 m²
@@ -53,16 +56,22 @@
         - 0.015 kPa/m²/sol O2/CO2 rate
 
     ♡ calculation:
-        - 90 m² + 110 m² + 124 m² = 324 m²
-        - O2 produced/sol (same per m² rate for CO2 consumed):
+        - total grow area:
+            90 m² + 110 m² + 124 m²
+            = 324 m²
+
+        - O2 produced/sol (same as CO2 consumed/m²):
             ♡ structural: 
-                0.022 kPa/m²/sol × 90 m² = 1.98 kPa/sol
+                0.022 kPa/m²/sol × 90 m²
+                = 1.98 kPa/sol
 
             ♡ container: 
-                0.020 kPa/m²/sol × 110 m² = 2.20 kPa/sol
+                0.020 kPa/m²/sol × 110 m²
+                = 2.20 kPa/sol
 
             ♡ rack: 
-                0.015 kPa/m²/sol × 124 m² = 1.86 kPa/sol
+                0.015 kPa/m²/sol × 124 m²
+                = 1.86 kPa/sol
 
             ♡ total ≈ 6.04 kPa/sol
 
@@ -70,6 +79,34 @@
     ♡ I don't have racks per zone or containers per rack counts recorded yet
 
     ♡ moved to Future Considerations for now
+
+### ----------------------------------------
+
+## Growth Model:
+#### Growth:
+    ♡ default starting health: 0.98
+    ♡ default starting light exposure: 0.65
+    ♡ default growth multiplier: 1.0
+
+    ♡ growth is tracked by zone instead of by individual crop
+
+    ♡ calculation:
+        - growth increase:
+            base growth rate × growth multiplier × light exposure × health × sol fraction
+
+#### Harvest:
+    ♡ triggers when growth progress reaches or exceeds: 1.0
+
+    ♡ growth progress resets to 0.0 after harvest
+    
+    ♡ food is produced only when a harvest occurs
+
+    ♡ calculation:
+        - food produced:
+            ♡ food yield per m² × growing area × yield multiplier
+
+        - harvest condition:
+            ♡ growth progress ≥ 1.0
 
 ### ----------------------------------------
 
@@ -114,7 +151,8 @@
     ♡ plant light end time: 21:00 LMST
     ♡ calculation: 
         - light end hour: 
-            (5 + 16) % 24 = 21:00
+            (5 + 16) % 24
+            = 21:00
 
         - lights on: 
             05:00–21:00
@@ -170,24 +208,6 @@
         - maximum energy over the full 16 hour light period: 
             38.88 kW × 16 hours = 622.08 kWh/sol
 
-#### Greenhouse Habitat Lighting:
-    ♡ greenhouse habitat lighting is part of the main habitat lighting system
- 
-    ♡ while plant lights are producing light:
-        - greenhouse habitat lights remain off
- 
-    ♡ when plant lights are off:
-        - greenhouse habitat lighting follows the current habitat light level
-
-        - greenhouse habitat lighting follows the current habitat power mode
- 
-    ♡ calculation:
-        - plant lights producing light: 
-            greenhouse habitat light level = 0.0
-        
-        - plant lights not producing light: 
-            greenhouse habitat light level = adjusted habitat light level
-
 ### ----------------------------------------
 
 ## Heat Generated:
@@ -212,20 +232,44 @@
         -structural heat:
             0.015 kW/m² × 324 m² ≈ 4.9 kW
 
-### ----------------------------------------
-
-## Low Power Operation:
-#### Low Power Mode:
-    ♡ greenhouse plant light multiplier: 0.6
-    ♡ calculation:
-        - adjusted LED level:
-            normal LED level × 0.6
- 
-#### Critical Power Mode:
-    ♡ greenhouse plant light multiplier: 0.2
-    ♡ calculation:
-        - adjusted LED level:
-            normal LED level × 0.2
 
 ### ----------------------------------------
 
+## Greenhouse Water Model:
+#### Water Use:
+    ♡ water requirements are calculated by zone
+
+    ♡ structural:
+        - multiplier: 1.15
+        - base water: 3.4 kg/m²/sol
+        - growing area: 90 m²
+
+    ♡ container:
+        - multiplier: 1.00
+        - base water: 2.6 kg/m²/sol
+        - growing area: 110 m²
+
+    ♡ rack:
+        - multiplier: 0.90
+        - base water: 1.95 kg/m²/sol
+        - growing area: 124 m²
+
+    ♡ calculation:
+        - water needed:
+            base water needed per m² × growing area × water multiplier × sol fraction
+
+        - structural:
+            3.4 kg/m²/sol × 90 m² × 1.15
+            = 351.90 kg/sol
+
+        - container:
+            2.6 kg/m²/sol × 110 m² × 1.00
+            = 286.00 kg/sol
+
+        - rack:
+            1.95 kg/m²/sol × 124 m² × 0.90
+            = 217.62 kg/sol
+
+        - total:
+            351.90 + 286.00 + 217.62
+            = 855.52 kg/sol
