@@ -274,6 +274,8 @@
             351.90 + 286.00 + 217.62
             = 855.52 kg/sol
 
+### ----------------------------------------
+
 #### Water Recirculation:
     ♡ default water recirculation efficiency: 93%
     ♡ each zone has its own recirculation efficiency
@@ -339,22 +341,30 @@
         - water balance:
             744.80 + 110.72
             = 855.52 kg/sol
-        
+
+### ----------------------------------------
 
 #### Runoff:
-    ♡ runoff ratio: 8% of water needed
-    ♡ runoff is water leaving the plant containers that can be collected and treated
+    ♡ runoff represents nutrient solution draining from the plant containers
 
-    ♡ calculation:
-        - runoff water:
-            water needed × 0.08
+    ♡ this water is collected and returned to the greenhouse nutrient reservoirs
+
+    ♡ runoff is included in the greenhouse recirculation values above
+
+    ♡ to do:
+        - determine whether runoff should eventually be modeled separately
+
+### ----------------------------------------
 
 #### Transpiration and Plant Mass:
-    ♡ transpiration ratio: 85% of consumed water
-    ♡ plant mass ratio: 15% of consumed water
+    ♡ transpiration ratio: 85% of plant water uptake
+    ♡ plant mass ratio: 15% of plant water uptake
+
     ♡ calculation:
         - transpiration:
-            ♡ water consumed × 0.85
+            plant water uptake × 0.85
 
         - plant mass water:
-            ♡ water consumed × 0.15
+            plant water uptake × 0.15
+
+### ----------------------------------------
