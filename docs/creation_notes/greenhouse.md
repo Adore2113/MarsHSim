@@ -273,3 +273,88 @@
         - total:
             351.90 + 286.00 + 217.62
             = 855.52 kg/sol
+
+#### Water Recirculation:
+    ♡ default water recirculation efficiency: 93%
+    ♡ each zone has its own recirculation efficiency
+
+    ♡ structural:
+        - recirculation efficiency: 82%
+        - water recirculated: 288.56 kg/sol
+        - water taken up by plants: 63.34 kg/sol
+
+    ♡ container:
+        - recirculation efficiency: 88%
+        - water recirculated: 251.68 kg/sol
+        - water taken up by plants: 34.32 kg/sol
+
+    ♡ rack:
+        - recirculation efficiency: 94%
+        - water recirculated: 204.56 kg/sol
+        - water taken up by plants: 13.06 kg/sol
+
+    ♡ total:
+        - water recirculated: 744.80 kg/sol
+        - water taken up by plants: 110.72 kg/sol
+
+    ♡ calculation:
+        - water recirculated:
+            water needed × recirculation efficiency
+
+        - water taken up by plants:
+            water needed × (1.0 - recirculation efficiency)
+
+        - structural recirculated:
+            351.90 kg/sol × 0.82
+            = 288.56 kg/sol
+
+        - structural plant uptake:
+            351.90 kg/sol × 0.18
+            = 63.34 kg/sol
+
+        - container recirculated:
+            286.00 kg/sol × 0.88
+            = 251.68 kg/sol
+
+        - container plant uptake:
+            286.00 kg/sol × 0.12
+            = 34.32 kg/sol
+
+        - rack recirculated:
+            217.62 kg/sol × 0.94
+            = 204.56 kg/sol
+
+        - rack plant uptake:
+            217.62 kg/sol × 0.06
+            = 13.06 kg/sol
+
+        - total water recirculated:
+            288.56 + 251.68 + 204.56
+            = 744.80 kg/sol
+
+        - total plant water uptake:
+            63.34 + 34.32 + 13.06
+            = 110.72 kg/sol
+
+        - water balance:
+            744.80 + 110.72
+            = 855.52 kg/sol
+        
+
+#### Runoff:
+    ♡ runoff ratio: 8% of water needed
+    ♡ runoff is water leaving the plant containers that can be collected and treated
+
+    ♡ calculation:
+        - runoff water:
+            water needed × 0.08
+
+#### Transpiration and Plant Mass:
+    ♡ transpiration ratio: 85% of consumed water
+    ♡ plant mass ratio: 15% of consumed water
+    ♡ calculation:
+        - transpiration:
+            ♡ water consumed × 0.85
+
+        - plant mass water:
+            ♡ water consumed × 0.15
