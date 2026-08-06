@@ -66,26 +66,20 @@
 
             ♡ total ≈ 6.04 kPa/sol
 
-
 #### Zone Subdivision (racks/containers per zone):
     ♡ I don't have racks per zone or containers per rack counts recorded yet
 
     ♡ moved to Future Considerations for now
 
- 
-### ----------------------------------------
-
-
- 
 ### ----------------------------------------
 
 ## Greenhouse Lighting Plan:
 #### Light Operation:
     ♡ LEDs offset lower natural light
-
     ♡ full LED light level: 1.0
     ♡ LED power density: 0.12 kW/m²
     ♡ LED heat ratio: 0.68
+
     ♡ LED support fills whatever gap is left below each zone's light target
     
     ♡ effective light per zone:
@@ -152,3 +146,56 @@
 
     ♡ calculation (led support level):
         - (light_target − effective_light) ÷ light_target
+
+### ----------------------------------------
+
+## Power Usage:        
+#### Plant Light Power:
+    ♡ plant lighting power depends on effective grow area and LED level
+    
+    ♡ LED power density: 0.12 kW/m²
+    
+    ♡ calculation:
+        - full LED power: 
+            - effective grow area × 0.12 kW/m²
+
+        - adjusted LED power: 
+            - full LED power × LED level
+
+        - full cycle energy: 
+            - adjusted LED power × 16 hours
+    
+    ♡ calculation using the current total modeled grow area:
+        - full LED power: 
+            324 m² × 0.12 kW/m² = 38.88 kW
+
+        - maximum energy over the full 16 hour light period: 
+            38.88 kW × 16 hours = 622.08 kWh/sol
+    
+    ♡ this is the theoretical maximum if all three zones use full LED support for the whole scheduled period
+    
+    ♡ natural sunlight and partial LED support reduce actual energy use
+
+    ♡ measured average, 16-hour schedule (current):
+        ~ 260.5 kWh/sol
+
+    ♡ measured average, before the 16-hour schedule: 
+        ~ 325.6 kWh/sol
+
+#### Greenhouse Habitat Lighting:
+    ♡ greenhouse habitat lighting is part of the main habitat lighting system
+ 
+    ♡ while plant lights are producing light:
+        - greenhouse habitat lights remain off
+ 
+    ♡ when plant lights are off:
+        - greenhouse habitat lighting follows the current habitat light level
+
+        - greenhouse habitat lighting follows the current habitat power mode
+ 
+    ♡ calculation:
+        - plant lights producing light: 
+            greenhouse habitat light level = 0.0
+        
+        - plant lights not producing light: 
+            greenhouse habitat light level = adjusted habitat light level
