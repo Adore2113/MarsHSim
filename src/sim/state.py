@@ -36,23 +36,20 @@ class Habitat_State:
 
 
     #------------------greenhouse--------------------♡
-    greenhouse_vol_m3: int
-
     greenhouse_floor_area_m2: int
     greenhouse_height_m: int
+    greenhouse_vol_m3: int
     
-    structural_area_m2: int
-    container_area_m2: int
-    
-    rack_area_m2: int
-    rack_bonus_area_m2: int
-    
-    usable_floor_grow_area_m2: int
     helix_walkway_area_m2: int
     
+    structural_floor_area_m2: int
+    usable_floor_grow_area_m2: int
+    container_floor_area_m2: int
+    rack_floor_area_m2: int
     ceiling_hanging_area_m2: int
-    ceiling_bonus_area_m2: int
     
+    rack_bonus_area_m2: int
+    ceiling_bonus_area_m2: int
     total_effective_grow_area_m2: int
 
     greenhouse_zones: list
@@ -222,14 +219,12 @@ class Habitat_State:
     #--------------------sabatier--------------------♡
     sabatier_on: bool
 
-
     #-------------------isru water-------------------♡
     isru_water_on: bool
     isru_pipes: list
 
     raw_isru_water_storage_kg: float
     raw_isru_water_storage_capacity_kg: float
-
 
     #---------------isru atmosphere (atm)------------♡
     isru_atm_on: bool
