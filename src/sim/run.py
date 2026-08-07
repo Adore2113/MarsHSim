@@ -78,8 +78,8 @@ s0 = Habitat_State(
         {
         "zone": "structural",
         "grow_method": "hydroponic_large_crop_mix",
-        "floor_area_m2": 90.0,
-        "effective_grow_area_m2": 90.0,  
+        "floor_area_m2": 380.0,
+        "effective_grow_area_m2": 420.0,  
 
         #-----------targets------------♡
         "ideal_temp_c": 26.0,
@@ -113,8 +113,8 @@ s0 = Habitat_State(
         {
         "zone": "container",
         "grow_method": "hydroponic_medium_crop_mix",
-        "floor_area_m2": 110.0,
-        "effective_grow_area_m2": 110.0,
+        "floor_area_m2": 420.0,
+        "effective_grow_area_m2": 480.0,
 
         #-----------targets------------♡
         "ideal_temp_c": 24.0,
@@ -148,8 +148,8 @@ s0 = Habitat_State(
         {
         "zone": "rack",
         "grow_method": "hydroponic_small_crop_mix",
-        "floor_area_m2": 35.0,
-        "effective_grow_area_m2": 124.0,
+        "floor_area_m2": 180.0,
+        "effective_grow_area_m2": 450.0,
 
         #-----------targets------------♡
         "ideal_temp_c": 22.0,
