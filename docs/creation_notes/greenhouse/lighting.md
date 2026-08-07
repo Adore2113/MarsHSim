@@ -3,9 +3,9 @@
     ♡ lighting is a hybrid system: natural light through the angled roof + LED support
     
     ♡ LEDs offset lower natural light
-    
-    ♡ LED support fills whatever gap is left below each zone's light target
-    
+
+    ♡ roof glazing is used to maximize natural sunlight while reducing LED demand
+
     ♡ this is intentionally kept simpler than a full greenhouse research model
     
     ♡ lighting has a major effect on habitat power demand and thermal load
@@ -26,14 +26,16 @@
     ♡ minimum useful natural sunlight: 0.15 kW/m²
 
     ♡ full led support: 
-        - used when effective natural light is at or below 0.15 kW/m²
+        used when effective natural light is at or below 0.15 kW/m²
 
     ♡ sunlight only:
-        - effective light ≥ the zone's target, LEDs off
+        when effective natural light meets or exceeds the zone target, LEDs remain off
 
 ### ----------------------------------------
 
 ### LED System:
+    ♡ LED support fills the remaining light needed to reach each zone's light target
+
     ♡ LED power density:
         0.12 kW per m² of effective grow area
 
@@ -43,7 +45,7 @@
     ♡ LEDs are dimmable and respond to power modes
 
     ♡ calculation (led support level):
-        - (light_target − effective_light) ÷ light_target
+        (light_target − effective_light) ÷ light_target
 
 #### Power Modes:
     ♡ normal: full LED support as needed (lvl 1.0)
@@ -63,10 +65,10 @@
         - 8 hours (21:00 – 05:00 LMST)
         - outside scheduled hours, LEDs off
 
-    ♡ outside the scheduled hours, LEDs remain off (dark cycle)
+    ♡ outside scheduled hours:
+        LEDs remain off
     
-    ♡ calculation: 
-        -light end hour: 
+    ♡ calculation (light end time):
             (5 + 16) % 24 = 21:00
 
 ### ----------------------------------------
