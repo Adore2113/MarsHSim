@@ -56,10 +56,9 @@
         - calculation:
             - 380 m² + 420 m² 180 m² 
             ≈ 980 m²
-            
+
             -420 m² + 480 m² + 450 m²
             ≈ 1,350 m²
-
 
 #### Central Core:
     ♡ shape: octagon (regular)
@@ -75,13 +74,22 @@
         - one dumbwaiter/small hoist
 
 #### Planter Slopes/Helix:
-    ♡ count: four radial helical slopes
+    ♡ count: one continuous helix
     ♡ turns: 2
-    ♡ rise: 5.5 m
-    ♡ resulting slope angle: ~2.5–3.5° (gradual)
+    ♡ growing surface: 
+        stepped LECA (clay ball) terraces on a smooth ramp structure
+
+    ♡ rise: 
+        5.5 m (from ground to second floor level)
+
+    ♡ resulting average slope: 
+        ~ 2.5 – 3.5° (gentle and walkable)
+
     ♡ taper: 
         - ~16.6 m wide at the outer wall
         - ~4.0 m wide when meeting the central core
+
+    ♡ two flat 2.0 m storage paths for level access under the higher sections of the helix
 
     ♡ calculation:
         - 20 m − 3 m core rad − 3.5 m outer ring:
@@ -209,6 +217,15 @@
     ♡ I wanted to make sure there wasn't constant movement up and down the ladders that gets monotonous
 
     ♡ considering the ladders, this combination is lighter, takes less space, and still gives reliable vertical access.
+
+#### Why use 3 zones by container type?
+    ♡ simulating every crop individually would be too complex for a non-greenhouse sim
+
+    ♡ one overall greenhouse setting seemed too simple
+
+    ♡ three zones provide a middle ground between detail and simplicity
+
+    ♡ zone averages allow different growing arrangements without tracking every plant
 
 
 ### ----------------------------------------
