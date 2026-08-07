@@ -7,6 +7,7 @@ from .mars_time import seconds_per_sol, get_sol_time
 from .ui_export import write_dashboard_json
 #----------------------------------------------------♡
 
+# file for running the habitat simulation
 
 #---------------solar field list---------------------♡
 solar_block_list = []
@@ -21,7 +22,6 @@ for block_id in range(1, 51):
         "dust_factor": 1.0,
         "efficiency": 0.85,
     })
-#----------------------------------------------------♡
 
 
 #-------------------habitat state--------------------♡
@@ -57,23 +57,21 @@ s0 = Habitat_State(
 
 
     #------------------greenhouse--------------------♡
-    greenhouse_vol_m3 = 1007.0,
-    greenhouse_floor_area_m2 = 265.0,
-    greenhouse_height_m = 3.8,
+    greenhouse_floor_area_m2 = 1326.0,
+    greenhouse_height_m = 11.0,
+    greenhouse_vol_m3 = 14590.0 ,   # ≈ 1326 m² × 11 m
     
-    structural_area_m2 = 95.0,
-    container_area_m2 = 110.0,
+    helix_walkway_area_m2 = 190.0,
     
-    rack_area_m2 = 35.0,
-    rack_bonus_area_m2 = 180.0,
+    structural_floor_area_m2 = 380.0,
+    usable_floor_grow_area_m2 = 950.0,    # actual floor space used for growing (zones)
+    container_floor_area_m2 = 420.0,
+    rack_floor_area_m2 = 180.0,
+    ceiling_hanging_area_m2 = 90.0,
     
-    usable_floor_grow_area_m2 = 220.0,
-    helix_walkway_area_m2 = 45.0,
-    
-    ceiling_hanging_area_m2 = 70.0,
-    ceiling_bonus_area_m2 = 45.0,
-    
-    total_effective_grow_area_m2 = 515.0,
+    rack_bonus_area_m2 = 270.0,
+    ceiling_bonus_area_m2 = 60.0,
+    total_effective_grow_area_m2 = 1350.0,
 
     greenhouse_zones = [
         #------------structural zone-----------------♡
@@ -381,11 +379,11 @@ s0 = Habitat_State(
         {"id": 5, "status": "standby", "capacity": 4.0, "gas_load": 0.0, "type": "backup"},
     ]
     )
+#----------------------------------------------------♡
 
 
-
+#------------for printing to terminal----------------♡
 state = s0
-
 last_printed_sol = -1
 critical = False
 was_critical = False
