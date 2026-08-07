@@ -20,14 +20,10 @@
  ### ----------------------------------------
 
 ### Light Targets & Natural Light:
-    ♡ default zone light target: 
-        0.70 kW/m²
-
-    ♡ best expected natural sunlight:
-        0.45 kW/m²
-
-    ♡ minimum useful natural sunlight:
-        0.15 kW/m²
+    ♡ default zone light target: 0.70 kW/m²
+    ♡ default zone light absorption: 70%
+    ♡ best expected natural sunlight: 0.45 kW/m²
+    ♡ minimum useful natural sunlight: 0.15 kW/m²
 
     ♡ full led support: 
         - used when effective natural light is at or below 0.15 kW/m²
@@ -50,14 +46,9 @@
         - (light_target − effective_light) ÷ light_target
 
 #### Power Modes:
-    ♡ normal: 
-        full LED support as needed (level 1.0)
-
-    ♡ low power: 
-        LED level × 0.6
-
-    ♡ critical power: 
-        LED level × 0.2
+    ♡ normal: full LED support as needed (lvl 1.0)
+    ♡ low power: LED level × 0.6
+    ♡ critical power: LED level × 0.2
 
 ### ----------------------------------------
 
@@ -104,7 +95,7 @@
     ♡ considered allowing plants to use ~70% of the available natural sunlight
 
     ♡ this became the default 70% light-absorption value
-    
+
     ♡ originally had no lighting schedule
 
 
