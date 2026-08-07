@@ -44,7 +44,7 @@
         - two ladders (or steep ships-ladder style stairs)
         - one dumbwaiter/small hoist
 
-#### Planter Slopes:
+#### Planter Slopes/Helix:
     ♡ count: four radial helical slopes
     ♡ turns: 2
     ♡ rise: 5.5 m
@@ -79,8 +79,7 @@
         - continuous guardrails on both the ramp and the walkway
 
         - non-slip surface
-        - ramp gradual
-
+        - gradual slow ramp
         - safety gates/barriers at openings
 
         - structural supports coming down from the roof and central core
@@ -102,36 +101,6 @@
     ♡ under the higher inner sections of the planter slopes, accessible from flat ground paths
     
     ♡ around the outside ground floor
-### ----------------------------------------
-
-
-#### Pathways:
-    ♡ storage pathways:
-        -after looking up average large utility carts (~0.65 m - 0.80 m), I figured it should be large enouugh for two of those comfortably and a little bit more room so it isnt tight, so 2m on the flat paths 
-
-    ♡ utility / storage / wall planter ring:
-        -3.5 m outer ring
-        -I wanted enough room for walkign space and equipment
-        - Outer ring: 3.5 m wide
-
-    ♡ Helical planter ramp walking path: 
-        1.5 m wide
-    
-#### Helix:
-    ♡ 2 turns
-    ♡ Rise = 5.5 m
-    ♡ With the available radial space (after the 3.5 m outer ring down to the 6 m core), 2 full turns produces a very gentle slope (roughly 2.5–3.5 degrees on average)
-
-#### Upper Walkway:
-        ♡ Hanging platform walkway: 1.8 m wide
-        
-        ♡ Connected from the 5.5 m second-floor landing by the short secured ramp
-        
-        ♡ Gives comfortable access for working with ceiling hung plants and light tools
-        
-        ♡ Continuous handrails for safety
-
-
 ### ----------------------------------------
 
 ### Design Decisions:
@@ -222,3 +191,81 @@
 
 #### Other Changes:
     ♡ central core contained a spiral staircase
+
+### ----------------------------------------
+
+## Dev Log notes:
+###### 05/08/2026:
+    ♡ decided on a hydroponic greenhouse setup
+
+    ♡ moved greenhouse notes from v1_scope.md into greenhouse.md
+
+    ♡ treating the greenhouse as a separate building running on the same systems as the habitat until the habitat size is updated
+
+    ♡ considered giving plants a set percentage of the available sunlight
+
+    ♡ began setting up the greenhouse to handle changing seasons and periods of poor sunlight
+
+###### 05/09/2026:
+    ♡ researched crops and crew nutrition
+
+    ♡ decided to track plants by zone and growing area instead of tracking individual plants
+
+    ♡ reminder that this is a Mars habitat simulator rather than a dedicated greenhouse simulator, so the greenhouse should remain simpler than it could be
+
+###### 05/13/2026:
+    ♡ added hydroponics to the greenhouse plan
+
+    ♡ started by building the greenhouse lighting system
+
+    ♡ decided not to centralize greenhouse multipliers because they differ by zone
+
+###### 05/16/2026:
+    ♡ considered reducing crew living space to allow for a larger greenhouse because it is important for long-term survival
+
+    ♡ began considering species that build efficient structures as design inspiration
+
+    ♡ began considering a helix/hive layout with layered growing areas spiraling toward a central utility area
+
+    ♡ thought a gradual slope might make plants easier to monitor and work well with vertical racks and hanging containers
+
+######  05/18/2026:
+    ♡ decided the greenhouse should contribute a small amount to habitat O₂ and CO₂ exchange
+
+###### 06/19/2026:
+    ♡ found that the greenhouse was producing approximately 75 times more O₂ than the crew required
+
+    ♡ calculated the zone gas-exchange totals and compared them with crew O₂ demand
+
+    ♡ confirmed that the greenhouse gas-exchange rates were incorrect
+
+    ♡ decided the greenhouse should target approximately 2% of crew O₂ and CO₂ needs
+
+###### 06/23/2026:
+    ♡ considered switching greenhouse lighting to a timed cycle that still turns off when natural sunlight is sufficient
+
+###### 07/23/2026:
+♡ found that greenhouse lighting was using a high percentage of habitat power
+
+♡ tested a 16-hour plant lighting schedule
+
+♡ reduced greenhouse energy use from 325.55 kWh to 260.46 kWh
+
+♡ calculation:
+    - energy reduction:
+        ♡ 325.55 kWh - 260.46 kWh
+        = 65.09 kWh
+
+    - percentage reduction:
+        ♡ 65.09 kWh ÷ 325.55 kWh × 100
+        ≈ 19.99%
+        ≈ 20.0%
+
+###### 07/26/2026:
+    ♡ greenhouse habitat lighting now follows the rest of the habitat when plant lighting is not producing light
+
+###### 08/03/2026:
+    ♡ greenhouse plant lighting remains with the greenhouse subsystem after habitat lighting was moved into lights.py
+
+###### 08/03/2026:
+    ♡ created Hive-8 Arcadia plan, updating the greenhouse plans almost completely
