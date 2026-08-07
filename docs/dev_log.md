@@ -1259,4 +1259,13 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      08/04/2026
-    ♡ 
+    ♡ research day while I really look into the greenhouse, updated and more detailed
+
+    ♡ created Arcadia Planitia: Hive-8 Arcadia greenhouse plan, with updated specs
+
+    ♡ created a seperate file for greenhouse creation notes, b/c one file was simply too small and there are too many considerations and components to put into one file
+
+    ♡ updated greenhouse variables that changed when I decided on measurements and other specifics
+
+#### Next Session:
+    ♡ continue figuring out the greenhouse plan, and seperate notes into seperate files
