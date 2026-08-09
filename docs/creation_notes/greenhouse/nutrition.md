@@ -154,6 +154,16 @@
 #### Future Considerations:
     ♡ zone subdivisions, I don't have racks per zone or containers per rack counts recorded yet
 
+    ♡ determine how nutrient imbalance will be represented
+
+    ♡ decide which herbs would provide more than one use
+
+    ♡ factor in:
+        - morale value
+        - labour hours
+
+    ♡ research animal/insect species that build efficient structures and systems
+
 ### ----------------------------------------
 
 ## Design Evolution
@@ -182,3 +192,21 @@
         - better as stored / emergency food
 
     ♡ highly processed or any very long cycle crop ideas
+
+### ----------------------------------------
+
+## Design Decisions:
+#### Why use the 40/40/20 nutrition targets?
+    ♡ fat is kept high because it is calorie dense and helps crew feel full longer
+
+    ♡ crops for fat have a smaller yield
+
+    ♡ 20% protein seems like good support for muscle maintenance under partial gravity and physical work
+  
+    ♡ high protein food production seems not practical long term with a greenhouse
+
+    ♡ I was considering fullness, digestion, blood sugar, mood impact and energy
+
+    ♡ these targets work with my preference for crops that don't require a lot of processing
+
+    ♡ targets sit slightly outside NASA exploration ranges (carb low, fat high)
