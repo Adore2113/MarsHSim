@@ -1,15 +1,20 @@
 # Greenhouse 
+### General Notes:
     ♡ this isn't a greenhouse simulator, so it's intentionally not as complex as it could be
 
-    ♡ plants are tracked by zone using averages instead of individual crops
+    ♡ plants are tracked by zone using averages instead of individual crops 
 
-    ♡ morale crops are intentionally included even though they are slower
+    ♡ some longer cycle crops are included mainly for morale and dietary variety
+
+    ♡ zones seal separately for redundancy and quarantine purposes
 
     ♡ dual-purpose crops are preferred when possible
 
     ♡ preference for crops that do not require a lot of processing
 
     ♡ exact yield numbers and growth rates remain flexible
+
+    ♡ subject to change as the greenhouse design develops
 
 ### ----------------------------------------
 
