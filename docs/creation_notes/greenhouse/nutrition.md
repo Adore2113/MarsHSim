@@ -1,14 +1,24 @@
 # Greenhouse 
+    ♡ this isn't a greenhouse simulator, so it's intentionally not as complex as it could be
+
+    ♡ plants are tracked by zone using averages instead of individual crops
+
+    ♡ morale crops are intentionally included even though they are slower
+
+    ♡ dual-purpose crops are preferred when possible
+
+    ♡ preference for crops that do not require a lot of processing
+
+    ♡ exact yield numbers and growth rates remain flexible
+
+### ----------------------------------------
+
 ## Nutrition Plan (08/09/2026):
 #### Crew Nutrition Targets:
     ♡ macronutrient targets:
         - carbohydrates: 40%
         - fat: 40%
         - protein: 20%
-
-    ♡ preference for crops that do not require a lot of processing
-
-### ----------------------------------------
 
 ### Zone Crop Roles:
     ♡ structural zone:
@@ -124,3 +134,12 @@
     ♡ protein:
         - kept lower because high protein may not be ideal in a long term survival environment
         - 15% is the current preliminary target
+
+#### Removed or De-prioritised:
+    ♡ plantain leaf
+        - harvest cycle too long (1–2 years) for current simulation needs
+
+    ♡ lentils (as fresh greenhouse crop)
+        - better as stored / emergency food
+
+    ♡ highly processed or any very long cycle crop ideas
