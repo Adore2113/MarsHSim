@@ -39,7 +39,7 @@
         - crop considerations: 
             peas, spinach, herbs, smaller vertical crops
 
-    ♡ crops might be in different zones for specific reasons:
+    ♡ crops might be in different zones:
         - sweet potato: 
             main in structural, vines and leaves in racks for extra greens
         
@@ -103,3 +103,24 @@
     ♡ dwarf passionfruit
         - vitamins, pleasant smell, morale value
         - harvest window: 1–1.5 years
+
+### ----------------------------------------
+
+### Design Evolution
+#### Initial Nutrition Goal:
+    ♡ macronutrient targets:
+        - carbohydrates: 40%
+        - fat: 45%
+        - protein: 15%
+
+    ♡ carbohydrates:
+        - open to lowering this percentage
+        - current value chosen from general research
+
+    ♡ fat:
+        - calorie dense
+        - helps keep the crew full longer
+
+    ♡ protein:
+        - kept lower because high protein may not be ideal in a long term survival environment
+        - 15% is the current preliminary target
