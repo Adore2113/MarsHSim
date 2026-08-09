@@ -57,4 +57,49 @@
         
         - herbs and small vertical plants:
             almost always racks
-  
+            
+### Crop Rotation:
+    ♡ rotation notes:
+        - the greenhouse stays consistent all the time, so season changes don't really apply
+        
+        - plant fast crops (spinach, peas) in small new batches every few weeks
+        
+        - stagger the medium crops (sweet potato, quinoa, peanuts, sunflowers) every 1–2 months so harvests overlap
+        
+        - treat dwarf banana and passionfruit as long-term plants that just keep producing once established
+
+### ----------------------------------------
+
+### Primary Crop List:
+    ♡ sweet potato
+        - high calories, edible leaves, good   vertical growth
+        - harvest window: ~3 months
+
+    ♡ quinoa
+        - protein + carbohydrates, resilient, low processing after harvest
+        - harvest window: 3–4 months
+
+    ♡ peanuts
+        - high fat, protein and calories
+        - harvest window: 4–5 months
+
+    ♡ peas
+        - fast growth, good early harvests
+        - harvest window: 2–2.5 months
+
+    ♡ spinach
+        - fast leafy green
+        - grows amazing hydroponically
+        - harvest window: 1–2 months
+
+    ♡ sunflowers
+        - edible seeds + morale value
+        - harvest window: 2.5–4 months
+
+    ♡ dwarf banana
+        - strong morale fruit
+        - harvest window: 11–14 months
+
+    ♡ dwarf passionfruit
+        - vitamins, pleasant smell, morale value
+        - harvest window: 1–1.5 years

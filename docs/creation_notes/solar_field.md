@@ -12,7 +12,7 @@
 
 ### ----------------------------------------
 
-## Arcadia Planitia 50 Acre Solar Plan (25/07/2026):
+## Arcadia Planitia: 50 Acre Solar Plan (25/07/2026):
 #### Land area:
     ♡ 50 acres 
     ♡ 20.23 hectares

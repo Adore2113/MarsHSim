@@ -2,17 +2,7 @@
 ### General Notes:
     ♡ this isn't a greenhouse simulator, so it's intentionally not as complex as it could be
 
-    ♡ each zone uses averaged plant data instead of simulating individual crops
-
-    ♡ actual light exposure depends on:
-        - season / daylight fraction
-        - zone light target
-        - LED support level
-        - power mode (normal/low/critical)
-
     ♡ running the greenhouse (LEDs, pumps, circulation) consumes power continuously while online, creating the same kind of engineering trade off as the solar field's maintenance draw
-
-    ♡ grow area can be larger than the greenhouse floor area b/c of the vertical growing area
 
  ### ----------------------------------------
  
@@ -110,80 +100,9 @@
 
 ### ----------------------------------------
 
-## Greenhouse Lighting Plan:
-#### Light Operation:
-    ♡ LEDs offset lower natural light
-    ♡ full LED light level: 1.0
-    ♡ LED power density: 0.12 kW/m²
-    ♡ LED heat ratio: 0.68
 
-    ♡ LED support fills whatever gap is left below each zone's light target
-    
-    ♡ effective light per zone:
-        - default zone light target: 0.70 kW/m²
-        - default zone light absorption: 70%
-
-        - best sunlight: 0.45 kW/m²
-        - minimum useful sunlight: 0.15 kW/m²
-
-    ♡ day_length_bonus:
-        - used to adjust effective natural light according to the current amount of daylight
-
-        - minimum day length value: 0.70
-        - daylight contribution: 0.30
-
-    ♡ calculation:
-        - effective light per zone:
-            natural_light_kw_per_m2 × light_absorption × day_length_bonus
-
-        - shortest daylight fraction:
-            0.70 × natural light
-
-        - longest daylight fraction:
-            1.00 × natural light
-
-        - day_length_bonus: 
-            0.70 + (0.30 × daylight_fraction)
         
-#### Plant Lighting Schedule:
-    ♡ full plant light period: 16 hours/sol
-    ♡ plant light start time: 5:00 LMST
-    ♡ plant light end time: 21:00 LMST
-    ♡ calculation: 
-        - light end hour: 
-            (5 + 16) % 24
-            = 21:00
 
-        - lights on: 
-            05:00–21:00
-
-        - lights off: 
-            21:00–05:00
-
-#### Light Modes:
-    ♡ Power Mode Dimming:
-        - normal: 
-            full led level (1.0)
-        - low power mode:
-            led level × 0.6
-        - critical power mode:
-            led level × 0.2
-
-    ♡ dark cycle: 
-        - dark cycle: 8 hours/sol
-        - outside scheduled hours, LEDs off
-
-    ♡ full led support: 
-        - used when effective natural light is at or below 0.15 kW/m²
-
-    ♡ led support:
-        - effective light below the zone's target, LEDs scale to fill the gap
-
-    ♡ sunlight only:
-        - effective light ≥ the zone's target, LEDs off
-
-    ♡ calculation (led support level):
-        - (light_target − effective_light) ÷ light_target
 
 ### ----------------------------------------
 
@@ -208,6 +127,7 @@
         - maximum energy over the full 16 hour light period: 
             38.88 kW × 16 hours = 622.08 kWh/sol
 
+
 ### ----------------------------------------
 
 ## Heat Generated:
@@ -231,6 +151,21 @@
 
         -structural heat:
             0.015 kW/m² × 324 m² ≈ 4.9 kW
+
+#### Structural Heat:
+    ♡ greenhouse structural heat: 0.015 kW/m²
+    ♡ calculation:
+        - structural heat:
+            ♡ greenhouse structural heat per m² × greenhouse floor area
+
+        - using the 265 m² greenhouse floor area:
+            ♡ 0.015 kW/m² × 265 m²
+            = 3.975 kW
+            ≈ 3.98 kW
+
+        - structural heat energy over 24 hours:
+            3.975 kW × 24 hours
+            = 95.4 kWh/sol
 
 
 ### ----------------------------------------
@@ -385,7 +320,6 @@
         - O₂ produced:
             O₂ production rate per m² per sol × growing area × sol fraction × photosynthesis factor
 
-
 #### Gas Exchange Target:
     ♡ crew count: 30
 
@@ -414,5 +348,312 @@
     ♡ this average is only a preliminary target
 
     ♡ final zone rates still need to preserve differences between the structural, container and rack zones
+
+### ----------------------------------------
+
+
+----------------------------------------
+
+## Growing Medium:
+#### Lightweight Clay Balls:
+    ♡ considering lightweight clay balls similar to LECA instead of soil
+
+    ♡ can pack tightly and securely during Starship transport
+
+    ♡ intended to degrade slowly over years on Mars
+
+    ♡ to do:
+        - calculate mass required
+        - calculate transport volume
+        - estimate degradation rate
+        - determine replacement schedule
+        - determine whether the material can be cleaned and reused
+----------------------------------------
+
+## Crop Plan:
+
+
+#### Crop Considerations:
+    ♡ sweet potato:
+        - high in calories
+        - edible leaves
+        - can grow vertically
+        - germination: 1–14 days
+        - vegetative growth: 2–8 weeks
+        - flowering: 6–12 weeks
+        - harvest: ~ 3 months
+
+    ♡ quinoa:
+        - protein
+        - carbohydrates
+        - resilient
+        - low preparation after harvest
+        - germination: 2–3 weeks
+        - vegetative growth: 2–4 weeks
+        - flowering: 4–6 weeks
+        - harvest: 3–4 months
+
+    ♡ corn:
+        - multipurpose
+        - starchy
+        - germination: 5–10 days
+        - vegetative growth: 10–50 days
+        - flowering: 50–70 days
+        - harvest: 90–140 days
+
+    ♡ dwarf banana trees:
+        - familiar morale fruit
+        - germination: 2–3 weeks
+        - vegetative growth: 3–6 months
+        - flowering: 6–12 months
+        - fruit development: 11–14 months
+
+    ♡ peanuts:
+        - high in fat, protein and calories
+        - germination: 5–10 days
+        - vegetative growth: 10–40 days
+        - flowering: 40–50 days
+        - harvest: 120–160 days
+
+    ♡ sunflowers:
+        - edible seeds
+        - morale value
+        - germination: 7–10 days
+        - vegetative growth: 20–40 days
+        - flowering: 30–50 days
+        - harvest: 70–120 days
+
+    ♡ peas:
+        - fast growth
+        - germination: 7–14 days
+        - vegetative growth: 12–42 days
+        - flowering: 28–45 days
+        - harvest: 60–70 days
+
+    ♡ spinach:
+        - germination: 7–14 days
+        - vegetative growth: 30–45 days
+        - flowering: 42–56 days
+        - harvest: 37–60 days
+
+    ♡ dwarf passionfruit:
+        - vitamins
+        - morale value
+        - pleasant smell
+        - germination: 7–28 days
+        - vegetative growth: 60–182 days
+        - flowering: 182–547 days
+        - harvest: 1–1.5 years
+
+    ♡ removed:
+        - plantain leaf
+        - removed because the expected 1–2 year harvest period is too long for the current simulation plan
+
+    ♡ lentils:
+        - not currently planned as a fresh greenhouse crop
+        - could be stored as part of the habitat's food reserves
+        - freeze-dried protein and emergency rations can provide additional backup food
+
+    ♡ herbs:
+        - small amounts only
+        - dual-purpose crops preferred
+        - specific herbs still need research
+
+    ♡ fleshy fruits:
+        - high water content
+        - examples include peaches and apples
+
+    ♡ dry fruits:
+        - may be better for seed storage and reproduction
+        - fruit protects the seeds
+
+### ----------------------------------------
+
+## Future Considerations:
+    ♡ finalize effective grow area for each zone
+
+    ♡ connect vertical grow area to the physical greenhouse layout
+
+    ♡ recalculate O₂ and CO₂ production rates so the greenhouse contributes ~ 2% of crew demand instead of the previous 75× value
+
+    ♡ decide between a 12, 14 or 16-hour plant lighting schedule
+        - current schedule: 16 hours
+
+    ♡ calculate greenhouse habitat lighting area separately
+
+    ♡ model the full crew-waste-to-greenhouse nutrient and water loop
+
+    ♡ determine how nutrient imbalance will be represented
+
+    ♡ determine how plant pathogens and disease will be represented
+
+    ♡ calculate lightweight clay-ball degradation and replacement
+
+    ♡ decide which herbs would provide more than one use
+
+    ♡ factor in:
+        - plant disease
+        - labour hours
+        - morale value
+        - spoilage rate
+        - crop water use
+        - nutrient balance
+
+    ♡ reflect the helix/hive layout in the simulation after the habitat layout is finalized
+
+    ♡ research species that build efficient structures and systems
+
+    ♡ confirm whether the 0.10 kW/m² greenhouse equipment load includes plant lighting
+
+    ## Water/Waste Recycling Loop:
+    ## Water/Waste Recycling Loop:
+    ♡ concept only, not fully modeled in V1
+
+    ♡ planned crew water loop:
+        - crew waste
+        - water treatment
+        - UPA/WPA
+        - potable water
+        - greenhouse nutrient solution
+        - plants
+        - greenhouse humidity
+        - CHX water capture
+        - water system
+
+    ♡ pros:
+        - massive water recycling
+        - reduces replacement water requirements
+
+    ♡ challenges:
+        - nutrient imbalance
+        - pathogens
+        - plant disease
+        - treatment requirements
+
+    ♡ currently only the greenhouse water recirculation is modeled
+
+    ♡ the full crew waste to greenhouse nutrient solution loop has not been implemented
+
+
+#### Greenhouse Equipment Power:
+    ♡ preliminary base equipment power: 0.10 kW/m²
+
+    ♡ intended to represent equipment such as:
+        - pumps
+        - circulation
+        - greenhouse support equipment
+
+    ♡ this load is not currently included in the simulation's total power use
+
+    ♡ calculation:
+        - using the 265 m² greenhouse floor area:
+            0.10 kW/m² × 265 m²
+            = 26.5 kW
+
+        - maximum energy over one Mars sol:
+            26.5 kW × 24.66 hours
+            ≈ 653.5 kWh/sol
+
+    ♡ to do:
+        - decide whether 0.10 kW/m² is realistic
+        - confirm exactly which equipment this value includes
+        - avoid including LED power because greenhouse LED power is already calculated separately
+        - add greenhouse equipment power and energy to greenhouse_outputs
+        - add greenhouse equipment power and energy to power.py
+        - separate pumps, circulation and other equipment loads later
+
+### ----------------------------------------
+
+### ----------------------------------------
+
+## Design Evolution:
+#### Early Greenhouse Model:
+    ♡ considered simulating each individual crop type with its own growing conditions
+
+    ♡ this would have made the greenhouse much more detailed than the other MarsHSim systems
+
+    ♡ considered using one overall greenhouse setting
+
+    ♡ one overall setting seemed too simple
+
+    ♡ decided to use 3 separate zones based on container type
+
+    ♡ each zone now uses averages from the plants grown within it
+    
+
+#### Early Gas Exchange Model:
+    ♡ the original greenhouse gas-exchange values produced ~ 75 times the crew's O₂ requirement
+
+    ♡ decided the greenhouse should be a minor contributor instead of a primary life-support system
+
+    ♡ current target is ~ 2% of crew demand
+
+#### Previous Zone Rates:
+    ♡ structural zone:
+        - rate: 0.022 kPa/m²/sol
+        - area: 90 m²
+        - calculation:
+            0.022 kPa/m²/sol × 90 m²
+            = 1.98 kPa/sol
+
+    ♡ container zone:
+        - rate: 0.020 kPa/m²/sol
+        - area: 110 m²
+        - calculation:
+            0.020 kPa/m²/sol × 110 m²
+            = 2.20 kPa/sol
+
+    ♡ rack zone:
+        - rate: 0.015 kPa/m²/sol
+        - area: 124 m²
+        - calculation:
+            0.015 kPa/m²/sol × 124 m²
+            = 1.86 kPa/sol
+
+    ♡ total previous greenhouse output:
+        - 1.98 + 2.20 + 1.86
+        = 6.04 kPa/sol
+
+
+### ----------------------------------------
+
+## Design Decision:
+#### Why hydroponics?
+    ♡ uses less water than traditional soil-based growing when water is recirculated
+
+    ♡ allows water and nutrients to be collected, treated and reused
+
+    ♡ makes vertical racks and hanging containers easier to incorporate
+
+    ♡ avoids transporting and managing large amounts of soil
+
+    ♡ works with the planned closed greenhouse water loop
+
+
+#### Why not centralize greenhouse constants?
+    ♡ values differ between the structural, container and rack zones
+
+    ♡ keeping relevant values with each zone makes the differences easier to understand
+
+#### Why let the greenhouse contribute to habitat O₂?
+    ♡ plants naturally consume CO₂ and produce O₂ while photosynthesizing
+
+    ♡ including a small contribution connects the greenhouse to the habitat atmosphere system
+
+    ♡ the greenhouse is not intended to replace the OGA or other life-support equipment
+
+    ♡ greenhouse gas exchange is intended to provide approximately 2% of crew needs
+
+
+
+#### Why use the 40/45/15 nutrition targets?
+
+
+#### Why avoid heavily processed crops?
+    ♡ reduces the equipment and labour required after harvest
+
+    ♡ simpler to represent in the simulation
+
+    ♡ more practical for early habitat operations
 
 ### ----------------------------------------

@@ -71,9 +71,14 @@
     ♡ maximum sunlight dimming: 0.6
     ♡ minimum normal light level: 0.2
     ♡ calculation:
-        - sunlight dimming = sunlight amount × 0.6
-        - adjusted light level = base light level - sunlight dimming
-        - final light level = max(0.2, adjusted light level)
+        - sunlight dimming:
+            sunlight amount × 0.6
+
+        - adjusted light level:
+            base light level - sunlight dimming
+
+        - final light level:
+            max(0.2, adjusted light level)
 
 
 ### ----------------------------------------
@@ -94,18 +99,34 @@
             0.5 kW × 1.0 = 0.5 kW
         - active heat:
             0.1 kW × 1.0 = 0.1 kW
+
         - maximum energy if active for 24 hours:
             0.5 kW × 24 hours = 12.0 kWh/sol
+
         - maximum heat energy if active for 24 hours:
             0.1 kW × 24 hours = 2.4 kWh/sol
 
 
 ### ----------------------------------------
 
-#### Greenhouse Lights:
-    ♡ plant lighting is now in greenhouse.md
 
-    ♡ greenhouse habitat lighting follows the current habitat lighting level whenever the plant lights are off
+#### Greenhouse Habitat Lighting:
+    ♡ greenhouse habitat lighting is part of the main habitat lighting system
+ 
+    ♡ while plant lights are producing light:
+        - greenhouse habitat lights remain off
+ 
+    ♡ when plant lights are off:
+        - greenhouse habitat lighting follows the current habitat light level
+
+        - greenhouse habitat lighting follows the current habitat power mode
+ 
+    ♡ calculation:
+        - plant lights producing light: 
+            greenhouse habitat light level = 0.0
+        
+        - plant lights not producing light: 
+            greenhouse habitat light level = adjusted habitat light level
 
 
 ### ----------------------------------------
