@@ -25,7 +25,9 @@
         - fat: 40%
         - protein: 20%
 
-### Zone Crop Roles:
+### ----------------------------------------
+
+#### Zone Crop Roles:
     ♡ structural zone:
         - larger crops
         - longer cycle crops
@@ -72,23 +74,51 @@
         
         - herbs and small vertical plants:
             almost always racks
-            
-### Crop Rotation:
+
+#### Crop Rotation:
     ♡ rotation notes:
         - the greenhouse stays consistent all the time, so season changes don't really apply
         
-        - plant fast crops (spinach, peas) in small new batches every few weeks
+        - plant fast crops in small new batches every few weeks  (spinach, peas) 
         
-        - stagger the medium crops (sweet potato, quinoa, peanuts, sunflowers) every 1–2 months so harvests overlap
+        - medium crops get planted every 1–2 months so harvests overlap (sweet potato, quinoa, peanuts, sunflowers)
         
-        - treat dwarf banana and passionfruit as long-term plants that just keep producing once established
+        - dwarf banana and passionfruit are long term plants that just keep producing once established
 
 ### ----------------------------------------
 
-### Primary Crop List:
+## Growth Model:
+#### Growth:
+    ♡ default starting health: 0.98
+    ♡ default starting light exposure: 0.65
+    ♡ default growth multiplier: 1.0
+
+    ♡ growth is tracked by zone instead of by individual crop
+
+    ♡ calculation:
+        - growth increase:
+            base growth rate × growth multiplier × light exposure × health × sol fraction
+
+#### Harvest:
+    ♡ triggers when growth progress reaches or exceeds: 1.0
+
+    ♡ growth progress resets to 0.0 after harvest
+    
+    ♡ food is produced only when a harvest occurs
+
+    ♡ calculation:
+        - food produced:
+            ♡ food yield per m² × growing area × yield multiplier
+
+        - harvest condition:
+            ♡ growth progress ≥ 1.0
+
+### ----------------------------------------
+
+## Primary Crop List:
     ♡ sweet potato
         - high calories, edible leaves, good   vertical growth
-        - harvest window: ~3 months
+        - harvest window: ~ 3 months
 
     ♡ quinoa
         - protein + carbohydrates, resilient, low processing after harvest
@@ -121,7 +151,12 @@
 
 ### ----------------------------------------
 
-### Design Evolution
+#### Future Considerations:
+    ♡ zone subdivisions, I don't have racks per zone or containers per rack counts recorded yet
+
+### ----------------------------------------
+
+## Design Evolution
 #### Initial Nutrition Goal:
     ♡ macronutrient targets:
         - carbohydrates: 40%
@@ -138,7 +173,6 @@
 
     ♡ protein:
         - kept lower because high protein may not be ideal in a long term survival environment
-        - 15% is the current preliminary target
 
 #### Removed or De-prioritised:
     ♡ plantain leaf
