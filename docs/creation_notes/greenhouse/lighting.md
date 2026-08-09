@@ -127,14 +127,22 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
-###### 05/13/2026:
+###### 05/11/2026:
     ♡ started building the greenhouse lighting system
 
+###### 05/13/2026:
+    ♡ adding heat from the LED lights in my greenhouse_lighting function
+
 ###### 06/23/2026:
-    ♡ considered switching to a timed lighting cycle that still turns off when natural sunlight is sufficient
+    ♡ considered switching to a timed lighting cycle that still turns off when natural sunlight is enough
 
 ###### 07/23/2026:
-    ♡ tested 16-hour plant lighting schedule
+    ♡ tested 16 hour plant lighting schedule
+    
+    ♡ I isolated the subsystems and the greenhouse light power is taking up a high percentage of the power, I have it set up to be running w. daylight, but now I'm thinking about having the lights on a 12 hour cycle
+
+    ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've manaed to get the Greenhouse energy usage to : 260.46 kwh, instead of 325.55kwh
+    
     ♡ reduced greenhouse energy use by approximately 20%
 
 ###### 08/03/2026:
