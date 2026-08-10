@@ -152,7 +152,7 @@ This project is in active development.
 
     - v1_state_variables.md = reference of all tracked variables
     
-♡ docs / creation_notes
+♡ docs / system_design
 
     - lights.md = habitat lighting design and simulation notes
     
@@ -160,7 +160,7 @@ This project is in active development.
     
     - solar_field.md = solar field design, operation and power generation notes
 
-♡ docs / creation_notes / greenhouse /
+♡ docs / system_design / greenhouse /
 
     - layout.md = Hive-8 Arcadia structure, dimensions, zones and physical layout
 
