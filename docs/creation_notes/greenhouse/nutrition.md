@@ -119,9 +119,13 @@
     ♡ sweet potato
         - high calories, edible leaves, good   vertical growth
         - harvest window: ~ 3 months
+    
+    ♡ sweet corn
+        - dietary variety, high calories,carbohydrates
+        - harvest window: ~ 2-3 months
 
     ♡ quinoa
-        - protein + carbohydrates, resilient, low processing after harvest
+        - protein, carbohydrates, resilient, low processing after harvest
         - harvest window: 3–4 months
 
     ♡ peanuts
@@ -138,7 +142,7 @@
         - harvest window: 1–2 months
 
     ♡ sunflowers
-        - edible seeds + morale value
+        - edible seeds, morale value
         - harvest window: 2.5–4 months
 
     ♡ dwarf banana
@@ -199,6 +203,8 @@
 
     ♡ highly processed or any very long cycle crop ideas
 
+    ♡ origionally considering avocados, I still wish the avacado tree would work, but it doesn't fit my fast, calorie dense and/or multipurpose crops first goal so I couldn't justify such a slow and finicky crop
+
 ### ----------------------------------------
 
 ## Design Decisions:
@@ -221,3 +227,8 @@
     ♡ for flexible crop placement
     
     ♡ I considered grouping them by growing conditions, crop type, etc. but decided on this because there are different things to consider for each individual crop as far as needs, growing, timing, and density go
+
+#### Why consider these crops?
+    ♡ I wanted to choose crops by nutrition value, yield and usefulness, space efficiency, harvest speed, hydroponic practicality, processing/labour, secondary uses, and morale
+
+    ♡ other reasons are included beside each crop in the 'subsection primary crop list' above 
