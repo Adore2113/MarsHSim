@@ -405,7 +405,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      04/15/2026
     ♡ fixed insulation and thermal mass values
 
-    ♡ adding electric heaters and radiators and I want to make both of them like I did some of the other systems w. lists (amine beds, ect.)
+    ♡ adding electric heaters and radiators and I want to make both of them like I did some of the other systems w. lists (amine beds, etc.)
 
 #### Next Session:
     ♡ finish adding heat and cooling to power_system
@@ -714,7 +714,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I like the idea of the plants having a set percentage of sunlight that is let in, so even if it's low they're still getting at least a good portion of what IS available, but I'm not entirely sure I'll stick w. 70
 
-    ♡ trying to set up my file so that it will be easy to incorporate changing seasons and days w.out sunlight, ect.
+    ♡ trying to set up my file so that it will be easy to incorporate changing seasons and days w.out sunlight, etc.
 
     ♡ reconsidering my modes being two seperate words instead of snake case?
 
@@ -773,7 +773,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ going over all of my files and checking logic and structure before moving on
 
-    ♡ I update all of my files and figured out my units of measurements, b/c I accidentally mixed up kpa being companred and usd w. kg, ect.
+    ♡ I update all of my files and figured out my units of measurements, b/c I accidentally mixed up kpa being companred and usd w. kg, etc.
 
     ♡ I'm going to change the modes in each file to be snake case 
 
@@ -873,7 +873,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ I realized that I didn't have water runoff from the greenhouse, so I implemented that today and also fixed and cleaned up water.py, after including the for now very basic isru system
 
 #### Next Session:
-    ♡ add new variables in engine and update irsu to include pipe retracting and extracting, dust buildup/pipe, efficency loss, ect.
+    ♡ add new variables in engine and update irsu to include pipe retracting and extracting, dust buildup/pipe, efficency loss, etc.
     
     ♡ include isru to systems in README.md
 
@@ -1071,7 +1071,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      07/04/2026
-    ♡ lots of changes to make to the dashboard including addin two more screens, one for the greenhouse and one for the habitat log, so status and alerts can move to the log and it will update w. any complaints from the crew about symptoms from pressure or hunger, ect. and if the system needs to do anything in states of emergency
+    ♡ lots of changes to make to the dashboard including addin two more screens, one for the greenhouse and one for the habitat log, so status and alerts can move to the log and it will update w. any complaints from the crew about symptoms from pressure or hunger, etc. and if the system needs to do anything in states of emergency
 
 
 ##      07/08/2026
@@ -1154,7 +1154,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I've used dust and storm as the same thing in the file, hopefully that isn't confusing for anyone checking it out, I might change this even though the storms on Mars are dust storms
 
-    ♡ I've decided to make a seperate file that updates the probability/prediction logicm like the chances of a sotrm today, thermal issues, ect.
+    ♡ I've decided to make a seperate file that updates the probability/prediction logicm like the chances of a sotrm today, thermal issues, etc.
 
     ♡ keeping events.py for when I add in Murphy's Law disasters
 
@@ -1178,15 +1178,11 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ my sim is running on average:  Solar Generated = 559.26 kwh, Total Power Used = 649.12 kWh, Net Energy = -89.86 kWh 
 
-    ♡ I isolated the subsystems and the greenhouse power is taking up a high percentage of the power, I have it set up to be running w. daylight, but now I'm thinking about having the lights on a 12 hour cycle
+    ♡ I isolated the subsystems and the greenhouse light power is taking up a high percentage of the power, I have it set up to be running w. daylight, but now I'm thinking about having the lights on a 12 hour cycle
 
     ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've manaed to get the Greenhouse energy usage to : 260.46 kwh, instead of 325.55kwh
 
     ♡ I am reading about RTG, considering more arrays, maybe  like I mentioned in the past.. 
-
-
-##      07/24/2026
-    ♡ I change the crop ligting down to 
 
 
 ##      07/25/2026
@@ -1269,3 +1265,13 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ continue figuring out the greenhouse plan, and seperate notes into seperate files
+
+
+##      08/09/2026
+    ♡ going over nutrition plan and  macronutrient targets
+
+    ♡ I chose these targets intitally (carbohydrates: 40%, fat: 45%, protein: 15%) b/c I was taking crew stability into consideration, as well as crew performance, cognition and overall wellbeing. I need to choose between this and a conventional nuritional range, so I decided to try to stay closer to the suggested range but still make it a bit different like a sort of compromise 
+
+    ♡ I want the habitat food system biased toward steady energy, satiety, minimally processed foods and avoiding excessive carbohydrate dependence still so I will change the fat and protein goals, and keep the carb target as is
+
+    ♡ thinking about seasons and crop growth but b/c of the greenouse being fully controlled all the time, the conditions stay the same, I also considered crop changes after certon harvests, but maybe this can be applied in future versions, it's just not a priority
