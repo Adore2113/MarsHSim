@@ -280,7 +280,7 @@
 
     ♡ began considering species that build efficient structures as design inspiration
 
-    ♡ began considering a helix/hive layout with layered growing areas spiraling toward a central utility area
+    ♡ began considering a helix/hive layout with layered growing areas spiraling toward a central utility area for utilities, maintenance, water systems and other things instead of just rows and boxes
 
     ♡ thought a gradual slope might make plants easier to monitor and work well with vertical racks and hanging containers
 
