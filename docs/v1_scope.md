@@ -171,7 +171,7 @@
 
     ♡ making them a list so when I add more features they will be easier to access
 
-    ♡ adding heat produced by amine beds with exothermic absorption (the amine molecules catch the co2 which releases heat), and regeneration
+    ♡ adding heat produced by amine beds with exothermic absorption (the amine molecules catch the co2 which releases heat) and regeneration
 
     ♡ amine beds come online based on how much co2 is needed using two different hysteresis
     
@@ -216,13 +216,7 @@
 
 
 #### Greenhouse Notes:
-    ♡ these notes are a mess while I organize my thoughts 
-
-    ♡ considering looking at species that make their own structures and systems as inspiration for efficiency
-
-    ♡ Taking the layout into consideration, hydroponics lets me consider other greenhouse layout ideas, so I'm leaning toward a sort of "helix" .. hive, area instead. A layered growing space that spirals inward toward a main central area for utilities, maintenance, water systems, and other things instead of just rows and boxes.
-
-    ♡ I also think it would be easier to visually see/monitor a lot more plants along a gradual slope instead of separate rectangular flat rows and it would potentially work well with the vertical racks and hangers like I wanted.
+    ♡ currently reformatting notes in the greenhouse folder in the creation_notes folder 
 
     ♡ considering hydroponics, a set up between waste water and filtering and that filtered water 
 
@@ -236,99 +230,21 @@
     
     ♡ lightweight clayballs from earth able to pack in tightly and securely in the starship, slow degration over years to Mars instead of soil
 
-    ♡ grow racks, artificial grow lights
-
     ♡ humidity control
 
-    ♡ plants that help scrub the co2, and generate o2
-
-    ♡ really contemplating how to approach this, without it turning into a detailed greenhouse simulator.. I've considered:
-        - each individual crop type having specific growing conditions, but this would be way to complex for this sim in genreal, let alone compared to my other systems..
-        
-        - each conainer type having their own specific growing conditions
-        
-        - having one overall setting for the greenhouse, but this just seems to simple  
-
-    ♡ I've decided to go with three seperate zones seperated by container type and use the averages of the plants for the information to work with
-
-    ♡ I am using the idea of the crew maintaining:
-        -40% carbs:
-            - I'm even open to making this a lower percentage, but after doing my own reasearch from different sites and things, I'm choosing this for now
-        
-        -45% fat:
-            - these are very dense in calories and  keep people full longer
-
-        -15% protein:
-            - high protein just doesn't seem ideal for a survival environment for multiple reasons
-            - humans can survive off of 15% protein
-
-    ♡ I didn't want to have foods that need a lot of processing, at least to start
-
-    ♡ food choices/considerations:
-            - sweet potato (high in calories, higher nutrients than regular potatoes, edible leaves, easy to grow, ect.): 
-                - can grow vertically
-                -germination 1-14 days, vegetative 2-8 weeks, flowering 6-12 weeks, harvest ~3 months
-            
-
-            - quinoa (protein, very low prep after harvest, resiliant, carbs)
-                -germination 2-3 weels, vegetative 2-4 weeks, flowering 4-6 weeks, harvest 3-4 months
-
-
-            - corn (mulitpurpose, starchy, easy growth) - 
-                -germination 5-10 days, vegetative 10-50 days, flowering 50-70 days, harvest 90-140 days
-            
-
-            - dwarf banana trees (familiar, sweet, sort of a morale fruit):
-                -germination 2-3 weeks, vegetative 3-6 months, flowering 6-12 months, fruit development 11-14 months
-
-
-            - peanut (high in fat, protein and calories)
-                -germination 5-10 days, vegetative 10-40 days, flowering 40-50, harvest 120-160 days
-
-
-            - sunflowers for seeds, morale, ect.
-                -germination 7-10 days, vegetative 20-40 days, flowering 30-50 days, harvest 70-120 days
-
-
-            - peas (fast growth)
-                -germination 7-14 days, vegetative 12-42 days, flowering 28-45 days, harvest 60-70 days 
-
-
-            - spinach
-                -germination 7-14 days, vegetative 30-45 days, flowering 42-56 days, harvest 37-60 days 
-
-
-            - plantain leaf ( medicinal, anti-inflammatory, wound care, teas, ect.)
-                -germination 7-21 days, vegetative 14-42 days, flowering 120-365 days, harvest 1-2 years (this is way to long, I'm removing this from the list) 
-
-
-            - drwaf passionfruit trees (protein, vitamins, nice smell for morale) 
-                -germination 7-28 days, vegetative 60-182 days, flowering 182-547 days, harvest 1-1.5 years 
-
-
-            - lentils don't seem realistic to harvest and process, so I was thinking there could be a food storage/rations that include them to start or have as an emergency back up,as well as freeze dried protiens and other emergency rations
-
-
-    ♡  herbs?( small amount, dual purpose only (reasearch this))
-
-    ♡ fleshy fruits = high water content (peaches, apples, )
-    ♡ dry fruits = good for seeds and plant reproduction,  fruit protect their seeds well    
+    ♡ plants that help scrub the co2 and generate o2 
 
     ♡ plant disease, labor hours, morale value, spoilage rate, water use, ect. 
     
-    ♡ I set up to be running with daylight, but now I'm thinking about having the lights on a 12 hour cycle, but also turn off if not needed(23/06/2026)
-
 
 ### Ration Notes:
-    ♡ lentils/beans ?
-
+    ♡ lentils?
 
 ### Crew Notes:
     ♡ crew getting around 8 hours of sleep/night (9:30pm (21:30)- 6:00am)
 
-
 ### Power Notes:
-##### moved to power.md
+##### see power.md
 
 ### Sabatier Notes:
     ♡ reactions_available is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
@@ -337,7 +253,7 @@
 ### Thermal Notes:
     ♡ going to use kilowatts (kW) for heat sources (kW = change) (C = result)
 
-    ♡ adding a variable for the habitat's insulation as a heat leak rate, and I'm using 1.0 kw/C as a starter value
+    ♡ adding a variable for the habitat's insulation as a heat leak rate and I'm using 1.0 kw/C as a starter value
 
      ♡ I'm thinking about radiators, electric heaters, obvious insulation, fans and maybe.. a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin
 
@@ -359,7 +275,7 @@
         - Water Processor Assembly (WPA)
         - Brine Processor Assembly (BPA)
 
-    ♡ so the urine goes through the UPA and gets clean water and brine, and the brine goes through the BPA and gets some more clean water and a smaller amount of brine (that's the goal anyway)
+    ♡ so the urine goes through the UPA and gets clean water and brine and the brine goes through the BPA and gets some more clean water and a smaller amount of brine (that's the goal anyway)
 
     ♡ OGA uses potable water
 
