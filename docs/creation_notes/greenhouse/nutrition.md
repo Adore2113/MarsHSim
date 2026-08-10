@@ -169,20 +169,26 @@
 ## Design Evolution
 #### Initial Nutrition Goal:
     ♡ macronutrient targets:
-        - carbohydrates: 40%
-        - fat: 45%
-        - protein: 15%
+        - carbohydrates: 
+            ♡ 40%
+            ♡ open to lowering this percentage
+            ♡ current value chosen from general research
 
-    ♡ carbohydrates:
-        - open to lowering this percentage
-        - current value chosen from general research
+        - fat:
+            ♡ 45%
+            ♡ calorie dense
+            ♡ helps keep the crew full longer
 
-    ♡ fat:
-        - calorie dense
-        - helps keep the crew full longer
+        - protein:
+            ♡ 15%
+            ♡ kept lower because high protein may not be ideal in a long term survival environment
+    
+#### Early Greenhouse Model:
+    ♡ considered simulating each individual crop type with its own growing conditions
 
-    ♡ protein:
-        - kept lower because high protein may not be ideal in a long term survival environment
+    ♡ decided to use 3 separate zones based on container type
+
+    ♡ each zone now uses averages from the plants grown within it
 
 #### Removed or De-prioritised:
     ♡ plantain leaf
@@ -210,3 +216,8 @@
     ♡ these targets work with my preference for crops that don't require a lot of processing
 
     ♡ targets sit slightly outside NASA exploration ranges (carb low, fat high)
+
+#### Why use 3 zones by container type?
+    ♡ for flexible crop placement
+    
+    ♡ I considered grouping them by growing conditions, crop type, etc. but decided on this because there are different things to consider for each individual crop as far as needs, growing, timing, and density go
