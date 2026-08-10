@@ -277,9 +277,20 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
+
 ###### 05/09/2026:
     ♡ researched crops and crew nutrition
-    ♡ decided to track plants by zone instead of individual plants
+   
+    ♡ I want plants that help scrub the co2 and generate o2 
+
+    ♡ really contemplating how to approach this, without it turning into a detailed greenhouse simulator.. I've considered:
+        - each individual crop type having specific growing conditions, but this would be way to complex for this sim in genreal, let alone compared to my other systems..
+        
+        - each conainer type having their own specific growing conditions
+        
+        - having one overall setting for the greenhouse, but this just seems to simple
+        
+    ♡ decided to track plants by zone instead of individual plants 
 
 ###### 05/16/2026:
     ♡ began considering crops that support both nutrition and morale
