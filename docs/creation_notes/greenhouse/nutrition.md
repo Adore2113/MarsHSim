@@ -274,3 +274,23 @@
 
     ♡ more practical for early habitat operations
 
+### ----------------------------------------
+
+### Dev Log Notes:
+###### 05/09/2026:
+    ♡ researched crops and crew nutrition
+    ♡ decided to track plants by zone instead of individual plants
+
+###### 05/16/2026:
+    ♡ began considering crops that support both nutrition and morale
+
+###### 08/06/2026:
+    ♡ cleaned crop list and assigned crops to the three zones of the new large greenhouse
+
+##      08/09/2026
+    ♡ going over nutrition plan and  macronutrient targets
+
+    ♡ I chose these targets intitally (carbohydrates: 40%, fat: 45%, protein: 15%) b/c I was taking crew stability into consideration, as well as crew performance, cognition and overall wellbeing. I need to choose between this and a conventional nuritional range, so I decided to try to stay closer to the suggested range but still make it a bit different like a sort of compromise 
+
+    ♡ I want the habitat food system biased toward steady energy, satiety, minimally processed foods and avoiding excessive carbohydrate dependence still so I will change the fat and protein goals, and keep the carb target as is
+
