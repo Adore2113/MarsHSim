@@ -148,9 +148,31 @@ This project is in active development.
     
     - todo.md = planned systems, ideas, fixes and future tasks
 
-    - v1_scope.md  =  project info and notes
+    - v1_scope.md = project info and notes
 
-    - v1_state_variables.md  =  reference of all tracked variables
+    - v1_state_variables.md = reference of all tracked variables
+    
+♡ docs / creation_notes
+
+    - lights.md = habitat lighting design and simulation notes
+    
+    - power.md = habitat power system design and planning notes
+    
+    - solar_field.md = solar field design, operation and power generation notes
+
+♡ docs / creation_notes / greenhouse /
+
+    - layout.md = Hive-8 Arcadia structure, dimensions, zones and physical layout
+
+    - lighting.md = greenhouse natural and artificial lighting plan
+
+    - nutrition.md = crew nutrition targets and crop planning
+
+    - operations.md = greenhouse operation and management notes
+
+    - power.md = greenhouse power requirements and energy planning
+
+    - water.md = greenhouse water use, recovery and hydroponic water planning
 
 ♡ src /sim /
 
@@ -192,11 +214,11 @@ This project is in active development.
 
     - water.py = water storage, recovery, and usage tracking
 
-♡ .gitignore  =  ignored files
+♡ .gitignore = ignored files
 
-♡ README.md  =  project overview
+♡ README.md = project overview
 
-♡ requirements.txt  =  project dependencies
+♡ requirements.txt = project dependencies
 
 ♡ ui /
 
