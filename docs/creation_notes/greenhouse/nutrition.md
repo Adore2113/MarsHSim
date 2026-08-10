@@ -294,3 +294,128 @@
 
     ♡ I want the habitat food system biased toward steady energy, satiety, minimally processed foods and avoiding excessive carbohydrate dependence still so I will change the fat and protein goals, and keep the carb target as is
 
+### ----------------------------------------
+## more in depth crop notes I wanted to keep:
+    ♡ fleshy fruits:
+        high water content, high morale
+
+    ♡ dry fruits:
+        good for seeds and plant reproduction 
+
+    ♡ sweet potato:
+        - high in calories
+        - edible leaves
+        - can grow vertically
+        - germination: 1–14 days
+        - vegetative growth: 2–8 weeks
+        - flowering: 6–12 weeks
+        - harvest: ~ 3 months
+
+    ♡ potato:
+        - high in calories
+        - edible leaves
+        - can grow vertically
+        - germination: 1–14 days
+        - vegetative growth: 2–8 weeks
+        - flowering: 6–12 weeks
+        - harvest: ~ 3 months
+        
+        - Nasa notes:
+            - comparison of hydroponically grown underground crops reported maximum dry weight yields of ~ 4.69 kg/m² for potato versus 2.54 kg/m² for sweet potato under the tested controlled environment conditions
+
+            - Denali and Norland potatoes were planted using nutrient film hydroponics for 112 days, producing  ~1.8–2.85 kg fresh tubers per plant depending on cultivation and spacing (water use in that experiment was about 2 L/m²/day)
+        
+            - hydroponic sweet potato experiments produced ~ 1.79 kg of fresh storage root per plant, with reported edible biomass ~ 60–89% (depending on the experiment) and harvest periods were around 105–130 days
+
+    ♡ quinoa:
+        - protein
+        - carbohydrates
+        - resilient
+        - low preparation after harvest
+        - germination: 2–3 weeks
+        - vegetative growth: 2–4 weeks
+        - flowering: 4–6 weeks
+        - harvest: 3–4 months
+
+    ♡ corn:
+        - multipurpose
+        - starchy
+        - germination: 5–10 days
+        - vegetative growth: 10–50 days
+        - flowering: 50–70 days
+        - harvest: 90–140 days
+
+    ♡ SWEET corn:
+        - stalks/leaves = biomass after harvest
+        - grows upward rather than sprawling horizontally
+        - germination: 5–12 days
+        - vegetative growth: 30-50 days
+        - flowering: 32-62 days
+        - harvest: ~ 2-3 months
+        - one cup of cooked sweet corn = 
+            ~ 130 calories, 3 grams of protein, and 2 grams of fat
+
+        - cons: highly parishable on earth, space considerations
+        
+
+    ♡ dwarf banana trees:
+        - familiar morale fruit
+        - germination: 2–3 weeks
+        - vegetative growth: 3–6 months
+        - flowering: 6–12 months
+        - fruit development: 11–14 months
+
+    ♡ peanuts:
+        - high in fat, protein and calories
+        - germination: 5–10 days
+        - vegetative growth: 10–40 days
+        - flowering: 40–50 days
+        - harvest: 120–160 days
+
+    ♡ sunflowers:
+        - edible seeds
+        - morale value
+        - germination: 7–10 days
+        - vegetative growth: 20–40 days
+        - flowering: 30–50 days
+        - harvest: 70–120 days
+
+    ♡ peas:
+        - fast growth
+        - germination: 7–14 days
+        - vegetative growth: 12–42 days
+        - flowering: 28–45 days
+        - harvest: 60–70 days
+
+    ♡ spinach:
+        - germination: 7–14 days
+        - vegetative growth: 30–45 days
+        - flowering: 42–56 days
+        - harvest: 37–60 days
+
+    ♡ dwarf passionfruit:
+        - vitamins
+        - morale value
+        - pleasant smell
+        - germination: 7–28 days
+        - vegetative growth: 60–182 days
+        - flowering: 182–547 days
+        - harvest: 1–1.5 years
+
+    ♡ lentils:
+        - not currently planned as a fresh greenhouse crop
+        - could be stored as part of the habitat's food reserves
+        - freeze-dried protein and emergency rations can provide additional backup food
+
+    ♡ herbs:
+        - small amounts only
+        - dual-purpose crops preferred
+        - specific herbs still need research
+
+    ♡ fleshy fruits:
+        - high water content
+        - examples include peaches and apples
+
+    ♡ dry fruits:
+        - may be better for seed storage and reproduction
+        - fruit protects the seeds
