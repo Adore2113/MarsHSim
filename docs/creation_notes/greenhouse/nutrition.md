@@ -243,3 +243,34 @@
     ♡ it required less processing and could potentially grow better in hydroponics compared to other corn varieties
 
     ♡ it can be grown in blocks instead of rows so it can have it's own dedicated area
+
+#### Why is sweet potato a priority?
+    ♡ both the storage roots and leaves are edible, increasing usable biomass
+    
+    ♡ vines can use vertical growing space while the roots grow in the structural zone
+    
+    ♡ requires little processing after harvest
+    
+    ♡ provides a reliable carbohydrate source while also providing fresh greens
+    
+    ♡ it meets my crop goals/targets very well
+
+
+#### Why dwarf banana and passionfruit trees?
+    ♡ bananas are a familiar, sweet morale food while still being compact
+
+    ♡ passionfruit has a pleasant smell, it's high in vitamins, it has a very specific taste and it's more acidic adding variety, so overall morale
+
+    ♡ passionfruit is a climbing vineso it can be treated vertically instead of treating it like another tree
+    
+    ♡ fleshy fruits are good for high water content and high morale and dry fruits are good for seeds and plant reproduction 
+
+   ♡ they aren't intended as a staple or fast food source
+
+#### Why avoid heavily processed crops?
+    ♡ reduces the equipment and labour required after harvest
+
+    ♡ simpler to represent in the simulation
+
+    ♡ more practical for early habitat operations
+
