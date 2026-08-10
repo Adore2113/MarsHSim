@@ -35,7 +35,7 @@
             bulk calories, fat and protein crops that need more space and time
 
         - crop considerations: 
-            sweet potato, quinoa, peanuts, dwarf banana, dwarf passionfruit
+            sweet potato, quinoa, peanuts, dwarf banana
 
     ♡ container zone:
         - medium crops
@@ -44,7 +44,7 @@
             tall plants and mixed plantings
 
         - crop considerations: 
-            corn, sunflowers, mixed medium plants
+            sweet corn, sunflowers, dwarf passionfruit, mixed medium plants
 
     ♡ rack zone:
         - smaller crops
@@ -116,8 +116,12 @@
 ### ----------------------------------------
 
 ## Primary Crop List:
-    ♡ sweet potato
+    ♡ sweet potato (priority crop)
         - high calories, edible leaves, good   vertical growth
+        - harvest window: ~ 3 months
+
+    ♡ regular potato
+        - dietary variety, high calories,
         - harvest window: ~ 3 months
     
     ♡ sweet corn
@@ -201,7 +205,7 @@
     ♡ lentils (as fresh greenhouse crop)
         - better as stored / emergency food
 
-    ♡ highly processed or any very long cycle crop ideas
+    ♡ very long cycle crops are deprioritised unless they provide enough morale, dietary, spatial or secondary value to justify taking up greenhouse space
 
     ♡ origionally considering avocados, I still wish the avacado tree would work, but it doesn't fit my fast, calorie dense and/or multipurpose crops first goal so I couldn't justify such a slow and finicky crop
 
@@ -232,3 +236,10 @@
     ♡ I wanted to choose crops by nutrition value, yield and usefulness, space efficiency, harvest speed, hydroponic practicality, processing/labour, secondary uses, and morale
 
     ♡ other reasons are included beside each crop in the 'subsection primary crop list' above 
+
+#### Why sweet corn specifically?
+    ♡ it's very sweet, nutritious and familiar for morale
+
+    ♡ it required less processing and could potentially grow better in hydroponics compared to other corn varieties
+
+    ♡ it can be grown in blocks instead of rows so it can have it's own dedicated area
