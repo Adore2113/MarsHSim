@@ -62,3 +62,21 @@
     ♡ this water is collected and returned to the greenhouse nutrient reservoirs
     
     ♡ currently included in the overall recirculation numbers
+
+### ----------------------------------------
+
+#### Transpiration and Plant Mass:
+    ♡ transpiration is passed to the humidity system (CHX)
+
+    ♡ transpiration ratio: 
+        85% of plant water uptake
+   
+    ♡ plant mass ratio: 
+        15% of plant water uptake
+
+    ♡ calculation:
+        - transpiration:
+            plant water uptake × 0.85
+
+        - plant mass water:
+            plant water uptake × 0.15
