@@ -36,3 +36,22 @@
             base water × effective grow area × multiplier × sol fraction
 
 ### ----------------------------------------
+
+#### Water Recirculation:
+    ♡ each zone has its own efficiency
+
+    ♡ structural: 82%
+    ♡ container: 88%
+    ♡ rack: 94%
+
+    ♡ calculation:
+        - water recirculated:
+             water needed × recirculation efficiency
+        - water taken up by plants:
+             water needed × (1.0 − recirculation efficiency)
+
+    ♡ the water taken up by plants is what actually leaves the recirculating loop
+    
+    ♡ 82–94% recovery is realistic for a closed hydroponic system
+
+### ----------------------------------------
