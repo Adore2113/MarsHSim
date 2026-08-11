@@ -79,7 +79,7 @@
 
 ### ----------------------------------------
 
-#### Future Considerations:
+## Future Considerations:
     ♡ 
 
 ### ----------------------------------------
@@ -98,17 +98,17 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
-##      05/11/2026
+###### 05/11/2026
      ♡ adding heat from the LED lights in my greenhouse_lighting function
 
-##      07/23/2026
+###### 07/23/2026
     ♡ my sim is running on average:  Solar Generated = 559.26 kwh, Total Power Used = 649.12 kWh, Net Energy = -89.86 kWh 
 
     ♡ I isolated the subsystems and the greenhouse light power is taking up a high percentage of the power, I have it set up to be running w. daylight, but now I'm thinking about having the lights on a 12 hour cycle
 
     ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've manaed to get the Greenhouse energy usage to 260.46 kwh, instead of 325.55kwh
 
-##      08/11/2026
+###### 08/11/2026
     ♡ I'm going over greenhouse power and waste heat, now that a lot of changes have been made to the greenhouse
 
     ♡ NASA style and long duration designs run moderate light levels instead of Earth's commercial maximums, so 100–160 W/m² electrical is common for efficient systems that mix sunlight + LEDs
