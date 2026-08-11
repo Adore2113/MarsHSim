@@ -76,3 +76,21 @@
 
         - heat energy over one sol(~24.66 h):
             20.3 kW × 24.66 hours ≈ 500 kWh/sol
+
+### ----------------------------------------
+
+#### Future Considerations:
+    ♡ 
+
+### ----------------------------------------
+
+## Design Decisions:
+#### Why an LED heat ratio of 0.68?
+    ♡ I read that horticulture LED lights turn ~ 30-40 % of electricity into light, so about ~ 0.60 - 0.70 waste heat seemed right 
+
+#### Why keep LED power/heat mechanics out of this file?
+    ♡ both led power and heat are computed inside greenhouse_lighting()'s loop per zone, with other lighting info
+
+    ♡  they're part of the lighting system, not a separate greenhouse subsystem
+ 
+    ♡ keeping the mechanism in one place (lighting.md) avoids the same calculation being maintained in two files
