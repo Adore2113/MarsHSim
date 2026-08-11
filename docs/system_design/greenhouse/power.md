@@ -132,3 +132,5 @@
     ♡ student/NASA challenge greenhouse and MELiSSA-style studies show nutrient delivery / irrigation power as actually pretty low once the system is recirculating properly and efficient
     
     ♡ I'm going to drop the eqipment power draw to ~ 0.05 kW/m² 
+
+    ♡ updating greenhouse to include new values, and equipment
