@@ -17,20 +17,22 @@
     ♡ water requirements are calculated by zone
 
     ♡ structural:
-        - multiplier: 1.15
         - base water: 3.4 kg/m²/sol
-        - growing area: 90 m²
+        - multiplier: 1.15
+        - effective rate ≈ 3.91 kg/m²/sol
 
     ♡ container:
-        - multiplier: 1.00
         - base water: 2.6 kg/m²/sol
-        - growing area: 110 m²
+        - multiplier: 1.00
+        - effective rate ≈ 2.6 kg/m²/sol
 
     ♡ rack:
-        - multiplier: 0.90
         - base water: 1.95 kg/m²/sol
-        - growing area: 124 m²
+        - multiplier: 0.90
+        - effective rate ≈ 1.76 kg/m²/sol
 
     ♡ calculation:
         - water needed:
-            base water needed per m² × growing area × water multiplier × sol fraction
+            base water × effective grow area × multiplier × sol fraction
+
+### ----------------------------------------
