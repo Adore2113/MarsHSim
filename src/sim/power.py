@@ -61,13 +61,13 @@ def manage_battery_bank(state, net_energy_kwh, dt_min):
 
 
 #------------------total power usage-----------------♡
-def get_total_power_usage(amine_bed_power_used_kw, oga_power_used_kw, light_power_used_kw, w_light_power_used_kw, greenhouse_led_power_kw, radiator_power_kw, heater_power_kw, chx_power_used_kw, upa_power_used_kw, wpa_power_used_kw, bpa_power_used_kw, sabatier_power_used_kw, isru_water_power_used_kw, isru_atm_power_used_kw, solar_field_power_used_kw):
-    total_power_used_kw = (amine_bed_power_used_kw + oga_power_used_kw + light_power_used_kw + w_light_power_used_kw + greenhouse_led_power_kw + radiator_power_kw + heater_power_kw + chx_power_used_kw  + upa_power_used_kw + wpa_power_used_kw + bpa_power_used_kw + sabatier_power_used_kw + isru_water_power_used_kw + isru_atm_power_used_kw + solar_field_power_used_kw)
+def get_total_power_usage(amine_bed_power_used_kw, oga_power_used_kw, light_power_used_kw, w_light_power_used_kw, greenhouse_led_power_kw, greenhouse_equipment_power_kw, radiator_power_kw, heater_power_kw, chx_power_used_kw, upa_power_used_kw, wpa_power_used_kw, bpa_power_used_kw, sabatier_power_used_kw, isru_water_power_used_kw, isru_atm_power_used_kw, solar_field_power_used_kw):
+    total_power_used_kw = (amine_bed_power_used_kw + oga_power_used_kw + light_power_used_kw + w_light_power_used_kw + greenhouse_led_power_kw + greenhouse_equipment_power_kw + radiator_power_kw + heater_power_kw + chx_power_used_kw  + upa_power_used_kw + wpa_power_used_kw + bpa_power_used_kw + sabatier_power_used_kw + isru_water_power_used_kw + isru_atm_power_used_kw + solar_field_power_used_kw)
 
     return total_power_used_kw
 
-def get_total_energy_usage(amine_bed_energy_used_kwh, oga_energy_used_kwh, light_energy_used_kwh, w_light_energy_used_kwh, greenhouse_led_energy_kwh, radiator_energy_kwh, heater_energy_kwh, chx_energy_used_kwh, upa_energy_used_kwh, wpa_energy_used_kwh, bpa_energy_used_kwh, sabatier_energy_used_kwh, isru_water_energy_used_kwh, isru_atm_energy_used_kwh, solar_field_energy_used_kwh):
-    total_energy_used_kwh = (amine_bed_energy_used_kwh + oga_energy_used_kwh + light_energy_used_kwh + w_light_energy_used_kwh + greenhouse_led_energy_kwh + radiator_energy_kwh + heater_energy_kwh + chx_energy_used_kwh + upa_energy_used_kwh + wpa_energy_used_kwh + bpa_energy_used_kwh + sabatier_energy_used_kwh + isru_water_energy_used_kwh + isru_atm_energy_used_kwh + solar_field_energy_used_kwh)  
+def get_total_energy_usage(amine_bed_energy_used_kwh, oga_energy_used_kwh, light_energy_used_kwh, w_light_energy_used_kwh, greenhouse_led_energy_kwh, greenhouse_equipment_energy_kwh, radiator_energy_kwh, heater_energy_kwh, chx_energy_used_kwh, upa_energy_used_kwh, wpa_energy_used_kwh, bpa_energy_used_kwh, sabatier_energy_used_kwh, isru_water_energy_used_kwh, isru_atm_energy_used_kwh, solar_field_energy_used_kwh):
+    total_energy_used_kwh = (amine_bed_energy_used_kwh + oga_energy_used_kwh + light_energy_used_kwh + w_light_energy_used_kwh + greenhouse_led_energy_kwh + greenhouse_equipment_energy_kwh + radiator_energy_kwh + heater_energy_kwh + chx_energy_used_kwh + upa_energy_used_kwh + wpa_energy_used_kwh + bpa_energy_used_kwh + sabatier_energy_used_kwh + isru_water_energy_used_kwh + isru_atm_energy_used_kwh + solar_field_energy_used_kwh)  
 
     return total_energy_used_kwh
 
@@ -91,11 +91,12 @@ def run_system_power(
     solar_field_updates, solar_field_outputs = run_solar_field(state, dt_min)
 
     total_power_used_kw = get_total_power_usage(
-         co2_results["amine_bed_power_used_kw"],
+        co2_results["amine_bed_power_used_kw"],
         oga_results["oga_power_used_kw"],
         light_results["light_power_used_kw"],
         light_results["w_light_power_used_kw"],
         greenhouse_outputs.get("greenhouse_led_power_kw", 0.0),
+        greenhouse_outputs.get("greenhouse_equipment_power_kw", 0.0),
         thermal_outputs.get("radiator_power_kw", 0.0),
         thermal_outputs.get("heater_power_kw", 0.0),
         humidity_results.get("chx_power_used_kw", 0.0),
@@ -114,6 +115,7 @@ def run_system_power(
     light_results["light_energy_used_kwh"],
     light_results["w_light_energy_used_kwh"],
     greenhouse_outputs.get("greenhouse_led_energy_kwh", 0.0),
+    greenhouse_outputs.get("greenhouse_equipment_energy_kwh", 0.0),
     thermal_outputs.get("radiator_energy_kwh", 0.0),
     thermal_outputs.get("heater_energy_kwh", 0.0),
     humidity_results.get("chx_energy_used_kwh", 0.0),
