@@ -19,10 +19,11 @@ gh_light_start_hour = 5
 #------greenhouse operation-----♡
 transpiration_ratio = 0.85
 
-base_power_per_m2_kw = 0.10    # led, pumps, circulation, ect.
+base_power_per_m2_kw = 0.05    # pumps, circulation, support equipment
 greenhouse_heat_per_m2_kw = 0.015
 
 runoff_water_ratio = 0.08
+
 #--------crop model------------♡
 default_health = 0.98
 default_light_exposure = 0.65
@@ -70,7 +71,7 @@ def greenhouse_lighting(state, dt_min):
         zone_name = zone["zone"]
         area_m2 = zone["effective_grow_area_m2"]
 
-        light_target_kw_per_m2 = zone.get("light_target_kw_per_m2", 0.70)
+        light_target_kw_per_m2 = zone.get("light_target_kw_per_m2", 0.23)
         light_absorption = zone.get("base_light_absorption_pct", 0.70)
         gh_light_hours_per_sol = zone.get("gh_light_hours_per_sol", base_gh_light_hours_per_sol)
 
@@ -220,7 +221,8 @@ def run_greenhouse(state, dt_min):
     
     lighting = greenhouse_lighting(state, dt_min)
     zone_lighting = lighting["zone_lighting"]
-    
+    total_equipment_power_kw = 0.0
+
     total_water_needed_kg = 0.0
     total_water_consumed_kg = 0.0
     total_water_recirculated_kg = 0.0
@@ -239,6 +241,9 @@ def run_greenhouse(state, dt_min):
     for zone in state.greenhouse_zones:
         zone_name = zone["zone"]
         zone_light = zone_lighting[zone_name]
+
+        floor_area = zone.get("floor_area_m2", zone["effective_grow_area_m2"])
+        total_equipment_power_kw += base_power_per_m2_kw * floor_area
 
         new_growth_progress, harvest_ready, food_produced_kg = greenhouse_zone_growth(zone, zone_light, sol_fraction)
         resources = greenhouse_resources(zone, zone_light, sol_fraction)
@@ -308,6 +313,9 @@ def run_greenhouse(state, dt_min):
 
         "total_greenhouse_heat_kw": total_greenhouse_heat_added_kw,
         "total_greenhouse_heat_kwh": total_greenhouse_heat_added_kw * hours_per_step,
+       
+        "greenhouse_equipment_power_kw": total_equipment_power_kw,
+        "greenhouse_equipment_energy_kwh": total_equipment_power_kw * hours_per_step,
 
         "greenhouse_led_power_kw": lighting["total_led_power_kw"],
         "greenhouse_led_energy_kwh": lighting["total_led_energy_kwh"],
@@ -320,11 +328,3 @@ def run_greenhouse(state, dt_min):
     
     return greenhouse_updates, greenhouse_outputs
     
-
-    
-
-# gray/black water to water filtration to UPA/WPA to potable to greenhouse
-
-# loop = crew waste to treatment to greenhouse nutriant solutio to plants to humidity to CHX capture to water system!
-
-# pros : massive water recylcing!
