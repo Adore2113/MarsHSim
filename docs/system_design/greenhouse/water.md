@@ -51,7 +51,14 @@
              water needed × (1.0 − recirculation efficiency)
 
     ♡ the water taken up by plants is what actually leaves the recirculating loop
-    
-    ♡ 82–94% recovery is realistic for a closed hydroponic system
 
 ### ----------------------------------------
+
+## Runoff:
+    ♡ runoff ratio: 0.08 (8% of water needed)
+
+    ♡ represents nutrient solution that drains from the plant containers
+    
+    ♡ this water is collected and returned to the greenhouse nutrient reservoirs
+    
+    ♡ currently included in the overall recirculation numbers
