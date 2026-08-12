@@ -50,11 +50,19 @@
 #### Nutrient Solution Management:
     ♡ one target range per zone
 
+    ♡ structural:
+        - ph target range: 5.5-6.2 ( ~5.8)
+
+    ♡  container:
+        - ph target range: 5.7-6.3 ( ~6.0)
+
+    ♡ rack:
+        - ph target range: 5.8–6.3 ( ~6.0)
+
 ### ----------------------------------------
 
 ## Design Evolution:
-####
-    ♡ 
+    ♡ I only started with three zones with a shared effective growth rate without going into detail
 
 ### ----------------------------------------
 
@@ -70,13 +78,3 @@
     ♡ it works well with hydroponics and it can be cleaned and reused
 
     ♡ I learned about these years ago from seeing the hydroponic set up that my friend Joe had created, including clay balls, fish tanks, hanging planters, structural planter area and the whole set up.. the plants were thriving and it looked incredible
-
-#### What is a dutch bucket style system?
-    ♡ it's a recirulating drip systems where each plant or small group gets it's own bucket, all connected sharing plumbing
-
-
-### ----------------------------------------
-
-### Dev Log Notes:
-######
-    ♡
