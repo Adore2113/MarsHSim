@@ -1,6 +1,6 @@
 # Greenhouse:
 ### General Notes:
-    ♡ origionally my plan was a hexagon shape so I called it Helix Hive, since changing my plans I decided on Hive-8 because it's now an octagon
+    ♡ originally my plan was a hexagon shape so I called it Helix Hive, since changing my plans I decided on Hive-8 because it's now an octagon
 
     ♡ this isn't a greenhouse simulator, so it's intentionally not as complex as it could be
 
@@ -54,7 +54,7 @@
         - combined floor area of zones: ≈ 980 m²
         - total effective growth area: ≈ 1,350 m²
         - calculation:
-            - 380 m² + 420 m² 180 m² 
+            - 380 m² + 420 m² + 180 m² 
             ≈ 980 m²
 
             -420 m² + 480 m² + 450 m²
@@ -136,11 +136,9 @@
         - nutrient solution floods/recirculates within each level, or falls gently from higher to lower boxes
         
 #### Storage: 
-    ♡ under the higher inner sections of the planter slopes, accessible from flat ground paths
-    
-    ♡ storage will bearound the outside ground floor
+    ♡ under the higher inner sections of the planter slopes, around the outside ground floor, accessible from flat ground paths
 
-    ♡ minor smaller storage in side the  center
+    ♡ minor smaller storage inside the  center
 ### ----------------------------------------
 
 ### Design Decisions:
@@ -157,7 +155,7 @@
     
         ♡ wider floor area = less height ideally, so this made sense when it came to considering outside damage among other things
 
-        ♡ I can visualize this as being a bit larger than an NBA basketcall court
+        ♡ I can visualize this as being a bit larger than an NBA basketball court
     
 #### Why choose 11 m total height?
         ♡ I wanted the central core to have two stories
@@ -165,12 +163,12 @@
         ♡ I can visualize this as a typical two story house, including the roof
 
 #### Why a 6m wide octagon for the central core?
-        ♡ I was thinking about six queen sized matresses laying flat to make a rectangle for a starting reference, with some added space to make it an easy octagon
+        ♡ I was thinking about six queen sized mattresses laying flat to make a rectangle for a starting reference, with some added space to make it an easy octagon
 
-        ♡ so the slopes from the bottom of the helix slope has a flat, specific and designated place to meet evenly
+        ♡ so the bottom of the helix has a flat, specific and designated place to meet the core evenly
 
 #### Why Sloped Ramps:
-    ♡  for waterflow, and strategic plant type placement
+    ♡  for water flow, and strategic plant type placement
 
     ♡ I wanted to maximize the space and this lets me put storage under the slopes
 
@@ -193,7 +191,7 @@
 
     ♡ helps create longer continuous growing areas for the stepped clay ball terraces without making the path feel endless, daunting or exhausting
 
-    ♡ it didn't seem to be complex structurally 
+    ♡ it didn't seem too structurally complex 
 
 #### Why these pathway widths?
     ♡ storage pathways (2.0 m):
@@ -204,14 +202,14 @@
     ♡ ground floor (3.5 m): 
         - I wanted enough room for comfortable walking space, equipment, and tree so that it didn't put too much shade around it to make sure the plants around it get enough light
 
-#### Why one 1.5m wide catwalks/secured ramp?
+#### Why one 1.5 m wide catwalk/secured ramp?
     ♡ I figured plants along this path are smaller, so less path width would be needed
 
     ♡ it's large enough for a cart, but still not as wide as the ground
 
     ♡ keeping this walkway narrower helps preserve sunlight reaching the plants below
 
-#### Why a dubwaiter?:
+#### Why a dumbwaiter?:
     ♡ it seems practical and keeps the core efficient on both floors
 
     ♡ I wanted to make sure there wasn't constant movement up and down the ladders that gets monotonous
@@ -219,7 +217,9 @@
     ♡ considering the ladders, this combination is lighter, takes less space, and still gives reliable vertical access.
 
 #### Why use 3 zones by container type?
-    ♡ simulating every crop individually would be too complex for a non-greenhouse sim
+    ♡ simulating every crop individually would be too complex
+
+    ♡ this way I can keep my zone isolation/quarantine design
 
     ♡ one overall greenhouse setting seemed too simple
 
@@ -276,9 +276,11 @@
     ♡ decided not to centralize greenhouse multipliers because they differ by zone
 
 ###### 05/16/2026:
-    ♡ considered reducing crew living space to allow for a larger greenhouse because it is important for long-term survival
+    ♡ considered reducing crew living space to allow for a larger greenhouse because it is important for long term survival
 
     ♡ began considering species that build efficient structures as design inspiration
+
+    ♡ I'm updating the measurements and variables for the greenhouse now that I made it bigger. I want to optimize the space in the greenhouse
 
     ♡ began considering a helix/hive layout with layered growing areas spiraling toward a central utility area for utilities, maintenance, water systems and other things instead of just rows and boxes
 
@@ -322,5 +324,5 @@
 ###### 08/03/2026:
     ♡ greenhouse plant lighting remains with the greenhouse subsystem after habitat lighting was moved into lights.py
 
-###### 08/03/2026:
+###### 08/04/2026:
     ♡ created Hive-8 Arcadia plan, updating the greenhouse plans almost completely
