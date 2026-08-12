@@ -54,19 +54,26 @@
 #### Nutrient Solution Management:
     ♡ one target range per zone
 
-    ♡ EC (electrical conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration (so you can tell if the concentration has changed)
+    ♡ pH target is crucial for health and plant growth
+
+    ♡ EC (Electrical Conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration (so you can tell if the concentration has changed)
+
+    ♡ DO (Dissolved Oxygen) is a measure of the oxygen molecules present in water, essential for the respiration of fish, bacteria, and other aquatic organisms, making it a key indicator of water quality.
 
     ♡ structural:
         - pH target range: 5.5-6.2 (~ 5.8)
         - EC target range: 1.8–2.4 mS/cm (~ 2.1)
+        - solution temp: 22–24°C (~ 23°C)
 
     ♡  container:
         - pH target range: 5.7-6.3 (~ 6.0)
         - EC target range: 1.7–2.3 mS/cm (~ 2.0)
-        
+        - solution temp: 22–24°C (~ 23°C)
+
     ♡ rack:
         - pH target range: 5.8–6.3 (~ 6.0)
         - EC target range: 1.5–2.1 mS/cm (~ 1.8)
+        - solution temp: 21–23°C (~ 22°C)
 
 ### ----------------------------------------
 
@@ -76,7 +83,20 @@
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ 
+    ♡ plant health could be considered more in depth:
+        - normal pH + normal EC + normal temp + normal DO:
+            ♡ health remains ~ 0.98
+            ♡ normal growth
+        
+        - EC too high:
+            ♡ health gradually decreases
+            ♡ growth slows
+
+        - pump failure:
+            ♡ NFT flow stops  
+            ♡ DO/root water conditions deteriorate
+            ♡ rack health falls
+            ♡ growth falls
 
 ### ----------------------------------------
 
@@ -93,6 +113,8 @@
 
 #### Why these chosen values for pH targets?
     ♡ the ranges overlap intentionally, providing a managable operating range to match a mixture of crops in that specific zone
+
+    ♡ although I read that most hydroponic systems have a pH range of 5.5 and 6.5, I didn't like using those numbers as universal targets, especially since I have the different zones
 
     ♡ for the racks specifically, Virginia Tech says that most NFT plants perform well between 5.5-6.2, after doing a few trials with spinach, so I decided to go with 6.0
 
