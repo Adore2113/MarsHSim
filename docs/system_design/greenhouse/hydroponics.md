@@ -50,14 +50,17 @@
 #### Nutrient Solution Management:
     ♡ one target range per zone
 
+    ♡ EC (electrical conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration
+
     ♡ structural:
-        - ph target range: 5.5-6.2 ( ~5.8)
+        - pH target range: 5.5-6.2 ( ~5.8)
+        - EC: 
 
     ♡  container:
-        - ph target range: 5.7-6.3 ( ~6.0)
+        - pH target range: 5.7-6.3 ( ~6.0)
 
     ♡ rack:
-        - ph target range: 5.8–6.3 ( ~6.0)
+        - pH target range: 5.8–6.3 ( ~6.0)
 
 ### ----------------------------------------
 
@@ -78,3 +81,13 @@
     ♡ it works well with hydroponics and it can be cleaned and reused
 
     ♡ I learned about these years ago from seeing the hydroponic set up that my friend Joe had created, including clay balls, fish tanks, hanging planters, structural planter area and the whole set up.. the plants were thriving and it looked incredible
+
+#### What is a dutch bucket style system?
+    ♡ it's a recirulating drip systems where each plant or small group gets it's own bucket, all connected, sharing plumbing
+
+#### Why these chosen values for pH targets?
+    ♡ targets were chosen after considering the plants grown in each zone and what they require, I tried to use the averages or meet in the middle
+
+    ♡ the ranges overlap intentionally, providing a managable operating range to match a mixture of crops in that specific zone
+
+    ♡ for the racks specifically, Virginia Tech says that most NFT plants perform well between 5.5-6.2, after doing a few trials with spinach, so I decided to go with 6.0
