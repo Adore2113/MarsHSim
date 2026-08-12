@@ -2,6 +2,8 @@
 ### General Notes:
     ♡ targets and calculations are handled by zone averages instead of individual crop requirements
 
+    ♡ targets were chosen after considering the plants grown in each zone and what they require, I tried to use the averages or meet in the middle
+
     ♡ the greenhouse uses recirculating hydroponics
 
     ♡ the full crew waste into nutrient solution loop is planned but not implemented yet
@@ -27,6 +29,8 @@
     ♡  container:
         - intermittent drip-fed LECA dutch bucket style set up in a shared zone reservoir
         
+        - dutch bucket = a recirulating drip system where each plant or small group gets it's own bucket, all connected with sharing plumbing
+        
         - the same system as structure except the manifold sending nutrients to differen't containers, with their own dip emitters and drainage connections before returning
 
         - loop:
@@ -50,17 +54,19 @@
 #### Nutrient Solution Management:
     ♡ one target range per zone
 
-    ♡ EC (electrical conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration
+    ♡ EC (electrical conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration (so you can tell if the concentration has changed)
 
     ♡ structural:
-        - pH target range: 5.5-6.2 ( ~5.8)
-        - EC: 
+        - pH target range: 5.5-6.2 (~ 5.8)
+        - EC target range: 1.8–2.4 mS/cm (~ 2.1)
 
     ♡  container:
-        - pH target range: 5.7-6.3 ( ~6.0)
-
+        - pH target range: 5.7-6.3 (~ 6.0)
+        - EC target range: 1.7–2.3 mS/cm (~ 2.0)
+        
     ♡ rack:
-        - pH target range: 5.8–6.3 ( ~6.0)
+        - pH target range: 5.8–6.3 (~ 6.0)
+        - EC target range: 1.5–2.1 mS/cm (~ 1.8)
 
 ### ----------------------------------------
 
@@ -86,8 +92,13 @@
     ♡ it's a recirulating drip systems where each plant or small group gets it's own bucket, all connected, sharing plumbing
 
 #### Why these chosen values for pH targets?
-    ♡ targets were chosen after considering the plants grown in each zone and what they require, I tried to use the averages or meet in the middle
-
     ♡ the ranges overlap intentionally, providing a managable operating range to match a mixture of crops in that specific zone
 
     ♡ for the racks specifically, Virginia Tech says that most NFT plants perform well between 5.5-6.2, after doing a few trials with spinach, so I decided to go with 6.0
+
+#### Why different EC targets?
+    ♡ the bigger/longer cycle crops should have a stronger nutrient solution
+
+    ♡ the rack system can have lower concentrations b/c of the smaller, leafier plants there
+
+    ♡ this is a simplification for my simulator, instead of going into detail about specific  plant nutrients like potassium or magnesium
