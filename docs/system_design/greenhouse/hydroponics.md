@@ -11,12 +11,12 @@
 
 ## Hydroponic Plan (08/12/2026 update):
 #### Zone Methods:
-    ♡ each zone has it's own resevoir and pumps
+    ♡ each zone has it's own reservoir and pumps
 
     ♡ structural:
         - intermittent drip-fed LECA (lightweight expanded clay agrregate; lightweight clay balls) beds in a shared zone reservoir
 
-        - resevoir pumps solution through a manifold to drop lines, the solution percolates through the LECA/rootzone, collects, drains and returns back into the resevoir
+        - reservoir pumps solution through a manifold to drop lines, the solution percolates through the LECA/rootzone, collects, drains and returns back into the reservoir
         
         - loop:
             1. reservoir
@@ -31,7 +31,7 @@
         
         - dutch bucket = a recirulating drip system where each plant or small group gets it's own bucket, all connected with sharing plumbing
         
-        - the same system as structure except the manifold sending nutrients to differen't containers, with their own dip emitters and drainage connections before returning
+        - the same system as structure except the manifold sending nutrients to differen't containers, with their own drip emitters and drainage connections before returning
 
         - loop:
             1. reservoir
@@ -41,39 +41,42 @@
             5. return/loop
     
     ♡ rack:
-        - NFT (Nutrient Film Technique) where the plats get a constant flowing nutrient solution
+        - NFT (Nutrient Film Technique) where the plants get a constant flowing nutrient solution
 
-         - resevoir pumps nutrient solution to the highest end of the NFT channels, the solution flows as a shallow film through the rootzone, and carries it to the lower zone and returns back into the plumbing and then the resevoir
+         - reservoir pumps nutrient solution to the highest end of the NFT channels, the solution flows as a shallow film through the rootzone, and carries it to the lower zone and returns back into the plumbing and then the reservoir
 
         - loop:
             1. reservoir
             2. pump
             3. NFT channels
-            5. return/loop
+            4. return/loop
 
 #### Nutrient Solution Management:
     ♡ one target range per zone
 
     ♡ pH target is crucial for health and plant growth
 
-    ♡ EC (Electrical Conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration (so you can tell if the concentration has changed)
+    ♡ EC (Electrical Conductivity) is measures in mS/cm, letting you know how much the concentration of the solution has changed
 
-    ♡ DO (Dissolved Oxygen) is a measure of the oxygen molecules present in water, essential for the respiration of fish, bacteria, and other aquatic organisms, making it a key indicator of water quality.
-
+    ♡ DO (Dissolved Oxygen)how much oxygen is dissolved in the solution for the roots to use
+    
     ♡ structural:
         - pH target range: 5.5-6.2 (~ 5.8)
         - EC target range: 1.8–2.4 mS/cm (~ 2.1)
         - solution temp: 22–24°C (~ 23°C)
+        - DO target range: ≥ 6 mg/L
 
     ♡  container:
         - pH target range: 5.7-6.3 (~ 6.0)
         - EC target range: 1.7–2.3 mS/cm (~ 2.0)
         - solution temp: 22–24°C (~ 23°C)
+        - DO target range: ≥ 6 mg/L
 
     ♡ rack:
         - pH target range: 5.8–6.3 (~ 6.0)
         - EC target range: 1.5–2.1 mS/cm (~ 1.8)
         - solution temp: 21–23°C (~ 22°C)
+        - DO target range: ≥ 5.5–6 mg/L
 
 ### ----------------------------------------
 
@@ -83,7 +86,8 @@
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ plant health could be considered more in depth:
+    ♡ plant health could be considered more in depth in response to the nutrient solution:
+        
         - normal pH + normal EC + normal temp + normal DO:
             ♡ health remains ~ 0.98
             ♡ normal growth
@@ -91,13 +95,28 @@
         - EC too high:
             ♡ health gradually decreases
             ♡ growth slows
+            ♡ salt/osmotic stress
+            ♡ health penalty
+
+        - EC too low:
+            ♡ nutrient limitation
+            ♡ health penalty
+
+        - temp out of range:
+            ♡ nutrient limitation
+            ♡ health penalty
+            ♡ gradual stronger root zone health penalties
+
+        - low DO:
+            ♡ slower growth
+            ♡ health penalty
 
         - pump failure:
             ♡ NFT flow stops  
             ♡ DO/root water conditions deteriorate
             ♡ rack health falls
             ♡ growth falls
-
+    
 ### ----------------------------------------
 
 ## Design Decisions:
@@ -109,7 +128,7 @@
     ♡ I learned about these years ago from seeing the hydroponic set up that my friend Joe had created, including clay balls, fish tanks, hanging planters, structural planter area and the whole set up.. the plants were thriving and it looked incredible
 
 #### What is a dutch bucket style system?
-    ♡ it's a recirulating drip systems where each plant or small group gets it's own bucket, all connected, sharing plumbing
+    ♡ it's a recirulating drip systems where each plant or small group gets its own bucket, all connected, sharing plumbing
 
 #### Why these chosen values for pH targets?
     ♡ the ranges overlap intentionally, providing a managable operating range to match a mixture of crops in that specific zone
@@ -124,3 +143,50 @@
     ♡ the rack system can have lower concentrations b/c of the smaller, leafier plants there
 
     ♡ this is a simplification for my simulator, instead of going into detail about specific  plant nutrients like potassium or magnesium
+
+#### Why is the range for DO lower for the rack zone?
+    ♡ b/c of using NFT, the rack zone naturally gets good oxygen exposure from the thin moving film
+
+    ♡ the LECA zones rely more on drainage, air gaps, and reservoir aeration
+
+
+#### Why not simulate  pH, EC nutrients, solution temp and dissolved oxygen for V1?
+    ♡ all things that really would only impact plant health and growth rate
+
+    ♡ instead of modeling each factor individually, the simulator can use them as inputs to overall zone/root zone health, which affects growth
+
+### ----------------------------------------
+
+### Dev Log Notes:
+###### 05/08/2026
+        ♡ going w. a hydroponic set up, I updated v1_scope to include all my notes about a greenhouse 
+
+###### 05/13/2026
+    ♡ adding in hydroponics to the greenhouse list and starting from greenhouse lighting to make the greenhouse file be how I want it to be
+
+    ♡ I didn't want the multipliers in the constants like some other files, b/c they are different for each zone 
+
+    ♡ I connected the new greenhouse variables and logic to the other files
+
+###### 08/12/2026
+    ♡ I'm looking into hydroponic set ups and how they work today, I'm not going to go too far into this, again b/c I don't want this to become a main focus, it's not a greenhouse simulator
+
+    ♡ I'm looking into Nutrient Film Technique (NFT) where the plants need a constant flowing nutrient solution, and it seems like this is better for more shallow plans, so it would make sense that the rack system has these
+
+
+    ♡ reading about recirulating drip systems using dutch bucket set ups, meaning each plant or small group gets its own bucket, all connected sharing plumbing which is exactly what I had planned so this is perfect
+
+    ♡ I'm choosing targets to be averaged per zone
+
+    ♡ I'm trying to decide how in depth to make this, I was considering pH, EC nutrients, solution temp and dissolved oxygen, but these are all things that really would only impact plant health and growth rate, so I'll just make note of them for now, for potential future reference
+
+    ♡ I put a lot of notes right into the hydroponic.md file instead of here
+
+    ♡ EC (Electrical Conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration (so you can tell if the concentration has changed)
+
+    ♡ DO (Dissolved Oxygen)how many oxygen molecules a present in water, essential for the respiration of fish, bacteria, and other aquatic organisms, making it a key indicator of water quality. Low DO stresses roots, slows uptake, and raises the risk of root problems. 
+
+    ♡ the rack zone naturally gets good oxygen exposure from the thin moving film, while the LECA zones rely more on drainage, air gaps, and reservoir aeration
+
+    ♡ I'm not so worried about an upper range for the dissolved oxygen target b/c the most important thing is if it's high enough
+    
