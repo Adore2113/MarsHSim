@@ -1,6 +1,6 @@
 # Greenhouse Hydroponics
 ### General Notes:
-    ♡ each set up is calculated by zone
+    ♡ targets and calculations are handled by zone averages instead of individual crop requirements
 
     ♡ the greenhouse uses recirculating hydroponics
 
@@ -12,7 +12,7 @@
     ♡ each zone has it's own resevoir and pumps
 
     ♡ structural:
-        - drip-fed LECA (lightweight expanded clay agrregate; lightweight clay balls) beds in a shared zone reservoir
+        - intermittent drip-fed LECA (lightweight expanded clay agrregate; lightweight clay balls) beds in a shared zone reservoir
 
         - resevoir pumps solution through a manifold to drop lines, the solution percolates through the LECA/rootzone, collects, drains and returns back into the resevoir
         
@@ -25,7 +25,7 @@
             6. return/loop
     
     ♡  container:
-        - drip-fed LECA dutch bucket style set up in a shared zone reservoir
+        - intermittent drip-fed LECA dutch bucket style set up in a shared zone reservoir
         
         - the same system as structure except the manifold sending nutrients to differen't containers, with their own dip emitters and drainage connections before returning
 
@@ -47,7 +47,8 @@
             3. NFT channels
             5. return/loop
 
-#### Zone Methods:
+#### Nutrient Solution Management:
+    ♡ one target range per zone
 
 ### ----------------------------------------
 
