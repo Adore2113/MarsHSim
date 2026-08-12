@@ -56,7 +56,7 @@
         - crop considerations: 
             peas, spinach, herbs, smaller vertical crops
 
-    ♡ crops might be in different zones:
+    ♡ some crops may be grown in different zones:
         - sweet potato: 
             main in structural, vines and leaves in racks for extra greens
         
@@ -70,7 +70,7 @@
             mostly structural or container for better space and access
         
         - quinoa:
-            flexible so between structural and container
+            flexible between structural and container zones
         
         - herbs and small vertical plants:
             almost always racks
@@ -81,7 +81,7 @@
         
         - plant fast crops in small new batches every few weeks  (spinach, peas) 
         
-        - medium crops get planted every 1–2 months so harvests overlap (sweet potato, quinoa, peanuts, sunflowers)
+        - medium crops get planted every 1-2 months so harvests overlap (sweet potato, quinoa, peanuts, sunflowers)
         
         - dwarf banana and passionfruit are long term plants that just keep producing once established
 
@@ -118,44 +118,44 @@
 ## Primary Crop List:
     ♡ sweet potato (priority crop)
         - high calories, edible leaves, good   vertical growth
-        - harvest window: ~ 3 months
+        - harvest window: ~ 4 months
 
     ♡ regular potato
-        - dietary variety, high calories,
-        - harvest window: ~ 3 months
+        - dietary variety, high calories
+        - harvest window: ~ 4 months
     
     ♡ sweet corn
-        - dietary variety, high calories,carbohydrates
+        - dietary variety, high calories carbohydrates
         - harvest window: ~ 2-3 months
 
     ♡ quinoa
         - protein, carbohydrates, resilient, low processing after harvest
-        - harvest window: 3–4 months
+        - harvest window: 3-4 months
 
     ♡ peanuts
         - high fat, protein and calories
-        - harvest window: 4–5 months
+        - harvest window: 4-5 months
 
     ♡ peas
         - fast growth, good early harvests
-        - harvest window: 2–2.5 months
+        - harvest window: 2-2.5 months
 
     ♡ spinach
         - fast leafy green
         - grows amazing hydroponically
-        - harvest window: 1–2 months
+        - harvest window: 1-2 months
 
     ♡ sunflowers
         - edible seeds, morale value
-        - harvest window: 2.5–4 months
+        - harvest window: 2.5-4 months
 
     ♡ dwarf banana
         - strong morale fruit
-        - harvest window: 11–14 months
+        - harvest window: 11-14 months
 
     ♡ dwarf passionfruit
         - vitamins, pleasant smell, morale value
-        - harvest window: 1–1.5 years
+        - harvest window: 1-1.5 years
 
 ### ----------------------------------------
 
@@ -172,9 +172,11 @@
 
     ♡ research animal/insect species that build efficient structures and systems
 
+    ♡ consider plant disease, labor hours, morale value, spoilage rate, water use, etc. ?
+
 ### ----------------------------------------
 
-## Design Evolution
+## Design Evolution:
 #### Initial Nutrition Goal:
     ♡ macronutrient targets:
         - carbohydrates: 
@@ -200,14 +202,14 @@
 
 #### Removed or De-prioritised:
     ♡ plantain leaf
-        - harvest cycle too long (1–2 years) for current simulation needs
+        - harvest cycle too long (1-2 years) for current simulation needs
 
     ♡ lentils (as fresh greenhouse crop)
         - better as stored / emergency food
 
     ♡ very long cycle crops are deprioritised unless they provide enough morale, dietary, spatial or secondary value to justify taking up greenhouse space
 
-    ♡ origionally considering avocados, I still wish the avacado tree would work, but it doesn't fit my fast, calorie dense and/or multipurpose crops first goal so I couldn't justify such a slow and finicky crop
+    ♡ originally considering avocados, I still wish the avocado tree would work, but it doesn't fit my fast, calorie dense and/or multipurpose crops first goal so I couldn't justify such a slow and finicky crop
 
 ### ----------------------------------------
 
@@ -242,7 +244,7 @@
 
     ♡ it required less processing and could potentially grow better in hydroponics compared to other corn varieties
 
-    ♡ it can be grown in blocks instead of rows so it can have it's own dedicated area
+    ♡ it can be grown in blocks instead of rows so it can have its own dedicated area
 
 #### Why is sweet potato a priority?
     ♡ both the storage roots and leaves are edible, increasing usable biomass
@@ -261,7 +263,7 @@
 
     ♡ passionfruit has a pleasant smell, it's high in vitamins, it has a very specific taste and it's more acidic adding variety, so overall morale
 
-    ♡ passionfruit is a climbing vineso it can be treated vertically instead of treating it like another tree
+    ♡ passionfruit is a climbing vine, so it can be treated vertically instead of treating it like another tree
     
     ♡ fleshy fruits are good for high water content and high morale and dry fruits are good for seeds and plant reproduction 
 
@@ -277,18 +279,17 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
-
 ###### 05/09/2026:
     ♡ researched crops and crew nutrition
    
     ♡ I want plants that help scrub the co2 and generate o2 
 
     ♡ really contemplating how to approach this, without it turning into a detailed greenhouse simulator.. I've considered:
-        - each individual crop type having specific growing conditions, but this would be way to complex for this sim in genreal, let alone compared to my other systems..
+        - each individual crop type having specific growing conditions, but this would be way too complex for this sim in general, let alone compared to my other systems..
         
-        - each conainer type having their own specific growing conditions
+        - each container type having their own specific growing conditions
         
-        - having one overall setting for the greenhouse, but this just seems to simple
+        - having one overall setting for the greenhouse, but this just seems too simple
         
     ♡ decided to track plants by zone instead of individual plants 
 
@@ -298,10 +299,10 @@
 ###### 08/06/2026:
     ♡ cleaned crop list and assigned crops to the three zones of the new large greenhouse
 
-##      08/09/2026
+###### 08/09/2026
     ♡ going over nutrition plan and  macronutrient targets
 
-    ♡ I chose these targets intitally (carbohydrates: 40%, fat: 45%, protein: 15%) b/c I was taking crew stability into consideration, as well as crew performance, cognition and overall wellbeing. I need to choose between this and a conventional nuritional range, so I decided to try to stay closer to the suggested range but still make it a bit different like a sort of compromise 
+    ♡ I chose these targets initially (carbohydrates: 40%, fat: 45%, protein: 15%) b/c I was taking crew stability into consideration, as well as crew performance, cognition and overall wellbeing. I need to choose between this and a conventional nutritional range, so I decided to try to stay closer to the suggested range but still make it a bit different like a sort of compromise 
 
     ♡ I want the habitat food system biased toward steady energy, satiety, minimally processed foods and avoiding excessive carbohydrate dependence still so I will change the fat and protein goals, and keep the carb target as is
 
@@ -317,101 +318,99 @@
         - high in calories
         - edible leaves
         - can grow vertically
-        - germination: 1–14 days
-        - vegetative growth: 2–8 weeks
-        - flowering: 6–12 weeks
-        - harvest: ~ 3 months
+        - germination: 1-14 days
+        - vegetative growth: 2-8 weeks
+        - flowering: 6-12 weeks
+        - harvest: ~ 4 months
 
     ♡ potato:
         - high in calories
-        - edible leaves
-        - can grow vertically
-        - germination: 1–14 days
-        - vegetative growth: 2–8 weeks
-        - flowering: 6–12 weeks
-        - harvest: ~ 3 months
+        - germination: ~ 15 days
+        - vegetative growth: 4-8 weeks
+        - flowering: 7-10 weeks
+        - harvest: ~ 4 months
         
         - Nasa notes:
             - comparison of hydroponically grown underground crops reported maximum dry weight yields of ~ 4.69 kg/m² for potato versus 2.54 kg/m² for sweet potato under the tested controlled environment conditions
 
-            - Denali and Norland potatoes were planted using nutrient film hydroponics for 112 days, producing  ~1.8–2.85 kg fresh tubers per plant depending on cultivation and spacing (water use in that experiment was about 2 L/m²/day)
+            - Denali and Norland potatoes were planted using nutrient film hydroponics for 112 days, producing  ~1.8-2.85 kg fresh tubers per plant depending on cultivation and spacing (water use in that experiment was about 2 L/m²/day)
         
-            - hydroponic sweet potato experiments produced ~ 1.79 kg of fresh storage root per plant, with reported edible biomass ~ 60–89% (depending on the experiment) and harvest periods were around 105–130 days
+            - hydroponic sweet potato experiments produced ~ 1.79 kg of fresh storage root per plant, with reported edible biomass ~ 60-89% (depending on the experiment) and harvest periods were around 105-130 days
 
     ♡ quinoa:
         - protein
         - carbohydrates
         - resilient
         - low preparation after harvest
-        - germination: 2–3 weeks
-        - vegetative growth: 2–4 weeks
-        - flowering: 4–6 weeks
-        - harvest: 3–4 months
+        - germination: 2-3 weeks
+        - vegetative growth: 2-4 weeks
+        - flowering: 4-6 weeks
+        - harvest: 3-4 months
 
     ♡ corn:
         - multipurpose
         - starchy
-        - germination: 5–10 days
-        - vegetative growth: 10–50 days
-        - flowering: 50–70 days
-        - harvest: 90–140 days
+        - germination: 5-10 days
+        - vegetative growth: 10-50 days
+        - flowering: 50-70 days
+        - harvest: 90-140 days
 
     ♡ SWEET corn:
         - stalks/leaves = biomass after harvest
         - grows upward rather than sprawling horizontally
-        - germination: 5–12 days
+        - germination: 5-12 days
         - vegetative growth: 30-50 days
         - flowering: 32-62 days
         - harvest: ~ 2-3 months
         - one cup of cooked sweet corn = 
             ~ 130 calories, 3 grams of protein, and 2 grams of fat
 
-        - cons: highly parishable on earth, space considerations
+        - cons: highly perishable on earth, space considerations
         
 
     ♡ dwarf banana trees:
         - familiar morale fruit
-        - germination: 2–3 weeks
-        - vegetative growth: 3–6 months
-        - flowering: 6–12 months
-        - fruit development: 11–14 months
+        - germination: 2-3 weeks
+        - vegetative growth: 3-6 months
+        - flowering: 6-12 months
+        - fruit development: 11-14 months
 
     ♡ peanuts:
         - high in fat, protein and calories
-        - germination: 5–10 days
-        - vegetative growth: 10–40 days
-        - flowering: 40–50 days
-        - harvest: 120–160 days
+        - germination: 5-10 days
+        - vegetative growth: 10-40 days
+        - flowering: 40-50 days
+        - harvest: 120-160 days
 
     ♡ sunflowers:
         - edible seeds
         - morale value
-        - germination: 7–10 days
-        - vegetative growth: 20–40 days
-        - flowering: 30–50 days
-        - harvest: 70–120 days
+        - germination: 7-10 days
+        - vegetative growth: 20-40 days
+        - flowering: 30-50 days
+        - harvest: 70-120 days
 
     ♡ peas:
         - fast growth
-        - germination: 7–14 days
-        - vegetative growth: 12–42 days
-        - flowering: 28–45 days
-        - harvest: 60–70 days
+        - germination: 7-14 days
+        - vegetative growth: 12-42 days
+        - flowering: 28-45 days
+        - harvest: 60-70 days
 
     ♡ spinach:
-        - germination: 7–14 days
-        - vegetative growth: 30–45 days
-        - flowering: 42–56 days
-        - harvest: 37–60 days
+        - germination: 7-14 days
+        - vegetative growth: 30-45 days
+        - flowering: 42-56 days
+        - harvest: 37-60 days
 
     ♡ dwarf passionfruit:
         - vitamins
         - morale value
         - pleasant smell
-        - germination: 7–28 days
-        - vegetative growth: 60–182 days
-        - flowering: 182–547 days
-        - harvest: 1–1.5 years
+        - germination: 7-28 days
+        - vegetative growth: 60-182 days
+        - flowering: 182-547 days
+        - harvest: 1-1.5 years
 
     ♡ lentils:
         - not currently planned as a fresh greenhouse crop
