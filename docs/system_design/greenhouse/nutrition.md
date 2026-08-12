@@ -8,10 +8,6 @@
 
     ♡ zones seal separately for redundancy and quarantine purposes
 
-    ♡ dual-purpose crops are preferred when possible
-
-    ♡ preference for crops that do not require a lot of processing
-
     ♡ exact yield numbers and growth rates remain flexible
 
     ♡ subject to change as the greenhouse design develops
@@ -114,8 +110,9 @@
             ♡ growth progress ≥ 1.0
 
 ### ----------------------------------------
-
 ## Primary Crop List:
+    ♡ dual-purpose and crops that do not require a lot of processing are preffered
+
     ♡ sweet potato (priority crop)
         - high calories, edible leaves, good   vertical growth
         - harvest window: ~ 4 months
