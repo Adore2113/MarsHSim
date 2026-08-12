@@ -44,7 +44,7 @@
 
     ♡ LEDs are dimmable and respond to power modes
 
-    ♡ calculation (led support level):
+    ♡ calculation (LED support level):
         (light_target − effective_light) ÷ light_target
 
 #### Power Modes:
@@ -65,9 +65,6 @@
         - 8 hours (21:00 – 05:00 LMST)
         - outside scheduled hours, LEDs off
 
-    ♡ outside scheduled hours:
-        LEDs remain off
-    
     ♡ calculation (light end time):
             (5 + 16) % 24 = 21:00
 
@@ -81,7 +78,7 @@
 
     ♡ effective natural light = natural_light × absorption × day_length_bonus
 
-    ♡ LED support is applied only when effective light is below the zone target and above the minimum useful level
+    ♡ LED support is applied when effective natural light is below the zone target; full LED support is used when natural light is at or below the minimum useful level
 
 ### ----------------------------------------
 
@@ -105,7 +102,7 @@
 
 ## Design Decisions:
 #### Why timed greenhouse lights?
-    ♡ constant lights were taking up too much power (this was before my upgraded 50acre solar plan)
+    ♡ constant lights were taking up too much power (this was before my upgraded 50 acre solar plan)
 
     ♡ plants require a controlled photoperiod rather than continuous lighting
 
@@ -115,7 +112,7 @@
     
     ♡ natural sunlight reduces the LED support required during the scheduled light period
 
-    ♡ 16 hour light period was chosen as a balance between plant needs and power use
+    ♡ 16-hour light period was chosen as a balance between plant needs and power use
 
 #### Why sync greenhouse habitat lights?
     ♡ greenhouse plant lights already provide visibility while they are active
@@ -131,7 +128,7 @@
     ♡ started building the greenhouse lighting system
 
 ###### 05/13/2026:
-    ♡ adding heat from the LED lights in my greenhouse_lighting function
+    ♡ added heat from the LED lights in my greenhouse_lighting function
 
 ###### 06/23/2026:
     ♡ considered switching to a timed lighting cycle that still turns off when natural sunlight is enough
@@ -139,9 +136,9 @@
 ###### 07/23/2026:
     ♡ tested 16 hour plant lighting schedule
     
-    ♡ I isolated the subsystems and the greenhouse light power is taking up a high percentage of the power, I have it set up to be running w. daylight, but now I'm thinking about having the lights on a 12 hour cycle
+    ♡ isolated the subsystems and found that greenhouse lighting was using a high percentage of total power so I started to considered timed lighting cycles
 
-    ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've manaed to get the Greenhouse energy usage to : 260.46 kwh, instead of 325.55kwh
+    ♡ finished updating the greenhouse lights, at 16 base hours for the greenhouse lights I've managed to get the greenhouse energy usage to : 260.46 kWh, instead of 325.55 kWh
     
     ♡ reduced greenhouse energy use by approximately 20%
 
