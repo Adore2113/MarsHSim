@@ -54,6 +54,8 @@
 #### Nutrient Solution Management:
     ♡ one target range per zone
 
+    ♡ the following information is not simulated in v1 :
+
     ♡ pH target is crucial for health and plant growth
 
     ♡ EC (Electrical Conductivity) is measures in mS/cm, letting you know how much the concentration of the solution has changed
@@ -62,21 +64,24 @@
     
     ♡ structural:
         - pH target range: 5.5-6.2 (~ 5.8)
-        - EC target range: 1.8–2.4 mS/cm (~ 2.1)
-        - solution temp: 22–24°C (~ 23°C)
+        - EC target range: 1.8-2.4 mS/cm (~ 2.1)
+        - solution temp: 22-24°C (~ 23°C)
         - DO target range: ≥ 6 mg/L
 
     ♡  container:
         - pH target range: 5.7-6.3 (~ 6.0)
-        - EC target range: 1.7–2.3 mS/cm (~ 2.0)
-        - solution temp: 22–24°C (~ 23°C)
+        - EC target range: 1.7-2.3 mS/cm (~ 2.0)
+        - solution temp: 22-24°C (~ 23°C)
         - DO target range: ≥ 6 mg/L
 
     ♡ rack:
-        - pH target range: 5.8–6.3 (~ 6.0)
-        - EC target range: 1.5–2.1 mS/cm (~ 1.8)
-        - solution temp: 21–23°C (~ 22°C)
-        - DO target range: ≥ 5.5–6 mg/L
+        - pH target range: 5.8-6.3 (~ 6.0)
+        - EC target range: 1.5-2.1 mS/cm (~ 1.8)
+        - solution temp: 21-23°C (~ 22°C)
+        - DO target range: ≥ 5.5-6 mg/L
+
+#### Nutrient Solution Management:
+    ♡ 
 
 ### ----------------------------------------
 
