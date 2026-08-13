@@ -164,6 +164,22 @@
                 crit: 10,000 L × 0.25 = 2,500 L
                 refill: 10,000 L × 0.70 = 7,000 L
 
+#### Make-up Water System:
+    ♡ all three nutrient reservoirs get supplied from a shared clean water set up
+
+    ♡ loop:
+        1. habitat potable/treated water
+        2. greenhouse make-up water tank
+        3. zone valve
+        4. nutrient reservoir
+
+    ♡ the greenhouse only uses this top up system if the reservoirs avtual reach 70%, so it will happen gradually and not constantly
+
+    ♡ potable storage loses only the actual greenhouse make-up water
+
+    ♡ calculation:
+        target reservoir level − current reservoir level = make-up water needed
+
 ### ----------------------------------------
 
 ## Design Evolution:
