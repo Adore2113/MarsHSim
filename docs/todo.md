@@ -3,11 +3,15 @@
 #### I will be adding and removing from this. I needed somewhere to organize my ideas and thoughts
 
 ### Current Focus:
-    ♡ protoype ui
+    ♡ moving notes from v1_scope.md into their own file
      
 
-### Next Focus:      
-    ♡ update dust file
+### Next Focus: 
+    ♡ lock the overall habitat layout and free volumes
+
+    ♡ confirm converting O₂ mass to kPa to be consistent everywhere
+
+    ♡ set the final greenhouse O₂/CO₂ rates so they hit ~ 2% of the actual crew demand for the new volume
 
     ♡ randomize temps
 
@@ -27,9 +31,7 @@
     ♡ add system efficiency modifiers:
         
         - dust
-
         - wear
-
         - environment
 
    
@@ -37,18 +39,13 @@
         
 
 ### Eventual Focus:
-    ♡ add to file for handling dust:
-        
-        - finish dust accumulation function
-        
-        -make dust factor 0.0 - 1.0
-
-
-    ♡ turn seasons into a list with different changes
-
+    ♡ continue hydroponics: 
+        -ciruclation pumps 
+        -add that to power 
+        -calculate flow rate 
+        -etc.
 
     ♡ add crew scheduling
-
 
     ♡ have logs for crew reacting to system events
         
@@ -73,8 +70,6 @@
 
         - daily temperature and sunlight events
 
-        - dust storms
-
         - leaks
 
         - micrometeorite damage (microscopic)? 
@@ -90,8 +85,7 @@
         -dust build up
         
         -system efficiency
-        
-        -weather
+
         
         -alert for when wellness lights come on
         
@@ -103,4 +97,6 @@
     ♡ add rations, maybe?
 
     ♡ add rover that goes and finds things
+
+      ♡  solar array tilt adjustments, electrostatic cleaning and vibration
 
