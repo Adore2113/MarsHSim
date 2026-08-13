@@ -1,12 +1,10 @@
-# Greenhouse Water and Hydroponics:
+# Greenhouse Water:
 ### General Notes:
-    ♡ this isn't a greenhouse simulator, so it's intentionally not as complex as it could be
-
     ♡ water is calculated per zone
 
     ♡ the greenhouse uses recirculating hydroponics
 
-    ♡ only the greenhouse recirculation is fully modeled right now
+    ♡ only the greenhouse recirculation and make-up water is fully modeled right now
 
     ♡ the full crew waste into nutrient solution loop is planned but not implemented yet
 
@@ -32,8 +30,8 @@
         - effective rate ≈ 1.76 kg/m²/sol
 
     ♡ calculation:
-        - water needed:
-            base water × effective grow area × multiplier × sol fraction
+            base water × effective grow area × multiplier × sol fraction 
+            = water needed
 
 ### ----------------------------------------
 
@@ -45,10 +43,11 @@
     ♡ rack: 94%
 
     ♡ calculation:
-        - water recirculated:
-             water needed × recirculation efficiency
-        - water taken up by plants:
-             water needed × (1.0 − recirculation efficiency)
+            - water needed × recirculation efficiency
+            = water recirculated
+
+            - water needed × (1.0 − recirculation efficiency)
+            = water taken up by plants
 
     ♡ the water taken up by plants is what actually leaves the recirculating loop
 
@@ -66,17 +65,104 @@
 ### ----------------------------------------
 
 #### Transpiration and Plant Mass:
-    ♡ transpiration is passed to the humidity system (CHX)
+    ♡ water taken up by plants:
+        - 85% becomes transpiration (goes into the greenhouse air and then the CHX)
 
-    ♡ transpiration ratio: 
-        85% of plant water uptake
-   
-    ♡ plant mass ratio: 
-        15% of plant water uptake
+        - 15% stays in plant mass (permanent loss)
 
     ♡ calculation:
-        - transpiration:
+        - transpiration: 
             plant water uptake × 0.85
 
         - plant mass water:
             plant water uptake × 0.15
+
+### ----------------------------------------
+
+## Reservoirs:
+    ♡ each zone has its own reservoir
+
+    ♡ sizing is based on effective grow area and hydroponic method
+
+    ♡ see hydropnics.md
+
+### ----------------------------------------
+
+## Make-up Water System:
+    ♡ all three reservoirs are topped up from a shared clean water supply
+
+    ♡ loop:
+        1. habitat potable / treated water
+        2. greenhouse make-up water
+        3. zone valves
+        4. nutrient reservoir
+
+    ♡ make-up only happens when a reservoir drops to 70%
+
+    ♡ the greenhouse only draws the actual volume needed to return to normal level
+
+    ♡ this is the main ongoing water demand the greenhouse places on the habitat
+
+### ----------------------------------------
+
+## Full Water / Waste Loop (Future):
+    ♡ concept only — not modeled in V1
+
+    ♡ planned loop:
+        - crew waste
+        - water treatment (UPA / WPA)
+        - potable water
+        - greenhouse nutrient solution
+        - plants
+        - greenhouse humidity
+        - CHX water capture
+        - back into the water system
+
+    ♡ pros:
+        - massive water recycling
+        - reduces the need for replacement water
+
+### ----------------------------------------
+
+## Design Evolution:
+#### 
+
+### ----------------------------------------
+
+## Future Considerations:
+    ♡ figure out runoff water and model separately
+
+### ----------------------------------------
+
+## Design Decision:
+#### Why hydroponics?
+    ♡ uses less water than traditional soil-based growing when water is recirculated
+
+    ♡ allows water and nutrients to be collected, treated and reused
+
+    ♡ makes vertical racks and hanging containers easier to incorporate
+
+    ♡ avoids transporting and managing large amounts of soil
+
+    ♡ works with the planned closed greenhouse water loop
+
+#### Why refill at 70%?
+    ♡ keeps the reservoirs from reaching the 50% low threshold under normal conditions
+
+    ♡ gives a useful buffer in case of temporary water system problems
+
+### ----------------------------------------
+
+### Dev Log Notes:
+###### 05/08/2026:
+    ♡ going w. a hydroponic set up, I updated v1_scope to include all my notes about a greenhouse 
+
+###### 05/13/2026
+    ♡ adding in hydroponics to the greenhouse list and starting from greenhouse lighting to make the greenhouse file be how I want it to be
+
+
+###### 05/16/2026
+    ♡ considering looking at species that make their own structures and systems as inspiration for efficiency
+
+###### 08/12/2026
+    ♡ included make-up water system for hydroponic reservoirs
