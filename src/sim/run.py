@@ -59,12 +59,12 @@ s0 = Habitat_State(
     #------------------greenhouse--------------------♡
     greenhouse_floor_area_m2 = 1326.0,
     greenhouse_height_m = 11.0,
-    greenhouse_vol_m3 = 14590.0 ,   # ≈ 1326 m² × 11 m
+    greenhouse_vol_m3 = 14586.0 ,   # ≈ 1326 m² × 11 m
     
     helix_walkway_area_m2 = 190.0,
     
     structural_floor_area_m2 = 380.0,
-    usable_floor_grow_area_m2 = 950.0,    # actual floor space used for growing (zones)
+    usable_floor_grow_area_m2 = 980.0,   # actual floor space used for growing (zones)
     container_floor_area_m2 = 420.0,
     rack_floor_area_m2 = 180.0,
     ceiling_hanging_area_m2 = 90.0,
@@ -83,7 +83,7 @@ s0 = Habitat_State(
 
         #-----------targets------------♡
         "ideal_temp_c": 26.0,
-        "light_target_kw_per_m2": 0.75,
+        "light_target_kw_per_m2": 0.26,
 
         #------------biology-----------♡
         "base_growth_rate_per_sol": 0.011,
@@ -118,7 +118,7 @@ s0 = Habitat_State(
 
         #-----------targets------------♡
         "ideal_temp_c": 24.0,
-        "light_target_kw_per_m2": 0.70,
+        "light_target_kw_per_m2": 0.23,
 
         #------------biology-----------♡
         "base_growth_rate_per_sol": 0.016,
@@ -153,7 +153,7 @@ s0 = Habitat_State(
 
         #-----------targets------------♡
         "ideal_temp_c": 22.0,
-        "light_target_kw_per_m2": 0.60,
+        "light_target_kw_per_m2": 0.26,
 
         #------------biology-----------♡
         "base_growth_rate_per_sol": 0.030,
