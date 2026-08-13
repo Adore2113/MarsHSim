@@ -128,18 +128,21 @@
         - normal: ~ 5,950 L
         - low: < 3,500 L
         - critical: < 1,750 L
+        - auto refill at: 4,900 L
 
     ♡ container:
         - tank capacity: 9,500 L
         - normal: ~ 8,075 L
         - low: < 4,750 L
         - critical: < 2,375 L
+        - auto refill at: 6,650 L
 
     ♡ rack
         - tank capacity: 10,000 L
         - normal: ~ 8,500 L
         - low: < 5,000 L
         - critical: < 2,500 L
+        - auto refill at: 7,000 L
 
     ♡ calculation:
         - normal:
@@ -147,17 +150,19 @@
                 reg: 7,000 × 0.85 = 5,950 L
                 low: 7,000 L × 0.50 = 3,500 L
                 crit: 7,000 L × 0.25 = 1,750 L
+                refill: 7,000 L × 0.70 = 4,900 L
 
             ♡ container:
                 reg: 9,500 × 0.85 = 8,075 L
                 low: 9,500 L × 0.50 = 4,750 L
                 crit: 9,500 L × 0.25 = 2,375 L
+                refill: 9,500 L × 0.70 = 6,650 L
 
             ♡ rack:
                 reg: 10,000 × 0.85 = 8,500 L
                 low: 10,000 L × 0.50 = 5,000 L
                 crit: 10,000 L × 0.25 = 2,500 L
-
+                refill: 10,000 L × 0.70 = 7,000 L
 
 ### ----------------------------------------
 
@@ -236,6 +241,11 @@
 
     ♡ instead of modeling each factor individually, the simulator can use them as inputs to overall zone/root zone health, which affects growth
 
+#### Why refill at 70%?
+    ♡ to ideally not have to worry about the reservoirs reaching 50%
+
+    ♡ in emergencies this gives the reservoirs a bit longer before seriously lacking, giving them a little buffer for a chance at survival
+
 ### ----------------------------------------
 
 ### Dev Log Notes:
@@ -271,3 +281,5 @@
 
     ♡ I'm not so worried about an upper range for the dissolved oxygen target b/c the most important thing is if it's high enough
     
+    ♡ considering equipment for hydroponics, and reservoir sizes.. all three zones will have a different L/m2 b/c of the differnt systems and containers holding water differently (LECA beds retain a lot of moisture in the root zone, Dutch bucket style containers retain some moisture and NFT channels don't hold very much) 
+
