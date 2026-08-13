@@ -164,7 +164,9 @@
                 crit: 10,000 L × 0.25 = 2,500 L
                 refill: 10,000 L × 0.70 = 7,000 L
 
-#### Make-up Water System:
+### ----------------------------------------
+
+## Make-up Water System:
     ♡ all three nutrient reservoirs get supplied from a shared clean water set up
 
     ♡ loop:
@@ -188,6 +190,13 @@
 ### ----------------------------------------
 
 ## Future Considerations:
+## Growing Medium:
+    ♡ lightweight clay balls (LECA-style) todo:
+        - calculate mass required
+        - calculate transport volume
+        - estimate degradation rate
+        - decide replacement schedule
+
     ♡ plant health could be considered more in depth in response to the nutrient solution:
         
         - normal pH + normal EC + normal temp + normal DO:
@@ -297,5 +306,5 @@
 
     ♡ I'm not so worried about an upper range for the dissolved oxygen target b/c the most important thing is if it's high enough
     
-    ♡ considering equipment for hydroponics, and reservoir sizes.. all three zones will have a different L/m2 b/c of the differnt systems and containers holding water differently (LECA beds retain a lot of moisture in the root zone, Dutch bucket style containers retain some moisture and NFT channels don't hold very much) 
+    ♡ hydroponic research is now stopping for now, b/c I have more than enough for v1
 
