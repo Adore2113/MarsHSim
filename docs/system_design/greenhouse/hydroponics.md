@@ -83,7 +83,7 @@
 ### ----------------------------------------
 
 ## Reservoirs:
-#### sizing:
+#### Reservoir Sizing:
     ♡ LECA beds retain a lot of moisture in the roots, dutch bucket style containers retain some, and NFT channels don't hold very much so it has the largest reservoir allowance per m²
 
     ♡ reservoir size is based on effective grow area and hydroponic method
@@ -115,6 +115,48 @@
         - total:
             6,300 L + 8,640 L + 9,000 L
             = 23,940 L
+
+#### Reservoir Levels:
+    ♡ normal operating level: ~ 85%
+    ♡ low: < 50%
+    ♡ critical: < 25%
+
+    ♡ 70% triggers make-up water and refills to normal operating levels
+
+    ♡ structural:
+        - tank capacity: 7,000 L
+        - normal: ~ 5,950 L
+        - low: < 3,500 L
+        - critical: < 1,750 L
+
+    ♡ container:
+        - tank capacity: 9,500 L
+        - normal: ~ 8,075 L
+        - low: < 4,750 L
+        - critical: < 2,375 L
+
+    ♡ rack
+        - tank capacity: 10,000 L
+        - normal: ~ 8,500 L
+        - low: < 5,000 L
+        - critical: < 2,500 L
+
+    ♡ calculation:
+        - normal:
+            ♡ structural:
+                reg: 7,000 × 0.85 = 5,950 L
+                low: 7,000 L × 0.50 = 3,500 L
+                crit: 7,000 L × 0.25 = 1,750 L
+
+            ♡ container:
+                reg: 9,500 × 0.85 = 8,075 L
+                low: 9,500 L × 0.50 = 4,750 L
+                crit: 9,500 L × 0.25 = 2,375 L
+
+            ♡ rack:
+                reg: 10,000 × 0.85 = 8,500 L
+                low: 10,000 L × 0.50 = 5,000 L
+                crit: 10,000 L × 0.25 = 2,500 L
 
 
 ### ----------------------------------------
