@@ -159,4 +159,22 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
-######
+###### 05/18/2026
+    ♡ I want the greenhouse capable of raising the o2 in the habitat b/c with my hexagon/hive idea for the structure, everything is close together, without seperate buildings so it just makes sense to me that it would be a factor 
+
+###### 06/19/2026
+    ♡ I noticed my greenhouse is currently producting 75x MORE o2 than my crew of 30  mean and this is absolutely not right, it doesn't make any sense so I need to fix this
+
+    ♡ calculation for zone info:
+        structural: 0.022 kPa/m²/sol × 90 m²  = 1.98 kPa/sol
+        container:  0.020 kPa/m²/sol × 110 m² = 2.20 kPa/sol
+        rack:       0.015 kPa/m²/sol × 124 m² = 1.86 kPa/sol
+        total ≈ 6.04 kPa/sol
+
+    ♡ calculation for crew o2 demand:
+    0.00011 kPa/hr × 30 crew × ~ 24.66 hr/sol ≈ 0.081 kPa/sol
+
+    ♡ the greenhouse actually produce only 2% of the crew o2 and co2 needs
+
+###### 08/12/2026
+    ♡ updated a few values and calculations in gases.md, but I need to come back to this file after I finalize the layout to get the true calculations
