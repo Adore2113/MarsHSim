@@ -1,5 +1,7 @@
 # Greenhouse Hydroponics
 ### General Notes:
+    ♡ this isn't a greenhouse simulator, so it's intentionally not as complex as it could be
+    
     ♡ targets and calculations are handled by zone averages instead of individual crop requirements
 
     ♡ targets were chosen after considering the plants grown in each zone and what they require, I tried to use the averages or meet in the middle
@@ -185,17 +187,22 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-    ♡ I only started with three zones with a shared effective growth rate without going into detail
+    ♡ started a shared effective growth rate without going into detail
 
 ### ----------------------------------------
 
 ## Future Considerations:
-## Growing Medium:
     ♡ lightweight clay balls (LECA-style) todo:
         - calculate mass required
         - calculate transport volume
         - estimate degradation rate
         - decide replacement schedule
+    
+    ♡ continue hydroponics: 
+        -ciruclation pumps 
+        -add that to power 
+        -calculate flow rate 
+        -etc.
 
     ♡ plant health could be considered more in depth in response to the nutrient solution:
         
@@ -274,6 +281,9 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
+###### 05/06/2026
+    ♡ considering hydroponics, a set up between waste water and filtering and that filtered water 
+
 ###### 05/08/2026
         ♡ going w. a hydroponic set up, I updated v1_scope to include all my notes about a greenhouse 
 
