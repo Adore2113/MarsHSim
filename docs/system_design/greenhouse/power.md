@@ -111,19 +111,19 @@
 ###### 08/11/2026
     ♡ I'm going over greenhouse power and waste heat, now that a lot of changes have been made to the greenhouse
 
-    ♡ NASA style and long duration designs run moderate light levels instead of Earth's commercial maximums, so 100–160 W/m² electrical is common for efficient systems that mix sunlight + LEDs
+    ♡ NASA style and long duration designs run moderate light levels instead of Earth's commercial maximums, so 100-160 W/m² electrical is common for efficient systems that mix sunlight + LEDs
 
-    ♡ more modern LEDs deliver roughly 2.7–3.5 µmol/J, at 0.12 kW/m² (120 W/m²) electrical you can realistically expect about 320–400 µmol/m²/s at the canopy under decent mounting
+    ♡ more modern LEDs deliver roughly 2.7-3.5 µmol/J, at 0.12 kW/m² (120 W/m²) electrical you can realistically expect about 320-400 µmol/m²/s at the canopy under decent mounting
 
     ♡ I read about crop needs:
         Spinach, peas, most leafy/herbs:
-             150–300 µmol/m²/s (happy around 200–250)
+             150-300 µmol/m²/s (happy around 200-250)
         
         Quinoa, many medium crops:
-             300–500
+             300-500
         
         Sweet potato, peanuts (higher light demand):
-             400–600+ for strong yields
+             400-600+ for strong yields
 
     ♡ so I'm changing my light targets per m2 to structural zone: 0.26, container zone: 0.23 and the rack zone: 0.19
 

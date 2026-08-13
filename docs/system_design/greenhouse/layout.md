@@ -62,7 +62,7 @@
 
 #### Central Core:
     ♡ shape: octagon (regular)
-    ♡ floor area: ~ 29–30 m²/floor
+    ♡ floor area: ~ 29-30 m²/floor
     ♡ height: 11 m
     ♡ second floor level: 5.5 m
     ♡ width: 6.0 m across opposite walls
@@ -83,7 +83,7 @@
         5.5 m (from ground to second floor level)
 
     ♡ resulting average slope: 
-        ~ 2.5 – 3.5° (gentle and walkable)
+        ~ 2.5 - 3.5° (gentle and walkable)
 
     ♡ taper: 
         - ~16.6 m wide at the outer wall
@@ -96,7 +96,7 @@
         ≈ 13.5 m radial space
         
         - 13.5 m ÷ 2 turns: 
-        ~ 2.5–3.5° average slope
+        ~ 2.5-3.5° average slope
 
 #### Pathways:
     ♡ storage pathways (flat paths): 2.0 m
@@ -105,7 +105,7 @@
         1.5 m wide
 
     ♡ calculation:
-        - 0.65–0.80 m/cart × 2 carts + clearance 
+        - 0.65-0.80 m/cart × 2 carts + clearance 
         ≈ 2.0 m
 
 #### Upper Level & Walkway:
@@ -133,7 +133,7 @@
 
         - stepped/terraced boxes sit on top, each level flat so clay balls and roots sit evenly
 
-        - nutrient solution floods/recirculates within each level, or falls gently from higher to lower boxes
+        - see hydroponics.md
         
 #### Storage: 
     ♡ under the higher inner sections of the planter slopes, around the outside ground floor, accessible from flat ground paths
@@ -195,7 +195,7 @@
 
 #### Why these pathway widths?
     ♡ storage pathways (2.0 m):
-        - I figured it should be large enough for two large utility carts (~ 0.65 – 0.80 m) 
+        - I figured it should be large enough for two large utility carts (~ 0.65 - 0.80 m) 
         
         - to move comfortably with carts and a little bit more room so it isn't too tight
 
@@ -246,6 +246,8 @@
 
 #### Other Changes:
     ♡ central core contained a spiral staircase
+
+    ♡  nutrient solution floods/recirculates within each level, or falls gently from higher to lower boxes
 
 ### ----------------------------------------
 
