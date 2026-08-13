@@ -59,10 +59,10 @@
         16 hours per sol
 
     ♡ lights on: 
-        05:00 – 21:00 LMST
+        05:00-21:00 LMST
 
     ♡ dark period: 
-        - 8 hours (21:00 – 05:00 LMST)
+        - 8 hours (21:00-05:00 LMST)
         - outside scheduled hours, LEDs off
 
     ♡ calculation (light end time):
@@ -83,9 +83,9 @@
 ### ----------------------------------------
 
 ### Zone Light Targets:
-    ♡ structural zone: 0.75 kW/m²
-    ♡ container zone: 0.70 kW/m²
-    ♡ rack zone: 0.60 kW/m²
+    ♡ structural zone: 0.26 kW/m²
+    ♡ container zone: 0.23 kW/m²
+    ♡ rack zone: 0.19 kW/m²
 
 ### ----------------------------------------
 
