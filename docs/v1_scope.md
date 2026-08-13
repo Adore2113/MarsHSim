@@ -216,26 +216,7 @@
 
 
 #### Greenhouse Notes:
-    ♡ currently reformatting notes in the greenhouse folder in the creation_notes folder 
-
-    ♡ considering hydroponics, a set up between waste water and filtering and that filtered water 
-
-    ♡ gray/black water to water filtration to UPA/WPA to potable to greenhouse
-
-    ♡ loop = crew waste to treatment to greenhouse nutriant solutio to plants to humidity to CHX capture to water system!
-
-    ♡ pros : massive water recylcing!
-
-    ♡ cons: nutrient imbalance and pathogens (plant disease)
-    
-    ♡ lightweight clayballs from earth able to pack in tightly and securely in the starship, slow degration over years to Mars instead of soil
-
-    ♡ humidity control
-
-    ♡ plants that help scrub the co2 and generate o2 
-
-    ♡ plant disease, labor hours, morale value, spoilage rate, water use, ect. 
-    
+##### see greenhhouse folder
 
 ### Ration Notes:
     ♡ lentils?
@@ -268,7 +249,6 @@
     ♡ a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin but I'm going to make it mainly a humidity control subsystem first with slight cooling, b/c I already have the radiators
 
 
-
 ### Water / CHX Notes:
     ♡ water recovery systems I'm going to use:
         - Urine Processor Assembly (UPA)
@@ -297,6 +277,7 @@
 
     ♡ eventually have Mars dust storms and things added in with random, maybe wind cleaning off some of the dust from the solar arrays as well
 
+
 ### ISRU Notes:
     ♡ I read about In-Situ Resource Utilization (ISRU) to extract water locally but I'll worry about that later
 
@@ -308,7 +289,7 @@
 
     ♡ going back to In-Situ Resource Utilization (ISRU) to extract water locally, I'm thinking piercing through the surface with two or three heated pipes that siphon up some frozen mars water every so often with retractable pipes so they don't freeze and can be used when wanted and needed to avoid environmental factors
 
-    
+
 ### Alert Notes:
         ♡ Gas alert ideas for future log:
         (o2): 
