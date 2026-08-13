@@ -28,6 +28,9 @@
 ### ----------------------------------------
 
 ## Gas Exchange Target:
+##### note: the current rates are placeholders
+    ♡ final numbers will be recalculated once the full habitat layout and free volume are locked
+    
     ♡ crew count: 30
 
     ♡ crew O₂ demand:
@@ -56,6 +59,31 @@
     ♡ this average is only a preliminary target
 
     ♡ final zone rates still need to preserve differences between the structural, container and rack zones
+
+### ----------------------------------------
+
+#### Current Zone Rates (updated for ~2% target - 08/11/2026):
+    ♡ structural:
+        - rate: 0.00000140 kPa/m²/sol
+        - area: 420 m²
+        - calculation:
+            0.00000140 × 420 ≈ 0.000588 kPa/sol
+
+    ♡ container:
+        - rate: 0.00000120 kPa/m²/sol
+        - area: 480 m²
+        - calculation:
+            0.00000120 × 480 ≈ 0.000576 kPa/sol
+
+    ♡ rack:
+        - rate: 0.00000100 kPa/m²/sol
+        - area: 450 m²
+        - calculation:
+            0.00000100 × 450 ≈ 0.000450 kPa/sol
+
+    ♡ total:
+        0.000588 + 0.000576 + 0.000450 ≈ 0.00161 kPa/sol
+        (very close to the 0.00163 kPa/sol target)
 
 ### ----------------------------------------
 
@@ -88,13 +116,16 @@
             = 1.86 kPa/sol
 
     ♡ total previous greenhouse output:
-        - 1.98 + 2.20 + 1.86
         = 6.04 kPa/sol
 
 
 ### ----------------------------------------
 
 ## Future Considerations:
+    ♡ recalculate the actual zone O₂ and CO₂ rates so the total is ~ 2% of crew demand
+
+    ♡ keep structural highest and rack lowest when setting the final rates
+
     ♡ figure out pump failure:
             ♡ NFT flow stops  
             ♡ DO/root water conditions deteriorate
@@ -106,14 +137,25 @@
 ## Design Decisions:
 #### Why let the greenhouse contribute to habitat O₂?
     ♡ plants naturally consume CO₂ and produce O₂ while photosynthesizing
-    ♡ including a small contribution connects the greenhouse to the habitat atmosphere
-    ♡ the greenhouse is not intended to replace the OGA or other life-support systems
-    ♡ target is approximately 2% of crew needs
+
+    ♡ including a small contribution connects the greenhouse to the habitat atmosphere system
+
+    ♡ the greenhouse is not intended to replace the OGA or other life-support equipment
+
+    ♡ greenhouse gas exchange is intended to provide approximately 2% of crew needs
 
 #### Why not centralize the gas rates?
-    ♡ values differ between structural, container and rack zones
+    ♡ values between structural, container and rack zones are different
+
     ♡ keeping the rates with each zone makes the differences easier to understand
 
+#### Why ~ 2% of crew O₂ and CO₂ needs?
+    ♡ I read that NASA shows ~ 20–25 m² of well lit crops can supply the full O₂ needs of one person
+
+    ♡ my greenhouse priorities are food production and morale first, minor atmosphere contributions, moderate light levels (sunlight + supplemental LEDs) and to be power-concious, so ~ 2% made sense to me
+
+    ♡ 2% is low relative to what the area could theoretically do
+    
 ### ----------------------------------------
 
 ### Dev Log Notes:
