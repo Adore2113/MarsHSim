@@ -91,3 +91,30 @@
         - 1.98 + 2.20 + 1.86
         = 6.04 kPa/sol
 
+
+### ----------------------------------------
+
+## Future Considerations:
+    ♡ figure out pump failure:
+            ♡ NFT flow stops  
+            ♡ DO/root water conditions deteriorate
+            ♡ rack health falls
+            ♡ growth falls
+
+### ----------------------------------------
+
+## Design Decisions:
+#### Why let the greenhouse contribute to habitat O₂?
+    ♡ plants naturally consume CO₂ and produce O₂ while photosynthesizing
+    ♡ including a small contribution connects the greenhouse to the habitat atmosphere
+    ♡ the greenhouse is not intended to replace the OGA or other life-support systems
+    ♡ target is approximately 2% of crew needs
+
+#### Why not centralize the gas rates?
+    ♡ values differ between structural, container and rack zones
+    ♡ keeping the rates with each zone makes the differences easier to understand
+
+### ----------------------------------------
+
+### Dev Log Notes:
+######
