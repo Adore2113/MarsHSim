@@ -80,8 +80,42 @@
         - solution temp: 21-23°C (~ 22°C)
         - DO target range: ≥ 5.5-6 mg/L
 
-#### Nutrient Solution Management:
-    ♡ 
+### ----------------------------------------
+
+## Reservoirs:
+#### sizing:
+    ♡ LECA beds retain a lot of moisture in the roots, dutch bucket style containers retain some, and NFT channels don't hold very much so it has the largest reservoir allowance per m²
+
+    ♡ reservoir size is based on effective grow area and hydroponic method
+
+    ♡ reservoirs remain partially unfilled during normal operation to avoid overflow
+
+    ♡ reservoirs are opaque/covered to reduce algae growth
+
+    ♡ preliminary reservoir capacities:
+        - the extra space is so the tanks aren't filled at the top during operation
+
+        - structural: ~ 7,000 L
+        - container: ~ 9,500 L
+        - rack: ~ 10,000 L
+    
+    ♡ calculation:
+        - structural:
+            15 L/m² × 420 m²
+            = 6,300 L working volume
+
+        - container:
+            18 L/m² × 480 m²
+            = 8,640 L working volume
+
+        - rack:
+            20 L/m² × 450 m²
+            = 9,000 L working volume
+        
+        - total:
+            6,300 L + 8,640 L + 9,000 L
+            = 23,940 L
+
 
 ### ----------------------------------------
 
