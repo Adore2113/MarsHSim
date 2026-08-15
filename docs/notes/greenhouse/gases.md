@@ -462,7 +462,20 @@
     ♡ sweet corn can reach ~ 28–34 µmol/m²/s under ideal controlled conditions, while passionfruit commonly falls around ~ 10–30 µmol/m²/s, so 12 µmol/m²/s was chosen as a conservative mixed zone average
 
     ♡ hydroponic spinach can photosynthesize at much more than 10 µmol CO₂/m²/s under ideal controlled lighting, so 10 µmol/m²/s was chosen as a conservative rack zone average rather than assuming every rack is mature and perfectly lit
+    
+#### Why use photosynthetic quotient (PQ)?
+    ♡ PQ = the relationship between O₂ produced and CO₂ consumed during photosynthesis
 
+    ♡ real plant gas exchange is not always exactly 1 mol O₂ produced for every 1 mol CO₂ consumed, and I have a lot of different crops to consider in each zone
+
+    ♡ it made sense to use a simplified zone average PQ instead of modeling the metabolism of individual crops
+
+#### Why one PQ value for all zones for v1?
+    ♡ it matches my overall rule: zone averages, not individual crop physiology
+   
+    ♡ using the values mentioned in future considerations/dev log notes was more speculative and I don't love that
+
+    ♡ reasearch supports PQ ~ 1.0 with shifts mainly from nitrogen form, metabolism, species and nutritent conditions, my simulator isn't going this far in depth for v1
 
 ### ----------------------------------------
 
