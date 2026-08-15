@@ -56,6 +56,72 @@
         = mol/m²/sol
 
 ### ----------------------------------------
+## Gas Exchange Rates:
+    ♡ preliminary zone average CO₂ uptake rates during the 16 hour light period
+
+    ♡ REMINDER: because these already assume a 16 hour active light period, make sure I don’t later multiply it by another 16/24 somewhere else
+
+    ♡ structural:
+        - average light period CO₂ removal rate: 
+            10 µmol CO₂/m²/s
+
+        - converted MarsHSim rate: 
+            ~ 0.576 mol CO₂/m²/sol 
+
+        - calculations:
+            10 µmol CO₂/m²/s × 57,600 s
+            = 576,000 µmol CO₂/m²/sol
+
+            micromoles to moles:
+                576,000 ÷ 1,000,000
+                = 0.576 mol CO₂/m²/sol
+
+            CO₂ consumed:
+                0.576 mol/m²/sol × effective grow area × sol fraction × light exposure × plant health
+            
+    ♡ container:
+        - average light period CO₂ removal rate: 
+            12 µmol CO₂/m²/s
+
+        - converted MarsHSim rate: 
+            ~ 0.6912 mol CO₂/m²/sol
+
+        - calculations:
+            12 µmol CO₂/m²/s × 57,600 s
+            = 691,200 µmol CO₂/m²/sol
+
+            micromoles to moles:
+                691,200 ÷ 1,000,000
+                = 0.6912 mol CO₂/m²/sol
+
+            CO₂ consumed:
+                0.6912 mol/m²/sol × effective grow area × sol fraction × light exposure × plant health
+
+    ♡ rack:
+        - average light period CO₂ removal rate:  
+            10 µmol CO₂/m²/s
+
+        - converted MarsHSim rate: 
+            ~0.576 mol CO₂/m²/sol
+
+        - calculations:
+            10 µmol CO₂/m²/s × 57,600 s
+            = 576,000 µmol CO₂/m²/sol
+
+            micromoles to moles:
+                576,000 ÷ 1,000,000
+                = 0.576 mol CO₂/m²/sol
+
+            CO₂ consumed:
+                0.576 mol/m²/sol × effective grow area × sol fraction × light exposure × plant health
+
+    ♡ actual gas exchange still scales with:
+        - effective grow area
+        - light exposure
+        - plant health
+        - sol fraction
+
+### ----------------------------------------
 
 ## Gas Exchange Target:
 ## Atmospheric Contribution Target (08/14/2026):
@@ -89,10 +155,6 @@
     ♡ this average is only a preliminary target
 
     ♡ final zone rates still need to preserve differences between the structural, container and rack zones
-
-### ----------------------------------------
-
-
 
 ### ----------------------------------------
 
