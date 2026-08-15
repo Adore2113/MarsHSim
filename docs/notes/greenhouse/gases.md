@@ -52,7 +52,7 @@
     ♡ final atmospheric pressure change is calculated separately, using atmospheric volume and temperature
 
     ♡ conversion calculation:
-        µmol/m²/s × 1 mol / 1,000,000 µmol × seconds of active photosynthesis per sol
+        µmol/m²/s × 1 mol / 1,000,000 µmol × s of active photosynthesis per sol
         = mol/m²/sol
 
 ### ----------------------------------------
@@ -62,12 +62,16 @@
     ♡ gas exchange is stored as an amount of gas instead of pressure change
 
     ♡ light period:
-        - CO₂ consumed: ~ 832.90 mol/sol
-        - O₂ produced: ~ 857.89 mol/sol
+        - CO₂ consumed: ~832.90 mol/sol
+        - O₂ produced: ~857.89 mol/sol
 
-    ♡ light period:
-        - CO₂ consumed: ~ 832.90 mol/sol
-        - O₂ produced: ~ 857.89 mol/sol
+    ♡ dark period:
+        - CO₂ released: ~89.43 mol/sol
+        - O₂ consumed: ~99.36 mol/sol
+
+    ♡ net over one sol:
+        - CO₂ removed: ~743.47 mol/sol
+        - O₂ produced: ~758.53 mol/sol
 
     ♡ zone rates use:
         - mol CO₂/m²/sol
@@ -75,8 +79,7 @@
 
     ♡ each zone uses an averaged rate based on its crop mix
 
-    ♡ final atmospheric pressure change is calculated separately using
-    atmospheric volume and temperature
+    ♡ final atmospheric pressure change is calculated separately using atmospheric volume and temperature
 
     ♡ conversion:
         µmol/m²/s × 1 mol / 1,000,000 µmol
@@ -217,11 +220,8 @@
                 0.072 mol/m²/sol × effective grow area × sol fraction × plant health
 
 #### Total CO₂ Exchange:
-    ♡ light period baseline CO₂ uptake: 
-        ~ 832.90 mol/so
-        l
-    ♡ dark period baseline CO₂ release: 
-        ~ 89.43 mol/sol
+    ♡ light period CO₂ uptake: ~ 832.90 mol/so
+    ♡ dark period CO₂ release: ~ 89.43 mol/sol
 
     ♡ calculations:
         - light period:
@@ -391,7 +391,56 @@
 
 
 #### Total O₂ Exchange:
+    ♡ light period O₂ production: ~ 857.89 mol O₂/sol
+    ♡ dark period O₂ consumption: ~ 99.36 mol O₂/sol
 
+    ♡ calculations:
+        - light period:
+            ♡ structural:
+                - baseline O₂ production:
+                    0.59328 mol/m²/sol × 420 m²
+                    = 249.1776 mol O₂/sol
+                    ≈ 249.18 mol O₂/sol
+
+            ♡ container:
+                - baseline O₂ production:
+                    0.711936 mol/m²/sol × 480 m²
+                    = 341.72928 mol O₂/sol
+                    ≈ 341.73 mol O₂/sol
+
+            ♡ rack:
+                - baseline O₂ production:
+                    0.59328 mol/m²/sol × 450 m²
+                    = 266.976 mol O₂/sol
+                    ≈ 266.98 mol O₂/sol
+
+            ♡ total light period O₂ production:
+                249.18 + 341.73 + 266.98
+                = 857.89 mol O₂/sol
+
+        - dark period:
+            ♡ structural:
+                - baseline O₂ consumption:
+                    0.096 mol/m²/sol × 420 m²
+                    = 40.32 mol O₂/sol
+
+            ♡ container:
+                - baseline O₂ consumption:
+                    0.048 mol/m²/sol × 480 m²
+                    = 23.04 mol O₂/sol
+
+            ♡ rack:
+                - baseline O₂ consumption:
+                    0.080 mol/m²/sol × 450 m²
+                    = 36.00 mol O₂/sol
+
+            ♡ total dark period O₂ consumption:
+                40.32 + 23.04 + 36.00
+                = 99.36 mol O₂/sol
+
+        ♡ net O₂ production over one sol:
+            857.89 mol produced - 99.36 mol consumed
+            = 758.53 mol O₂/sol
 
 ### ----------------------------------------
 
