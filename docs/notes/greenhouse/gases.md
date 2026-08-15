@@ -75,6 +75,8 @@
         × seconds of active photosynthesis
         = mol/m²/sol
 
+### ----------------------------------------
+
 #### Light Period CO₂ Exchange:
     ♡ preliminary zone average CO₂ uptake rates during the 16 hour light period
 
@@ -141,9 +143,12 @@
         - sol fraction
 
 #### Dark Period CO₂ Exchange:
+    ♡ preliminary zone average rates 
     ♡ photosynthesis stops during the dark period
+
     ♡ modifiers: zone area × plant health × timestep
     ♡ plant respiration continues
+
 
     ♡ plants:
         - consume O₂
@@ -203,7 +208,7 @@
             CO₂ released:
                 0.072 mol/m²/sol × effective grow area × sol fraction × plant health
 
-#### CO₂ Gas Exchange:
+#### Total CO₂ Exchange:
     ♡ light period baseline CO₂ uptake: 
         ~ 832.90 mol/so
         l
@@ -260,6 +265,41 @@
 
 ### ----------------------------------------
 
+#### Light Period O₂ Exchange:
+    ♡ preliminary estimates
+
+    ♡ PQ = photosynthetic quotient (for every 1 mole of CO₂ the plants remove during photosynthesis, how many moles of O₂ do they release) 
+    
+    ♡ PQ = O₂ produced ÷ CO₂ consumed
+
+    ♡ structural:
+        - PQ = 1.1
+        - CO₂ uptake: 0.576 mol CO₂/m²/sol 
+        - effective grow area: 420 m² s
+        - calculations:
+            ♡ O₂ production:
+                0.576 × 1.1
+                = 0.6336 mol O₂/m²/sol
+
+            ♡ full zone baseline O₂ production:
+                0.6336 mol/m²/sol × 420 m²
+                = 266.112 mol O₂/sol
+                ≈ 266.11 mol O₂/sol
+                
+    ♡ 
+    ♡ 
+    ♡ 
+
+
+#### Dark Period O₂ Exchange:
+    ♡ preliminary estimates 
+
+
+#### Total O₂ Exchange:
+
+### ----------------------------------------
+
+
 ## Gas Exchange Target:
 ## Atmospheric Contribution Target (08/14/2026):
     ♡ crew count: 30
@@ -308,48 +348,45 @@
         - rate: 0.022 kPa/m²/sol
         - area: 90 m²
         - calculation:
-            0.022 kPa/m²/sol × 90 m²
-            = 1.98 kPa/sol
+            0.022 kPa/m²/sol × 90 m² = 1.98 kPa/sol
 
     ♡ container zone:
         - rate: 0.020 kPa/m²/sol
         - area: 110 m²
         - calculation:
-            0.020 kPa/m²/sol × 110 m²
-            = 2.20 kPa/sol
+            0.020 kPa/m²/sol × 110 m² = 2.20 kPa/sol
 
     ♡ rack zone:
         - rate: 0.015 kPa/m²/sol
         - area: 124 m²
         - calculation:
-            0.015 kPa/m²/sol × 124 m²
-            = 1.86 kPa/sol
+            0.015 kPa/m²/sol × 124 m² = 1.86 kPa/sol
 
     ♡ total previous greenhouse output:
         = 6.04 kPa/sol
 
-#### Previous Zone Rates (for ~ 2% target):
-    ♡ structural:
-        - rate: 0.00000140 kPa/m²/sol
-        - area: 420 m²
-        - calculation:
-            0.00000140 × 420 ≈ 0.000588 kPa/sol
+    ♡ previous zone rates (for ~ 2% target):
+        - structural:
+            ♡ rate: 0.00000140 kPa/m²/sol
+            ♡ area: 420 m²
+            ♡ calculation:
+                0.00000140 × 420 ≈ 0.000588 kPa/sol
 
-    ♡ container:
-        - rate: 0.00000120 kPa/m²/sol
-        - area: 480 m²
-        - calculation:
-            0.00000120 × 480 ≈ 0.000576 kPa/sol
+        - container:
+            ♡ rate: 0.00000120 kPa/m²/sol
+            ♡ area: 480 m²
+            ♡ calculation:
+                0.00000120 × 480 ≈ 0.000576 kPa/sol
 
-    ♡ rack:
-        - rate: 0.00000100 kPa/m²/sol
-        - area: 450 m²
-        - calculation:
-            0.00000100 × 450 ≈ 0.000450 kPa/sol
+        - rack:
+            ♡ rate: 0.00000100 kPa/m²/sol
+            ♡ area: 450 m²
+            ♡ calculation:
+                0.00000100 × 450 ≈ 0.000450 kPa/sol
 
-    ♡ total:
-        0.000588 + 0.000576 + 0.000450 ≈ 0.00161 kPa/sol
-        (very close to the 0.00163 kPa/sol target)
+        - total: 0.000588 + 0.000576 + 0.000450 
+                ≈ 0.00161 kPa/sol
+
 
 ### ----------------------------------------
 
