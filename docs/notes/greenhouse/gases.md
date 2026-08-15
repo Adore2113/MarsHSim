@@ -41,23 +41,6 @@
 ### ----------------------------------------
 
 ## Gas Exchange Rates:
-    ♡ gas exchange is stored as an amount of gas instead of pressure change
-
-    ♡ zone rates use:
-        - mol CO₂/m²/sol
-        - mol O₂/m²/sol
-
-    ♡ each zone uses an averaged rate based on its crop mix
-
-    ♡ final atmospheric pressure change is calculated separately, using atmospheric volume and temperature
-
-    ♡ conversion calculation:
-        µmol/m²/s × 1 mol / 1,000,000 µmol × s of active photosynthesis per sol
-        = mol/m²/sol
-
-### ----------------------------------------
-
-## Gas Exchange Rates:
 #### Units & Conversion:
     ♡ gas exchange is stored as an amount of gas instead of pressure change
 
@@ -83,7 +66,7 @@
 
     ♡ conversion:
         µmol/m²/s × 1 mol / 1,000,000 µmol
-        × seconds of active photosynthesis
+        × s of active gas exchange
         = mol/m²/sol
 
 ### ----------------------------------------
@@ -444,7 +427,6 @@
 
 ### ----------------------------------------
 
-## Gas Exchange Target:
 ## Atmospheric Contribution Target (08/14/2026):
     ♡ crew count: 30
 
@@ -679,3 +661,13 @@
     ♡ I read that PQ depends on species, what kind of nitrogen the plants are taking in, what biomass they are building, and how nutritent conditions can even have an impact.. my simulator isn't going this far in depth for v1
     
     ♡ going with PQ = 1.03 for all zones, seems safter b/c the other rates I considered are more speculative and look at more indvidual crops instead of sticking with zone averages
+
+    ♡ I read that RQ depends on what the plants are respiring, first they respire glucose/carbs, then fats, and then sometimes proteins
+
+    ♡ carb respiration is around 1.0, whilemore lipid/proteins can lower it, so I'm going with 0.90 as a simplified value for all zones, it seems like a conservative mixed average
+    
+    ♡ pressure change: ΔP = nRT ÷ V
+        n = gas exchanged (mol)
+        R = 0.008314 kPa·m³/(mol·K)
+        T = atmospheric temperature in Kelvin
+        V = connected atmospheric free volume in m³
