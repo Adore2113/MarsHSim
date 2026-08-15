@@ -205,6 +205,25 @@
         - rack zone: 
             fastest health decline (NFT requires continuous flow)
 
+#### Zone Power Estimates:
+    ♡ structural:
+        - intermittent drip
+        - primary pump power: ~ 1.5 kW
+        - backup offline/waiting: ~ 0.0 kW
+        - backup pump: ~ 1.5 kW
+
+    ♡ container:
+        - intermittent drip
+        - primary pump power: ~ 1.8 kW
+        - backup offline/waiting: ~ 0.0 kW
+        - backup pump: ~ 1.8 kW, standby
+
+    ♡ rack:
+        - continuous NFT
+        - primary pump power: ~ 2.0 kW
+        - backup offline/waiting: ~ 0.0 kW
+        - backup pump: ~ 2.0 kW, standby
+
 ### ----------------------------------------
 
 ## Design Evolution:
