@@ -54,7 +54,7 @@
     ♡ a smaller amount remains with the plant
 
     ♡ transpiration: ~ 95%
-    ♡ plant biomass: ~ 5%
+    ♡ plant biomass: ~ 5% (v1 PLACEHOLDER)
     ♡ total plant water uptake: ~ 2,916 kg/sol
 
     ♡ calculation:
@@ -69,8 +69,11 @@
 #### Transpiration Recovery:
     ♡ transpired plant water enters the greenhouse atmosphere and the CHX removes most of this water as condensate
 
+    ♡ captured condensate is sent to the WPA for processing
+
     ♡ CHX transpiration capture efficiency: ~ 95%
     ♡ greenhouse transpiration: ~ 2,770.2 kg/sol
+    ♡ CHX condensate captured: ~ 2,631.69 kg/sol
 
     ♡ calculation:
         - condensate captured:
@@ -80,6 +83,16 @@
         - uncaptured transpiration:
             2,770.2 × 0.05
             = 138.51 kg/sol
+        
+        - condensate recovered by WPA:
+            2,631.69 × 0.95
+            = 2,500.1055 kg/sol
+            ≈ 2,500.11 kg/sol
+
+        - WPA processing loss:
+            2,631.69 × 0.05
+            = 131.5845 kg/sol
+            ≈ 131.58 kg/sol
 
     ♡ captured condensate is sent into the habitat water recovery system
 
@@ -119,18 +132,6 @@
         = 89.88 kg/sol
         ≈ 89.9 kg/sol
 
-
-### ----------------------------------------
-
-## Runoff:
-    ♡ runoff ratio: 0.08 (8% of water needed)
-
-    ♡ represents nutrient solution that drains from the plant containers
-    
-    ♡ this water is collected and returned to the greenhouse nutrient reservoirs
-    
-    ♡ currently included in the overall recirculation numbers
-
 ### ----------------------------------------
 
 ## Make-up Water System:
@@ -154,28 +155,37 @@
         4. nutrient reservoir
 
     ♡ calculation:
-        145.8 kg/sol
+        145.8 kg/sol (plant biomass)
         + 138.51 kg/sol
         + 89.88 kg/sol
         = 374.19 kg/sol
 
-    ♡ baseline greenhouse make-up water demand before WPA losses:
-        ~ 374.19 kg/sol
+        - baseline greenhouse make-up water demand before WPA losses:
+            ~ 374.19 kg/sol
+        
+        - WPA processing loss ~ 131.58 kg/sol
+
+        - total baseline reservoir make-up demand:
+            374.19 + 131.58
+            = 505.77 kg/sol
 
 ### ----------------------------------------
 
 ## Full Water / Waste Loop (Future):
-    ♡ concept only — not modeled in V1
+    ♡ concept only — not modeled in V1 yet
 
     ♡ planned loop:
-        - crew waste
-        - water treatment (UPA / WPA)
-        - potable water
-        - greenhouse nutrient solution
-        - plants
-        - greenhouse humidity
-        - CHX water capture
-        - back into the water system
+        1. crew wastewater / other waste
+        2. UPA / WPA and other treatment
+        3. recovered clean water
+        4. nutrient recovery / processing
+        5. greenhouse nutrient solution
+        6. plants
+        7. plant transpiration
+        8. greenhouse humidity
+        9. CHX condensate capture
+        10. WPA processing
+        11. recovered water returns to habitat storage
 
     ♡ pros:
         - massive water recycling
@@ -215,6 +225,8 @@
 
         - 15% stays in plant mass (permanent loss):
             plant water uptake × 0.15
+
+    ♡ the biomass water will eventually be calculated from crop production, but not for v1, so in the meantime the placeholder is just going to be ~ 5%
 
 
 ### ----------------------------------------
