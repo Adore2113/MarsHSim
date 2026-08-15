@@ -56,10 +56,29 @@
         = mol/m²/sol
 
 ### ----------------------------------------
+
 ## Gas Exchange Rates:
+#### Units & Conversion:
+    ♡ gas exchange is stored as an amount of gas instead of pressure change
+
+    ♡ zone rates use:
+        - mol CO₂/m²/sol
+        - mol O₂/m²/sol
+
+    ♡ each zone uses an averaged rate based on its crop mix
+
+    ♡ final atmospheric pressure change is calculated separately using
+    atmospheric volume and temperature
+
+    ♡ conversion:
+        µmol/m²/s × 1 mol / 1,000,000 µmol
+        × seconds of active photosynthesis
+        = mol/m²/sol
+
+#### Light-Period Gas Exchange:
     ♡ preliminary zone average CO₂ uptake rates during the 16 hour light period
 
-    ♡ REMINDER: because these already assume a 16 hour active light period, make sure I don’t later multiply it by another 16/24 somewhere else
+    ♡ REMINDER: these rates already account for the 16-hour active light period so don't apply another 16/24 multiplier later
 
     ♡ structural:
         - average light period CO₂ removal rate: 
@@ -120,6 +139,18 @@
         - light exposure
         - plant health
         - sol fraction
+
+#### Dark-Period Gas Exchange:
+    ♡ photosynthesis stops during the dark period
+
+    ♡ plant respiration continues
+
+    ♡ plants:
+        - consume O₂
+        - release CO₂
+
+
+#### Full-Zone Gas Exchange:
 
 ### ----------------------------------------
 
@@ -258,10 +289,17 @@
     ♡ plant gas exchange represents an amount of O₂ produced or CO₂ consumed, instead of pressure change
 
     ♡ Nasa research showed rates in µmol/m²/s, but I wanted to convert them because my simulator already handles sol fractions
-
-    ♡ consistency throughout files for units of measurement
     
     ♡ the resulting is converted to kPa after using atmospheric volume and temperature
+
+#### Why use 10/12/10 µmol/m²/s for preliminary light period rates?
+    ♡ I reasearched NASA's potato and sweet potato  high light experiments as something to go off of because they are studied as space crops and they're included in the greenhouse
+
+    ♡ my simulator uses more moderate lighting and I have mixed crops, different growing rates and crop that aren't all at the same density, so I decided to go for more conservative averages
+
+    ♡ sweet corn can reach ~ 28–34 µmol/m²/s under ideal controlled conditions, while passionfruit commonly falls around ~ 10–30 µmol/m²/s, so 12 µmol/m²/s was chosen as a conservative mixed zone average
+
+    ♡ hydroponic spinach can photosynthesize at much more than 10 µmol CO₂/m²/s under ideal controlled lighting, so 10 µmol/m²/s was chosen as a conservative rack zone average rather than assuming every rack is mature and perfectly lit
     
 ### ----------------------------------------
 
