@@ -1,14 +1,25 @@
 ### Habitat:
     - hab_vol_m3
+    - power_mode
 
-### Time / Daylight:
+### Time / Daylight / Dust:
     - mission_time_s
+    - ls_deg
+    - current_season
+    - 
+    - storm_active: bool
+    - storm_sols_passed
+    - storm_tau
+    - dust_opacity_tau
+    - storm_status
+
     - daylight_m2_kw
     - peak_sunlight_today
     - low_sunlight_streak_sols
 
 ### Lights:
     - light_level
+    - wellness_lights_on
 
 ### Crew:
     - crew_count
@@ -16,15 +27,21 @@
 
 ### Greenhouse:
     - greenhouse_floor_area_m2
+    - greenhouse_height_m
+    - greenhouse_vol_m3
+     
+    - helix_walkway_area_m2
+     
     - structural_floor_area_m2
+    - usable_floor_grow_area_m2
     - container_floor_area_m2
     - rack_floor_area_m2
-    - rack_bonus_area_m2
-    - usable_floor_grow_area_m2
-    - walkway_area_m2
     - ceiling_hanging_area_m2
+     
+    - rack_bonus_area_m2
     - ceiling_bonus_area_m2
     - total_effective_grow_area_m2
+
     - greenhouse_zones
     - greenhouse_on
     - greenhouse_stage
@@ -37,14 +54,18 @@
     - min_comfort_temp_c
     - max_comfort_temp_c
     - mars_temp_c
+
     - target_humidity_pct
     - current_humidity_pct
+
     - insulation_strength_kw_per_c
     - thermal_mass_kwh_per_c
+
     - radiators
     - heaters
 
 ### Atmosphere:
+    - oga_on
     - base_gas_leak_kpa_per_hour
 
 #### Gas Leak Rates:
@@ -72,7 +93,7 @@
     - min_safe_ar_kpa
     - min_safe_ch4_kpa
     - min_safe_h2_kpa
-    - 
+     
 #### Max Safe Gas Levels:
     - max_safe_pressure_kpa
     - max_safe_o2_kpa
@@ -110,10 +131,23 @@
     - amine_beds
     - scrub_per_bed_kpa
 
-#### Power and Solar:
-    - battery_max_capacity_kwh
-    - battery_stored_kwh 
-    - solar_arrays
+#### Power:
+    - primary_battery_max_capacity_kwh
+    - primary_battery_stored_kwh 
+
+    - battery_bank_max_capacity_kwh
+    - battery_bank_stored_kwh
+
+
+#### Solar:
+    - land_area_acres
+    - land_area_hectares
+    - land_area_m2
+    - block_area_m2
+
+    - solar_blocks
+    - arrays_per_block
+
     - solar_absorptivity
 
 ### Water:
@@ -130,15 +164,10 @@
     - black_water_storage_capacity_kg
     - condensate_storage_capacity_kg
     - brine_storage_capacity_kg 
+
     - upa_on
     - bpa_on
     - wpa_on
-
-### Placeholders:
-    - radiation_msv_per_day
-
-### Wellness Lights:
-    - wellness_lights_on
 
 ### Sabatier:
     - sabatier_on
@@ -146,8 +175,8 @@
 ### Isru Water:
     - isru_on
     - isru_pipes
-    - raw_isru_water_storage_kg: float
-    - raw_isru_water_storage_capacity_kg: float
+    - raw_isru_water_storage_kg
+    - raw_isru_water_storage_capacity_kg
 
 ### Isru Atmosphere:
     - isru_atm_on

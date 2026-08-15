@@ -18,16 +18,16 @@
         40.0 m across opposite walls
 
     ♡ wall length:
-        ~16.6 m for each outside wall
+        ~ 16.6 m for each outside wall
 
     ♡ center distance:
         20.0 m from the center to each wall
 
     ♡ corner distance:
-        ~21.7 m from the center to each corner
+        ~ 21.7 m from the center to each corner
 
     ♡ overall length:
-        ~43.3 m from one corner to the opposite corner
+        ~ 43.3 m from one corner to the opposite corner
 
     ♡ roof: angled to improve natural light
     ♡ entrances: two, on opposite sides
@@ -35,30 +35,50 @@
 #### Zones:
     ♡ zones seal separately for redundancy and quarantine
 
+    ♡ modules are grouped sections of the growing system, not individual planters, containers, NFT channels or plants
+
     ♡ structural zone:
         - larger or longer cycle crops 
+        - contains LECA growing beds along the helix
+        - beds are divided into managable modules
         - floor area: ~ 380 m²
         - effective grow area: ~ 420 m²
+        - planning estimate: ~ 70 bed modules        
+        - calculation:
+            420 m² ÷ 70 ≈ 6 m² grow area/bed
 
     ♡ container zone:
-        - med and some vertical crops
+        - medium and some vertical crops
+        - contains multiple LECA growing containers
+        - containers are grouped into modules
         - floor area: ~ 420 m²
         - effective grow area: ~ 480 m²
+        - planning estimate: ~ 80 modules
+        - calculation:
+            480 m² ÷ 80 = 6 m² grow area/container
 
     ♡ rack zone:
         - fast, leafy and smaller crops
+        - contains multi level NFT growing racks
         - floor area: ~ 180 m²
         - effective grow area: ~ 450 m²
-    
+        - 2–3 growing levels
+        - planning estimate: ~ 30 rack modules
+        - calculation:
+            450 m² ÷ 30 = 15 m² grow area/rack
+
     ♡ totals:
         - combined floor area of zones: ≈ 980 m²
-        - total effective growth area: ≈ 1,350 m²
+        - total effective grow area: ≈ 1,350 m²
+        - approximate grow modules: ~ 180 total
         - calculation:
             - 380 m² + 420 m² + 180 m² 
-            ≈ 980 m²
+            ≈ 980 m² combined floor area
 
-            -420 m² + 480 m² + 450 m²
-            ≈ 1,350 m²
+            - 420 m² + 480 m² + 450 m²
+            ≈ 1,350 m² effective grow area
+
+            - ~ 70 + ~ 80 + ~ 30 = ~ 180 modules
 
 #### Central Core:
     ♡ shape: octagon (regular)
@@ -86,8 +106,8 @@
         ~ 2.5 - 3.5° (gentle and walkable)
 
     ♡ taper: 
-        - ~16.6 m wide at the outer wall
-        - ~4.0 m wide when meeting the central core
+        - ~ 16.6 m wide at the outer wall
+        - ~ 4.0 m wide when meeting the central core
 
     ♡ two flat 2.0 m storage paths for level access under the higher sections of the helix
 
