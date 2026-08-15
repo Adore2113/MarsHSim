@@ -9,6 +9,7 @@
     ♡ by uptake I'm refering to the actual volume of water consumed by the plants
 
 ### ----------------------------------------
+
 ## Greenhouse Water Model (08/15/2026):
 ## Plant Water Demand:
     ♡ preliminary estimates
@@ -99,7 +100,7 @@
 ### ----------------------------------------
 
 #### Operational Water Losses:
-    ♡ these are rough estimate loss fraction, since I don't have individual equiptment, specfic leaks, and other non-plant losses
+    ♡ these are rough V1 estimates since individual equipment, specific leaks and other non-plant losses aren't modeled separately
 
     ♡ see hydroponics.md for the circulation system losses
 
@@ -147,12 +148,15 @@
         - operational hydroponic water losses
 
     ♡ all three reservoirs are topped up from a shared clean water supply
-    
+
+    ♡ WPA processing loss ~ 131.58 kg/sol
+
     ♡ loop:
         1. habitat potable / treated water
         2. greenhouse make-up water
         3. zone valves
         4. nutrient reservoir
+
 
     ♡ calculation:
         145.8 kg/sol (plant biomass)
@@ -163,11 +167,11 @@
         - baseline greenhouse make-up water demand before WPA losses:
             ~ 374.19 kg/sol
         
-        - WPA processing loss ~ 131.58 kg/sol
-
         - total baseline reservoir make-up demand:
             374.19 + 131.58
             = 505.77 kg/sol
+        
+        - this is water that must be replaced in the greenhouse reservoirs, not permanent water loss from the entire habitat
 
 ### ----------------------------------------
 
@@ -187,9 +191,18 @@
         10. WPA processing
         11. recovered water returns to habitat storage
 
-    ♡ pros:
-        - massive water recycling
-        - reduces the need for replacement water
+    ♡ water and nutrients are treated as separate parts of the future loop
+
+    ♡ treated habitat water can be reused as greenhouse make-up water
+
+    ♡ nutrients recovered from waste need to be processed into forms that are safe and usable by the crops before entering the reservoirs
+
+    ♡ untreated crew waste is not sent directly into the greenhouse nutrient solution
+
+    ♡ V1:
+        - greenhouse make-up water comes from treated habitat water
+
+        - greenhouse nutrients are assumed to be supplied separately
 
 ### ----------------------------------------
 
@@ -228,18 +241,31 @@
 
     ♡ the biomass water will eventually be calculated from crop production, but not for v1, so in the meantime the placeholder is just going to be ~ 5%
 
-
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ figure out runoff water and model separately
+    ♡ implement: the full crew waste to water recovery to nutrient recovery to greenhouse loop
+    
+    ♡ future goal:
+    - recover both water and useful nutrients from habitat waste streams
+    - reduce imported fertilizer requirements
+    - reduce long term replacement water demand
+    - make the habitat more self-sustaining
 
-     ♡ implement: the full crew waste to water recovery to nutrient recovery to greenhouse loop
+    ♡ determine which crew waste streams can realistically contribute nutrients
+
+    ♡ determine what nutrient recovery / treatment is required before reuse
+
+    ♡ determine how nitrogen, phosphorus, potassium and micronutrients are balanced
+
+    ♡ determine how salts or unwanted compounds are prevented from accumulating in the greenhouse reservoirs
+
+    ♡ eventually connect recovered nutrient production to greenhouse nutrient demand
 
 ### ----------------------------------------
 
 ## Design Decision:
-#### 
+#### Why use 
     ♡ 
     
 ### ----------------------------------------
@@ -247,7 +273,6 @@
 ### Dev Log Notes:
 ###### 08/12/2026
     ♡ included make up water system for hydroponic reservoirs
-
 
 ###### 08/15/2026
     ♡ with so many changes I'm pretty much starting over for the water plan for the greenhouse, using my old information as reference
