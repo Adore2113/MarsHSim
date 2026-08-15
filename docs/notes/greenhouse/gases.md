@@ -40,10 +40,25 @@
 
 ### ----------------------------------------
 
+## Gas Exchange Rates:
+    ♡ gas exchange is stored as an amount of gas instead of pressure change
+
+    ♡ zone rates use:
+        - mol CO₂/m²/sol
+        - mol O₂/m²/sol
+
+    ♡ each zone uses an averaged rate based on its crop mix
+
+    ♡ final atmospheric pressure change is calculated separately, using atmospheric volume and temperature
+
+    ♡ conversion calculation:
+        µmol/m²/s × 1 mol / 1,000,000 µmol × seconds of active photosynthesis per sol
+        = mol/m²/sol
+
+### ----------------------------------------
+
 ## Gas Exchange Target:
-##### note: the current rates are placeholders
-    ♡ final numbers will be recalculated once the full habitat layout and free volume are locked
-    
+## Atmospheric Contribution Target (08/14/2026):
     ♡ crew count: 30
 
     ♡ crew O₂ demand:
@@ -56,6 +71,12 @@
     ♡ target greenhouse contribution: 
         ~ 2% of crew O₂ and CO₂ needs
 
+    ♡ greenhouse rates are calculated independently
+
+    ♡ after gas exchange is calculated, it's compared to crew metabolic gas exchange
+
+    ♡ ~ 2% is used to check if the greenhouse remains a minor atmospheric contributor isntead of forcing rates to match it
+
     ♡ calculation:
         - crew O₂ demand:
             0.00011 kPa/hour/person × 30 people × 24.66 hours/sol
@@ -65,38 +86,13 @@
             0.0814 kPa/sol × 0.02
             ≈ 0.00163 kPa/sol
 
-        - approximate average target rate across current total effective grow area (~ 1,350 m²):
-            0.00163 kPa/sol ÷ 1,350 m²
-            ≈ 0.00000121 kPa/m²/sol
-
     ♡ this average is only a preliminary target
 
     ♡ final zone rates still need to preserve differences between the structural, container and rack zones
 
 ### ----------------------------------------
 
-#### Current Zone Rates (updated for ~ 2% target - 08/11/2026):
-    ♡ structural:
-        - rate: 0.00000140 kPa/m²/sol
-        - area: 420 m²
-        - calculation:
-            0.00000140 × 420 ≈ 0.000588 kPa/sol
 
-    ♡ container:
-        - rate: 0.00000120 kPa/m²/sol
-        - area: 480 m²
-        - calculation:
-            0.00000120 × 480 ≈ 0.000576 kPa/sol
-
-    ♡ rack:
-        - rate: 0.00000100 kPa/m²/sol
-        - area: 450 m²
-        - calculation:
-            0.00000100 × 450 ≈ 0.000450 kPa/sol
-
-    ♡ total:
-        0.000588 + 0.000576 + 0.000450 ≈ 0.00161 kPa/sol
-        (very close to the 0.00163 kPa/sol target)
 
 ### ----------------------------------------
 
@@ -133,6 +129,28 @@
     ♡ total previous greenhouse output:
         = 6.04 kPa/sol
 
+#### Previous Zone Rates (for ~ 2% target):
+    ♡ structural:
+        - rate: 0.00000140 kPa/m²/sol
+        - area: 420 m²
+        - calculation:
+            0.00000140 × 420 ≈ 0.000588 kPa/sol
+
+    ♡ container:
+        - rate: 0.00000120 kPa/m²/sol
+        - area: 480 m²
+        - calculation:
+            0.00000120 × 480 ≈ 0.000576 kPa/sol
+
+    ♡ rack:
+        - rate: 0.00000100 kPa/m²/sol
+        - area: 450 m²
+        - calculation:
+            0.00000100 × 450 ≈ 0.000450 kPa/sol
+
+    ♡ total:
+        0.000588 + 0.000576 + 0.000450 ≈ 0.00161 kPa/sol
+        (very close to the 0.00163 kPa/sol target)
 
 ### ----------------------------------------
 
@@ -173,6 +191,15 @@
     ♡ my greenhouse priorities are food production and morale first, minor atmosphere contributions, moderate light levels (sunlight + supplemental LEDs) and to be power-concious, so ~ 2% made sense to me
 
     ♡ 2% is low relative to what the area could theoretically do
+
+#### Why use mol O₂/m²/sol?
+    ♡ plant gas exchange represents an amount of O₂ produced or CO₂ consumed, instead of pressure change
+
+    ♡ Nasa research showed rates in µmol/m²/s, but I wanted to convert them because my simulator already handles sol fractions
+
+    ♡ consistency throughout files for units of measurement
+    
+    ♡ the resulting is converted to kPa after using atmospheric volume and temperature
     
 ### ----------------------------------------
 
