@@ -29,6 +29,15 @@
             2.2 kg/m²/sol × 480 m²
             = 1,056 kg/sol
 
+    ♡ rack:
+        - plant water uptake: ~ 1.8 kg/m²/sol
+        - effective grow area: 450 m²
+        - baseline plant uptake: ~ 810 kg/sol
+
+        - calculation:
+            1.8 kg/m²/sol × 450 m²
+            = 810 kg/sol
+
 ## Greenhouse Water Model:
 #### Water Use:
     ♡
