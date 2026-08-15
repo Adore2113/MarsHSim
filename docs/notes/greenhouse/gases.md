@@ -267,24 +267,34 @@
 
 #### Light Period O₂ Exchange:
     ♡ preliminary estimates
-
-    ♡ PQ = photosynthetic quotient (for every 1 mole of CO₂ the plants remove during photosynthesis, how many moles of O₂ do they release) 
     
+    ♡ PQ = photosynthetic quotient, for every 1 mole of CO₂ removed during photosynthesis, how many moles of O₂ do they release  
+
     ♡ PQ = O₂ produced ÷ CO₂ consumed
 
+    ♡ PQ = 1.03 for all zones
+
+    ♡ V1 uses a single value for all zones
+
+    ♡ O₂ produced = CO₂ consumed × 1.03
+
+    ♡ crop differences are already handled by the different CO₂ uptake rates per zone
+
+    ♡ more differentiated PQ values can be added later if need
+
     ♡ structural:
-        - PQ = 1.1
-        - CO₂ uptake: 0.576 mol CO₂/m²/sol 
-        - effective grow area: 420 m² s
+        - CO₂ uptake: 0.576 mol CO₂/m²/sol
+        - effective grow area: 420 m²
+
         - calculations:
             ♡ O₂ production:
-                0.576 × 1.1
-                = 0.6336 mol O₂/m²/sol
+                0.576 × 1.03
+                = 0.59328 mol O₂/m²/sol
 
             ♡ full zone baseline O₂ production:
-                0.6336 mol/m²/sol × 420 m²
-                = 266.112 mol O₂/sol
-                ≈ 266.11 mol O₂/sol
+                0.59328 × 420
+                = 249.1776 mol O₂/sol
+                ≈ 249.18 mol O₂/sol
                 
     ♡ 
     ♡ 
@@ -297,8 +307,8 @@
 
 #### Total O₂ Exchange:
 
-### ----------------------------------------
 
+### ----------------------------------------
 
 ## Gas Exchange Target:
 ## Atmospheric Contribution Target (08/14/2026):
@@ -343,29 +353,32 @@
 
     ♡ it was deliberately made to contribute 2% of crew gas needs (CO₂ rate chosen so greenhouse = 2% crew demand)
 
-#### Previous Zone Rates:
-    ♡ structural zone:
-        - rate: 0.022 kPa/m²/sol
-        - area: 90 m²
-        - calculation:
-            0.022 kPa/m²/sol × 90 m² = 1.98 kPa/sol
+    ♡ origional zone rates:
+        - structural zone:
+           ♡ rate: 0.022 kPa/m²/sol
+           ♡ area: 90 m²
+           ♡ calculation:
+                0.022 kPa/m²/sol × 90 m² 
+                = 1.98 kPa/sol
 
-    ♡ container zone:
-        - rate: 0.020 kPa/m²/sol
-        - area: 110 m²
-        - calculation:
-            0.020 kPa/m²/sol × 110 m² = 2.20 kPa/sol
+        - container zone:
+            ♡ rate: 0.020 kPa/m²/sol
+            ♡ area: 110 m²
+            ♡ calculation:
+                0.020 kPa/m²/sol × 110 m² 
+                = 2.20 kPa/sol
 
-    ♡ rack zone:
-        - rate: 0.015 kPa/m²/sol
-        - area: 124 m²
-        - calculation:
-            0.015 kPa/m²/sol × 124 m² = 1.86 kPa/sol
+        - rack zone:
+            ♡  rate: 0.015 kPa/m²/sol
+            ♡  area: 124 m²
+            ♡  calculation:
+                0.015 kPa/m²/sol × 124 m² 
+                = 1.86 kPa/sol
 
-    ♡ total previous greenhouse output:
-        = 6.04 kPa/sol
+        - total previous greenhouse output: 
+             6.04 kPa/sol
 
-    ♡ previous zone rates (for ~ 2% target):
+    - previous zone rates (for ~ 2% target):
         - structural:
             ♡ rate: 0.00000140 kPa/m²/sol
             ♡ area: 420 m²
@@ -387,6 +400,13 @@
         - total: 0.000588 + 0.000576 + 0.000450 
                 ≈ 0.00161 kPa/sol
 
+    ♡ considered PQ values: 
+        - structural: PQ ≈ 1.10, this zone has more storage root/seed/fat producing crops
+
+        - container: PQ ≈ 1.08, this zone has very mixed crops
+
+        - rack: PQ ≈ 1.05, this zone is dominated more by leafy vegetative crops like spinach and herbs, so I'll keep it simple with ~ 1.1 ratio
+
 
 ### ----------------------------------------
 
@@ -402,7 +422,6 @@
     ♡ determine greenhouse to habitat loop atmospheric exchange
 
     ♡ implement independently sealed greenhouse zones
-
 
 ### ----------------------------------------
 
@@ -443,7 +462,8 @@
     ♡ sweet corn can reach ~ 28–34 µmol/m²/s under ideal controlled conditions, while passionfruit commonly falls around ~ 10–30 µmol/m²/s, so 12 µmol/m²/s was chosen as a conservative mixed zone average
 
     ♡ hydroponic spinach can photosynthesize at much more than 10 µmol CO₂/m²/s under ideal controlled lighting, so 10 µmol/m²/s was chosen as a conservative rack zone average rather than assuming every rack is mature and perfectly lit
-    
+
+
 ### ----------------------------------------
 
 ### Dev Log Notes:
@@ -492,3 +512,21 @@
         - ~ 10 µmol CO₂/m²/s for V1 zone average
         
         - hydroponic spinach studies say that photosynthetic rates can be much higher than 10 µmol CO₂/m²/s under ideal controlled lighting, using 10 is a conservative mixed zone average instead of than every rack is a mature and perfectly lit
+
+###### 08/15/2026
+♡ I've decided to zone averages again for each zone's light period CO2 uptake rate as the dark period's CO2 realease rate, b/c NASA controlled enviornments show that the exact fraction can be very different depending on crop and environment, but b/c of the fractions being so different this will be a pretty rough average
+
+    ♡ structural zone will have the hgihest night time respiration average for my project at ~ 3.0 µmol CO₂/m²/s
+
+    ♡ ~ 1.5 µmol CO₂/m²/s for container b/c the sunflower respiration speficialy seems to be measured as pretty low, especially compared to the crops in the structural and rack zone
+
+    ♡ ~ 2.5 µmol CO₂/m²/s for the rack zone, b/c spinach specifically is measured at ~ 5 µmol CO₂/m²/s so I decided to use that as a half  the mixed zone average, just as something to go off of
+
+    ♡ I had considered using the 1:1 simplified photosynthesis equation, but that doesn't seem realistic and NASA life support work treats CO₂/O₂ ratios as different
+
+    ♡ PQ = photosynthetic quotient
+    ♡ RQ = respiratory quotient
+
+    ♡ I read that PQ depends on species, what kind of nitrogen the plants are taking in, what biomass they are building, and how nutritent conditions can even have an impact.. my simulator isn't going this far in depth for v1
+    
+    ♡ going with PQ = 1.03 for all zones, seems safter b/c the other rates I considered are more speculative and look at more indvidual crops instead of sticking with zone averages
