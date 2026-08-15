@@ -265,8 +265,19 @@
 ### ----------------------------------------
 
 ## Design Decision:
-#### Why use 
-    ♡ 
+#### Why calculate plant water uptake separately from hydroponic circulation?
+    ♡ the amount of nutrient solution moving through the hydroponic system is much larger than the amount of water actually being consumed by the plants
+
+    ♡ calculating plant uptake separately prevents nutrient solution from being counted as greenhouse water consumption
+
+    ♡ water that drains through the growing system normally returns to its zone reservoir and remains in the hydroponic loop
+
+#### Why use zone-specific water demand?
+    ♡ the structural, container and rack zones have different crops
+
+    ♡ each zone has a different effective grow area
+
+    ♡ using zone averages keeps V1 manageable without treating every individual crop as if it has the same water demand
     
 ### ----------------------------------------
 
