@@ -6,6 +6,8 @@
 
     ♡ V1 uses treated habitat water for greenhouse make up water and assumes greenhouse nutrients are supplied separately
 
+    ♡ by uptake I'm refering to the actual volume of water consumed by the plants
+
 ### ----------------------------------------
 ## Greenhouse Water Model (08/15/2026):
 ## Plant Water Demand:
@@ -38,9 +40,31 @@
             1.8 kg/m²/sol × 450 m²
             = 810 kg/sol
 
-## Greenhouse Water Model:
-#### Water Use:
-    ♡
+    ♡ total greenhouse plant water uptake:
+        - calculation:
+            1,050 + 1,056 + 810
+            = 2,916 kg/sol
+
+        - total plant water uptake:
+            ~ 2,916 kg/sol
+
+#### Transpiration & Plant Biomass:
+    ♡ most water used by the plants eventually leaves through transpiration
+
+    ♡ a smaller amount remains with the plant
+
+    ♡ transpiration: ~ 95%
+    ♡ plant biomass: ~ 5%
+    ♡ total plant water uptake: ~ 2,916 kg/sol
+
+    ♡ calculation:
+        - transpiration:
+            2,916 × 0.95
+            = 2,770.2 kg/sol
+
+        - plant biomass water:
+            2,916 × 0.05
+            = 145.8 kg/sol
 
 ### ----------------------------------------
 
