@@ -186,8 +186,31 @@
 
 ### ----------------------------------------
 
+## Pumps:
+    ♡ one primary pump, one backup pump for each zone
+
+    ♡ the backup pump will be automatic if the primary one fails
+
+    ♡ isolation valves incase a pump needs to fixed or needs maintenance
+
+    ♡ alerts will go off if the primary pumps are offline and there will be warnings for each zone if their pumps fail
+
+    ♡ if both circulation pumps fail:
+        - structural zone: 
+            slower health decline (LECA beds retain moisture)
+
+        - container zone:
+            moderate health decline
+
+        - rack zone: 
+            fastest health decline (NFT requires continuous flow)
+
+### ----------------------------------------
+
 ## Design Evolution:
     ♡ started a shared effective growth rate without going into detail
+
+    ♡ water came from a tank instead of nutrient solution as a base for my code until I did more reasearch
 
 ### ----------------------------------------
 
