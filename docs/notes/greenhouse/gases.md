@@ -275,20 +275,15 @@
 
 #### Light Period O₂ Exchange:
     ♡ preliminary estimates
-    
-    ♡ PQ = photosynthetic quotient, for every 1 mole of CO₂ removed during photosynthesis, how many moles of O₂ do they release  
-
-    ♡ PQ = O₂ produced ÷ CO₂ consumed
-
-    ♡ PQ = 1.03 for all zones
-
     ♡ V1 uses a single value for all zones
 
-    ♡ O₂ produced = CO₂ consumed × 1.03
-
     ♡ crop differences are already handled by the different CO₂ uptake rates per zone
+        
+    ♡ PQ = photosynthetic quotient, for every 1 mole of CO₂ removed during photosynthesis, how many moles of O₂ do they release  
 
-    ♡ more differentiated PQ values can be added later if need
+    ♡ PQ = 1.03 for all zones
+    ♡ PQ = O₂ produced ÷ CO₂ consumed
+    ♡ O₂ produced = CO₂ consumed × 1.03 (PQ)
 
     ♡ structural:
         - CO₂ uptake: 0.576 mol CO₂/m²/sol
@@ -338,7 +333,61 @@
 
 
 #### Dark Period O₂ Exchange:
-    ♡ preliminary estimates 
+    ♡ preliminary estimates
+    ♡ V1 uses a single value for all zones
+
+    ♡ crop differences are already handled by the different dark period CO₂ release rates per zone
+
+    ♡ RQ = respiratory quotient, the relationship between CO₂ released and O₂ consumed during respiration
+
+    ♡ RQ = 0.90 for all zones
+    ♡ RQ = CO₂ released ÷ O₂ consumed
+    ♡ O₂ consumed = CO₂ released ÷ 0.90
+
+    ♡ structural:
+        - CO₂ release: 0.0864 mol CO₂/m²/sol
+        - effective grow area: 420 m²
+
+        - calculations:
+            ♡ O₂ consumption:
+                0.0864 ÷ 0.90
+                = 0.096 mol O₂/m²/sol
+
+            ♡ full zone baseline O₂ consumption:
+                0.096 × 420
+                = 40.32 mol O₂/sol
+
+    ♡ container:
+        - CO₂ release: 0.0432 mol CO₂/m²/sol
+        - effective grow area: 480 m²
+
+        - calculations:
+            ♡ O₂ consumption:
+                0.0432 ÷ 0.90
+                = 0.048 mol O₂/m²/sol
+
+            ♡ full zone baseline O₂ consumption:
+                0.048 × 480
+                = 23.04 mol O₂/sol
+
+
+    ♡ rack:
+        - CO₂ release: 0.072 mol CO₂/m²/sol
+        - effective grow area: 450 m²
+
+        - calculations:
+            ♡ O₂ consumption:
+                0.072 ÷ 0.90
+                = 0.080 mol O₂/m²/sol
+
+            ♡ full zone baseline O₂ consumption:
+                0.080 × 450
+                = 36.00 mol O₂/sol
+
+
+    ♡ total dark period baseline O₂ consumption:
+        40.32 + 23.04 + 36.00
+        = 99.36 mol O₂/sol
 
 
 #### Total O₂ Exchange:
