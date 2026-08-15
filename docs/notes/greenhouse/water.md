@@ -46,7 +46,7 @@
             - water needed × recirculation efficiency
             = water recirculated
 
-            - water needed × (1.0 − recirculation efficiency)
+            - water needed × (1.0 - recirculation efficiency)
             = water taken up by plants
 
     ♡ the water taken up by plants is what actually leaves the recirculating loop

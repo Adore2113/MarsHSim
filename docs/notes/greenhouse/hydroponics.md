@@ -182,7 +182,7 @@
     ♡ potable storage loses only the actual greenhouse make-up water
 
     ♡ calculation:
-        target reservoir level − current reservoir level = make-up water needed
+        target reservoir level - current reservoir level = make-up water needed
 
 ### ----------------------------------------
 
@@ -244,6 +244,12 @@
         -add that to power 
         -calculate flow rate 
         -etc.
+    
+    ♡ figure out pump failure:
+        - NFT flow stops  
+        - DO/root water conditions deteriorate
+        - rack health falls
+        - growth falls
 
     ♡ plant health could be considered more in depth in response to the nutrient solution:
         

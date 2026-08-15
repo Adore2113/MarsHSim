@@ -112,7 +112,7 @@
     ♡ two flat 2.0 m storage paths for level access under the higher sections of the helix
 
     ♡ calculation:
-        - 20 m − 3 m core rad − 3.5 m outer ring:
+        - 20 m - 3 m core rad - 3.5 m outer ring:
         ≈ 13.5 m radial space
         
         - 13.5 m ÷ 2 turns: 

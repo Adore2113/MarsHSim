@@ -45,7 +45,7 @@
     ♡ LEDs are dimmable and respond to power modes
 
     ♡ calculation (LED support level):
-        (light_target − effective_light) ÷ light_target
+        (light_target - effective_light) ÷ light_target
 
 #### Power Modes:
     ♡ normal: full LED support as needed (lvl 1.0)

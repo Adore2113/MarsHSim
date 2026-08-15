@@ -75,7 +75,7 @@
         × seconds of active photosynthesis
         = mol/m²/sol
 
-#### Light Period Gas Exchange:
+#### Light Period CO₂ Exchange:
     ♡ preliminary zone average CO₂ uptake rates during the 16 hour light period
 
     ♡ REMINDER: these rates already account for the 16-hour active light period so don't apply another 16/24 multiplier later
@@ -140,7 +140,7 @@
         - plant health
         - sol fraction
 
-#### Dark Period Gas Exchange:
+#### Dark Period CO₂ Exchange:
     ♡ photosynthesis stops during the dark period
     ♡ modifiers: zone area × plant health × timestep
     ♡ plant respiration continues
@@ -150,7 +150,7 @@
         - release CO₂
     
     ♡ structural:
-        - average dark-period CO₂ release rate:
+        - average dark period CO₂ release rate:
             ~ 3.0 µmol CO₂/m²/s
 
         - converted MarsHSim rate:
@@ -168,11 +168,11 @@
                 0.0864 mol/m²/sol × effective grow area × sol fraction × plant health
 
     ♡ container:
-        - average dark-period CO₂ release rate:
-            ~1.5 µmol CO₂/m²/s
+        - average dark period CO₂ release rate:
+            ~ 1.5 µmol CO₂/m²/s
 
         - converted MarsHSim rate:
-            ~0.0432 mol CO₂/m²/sol
+            ~ 0.0432 mol CO₂/m²/sol
 
         - calculations:
             1.5 µmol CO₂/m²/s × 28,800 s
@@ -186,11 +186,11 @@
                 0.0432 mol/m²/sol × effective grow area × sol fraction × plant health
 
     ♡ rack:
-        - average dark-period CO₂ release rate:
-            ~2.5 µmol CO₂/m²/s
+        - average dark period CO₂ release rate:
+            ~ 2.5 µmol CO₂/m²/s
 
         - converted MarsHSim rate:
-            ~0.072 mol CO₂/m²/sol
+            ~ 0.072 mol CO₂/m²/sol
 
         - calculations:
             2.5 µmol CO₂/m²/s × 28,800 s
@@ -201,12 +201,62 @@
                 = 0.072 mol CO₂/m²/sol
 
             CO₂ released:
-                0.072 mol/m²/sol
-                × effective grow area
-                × sol fraction
-                × plant health
+                0.072 mol/m²/sol × effective grow area × sol fraction × plant health
 
-#### Full-Zone Gas Exchange:
+#### CO₂ Gas Exchange:
+    ♡ light period baseline CO₂ uptake: 
+        ~ 832.90 mol/so
+        l
+    ♡ dark period baseline CO₂ release: 
+        ~ 89.43 mol/sol
+
+    ♡ calculations:
+        - light period:
+            ♡ structural:
+                - baseline CO₂ uptake:
+                    0.576 mol/m²/sol × 420 m²
+                    = 241.92 mol CO₂/sol
+
+            ♡ container:
+                - baseline CO₂ uptake:
+                    0.6912 mol/m²/sol × 480 m²
+                    = 331.776 mol CO₂/sol
+                    ≈ 331.78 mol CO₂/sol
+
+            ♡ rack:
+                - baseline CO₂ uptake:
+                    0.576 mol/m²/sol × 450 m²
+                    = 259.20 mol CO₂/sol
+
+            ♡ total light period CO₂ uptake:
+                241.92 + 331.78 + 259.20
+                = 832.90 mol CO₂/sol
+
+        - dark period:
+            ♡ structural:
+                - dark period CO₂ release:
+                    0.0864 mol/m²/sol × 420 m²
+                    = 36.288 mol CO₂/sol
+                    ≈ 36.29 mol CO₂/sol
+
+            ♡ container:
+                - dark period CO₂ release:
+                    0.0432 mol/m²/sol × 480 m²
+                    = 20.736 mol CO₂/sol
+                    ≈ 20.74 mol CO₂/sol
+
+            ♡ rack:
+                - dark period CO₂ release:
+                    0.072 mol/m²/sol × 450 m²
+                    = 32.40 mol CO₂/sol
+
+            ♡ total dark period CO₂ release:
+                36.29 + 20.74 + 32.40
+                = 89.43 mol CO₂/sol
+    
+        ♡ net CO₂ removal over one sol:
+            832.90 mol consumed - 89.43 mol released
+            = 743.47 mol CO₂/sol
 
 ### ----------------------------------------
 
