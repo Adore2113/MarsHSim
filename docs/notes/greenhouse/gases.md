@@ -2,7 +2,7 @@
 ### General Notes:
     ♡ this isn't a greenhouse simulator, so it's intentionally not as complex as it could be
     
-    ♡ calculations are per zone
+    ♡ calculations are performed separately for each zone
 
     ♡ each zone uses averaged plant data instead of simulating individual crops
     
@@ -17,8 +17,6 @@
 ### ----------------------------------------
 
 ## Photosynthesis Model:
-    ♡ calculations are performed separately for each zone
-
     ♡ light period:
         - plants consume CO₂ and produce O₂
         - gas exchange depends on light exposure × plant health
@@ -60,8 +58,6 @@
         - mol CO₂/m²/sol
         - mol O₂/m²/sol
 
-    ♡ each zone uses an averaged rate based on its crop mix
-
     ♡ final atmospheric pressure change is calculated separately using atmospheric volume and temperature
 
     ♡ conversion:
@@ -72,8 +68,6 @@
 ### ----------------------------------------
 
 #### Light Period CO₂ Exchange:
-    ♡ preliminary zone average CO₂ uptake rates during the 16 hour light period
-
     ♡ REMINDER: these rates already account for the 16-hour active light period so don't apply another 16/24 multiplier later
 
     ♡ structural:
@@ -136,13 +130,10 @@
         - plant health
         - sol fraction
 
-#### Dark Period CO₂ Exchange:
-    ♡ preliminary zone average rates 
+#### Dark Period CO₂ Exchange: 
     ♡ photosynthesis stops during the dark period
-
     ♡ modifiers: zone area × plant health × timestep
     ♡ plant respiration continues
-
 
     ♡ plants:
         - consume O₂
@@ -428,6 +419,7 @@
 ### ----------------------------------------
 
 ## Atmospheric Contribution Target (08/14/2026):
+    ♡ preliminary estimates
     ♡ crew count: 30
 
     ♡ crew O₂ demand:
@@ -462,7 +454,6 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-#### Early Gas Exchange Model:
     ♡ the original greenhouse gas-exchange values produced ~ 75 times the crew's O₂ requirement
 
     ♡ decided the greenhouse should be a minor contributor instead of a primary life support system
@@ -522,7 +513,6 @@
         - container: PQ ≈ 1.08, this zone has very mixed crops
 
         - rack: PQ ≈ 1.05, this zone is dominated more by leafy vegetative crops like spinach and herbs, so I'll keep it simple with ~ 1.1 ratio
-
 
 ### ----------------------------------------
 
