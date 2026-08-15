@@ -9,6 +9,25 @@
 ### ----------------------------------------
 ## Greenhouse Water Model (08/15/2026):
 ## Plant Water Demand:
+    ♡ preliminary estimates
+
+    ♡ structural:
+        - plant water uptake: ~ 2.5 kg/m²/sol
+        - effective grow area: 420 m²
+        - baseline plant uptake: ~ 1,050 kg/sol
+        
+        - calculation:
+            2.5 kg/m²/sol × 420 m²
+            = 1,050 kg water/sol
+
+    ♡ container:
+        - plant water uptake: ~ 2.2 kg/m²/sol
+        - effective grow area: 480 m²
+        - baseline plant uptake: ~ 1,056 kg/sol
+        
+        - calculation:
+            2.2 kg/m²/sol × 480 m²
+            = 1,056 kg/sol
 
 ## Greenhouse Water Model:
 #### Water Use:
