@@ -75,7 +75,7 @@
         × seconds of active photosynthesis
         = mol/m²/sol
 
-#### Light-Period Gas Exchange:
+#### Light Period Gas Exchange:
     ♡ preliminary zone average CO₂ uptake rates during the 16 hour light period
 
     ♡ REMINDER: these rates already account for the 16-hour active light period so don't apply another 16/24 multiplier later
@@ -140,15 +140,71 @@
         - plant health
         - sol fraction
 
-#### Dark-Period Gas Exchange:
+#### Dark Period Gas Exchange:
     ♡ photosynthesis stops during the dark period
-
+    ♡ modifiers: zone area × plant health × timestep
     ♡ plant respiration continues
 
     ♡ plants:
         - consume O₂
         - release CO₂
+    
+    ♡ structural:
+        - average dark-period CO₂ release rate:
+            ~ 3.0 µmol CO₂/m²/s
 
+        - converted MarsHSim rate:
+            ~ 0.0864 mol CO₂/m²/sol
+
+        - calculations:
+            3.0 µmol CO₂/m²/s × 28,800 s
+            = 86,400 µmol CO₂/m²/sol
+
+            micromoles to moles:
+                86,400 ÷ 1,000,000
+                = 0.0864 mol CO₂/m²/sol
+
+            CO₂ released:
+                0.0864 mol/m²/sol × effective grow area × sol fraction × plant health
+
+    ♡ container:
+        - average dark-period CO₂ release rate:
+            ~1.5 µmol CO₂/m²/s
+
+        - converted MarsHSim rate:
+            ~0.0432 mol CO₂/m²/sol
+
+        - calculations:
+            1.5 µmol CO₂/m²/s × 28,800 s
+            = 43,200 µmol CO₂/m²/sol
+
+            micromoles to moles:
+                43,200 ÷ 1,000,000
+                = 0.0432 mol CO₂/m²/sol
+
+            CO₂ released:
+                0.0432 mol/m²/sol × effective grow area × sol fraction × plant health
+
+    ♡ rack:
+        - average dark-period CO₂ release rate:
+            ~2.5 µmol CO₂/m²/s
+
+        - converted MarsHSim rate:
+            ~0.072 mol CO₂/m²/sol
+
+        - calculations:
+            2.5 µmol CO₂/m²/s × 28,800 s
+            = 72,000 µmol CO₂/m²/sol
+
+            micromoles to moles:
+                72,000 ÷ 1,000,000
+                = 0.072 mol CO₂/m²/sol
+
+            CO₂ released:
+                0.072 mol/m²/sol
+                × effective grow area
+                × sol fraction
+                × plant health
 
 #### Full-Zone Gas Exchange:
 
