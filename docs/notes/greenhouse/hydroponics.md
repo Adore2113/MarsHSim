@@ -8,7 +8,12 @@
 
     ♡ the greenhouse uses recirculating hydroponics
 
-    ♡ the full crew waste into nutrient solution loop is planned but not implemented yet
+    ♡ the full crew waste to water/nutrient recovery to greenhouse nutrient solution loop is planned but not implemented yet
+
+    ♡ operational losses will contribute to reservoir make-up water demand
+
+    ♡ small operational water losses may also occur from evaporation from exposed solution / wet surfaces, maintenance or flushing, solution retained in LECA, plumbing or equipment and/or minor leakage
+
 ### ----------------------------------------
 
 ## Hydroponic Plan (08/12/2026 update):
@@ -56,7 +61,9 @@
 #### Nutrient Solution Management:
     ♡ one target range per zone
 
-    ♡ the following information is not simulated in v1 :
+    ♡ nutrient solution that drains from the root zone is collected and returned to the zone reservoir
+
+    ♡ the following information is not yet simulated in v1 :
 
     ♡ pH target is crucial for health and plant growth
 
@@ -285,6 +292,17 @@
 ### ----------------------------------------
 
 ## Design Decisions:
+#### Why hydroponics?
+    ♡ uses less water than traditional soil-based growing when water is recirculated
+
+    ♡ allows water and nutrients to be collected, treated and reused
+
+    ♡ makes vertical racks and hanging containers easier to incorporate
+
+    ♡ avoids transporting and managing large amounts of soil
+
+    ♡ works with the planned closed greenhouse water loop
+
 #### Why lightweight clay balls (LECA style) instead of soil?
     ♡ packs tightly and securely for Starship transport
 
