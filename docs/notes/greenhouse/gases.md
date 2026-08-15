@@ -323,3 +323,29 @@
 
 ###### 08/12/2026
     ♡ updated a few values and calculations in gases.md, but I need to come back to this file after I finalize the layout to get the true calculations
+
+
+###### 08/14/2026
+    ♡ removing the forced 2% result 
+
+    ♡ implementing the photosynthesis behavior that changes during the 16 hour light and 8 hour dark period,starting with the light period
+
+    ♡ I'm going to use mol/m²/sol for my sim b/c It alread uses sol fractions
+
+    ♡ I'm using NASA's potato and sweet potato information b/c they are studied as space crops and I'm including those in the sim: 45 µmol CO₂/m²/s at peak photosynthesis, with night time respiration around 9 µmol CO₂/m²/s in those high light experiments
+
+    ♡ my sim is using more moderate lighting, and my zones are mixed crops so I'll look into more conservative averages
+
+    ♡ considering plants being at different growing phases and not all of them being so dense
+
+    ♡ structual: for every m² of structural growing area, while photosynthesis is active, the zone average plants remove ~ 10 µmol/m²/s in this simplified model below the ~ 45 µmol/m²/s
+
+    ♡ container: 
+        - ~ 12 µmol/m²/s for V1 zone average
+        
+        - sweet corn can get to ~  28–34 µmol/m²/s under ideal controlled conditions, while passionfruit seems to commonly fall around 10–30 µmol/m²/s, also consindering different growth stages, again
+
+    ♡ rack: 
+        - ~ 10 µmol CO₂/m²/s for V1 zone average
+        
+        - hydroponic spinach studies say that photosynthetic rates can be much higher than 10 µmol CO₂/m²/s under ideal controlled lighting, using 10 is a conservative mixed zone average instead of than every rack is a mature and perfectly lit
