@@ -66,10 +66,59 @@
             2,916 × 0.05
             = 145.8 kg/sol
 
+#### Transpiration Recovery:
+    ♡ transpired plant water enters the greenhouse atmosphere and the CHX removes most of this water as condensate
+
+    ♡ CHX transpiration capture efficiency: ~ 95%
+    ♡ greenhouse transpiration: ~ 2,770.2 kg/sol
+
+    ♡ calculation:
+        - condensate captured:
+            2,770.2 × 0.95
+            = 2,631.69 kg/sol
+
+        - uncaptured transpiration:
+            2,770.2 × 0.05
+            = 138.51 kg/sol
+
+    ♡ captured condensate is sent into the habitat water recovery system
+
 ### ----------------------------------------
 
-#### Water Recirculation:
-    ♡
+#### Operational Water Losses:
+    ♡ these are rough estimate loss fraction, since I don't have individual equiptment, specfic leaks, and other non-plant losses
+
+    ♡ see hydroponics.md for the circulation system losses
+
+    ♡ structural:
+        - operational loss rate: ~ 4%
+        - baseline plant water uptake: 1,050 kg/sol
+
+        - calculation:
+            1,050 × 0.04
+            = 42.0 kg/sol
+
+    ♡ container:
+        - operational loss rate: ~ 3%
+        - baseline plant water uptake: 1,056 kg/sol
+
+        - calculation:
+            1,056 × 0.03
+            = 31.68 kg/sol
+
+    ♡ rack:
+        - operational loss rate: ~ 2%
+        - baseline plant water uptake: 810 kg/sol
+
+        - calculation:
+            810 × 0.02
+            = 16.2 kg/sol
+
+    ♡ total operational water loss:
+        42.0 + 31.68 + 16.2
+        = 89.88 kg/sol
+        ≈ 89.9 kg/sol
+
 
 ### ----------------------------------------
 
@@ -83,19 +132,6 @@
     ♡ currently included in the overall recirculation numbers
 
 ### ----------------------------------------
-
-#### Transpiration and Plant Mass:
-    ♡ water taken up by plants:
-        - 85% becomes transpiration (goes into the greenhouse air and then the CHX)
-
-        - 15% stays in plant mass (permanent loss)
-
-    ♡ calculation:
-        - transpiration: 
-            plant water uptake × 0.85
-
-        - plant mass water:
-            plant water uptake × 0.15
 
 ### ----------------------------------------
 
@@ -160,6 +196,15 @@
             - multiplier: 0.90
             - effective rate ≈ 1.76 kg/m²/sol
 
+    
+    ♡ water taken up by plants:
+        - 85% becomes transpiration (goes into the greenhouse air and then the CHX): 
+            plant water uptake × 0.85
+
+        - 15% stays in plant mass (permanent loss):
+            plant water uptake × 0.15
+
+
 ### ----------------------------------------
 
 ## Future Considerations:
@@ -177,4 +222,26 @@
 
 ### Dev Log Notes:
 ###### 08/12/2026
-    ♡ included make-up water system for hydroponic reservoirs
+    ♡ included make up water system for hydroponic reservoirs
+
+
+###### 08/15/2026
+    ♡ with so many changes I'm pretty much starting over for the water plan for the greenhouse, using my old information as reference
+
+    ♡ starting with plant water demand, the old value was 3.4 kg/m²/sol × 1.15 = ~ 3.91 kg/m²/sol, looking over the NASA study with potatoes I've been referencing the total system water was ~ 2 L/m²/day, since water is ~ 1 kg/L, ≈ 2 kg/m²/day, a Mars sol = ~ 1.0275 Earth days, 2.0 kg/m²/day × 1.0275 day/sol ≈ 2.06 kg/m²/sol
+
+    ♡ b/c my strucutral zone isn't all potato, I need to increase the mixed zone average probably above that b/c the banana is also very water demanding.. so for structural prelminary value I'll use the plant water uptake rate of ~ 2.5 kg/m²/sol
+
+    ♡ containers contain med/tall crops and the hydroponic recircle the water efficiently, so it doesn't need to include the solution in the containers, NASA emphasizes that in closed CEA (Chemical Equilibrium with Applications), the major crop water requirement is what plants transpire, with irrigation water recirculated
+
+    ♡ ~ 2.2 kg/m²/sol for container as a V1 zone average b/c it stays close to the crop water scale used for structural while being under ~ 2.5 since that zone includes the larger and more water demanding crops
+
+    ♡ this one can be low considering growing conditions and crop choices for the rack zone, so ~ 1.8 kg/m²/sol will work for now
+
+    ♡ replacing the old percetages for transpiration and plant mass, or at least going over the calculations
+
+    ♡ plant water uptake seems to be mainly transpiration.. in some hydroponic experiments, water disappearing from sealed nutrient containers is treated essentially as transpiration, because only the above ground plants are exposed to the air, the water retained is actually quite low compared to that
+
+    ♡ NASA ECLSS systems treat condensate as a recoverable wastewater stream, and plant growth life support research looks into recovering and reusing transpired water vapor, so using ~ 95% capturing efficiency seems right so that the recovery isn't perfect, but still small amount goesn't get collected
+
+    ♡ things like maintenance/flushing, minor leakage, evaporation from exposed solution or wet surfaces, and solution retained in equipment/LECA during servicing all add into the the water losses, but I think I'm just going to use a small recirculation loss, and make each zone have a different percentage, mostly b/c of the different growing conditions, considering the ~95% capturing efficiency 
