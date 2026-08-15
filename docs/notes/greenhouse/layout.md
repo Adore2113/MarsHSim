@@ -348,3 +348,8 @@
 
 ###### 08/04/2026:
     ♡ created Hive-8 Arcadia plan, updating the greenhouse plans almost completely
+
+###### 08/14/2026:
+    ♡ the sizes for the zonnes for the containers and growing space, are rough estimates, I didn't think it was neccessary to have an exact amount of boxes or containers for v1, and they are going to be made using the zones plant averages and growing area
+
+    ♡ I'm going to decide starting module sizes based on the measurements I have already for Hive-8 Arcadia

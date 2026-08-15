@@ -241,7 +241,6 @@
         - decide replacement schedule
     
     ♡ continue hydroponics: 
-        -ciruclation pumps 
         -add that to power 
         -calculate flow rate 
         -etc.
@@ -341,7 +340,6 @@
 
     ♡ I'm looking into Nutrient Film Technique (NFT) where the plants need a constant flowing nutrient solution, and it seems like this is better for more shallow plans, so it would make sense that the rack system has these
 
-
     ♡ reading about recirulating drip systems using dutch bucket set ups, meaning each plant or small group gets its own bucket, all connected sharing plumbing which is exactly what I had planned so this is perfect
 
     ♡ I'm choosing targets to be averaged per zone
@@ -358,5 +356,9 @@
 
     ♡ I'm not so worried about an upper range for the dissolved oxygen target b/c the most important thing is if it's high enough
     
-    ♡ hydroponic research is now stopping for now, b/c I have more than enough for v1
+
+###### 08/14/2026
+    ♡ considering pums for each greenhouse zone, I want to have one backup incase the prmary fails that would be automatic 
+
+    ♡ I was reading that the structural LECA zone would be able to handle pump failure better than the container and rack, especially the rack b/c it is relying on the continuous flow
 

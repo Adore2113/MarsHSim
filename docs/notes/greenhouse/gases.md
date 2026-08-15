@@ -8,12 +8,25 @@
     
     ♡ driven by light exposure × plant health
     
-    ♡ the greenhouse is only a minor contributor to habitat atmosphere (~ 2% of crew needs)
+    ♡ the greenhouse is intended to remain a minor contributor to habitat atmosphere
+
+    ♡ ~ 2% of crew gas needs is a design  target, not a value the greenhouse is forced to produce
+
+    ♡ gas exchange rates will be based on the averaged crop mix in each zone, then compared against crew demand
 
 ### ----------------------------------------
 
 ## Photosynthesis Model:
     ♡ calculations are performed separately for each zone
+
+    ♡ light period:
+        - plants consume CO₂ and produce O₂
+        - gas exchange depends on light exposure × plant health
+
+    ♡ dark period:
+        - photosynthesis stops
+        - plants continue respiration
+        - plants consume O₂ and release CO₂ (smaller amounts)
 
     ♡ calculation:
         - photosynthesis factor:
@@ -52,7 +65,7 @@
             0.0814 kPa/sol × 0.02
             ≈ 0.00163 kPa/sol
 
-        - approximate average target rate across current total effective grow area (~1,350 m²):
+        - approximate average target rate across current total effective grow area (~ 1,350 m²):
             0.00163 kPa/sol ÷ 1,350 m²
             ≈ 0.00000121 kPa/m²/sol
 
@@ -62,7 +75,7 @@
 
 ### ----------------------------------------
 
-#### Current Zone Rates (updated for ~2% target - 08/11/2026):
+#### Current Zone Rates (updated for ~ 2% target - 08/11/2026):
     ♡ structural:
         - rate: 0.00000140 kPa/m²/sol
         - area: 420 m²
@@ -92,7 +105,9 @@
     ♡ the original greenhouse gas-exchange values produced ~ 75 times the crew's O₂ requirement
 
     ♡ decided the greenhouse should be a minor contributor instead of a primary life support system
-    
+
+    ♡ it was deliberately made to contribute 2% of crew gas needs (CO₂ rate chosen so greenhouse = 2% crew demand)
+
 #### Previous Zone Rates:
     ♡ structural zone:
         - rate: 0.022 kPa/m²/sol
@@ -122,15 +137,18 @@
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ recalculate the actual zone O₂ and CO₂ rates so the total is ~ 2% of crew demand
+    ♡ calculate biologically based zone O₂ and CO₂ rates, then compare the total against the ~ 2% design target
 
-    ♡ keep structural highest and rack lowest when setting the final rates
+    ♡ replace preliminary kPa/m²/sol gas rates with biologically based zone average gas exchange rates
 
-    ♡ figure out pump failure:
-            ♡ NFT flow stops  
-            ♡ DO/root water conditions deteriorate
-            ♡ rack health falls
-            ♡ growth falls
+    ♡ convert plant gas exchange into atmospheric partial pressure changes using greenhouse/habitat air volume
+
+    ♡ add simplified dark cycle plant respiration
+
+    ♡ determine greenhouse to habitat loop atmospheric exchange
+
+    ♡ implement independently sealed greenhouse zones
+
 
 ### ----------------------------------------
 
@@ -160,10 +178,10 @@
 
 ### Dev Log Notes:
 ###### 05/18/2026
-    ♡ I want the greenhouse capable of raising the o2 in the habitat b/c with my hexagon/hive idea for the structure, everything is close together, without seperate buildings so it just makes sense to me that it would be a factor 
+    ♡ I want the greenhouse capable of raising the O₂ in the habitat b/c with my hexagon/hive idea for the structure, everything is close together, without separate buildings so it just makes sense to me that it would be a factor 
 
 ###### 06/19/2026
-    ♡ I noticed my greenhouse is currently producting 75x MORE o2 than my crew of 30  mean and this is absolutely not right, it doesn't make any sense so I need to fix this
+    ♡ I noticed my greenhouse is currently producing 75× more O₂ than my crew of 30 needs and this is absolutely not right, it doesn't make any sense so I need to fix this
 
     ♡ calculation for zone info:
         structural: 0.022 kPa/m²/sol × 90 m²  = 1.98 kPa/sol
@@ -171,10 +189,10 @@
         rack:       0.015 kPa/m²/sol × 124 m² = 1.86 kPa/sol
         total ≈ 6.04 kPa/sol
 
-    ♡ calculation for crew o2 demand:
+    ♡ calculation for crew O₂ demand:
     0.00011 kPa/hr × 30 crew × ~ 24.66 hr/sol ≈ 0.081 kPa/sol
 
-    ♡ the greenhouse actually produce only 2% of the crew o2 and co2 needs
+    ♡ greenhouse should actually produce only 2% of the crew O₂ and CO₂ needs
 
 ###### 08/12/2026
     ♡ updated a few values and calculations in gases.md, but I need to come back to this file after I finalize the layout to get the true calculations
