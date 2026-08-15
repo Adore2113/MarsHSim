@@ -735,14 +735,14 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ continue greenhouse 
 
 
- ##      05/10/2026
+##      05/10/2026
      ♡ busy day, but I was able to go over the lighting function I had made in greenhouse.py and decided to add zones for each type of container the plants are in, I'm going to use the averages of thet crop types in the containers
 
 #### Next Session:
     ♡ continue greenhouse    
 
 
- ##      05/11/2026
+##      05/11/2026
      ♡ adding heat from the LED lights in my greenhouse_lighting function
 
      ♡ I might shorten the variable names as my sim gets bigger
@@ -765,7 +765,6 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ continue greenhouse
-
 
 
 ##      05/14/2026
@@ -976,7 +975,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      06/19/2026
     ♡ fixing my sabatier file, made the methane go aove the safe limit, so I'm going to see what I can do w. the methane storage and venting 
 
-    ♡ I decided to make sure all c4 is either vented immediately or sent to storage, it's not goin to be added into the cabin atmosphere
+    ♡ I decided to make sure all ch4 is either vented immediately or sent to storage, it's not goin to be added into the cabin atmosphere
 
     ♡ I fixed the sabatier call in engine.py
 
@@ -1268,10 +1267,100 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      08/09/2026
-    ♡ going over nutrition plan and  macronutrient targets
+    ♡ going over nutrition plan and macronutrient targets
 
     ♡ I chose these targets intitally (carbohydrates: 40%, fat: 45%, protein: 15%) b/c I was taking crew stability into consideration, as well as crew performance, cognition and overall wellbeing. I need to choose between this and a conventional nuritional range, so I decided to try to stay closer to the suggested range but still make it a bit different like a sort of compromise 
 
     ♡ I want the habitat food system biased toward steady energy, satiety, minimally processed foods and avoiding excessive carbohydrate dependence still so I will change the fat and protein goals, and keep the carb target as is
 
     ♡ thinking about seasons and crop growth but b/c of the greenouse being fully controlled all the time, the conditions stay the same, I also considered crop changes after certon harvests, but maybe this can be applied in future versions, it's just not a priority
+
+
+##      08/11/2026
+    ♡ I'm going over greenhouse power and waste heat, now that a lot of changes have been made to the greenhouse
+
+    ♡ NASA style and long duration designs run moderate light levels instead of Earth's commercial maximums, so 100-160 W/m² electrical is common for efficient systems that mix sunlight + LEDs
+
+    ♡ more modern LEDs deliver roughly 2.7-3.5 µmol/J, at 0.12 kW/m² (120 W/m²) electricalao I can expect about 320-400 µmol/m²/s (micromole, 1 mole = 1000000 umol)
+
+    ♡ I read about crop needs:
+        Spinach, peas, most leafy/herbs:
+             150-300 µmol/m²/s (happy around 200-250)
+        
+        Quinoa, many medium crops:
+             300-500
+        
+        Sweet potato, peanuts (higher light demand):
+             400-600+ for strong yields
+
+    ♡ so I'm chanding my light targets per m2 to structural zone: 0.26, container zone "light_target_kw_per_m2": 0.23, rack zone "light_target_kw_per_m2": 0.19,
+
+    ♡ updating greenhouse to include new values, and equipment power
+
+    ♡ moving onto greenhouse water/hydroponic file
+
+
+##      08/12/2026
+    ♡ I'm looking into hydroponic set ups and how they work today, I'm not going to go too far into this, again b/c I don't want this to become a main focus, it's not a greenhouse simulator
+
+    ♡ I'm looking into Nutrient Film Technique (NFT) where the plants need a constant flowing nutrient solution, and it seems like this is better for more shallow plans, so it would make sense that the rack system has these
+
+    ♡ reading about recirulating drip systems using dutch bucket set ups, meaning each plant or small group gets it's own bucket, all connected sharing plumbing which is exactly what I had planned so this is perfect
+
+    ♡ I'm choosing targets to be averaged per zone
+
+    ♡ I'm trying to decide how in depth to make this, I was considering pH, EC nutrients, solution temp and dissolved oxygen, but these are all things that really would only impact plant health and growth rate, so I'll just make note of them for now, for potential future reference
+
+    ♡ I put a lot of notes right into the hydroponic.md file instead of here
+
+    ♡ EC (Electrical Conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration (so you can tell if the concentration has changed)
+
+    ♡ DO (Dissolved Oxygen)how many oxygen molecules a present in water, essential for the respiration of fish, bacteria, and other aquatic organisms, making it a key indicator of water quality. Low DO stresses roots, slows uptake, and raises the risk of root problems. 
+
+    ♡ the rack zone naturally gets good oxygen exposure from the thin moving film, while the LECA zones rely more on drainage, air gaps, and reservoir aeration
+
+    ♡ I'm not so worried about an upper range for the dissolved oxygen target b/c the most important thing is if it's high enough
+
+    ♡ considering equipment for hydroponics, and reservoir sizes.. all three zones will have a different L/m2 b/c of the differnt systems and containers holding water differently (LECA beds retain a lot of moisture in the root zone, Dutch bucket style containers retain some moisture and NFT channels don't hold very much) 
+
+    ♡ continue hydroponics including ciruclation pumps, add that to power, calculate flow rate, etc.
+
+    ♡ updated a few values and calculations in gases.md, but I need to come back to this file after I finalize the layout to get the true calculations
+
+    ♡ renamed system_design folder to notes, the previous name was just too long and this is obvious
+
+
+##      08/14/2026
+    ♡ considering pums for each greenhouse zone, I want to have one backup incase the prmary fails that would be automatic 
+
+    ♡ I was reading that the structural LECA zone would be able to handle pump failure better than the container and rack, especially the rack b/c it is relying on the continuous flow
+
+    ♡ the sizes for the zonnes for the containers and growing space, are rough estimates, I didn't think it was neccessary to have an exact amount of boxes or containers for v1, and they are going to be made using the zones plant averages and growing area
+
+    ♡ I'm going to decide starting module sizes based on the measurements I have already for Hive-8 Arcadia
+
+    ♡ I'm going over gases.md now
+
+    ♡ removing the forced 2% result 
+
+    ♡ implementing the photosynthesis behavior that changes during the 16 hour light and 8 hour dark period,starting with the light period
+
+    ♡ I'm going to use mol/m²/sol for my sim b/c It alread uses sol fractions
+
+    ♡ I'm using NASA's potato and sweet potato information b/c they are studied as space crops and I'm including those in the sim: 45 µmol CO₂/m²/s at peak photosynthesis, with night time respiration around 9 µmol CO₂/m²/s in those high light experiments
+
+    ♡ my sim is using more moderate lighting, and my zones are mixed crops so I'll look into more conservative averages
+
+    ♡ considering plants being at different growing phases and not all of them being so dense
+
+    ♡ structual: for every m² of structural growing area, while photosynthesis is active, the zone average plants remove ~ 10 µmol/m²/s in this simplified model below the ~ 45 µmol/m²/s
+
+    ♡ container: 
+        - ~ 12 µmol/m²/s for V1 zone average
+        
+        - sweet corn can get to ~  28–34 µmol/m²/s under ideal controlled conditions, while passionfruit seems to commonly fall around 10–30 µmol/m²/s, also consindering different growth stages, again
+
+    ♡ rack: 
+        - ~ 10 µmol CO₂/m²/s for V1 zone average
+        
+        - hydroponic spinach studies say that photosynthetic rates can be much higher than 10 µmol CO₂/m²/s under ideal controlled lighting, using 10 is a conservative mixed zone average instead of than every rack is a mature and perfectly lit
