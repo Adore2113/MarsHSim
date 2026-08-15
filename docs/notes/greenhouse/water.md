@@ -133,22 +133,34 @@
 
 ### ----------------------------------------
 
-### ----------------------------------------
-
 ## Make-up Water System:
-    ♡ all three reservoirs are topped up from a shared clean water supply
+    ♡ make-up happens when a reservoir drops to 70%
 
+    ♡ the greenhouse only draws the actual volume needed to return to normal level
+
+    ♡ make-up water replaces water that doesn't return to the greenhouse/habitat water loop during normal operation
+
+    ♡ baseline sources of make-up demand:
+        - water retained in plant biomass
+        - transpiration not captured by the CHX
+        - operational hydroponic water losses
+
+    ♡ all three reservoirs are topped up from a shared clean water supply
+    
     ♡ loop:
         1. habitat potable / treated water
         2. greenhouse make-up water
         3. zone valves
         4. nutrient reservoir
 
-    ♡ make-up only happens when a reservoir drops to 70%
+    ♡ calculation:
+        145.8 kg/sol
+        + 138.51 kg/sol
+        + 89.88 kg/sol
+        = 374.19 kg/sol
 
-    ♡ the greenhouse only draws the actual volume needed to return to normal level
-
-    ♡ this is the main ongoing water demand the greenhouse places on the habitat
+    ♡ baseline greenhouse make-up water demand before WPA losses:
+        ~ 374.19 kg/sol
 
 ### ----------------------------------------
 
@@ -244,4 +256,4 @@
 
     ♡ NASA ECLSS systems treat condensate as a recoverable wastewater stream, and plant growth life support research looks into recovering and reusing transpired water vapor, so using ~ 95% capturing efficiency seems right so that the recovery isn't perfect, but still small amount goesn't get collected
 
-    ♡ things like maintenance/flushing, minor leakage, evaporation from exposed solution or wet surfaces, and solution retained in equipment/LECA during servicing all add into the the water losses, but I think I'm just going to use a small recirculation loss, and make each zone have a different percentage, mostly b/c of the different growing conditions, considering the ~95% capturing efficiency 
+    ♡ things like maintenance/flushing, minor leakage, evaporation from exposed solution or wet surfaces, and solution retained in equipment/LECA during servicing all add into the the water losses, but I think I'm just going to use a small recirculation loss, and make each zone have a different percentage, mostly b/c of the different growing conditions, considering the ~ 95% capturing efficiency 
