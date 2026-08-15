@@ -61,6 +61,14 @@
 #### Units & Conversion:
     ♡ gas exchange is stored as an amount of gas instead of pressure change
 
+    ♡ light period:
+        - CO₂ consumed: ~ 832.90 mol/sol
+        - O₂ produced: ~ 857.89 mol/sol
+
+    ♡ light period:
+        - CO₂ consumed: ~ 832.90 mol/sol
+        - O₂ produced: ~ 857.89 mol/sol
+
     ♡ zone rates use:
         - mol CO₂/m²/sol
         - mol O₂/m²/sol
@@ -123,7 +131,7 @@
             10 µmol CO₂/m²/s
 
         - converted MarsHSim rate: 
-            ~0.576 mol CO₂/m²/sol
+            ~ 0.576 mol CO₂/m²/sol
 
         - calculations:
             10 µmol CO₂/m²/s × 57,600 s
@@ -295,10 +303,38 @@
                 0.59328 × 420
                 = 249.1776 mol O₂/sol
                 ≈ 249.18 mol O₂/sol
-                
-    ♡ 
-    ♡ 
-    ♡ 
+
+    ♡ container:
+        - CO₂ uptake: 0.6912 mol CO₂/m²/sol
+        - effective grow area: 480 m²
+
+        - calculations:
+            ♡ O₂ production:
+                0.6912 × 1.03
+                = 0.711936 mol O₂/m²/sol
+
+            ♡ full zone baseline O₂ production:
+                0.711936 × 480
+                = 341.72928 mol O₂/sol
+                ≈ 341.73 mol O₂/sol
+
+    ♡ rack:
+        - CO₂ uptake: 0.576 mol CO₂/m²/sol
+        - effective grow area: 450 m²
+
+        - calculations:
+            ♡ O₂ production:
+                0.576 × 1.03
+                = 0.59328 mol O₂/m²/sol
+
+            ♡ full zone baseline O₂ production:
+                0.59328 × 450
+                = 266.976 mol O₂/sol
+                ≈ 266.98 mol O₂/sol            
+    
+    ♡ total light period O₂ production:
+        249.18 + 341.73 + 266.98
+        = 857.89 mol O₂/sol
 
 
 #### Dark Period O₂ Exchange:
@@ -472,10 +508,12 @@
 
 #### Why one PQ value for all zones for v1?
     ♡ it matches my overall rule: zone averages, not individual crop physiology
-   
+
+    ♡ the zones are already biologically different b/c of the day time CO₂ rates being 10 / 12 / 10 µmol CO₂/m²/s
+
     ♡ using the values mentioned in future considerations/dev log notes was more speculative and I don't love that
 
-    ♡ reasearch supports PQ ~ 1.0 with shifts mainly from nitrogen form, metabolism, species and nutritent conditions, my simulator isn't going this far in depth for v1
+    ♡ one shared PQ is used for V1 because plant PQ is generally close to 1.0 and varies with metabolism/nutrient conditions more than the current zone crop averages can reliably represent
 
 ### ----------------------------------------
 
