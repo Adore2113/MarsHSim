@@ -88,21 +88,18 @@ s0 = Habitat_State(
         #------------biology-----------♡
         "base_growth_rate_per_sol": 0.011,
         "base_light_absorption_pct": 0.75,
-        "base_water_needed_per_m2_kg_per_sol": 3.4,
+        "plant_water_uptake_kg_per_m2_per_sol": 2.5,
         
         "food_yield_per_m2_kg_per_sol": 0.25,
-        "co2_consumed_per_m2_kpa_per_sol": 0.00000625,
-        "o2_produced_per_m2_kpa_per_sol":0.0000055,
-
-        #----------hydroponics---------♡
-        "water_recirculation_efficiency": 0.82,
+        "co2_light_uptake_mol_per_m2_per_sol": 0.576,
+        "co2_dark_release_mol_per_m2_per_sol": 0.0864,
 
         #----------modifiers-----------♡
-        "water_multiplier": 1.15,
         "growth_rate_multiplier": 0.85,
         "food_yield_multiplier": 1.25,
 
         #-----------runtime------------♡
+        "operational_water_loss_pct": 0.04,
         "light_exposure": 0.60,
         "health": 0.98,
         "growth_progress": 0.35,
@@ -123,21 +120,18 @@ s0 = Habitat_State(
         #------------biology-----------♡
         "base_growth_rate_per_sol": 0.016,
         "base_light_absorption_pct": 0.70,
-        "base_water_needed_per_m2_kg_per_sol": 2.6,
+        "plant_water_uptake_kg_per_m2_per_sol": 2.2,
         
         "food_yield_per_m2_kg_per_sol": 0.29,
-        "co2_consumed_per_m2_kpa_per_sol": 0.00000625,
-        "o2_produced_per_m2_kpa_per_sol": 0.000005,
-
-        #----------hydroponics---------♡
-        "water_recirculation_efficiency": 0.88,
+        "co2_light_uptake_mol_per_m2_per_sol": 0.6912,
+        "co2_dark_release_mol_per_m2_per_sol": 0.0432,
 
         #----------modifiers-----------♡
-        "water_multiplier": 1.0,
         "growth_rate_multiplier": 0.75,
         "food_yield_multiplier": 1.0,
 
         #-----------runtime------------♡
+        "operational_water_loss_pct": 0.03,
         "light_exposure": 0.65,
         "health": 0.98,
         "growth_progress": 0.42,
@@ -153,26 +147,23 @@ s0 = Habitat_State(
 
         #-----------targets------------♡
         "ideal_temp_c": 22.0,
-        "light_target_kw_per_m2": 0.26,
+        "light_target_kw_per_m2": 0.19, 
 
         #------------biology-----------♡
         "base_growth_rate_per_sol": 0.030,
         "base_light_absorption_pct": 0.65,
-        "base_water_needed_per_m2_kg_per_sol": 1.95,
+        "plant_water_uptake_kg_per_m2_per_sol": 1.8,
         
         "food_yield_per_m2_kg_per_sol": 0.21,
-        "co2_consumed_per_m2_kpa_per_sol": 0.0000045,
-        "o2_produced_per_m2_kpa_per_sol": 0.00000375,
-
-        #----------hydroponics---------♡
-        "water_recirculation_efficiency": 0.94,
+        "co2_light_uptake_mol_per_m2_per_sol": 0.576,
+        "co2_dark_release_mol_per_m2_per_sol": 0.072,
 
         #----------modifiers-----------♡
-        "water_multiplier": 0.9,
         "growth_rate_multiplier": 0.95,
         "food_yield_multiplier": 0.95,
 
         #-----------runtime------------♡
+        "operational_water_loss_pct": 0.02,
         "light_exposure": 0.75,
         "health": 0.98,
         "growth_progress": 0.28,
