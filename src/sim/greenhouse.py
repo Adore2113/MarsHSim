@@ -178,7 +178,19 @@ def greenhouse_gas_exchange(zone, zone_light, sol_fraction):
         co2_dark_rate = zone["co2_dark_release_mol_per_m2_per_sol"]
         co2_released_mol = co2_dark_rate * area_m2 * sol_fraction * plant_health
         o2_consumed_mol = co2_released_mol / rq
-        
+
+    else:    # photosynthesis active in light mode
+        co2_light_rate = zone["co2_light_uptake_mol_per_m2_per_sol"]
+        photosynthesis_factor = light_exposure * plant_health
+        co2_consumed_mol = co2_light_rate * area_m2 * sol_fraction * photosynthesis_factor
+        o2_produced_mol = co2_consumed_mol * pq
+
+    return {
+        "co2_consumed_mol": co2_consumed_mol,
+        "co2_released_mol": co2_released_mol,
+        "o2_produced_mol": o2_produced_mol,
+        "o2_consumed_mol": o2_consumed_mol,
+    }
 
 #----------------water / co2 / oxygen----------------♡
 def greenhouse_resources(zone, zone_light, sol_fraction):
