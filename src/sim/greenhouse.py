@@ -142,6 +142,7 @@ def greenhouse_zone_growth(zone, zone_light, sol_fraction):
     
     return new_growth_progress, harvest_ready, food_produced_kg
 
+
 #-------------water (updated 08/15/2026)-------------♡
 def greenhouse_water(zone, sol_fraction):
     area_m2 = zone["effective_grow_area_m2"]
@@ -163,7 +164,8 @@ def greenhouse_water(zone, sol_fraction):
         "make_up_water_kg": make_up_water_kg,
     }
 
-#--------------------gas exchange--------------------♡
+
+#---------gas exchange (updated 08/15/2026)----------♡
 def greenhouse_gas_exchange(zone, zone_light, sol_fraction):
     area_m2 = zone["effective_grow_area_m2"]
     light_exposure = zone_light["light_exposure"]
@@ -174,7 +176,7 @@ def greenhouse_gas_exchange(zone, zone_light, sol_fraction):
     o2_produced_mol = 0.0
     o2_consumed_mol = 0.0
 
-    if zone_light["light_mode"] == "dark_cycle":
+    if zone_light["light_mode"] == "dark cycle":
         co2_dark_rate = zone["co2_dark_release_mol_per_m2_per_sol"]
         co2_released_mol = co2_dark_rate * area_m2 * sol_fraction * plant_health
         o2_consumed_mol = co2_released_mol / rq
@@ -255,21 +257,21 @@ def run_greenhouse(state, dt_min):
         total_equipment_power_kw += base_power_per_m2_kw * floor_area
 
         new_growth_progress, harvest_ready, food_produced_kg = greenhouse_zone_growth(zone, zone_light, sol_fraction)
-        greenhouse_water = greenhouse_water(zone, sol_fraction)
-        greenhouse_gas = greenhouse_gas_exchange(zone, zone_light, sol_fraction)
+        water_results = greenhouse_water(zone, sol_fraction)
+        gas_results = greenhouse_gas_exchange(zone, zone_light, sol_fraction)
     
         total_food_produced_kg += food_produced_kg
         
-        total_plant_water_uptake_kg += greenhouse_water["plant_water_uptake_kg"]
-        total_transpiration_kg += greenhouse_water["transpiration_kg"]
-        total_plant_mass_water_kg += greenhouse_water["plant_mass_water_kg"]
-        total_operational_loss_kg += greenhouse_water["operational_loss_kg"]
-        total_direct_make_up_kg += greenhouse_water["direct_make_up_kg"]
+        total_plant_water_uptake_kg += water_results["plant_water_uptake_kg"]
+        total_transpiration_kg += water_results["transpiration_uncaptured_kg"]
+        total_plant_mass_water_kg += water_results["plant_mass_water_kg"]
+        total_operational_loss_kg += water_results["operational_loss_kg"]
+        total_direct_make_up_kg += water_results["make_up_water_kg"]
  
-        total_co2_consumed_mol += greenhouse_gas["co2_consumed_mol"]
-        total_co2_released_mol += greenhouse_gas["co2_released_mol"]
-        total_o2_produced_mol += greenhouse_gas["o2_produced_mol"]
-        total_o2_consumed_mol += greenhouse_gas["o2_consumed_mol"]
+        total_co2_consumed_mol += gas_results["co2_consumed_mol"]
+        total_co2_released_mol += gas_results["co2_released_mol"]
+        total_o2_produced_mol += gas_results["o2_produced_mol"]
+        total_o2_consumed_mol += gas_results["o2_consumed_mol"]
         
         greenhouse_heat_added_kw = greenhouse_heat_per_m2_kw * zone["effective_grow_area_m2"]
         total_greenhouse_heat_added_kw += greenhouse_heat_added_kw
@@ -289,16 +291,16 @@ def run_greenhouse(state, dt_min):
             
             "food_produced_kg": food_produced_kg,
             
-            "plant_water_uptake_kg": greenhouse_water["plant_water_uptake_kg"],
-            "transpiration_kg": greenhouse_water["transpiration_kg"],
-            "plant_mass_water_kg": greenhouse_water["plant_mass_water_kg"],
-            "operational_loss_kg": greenhouse_water["operational_loss_kg"],
-            "direct_make_up_kg": greenhouse_water["direct_make_up_kg"],
+            "plant_water_uptake_kg": water_results["plant_water_uptake_kg"],
+            "transpiration_uncaptured_kg": water_results["transpiration_uncaptured_kg"],
+            "plant_mass_water_kg": water_results["plant_mass_water_kg"],
+            "operational_loss_kg": water_results["operational_loss_kg"],
+            "make_up_water_kg": water_results["make_up_water_kg"],
  
-            "co2_consumed_mol": greenhouse_gas["co2_consumed_mol"],
-            "co2_released_mol": greenhouse_gas["co2_released_mol"],
-            "o2_produced_mol": greenhouse_gas["o2_produced_mol"],
-            "o2_consumed_mol": greenhouse_gas["o2_consumed_mol"],
+            "co2_consumed_mol": gas_results["co2_consumed_mol"],
+            "co2_released_mol": gas_results["co2_released_mol"],
+            "o2_produced_mol": gas_results["o2_produced_mol"],
+            "o2_consumed_mol": gas_results["o2_consumed_mol"],
             
             "greenhouse_heat_added_kw": greenhouse_heat_added_kw,
             
