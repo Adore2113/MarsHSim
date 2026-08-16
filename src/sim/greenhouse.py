@@ -5,7 +5,7 @@ from .mars_time import get_daylight_per_m2_kw, get_sunlight_amount, get_daylight
 # file for greenhouse system
 
 #--------------------constants-----------------------♡
-#------sunlight & lighting------♡
+#---sunlight & lighting----♡
 best_sunlight_per_m2_kw = 0.45
 min_useful_sunlight_per_m2_kw = 0.15
 
@@ -16,17 +16,16 @@ led_heat_ratio = 0.68
 base_gh_light_hours_per_sol = 16.0    # test and try 12 or 14
 gh_light_start_hour = 5
 
-#------greenhouse operation-----♡
-transpiration_ratio = 0.95
-
+#---greenhouse operation---♡
 base_power_per_m2_kw = 0.05
 greenhouse_heat_per_m2_kw = 0.015
 
-#------gas exchange--------------♡
+#-------gas exchange-------♡
 pq = 1.03    # photosynthetic quotient
 rq = 0.90    # respiratory_quotient
 
-#--------crop model------------♡
+#--------crop model--------♡
+transpiration_ratio = 0.95
 default_health = 0.98
 default_light_exposure = 0.65
 default_growth_multiplier = 1.0
@@ -37,24 +36,9 @@ default_growth_multiplier = 1.0
 def are_timed_gh_lights_on(state, gh_light_hours_per_sol):
     _, sol_hour, minutes = get_sol_time(state)
     current_hour = sol_hour + (minutes / 60)
-
-    gh_lights_end_hour = (gh_light_start_hour + gh_light_hours_per_sol) % 24
+    hours_since_start = (current_hour - gh_light_start_hour) % 24
     
-    if gh_light_start_hour < gh_lights_end_hour:
-        if gh_light_start_hour <= current_hour < gh_lights_end_hour:
-            timed_gh_lights_on = True
-
-        else:
-            timed_gh_lights_on = False
-
-    else:
-        if current_hour >= gh_light_start_hour or current_hour < gh_lights_end_hour:
-            timed_gh_lights_on = True
-
-        else:
-            timed_gh_lights_on = False
-
-    return timed_gh_lights_on
+    return hours_since_start < gh_light_hours_per_sol
 
 #----------------greenhouse lighting-----------------♡
 def greenhouse_lighting(state, dt_min):
