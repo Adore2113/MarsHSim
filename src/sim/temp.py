@@ -3,7 +3,7 @@ from dataclasses import replace
 from .mars_time import current_mars_season, get_sunlight_amount
 #----------------------------------------------------♡
 
-# file for temperature and humidity
+# file for temperature and humidity, CHX
 
 #--------------------constants-----------------------♡
 #-------thermal control--------♡
@@ -468,8 +468,8 @@ def run_chx(vapor_removed_kg, dt_min):
 
 
 #-----------------updating humidity------------------♡
-def update_humidity(state, breath_vapor_added_kg, skin_vapor_added_kg, greenhouse_transpiration_kg, dt_min):
-    total_vapor_added_kg = breath_vapor_added_kg + skin_vapor_added_kg + greenhouse_transpiration_kg
+def update_humidity(state, breath_vapor_added_kg, skin_vapor_added_kg, transpiration_uncaptured_kg, dt_min):
+    total_vapor_added_kg = breath_vapor_added_kg + skin_vapor_added_kg + transpiration_uncaptured_kg
     vapor_per_pct_kg = (water_vapor_per_m3 * state.hab_vol_m3) / 100.0
     
     target_vapor_kg = state.target_humidity_pct * vapor_per_pct_kg
@@ -501,7 +501,7 @@ def update_humidity(state, breath_vapor_added_kg, skin_vapor_added_kg, greenhous
         "chx_heat_added_kw": chx_heat_added_kw,
         "chx_heat_added_kwh": chx_heat_added_kwh,
 
-        "greenhouse_transpiration_kg": greenhouse_transpiration_kg
+        "transpiration_uncaptured_kg": transpiration_uncaptured_kg
     } 
 
 
