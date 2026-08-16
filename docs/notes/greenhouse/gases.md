@@ -507,27 +507,14 @@
         - total: 0.000588 + 0.000576 + 0.000450 
                 ≈ 0.00161 kPa/sol
 
-    ♡ considered PQ values: 
-        - structural: PQ ≈ 1.10, this zone has more storage root/seed/fat producing crops
-
-        - container: PQ ≈ 1.08, this zone has very mixed crops
-
-        - rack: PQ ≈ 1.05, this zone is dominated more by leafy vegetative crops like spinach and herbs, so I'll keep it simple with ~ 1.1 ratio
-
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ calculate biologically based zone O₂ and CO₂ rates, then compare the total against the ~ 2% design target
-
-    ♡ replace preliminary kPa/m²/sol gas rates with biologically based zone average gas exchange rates
-
     ♡ convert plant gas exchange into atmospheric partial pressure changes using greenhouse/habitat air volume
-
-    ♡ add simplified dark cycle plant respiration
 
     ♡ determine greenhouse to habitat loop atmospheric exchange
 
-    ♡ implement independently sealed greenhouse zones
+    ♡ implement sealed greenhouse zones
 
 ### ----------------------------------------
 
@@ -661,3 +648,10 @@
         R = 0.008314 kPa·m³/(mol·K)
         T = atmospheric temperature in Kelvin
         V = connected atmospheric free volume in m³
+
+    ♡ considered PQ values: 
+        - structural: PQ ≈ 1.10, this zone has more storage root/seed/fat producing crops
+
+        - container: PQ ≈ 1.08, this zone has very mixed crops
+
+        - rack: PQ ≈ 1.05, this zone is dominated more by leafy vegetative crops like spinach and herbs, so I'll keep it simple with ~ 1.1 ratio

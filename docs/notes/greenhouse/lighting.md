@@ -20,10 +20,16 @@
  ### ----------------------------------------
 
 ### Light Targets & Natural Light:
-    ♡ default zone light target: 0.70 kW/m²
-    ♡ default zone light absorption: 70%
-    ♡ best expected natural sunlight: 0.45 kW/m²
-    ♡ minimum useful natural sunlight: 0.15 kW/m²
+    ♡ Mars sunlight:
+        - default zone light target:0.23 kW/m²
+        - default zone light absorption: 70%
+        - best expected natural sunlight: 0.45 kW/m²
+        - min useful natural sunlight: 0.15 kW/m²
+
+    ♡ zone light targets:
+        - structural: 0.26 kW/m²
+        - container: 0.23 kW/m²
+        - rack: 0.19 kW/m²
 
     ♡ full led support: 
         used when effective natural light is at or below 0.15 kW/m²
@@ -96,7 +102,6 @@
     ♡ this became the default 70% light-absorption value
 
     ♡ originally had no lighting schedule
-
 
 ### ----------------------------------------
 

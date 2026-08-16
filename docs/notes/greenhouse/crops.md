@@ -193,7 +193,7 @@
 #### Early Greenhouse Model:
     ♡ considered simulating each individual crop type with its own growing conditions
 
-    ♡ decided to use 3 separate zones based on container type
+    ♡ decided to use 3 separate zones based on module type
 
     ♡ each zone now uses averages from the plants grown within it
 

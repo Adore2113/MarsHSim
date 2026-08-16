@@ -305,3 +305,5 @@
     ♡ NASA ECLSS systems treat condensate as a recoverable wastewater stream, and plant growth life support research looks into recovering and reusing transpired water vapor, so using ~ 95% capturing efficiency seems right so that the recovery isn't perfect, but still small amount goesn't get collected
 
     ♡ things like maintenance/flushing, minor leakage, evaporation from exposed solution or wet surfaces, and solution retained in equipment/LECA during servicing all add into the the water losses, but I think I'm just going to use a small recirculation loss, and make each zone have a different percentage, mostly b/c of the different growing conditions, considering the ~ 95% capturing efficiency 
+
+    ♡ the biomass water will eventually be calculated from crop production, but not for v1, so in the meantime the placeholder is just going to be ~ 5%

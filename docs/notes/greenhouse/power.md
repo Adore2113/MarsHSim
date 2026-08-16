@@ -35,8 +35,6 @@
         - circulation
         - greenhouse support equipment
 
-    ♡ this load is not currently included in the simulation's total power use
-
     ♡ calculation (using ~1,326 m² greenhouse floor area):
         - 0.05 kW/m² × 1,326 m² ≈ 66.3 kW
 
@@ -71,7 +69,10 @@
     ♡ structural heat: 0.015 kW/m²
 
     ♡ calculation:
-        - structural heat:
+        - structural heat/zone:
+            0.015 × 420 ≈ 6.3 kW
+        
+         -total greenhouse structural heat:
             0.015 kW/m² × 1,350 m² ≈ 20.3 kW
 
         - heat energy over one sol(~24.66 h):
