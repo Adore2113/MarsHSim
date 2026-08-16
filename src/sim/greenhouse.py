@@ -316,14 +316,13 @@ def run_greenhouse(state, dt_min):
     #-----------dict for printing outputs------------♡ 
     greenhouse_outputs = {
         "greenhouse_mode": "online",
- 
         "greenhouse_food_produced_kg": total_food_produced_kg,
  
         "greenhouse_plant_water_uptake_kg": total_plant_water_uptake_kg,
-        "greenhouse_transpiration_kg": total_transpiration_kg,
+        "greenhouse_transpiration_uncaptured_kg": total_transpiration_kg,
         "greenhouse_plant_mass_water_kg": total_plant_mass_water_kg,
         "greenhouse_operational_loss_kg": total_operational_loss_kg,
-        "greenhouse_direct_make_up_kg": total_direct_make_up_kg,
+        "greenhouse_make_up_water_kg": total_direct_make_up_kg,
  
         "greenhouse_co2_consumed_mol": total_co2_consumed_mol,
         "greenhouse_co2_released_mol": total_co2_released_mol,
