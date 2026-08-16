@@ -279,7 +279,7 @@
 ###### 05/09/2026:
     ♡ researched crops and crew nutrition
    
-    ♡ I want plants that help scrub the co2 and generate o2 
+    ♡ I want plants that help scrub the co2 and generate O₂ 
 
     ♡ really contemplating how to approach this, without it turning into a detailed greenhouse simulator.. I've considered:
         - each individual crop type having specific growing conditions, but this would be way too complex for this sim in general, let alone compared to my other systems..

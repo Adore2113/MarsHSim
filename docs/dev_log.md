@@ -24,7 +24,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      03/08/2026
     ♡ resuming atmosphere creation w. updated knowledge
 
-    ♡ co2 was defaulting to zero, need to fix my scrubbing system
+    ♡ CO₂ was defaulting to zero, need to fix my scrubbing system
 
     ♡ today I learned that I needed to get the skeleton figured out and that it's okay to refine the numbers afterwards
 
@@ -35,28 +35,28 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      03/09/2026
     ♡ continuing where I left off w. scrubbing
 
-    ♡ NASA references: crew co2 production is around 1kg pp/day
+    ♡ NASA references: crew CO₂ production is ~ 1 kg pp/day
 
-    ♡ researched o2 regeneration and electrolysis w. focus on Oxygen Generation Assembly (OGA), MOXIE like Solid Oxide Electrolysis (SOXE) and Sabatier co2 reduction + electrolysis
+    ♡ researched O₂ regeneration and electrolysis w. focus on Oxygen Generation Assembly (OGA), MOXIE like Solid Oxide Electrolysis (SOXE) and Sabatier CO₂ reduction + electrolysis
 
     ♡ making separate functions for managing and checking gases
 
     ♡ more research on 02 regen and electrolysis
 
-    ♡ implementing very basic OGA o2 generation function for now (handling power usage, total pressure updates, hydrogen(h2) production and handling/venting later)  
+    ♡ implementing very basic OGA O₂ generation function for now (handling power usage, total pressure updates, hydrogen(h2) production and handling/venting later)  
 
 #### Next Session:
     ♡ add total pressure update
 
-    ♡ add the o2 regen to quick_test and state.py
+    ♡ add the O₂ regen to quick_test and state.py
 
 
 ##      03/10/2026
-    ♡ renamed checking_gases function to gas_alerts, moved the co2 removal function to before o2_regen
+    ♡ renamed checking_gases function to gas_alerts, moved the CO₂ removal function to before o2_regen
 
     ♡ I know that chemistry ratios use moles, but I really wanted to stick to kPa and kilograms (kg) to avoid my code being more complex, so I'll figure out the conversions to avoid that
 
-    ♡ made the scrubber unable to remove more co2 than exists and changed the kPa values to move 4 decimal places instead of two, updated target based co2 and oxygen control, added target gases as global variables in engine.py
+    ♡ made the scrubber unable to remove more CO₂ than exists and changed the kPa values to move 4 decimal places instead of two, updated target based CO₂ and oxygen control, added target gases as global variables in engine.py
 
     ♡ adding in the hydrogen that the OGA electrolysis makes and venting it FOR NOW and will do research on how I can use it later on (Sabatier?)
 
@@ -82,7 +82,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      03/13/2026
-    ♡ figure out how much water(H2O) the OGA and water electrolysis uses every time it runs, I'm going to find the fixed reaction ratio instead of a fixed ratio b/c the amount of o2 produced are going to change depending on habitat events
+    ♡ figure out how much water(H2O) the OGA and water electrolysis uses every time it runs, I'm going to find the fixed reaction ratio instead of a fixed ratio b/c the amount of O₂ produced are going to change depending on habitat events
 
     ♡ going to use 1000kg of water to start as a placeholder to finish the OGA functions
 
@@ -95,17 +95,17 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 #### Next Session:
     ♡ figure out variable numbers for the variables commented out at the top of engine.py
     
-    ♡ add in when the ar or n2 will be used from storage    
+    ♡ add in when the Ar or N₂ will be used from storage    
     
 
 ##      03/14/2026
 
-    ♡ I added the variable co2_stored_kpa to collect and temporarily store the co2 the amine bed scrubs until I use it later in my code
+    ♡ I added the variable CO₂_stored_kpa to collect and temporarily store the CO₂ the amine bed scrubs until I use it later in my code
 
     ♡ decided on adding kg/kpa as global variables so when I need to access the stored gases, I can convert them more efficiently
 
 #### Next Session:
-    ♡ continue fixing variables, making sure the files are correct and finish adding Major Constituent Analyzer (mca) function and adding n2 to low pressure
+    ♡ continue fixing variables, making sure the files are correct and finish adding Major Constituent Analyzer (mca) function and adding N₂ to low pressure
 
 
 ##      03/15/2026
@@ -143,7 +143,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      03/18/2026
     ♡ deciding if I should add heat output into current functions, or have its own. I'm going to keep adding to the proper functions
 
-    ♡ adding heat produced by amine beds w. exothermic absorption (the amine molecules catch the co2 which releases heat) and regeneration
+    ♡ adding heat produced by amine beds w. exothermic absorption (the amine molecules catch the CO₂ which releases heat) and regeneration
 
     ♡ wrote a first version of a readme.md file and decided to make my project public today!
 
@@ -171,7 +171,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      03/21/2026
     ♡ hand injury but working past it, going to add a light function where they dim at a certain time at night and also include how much heat the lights generate
 
-    ♡ going to go w. the crew getting around 8 hours of sleep/night so lights will dim at 9:30pm (21:30) and they will brighten at 6:00am, using level of brightness for now
+    ♡ going to go w. the crew getting ~ 8 hours of sleep/night so lights will dim at 9:30pm (21:30) and they will brighten at 6:00am, using level of brightness for now
 
     ♡ considering moving the time conversion logic out of quick_test into engine, or into its own file to handle all timestep info b/c eventually it will be interactive
 
@@ -208,15 +208,15 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ broke up one long buffer gas system function into smaller ones for readability, organization and future handling
 
 #### Next Session:
-    ♡ break up co2 scrubber system into different functions to match the other files and then add power usage, eventually continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar
+    ♡ break up CO₂ scrubber system into different functions to match the other files and then add power usage, eventually continue lighting function and then continue adding heat generated/heat waste to new functions for electronics/computers, radiators, pumps, solar
 
 
 ##      03/28/2026
     ♡ making crew metabolism into its own file for organization and considering breaking it into smaller functions for quicker/easier readability as I add to the file
 
-    ♡ breaking up the co2 scrubber system into different functions and adding heat, taking into consideration that I want there to be a baseline power/online bed like there is for heat, power usage used on actual co2 removed, emergency events and full power loss (these last two will be handled later though)
+    ♡ breaking up the CO₂ scrubber system into different functions and adding heat, taking into consideration that I want there to be a baseline power/online bed like there is for heat, power usage used on actual CO₂ removed, emergency events and full power loss (these last two will be handled later though)
 
-    ♡ added power usage to co2 scrubber, updated engine and quick_test to work w. the file properly
+    ♡ added power usage to CO₂ scrubber, updated engine and quick_test to work w. the file properly
 
     ♡ added outputs to be printed so I can see that they are working properly
 
@@ -272,7 +272,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ making a file for handling timesteps and related functions
 
-    ♡ I learned today that instead of 24 hours, Mars time actually runs at 24 hours and 39 minutes and 35 seconds, not just 24 hours, so I'm going to fix that now, while I'm working on the new mars_time.py file
+    ♡ I learned today that instead of 24 hours, Mars time actually runs at 24 hours and 39 minutes and 35 seconds, not just 24 hours, so I'm going to fix that now, while I'm working on the new Mars_time.py file
 
     ♡ added a better looking print function for a nicer console view while I work w.out a UI and kept the original print function commented out for when I want it plain again
 
@@ -287,26 +287,26 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ adding in the coordinates for the location of the habitat to make time passing and daylight and everything that goes along w. that more accurate
 
-    ♡ changed a ton in the mars_time.py file, I'm still figuring it out
+    ♡ changed a ton in the Mars_time.py file, I'm still figuring it out
 
 #### Next Session:
     ♡ REMEMBER TO COMMIT MORE!!
 
-    ♡ do more research and figure out mars_time.py, clean up step in engine.py
+    ♡ do more research and figure out Mars_time.py, clean up step in engine.py
 
 
 ##      04/07/2026
-    ♡ starting by reviewing my mars_time file
+    ♡ starting by reviewing my Mars_time file
 
-    ♡ added mars 24 hours time format
+    ♡ added Mars 24 hours time format
 
     ♡ added function to determine how the sun shifts from it's orbital position and hardcoded Mars' tilt to be 25.19°
 
         **next session start:**
-    ♡ do more research and figure out mars_time.py, clean up step in engine.py
+    ♡ do more research and figure out Mars_time.py, clean up step in engine.py
 
 #### Next Session:
-    ♡ do more research and figure out mars_time.py, clean up step in engine.py
+    ♡ do more research and figure out Mars_time.py, clean up step in engine.py
 
 
 ##      04/08/2026
@@ -316,7 +316,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ added function to calculate daylight and sunset times to determine the dyalight fraction for one sol
 
-    ♡ cleaned up and updated mars_time.py and did some minor file organization w. section headers
+    ♡ cleaned up and updated Mars_time.py and did some minor file organization w. section headers
 
 #### Next Session:
     ♡ fix light function and resume solar power set up
@@ -392,7 +392,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I'm going to focus on the thermal parts before considering humidity
 
-    ♡ adding seasons to mars_time.py to help w. my temp_system.py file
+    ♡ adding seasons to Mars_time.py to help w. my temp_system.py file
 
     ♡ I'm very happy w. my progress today
 
@@ -464,7 +464,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      04/21/2026
-    ♡ going back to co2_scrubber_system and changing hardcoding to calculations
+    ♡ going back to CO₂_scrubber_system and changing hardcoding to calculations
 
     ♡ adding sunlight to the thermal system
 
@@ -542,7 +542,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ updated solar arrays list and function to run on how much charge the batteries need
 
-    ♡ updated amine beds to come online w. how much co2 is needed, I used two different hysteresis for that
+    ♡ updated amine beds to come online w. how much CO₂ is needed, I used two different hysteresis for that
 
     ♡ updating a lot of variables for systems handling lists now that I've changed some logic to be a bit more complex
 
@@ -587,7 +587,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ created a new file for the Sabatier
 
-    ♡ changed the targets for n2 and ar and the target pressure to 65.0kpa (which it should have been this whole time, I accidentally had it at 60.0kpa)
+    ♡ changed the targets for N₂ and Ar and the target pressure to 65.0kpa (which it should have been this whole time, I accidentally had it at 60.0kpa)
 
 #### Next Session:
     ♡ start file for Sabatier
@@ -622,7 +622,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ using a hysteresis to avoid jumpy on and off reactions
 
-    ♡ reactions_available is how many times stoichiometric reaction can happen w. a ratio of 1 co2 : 4 h2
+    ♡ reactions_available is how many times stoichiometric reaction can happen w. a ratio of 1 CO₂ : 4 h2
 
     ♡ I realize I actually put the mode decision in the main function for running the sabatier and also the OGA actually and I didn't in the other files. I've been changing things and upgrading how I'm doing things so eventually I will need to go through all of the files that I worked on first.
 
@@ -678,7 +678,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      05/05/2026
-    ♡ working on co2_scrubber_system.py making the logic closer to the sabatier and other systems logic
+    ♡ working on CO₂_scrubber_system.py making the logic closer to the sabatier and other systems logic
 
     ♡ considering adding a file for handling helper logic, to make things like handling primary systems and stuff before backups
 
@@ -693,11 +693,11 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      05/06/2026
     ♡ finished updating current systems to return output and update dicts and updated engine.py to accommodate that
 
-    ♡ I need to look over mars_time.py and go over that logic again, but I might wait until I get the greenhouse and other systems set up
+    ♡ I need to look over Mars_time.py and go over that logic again, but I might wait until I get the greenhouse and other systems set up
 
-    ♡ I haven't decided if the greenhouse will be easier to implement after or before I update the mars_time..
+    ♡ I haven't decided if the greenhouse will be easier to implement after or before I update the Mars_time..
 
-    ♡ updated mars_time file
+    ♡ updated Mars_time file
 
 #### Next Session:
     ♡ start focusing on greenhouse variables and systems needed, starting w. light for the greenhouse
@@ -729,7 +729,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ adding plant list to state, I want to take how much spacing the plants need into consideration
 
-    ♡ this isn't a greenhouse simulator it's a mars habitat simulator, so it doesn't need to be as complex as it could be
+    ♡ this isn't a greenhouse simulator it's a Mars habitat simulator, so it doesn't need to be as complex as it could be
 
 #### Next Session:
     ♡ continue greenhouse 
@@ -832,18 +832,18 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ today I'm going over all of my subsystems and systems to see if they're all behaving and fixing any problems before moving on
     
-    ♡ I do want to have the greenhouse capable of raising the o2 in the habitat b/c w. my hexagon/hive idea for the structure, everything is close together, w.out seperate buildings so it just makes sense to me that it would be a factor 
+    ♡ I do want to have the greenhouse capable of raising the O₂ in the habitat b/c w. my hexagon/hive idea for the structure, everything is close together, w.out seperate buildings so it just makes sense to me that it would be a factor 
 
 #### Next Session:
     ♡ continue running system checks
 
 
 ##      05/20/2026
-    ♡ still going over my values and testing, but I added handling excess o2 to the oxygen.py file
+    ♡ still going over my values and testing, but I added handling excess O₂ to the oxygen.py file
 
-    ♡ while going over the results from each subsystem, I'm realizing that co2 is not being handled right.. I need to fix where the Sabatier is getting it's co2 amount from
+    ♡ while going over the results from each subsystem, I'm realizing that CO₂ is not being handled right.. I need to fix where the Sabatier is getting it's CO₂ amount from
 
-    ♡ I made some changes to the Sabatier file and ran a few test for four sols, getting an update every 5 hours while only getting the sol, time and atmosphere info.. co2 is much better, but there are still issues w. the buffer gas, as well as a few other things, that I will be working towards fixing
+    ♡ I made some changes to the Sabatier file and ran a few test for four sols, getting an update every 5 hours while only getting the sol, time and atmosphere info.. CO₂ is much better, but there are still issues w. the buffer gas, as well as a few other things, that I will be working towards fixing
 
     ♡ I made some changes to buffer gas, double check them tomorro    
 
@@ -858,9 +858,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ 115.5kg/sol is just the cost of having a 30 person crew
 
-    ♡ I was thinking about other way to recycle and actually get water and I thought about piercing through the surface w. two or three heated pipes that siphon up some frozen mars water every so often? retractable pipes so they don't freeze and can be used at will, I'm going to do some reasearch on this
+    ♡ I was thinking about other way to recycle and actually get water and I thought about piercing through the surface w. two or three heated pipes that siphon up some frozen Mars water every so often? retractable pipes so they don't freeze and can be used at will, I'm going to do some reasearch on this
 
-    ♡ going back to In-Situ Resource Utilization (ISRU) to extract water locally, I'm thinking piercing through the surface w. two or three heated pipes that siphon up some frozen mars water every so often w. retractable pipes so they don't freeze and can be used when wanted and needed to avoid environmental factors
+    ♡ going back to In-Situ Resource Utilization (ISRU) to extract water locally, I'm thinking piercing through the surface w. two or three heated pipes that siphon up some frozen Mars water every so often w. retractable pipes so they don't freeze and can be used when wanted and needed to avoid environmental factors
 
 #### Next Session:
     ♡ start new file for water isru
@@ -890,7 +890,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      05/25/2026
     ♡ fixing isru and added modes and pipe retraction and extraction
 
-    ♡ going over water file, adding hysteresis and updating power used logic to make it more similar to co2_scrub.py
+    ♡ going over water file, adding hysteresis and updating power used logic to make it more similar to CO₂_scrub.py
 
     ♡ updated power usage in water.py
 
@@ -948,7 +948,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      06/12/2026
     ♡ fixing my print step in quick_test.py to actually print the current sol and running my test for the longest time yet (40 sols)
 
-    ♡ Around sol 43, the battery runs too low
+    ♡ around sol 43, the battery runs too low
 
 
 ##      06/14/2026
@@ -963,11 +963,11 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ fixing buffer gas
 
 #### Next Session:
-    ♡ continue running system checks and fix co2_scrub.py
+    ♡ continue running system checks and fix CO₂_scrub.py
 
 
 ##      06/17/2026
-    ♡ going over co2_scrub b/c yesterday I noticed
+    ♡ going over CO₂_scrub b/c yesterday I noticed
 
     ♡ I'm starting to consider UI notes, I think it's a good idea to set that up before trying to train an AI so my sim is at least visually entertaining for someone running it. I'm trying to decide what to use for this but so far I'm considering porting to JavaScript and then using HTML, CSS
 
@@ -979,7 +979,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I fixed the sabatier call in engine.py
 
-    ♡ I noticed my greenhouse is currently producting 75x MORE o2 than my crew of 30  mean and this is absolutely not right, it doesn't make any sense so I need to fix this
+    ♡ I noticed my greenhouse is currently producting 75x MORE O₂ than my crew of 30  mean and this is absolutely not right, it doesn't make any sense so I need to fix this
 
     ♡ the math for zone info:
     structural: 0.022 kPa/m²/sol × 90 m²  = 1.98 kPa/sol
@@ -987,14 +987,14 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     rack:       0.015 kPa/m²/sol × 124 m² = 1.86 kPa/sol
     total ≈ 6.04 kPa/sol
 
-    ♡ the math for crew o2 demand:
+    ♡ the math for crew O₂ demand:
     0.00011 kPa/hr × 30 crew × ~ 24.66 hr/sol ≈ 0.081 kPa/sol
 
-    ♡ I'm going to chose that the greenhouse actually produce only 2% of the crew o2 and co2 needs
+    ♡ I'm going to chose that the greenhouse actually produce only 2% of the crew O₂ and CO₂ needs
 
 
 ##      06/20/2026
-    ♡ setting up ISRU file for Ar and N2, which is crucial for no resupply w. a con being power usage
+    ♡ setting up ISRU file for Ar and N₂, which is crucial for no resupply w. a con being power usage
 
     ♡ I am not going to have a timer for the compressors yet, but for future versions I am planning on adding a regen state and usig absorption/sorbent beds that need a regen cycle between intakes
 
@@ -1009,9 +1009,9 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I'm going to use five sorbent beds in total, two as backups as I like to have, so there are enough to absorb while another bed regenerates
 
-    ♡ sorbent beds trap CO2 from compressed Mars air before N2/Ar and gets added to storage. This is modeled as a swing bed cycle, like the amine beds in co2_scrub.py.
+    ♡ sorbent beds trap CO₂ from compressed Mars air before N₂/Ar and gets added to storage. This is modeled as a swing bed cycle, like the amine beds in CO₂_scrub.py.
 
-    ♡ regen stop processing taking that bed fully offline, fewer adsorbing beds online = less raw atmosphere gets processed, meaning less N2 and Ar gets added to storage too
+    ♡ regen stop processing taking that bed fully offline, fewer adsorbing beds online = less raw atmosphere gets processed, meaning less N₂ and Ar gets added to storage too
 
     ♡ unlike isru water pipes that have a real physical deploy/retract travel time, a compressor has no mechanical delay, so it just flips between "offline" and "extracting" based on target amount needed online for each step
 
@@ -1088,7 +1088,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I'm going to be adding crew scheduling, maintenance and a few updates, w. any complaints or any positive feedback from the crew when things are running well
 
-    ♡ I added to the todo list w. update alerts to include things like stats evening out (co2 returned to normal range, etc.), buffer gas injections complete, isru pipes retracted, isru pipes deployed
+    ♡ I added to the todo list w. update alerts to include things like stats evening out (CO₂ returned to normal range, etc.), buffer gas injections complete, isru pipes retracted, isru pipes deployed
     
 #### Next Session: 
     ♡ decide if the middle panel is actually gong to be a mission log and decide what will be split between the mission log updates and the alerts section
@@ -1227,7 +1227,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I'm going to have them flip over at a certain time per night and flip back over when it senses daylight, and when the habitat is in a storm situation during the day while the panels are flipped up, they will flip over and protect themselves, perhaps after they detect high wind, the habitat could detect this and they would flip for this too
 
-    ♡ add wind calculations to mars_time.py for v2?
+    ♡ add wind calculations to Mars_time.py for v2?
 
     ♡ I considered adding the wind speed to solar_field.py to inlcude them flipping when so much wind has picked up, but I feel like this could cause problems, like constant fliping and covering, and potentially missing out on sunlight in crucial conditions, along w. wasted energy and mechanical wear.. this could have an option to be overwritten during low sol streaks, and set so the wind would have to be very harsh for them to cover
 
@@ -1281,11 +1281,11 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ NASA style and long duration designs run moderate light levels instead of Earth's commercial maximums, so 100-160 W/m² electrical is common for efficient systems that mix sunlight + LEDs
 
-    ♡ more modern LEDs deliver roughly 2.7-3.5 µmol/J, at 0.12 kW/m² (120 W/m²) electricalao I can expect about 320-400 µmol/m²/s (micromole, 1 mole = 1000000 umol)
+    ♡ more modern LEDs deliver roughly 2.7-3.5 µmol/J, at 0.12 kW/m² (120 W/m²) electricalao I can expect ~ 320-400 µmol/m²/s (micromole, 1 mole = 1000000 umol)
 
     ♡ I read about crop needs:
         Spinach, peas, most leafy/herbs:
-             150-300 µmol/m²/s (happy around 200-250)
+             150-300 µmol/m²/s (happy ~ 200-250)
         
         Quinoa, many medium crops:
              300-500
@@ -1347,7 +1347,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I'm going to use mol/m²/sol for my sim b/c It alread uses sol fractions
 
-    ♡ I'm using NASA's potato and sweet potato information b/c they are studied as space crops and I'm including those in the sim: 45 µmol CO₂/m²/s at peak photosynthesis, with night time respiration around 9 µmol CO₂/m²/s in those high light experiments
+    ♡ I'm using NASA's potato and sweet potato information b/c they are studied as space crops and I'm including those in the sim: 45 µmol CO₂/m²/s at peak photosynthesis, with night time respiration ~ 9 µmol CO₂/m²/s in those high light experiments
 
     ♡ my sim is using more moderate lighting, and my zones are mixed crops so I'll look into more conservative averages
 
@@ -1358,9 +1358,83 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ container: 
         - ~ 12 µmol/m²/s for V1 zone average
         
-        - sweet corn can get to ~  28–34 µmol/m²/s under ideal controlled conditions, while passionfruit seems to commonly fall around 10–30 µmol/m²/s, also consindering different growth stages, again
+        - sweet corn can get to ~  28–34 µmol/m²/s under ideal controlled conditions, while passionfruit seems to commonly be ~ 10–30 µmol/m²/s, also consindering different growth stages, again
 
     ♡ rack: 
         - ~ 10 µmol CO₂/m²/s for V1 zone average
         
         - hydroponic spinach studies say that photosynthetic rates can be much higher than 10 µmol CO₂/m²/s under ideal controlled lighting, using 10 is a conservative mixed zone average instead of than every rack is a mature and perfectly lit
+
+#### Next Session:
+    ♡ start figuring out values for the plants dark period respiration
+
+##      08/15/2026
+    ♡ I've decided to zone averages again for each zone's light period CO₂ uptake rate as the dark period's CO₂ realease rate, b/c NASA controlled enviornments show that the exact fraction can be very different depending on crop and environment, but b/c of the fractions being so different this will be a pretty rough average
+
+    ♡ structural zone will have the highest night time respiration average for my project at ~ 3.0 µmol CO₂/m²/s
+
+    ♡ ~ 1.5 µmol CO₂/m²/s for container b/c the sunflower respiration specifically seems to be measured as pretty low, especially compared to the crops in the structural and rack zone
+
+    ♡ ~ 2.5 µmol CO₂/m²/s for the rack zone, b/c spinach specifically is measured at ~ 5 µmol CO₂/m²/s so I decided to use that as a half the mixed zone average, just as something to go off of
+
+    ♡ I had considered using the 1:1 simplified photosynthesis equation, but that doesn't seem realistic and NASA life support work treats CO₂/O₂ ratios as different
+
+    ♡ PQ = photosynthetic quotient
+    ♡ RQ = respiratory quotient
+
+    ♡ I read that PQ depends on species, what kind of nitrogen the plants are taking in, what biomass they are building, and how nutritent conditions can even have an impact.. my simulator isn't going this far in depth for v1
+    
+    ♡ Structural: PQ ≈ 1.10, this zone has more storage root/seed/fat producing crops
+
+    ♡ Container: PQ ≈ 1.08, this zone has very mixed crops
+
+    ♡ Rack: PQ ≈ 1.05, this zone is dominated more by leafy vegetative crops like spinach and herbs, so I'll keep it simple with ~ 1.1 ratio
+
+    ♡ I read that PQ depends on species, what kind of nitrogen the plants are taking in, what biomass they are building, and how nutritent conditions can even have an impact.. my simulator isn't going this far in depth for v1 so I'm going to go with one value for the O₂ exchange so for light periods it will be 1.03 for all zones 
+
+    ♡ I read that RQ depends on what the plants are respiring, first they respire glucose/carbs, then fats, and then sometimes proteins
+
+    ♡ carb respiration is ~ 1.0, whil emore lipid/proteins can lower it, so I'm going with 0.90 as a simplified value for all zones, it seems like a conservative mixed average
+    
+    ♡ pressure change: ΔP = nRT ÷ V
+        n = gas exchanged (mol)
+        R = 0.008314 kPa·m³/(mol·K)
+        T = atmospheric temperature in Kelvin
+        V = connected atmospheric free volume in m³
+
+    ♡ moving on to water for the greenhouse now
+
+    ♡ with so many changes I'm pretty much starting over for the water plan for the greenhouse, using my old information as reference
+
+    ♡ starting with plant water demand, the old value was 3.4 kg/m²/sol × 1.15 = ~ 3.91 kg/m²/sol, looking over the NASA study with potatoes I've been referencing the total system water was ~ 2 L/m²/day, since water is ~ 1 kg/L, ≈ 2 kg/m²/day, a Mars sol = ~ 1.0275 Earth days, 2.0 kg/m²/day × 1.0275 day/sol ≈ 2.06 kg/m²/sol
+
+    ♡ b/c my structural zone isn't all potato, I need to increase the mixed zone average probably above that b/c the banana is also very water demanding.. so for structural prelminary value I'll use the plant water uptake rate of ~ 2.5 kg/m²/sol
+
+    ♡ containers contain med/tall crops and the hydroponic recircle the water efficiently, so it doesn't need to include the solution in the containers, NASA emphasizes that in closed CEA (Chemical Equilibrium with Applications), the major crop water requirement is what plants transpire, with irrigation water recirculated
+
+    ♡ ~ 2.2 kg/m²/sol for container as a V1 zone average b/c it stays close to the crop water scale used for structural while being under ~ 2.5 since that zone includes the larger and more water demanding crops
+
+    ♡ this one can be low considering growing conditions and crop choices for the rack zone, so ~ 1.8 kg/m²/sol will work for now
+
+    ♡ replacing the old percentages for transpiration and plant mass, or at least going over the calculations
+
+    ♡ plant water uptake seems to be mainly transpiration.. in some hydroponic experiments, water disappearing from sealed nutrient containers is treated essentially as transpiration, because only the above ground plants are exposed to the air, the water retained is actually quite low compared to that
+
+    ♡ NASA ECLSS systems treat condensate as a recoverable wastewater stream, and plant growth life support research looks into recovering and reusing transpired water vapor, so using ~ 95% capturing efficiency seems right so that the recovery isn't perfect, but still small amount doesn't get collected
+
+    ♡ things like maintenance/flushing, minor leakage, evaporation from exposed solution or wet surfaces, and solution retained in equipment/LECA during servicing all add into the the water losses, but I think I'm just going to use a small recirculation loss, and make each zone have a different percentage, mostly b/c of the different growing conditions, considering the ~ 95% capturing efficiency
+
+    ♡ the biomass water will eventually be calculated from crop production, but not for v1, so in the meantime the placeholder is just going to be ~ 5%
+
+    ♡ starting to go over my greenhouse.py file and implement the new updated greenhouse plan
+
+    ♡ I want to consider a file for a zone overview, leaving out a lot of notes and math, mainly for easy reference
+
+    ♡ greenhouse.py is now updated, and now I have to make transpiration no longer count as a fixed, greenhouse owned recovery system
+
+#### Next Session:
+    ♡ create atmosphere.py potentially
+
+    ♡ put the mol to kPa calculation there and remove the helper from engine.py
+
+    ♡ go over water.py notes and system design, then temp notes and system design

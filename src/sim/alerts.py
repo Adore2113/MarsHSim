@@ -1,3 +1,5 @@
+# file for handling alerts and major notifications
+
 #-----------------get habitat status----------------♡
 def get_status(all_alerts):
     hab_status = "NOMINAL"

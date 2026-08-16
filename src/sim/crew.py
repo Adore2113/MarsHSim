@@ -1,3 +1,5 @@
+#file for handling all things crew directly
+
 #--------------------constants-----------------------♡
 w_per_kw = 1000   # watts to kilowatts
 
@@ -24,7 +26,7 @@ crew_activity_states = {
 
 # -------crew metabolism per default timestep--------♡
 def total_crew_metabolism(state, dt_min):
-    hours_per_step = dt_min / 60
+    hours_per_step = dt_min / 60.0
     crew_activity = crew_activity_states[state.crew_activity]
 
     #-------------atmosphere gas changes-------------♡

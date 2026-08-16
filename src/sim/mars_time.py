@@ -2,6 +2,7 @@
 import math
 #----------------------------------------------------♡
 
+# file for handling Mars time, seasons and sunlight
 
 #--------------------constants-----------------------♡
 seconds_per_sol = 88775.244     # one mars sol is 24h 39min 35sec

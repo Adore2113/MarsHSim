@@ -101,7 +101,7 @@ def pipes_in_use(state, dt_min):
 def run_isru_water(state, dt_min):
     hours_per_step = dt_min / 60.0
 
-    #--------------default isru values--------------♡
+    #--------------default isru values---------------♡
     isru_water_mode = "offline"
     water_added_kg = 0.0
     power_used_kw = 0.0
@@ -124,7 +124,7 @@ def run_isru_water(state, dt_min):
         if pipes_extracting == 0 and pipes_deploying == 0:
             isru_water_mode = "idle"
 
-    #------------------isru running-----------------♡  
+    #------------------isru running------------------♡  
         else:
             isru_water_mode = "running"
         

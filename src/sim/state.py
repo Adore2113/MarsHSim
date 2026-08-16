@@ -53,7 +53,6 @@ class Habitat_State:
     total_effective_grow_area_m2: int
 
     greenhouse_zones: list
-    
     greenhouse_on: bool
     greenhouse_stage: str
     food_support_level: str
