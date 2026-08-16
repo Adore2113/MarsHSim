@@ -2,13 +2,15 @@
 
 ![MarsHSim Banner](assets/github_preview.jpg "MarsHSim")
 
+**major subsystem rewrite in progress**
+
 I'm building a Mars habitat simulation where a closed system keeps a crew of 30 alive with no resupply, one subsystem at a time.
 
 <p align="center">
 ♡♡♡
 </p>
 
-MarsHSim models a self sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2400 m³ habitat on Mars in Arcadia Planitia (47° North, 184° East)
+MarsHSim models a self-sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2400 m³ habitat on Mars in Arcadia Planitia (47° North, 184° East)
 
 ♡ The focus is on reliability, realistic subsystem behavior, reusability, and future machine learning integration.
 
@@ -19,32 +21,34 @@ MarsHSim simulates a habitat in Arcadia Planitia running on Mars time (sols and 
 
 The system updates continuously using a timestep based simulation, modeling how a closed life support system maintains stability over time.
 
+> **Notice:** MarsHSim is currently undergoing a major subsystem rewrite. The simulator runs, but some systems are still being reconnected and calibrated, so certain outputs and alerts may not yet reflect the intended behavior.
+
 <p align="center">
 ♡♡♡
 </p>
 
-My goal is to build something that feels real, structured, autonomous and potentially slightly interactive on a UI I designed
+My goal is to build something that feels real, structured, autonomous and potentially slightly interactive on a UI I designed.
 
 
 ## Dashboard
 
-MarsHSim includes an early browser based monitoring dashboard.
+MarsHSim includes an early browser-based monitoring dashboard.
 
-The current dashboard is a visual prototype designed to display the simulator's state in a more immersive way than the terminal output. It reads simulation data exported to JSON and shows all the important habitat systems and information.
+The current dashboard is a visual prototype designed to display the simulator's state in a more immersive way than the terminal output. It reads simulation data exported to JSON and shows the important habitat systems and information.
 
-The interface is still under active development. My current focus is on refining the layout, improving responsiveness, expanding subsystem displays, and eventually adding interactive monitoring and controls.
+**Note:** dashboard development is currently on hold while I focus on the major subsystem rewrite.
 
 
 ## Systems:
 
 #### Atmospheric gases:
-♡ oxygen (o2)
+♡ oxygen (O₂)
 
-♡ carbon dioxide (co2)
+♡ carbon dioxide (CO₂)
 
-♡ nitrogen (n2)
+♡ nitrogen (N₂)
 
-♡ argon (ar)
+♡ argon (Ar)
 
 
 #### Core life support:
@@ -84,7 +88,7 @@ The interface is still under active development. My current focus is on refining
 
 ♡ atmospheric pressure stabilization
 
-♡ hydroponics greenhouse
+♡ hydroponic greenhouse
 
 ♡ water In-Situ Resource Utilization (ISRU)
 
@@ -100,7 +104,7 @@ The interface is still under active development. My current focus is on refining
 #### Crew and Habitat:
 ♡ crew metabolism
 
-♡ oxygen consumption & CO2 production
+♡ oxygen consumption & CO₂ production
 
 ♡ crew heat generation
 
@@ -126,8 +130,7 @@ The interface is still under active development. My current focus is on refining
 
 
 ## Current Focus:
-
-♡ testing subsystem interactions and simulation stability
+♡ reconnecting and testing subsystem interactions during the current rewrite
 
 ♡ refining system balancing, constants, and resource flow
 
@@ -138,7 +141,6 @@ The interface is still under active development. My current focus is on refining
 ♡ laying groundwork for future AI habitat oversight
 
 This project is in active development.
-
 
 ## Project Structure:
 
@@ -152,7 +154,11 @@ This project is in active development.
 
     - v1_state_variables.md = reference of all tracked variables
     
-♡ docs / system_design
+♡ docs / notes
+
+    - isru.md = future ISRU atmosphere and water notes
+
+    - layout.md = future habitat structure and layout notes
 
     - lights.md = habitat lighting design and simulation notes
     
@@ -160,19 +166,25 @@ This project is in active development.
     
     - solar_field.md = solar field design, operation and power generation notes
 
-♡ docs / system_design / greenhouse /
+    - template.md = my own template I'm using for note structure
+
+♡ docs / notes / greenhouse /
+
+    - crops.md = crew nutrition targets and crop planning
+
+    - gases.md = greenhouse photosynthesis, respiration, CO₂/O₂ exchange rates and zone gas calculations
+
+    - hydroponics.md = greenhouse operation and management notes
 
     - layout.md = Hive-8 Arcadia structure, dimensions, zones and physical layout
 
     - lighting.md = greenhouse natural and artificial lighting plan
 
-    - nutrition.md = crew nutrition targets and crop planning
-
-    - operations.md = greenhouse operation and management notes
-
     - power.md = greenhouse power requirements and energy planning
 
     - water.md = greenhouse water use, recovery and hydroponic water planning
+
+    - zone_overview.md = raw zone values and overview (in progress)
 
 ♡ src /sim /
 
@@ -180,7 +192,7 @@ This project is in active development.
 
     - buffer_gas.py = nitrogen and argon pressure balancing
 
-    - co2_scrub.py = amine swing bed CO2 scrubbing
+    - co2_scrub.py = amine swing bed CO₂ scrubbing
 
     - crew.py = crew metabolism and environmental impact
 
@@ -190,7 +202,7 @@ This project is in active development.
 
     - greenhouse.py = hydroponic greenhouse systems
 
-    - isru_atm.py = atmospheric intake, sorbent bed CO2 capture, and N2/Ar extraction
+    - isru_atm.py = atmospheric intake, sorbent bed CO₂ capture, and N₂/Ar extraction
 
     - isru_water.py = water ISRU extraction and raw water storage
 
@@ -204,7 +216,7 @@ This project is in active development.
 
     - run.py = simulation entry point and testing environment
 
-    - sabatier.py = CO2 conversion and methane production systems
+    - sabatier.py = CO₂ conversion and methane production systems
 
     - state.py = habitat state and tracked simulation variables
 
@@ -248,13 +260,15 @@ My simulator includes a browser-based dashboard, but can also be run as a termin
 
 ### 3. Open dashboard:
 
-open new tab in your browser and got to: Open your browser and navigate to:
+**Notice:** MarsHSim is currently undergoing a major subsystem rewrite, so dashboard development is currently on hold.
+
+Open a new tab in your browser and go to:
 
     http://localhost:8000/ui/
 
 The dashboard displays the latest simulation output from `ui/data/latest.json`.
 
--it will refresh every few seconds while the simulation is running soon-
+-automatic dashboard refreshing is still being implemented-
 
 ## Why this project:
 
