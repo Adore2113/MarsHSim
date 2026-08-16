@@ -97,11 +97,11 @@ def greenhouse_lighting(state, dt_min):
         zone_lighting[zone_name] = {
             "light_mode": light_mode,
             "effective_light_kw_per_m2": effective_light_kw_per_m2,
-            
+
             "led_level": led_level,
             "led_power_kw": led_power_kw,
             "led_heat_kw": led_heat_kw,
-            
+        
             "light_exposure": light_exposure,
         }
 
@@ -142,6 +142,26 @@ def greenhouse_zone_growth(zone, zone_light, sol_fraction):
     
     return new_growth_progress, harvest_ready, food_produced_kg
 
+#-------------water (updated 08/15/2026)-------------♡
+def greenhouse_water(zone, sol_fraction):
+    area_m2 = zone["effective_grow_area_m2"]
+    uptake_rate_kg_per_m2 = zone["plant_water_uptake_kg_per_m2_per_sol"]
+    operational_loss_pct = zone.get("operational_water_loss_pct", 0.03)
+
+    plant_water_uptake_kg = uptake_rate_kg_per_m2 * area_m2 * sol_fraction
+    transpiration_kg = plant_water_uptake_kg * transpiration_ratio
+    plant_mass_water_kg = plant_water_uptake_kg * (1.0 - transpiration_ratio)
+ 
+    operational_loss_kg = plant_water_uptake_kg * operational_loss_pct
+    make_up_water_kg = plant_mass_water_kg + operational_loss_kg
+
+    return {
+        "plant_water_uptake_kg": plant_water_uptake_kg,
+        "transpiration_uncaptured_kg": transpiration_kg,
+        "plant_mass_water_kg": plant_mass_water_kg,
+        "operational_loss_kg": operational_loss_kg,
+        "make_up_water_kg": make_up_water_kg,
+    }
 
 #----------------water / co2 / oxygen----------------♡
 def greenhouse_resources(zone, zone_light, sol_fraction):
