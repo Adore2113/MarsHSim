@@ -163,6 +163,23 @@ def greenhouse_water(zone, sol_fraction):
         "make_up_water_kg": make_up_water_kg,
     }
 
+#--------------------gas exchange--------------------♡
+def greenhouse_gas_exchange(zone, zone_light, sol_fraction):
+    area_m2 = zone["effective_grow_area_m2"]
+    light_exposure = zone_light["light_exposure"]
+    plant_health = zone.get("health", default_health)
+
+    co2_consumed_mol = 0.0
+    co2_released_mol = 0.0
+    o2_produced_mol = 0.0
+    o2_consumed_mol = 0.0
+
+    if zone_light["light_mode"] == "dark_cycle":
+        co2_dark_rate = zone["co2_dark_release_mol_per_m2_per_sol"]
+        co2_released_mol = co2_dark_rate * area_m2 * sol_fraction * plant_health
+        o2_consumed_mol = co2_released_mol / rq
+        
+
 #----------------water / co2 / oxygen----------------♡
 def greenhouse_resources(zone, zone_light, sol_fraction):
     area_m2 = zone["effective_grow_area_m2"]
