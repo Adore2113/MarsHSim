@@ -14,8 +14,8 @@
     
     ♡ LED lighting contributes additional heat according to LED power use
 ### ----------------------------------------
-
 ## Zone Overviews:
+
 ### Structural
     ♡ zone role:
         - larger, longer cycle, bulk calorie crops
@@ -42,16 +42,16 @@
         - shared structural zone reservoir
 
     ♡ circulation:
-        1. reservoir 
-        2. pump 
-        3. drip irrigation 
-        4. LECA beds 
-        5. drainage 
+        1. reservoir
+        2. pump
+        3. drip irrigation
+        4. LECA beds
+        5. drainage
         6. reservoir
 
-    ♡ pH target: ~ 5.8 target
-    ♡ EC target: ~ 2.1 target
-    ♡ solution temperature: ~ 23°C target
+    ♡ pH target: ~ 5.8
+    ♡ EC target: ~ 2.1
+    ♡ solution temperature target: ~ 23°C
     ♡ dissolved oxygen: ≥ 6 mg/L
 
 ### Reservoir:
@@ -73,13 +73,12 @@
 
     ♡ pump failure behavior:
         - backup pump automatically takes over
-        
         - if both pumps fail, structural plant health declines more slowly than
-        the other zones because the LECA beds retain moisture
+          the other zones because the LECA beds retain moisture
 
 ### Lighting:
     ♡ photoperiod: 16 hours
-    ♡ light-period: 05:00–21:00 LMST
+    ♡ light period: 05:00–21:00 LMST
     ♡ zone light target: 0.26 kW/m²
 
     ♡ lighting:
@@ -116,7 +115,7 @@
     ♡ baseline plant water uptake: ~ 1,050 kg/sol
     ♡ operational water loss allowance: ~ 4%
     ♡ baseline operational water loss: ~ 42.0 kg/sol
-    
+
     ♡ plant water uptake contributes to:
         - transpiration
         - plant biomass
@@ -145,7 +144,7 @@
 
 ### ----------------------------------------
 
-## Container:
+### Container
     ♡ zone role:
         - medium and taller crops
         - some vertical growing
@@ -178,9 +177,9 @@
         5. drainage
         6. reservoir
 
-    ♡ pH target: ~ 6.0 target
-    ♡ EC target: ~ 2.0 target
-    ♡ solution temperature: ~ 23°C target
+    ♡ pH target: ~ 6.0
+    ♡ EC target: ~ 2.0
+    ♡ solution temperature target: ~ 23°C
     ♡ dissolved oxygen: ≥ 6 mg/L
 
 ### Reservoir:
@@ -202,12 +201,11 @@
 
     ♡ pump failure behavior:
         - backup pump automatically takes over
-        
         - if both pumps fail, container plant health has a moderate rate of decline
 
-###  Lighting:
+### Lighting:
     ♡ photoperiod: 16 hours
-    ♡ light-period: 05:00–21:00 LMST
+    ♡ light period: 05:00–21:00 LMST
     ♡ zone light target: 0.23 kW/m²
 
     ♡ lighting:
@@ -265,7 +263,7 @@
 
 ### ----------------------------------------
 
-## Rack
+### Rack
     ♡ zone role:
         - smaller crops
         - fast leafy greens
@@ -300,9 +298,9 @@
         4. drainage
         5. reservoir
 
-    ♡ pH target: ~ 6.0 target
-    ♡ EC target: ~ 1.8 target
-    ♡ solution temperature: ~ 22°C target
+    ♡ pH target: ~ 6.0
+    ♡ EC target: ~ 1.8
+    ♡ solution temperature target: ~ 22°C
     ♡ dissolved oxygen: ≥ 5.5–6 mg/L
 
 ### Reservoir:
@@ -324,13 +322,12 @@
 
     ♡ pump failure behavior:
         - backup pump automatically takes over
-        
         - if both pumps fail, rack plant health declines fastest because NFT
-        requires continuous nutrient solution flow
+          requires continuous nutrient solution flow
 
 ### Lighting:
     ♡ photoperiod: 16 hours
-    ♡ light-period: 05:00–21:00 LMST
+    ♡ light period: 05:00–21:00 LMST
     ♡ zone light target: 0.19 kW/m²
 
     ♡ lighting:
