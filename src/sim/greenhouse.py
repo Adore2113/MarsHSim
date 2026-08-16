@@ -192,48 +192,6 @@ def greenhouse_gas_exchange(zone, zone_light, sol_fraction):
         "o2_consumed_mol": o2_consumed_mol,
     }
 
-#----------------water / co2 / oxygen----------------♡
-def greenhouse_resources(zone, zone_light, sol_fraction):
-    area_m2 = zone["effective_grow_area_m2"]
-    base_water_needed = zone["base_water_needed_per_m2_kg_per_sol"]
-    water_multiplier = zone.get("water_multiplier", 1.0)
-    water_recirculation_efficiency = zone.get("water_recirculation_efficiency", 0.93)
-    
-    light_exposure = zone_light["light_exposure"]
-    plant_health = zone.get("health", default_health)
-
-    water_needed_kg = base_water_needed * area_m2 * water_multiplier * sol_fraction    
-    water_consumed_kg = water_needed_kg * (1.0 - water_recirculation_efficiency)    # pct of water not recovered
-    water_recirculated_kg = water_needed_kg * water_recirculation_efficiency
-    runoff_water_kg = water_needed_kg * runoff_water_ratio
-    
-    transpiration_kg = water_consumed_kg * transpiration_ratio
-    plant_mass_water_kg = water_consumed_kg * (1.0 - transpiration_ratio)
-
-    photosynthesis = light_exposure * plant_health
-
-    co2_consumed_per_m2_kpa = zone["co2_consumed_per_m2_kpa_per_sol"]
-    greenhouse_co2_consumed_kpa = co2_consumed_per_m2_kpa * area_m2 * sol_fraction * photosynthesis
-
-    o2_produced_per_m2_kpa =  zone["o2_produced_per_m2_kpa_per_sol"]
-    total_o2_produced_kpa = o2_produced_per_m2_kpa * area_m2 * sol_fraction * photosynthesis
-
-    greenhouse_heat_added_kw = greenhouse_heat_per_m2_kw * area_m2
-
-    return {
-        "water_needed_kg": water_needed_kg,
-        "water_consumed_kg": water_consumed_kg,
-        "water_recirculated_kg": water_recirculated_kg,
-        "runoff_water_kg": runoff_water_kg,
-        "transpiration_kg": transpiration_kg,
-        "plant_mass_water_kg": plant_mass_water_kg,
-
-        "co2_consumed_kpa": greenhouse_co2_consumed_kpa,
-        "o2_produced_kpa": total_o2_produced_kpa,
-        
-        "greenhouse_heat_added_kw": greenhouse_heat_added_kw,
-    }
-
 
 #-------------main greenhouse function---------------♡
 def run_greenhouse(state, dt_min):
