@@ -1,7 +1,6 @@
 # Habitat Water System
 ### General Notes:
-
-    ♡
+    ♡ water demands are slightly over estimated becuase I would rather overestimate than under when it comes to values of usage/demand
 
     ♡
 
@@ -28,12 +27,40 @@
 
     ♡
 
-#### 
-    ♡ 
+#### Crew Water Demands: 
+    ♡ demand total: ≈ 1,450 kg/sol - ~ 2,637 kg/sol (as a high estimate)
 
-    ♡
+    ♡ shower system:
+        - normal mode: 
+            10 min recommended, 20 min cut off
+        - conservation mode: 7–10 min
+        - low water mode: 5 min
+        - critical mode: timed preset buttons, enforcing a navy type shower (very short, low flow)
+    
+    ♡ breakdown (kg/person/sol):
+        - drinking + food rehydration: 
+            ♡ 2.5 kg/person/sol
+            ♡ total ≈ 75.0 kg/sol
 
-    ♡
+        - personal hygiene (sink, face, hands, oral)
+            ♡ 1.2 kg/person/sol
+            ♡ total ≈ 36 kg/sol
+
+        - shower:
+            ♡  40 kg/person/sol
+            ♡ total ≈ 1,200 kg/sol
+
+        - shared laundry:
+            ♡  3.0 kg/person/sol
+            ♡ total ≈ 90 kg/sol
+
+        - toilet:
+            ♡ 0.5 kg/person/sol
+            ♡ total ≈ 15kg/sol
+
+        - steam room (for future reference):
+             0.8 kg/person/sol
+            ♡  total ≈ 24 kg/sol
 
 #### 
     ♡ 
