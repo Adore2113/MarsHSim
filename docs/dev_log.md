@@ -1438,3 +1438,13 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ put the mol to kPa calculation there and remove the helper from engine.py
 
     ♡ go over water.py notes and system design, then temp notes and system design
+
+
+##      08/17/2026
+    ♡ since changing the habitat size and slowly figuring out the layout of the habitat, certain measurements that include the volume should really only be considered as placeholders
+
+    ♡ I didn't consider how the greenhouse zones O₂ and CO₂ will be worked in.. I need to deicde if they will be seperate or part of the overall habitat
+
+    ♡ I will focus on water for the time being, and I think continue going through everything as I have been with updates and more reasearch before focusing on atmosphere.py so I can be more accurate and have some extra time to decide how to handle the greenhouse zone ideas
+
+    ♡ I have to decide what to do with the greenhouse zones, also I think the zones themselves being separate for control wasn't the best call. The greenhouse should've been handled in four quadrants or something for quarantine so I'll add this to Future Considerations in docs\notes\greenhouse layout.md I had intended for crop type grouping and area containment as two seperate parts, but that isn't a priority right now
