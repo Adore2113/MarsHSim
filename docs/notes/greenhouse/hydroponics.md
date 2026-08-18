@@ -93,86 +93,99 @@
 
 ## Reservoirs:
 #### Reservoir Sizing:
-    ♡ LECA beds retain a lot of moisture in the roots, dutch bucket style containers retain some, and NFT channels don't hold very much so it has the largest reservoir allowance per m²
+    ♡ reservoir size is based on plant water demand and hydroponic method
 
-    ♡ reservoir size is based on effective grow area and hydroponic method
+    ♡ structural and container zones use LECA based drip systems, which provide more root-zone moisture buffering
 
-    ♡ reservoirs remain partially unfilled during normal operation to avoid overflow
+    ♡ the rack zone uses NFT with a much smaller solution inventory in the channels, so its reservoir is sized smaller while relying more heavily on continuous circulation
+
+    ♡ reservoirs remain partially unfilled during normal operation to provide overflow and return-flow capacity
 
     ♡ reservoirs are opaque/covered to reduce algae growth
 
     ♡ preliminary reservoir capacities:
-        - the extra space is so the tanks aren't filled at the top during operation
-
-        - structural: ~ 7,000 L
-        - container: ~ 9,500 L
-        - rack: ~ 10,000 L
+        - structural: ~ 6,500 L
+        - container: ~ 5,400 L
+        - rack: ~ 3,100 L
+        - total: ~ 15,000 L
     
     ♡ calculation:
         - structural:
-            15 L/m² × 420 m²
-            = 6,300 L working volume
+            1,050 kg/sol × 1.20
+            = 1,260 weighted demand
 
         - container:
-            18 L/m² × 480 m²
-            = 8,640 L working volume
+            1,056 kg/sol × 1.00
+            = 1,056 weighted demand
 
         - rack:
-            20 L/m² × 450 m²
-            = 9,000 L working volume
-        
-        - total:
-            6,300 L + 8,640 L + 9,000 L
-            = 23,940 L
+            810 kg/sol × 0.75
+            = 607.5 weighted demand
+
+        - total weighted demand:
+            1,260 + 1,056 + 607.5
+            = 2,923.5
+
+        - structural:
+            1,260 ÷ 2,923.5 × 15,000 L
+            = ~ 6,465 L
+            ≈ 6,500 L
+
+        - container:
+            1,056 ÷ 2,923.5 × 15,000 L
+            = ~ 5,418 L
+            ≈ 5,400 L
+
+        - rack:
+            607.5 ÷ 2,923.5 × 15,000 L
+            = ~ 3,117 L
+            ≈ 3,100 L
 
 #### Reservoir Levels:
     ♡ normal operating level: ~ 85%
+    ♡ refill trigger: 70%
     ♡ low: < 50%
     ♡ critical: < 25%
 
-    ♡ 70% triggers make-up water and refills to normal operating levels
-
     ♡ structural:
-        - tank capacity: 7,000 L
-        - normal: ~ 5,950 L
-        - low: < 3,500 L
-        - critical: < 1,750 L
-        - auto refill at: 4,900 L
+        - tank capacity: 6,500 L
+        - normal: ~ 5,525 L
+        - auto refill at: 4,550 L
+        - low: < 3,250 L
+        - critical: < 1,625 L
 
     ♡ container:
-        - tank capacity: 9,500 L
-        - normal: ~ 8,075 L
-        - low: < 4,750 L
-        - critical: < 2,375 L
-        - auto refill at: 6,650 L
+        - tank capacity: 5,400 L
+        - normal: ~ 4,590 L
+        - auto refill at: 3,780 L
+        - low: < 2,700 L
+        - critical: < 1,350 L
 
-    ♡ rack
-        - tank capacity: 10,000 L
-        - normal: ~ 8,500 L
-        - low: < 5,000 L
-        - critical: < 2,500 L
-        - auto refill at: 7,000 L
+    ♡ rack:
+        - tank capacity: 3,100 L
+        - normal: ~ 2,635 L
+        - auto refill at: 2,170 L
+        - low: < 1,550 L
+        - critical: < 775 L
 
     ♡ calculation:
-        - normal:
-            ♡ structural:
-                reg: 7,000 × 0.85 = 5,950 L
-                low: 7,000 L × 0.50 = 3,500 L
-                crit: 7,000 L × 0.25 = 1,750 L
-                refill: 7,000 L × 0.70 = 4,900 L
+        - structural:
+            normal: 6,500 L × 0.85 = 5,525 L
+            refill: 6,500 L × 0.70 = 4,550 L
+            low: 6,500 L × 0.50 = 3,250 L
+            critical: 6,500 L × 0.25 = 1,625 L
 
-            ♡ container:
-                reg: 9,500 × 0.85 = 8,075 L
-                low: 9,500 L × 0.50 = 4,750 L
-                crit: 9,500 L × 0.25 = 2,375 L
-                refill: 9,500 L × 0.70 = 6,650 L
+        - container:
+            normal: 5,400 L × 0.85 = 4,590 L
+            refill: 5,400 L × 0.70 = 3,780 L
+            low: 5,400 L × 0.50 = 2,700 L
+            critical: 5,400 L × 0.25 = 1,350 L
 
-            ♡ rack:
-                reg: 10,000 × 0.85 = 8,500 L
-                low: 10,000 L × 0.50 = 5,000 L
-                crit: 10,000 L × 0.25 = 2,500 L
-                refill: 10,000 L × 0.70 = 7,000 L
-
+        - rack:
+            normal: 3,100 L × 0.85 = 2,635 L
+            refill: 3,100 L × 0.70 = 2,170 L
+            low: 3,100 L × 0.50 = 1,550 L
+            critical: 3,100 L × 0.25 = 775 L
 ### ----------------------------------------
 
 ## Make-up Water System:
@@ -288,6 +301,11 @@
             ♡ DO/root water conditions deteriorate
             ♡ rack health falls
             ♡ growth falls
+        
+    ♡ previous reservoir capacities:
+        - structural: ~ 7,000 L
+        - container: ~ 9,500 L
+        - rack: ~ 10,000 L
     
 ### ----------------------------------------
 
