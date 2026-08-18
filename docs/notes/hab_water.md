@@ -191,3 +191,37 @@
     ♡ worked on the water system file
 
     ♡ I read about In-Situ Resource Utilization (ISRU) to extract water locally but I'll worry about that later
+
+##      04/23/2026
+    ♡ adding condensate/CHX to water_system and engine and made OGA use potable water
+
+##      04/27/2026
+♡ started to add sabatier info/logic into my water system file
+
+##      05/22/2026
+    ♡ I added in the Sabatier into water.py, b/c I forgot to add it in the storage update and run_water_system function 
+
+    ♡ while testing the water outputs, I can see that the net loss/sol is way too high, so I'm going to go over some numbers
+
+    ♡ 115.5kg/sol is just the cost of having a 30 person crew
+
+    ♡ I was thinking about other way to recycle and actually get water and I thought about piercing through the surface w. two or three heated pipes that siphon up some frozen Mars water every so often? retractable pipes so they don't freeze and can be used at will, I'm going to do some research on this
+
+    ♡ going back to In-Situ Resource Utilization (ISRU) to extract water locally, I'm thinking piercing through the surface w. two or three heated pipes that siphon up some frozen Mars water every so often w. retractable pipes so they don't freeze and can be used when wanted and needed to avoid environmental factors
+
+##      05/23/2026
+    ♡ I created a file for handling water extraction and I'm going to make a list in state, similar to the lists I have for the other subsystems and add in each pipe, in case I want to add more later and of course to have a few as backup
+
+    ♡ I realized that I didn't have water runoff from the greenhouse, so I implemented that today and also fixed and cleaned up water.py, after including the for now very basic isru system
+
+##      05/25/2026
+    ♡ fixing isru and added modes and pipe retraction and extraction
+
+    ♡ going over water file, adding hysteresis and updating power used logic to make it more similar to CO₂_scrub.py
+
+    ♡ updated power usage in water.py
+
+    ♡ updating systems to include low power mode
+
+###### 06/30/2026
+    ♡ I need to decide if I want to keep the water outputs in water, but that's 27 lines which is a lot for on panel, so I need to choose if I want to keep them in water, or put them in their corrosponding panels ( UI NOTES )
