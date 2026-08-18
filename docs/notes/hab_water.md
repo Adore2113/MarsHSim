@@ -10,9 +10,42 @@
 
 ## Arcadia Water System Plan (08/18/2026):
 #### Layout
-    ♡ 
+##### Water Recovery/Processing Room:
+    ♡ shape: octagon (regular)
+    ♡ floor area: 90 m²
+    ♡ total height: 4.5 m
+    ♡ width: 
+        ~ 10.4 m across opposite walls
 
-    ♡
+    ♡ wall length:
+        ~ 4.3 m for each outside wall
+
+    ♡ center distance:
+        ~ 5.2 m from the center to each wall
+
+    ♡ corner distance:
+        ~ 5.6 m from the center to each corner
+
+    ♡ overall corner to corner width:
+        ~ 11.3 m from one corner to the opposite corner
+
+    ♡ roof: lightly angled
+
+    ♡ entrances: 
+        two (one from the direct hallway to social hub, one from the greenhouse connection)
+
+    ♡ contains processors and working equipment for water recovery/proccessing:
+        - UPA + pretreatment
+        - WPA (including gray water and condensate)
+        - BPA
+        - pumps, filters, catalytic reactors, etc.
+        - sampling / water quality hardware
+        - control cabinets
+        - consumables storage
+        - maintenance aisles and extra space
+
+##### Water Storage Room:
+    ♡ 
 
     ♡
 
@@ -28,7 +61,8 @@
     ♡
 
 #### Crew Water Demands: 
-    ♡ demand total: ≈ 1,450 kg/sol - ~ 2,637 kg/sol (as a high estimate)
+    ♡ demand total: ≈ 1,450 kg/sol, 
+        - ~ 2,660 kg/sol (as a max theoretical)
 
     ♡ shower system:
         - normal mode: 
@@ -57,10 +91,15 @@
         - toilet:
             ♡ 0.5 kg/person/sol
             ♡ total ≈ 15kg/sol
+        
+        - misc:
+            ♡ 0.5 kg/person/sol
+            ♡ total ≈ 15kg/sol
 
         - steam room (for future reference):
              0.8 kg/person/sol
             ♡  total ≈ 24 kg/sol
+
 
 #### 
     ♡ 
