@@ -206,7 +206,7 @@ def run_greenhouse(state, dt_min):
             "greenhouse_food_produced_kg": 0.0,
  
             "greenhouse_plant_water_uptake_kg": 0.0,
-            "greenhouse_transpiration_kg": 0.0,
+            "greenhouse_transpiration_uncaptured_kg": 0.0,
             "greenhouse_plant_mass_water_kg": 0.0,
             "greenhouse_operational_loss_kg": 0.0,
             "greenhouse_direct_make_up_kg": 0.0,
