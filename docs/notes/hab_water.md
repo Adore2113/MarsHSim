@@ -122,12 +122,12 @@
              0.8 kg/person/sol
             ♡  total ≈ 24 kg/sol
 
-#### 
+#### :
     ♡ 
 
 ### ----------------------------------------
 
-#### 
+#### :
     ♡ 
 
     ♡
@@ -149,9 +149,11 @@
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ 
-    
-    ♡
+    ♡ electrostatic dust repulsion (EDS) b/c of the fact that it's passive
+
+    ♡ scheduled cleaning (possibly automated)
+
+    ♡ dust repellent coatings that need to be reapplied over time
 
     ♡
 
@@ -159,12 +161,43 @@
 ### ----------------------------------------
 
 ## Design Decisions:
-#### 
-    ♡
+#### Why separate water processing from water storage?
+    ♡  so the process flow stays clean
 
-    ♡
+    ♡  maintenence access would be awkward and disturb the greenhouse
 
-    ♡
+    ♡  the dirty part of the system won't be near the clean growing area
+
+    ♡  to make sure there was enough room for everything
+
+#### Why allow continuous-flow showers?
+    ♡ there are only 30 crew members and all of them but there should be a max time amount, I'm thinking 15 minutes as a hard maximum, 10 minutes as standard, 5 minutes in low water mode, and a very short, low-flow shower mode; "Navy" shower mode 1. water on = wet yourself, 2. water off = soap/shampoo 3. water on = rinse 4.done ( maybe controlled with a push button?)
+
+    ♡ making the shower cut off at 20 minutes instead of 15, some people like longer showers and if I will reduce it to 15 if need be
+
+#### Why overestimate crew water demand?
+    ♡ ideally the habitat has a safe buffer
+
+    ♡ overassuming instead of under estimating is safer
+
+    ♡ the crew can live comfortably and have things like non-timed showers
+
+#### Why send captured greenhouse condensate through the WPA?
+    ♡ greenhouse condensate is recoverable water but it needs treatment before storage
+
+    ♡ routing it through the WPA keeps greenhouse recovery connected to the same central habitat water treatment loop as other recoverable water streams
+
+    ♡ this allows WPA efficiency and processing losses to affect the final amount returned to storage
+
+#### Why use treated habitat water for greenhouse make-up in V1?
+    ♡ the greenhouse is part of the same closed habitat water inventory
+
+    ♡ using treated habitat water keeps the greenhouse connected to the water recovery system
+
+    ♡ raw wastewater is not sent directly into the greenhouse reservoirs
+
+    ♡ nutrient recovery from crew waste is planned for the future, but nutrients are treated separately from water in V1 
+
 ### ----------------------------------------
 
 ### Dev Log Notes:
