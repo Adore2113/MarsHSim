@@ -128,7 +128,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         crew_results,
         humidity_results["vapor_removed_kg"],
         oga_outputs["oga_water_used_kg"],
-        greenhouse_outputs.get("greenhouse_direct_make_up_kg", 0.0),
+        greenhouse_outputs.get("greenhouse_make_up_water_kg", 0.0),
         sabatier_outputs.get("sabatier_water_produced_kg", 0.0),
         dt_min
     )
