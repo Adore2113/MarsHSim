@@ -45,9 +45,30 @@
         - maintenance aisles and extra space
 
 ##### Water Storage Room:
-    ♡ 
+    ♡ shape: octagon (regular)
+    ♡ floor area: 120 m²
+    ♡ total height: 4.5 m
+    ♡ width: 
+        ~ 12.0 m across opposite walls
 
-    ♡
+    ♡ wall length (if octagon):
+        ~ 5.0 m for each outside wall
+
+    ♡ roof: 
+        flat or lightly angled
+
+    ♡ entrances: recovery / Processing Room, one from the direct hallway / social hub side
+
+    ♡ contains vertical cylindrical habitat water tanks
+
+    ♡ notes:
+        - tanks are fully inside the pressurized, heated volume (V1)
+
+        - clear access for inspection, sensors, and maintenance
+
+        - separated from equipment so the process flow stays clean
+
+        - greenhouse keeps only its own local zone reservoirs
 
 #### Tank Capacities
     ♡ potable water storage capacity: 10,000.0 kg
@@ -56,9 +77,7 @@
     ♡ condensate storage capacity: 5,000.0 kg
     ♡ brine storage capacity:1000.0 kg
     ♡ greenhouse reservoirs (total): ~ 2,000 kg
-    ♡
-
-    ♡
+    ♡ raw ISRU water: 4,000 kg capacity
 
 #### Crew Water Demands: 
     ♡ demand total: ≈ 1,450 kg/sol, 
