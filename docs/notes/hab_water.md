@@ -70,15 +70,18 @@
 
         - greenhouse keeps only its own local zone reservoirs
 
+### ----------------------------------------
+
 #### Tank Capacities
     ♡ potable water storage capacity: 10,000.0 kg
     ♡ gray water storage capacity: 3,500.0 kg
     ♡ black water storage capacity: 1,800.0 kg
     ♡ condensate storage capacity: 5,000.0 kg
     ♡ brine storage capacity:1000.0 kg
-    ♡ greenhouse reservoirs (total): ~ 2,000 kg
     ♡ raw ISRU water: 4,000 kg capacity
-
+    ♡ greenhouse reservoirs (total): ~ 2,000 kg
+        - see greenhouse\hydroponics.md
+   
 #### Crew Water Demands: 
     ♡ demand total: ≈ 1,450 kg/sol, 
         - ~ 2,660 kg/sol (as a max theoretical)
@@ -119,6 +122,10 @@
              0.8 kg/person/sol
             ♡  total ≈ 24 kg/sol
 
+#### 
+    ♡ 
+
+### ----------------------------------------
 
 #### 
     ♡ 
@@ -161,4 +168,26 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
-######
+###### 03/13/2026
+    ♡ figure out how much water(H2O) the OGA and water electrolysis uses every time it runs, I'm going to find the fixed reaction ratio instead of a fixed ratio b/c the amount of O₂ produced are going to change depending on habitat events
+
+    ♡ going to use 1000kg of water to start as a placeholder to finish the OGA functions
+
+    ♡ going to keep the OGA functions separate instead of one big function w. a comment to sort of group them together, I feel like that will be better for future readability
+
+    ♡ finished OGA and water electrolysis for now, moving onto argon and nitrogen
+
+##      03/24/2026
+    ♡ I chose the starting amounts for some power variables and made a separate file for the OGA and water electrolysis
+
+##      04/22/2026
+    ♡ doing some research before starting water_system.py to know what kind of water system makes sense w. focus on reusability
+
+    ♡ going w.:
+        -Urine Processor Assembly (UPA)
+        -Water Processor Assembly (WPA)
+        -Brine Processor Assembly (BPA)
+
+    ♡ worked on the water system file
+
+    ♡ I read about In-Situ Resource Utilization (ISRU) to extract water locally but I'll worry about that later
