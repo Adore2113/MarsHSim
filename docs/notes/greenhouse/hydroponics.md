@@ -398,9 +398,10 @@
 
     ♡ I'm not so worried about an upper range for the dissolved oxygen target b/c the most important thing is if it's high enough
     
-
 ###### 08/14/2026
     ♡ considering pums for each greenhouse zone, I want to have one backup incase the prmary fails that would be automatic 
 
     ♡ I was reading that the structural LECA zone would be able to handle pump failure better than the container and rack, especially the rack b/c it is relying on the continuous flow
 
+###### 08/18/2026
+    ♡ I don't know why I didn't notice how big the greenhouse reservoirs are compared to how much my plants actual take in per sol, so I'm going to lower some of those values, still keeping an extra amount as a buffer.. NASA's emphasizes fluid delivery/recovery, reliability, maintainability, aeration, low mass and low volume instead of universal L/m² reservoir rule
