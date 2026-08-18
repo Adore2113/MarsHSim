@@ -1,24 +1,24 @@
 # file for managing water, water recycling and generation
 
 #--------------------constants-----------------------♡
-upa_recovery_rate = 0.94
+upa_recovery_rate = 0.87
 wpa_recovery_rate = 0.95
-bpa_recovery_rate = 0.78
+bpa_recovery_rate = 0.90
 
 base_upa_power_kw = 0.45
-base_wpa_power_kw = 0.35
-base_bpa_power_kw = 0.75
+base_wpa_power_kw = 0.80
+base_bpa_power_kw = 0.25
 
-upa_handling_capacity_per_hour_kg = 12.0
-wpa_handling_capacity_per_hour_kg = 16.0
-bpa_handling_capacity_per_hour_kg = 0.15
+upa_handling_capacity_per_hour_kg = 6.0
+wpa_handling_capacity_per_hour_kg = 80.0
+bpa_handling_capacity_per_hour_kg = 0.25
 
 upa_power_fraction = 0.45
 wpa_power_fraction = 0.50
 bpa_power_fraction = 0.40
 
 upa_hysteresis_kg = 2.0
-wpa_hysteresis_kg = 4.0
+wpa_hysteresis_kg = 25.0
 bpa_hysteresis_kg = 0.5
 #----------------------------------------------------♡
 
