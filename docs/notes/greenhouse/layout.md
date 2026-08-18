@@ -272,7 +272,7 @@
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ decide what to do about greenhouse quadrants and how they should be handled in four quadrants or something for quarantine and isolation 
+    ♡ decide what to do about greenhouse quadrants and how they should be handled in four quadrants or something for quarantine and isolation, as intended for crop type grouping and area containment as two saperate parts,
 
 ### ----------------------------------------
 
