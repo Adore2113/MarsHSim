@@ -31,8 +31,7 @@
 
     ♡ roof: lightly angled
 
-    ♡ entrances: 
-        two (one from the direct hallway to social hub, one from the greenhouse connection)
+    ♡ entrances: two, one from the greenhouse, the other to the (potential) social area hub
 
     ♡ contains processors and working equipment for water recovery/proccessing:
         - UPA + pretreatment
@@ -42,7 +41,7 @@
         - sampling / water quality hardware
         - control cabinets
         - consumables storage
-        - maintenance aisles and extra space
+        – maintenance aisles
 
 ##### Water Storage Room:
     ♡ shape: octagon (regular)
@@ -57,7 +56,7 @@
     ♡ roof: 
         flat or lightly angled
 
-    ♡ entrances: recovery / Processing Room, one from the direct hallway / social hub side
+    ♡ entrances: two, one from processing room, the other to the (potential) social area hub
 
     ♡ contains vertical cylindrical habitat water tanks
 
@@ -69,6 +68,7 @@
         - separated from equipment so the process flow stays clean
 
         - greenhouse keeps only its own local zone reservoirs
+
 
 ### ----------------------------------------
 
@@ -87,11 +87,10 @@
         - ~ 2,660 kg/sol (as a max theoretical)
 
     ♡ shower system:
-        - normal mode: 
-            10 min recommended, 20 min cut off
-        - conservation mode: 7–10 min
-        - low water mode: 5 min
-        - critical mode: timed preset buttons, enforcing a navy type shower (very short, low flow)
+        - normal: 10 min recommend, cut-off 20 min
+        - conservation: 7–10 min
+        - low water: 5 min
+        - critical / navy style: timed push-button sequence (wet, soap, rinse)
     
     ♡ breakdown (kg/person/sol):
         - drinking + food rehydration: 
@@ -122,17 +121,36 @@
              0.8 kg/person/sol
             ♡  total ≈ 24 kg/sol
 
-#### :
-    ♡ 
+### ----------------------------------------
+
+#### Main Processing Assemblies:
+    ♡ recovery rate:
+        - UPA: 0.87
+        - WPA: 0.95
+        - BPA: 0.90
+
+    ♡ base power:
+        - UPA: 0.45 kW
+        - WPA  0.80 kW
+        - BPA  0.25 kW
+
+    ♡ handling capacity:
+        - UPA  6.0 kg/h
+        - WPA  80.0 kg/h
+        - BPA  0.25 kg/h
+
+    ♡ power fraction:
+        - UPA  0.45
+        - WPA  0.50
+        - BPA  0.40
+
+#### Operating modes:
+    ♡ offline: unit off
+    ♡ idle: low standby power
+    ♡ running: power scales with load fraction, processes up to hourly capacity
 
 ### ----------------------------------------
 
-#### :
-    ♡ 
-
-    ♡
-
-    ♡
 ### ----------------------------------------
 
 ## Design Evolution:
@@ -162,13 +180,13 @@
 
 ## Design Decisions:
 #### Why separate water processing from water storage?
-    ♡  so the process flow stays clean
+    ♡ keeps process flow clean
 
-    ♡  maintenence access would be awkward and disturb the greenhouse
+    ♡ isolates dirty equipment from greenhouse and living areas
 
-    ♡  the dirty part of the system won't be near the clean growing area
+    ♡ provides dedicated maintenance access
 
-    ♡  to make sure there was enough room for everything
+    ♡ more spacious rooms
 
 #### Why allow continuous-flow showers?
     ♡ there are only 30 crew members and all of them but there should be a max time amount, I'm thinking 15 minutes as a hard maximum, 10 minutes as standard, 5 minutes in low water mode, and a very short, low-flow shower mode; "Navy" shower mode 1. water on = wet yourself, 2. water off = soap/shampoo 3. water on = rinse 4.done ( maybe controlled with a push button?)
