@@ -1,5 +1,9 @@
 # Solar Power:
 ### General Notes:
+    ♡ this is modeled as a fully active power producing area
+
+    ♡ real world spacing, roads, maintenance paths, etc. are treated as outside the simulated field area as an intentional V1 simplification
+
     ♡ I read that even during global dust storms, tilted panels (~ 30° southward) keep minimum irradiance in the 20-60 W/m² range under worst conditions.
 
     ♡ Actual irradiance will depend on:

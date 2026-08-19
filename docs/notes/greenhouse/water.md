@@ -241,6 +241,19 @@
 
     ♡ the biomass water will eventually be calculated from crop production, but not for v1, so in the meantime the placeholder is just going to be ~ 5%
 
+    loop:
+        1. crew wastewater / other waste
+        2. UPA / WPA and other treatment
+        3. recovered clean water
+        4. nutrient recovery / processing
+        5. greenhouse nutrient solution
+        6. plants
+        7. plant transpiration
+        8. greenhouse humidity
+        9. CHX condensate capture
+        10. WPA processing
+        11. recovered water returns to habitat storage
+
 ### ----------------------------------------
 
 ## Future Considerations:
@@ -261,6 +274,8 @@
     ♡ determine how salts or unwanted compounds are prevented from accumulating in the greenhouse reservoirs
 
     ♡ eventually connect recovered nutrient production to greenhouse nutrient demand
+
+    ♡ remember to go back over my make-up water demand values so they don't dominate the water balance
 
 ### ----------------------------------------
 
