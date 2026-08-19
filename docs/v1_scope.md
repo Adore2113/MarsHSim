@@ -250,20 +250,7 @@
 
 
 ### Water / CHX Notes:
-    ♡ water recovery systems I'm going to use:
-        - Urine Processor Assembly (UPA)
-        - Water Processor Assembly (WPA)
-        - Brine Processor Assembly (BPA)
-
-    ♡ so the urine goes through the UPA and gets clean water and brine and the brine goes through the BPA and gets some more clean water and a smaller amount of brine (that's the goal anyway)
-
-    ♡ OGA uses potable water
-
-    ♡ electrostatic dust repulsion (EDS) b/c of the fact that it's passive
-
-    ♡ scheduled cleaning (possibly automated)
-
-    ♡ dust repellent coatings that need to be reapplied over time
+##### see water.md folder
 
 
 ### Mars Dust / Environment Factors:
