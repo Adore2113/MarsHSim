@@ -86,7 +86,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ going to use 1000kg of water to start as a placeholder to finish the OGA functions
 
-    ♡ going to keep the OGA functions seperate instead of one big function w. a comment to sort of group them together, I feel like that will be better for future readability
+    ♡ going to keep the OGA functions separate instead of one big function w. a comment to sort of group them together, I feel like that will be better for future readability
 
     ♡ arranged some comments to be beside the line of code, I find if it's short, it does look cleaner
 
@@ -229,14 +229,6 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ updated state variables file to include the new power variables I've been using from state and removed them out of the placeholder value section
 
-    ♡ since I want to have solar, I'm going to need to have a huge battery storage for when there are dust storms and other impacting factors (I still have an injury, I am doing small blocks of code at a time) 
-    
-    ♡  making the battery capacity 4000.0 kWh for now
-
-    ♡ I chose the starting amounts for some power variables and made a separate file for the OGA and water electrolysis
-
-    ♡ added power consumed to lights function
-
     ♡ ***while looking at the amine bed list, I'm not happy w. how it's running right now b/c of how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that***
 
     ♡ I fixed a lot of my code today and added solar list of dictionaries, updated the amine list of dictionaries and made a crew metabolism dictionary, fixed some typos and learned a lot about organizing files, name consistency, code consistency, not going overboard too fast and file setup
@@ -346,7 +338,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I want to start to organize my engine file
 
-    ♡ added a seperate file for alerts that I will update more later on b/c it isn't really a priority right now
+    ♡ added a separate file for alerts that I will update more later on b/c it isn't really a priority right now
 
 #### Next Session:
     ♡ print total power being used and a power priority system for when power is low and only runs essential power systems
@@ -371,7 +363,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ fixed peak daylight today to reset for each sol
 
-    ♡ I'm trying to decide if I should keep my lights function so it's controlling the brightness based off of it's own battery storage check, or move it to the function where it handles low power.. I'm leaning towards the latter
+    ♡ I'm trying to decide if I should keep my lights function so it's controlling the brightness based on it's own battery storage check, or move it to the function where it handles low power.. I'm leaning towards the latter
 
     ♡ moved it ^
 
@@ -494,7 +486,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 #### Next Session:
     ♡ continue working on water_system.py:
-        - add new results to print function
+    ♡ add new results to print function
         - add condensate
         - change oga to use water usage from water_system file and remove its own storage variable
         - don't forget about the CHX
@@ -710,22 +702,22 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ going w. a hydroponic set up, I updated v1_scope to include all my notes about a greenhouse 
 
-    ♡ going to add to my habitat size after I have the greenhouse set up, so for now I'm going to treat it as if it is a seperate building, running on all the same systems
+    ♡ going to add to my habitat size after I have the greenhouse set up, so for now I'm going to treat it as if it is a separate building, running on all the same systems
 
     ♡ I like the idea of the plants having a set percentage of sunlight that is let in, so even if it's low they're still getting at least a good portion of what IS available, but I'm not entirely sure I'll stick w. 70
 
     ♡ trying to set up my file so that it will be easy to incorporate changing seasons and days w.out sunlight, etc.
 
-    ♡ reconsidering my modes being two seperate words instead of snake case?
+    ♡ reconsidering my modes being two separate words instead of snake case?
 
 #### Next Session:
     ♡ continue greenhouse 
  
 
  ##      05/09/2026
-    ♡ reasearch for plants and nutrition (I updated notes in v1_scope.md)
+    ♡ research for plants and nutrition (I updated notes in v1_scope.md)
 
-    ♡ I'm going to make a list for the different plants, to keep it simple, I'm not going to have a list for each seperate plant, instead I'm going to go by plant area
+    ♡ I'm going to make a list for the different plants, to keep it simple, I'm not going to have a list for each separate plant, instead I'm going to go by plant area
 
     ♡ adding plant list to state, I want to take how much spacing the plants need into consideration
 
@@ -828,11 +820,11 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      05/18/2026
-    ♡ instead of making a seperate file for debugging I decided to just temporarily comment out my already set up print function to isolate each susbystem so I can check and see if they're working as I want them to work
+    ♡ instead of making a separate file for debugging I decided to just temporarily comment out my already set up print function to isolate each susbystem so I can check and see if they're working as I want them to work
 
     ♡ today I'm going over all of my subsystems and systems to see if they're all behaving and fixing any problems before moving on
     
-    ♡ I do want to have the greenhouse capable of raising the O₂ in the habitat b/c w. my hexagon/hive idea for the structure, everything is close together, w.out seperate buildings so it just makes sense to me that it would be a factor 
+    ♡ I do want to have the greenhouse capable of raising the O₂ in the habitat b/c w. my hexagon/hive idea for the structure, everything is close together, w.out separate buildings so it just makes sense to me that it would be a factor 
 
 #### Next Session:
     ♡ continue running system checks
@@ -858,7 +850,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ 115.5kg/sol is just the cost of having a 30 person crew
 
-    ♡ I was thinking about other way to recycle and actually get water and I thought about piercing through the surface w. two or three heated pipes that siphon up some frozen Mars water every so often? retractable pipes so they don't freeze and can be used at will, I'm going to do some reasearch on this
+    ♡ I was thinking about other way to recycle and actually get water and I thought about piercing through the surface w. two or three heated pipes that siphon up some frozen Mars water every so often? retractable pipes so they don't freeze and can be used at will, I'm going to do some research on this
 
     ♡ going back to In-Situ Resource Utilization (ISRU) to extract water locally, I'm thinking piercing through the surface w. two or three heated pipes that siphon up some frozen Mars water every so often w. retractable pipes so they don't freeze and can be used when wanted and needed to avoid environmental factors
 
@@ -1099,7 +1091,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      07/16/2026
-    ♡ I broke my ISRU panels up into two seperate panels, I would like to keep the atmosphere things together, I think
+    ♡ I broke my ISRU panels up into two separate panels, I would like to keep the atmosphere things together, I think
 
     ♡ I'm going to implement seasons into my sim before adding anything else. After doing some research I realized that I had my get_season_angle_deg wrong, b/c Mars doesn't move around the Sun at a constant speed moving faster near perihelion and slower near aphelion, which affects seasonal timing, dust storm season, solar energy and some of the other systems I have set up
     
@@ -1153,7 +1145,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I've used dust and storm as the same thing in the file, hopefully that isn't confusing for anyone checking it out, I might change this even though the storms on Mars are dust storms
 
-    ♡ I've decided to make a seperate file that updates the probability/prediction logicm like the chances of a sotrm today, thermal issues, etc.
+    ♡ I've decided to make a separate file that updates the probability/prediction logicm like the chances of a sotrm today, thermal issues, etc.
 
     ♡ keeping events.py for when I add in Murphy's Law disasters
 
@@ -1195,7 +1187,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ add these to v1_scope notes ^
 
-    ♡ making a seperate file for the solar fields
+    ♡ making a separate file for the solar fields
 
 
 #### Next Session:
@@ -1205,11 +1197,11 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      07/26/2026
     ♡ organizing notes and files before implementing updated 50acre solar plan
 
-    ♡ I've decided to move my notes out of v1_scope.md and create a file called creation_notes and have a file for the systems so I can quick reference them, I need to decide if they all get their own files w. current notes and note histories, or one large file. Seperate files seems more efficient but it adds more folders and I haven't decided if that's unappealing or not 
+    ♡ I've decided to move my notes out of v1_scope.md and create a file called creation_notes and have a file for the systems so I can quick reference them, I need to decide if they all get their own files w. current notes and note histories, or one large file. separate files seems more efficient but it adds more folders and I haven't decided if that's unappealing or not 
 
 
 ##      07/30/2026
-    ♡ reasearch day
+    ♡ research day
 
 
 ##      08/02/2026
@@ -1258,12 +1250,12 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ created Arcadia Planitia: Hive-8 Arcadia greenhouse plan, with updated specs
 
-    ♡ created a seperate file for greenhouse creation notes, b/c one file was simply too small and there are too many considerations and components to put into one file
+    ♡ created a separate file for greenhouse creation notes, b/c one file was simply too small and there are too many considerations and components to put into one file
 
     ♡ updated greenhouse variables that changed when I decided on measurements and other specifics
 
 #### Next Session:
-    ♡ continue figuring out the greenhouse plan, and seperate notes into seperate files
+    ♡ continue figuring out the greenhouse plan, and separate notes into separate files
 
 
 ##      08/09/2026
@@ -1281,7 +1273,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ NASA style and long duration designs run moderate light levels instead of Earth's commercial maximums, so 100-160 W/m² electrical is common for efficient systems that mix sunlight + LEDs
 
-    ♡ more modern LEDs deliver roughly 2.7-3.5 µmol/J, at 0.12 kW/m² (120 W/m²) electricalao I can expect ~ 320-400 µmol/m²/s (micromole, 1 mole = 1000000 umol)
+    ♡ more modern LEDs deliver ~ 2.7-3.5 µmol/J, at 0.12 kW/m² (120 W/m²) electricalao I can expect ~ 320-400 µmol/m²/s (micromole, 1 mole = 1000000 umol)
 
     ♡ I read about crop needs:
         Spinach, peas, most leafy/herbs:
@@ -1331,7 +1323,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      08/14/2026
-    ♡ considering pums for each greenhouse zone, I want to have one backup incase the prmary fails that would be automatic 
+    ♡ considering pums for each greenhouse zone, I want to have one backup  in case the prmary fails that would be automatic 
 
     ♡ I was reading that the structural LECA zone would be able to handle pump failure better than the container and rack, especially the rack b/c it is relying on the continuous flow
 
@@ -1369,7 +1361,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ start figuring out values for the plants dark period respiration
 
 ##      08/15/2026
-    ♡ I've decided to zone averages again for each zone's light period CO₂ uptake rate as the dark period's CO₂ realease rate, b/c NASA controlled enviornments show that the exact fraction can be very different depending on crop and environment, but b/c of the fractions being so different this will be a pretty rough average
+    ♡ I've decided to zone averages again for each zone's light period CO₂ uptake rate as the dark period's CO₂ release rate, b/c NASA controlled enviornments show that the exact fraction can be very different depending on crop and environment, but b/c of the fractions being so different this will be a pretty rough average
 
     ♡ structural zone will have the highest night time respiration average for my project at ~ 3.0 µmol CO₂/m²/s
 
@@ -1382,7 +1374,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ PQ = photosynthetic quotient
     ♡ RQ = respiratory quotient
 
-    ♡ I read that PQ depends on species, what kind of nitrogen the plants are taking in, what biomass they are building, and how nutritent conditions can even have an impact.. my simulator isn't going this far in depth for v1
+    ♡ I read that PQ depends on species, what kind of nitrogen the plants are taking in, what biomass they are building, and how nutrient conditions can even have an impact.. my simulator isn't going this far in depth for v1
     
     ♡ Structural: PQ ≈ 1.10, this zone has more storage root/seed/fat producing crops
 
@@ -1390,7 +1382,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ Rack: PQ ≈ 1.05, this zone is dominated more by leafy vegetative crops like spinach and herbs, so I'll keep it simple with ~ 1.1 ratio
 
-    ♡ I read that PQ depends on species, what kind of nitrogen the plants are taking in, what biomass they are building, and how nutritent conditions can even have an impact.. my simulator isn't going this far in depth for v1 so I'm going to go with one value for the O₂ exchange so for light periods it will be 1.03 for all zones 
+    ♡ I read that PQ depends on species, what kind of nitrogen the plants are taking in, what biomass they are building, and how nutrient conditions can even have an impact.. my simulator isn't going this far in depth for v1 so I'm going to go with one value for the O₂ exchange so for light periods it will be 1.03 for all zones 
 
     ♡ I read that RQ depends on what the plants are respiring, first they respire glucose/carbs, then fats, and then sometimes proteins
 
@@ -1408,7 +1400,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ starting with plant water demand, the old value was 3.4 kg/m²/sol × 1.15 = ~ 3.91 kg/m²/sol, looking over the NASA study with potatoes I've been referencing the total system water was ~ 2 L/m²/day, since water is ~ 1 kg/L, ≈ 2 kg/m²/day, a Mars sol = ~ 1.0275 Earth days, 2.0 kg/m²/day × 1.0275 day/sol ≈ 2.06 kg/m²/sol
 
-    ♡ b/c my structural zone isn't all potato, I need to increase the mixed zone average probably above that b/c the banana is also very water demanding.. so for structural prelminary value I'll use the plant water uptake rate of ~ 2.5 kg/m²/sol
+    ♡ b/c my structural zone isn't all potato, I need to increase the mixed zone average probably above that b/c the banana is also very water demanding.. so for structural preliminary value I'll use the plant water uptake rate of ~ 2.5 kg/m²/sol
 
     ♡ containers contain med/tall crops and the hydroponic recircle the water efficiently, so it doesn't need to include the solution in the containers, NASA emphasizes that in closed CEA (Chemical Equilibrium with Applications), the major crop water requirement is what plants transpire, with irrigation water recirculated
 
@@ -1420,7 +1412,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ plant water uptake seems to be mainly transpiration.. in some hydroponic experiments, water disappearing from sealed nutrient containers is treated essentially as transpiration, because only the above ground plants are exposed to the air, the water retained is actually quite low compared to that
 
-    ♡ NASA ECLSS systems treat condensate as a recoverable wastewater stream, and plant growth life support research looks into recovering and reusing transpired water vapor, so using ~ 95% capturing efficiency seems right so that the recovery isn't perfect, but still small amount doesn't get collected
+    ♡ NASA ECLSS systems treat condensate as a recoverable wastewater stream, and plant growth life support research looks into recovering and reusing transpired water vapor, so using ~ 95% capturing efficiency seems right so that the recovery isn't perfect, but still a small amount doesn't get collected
 
     ♡ things like maintenance/flushing, minor leakage, evaporation from exposed solution or wet surfaces, and solution retained in equipment/LECA during servicing all add into the the water losses, but I think I'm just going to use a small recirculation loss, and make each zone have a different percentage, mostly b/c of the different growing conditions, considering the ~ 95% capturing efficiency
 
@@ -1443,8 +1435,161 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      08/17/2026
     ♡ since changing the habitat size and slowly figuring out the layout of the habitat, certain measurements that include the volume should really only be considered as placeholders
 
-    ♡ I didn't consider how the greenhouse zones O₂ and CO₂ will be worked in.. I need to deicde if they will be seperate or part of the overall habitat
+    ♡ I didn't consider how the greenhouse zones O₂ and CO₂ will be worked in.. I need to decide if they will be separate or part of the overall habitat
 
-    ♡ I will focus on water for the time being, and I think continue going through everything as I have been with updates and more reasearch before focusing on atmosphere.py so I can be more accurate and have some extra time to decide how to handle the greenhouse zone ideas
+    ♡ I will focus on water for the time being, and I think continue going through everything as I have been with updates and more research before focusing on atmosphere.py so I can be more accurate and have some extra time to decide how to handle the greenhouse zone ideas
 
-    ♡ I have to decide what to do with the greenhouse zones, also I think the zones themselves being separate for control wasn't the best call. The greenhouse should've been handled in four quadrants or something for quarantine so I'll add this to Future Considerations in docs\notes\greenhouse layout.md I had intended for crop type grouping and area containment as two seperate parts, but that isn't a priority right now
+    ♡ I have to decide what to do with the greenhouse zones, also I think the zones themselves being separate for control wasn't the best call. The greenhouse should've been handled in four quadrants or something for quarantine so I'll add this to Future Considerations in docs\notes\greenhouse layout.md I had intended for crop type grouping and area containment as two separate parts, but that isn't a priority right now
+
+
+##      08/18/2026
+    ♡ today I'll be going over my entire habitat's water system
+
+    ♡ I need to remember to go back over my make-up water demand values so they don't dominate the water balance after I get the water system set up
+
+    ♡ consider crew laundry and other misc. things
+
+    ♡ I'm going to lower my UPA rate b/c reasaech shows that my previously decided system was a bit optimistic, so I will lower it from 0.94 to between 0.70 - 0.87. I'm also going to increase the recovery fraction from the BPA. I read that it usually recovered more, so I can move this to between 0.95-0.98
+
+    ♡ I'm going to look at my storage tank capacities and then figure out how I want the layout to be, this is a simulator and only v1, so I'm not going to have incredibly detailed layout plans
+
+    ♡ current tank capacities:  
+        - potable_water_storage_capacity_kg = 6500.0,
+        - gray_water_storage_capacity_kg = 1200.0,
+        - black_water_storage_capacity_kg = 800.0,
+        - condensate_storage_capacity_kg = 250.0,
+        - brine_storage_capacity_kg = 400.0,
+
+    ♡ increasing these tank capacities, b/c they were too small, the condensation alone can go up to 2,600 k/sol, and I need there to be a lot more water storage for long term survival
+
+    ♡ adding an extra tank for the isru system
+
+    ♡ ISS keeps a minimum reserve of ~ 800–1,600 kg of potable water in contingency after containers and MASA studies size water storage for only ~ 30 days of open-loop operation, and I read that you should plan for the largest expected daily usage plus unanticipated events
+
+    ♡ potable water storage capacity: 10,000.0 kg, 
+        usage/sol: ~ 70.5 k (drinking / nourishment only)
+        this would last ~ 142 sols
+
+    ♡ gray water storage capacity: 3,500.0 kg
+        usage/sol: ~ 45 kg (hygiene)
+        this would last ~ 78 sols
+        
+    ♡ black water storage capacity: 1,800.0 kg
+        usage/sol: ~ 54 kg/sol
+        this would last ~ 33 sols
+
+    ♡ condensate storage capacity: 5,000.0 kg
+        usage/sol: ~ 54 kg (breath / skin)
+        this would last ~ 93 sols
+
+    ♡ brine storage capacity:1000.0 kg
+        usage/sol: depends on recovery efficiency..
+        this would last ~ 
+
+    ♡ greenhouse reservoirs (total): ~ 2,000 kg
+        usage/sol: recirculating
+
+    ♡ I need to decide on layout.. originally I had planned for the rooms to be the same shape as the greenhouse, I had considered different heights too for notes mentioned previously
+
+    ♡ sticking with my octagon/hive style layout, I can work on a central utility module for the water
+
+    ♡ I want a central hub with clean, distinct corridors leading off to different rooms/octagons in the habitat, I think there should be an obvious split between the greenhouse/food area and the utilities that handle things like wastewater and things you don't really want to think about while wanting a clean area
+
+    ♡ I am picturing an area that's clean, open, and psychologically pleasant. By that I'm talking about environmental psychology, biophilic design (I believe this one is very important for a long term habitat for numerous reaons like reminding the crew of home to.. so many other reasons, I'll add later), indoor environment quality and salutogenic design. The goal is to prevent chronic stress, monotony, sensory deprivation, loss of control and social friction.
+
+    ♡ considerations: 
+            - indoor vegetation ()
+           
+            - simulated natural views (lakes, forests, aurora borealis, natural wonders, perhaps in the living quarters the crew has options to choose from)
+           
+            - plants (connection to home and living things, caretaking, flowering, etc.)
+           
+            - as mentioned before room height variations matter, but predictability also matters
+           
+            - smaller areas a bit secluded for socializing (two or three of different sizes I think, for small social gatherings, one can dual serve as a meeting/conference room), quiet soundproof areas for study/focused work
+            - cruise size library
+            
+            - tiny place for worship potentially?? This seems important to some people
+            
+            - gym for exercise and a running track potentially
+            
+            - a steam room for relaxation, physical ailments and transpiration over the greenhouse
+            
+            - potential observation area that is VERY well structured and supported like you walk into one of 
+            those clear geometric greenhouse domes that some places have in the summer where you can sit and eat
+        
+            - crew quarter considerations:
+                    - private crew quarters, that are small but large enough to be alone and not have to lie in a pod/bed, a place to actually relax, I'm thinking basing it on cruise rooms and how they have the storage and bathrooms, and down hallways that actually separate them from the main rooms of the habitat
+
+                    - figure out how to handle smell?
+
+                    - things that give the crew a sense of control over their environment like  temperature controls
+                    - ambient controllable lighting
+                    - enough storage you can feel organized and clean
+                    
+                    - transparent observation area that is VERY well structured and supported:
+                     a clear geometric dome that are lit through solar lights or string lights with the same customization options as the bedroom by choosing ambient sound/music with either modular furniture or more outdoor furniture, the crew can have the option of having a room extension of their choice it can be a personal greenhouse, patio, living room, hobby/music/art area, sleeping won't be recommended b/c the bed is ideal for a solid rest but it's their choice
+                    
+                    - including picture frames
+                    - soft/natural patterns and textures (things like mock wood or stone appearance or texture)
+                    - and something on the roof that the crew member gets to choose
+                    - perhaps this can also be simulated
+                    - a soft carpet
+                    - shelves
+                    - humidifier or dehumidifier
+                    - those vanity/counter/drawer areas you can sit at on cruise ships
+                    - separate small bathrooms
+                    - a small area for beverages
+                    - like hot water and tea or something noise cancellation
+                    - soft bedding is important
+                    - rest is important
+                    - speakers/music
+                    - ambient sound options(noisy cafe
+                    - calming rain sounds
+                    - the sound of an ocean to remind the crew of home etc. or they can close their eyes and imagine they are on earth somewhere)
+                    - very comfortable rooms and furniture
+                    - the crew quarters are VERY important
+                    - I will add more as I think of more things (I am basing a lot of this on my own experience and preferences while considering observations about friends and family) personnel need to feel cared for and very comfortable
+
+    ♡ the thing about a habitat like this, is that the crew needs to feel not only lucky to be going b/c of the oportunity but also feel as if they are getting special luxuries from earth, that ultimately don't even neccessarily need to be too expensive, the rooms are small, this sounds like a lot but when you consider the risk the crew is taking and how important their mental state is, a bit of extra items and options won't hurt in the long run
+    
+    ♡ some kind of specific decoration to mark certain areas so when you see them it will be obvious where you are, and it will become a symbol of familiarity and comfort after a while
+
+    ♡ I want to consider some seasonal changes that are subtle but noticeable, like special lighting, seasonal ambient sounds or visuals that are exclusive to those seasons with hidden easter eggs or something, nothing too complex but I'm sure there are ways that an artist could have a lot of fun with
+        
+    ♡ psychology is another subsystem to me
+        
+    ♡ constant access to personal AIs for numerous reasons
+    
+    ♡ I'm picturing a few different hub areas, that are obvious as to what they are a hub to (utility, social/cafeteria, hallway to living quarters) with hallways to avoid there only being one entrance to utility rooms mainly, in case there are emergencies, maintenance, or just busy areas
+
+    ♡ steam room can be a potential future version consideration ( pros: real benefits, high recovery rate and a small earth luxury.. cons: extra water demand (hardly b/c of recovery, extra head and humidity load, ventilation is important but maintenance and cleaning needs to be considered), I will add it in my notes though b/c I am undecided
+
+    ♡ crew water demand are rough estimates for now, overassumed instead of under, and the drinking and food rehydration is based on NASA's baseline, the personal hygiene value is higher than the ISS minimum, and some other values are averaged
+
+    ♡ I think that the crew should be able to have showers with constant water, there are only 30 of them but there should be a max time amount, I'm thinking 15 minutes as a hard maximum, 10 minutes as standard, 5 minutes in low water mode, and a very short, low-flow shower mode; "Navy" shower mode 1. water on = wet yourself, 2. water off = soap/shampoo 3. water on = rinse 4.done ( maybe controlled with a push button?)
+
+    ♡ making the shower cut off at 20 minutes instead of 15, some people like longer showers and if I will reduce it to 15 if need be
+
+    ♡ I am using misc to represent little things like eye washing stations, extra consumption, etc.
+
+    ♡ the water utility area containing the water tanks, aren't going to be light-admitting, or if they are, it won't be a priority b/c I want to make sure enough true light gets in here to see well
+
+    ♡ I did consider the tanks outside of the habitat, but that opens up a lot of other issues like maintenece issues, but I am thinking about partially burried tanks, where only about 30-40% of the large tanks only show in the warm water utility room so everything can stay in the heated room, but I will have to add extra heaters, insulation, leak detection, etc. and the freezing risk is massive, for v1 I'm sticking with keeping the tanks fully inside the water utility room
+
+    ♡ I decided to size the water utility room around the water equipment
+
+    ♡ I'm partial to symmetrical designs and shapes for layout
+
+    ♡ I considered keeping water tanks in the storage under the ramps in the greenhouse but I decided to keep those seperate
+
+    ♡ small permanent losses = uncaptured vapor, operational losses, biomass water, residual brine
+
+    ♡ I don't know why I didn't notice how big the greenhouse reservoirs are compared to how much my plants actual take in per sol, so I'm going to lower some of those values, still keeping an extra amount as a buffer.. NASA's emphasizes fluid delivery/recovery, reliability, maintainability, aeration, low mass and low volume instead of universal L/m² reservoir rule
+
+#### Next Session:
+    ♡  finish hydroponic circulation flow rates / pump duty cycles
+    ♡ add treated crew waste nutrient interface
+    ♡ revisit greenhouse make-up water demand
+    ♡ continue habitat water system
+    ♡ finish UPA / WPA / BPA assumptions in water.md
