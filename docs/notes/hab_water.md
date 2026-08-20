@@ -40,27 +40,12 @@
     ♡ shape: octagon (regular)
     ♡ floor area: 120 m²
     ♡ total height: 4.5 m
-    ♡ width: 
-        ~ 12.0 m across opposite walls
-
-    ♡ wall length (if octagon):
-        ~ 5.0 m for each outside wall
-
-    ♡ roof: 
-        flat or lightly angled
-
-    ♡ entrances: two, one from processing room, the other to the (potential) social area hub
-
-    ♡ contains vertical cylindrical habitat water tanks
-
-    ♡ notes:
-        - tanks are fully inside the pressurized, heated volume (V1)
-
-        - clear access for inspection, sensors, and maintenance
-
-        - separated from equipment so the process flow stays clean
-
-        - greenhouse keeps only its own local zone reservoirs
+    ♡ width across opposite walls: ~ 12.0 m 
+    ♡ wall length: ~ 5.0 m
+    ♡ roof: flat or lightly angled
+    ♡ entrances: two (processing room + hub)
+    ♡ contains: 
+        -vertical cylindrical tanks fully inside pressurized heated volume
 
 
 ### ----------------------------------------
