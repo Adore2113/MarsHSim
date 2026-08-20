@@ -42,9 +42,9 @@
             mass processed - recovered water
 
 ### Processing Capacity:
-    ♡ UPA  6.0 kg/h
-    ♡ WPA  80.0 kg/h
-    ♡ BPA  0.25 kg/h
+    ♡ UPA: 6.0 kg/h
+    ♡ WPA: 80.0 kg/h
+    ♡ BPA: 0.5 kg/h
     ♡ capacity is converted to the amount that can be processed during the current simulation step
 
     ♡ calculation: 
@@ -54,13 +54,13 @@
 ### Power:
     ♡ base power
         - UPA: 0.45 kW
-        - WPA  0.80 kW
-        - BPA  0.25 kW
+        - WPA: 0.80 kW
+        - BPA: 0.25 kW
 
     ♡ power fraction:
-        - UPA  0.45
-        - WPA  0.50
-        - BPA  0.40
+        - UPA: 0.45
+        - WPA: 0.50
+        - BPA: 0.40
     
     ♡ running power consists of a fixed baseline amount plus a load dependent amount
     
@@ -93,7 +93,7 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-###
+    ♡ BPA capacity changed from 0.25 kg/h to 0.5 kg/h
 
 ### ----------------------------------------
 
