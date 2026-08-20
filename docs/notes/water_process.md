@@ -30,6 +30,11 @@
     
     ♡ hysteresis prevents processors from repeatedly switching between idle and running when tank inventory is close to the operating threshold
 
+### WPA Processing Priority:
+    ♡ 1. condensate
+    ♡ 2. gray water
+    ♡ 3. raw ISRU water
+
 ### Recovery Rates:
     ♡ UPA: 0.87
     ♡ WPA: 0.95
