@@ -209,16 +209,21 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-    ♡ original  tank capacities:  
+    ♡ original  tank capacities (too small):  
         - potable water storage capacity: 6500.0 kg
         - gray water storage capacity: 1200.0 kg
         - black water storage capacity: 800.0 kg
         - condensate storage capacity: 250.0 kg
         - brine storage capacity: 400.0 kg
 
-    ♡
+    ♡ condensate alone can reach ~2 600 kg/sol
 
-    ♡
+    ♡ capacities were increased for long duration buffers and contingencies
+
+    ♡ UPA lowered from 0.94 to 0.87
+
+    ♡ BPA set at 0.90
+
 ### ----------------------------------------
 
 ## Future Considerations:
