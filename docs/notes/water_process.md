@@ -62,9 +62,9 @@
         - WPA  0.50
         - BPA  0.40
     
-    ♡ running power consists of a fixed baseline portion plus a load-dependent portion
+    ♡ running power consists of a fixed baseline amount plus a load dependent amount
     
-    ♡ the load-dependent portion increases according to the amount of the processor's available capacity being used
+    ♡ the load dependent amont increases to the amount of the processor's available capacity being used
     
     ♡ idle power is a small fixed fraction of base power
 
@@ -80,9 +80,15 @@
         
         - total running power: 
         baseline power + power increase
-        
 
-
+### Heat Output:        
+    ♡ heat added to the habitat thermal balance is modeled as ~ 85% of processor electrical power
+    
+    ♡ heat output changes with processor power use
+    
+    ♡ calculation:
+        processor heat: 
+            electrical power × 0.85
 
 ### ----------------------------------------
 
