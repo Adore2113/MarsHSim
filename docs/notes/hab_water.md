@@ -232,47 +232,49 @@
     ♡ scheduled cleaning (possibly automated)
 
     ♡ dust repellent coatings that need to be reapplied over time
+    
+    ♡ tank partial burial considered
 
-    ♡
-
-    ♡
 ### ----------------------------------------
 
 ## Design Decisions:
 #### Why separate water processing from water storage?
     ♡ keeps process flow clean
 
-    ♡ isolates dirty equipment from greenhouse and living areas
+    ♡ maintenance doesn't disturb the greenhouse
 
-    ♡ provides dedicated maintenance access
+    ♡ dirty equipment is away from living and growing areas
+
+    ♡ dedicated maintenance access and independent thermal treatment of tanks
 
     ♡ more spacious rooms
 
-#### Why allow continuous-flow showers?
-    ♡ there are only 30 crew members and all of them but there should be a max time amount, I'm thinking 15 minutes as a hard maximum, 10 minutes as standard, 5 minutes in low water mode, and a very short, low-flow shower mode; "Navy" shower mode 1. water on = wet yourself, 2. water off = soap/shampoo 3. water on = rinse 4.done ( maybe controlled with a push button?)
+#### Why keep tanks fully inside the heated volume (V1)?
+    ♡ avoids and prevents freeze risks
 
-    ♡ making the shower cut off at 20 minutes instead of 15, some people like longer showers and if I will reduce it to 15 if need be
+    ♡ simplifies leak detection and access
+
+#### Why allow continuous-flow showers?
+    ♡ quality of life for 30 crew mainly, some people like longer showers, while still having water conservation modes
+    
+    ♡ 20 min hard cut off, 10 min standard, 5 min low water mode, navy style timed sequence in critical, I will reduce it to 15 if need be
+
+    ♡ some people like longer showers
 
 #### Why overestimate crew water demand?
-    ♡ ideally the habitat has a safe buffer
+    ♡ ideally for a safe buffer
 
-    ♡ overassuming instead of under estimating is safer
+    ♡ overassuming instead of under estimating is safer for life suppport
 
     ♡ the crew can live comfortably and have things like non-timed showers
 
 #### Why send captured greenhouse condensate through the WPA?
-    ♡ greenhouse condensate is recoverable water but it needs treatment before storage
+    ♡ for recovery efficiency
 
-    ♡ routing it through the WPA keeps greenhouse recovery connected to the same central habitat water treatment loop as other recoverable water streams
-
-    ♡ this allows WPA efficiency and processing losses to affect the final amount returned to storage
+    ♡ to keep greenhouse recovery connected to the same loop as other recoverable water streams
 
 #### Why use treated habitat water for greenhouse make-up in V1?
-    ♡ the greenhouse is part of the same closed habitat water inventory
-
-    ♡ using treated habitat water keeps the greenhouse connected to the water recovery system
-
-    ♡ raw wastewater is not sent directly into the greenhouse reservoirs
+    ♡ to have one closed inventory
 
     ♡ nutrient recovery from crew waste is planned for the future, but nutrients are treated separately from water in V1 
 
