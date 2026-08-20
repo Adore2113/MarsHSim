@@ -165,34 +165,33 @@
 
 ### Water System Connections:
     ♡ crew metabolism:
-        - potable water is consumed by the crew
-        - wastewater is sent to the gray and black water tanks
+        - potable water = consumed
+        - wastewater is sent to gray and black tanks
 
     ♡ CHX condensate:
-        - collected condensate is sent to the condensate tank
-        - condensate is processed through the WPA before returning to potable storage
+        - collected condensate is sent to condensate tank
+        - condensate = processed through WPA, then returned to potable storage
 
     ♡ greenhouse make-up:
-        - potable water is supplied to the greenhouse reservoirs as needed
+        - potable water = supplied to greenhouse reservoirs as needed
 
     ♡ greenhouse captured condensate:
-        - captured greenhouse water vapor is sent through the WPA before returning to potable storage
+        - captured greenhouse water vapor is sent through WPA, then returned to potable storage
 
     ♡ OGA / electrolysis:
-        - consumes potable water during oxygen production
+        - potable water = consumed during O₂ production
 
     ♡ Sabatier:
-        - produces water that is added directly to potable storage
+        - produces water that goes to potable storage
 
     ♡ raw ISRU water:
-        - extracted water is stored in the raw ISRU water tank
-        - raw ISRU water is processed through the WPA before entering potable storage
+        - extracted water goes to raw ISRU water tank
+        - raw ISRU water goes through WPA, then potable storage
 
     ♡ permanent water losses:
         - uncaptured water vapor
-        - residual water retained in brine
-        - water lost to harvested or stored biomass
-        - these represent small losses from the closed water loop
+        - residual brine
+        - harvested or stored biomass
 
 ### ----------------------------------------
 
