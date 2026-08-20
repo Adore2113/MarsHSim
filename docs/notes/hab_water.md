@@ -102,11 +102,17 @@
 ### ----------------------------------------
 
 #### Core Processing Assemblies:
-    ♡ UPA: black water to recovered water + brine
+    ♡ UPA:
+        - black water goes to recovered water + brine
     
-    ♡ WPA priority order: condensate to gray water to raw ISRU water
+    ♡ WPA:
+        - produces potable-grade recovered water
+        - priority order:
+            1. condensate
+            2. gray water
+            3. raw ISRU water
     
-    ♡ BPA: brine to additional recovered water
+    ♡ BPA: brine goes to additional recovered water
 
     ♡ recovery rate:
         - UPA: 0.87
@@ -137,63 +143,19 @@
 
 ### ----------------------------------------
 
-#### UPA:
-    ♡ loop:
-        - consumes black water
-        - to recovered water + brine
-        - to the brine tank for BPA
-    ♡
-
-    ♡ calculation:
-
-### ----------------------------------------
-
-#### WPA:
-    ♡ produces potable-grade recovered water
-
-    ♡ priority order for inputs:
-        1. condensate
-        2. gray water
-        3. raw ISRU water
-
-    ♡
-
-    ♡ calculation:
-
-### ----------------------------------------
-
-#### BPA:
-    ♡ processes brine to additional recovered water
-
-    ♡
-
-    ♡ calculation:
-
-### ----------------------------------------
-
-#### Water Processing Order (08/19/2026):
-    ♡ crew water usage first:
-        - potable water decreases from crew consumption
+#### Water Processing Order (per step):
+    ♡ 1. crew water usage:
+        - potable water - crew consumption
         - gray water increases from recoverable crew wastewater
         - black water increases from all black water waste
 
-    ♡ the UPA, BPA, and WPA run using current water tank states
+    ♡ 2. run UPA, BPA, WPA
 
-    ♡ processing order between the UPA, BPA, and WPA doesn't really affect the overall mass balance because each processor reads the current state of its source tank
+    ♡ 3. total recovered = UPA + WPA + BPA + Sabatier
+    
+    ♡ 4. subtract subsystem potable uses (OGA + greenhouse make-up)
 
-    ♡ recovered water is combined from:
-        - UPA
-        - WPA
-        - BPA
-        - Sabatier
-
-    ♡ Sabatier produced water is treated as a direct path to potable water
-
-    ♡ subsystem potable water demands are then applied:
-        - OGA water use
-        - greenhouse make-up water
-
-    ♡ all water tanks are updated after processing:
+    ♡ 5 all water tanks are updated after processing:
         - tanks cannot fall below 0 kg
         - tanks cannot exceed their maximum storage capacity
 
