@@ -45,11 +45,16 @@
     ♡ UPA: 6.0 kg/h
     ♡ WPA: 80.0 kg/h
     ♡ BPA: 0.5 kg/h
+    
     ♡ capacity is converted to the amount that can be processed during the current simulation step
 
     ♡ calculation: 
-        maximum available this step: 
+        - maximum available this step: 
             handling capacity × step duration in hours
+        
+        - BPA daily capacity:
+            0.5 kg/h × 24 h
+            = 12 kg/sol
 
 ### Power:
     ♡ base power
@@ -93,7 +98,18 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-    ♡ BPA capacity changed from 0.25 kg/h to 0.5 kg/h
+#### Early Recovery Rates:
+    ♡ original UPA recovery was higher at ~ 0.94
+    ♡ lowered to 0.87 after researching more
+
+#### Power Logic:
+    ♡ early versions used fixed power
+    ♡ updated to load proportional power (baseline + variable portion)
+
+#### BPA Capacity:
+    ♡ original capacity was 0.25 kg/h
+
+    ♡ raised to 0.5 kg/h so the unit can keep up with brine from 30 crew without long term accumulation
 
 ### ----------------------------------------
 
@@ -103,9 +119,43 @@
 ### ----------------------------------------
 
 ## Design Decisions:
-### 
+#### Why shared control pattern for all three?
+    ♡ keeps code and behaviour consistent
+
+    ♡ makes hysteresis and power scaling easy to change
+
+    ♡ simplifies future low power modes
+
+#### Why that specific priority order on WPA?
+    ♡ condensate is the cleanest recoverable water
+    
+    ♡ gray water is most common
+    
+    ♡ raw ISRU water is last so it does not displace higher priority sources
+
+#### Why BPA capacity of 0.5 kg/h?
+    ♡ brine volume is much smaller than gray or black water
+
+    ♡ low power and thermal impact
+    
+    ♡ it's enough to keep up with brine production from 30 crew
+
+#### Why model heat as ~ 85 % of electrical power?
+    ♡ it seemed simple and conservative for V1 thermal balance
+    
+    ♡ still captures the main heat contribution without needing detailed efficiency curves
 
 ### ----------------------------------------
 
 ### Dev Log Notes:
-#####
+###### 04/22/2026:
+    ♡ chose UPA / WPA / BPA after doing research on reusability
+
+###### 05/25/2026:
+    ♡ added hysteresis and load proportional power logic
+
+###### 08/18/2026:
+    ♡ locked in recovery rates (UPA 0.87, WPA 0.95, BPA 0.90)
+
+###### 08/20/2026:
+    ♡ raised BPA handling capacity from 0.25 kg/h to 0.5 kg/h and added daily capacity calculations for water recovery
