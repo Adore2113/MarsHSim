@@ -63,12 +63,6 @@
 #### Crew Water Demands: 
     ♡ demand total: ~ 1,450 kg/sol
     ♡ theoretical maximum: ~ 2,660 kg/sol
-
-    ♡ shower system:
-        - normal: 10 min recommend, cut-off 20 min
-        - conservation: 7–10 min
-        - low water: 5 min
-        - critical / navy style: timed push-button sequence (wet, soap, rinse)
     
     ♡ breakdown (kg/person/sol):
         - drinking + food rehydration: 
@@ -99,9 +93,21 @@
              0.8 kg/person/sol
             ♡  total ≈ 24 kg/sol
 
+    ♡ shower system:
+        - normal: 10 min recommend, cut-off 20 min
+        - conservation: 7–10 min
+        - low water: 5 min
+        - critical / navy style: timed push-button sequence (wet, soap, rinse)
+
 ### ----------------------------------------
 
-#### Main Processing Assemblies:
+#### Core Processing Assemblies:
+    ♡ UPA: black water to recovered water + brine
+    
+    ♡ WPA priority order: condensate to gray water to raw ISRU water
+    
+    ♡ BPA: brine to additional recovered water
+
     ♡ recovery rate:
         - UPA: 0.87
         - WPA: 0.95
@@ -122,10 +128,12 @@
         - WPA  0.50
         - BPA  0.40
 
-#### Operating modes:
-    ♡ offline: unit off
-    ♡ idle: low standby power
-    ♡ running: power scales with load fraction, processes up to hourly capacity
+    ♡ modes (identical pattern for all three):
+        - offline: unit off
+        - idle: low standby power when inventory below hysteresis
+        - running: processes available mass up to hourly capacity; power scales with load fraction
+
+    ♡ heat added to habitat thermal balance ≈ 85% of electrical power
 
 ### ----------------------------------------
 
