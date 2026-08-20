@@ -47,18 +47,18 @@
     ♡ contains: 
         -vertical cylindrical tanks fully inside pressurized heated volume
 
+    ♡ greenhouse keeps only its own local zone reservoirs (~2 000 kg total)
 
 ### ----------------------------------------
 
 #### Tank Capacities
-    ♡ potable water storage capacity: 10,000.0 kg
-    ♡ gray water storage capacity: 3,500.0 kg
-    ♡ black water storage capacity: 1,800.0 kg
-    ♡ condensate storage capacity: 5,000.0 kg
-    ♡ brine storage capacity:1000.0 kg
+    ♡ potable water storage capacity: 10,000 kg
+    ♡ gray water storage capacity: 3,500 kg
+    ♡ black water storage capacity: 1,800 kg
+    ♡ condensate storage capacity: 5,000 kg
+    ♡ brine storage capacity:1000 kg
     ♡ raw ISRU water: 4,000 kg capacity
-    ♡ greenhouse reservoirs (total): ~ 2,000 kg
-        - see greenhouse\hydroponics.md
+    ♡ greenhouse reservoirs (total): ~2 000 kg
    
 #### Crew Water Demands: 
     ♡ demand total: ≈ 1,450 kg/sol, 
