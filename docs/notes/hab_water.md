@@ -195,6 +195,19 @@
 
 ### ----------------------------------------
 
+### Control & Power Behaviour:
+    ♡ units only run when relevant tank is over hysteresis threshold
+    
+    ♡ idle power fractions: 
+        - UPA ~ 15 %
+        - WPA ~ 18 %
+        - BPA ~ 20 %
+    ♡ power scales with fraction of hourly capacity used
+    
+    ♡ low-power and critical modes already affect thermal targets
+
+### ----------------------------------------
+
 ## Design Evolution:
     ♡ original  tank capacities:  
         - potable water storage capacity: 6500.0 kg
