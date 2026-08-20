@@ -47,7 +47,7 @@
     ♡ contains: 
         -vertical cylindrical tanks fully inside pressurized heated volume
 
-    ♡ greenhouse keeps only its own local zone reservoirs (~2 000 kg total)
+    ♡ greenhouse keeps only its own local zone reservoirs (~ 2,000 kg total)
 
 ### ----------------------------------------
 
@@ -58,11 +58,11 @@
     ♡ condensate storage capacity: 5,000 kg
     ♡ brine storage capacity:1000 kg
     ♡ raw ISRU water: 4,000 kg capacity
-    ♡ greenhouse reservoirs (total): ~2 000 kg
+    ♡ greenhouse reservoirs (total): ~2,000 kg
    
 #### Crew Water Demands: 
-    ♡ demand total: ≈ 1,450 kg/sol, 
-        - ~ 2,660 kg/sol (as a max theoretical)
+    ♡ demand total: ~ 1,450 kg/sol
+    ♡ theoretical maximum: ~ 2,660 kg/sol
 
     ♡ shower system:
         - normal: 10 min recommend, cut-off 20 min
