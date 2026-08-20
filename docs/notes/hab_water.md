@@ -18,34 +18,23 @@
     ♡ shape: octagon (regular)
     ♡ floor area: 90 m²
     ♡ total height: 4.5 m
-    ♡ width: 
-        ~ 10.4 m across opposite walls
-
-    ♡ wall length:
-        ~ 4.3 m for each outside wall
-
-    ♡ center distance:
-        ~ 5.2 m from the center to each wall
-
-    ♡ corner distance:
-        ~ 5.6 m from the center to each corner
-
-    ♡ overall corner to corner width:
-        ~ 11.3 m from one corner to the opposite corner
-
+    ♡ width across opposite walls: ~ 10.4 m
+    ♡ wall length: 4.3 m
+    ♡ center to wall: ~ 5.2 m
+    ♡ center to corner: ~5.6 m
     ♡ roof: lightly angled
-
-    ♡ entrances: two, one from the greenhouse, the other to the (potential) social area hub
-
-    ♡ contains processors and working equipment for water recovery/proccessing:
+    ♡ entrances: two (greenhouse corridor + hub)
+    ♡ contains: 
         - UPA + pretreatment
-        - WPA (including gray water and condensate)
+        - WPA
         - BPA
-        - pumps, filters, catalytic reactors, etc.
-        - sampling / water quality hardware
+        - pumps
+        - filters
+        - catalytic reactors
+        - sampling hardware
         - control cabinets
-        - consumables storage
-        – maintenance aisles
+        - consumables
+        - maintenance aisles
 
 ##### Water Storage Room:
     ♡ shape: octagon (regular)
