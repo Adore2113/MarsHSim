@@ -13,8 +13,8 @@
 ### ----------------------------------------
 
 ## Arcadia Water System Plan (08/18/2026):
-#### Layout
-##### Water Recovery/Processing Room:
+### Layout
+#### Water Recovery/Processing Room:
     ♡ shape: octagon (regular)
     ♡ floor area: 90 m²
     ♡ total height: 4.5 m
@@ -36,7 +36,7 @@
         - consumables
         - maintenance aisles
 
-##### Water Storage Room:
+#### Water Storage Room:
     ♡ shape: octagon (regular)
     ♡ floor area: 120 m²
     ♡ total height: 4.5 m
@@ -163,7 +163,7 @@
 
     ♡ greenhouse water vapor that isn't captured by CHX is represented through habitat humidity updates
 
-### Water System Connections:
+#### Water System Connections:
     ♡ crew metabolism:
         - potable water = consumed
         - wastewater is sent to gray and black tanks
@@ -195,7 +195,7 @@
 
 ### ----------------------------------------
 
-### Control & Power Behaviour:
+#### Control & Power Behaviour:
     ♡ units only run when relevant tank is over hysteresis threshold
     
     ♡ idle power fractions: 
@@ -208,7 +208,7 @@
 
 ### ----------------------------------------
 
-## Design Evolution:
+### Design Evolution:
     ♡ original  tank capacities (too small):  
         - potable water storage capacity: 6500.0 kg
         - gray water storage capacity: 1200.0 kg
@@ -226,7 +226,7 @@
 
 ### ----------------------------------------
 
-## Future Considerations:
+### Future Considerations:
     ♡ electrostatic dust repulsion (EDS) b/c of the fact that it's passive
 
     ♡ scheduled cleaning (possibly automated)
@@ -237,7 +237,7 @@
 
 ### ----------------------------------------
 
-## Design Decisions:
+### Design Decisions:
 #### Why separate water processing from water storage?
     ♡ keeps process flow clean
 

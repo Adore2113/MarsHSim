@@ -19,7 +19,7 @@
 
  ### ----------------------------------------
 
-### Light Targets & Natural Light:
+#### Light Targets & Natural Light:
     ♡ Mars sunlight:
         - default zone light target:0.23 kW/m²
         - default zone light absorption: 70%
@@ -39,7 +39,7 @@
 
 ### ----------------------------------------
 
-### LED System:
+#### LED System:
     ♡ LED support fills the remaining light needed to reach each zone's light target
 
     ♡ LED power density:
@@ -60,7 +60,7 @@
 
 ### ----------------------------------------
 
-### Plant Lighting Schedule:
+#### Plant Lighting Schedule:
     ♡ light period: 
         16 hours per sol
 
@@ -76,7 +76,7 @@
 
 ### ----------------------------------------
 
-### How Light Level Is Calculated:
+#### How Light Level Is Calculated:
     ♡ natural light is reduced by the zone’s light absorption percentage
     
     ♡ day_length_bonus adjusts for seasonal daylight changes:
@@ -88,7 +88,7 @@
 
 ### ----------------------------------------
 
-### Zone Light Targets:
+#### Zone Light Targets:
     ♡ structural zone: 0.26 kW/m²
     ♡ container zone: 0.23 kW/m²
     ♡ rack zone: 0.19 kW/m²
