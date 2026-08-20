@@ -1,10 +1,14 @@
 # Habitat Water System
 ### General Notes:
-    ♡ water demands are slightly over estimated becuase I would rather overestimate than under when it comes to values of usage/demand
+    ♡ crew demand is intentionally over estimated for safety margin
 
-    ♡
+    ♡ closed-loop recovery with realistic (non-perfect) efficiencies
 
-    ♡
+    ♡ clear separation of dirty processing from clean storage
+
+    ♡ integrates OGA, Sabatier, CHX condensate, greenhouse make-up, and raw ISRU water
+
+    ♡ permanent losses (uncaptured vapor, residual brine, biomass water, operational losses) produces a small net negative that ISRU offsets
 
 ### ----------------------------------------
 
@@ -150,6 +154,101 @@
     ♡ running: power scales with load fraction, processes up to hourly capacity
 
 ### ----------------------------------------
+
+#### UPA:
+    ♡ loop:
+        - consumes black water
+        - to recovered water + brine
+        - to the brine tank for BPA
+    ♡
+
+    ♡ calculation:
+
+### ----------------------------------------
+
+#### WPA:
+    ♡ produces potable-grade recovered water
+
+    ♡ priority order for inputs:
+        1. condensate
+        2. gray water
+        3. raw ISRU water
+
+    ♡
+
+    ♡ calculation:
+
+### ----------------------------------------
+
+#### BPA:
+    ♡ processes brine to additional recovered water
+
+    ♡
+
+    ♡ calculation:
+
+### ----------------------------------------
+
+#### Water Processing Order (08/19/2026):
+    ♡ crew water usage first:
+        - potable water decreases from crew consumption
+        - gray water increases from recoverable crew wastewater
+        - black water increases from all black water waste
+
+    ♡ the UPA, BPA, and WPA run using current water tank states
+
+    ♡ processing order between the UPA, BPA, and WPA doesn't really affect the overall mass balance because each processor reads the current state of its source tank
+
+    ♡ recovered water is combined from:
+        - UPA
+        - WPA
+        - BPA
+        - Sabatier
+
+    ♡ Sabatier produced water is treated as a direct path to potable water
+
+    ♡ subsystem potable water demands are then applied:
+        - OGA water use
+        - greenhouse make-up water
+
+    ♡ all water tanks are updated after processing:
+        - tanks cannot fall below 0 kg
+        - tanks cannot exceed their maximum storage capacity
+
+    ♡ greenhouse transpiration is sent through the thermal/CHX system
+
+    ♡ greenhouse water vapor that isn't captured by CHX is represented through habitat humidity updates
+
+### Water System Connections:
+    ♡ crew metabolism:
+        - potable water is consumed by the crew
+        - wastewater is sent to the gray and black water tanks
+
+    ♡ CHX condensate:
+        - collected condensate is sent to the condensate tank
+        - condensate is processed through the WPA before returning to potable storage
+
+    ♡ greenhouse make-up:
+        - potable water is supplied to the greenhouse reservoirs as needed
+
+    ♡ greenhouse captured condensate:
+        - captured greenhouse water vapor is sent through the WPA before returning to potable storage
+
+    ♡ OGA / electrolysis:
+        - consumes potable water during oxygen production
+
+    ♡ Sabatier:
+        - produces water that is added directly to potable storage
+
+    ♡ raw ISRU water:
+        - extracted water is stored in the raw ISRU water tank
+        - raw ISRU water is processed through the WPA before entering potable storage
+
+    ♡ permanent water losses:
+        - uncaptured water vapor
+        - residual water retained in brine
+        - water lost to harvested or stored biomass
+        - these represent small losses from the closed water loop
 
 ### ----------------------------------------
 
