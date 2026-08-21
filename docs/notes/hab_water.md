@@ -103,7 +103,9 @@
 
 #### Core Processing Assemblies:
     ♡ UPA:
-        - black water goes to recovered water + brine
+        - processes black water
+        - recovered water is sent back to the recovery system
+        - remaining concentrated waste becomes brine
     
     ♡ WPA:
         - produces potable-grade recovered water
@@ -114,32 +116,7 @@
     
     ♡ BPA: brine goes to additional recovered water
 
-    ♡ recovery rate:
-        - UPA: 0.87
-        - WPA: 0.95
-        - BPA: 0.90
-
-    ♡ base power:
-        - UPA: 0.45 kW
-        - WPA  0.80 kW
-        - BPA  0.25 kW
-
-    ♡ handling capacity:
-        - UPA  6.0 kg/h
-        - WPA  80.0 kg/h
-        - BPA  0.25 kg/h
-
-    ♡ power fraction:
-        - UPA  0.45
-        - WPA  0.50
-        - BPA  0.40
-
-    ♡ modes (identical pattern for all three):
-        - offline: unit off
-        - idle: low standby power when inventory below hysteresis
-        - running: processes available mass up to hourly capacity; power scales with load fraction
-
-    ♡ heat added to habitat thermal balance ≈ 85% of electrical power
+    ♡ see more at water_process.md
 
 ### ----------------------------------------
 
@@ -195,19 +172,6 @@
 
 ### ----------------------------------------
 
-#### Control & Power Behaviour:
-    ♡ units only run when relevant tank is over hysteresis threshold
-    
-    ♡ idle power fractions: 
-        - UPA ~ 15 %
-        - WPA ~ 18 %
-        - BPA ~ 20 %
-    ♡ power scales with fraction of hourly capacity used
-    
-    ♡ low-power and critical modes already affect thermal targets
-
-### ----------------------------------------
-
 ### Design Evolution:
     ♡ original  tank capacities (too small):  
         - potable water storage capacity: 6500.0 kg
@@ -220,9 +184,6 @@
 
     ♡ capacities were increased for long duration buffers and contingencies
 
-    ♡ UPA lowered from 0.94 to 0.87
-
-    ♡ BPA set at 0.90
 
 ### ----------------------------------------
 
