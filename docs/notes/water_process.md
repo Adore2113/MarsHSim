@@ -57,9 +57,12 @@
         - maximum available this step: 
             handling capacity × step duration in hours
         
-        - BPA daily capacity:
-            0.5 kg/h × 24 h
-            = 12 kg/sol
+        - daily processing capacity:
+            88,775.244 s/sol ÷ 3,600 s/h
+            ≈ 24.66 h/sol
+            
+            0.5 kg/h × 24.66 h/sol
+            ≈ 12.33 kg/sol
 
 ### Power:
     ♡ base power
@@ -74,7 +77,7 @@
     
     ♡ running power consists of a fixed baseline amount plus a load dependent amount
     
-    ♡ the load dependent amont increases to the amount of the processor's available capacity being used
+    ♡ the load dependent amount increases with the amount of the processor's available capacity being used
     
     ♡ idle power is a small fixed fraction of base power
 
