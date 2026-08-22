@@ -121,11 +121,19 @@
     ♡ if stored CO₂ is almsot gone, a small limited amount can be drawn from cabin atmosphere
 
     ♡ capped so cabin CO₂ is not quickly depleated
-    
+
 ### ----------------------------------------
 
 ## Design Evolution:
-####
+#### Early Integration:
+    ♡ originally added late to the water balance
+
+    ♡ water production was missing from the storage update
+
+#### Modes:
+    ♡ added limited_co2 / limited_h2 and venting modes
+
+    ♡ added power saving mode for critical power conditions
 
 ### ----------------------------------------
 
