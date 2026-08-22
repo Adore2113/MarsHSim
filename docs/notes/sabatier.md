@@ -138,7 +138,11 @@
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ 
+    ♡ go over OGA hydrogen production rates
+
+    ♡ more detailed efficiency drop over time
+
+    ♡ option to store vs vent methane based on mission phase (propellant or disposal)
 
 ### ----------------------------------------
 
@@ -148,4 +152,66 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
-######
+###### 03/09/2026
+    ♡ researched O₂ regeneration and electrolysis w. focus on Oxygen Generation Assembly (OGA), MOXIE like Solid Oxide Electrolysis (SOXE) and Sabatier CO₂ reduction + electrolysis
+
+
+##      03/10/2026
+    ♡ adding in the hydrogen that the OGA electrolysis makes and venting it FOR NOW and will do research on how I can use it later on (Sabatier?)
+
+##      04/27/2026
+    ♡ started to add sabatier info/logic into my water system file
+
+##      04/28/2026
+    ♡ created a new file for the Sabatier
+
+##      04/30/2026
+    ♡ I am going to keep h2 stored in kg and also I'm going to make the methane(ch4) storage to be in kg b/c these are being treated as resources and I read that the Sabatier uses mass ratios, not pressure ratios
+
+    ♡ if I need to convert them at any time, I'll just use the conversion and put it up as a constant in the file
+
+    ♡ resuming Sabatier file
+
+    ♡ using a hysteresis to avoid jumpy on and off reactions
+
+    ♡ reactions_available is how many times stoichiometric reaction can happen w. a ratio of 1 CO₂ : 4 h2
+
+    ♡ I realize I actually put the mode decision in the main function for running the sabatier and also the OGA actually and I didn't in the other files. I've been changing things and upgrading how I'm doing things so eventually I will need to go through all of the files that I worked on first.
+
+    ♡ waiting to do that though ^ b/c refactoring and editing has taken up enough time for the time being and I want to focus on getting some main systemsfigured out. 
+
+    ♡ I thought adding a little bit of a leak while venting the ch4 was realistic, so I might add this to the other systems that vent
+
+##      05/01/2026
+    ♡ added sabatier outputs and updates into engine.py and fixed variables for ch4 where I accidentally put kpa insted or kg
+
+    ♡ code is running again
+
+##      05/03/2026
+    ♡ updating print to show sabatier information
+
+    ♡ I decided to track gases in the atmosphere in kpa and h2 and ch4 in kg for storage and I'm not 100% sure about the other ones yet
+
+    ♡ going to keep things consistent: kg for storage, kpa for atmosphere
+
+    ♡ adding variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others)
+
+##      05/20/2026
+    ♡ while going over the results from each subsystem, I'm realizing that CO₂ is not being handled right.. I need to fix where the Sabatier is getting it's CO₂ amount from
+
+    ♡ I made some changes to the Sabatier file and ran a few test for four sols, getting an update every 5 hours while only getting the sol, time and atmosphere info.. CO₂ is much better, but there are still issues w. the buffer gas, as well as a few other things, that I will be working towards 
+
+
+##      05/22/2026
+    ♡ I added in the Sabatier into water.py, b/c I forgot to add it in the storage update and run_water_system function 
+
+##      06/19/2026
+    ♡ fixing my sabatier file, made the methane go aove the safe limit, so I'm going to see what I can do w. the methane storage and venting 
+
+    ♡ I decided to make sure all ch4 is either vented immediately or sent to storage, it's not goin to be added into the cabin atmosphere
+
+    ♡ I fixed the sabatier call in engine.py
+
+    ♡ I noticed my greenhouse is currently producting 75x MORE O₂ than my crew of 30  mean and this is absolutely not right, it doesn't make any sense so I need to fix this
+
+
