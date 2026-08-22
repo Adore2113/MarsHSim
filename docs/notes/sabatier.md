@@ -6,14 +6,56 @@
 
     ♡ water produced is added directly to the potable water balance
 
+    ♡ integrates with OGA: OGA produces hydrogen that can feed the Sabatier (or be vented)
+
+    ♡ SpaceX approach: combines oxygen production (electrolysis / OGA) with methane rocket fuel production with Sabatier + electrolysis
+
     ♡ only runs when so many reactants are available and the system is on
 
     ♡ includes limited and venting modes for reactant shortages and methane storage limits
 
 ### ----------------------------------------
 
-## _____ Plan ():
-####
+## Sabatier Plan:
+### Reaction Chemistry:
+    ♡ stoichiometric ratio: 
+        1 CO₂ : 4 H₂
+
+    ♡ produces: 
+        1 CH₄ + 2 H₂O
+
+    ♡ molar masses:
+        - H₂ = 2.016 g/mol
+        - CO₂ = 44.01 g/mol
+        - CH₄ = 16.043 g/mol
+        - H₂O = 18.015 g/mol
+
+    ♡ base efficiency: 0.88
+
+    ♡ reactions_available:
+        - how many times the stoichiometric reaction can occur, limited by the lesser reactant and efficiency
+
+    ♡ calculation:
+        co2_moles:
+             available_co2_kg / (44.01 × 0.001)
+
+        h2_moles:
+             available_h2_kg  / (2.016 × 0.001)
+             
+        reactions_available:
+             min(co2_moles, h2_moles / 4) × 0.88
+
+        water_produced_kg:
+             reactions_available × 2 × 18.015 × 0.001
+        
+        ch4_produced_kg :
+             reactions_available × 16.043 × 0.001
+        
+        h2_consumed_kg  :
+             reactions_available × 4 × 2.016 × 0.001
+        
+        co2_consumed_kg :
+             reactions_available × 44.01 × 0.001
 
 ### ----------------------------------------
 
