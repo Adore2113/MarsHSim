@@ -41,7 +41,7 @@
 
         h2_moles:
              available_h2_kg  / (2.016 × 0.001)
-             
+
         reactions_available:
              min(co2_moles, h2_moles / 4) × 0.88
 
@@ -56,6 +56,32 @@
         
         co2_consumed_kg :
              reactions_available × 44.01 × 0.001
+
+### Operating Modes:
+    ♡ offline:
+        - system off
+        - no power or reaction
+
+    ♡ idle:
+        - both reactants below minimum thresholds
+        - very low standby power: ~ 0.1 kW
+
+    ♡ limited_co2 / limited_h2:
+        - one reactant is low/below hysteresis
+        - runs at reduced power: ~ 75 % of base
+
+    ♡ running:
+        - both reactants above hysteresis
+        - full power and reaction rate
+
+    ♡ venting:
+        - methane storage is near or over capacity
+        - excess CH₄ is vented
+        - power may increase slightly at × 1.25
+
+    ♡ critical power mode:
+        - reduced power: 0.3 kW
+        - reduced  heat: ~ 0.2 kW
 
 ### ----------------------------------------
 
