@@ -117,7 +117,11 @@
 
     ♡ small continuous CH₄ leak from storage is also modelled
 
+### Atmosphere Fallback:
+    ♡ if stored CO₂ is almsot gone, a small limited amount can be drawn from cabin atmosphere
 
+    ♡ capped so cabin CO₂ is not quickly depleated
+    
 ### ----------------------------------------
 
 ## Design Evolution:
