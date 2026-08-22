@@ -18,6 +18,13 @@
 
 ## Sabatier Plan:
 ### Reaction Chemistry:
+    ♡ min H₂ for reaction: 0.012 kg
+    ♡ min CO₂ for reaction: 0.012 kg
+    ♡ hysteresis multiplier: 1.5
+   
+    ♡ methane venting hysteresis: 
+        0.60 of storage capacity
+   
     ♡ stoichiometric ratio: 
         1 CO₂ : 4 H₂
 
