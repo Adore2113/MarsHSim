@@ -103,6 +103,20 @@
         heat:
             sabatier_power_used_kw × 0.65
 
+### Water Production:
+    ♡ water produced is added to the potable water storage veach step
+
+    ♡ this is an important recovery source in the water balance
+
+### Methane Handling:
+    ♡ produced CH₄ is added to storage
+
+    ♡ when storage exceeds venting hysteresis excess is vented/capped
+
+    ♡ hard capacity limit forces venting if reached
+
+    ♡ small continuous CH₄ leak from storage is also modelled
+
 
 ### ----------------------------------------
 
