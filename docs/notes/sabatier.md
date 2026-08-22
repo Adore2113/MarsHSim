@@ -147,7 +147,15 @@
 ### ----------------------------------------
 
 ## Design Decisions:
-#### 
+#### Why include water production in the main water balance?
+    ♡ Sabatier is an important source of recovered water
+
+    ♡ it keeps the closed loop efficient
+
+#### Why allow limited atmosphere CO₂ draw?
+    ♡ it prevents the reactor from stopping completely when stored CO₂ is low
+
+    ♡ still limited so cabin CO₂ isn't depleted too quickly
 
 ### ----------------------------------------
 
