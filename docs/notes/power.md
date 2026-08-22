@@ -20,27 +20,52 @@
 
         -enters low and critical power modes as charge decreases
     
+    ♡ physical layout:
+        - dedicated room
+
+        - shape: regular octagon (consistent with other utility rooms)
+
+        - floor area: ~ 110 m²
+        - height: 4.5 m
+        - volume: ~ 495 m³
+        - access: 
+                *to do
+
+        - contains:
+            -battery modules and breakers
+            -transfer gear
+            -monitoring equipment
+
+
     ♡ to do:
         - battery chemistry
-        - figure out area for battery
-        - mass
-        - volume
         - charge/discharge limits
         - calculation showing how capacity was chosen
 
 #### Secondary Battery Bank:
     ♡ current capacity: 1,500,000 kWh (1.5 GWh)
-    ♡ long-term energy storage
-
-    ♡ for long term habitat life with no resupply
 
     ♡ charges only after the primary battery reaches the charging threshold
 
     ♡ supplies energy back to the primary battery during shortages
 
-    ♡ maintains a reserve except during emergency situations
+    ♡ maintains reserve except during emergency situations
 
     ♡ may increase to 2.0 GWh after longer testing
+
+    ♡ physical layout:
+        - total volume: 15,000 m³
+        - each pod: 750 m³
+        - height: 4.5 m
+        - floor area per pod: ~ 167 m²
+
+        - central hallway split into 20 modular areas along both sides (10 per side)
+
+        - total area across all pods: ~ 3,333 m²
+        
+        - access: utility wing
+
+        - lower access priority (backup storage does not need core real estate)
 
 #### Battery Transfer:
     ♡ primary battery always has charging priority
@@ -182,6 +207,26 @@
     ♡ the habitat needs enough working storage to handle normal daily operation plus extra
 
     ♡ the larger secondary battery is intended for long term storage
+
+#### Why this Primary battery size and layout?
+    ♡ I wanted to be able to have a comfortable buffer on top of being able to very easily handle daily operation
+
+    ♡ nice and compact (~ 110 m² octagon) so it can sit near main power distribution
+
+    ♡ easy access and short cable runs matter for the primary battery
+
+#### Why this seconadary battery size and layout?
+    ♡ multiple smaller rooms seem neater, less overwhelming in emergencies, easier to maintain and easier to isolate issues if they came up later
+
+    ♡ sized for long duration storage (dust storms, low sun periods, multi-sols)
+
+    ♡ 15,000 m³ total volume is realistic for a capacity at ~ 100 kWh/m³
+
+    ♡ 20 pods of 750 m³ each so individual sections can be isolated or maintained
+
+    ♡ rectangular pods (example 24 m × 7 m) fit a hallway layout better than octagons
+
+    ♡ placed in a peripheral utility wing because backup storage doesn't need priority access
 
 ### ----------------------------------------
 
