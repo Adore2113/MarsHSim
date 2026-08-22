@@ -90,6 +90,20 @@
         - reduced power: 0.3 kW
         - reduced  heat: ~ 0.2 kW
 
+### Power & Heat:
+    ♡ base power: 0.85 kW
+    ♡ idle power: ~ 0.1 kW
+    ♡ limited mode power: base × 0.75
+    ♡ critical power mode: 0.3 kW
+    
+    ♡ exothermic heat fraction:
+        0.65 of electrical pow
+
+    ♡ calculation:
+        heat:
+            sabatier_power_used_kw × 0.65
+
+
 ### ----------------------------------------
 
 ## Design Evolution:
