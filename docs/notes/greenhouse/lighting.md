@@ -19,7 +19,7 @@
 
  ### ----------------------------------------
 
-#### Light Targets & Natural Light:
+### Light Targets & Natural Light:
     ♡ Mars sunlight:
         - default zone light target:0.23 kW/m²
         - default zone light absorption: 70%
@@ -39,7 +39,7 @@
 
 ### ----------------------------------------
 
-#### LED System:
+### LED System:
     ♡ LED support fills the remaining light needed to reach each zone's light target
 
     ♡ LED power density:
@@ -53,14 +53,14 @@
     ♡ calculation (LED support level):
         (light_target - effective_light) ÷ light_target
 
-#### Power Modes:
+### Power Modes:
     ♡ normal: full LED support as needed (lvl 1.0)
     ♡ low power: LED level × 0.6
     ♡ critical power: LED level × 0.2
 
 ### ----------------------------------------
 
-#### Plant Lighting Schedule:
+### Plant Lighting Schedule:
     ♡ light period: 
         16 hours per sol
 
@@ -76,7 +76,7 @@
 
 ### ----------------------------------------
 
-#### How Light Level Is Calculated:
+### How Light Level Is Calculated:
     ♡ natural light is reduced by the zone’s light absorption percentage
     
     ♡ day_length_bonus adjusts for seasonal daylight changes:
@@ -88,7 +88,7 @@
 
 ### ----------------------------------------
 
-#### Zone Light Targets:
+### Zone Light Targets:
     ♡ structural zone: 0.26 kW/m²
     ♡ container zone: 0.23 kW/m²
     ♡ rack zone: 0.19 kW/m²
@@ -96,7 +96,7 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-#### Early Lighting Plan:
+### Early Lighting Plan:
     ♡ considered allowing plants to use ~70% of the available natural sunlight
 
     ♡ this became the default 70% light-absorption value
@@ -106,7 +106,7 @@
 ### ----------------------------------------
 
 ## Design Decisions:
-#### Why timed greenhouse lights?
+### Why timed greenhouse lights?
     ♡ constant lights were taking up too much power (this was before my upgraded 50 acre solar plan)
 
     ♡ plants require a controlled photoperiod rather than continuous lighting
@@ -119,7 +119,7 @@
 
     ♡ 16-hour light period was chosen as a balance between plant needs and power use
 
-#### Why sync greenhouse habitat lights?
+### Why sync greenhouse habitat lights?
     ♡ greenhouse plant lights already provide visibility while they are active
 
     ♡ keeping the habitat lights off during that time avoids unnecessary duplicate lighting

@@ -11,7 +11,7 @@
 ### ----------------------------------------
 
 ## Greenhouse Water Model (08/15/2026):
-## Plant Water Demand:
+### Plant Water Demand:
     ♡ preliminary estimates
 
     ♡ structural:
@@ -49,7 +49,7 @@
         - total plant water uptake:
             ~ 2,916 kg/sol
 
-#### Transpiration & Plant Biomass:
+### Transpiration & Plant Biomass:
     ♡ most water used by the plants eventually leaves through transpiration
 
     ♡ a smaller amount remains with the plant
@@ -67,7 +67,7 @@
             2,916 × 0.05
             = 145.8 kg/sol
 
-#### Transpiration Recovery:
+### Transpiration Recovery:
     ♡ transpired plant water enters the greenhouse atmosphere and the CHX removes most of this water as condensate
 
     ♡ captured condensate is sent to the WPA for processing
@@ -99,7 +99,7 @@
 
 ### ----------------------------------------
 
-#### Operational Water Losses:
+### Operational Water Losses:
     ♡ these are rough V1 estimates since individual equipment, specific leaks and other non-plant losses aren't modeled separately
 
     ♡ see hydroponics.md for the circulation system losses
@@ -135,7 +135,7 @@
 
 ### ----------------------------------------
 
-## Make-up Water System:
+### Make-up Water System:
     ♡ make-up happens when a reservoir drops to 70%
 
     ♡ the greenhouse only draws the actual volume needed to return to normal level
@@ -175,7 +175,7 @@
 
 ### ----------------------------------------
 
-## Full Water / Waste Loop (Future):
+### Full Water / Waste Loop (Future):
     ♡ concept only — not modeled in V1 yet
 
     ♡ planned loop:
@@ -206,7 +206,7 @@
 
 ### ----------------------------------------
 
-## Design Evolution:
+### Design Evolution:
     ♡ each zone has its own efficiency:
         - structural: 82%
         - container: 88%
@@ -231,7 +231,6 @@
             - multiplier: 0.90
             - effective rate ≈ 1.76 kg/m²/sol
 
-    
     ♡ water taken up by plants:
         - 85% becomes transpiration (goes into the greenhouse air and then the CHX): 
             plant water uptake × 0.85
@@ -256,7 +255,7 @@
 
 ### ----------------------------------------
 
-## Future Considerations:
+### Future Considerations:
     ♡ implement: the full crew waste to water recovery to nutrient recovery to greenhouse loop
     
     ♡ future goal:
@@ -279,7 +278,7 @@
 
 ### ----------------------------------------
 
-## Design Decision:
+### Design Decision:
 #### Why calculate plant water uptake separately from hydroponic circulation?
     ♡ the amount of nutrient solution moving through the hydroponic system is much larger than the amount of water actually being consumed by the plants
 

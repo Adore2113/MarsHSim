@@ -7,7 +7,7 @@
  ### ----------------------------------------
 
 ## Greenhouse Power Usage (08/11/2026 update):
-#### Plant Light Power:
+### Plant Light Power:
     ♡ full mechanism in lighting.md, summarized here as part of total greenhouse draw
 
     ♡ using current Hive-8 total effective grow area: 1,350 m² (420 + 480 + 450, structural + container + rack)
@@ -27,7 +27,7 @@
 
     ♡ full support LED heat: ~ 110.2 kW, noted b/c it's part of the greenhouse's total thermal load alongside structural heat below
 
-#### Greenhouse Equipment Power:
+### Greenhouse Equipment Power:
     ♡ preliminary base equipment power: 0.05 kW/m²
 
     ♡ intended to represent equipment such as:
@@ -51,7 +51,7 @@
 ### ----------------------------------------
 
 ## Heat Generated:
-#### Plant Light Heat:
+### Plant Light Heat:
     ♡ LED heat ratio: 0.68
     ♡ structural heat density: 0.015 kW/m²
 
@@ -65,7 +65,7 @@
         - maximum heat energy over 16 hours:
             110.2 kW × 16 hours ≈ 1,763 kWh/sol
 
-#### Structural Heat:
+### Structural Heat:
     ♡ structural heat: 0.015 kW/m²
 
     ♡ calculation:
