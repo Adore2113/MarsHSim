@@ -21,26 +21,22 @@
         -enters low and critical power modes as charge decreases
     
     ♡ physical layout:
-        - dedicated room
-
-        - shape: regular octagon (consistent with other utility rooms)
-
+        - shape: octagon (regular)
         - floor area: ~ 110 m²
         - height: 4.5 m
         - volume: ~ 495 m³
         - access: 
                 *to do
-
         - contains:
             -battery modules and breakers
             -transfer gear
             -monitoring equipment
 
-
     ♡ to do:
         - battery chemistry
         - charge/discharge limits
         - calculation showing how capacity was chosen
+
 
 #### Secondary Battery Bank:
     ♡ current capacity: 1,500,000 kWh (1.5 GWh)
@@ -57,15 +53,11 @@
         - total volume: 15,000 m³
         - each pod: 750 m³
         - height: 4.5 m
-        - floor area per pod: ~ 167 m²
-
-        - central hallway split into 20 modular areas along both sides (10 per side)
-
+        - floor area per pod: ~ 167 m² 
         - total area across all pods: ~ 3,333 m²
-        
         - access: utility wing
-
-        - lower access priority (backup storage does not need core real estate)
+        - lower access priority
+        - central hallway split into 20 modular areas along both sides (10 per side), almost like a corridor  
 
 #### Battery Transfer:
     ♡ primary battery always has charging priority
@@ -187,7 +179,6 @@
 
     ♡ reduces unnecessary cycling of the larger battery bank
 
-
 #### Why use power modes?
     ♡ to follow the *future implemented* system priority tier system 
 
@@ -257,7 +248,7 @@
 ###### 08/03/2026:
     ♡ increased the temporary primary battery capacity to 25,000 kWh
 
-    ♡ set the secondary battery bank to 1,500,000 kWh (1.5 GWh) for long term habitat survival
+    ♡ set the secondary battery bank to 1,500,000 kWh (1.5 GWh) store excess solar generation and for long term habitat survival
 
     ♡ considering increasing the secondary battery bank to 2.0 GWh after longer testing
 
@@ -268,3 +259,6 @@
     ♡ separated habitat lighting into its own subsystem
 
     ♡ considering whether subsystem constants should remain together or be split into dedicated constants files
+
+###### 08/22/2026:
+    ♡ 
