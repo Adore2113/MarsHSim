@@ -20,23 +20,10 @@
 
         -enters low and critical power modes as charge decreases
     
-    ♡ physical layout:
-        - shape: octagon (regular)
-        - floor area: ~ 110 m²
-        - height: 4.5 m
-        - volume: ~ 495 m³
-        - access: 
-                *to do
-        - contains:
-            -battery modules and breakers
-            -transfer gear
-            -monitoring equipment
-
     ♡ to do:
         - battery chemistry
         - charge/discharge limits
         - calculation showing how capacity was chosen
-
 
 #### Secondary Battery Bank:
     ♡ current capacity: 1,500,000 kWh (1.5 GWh)
@@ -48,29 +35,48 @@
     ♡ maintains reserve except during emergency situations
 
     ♡ final capacity will be reconsidered after longer simulation testing and completion of the habitat power system
+### ----------------------------------------
+## Layout
+#### Primary Battery Room:
+    ♡ shape: rectangle
+    ♡ floor area: ~ 110 m²
+    ♡ height: 4.5 m
+    ♡ volume: ~ 495 m³
+    ♡ width: ~ 11.5 m across
+    ♡ 4 seperate battery rooms
+    ♡ capacity per section: ~ 6,250 kWh
+    
+    ♡ battery sections arranged symmetrically
+    ♡ central maintenance and access area
+    ♡ minimum maintenance aisle width: ~ 1.2 m
+    
+    ♡ access:
+        - enterence at the power distribution and transfer room
+        
+        - *to do*
 
 #### Secondary Battery Corridor Layout:
-    ♡ physical layout:
-    ♡ total volume across all pods: ~ 12,000 m³
-    ♡ 12 isolated battery pods
+    ♡ shape: rectangle
+    ♡ total volume across all rooms: ~ 12,000 m³
+    ♡ 12 isolated battery rooms
     ♡ each pod: ~ 1,000 m³
     ♡ height: 5.5 m
     ♡ floor area per pod: ~ 182 m²
-    ♡ total floor area of all pods: ~ 2,182 m²
+    ♡ total floor area of all rooms: ~ 2,182 m²
     ♡ pod dimensions: ~ 15.6 m × 11.7 m × 5.5 m
     ♡ complete area with hallway:  ~ 2,450 m²
     ♡ lower access priority
     
-    ♡ central hallway with 6 battery pods along each side
+    ♡ central hallway with 6 battery rooms along each side
 
     ♡ each pod can be isolated for maintenance or emergencies 
 
     ♡ access:
-            ♡ one end of the corridor connects to the power distribution and transfer room
+        - one end of the corridor connects to the power distribution and transfer room
 
-            ♡ the other end connects to a battery maintenance and service room with an emergency exit
+        - the other end connects to a battery maintenance and service room with an emergency exit
 
-            ♡ the primary battery room connects through the power distribution and transfer room instead of directly into the corridor
+        - the primary battery room connects through the power distribution and transfer room instead of directly into the corridor
 
 #### Battery Transfer:
     ♡ primary battery always has charging priority
@@ -226,9 +232,9 @@
 
     ♡ 15,000 m³ total volume is realistic for a capacity at ~ 100 kWh/m³
 
-    ♡ 20 pods of 750 m³ each so individual sections can be isolated or maintained
+    ♡ 20 rooms of 750 m³ each so individual sections can be isolated or maintained
 
-    ♡ rectangular pods (example 24 m × 7 m) fit a hallway layout better than octagons
+    ♡ rectangular rooms (example 24 m × 7 m) fit a hallway layout better than octagons
 
     ♡ placed in a peripheral utility wing because backup storage doesn't need priority access
 
