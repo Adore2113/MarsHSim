@@ -21,17 +21,7 @@
     ♡ minimum maintenance aisle width: ~ 1.2 m
     ♡ approximate dimensions: 
         ~ 10 m × 9 m × 4.5 m
-
-    ♡ processing layout:
-        - UPA and pretreatment equipment are together
-        - BPA is near the UPA and brine connections
-        - WPA is on the cleaner side of the room
-        - sampling hardware is near the WPA output
-        
-        - pumps, filters and control cabinets are around the processing systems
-
-        - central maintenance area provides access to all systems
-
+    
     ♡ access:
         - connects to the water storage room
         - connects to the utility hallway
