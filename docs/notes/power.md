@@ -94,6 +94,46 @@
         - lifting and handling equipment
         - temporary space for components removed from the battery rooms
 
+#### Total Power System Space:
+    ♡ floor areas:
+        - primary battery room: ~ 110 m²
+        - secondary battery corridor: ~ 2,450 m²
+        - power dist. and transfer room: ~ 70 m²
+        - battery maint. and service room: ~ 120 m²
+        - total: ~ 2,750 m²
+
+    ♡ volumes:
+        - primary battery room: ~ 495 m³
+        - secondary battery corridor: ~ 13,475 m³
+        - power dist. and transfer room: ~ 315 m³
+        - battery maint. and service room: ~ 660 m³
+        - total: ~ 14,945 m³
+
+    ♡ calculation:
+        - primary battery room:
+            110 m² × 4.5 m
+            = ~ 495 m³
+
+        - secondary battery corridor:
+            2,450 m² × 5.5 m
+            = ~ 13,475 m³
+
+        - power dist. and transfer room:
+            70 m² × 4.5 m
+            = ~ 315 m³
+
+        - battery maint and service room:
+            120 m² × 5.5 m
+            = ~ 660 m³
+
+        - total floor area:
+            110 m² + 2,450 m² + 70 m² + 120 m²
+            = ~ 2,750 m²
+
+        - total volume:
+            495 m³ + 13,475 m³ + 315 m³ + 660 m³
+            = ~ 14,945 m³
+            
 ### ----------------------------------------
 
 #### Primary Battery:
