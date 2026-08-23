@@ -12,23 +12,63 @@
 
 ### ----------------------------------------
 
-## Assembly Processors Plan:
-### Shared Control Logic:
-    ♡ modes:
-        - offline: 
-            ♡ unit off
+## Assembly Processors Plan (updated 08/22/2026):
+### Layout:
+    ♡ shape: rectangle
+    ♡ floor area: ~ 90 m²
+    ♡ height: 4.5 m
+    ♡ volume: ~ 405 m³
+    ♡ minimum maintenance aisle width: ~ 1.2 m
+    ♡ approximate dimensions: 
+        ~ 10 m × 9 m × 4.5 m
 
-        - idle:
-            ♡ unit is ready to run, but there isn't enough water in the source tank yet
+    ♡ processing layout:
+        - UPA and pretreatment equipment are together
+        - BPA is near the UPA and brine connections
+        - WPA is on the cleaner side of the room
+        - sampling hardware is near the WPA output
+        
+        - pumps, filters and control cabinets are around the processing systems
 
-            ♡ uses a small fixed fraction of base power
+        - central maintenance area provides access to all systems
 
-        - running:
-            ♡ processes available mass up to its processing capacity
+    ♡ access:
+        - connects to the water storage room
+        - connects to the utility hallway
 
-            ♡ power scales with the fraction of available processing capacity being used
-    
-    ♡ hysteresis prevents processors from repeatedly switching between idle and running when tank inventory is close to the operating threshold
+    ♡ contains:
+        - UPA and pretreatment equipment
+        - WPA
+        - BPA
+        - pumps
+        - filters
+        - catalytic reactors
+        - sampling hardware
+        - control cabinets
+        - consumables
+        - maintenance aisles
+
+    ♡ calculation:
+        10 m × 9 m
+        = ~ 90 m² floor area
+        
+        90 m² × 4.5 m
+        = ~ 405 m³ volume
+
+
+### Shared Control Modes:
+    ♡ offline: 
+        - system off
+
+    ♡ idle:
+        - unit is ready, but there isn't enough water in the source tank yet
+
+        - uses a small fixed fraction of base power
+
+    ♡ running:
+        - processes available mass up to its processing capacity
+
+        - power scales with the fraction of available processing capacity being used
 
 ### WPA Processing Priority:
     ♡ 1. condensate
