@@ -109,7 +109,6 @@
 
     ♡ going to use the midpoint range of each season for now (v1?)
 
-
 ### Atmosphere Notes:
     ♡ target pressure:
         - lower (~65 kilopascals (kPa))
@@ -131,8 +130,6 @@
 
     ♡ 30 crew members
         ~0.0033 * 30 = 0.099kPa/5min
-
-    ♡ SpaceX: combines oxygen production with making methane rocket fuel with Sabatier + electrolysis
 
 #### Buffer Gas Notes:
     ♡ buffer gases:
@@ -218,18 +215,17 @@
 #### Greenhouse Notes:
 ##### see greenhhouse folder
 
-### Ration Notes:
-    ♡ lentils?
-
-### Crew Notes:
-    ♡ crew getting around 8 hours of sleep/night (9:30pm (21:30)- 6:00am)
-
 ### Power Notes:
 ##### see power.md
 
 ### Sabatier Notes:
-    ♡ reactions_available is how many times stoichiometric reaction can happen with a ratio of 1 co2 : 4 h2
+##### see sabatier.md
 
+### Water / CHX Notes:
+##### see hab_water.md
+
+### Crew Notes:
+    ♡ crew getting around 8 hours of sleep/night (9:30pm (21:30)- 6:00am)
 
 ### Thermal Notes:
     ♡ going to use kilowatts (kW) for heat sources (kW = change) (C = result)
@@ -249,19 +245,11 @@
     ♡ a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin but I'm going to make it mainly a humidity control subsystem first with slight cooling, b/c I already have the radiators
 
 
-### Water / CHX Notes:
-##### see water.md folder
-
-
 ### Mars Dust / Environment Factors:
 
     ♡ dune migration (research this more)
-
     ♡ sun absorption changes from ice/dust
-
-
     ♡ dust factor ranges from 0.0 - 1.0
-
     ♡ eventually have Mars dust storms and things added in with random, maybe wind cleaning off some of the dust from the solar arrays as well
 
 
