@@ -10,32 +10,7 @@
 
 ### ----------------------------------------
  
-## Habitat Power System Plan (updated 08/03/2026):
-#### Primary Battery:
-    ♡ current capacity: 25,000 kWh
-    ♡ powers the habitat directly:
-        -receives all generated solar energy first
-
-        -when almost full, excess energy is sent to the secondary battery bank
-
-        -enters low and critical power modes as charge decreases
-    
-    ♡ to do:
-        - battery chemistry
-        - charge/discharge limits
-        - calculation showing how capacity was chosen
-
-#### Secondary Battery Bank:
-    ♡ current capacity: 1,500,000 kWh (1.5 GWh)
-
-    ♡ charges only after the primary battery reaches the charging threshold
-
-    ♡ supplies energy back to the primary battery during shortages
-
-    ♡ maintains reserve except during emergency situations
-
-    ♡ final capacity will be reconsidered after longer simulation testing and completion of the habitat power system
-### ----------------------------------------
+## Habitat Power System Plan (updated 08/22/2026):
 ## Layout
 #### Primary Battery Room:
     ♡ shape: rectangle
@@ -51,8 +26,8 @@
     ♡ minimum maintenance aisle width: ~ 1.2 m
     
     ♡ access:
-        - enterence at the power distribution and transfer room
-        
+        - entrance into power distribution and transfer room
+
         - *to do*
 
 #### Secondary Battery Corridor Layout:
@@ -77,6 +52,33 @@
         - the other end connects to a battery maintenance and service room with an emergency exit
 
         - the primary battery room connects through the power distribution and transfer room instead of directly into the corridor
+
+### ----------------------------------------
+
+#### Primary Battery:
+    ♡ current capacity: 25,000 kWh
+    ♡ powers the habitat directly:
+        -receives all generated solar energy first
+
+        -when almost full, excess energy is sent to the secondary battery bank
+
+        -enters low and critical power modes as charge decreases
+    
+    ♡ to do:
+        - battery chemistry
+        - charge/discharge limits
+        - calculation showing how capacity was chosen
+
+#### Secondary Battery Bank:
+    ♡ current capacity: 1,500,000 kWh (1.5 GWh)
+
+    ♡ charges only after the primary battery reaches the charging threshold
+
+    ♡ supplies energy back to the primary battery during shortages
+
+    ♡ maintains reserve except during emergency situations
+
+    ♡ final capacity will be reconsidered after longer simulation testing and completion of the habitat power system
 
 #### Battery Transfer:
     ♡ primary battery always has charging priority
