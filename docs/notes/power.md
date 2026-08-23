@@ -47,17 +47,30 @@
 
     ♡ maintains reserve except during emergency situations
 
-    ♡ may increase to 2.0 GWh after longer testing
+    ♡ final capacity will be reconsidered after longer simulation testing and completion of the habitat power system
 
+#### Secondary Battery Corridor Layout:
     ♡ physical layout:
-        - total volume: 15,000 m³
-        - each pod: 750 m³
-        - height: 4.5 m
-        - floor area per pod: ~ 167 m² 
-        - total area across all pods: ~ 3,333 m²
-        - access: utility wing
-        - lower access priority
-        - central hallway split into 20 modular areas along both sides (10 per side), almost like a corridor  
+    ♡ total volume across all pods: ~ 12,000 m³
+    ♡ 12 isolated battery pods
+    ♡ each pod: ~ 1,000 m³
+    ♡ height: 5.5 m
+    ♡ floor area per pod: ~ 182 m²
+    ♡ total floor area of all pods: ~ 2,182 m²
+    ♡ pod dimensions: ~ 15.6 m × 11.7 m × 5.5 m
+    ♡ complete area with hallway:  ~ 2,450 m²
+    ♡ lower access priority
+    
+    ♡ central hallway with 6 battery pods along each side
+
+    ♡ each pod can be isolated for maintenance or emergencies 
+
+    ♡ access:
+            ♡ one end of the corridor connects to the power distribution and transfer room
+
+            ♡ the other end connects to a battery maintenance and service room with an emergency exit
+
+            ♡ the primary battery room connects through the power distribution and transfer room instead of directly into the corridor
 
 #### Battery Transfer:
     ♡ primary battery always has charging priority
