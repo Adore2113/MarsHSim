@@ -46,7 +46,6 @@
         90 m² × 4.5 m 
         = ~ 405 m³ volume
 
-
 ### Shared Control Modes:
     ♡ offline: system off
 

@@ -56,7 +56,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I know that chemistry ratios use moles, but I really wanted to stick to kPa and kilograms (kg) to avoid my code being more complex, so I'll figure out the conversions to avoid that
 
-    ♡ made the scrubber unable to remove more CO₂ than exists and changed the kPa values to move 4 decimal places instead of two, updated target based CO₂ and oxygen control, added target gases as global variables in engine.py
+    ♡ made the scrubber unable to remove more CO₂ than exists and changed the kPa values to move 4 decimal places instead of two, updated target based CO₂ and O₂ control, added target gases as global variables in engine.py
 
     ♡ adding in the hydrogen that the OGA electrolysis makes and venting it FOR NOW and will do research on how I can use it later on (Sabatier?)
 
@@ -203,7 +203,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ for the mca function, I decided to not use state so I can manage/calculate both before and after control
 
-    ♡ realizing that the file for the oxygen system has separate functions and the buffer gas file has one solid function, so I might end up breaking up that long function into a few smaller ones for readability and also b/c I will be adding more to this function
+    ♡ realizing that the file for the O₂ system has separate functions and the buffer gas file has one solid function, so I might end up breaking up that long function into a few smaller ones for readability and also b/c I will be adding more to this function
 
     ♡ broke up one long buffer gas system function into smaller ones for readability, organization and future handling
 
@@ -345,7 +345,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
 
 ##      04/11/2026
-    ♡ moved alerts to it's own new file that included the status updates as well
+    ♡ moved alerts to its own new file that included the status updates as well
 
 #### Next Session:
     ♡ print total power being used and a power priority system for when power is low and only runs essential power systems
@@ -363,7 +363,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ fixed peak daylight today to reset for each sol
 
-    ♡ I'm trying to decide if I should keep my lights function so it's controlling the brightness based on it's own battery storage check, or move it to the function where it handles low power.. I'm leaning towards the latter
+    ♡ I'm trying to decide if I should keep my lights function so it's controlling the brightness based on its own battery storage check, or move it to the function where it handles low power.. I'm leaning towards the latter
 
     ♡ moved it ^
 
@@ -515,7 +515,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ I'm reading about dust and how it's managed best on Mars, there are a lot of different ways it's handled.. I like the idea of:
         - electrostatic dust repulsion (EDS) b/c of the fact that it's passive
 
-        - scheduled cleaning, although I like the idea of the crew having one less thing to worry about and maintain, if it can be done on it's own
+        - scheduled cleaning, although I like the idea of the crew having one less thing to worry about and maintain, if it can be done on its own
         
         - dust repellent coatings for sure that will need to be redone over a certain amount of times(?)
 
@@ -967,7 +967,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      06/19/2026
     ♡ fixing my sabatier file, made the methane go aove the safe limit, so I'm going to see what I can do w. the methane storage and venting 
 
-    ♡ I decided to make sure all ch4 is either vented immediately or sent to storage, it's not goin to be added into the cabin atmosphere
+    ♡ I decided to make sure all ch4 is either vented immediately or sent to storage, it's not going to be added into the cabin atmosphere
 
     ♡ I fixed the sabatier call in engine.py
 
@@ -1240,7 +1240,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ renamed battery_max_capacity_kwh to primary_battery_max_capacity_kwh
 
-    ♡ seperating habitat lighting into it's own file, I'll probably leave the greenhouse lights in the greenhouse file though
+    ♡ seperating habitat lighting into its own file, I'll probably leave the greenhouse lights in the greenhouse file though
 
     ♡ I'm considering files for constants b/c some of my files have a ton, but I'm not sure which seems more cluttered.. more files or longer constants
 
@@ -1297,21 +1297,21 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I'm looking into Nutrient Film Technique (NFT) where the plants need a constant flowing nutrient solution, and it seems like this is better for more shallow plans, so it would make sense that the rack system has these
 
-    ♡ reading about recirulating drip systems using dutch bucket set ups, meaning each plant or small group gets it's own bucket, all connected sharing plumbing which is exactly what I had planned so this is perfect
+    ♡ reading about recirulating drip systems using dutch bucket set ups, meaning each plant or small group gets its own bucket, all connected sharing plumbing which is exactly what I had planned so this is perfect
 
     ♡ I'm choosing targets to be averaged per zone
 
-    ♡ I'm trying to decide how in depth to make this, I was considering pH, EC nutrients, solution temp and dissolved oxygen, but these are all things that really would only impact plant health and growth rate, so I'll just make note of them for now, for potential future reference
+    ♡ I'm trying to decide how in depth to make this, I was considering pH, EC nutrients, solution temp and dissolved O₂, but these are all things that really would only impact plant health and growth rate, so I'll just make note of them for now, for potential future reference
 
     ♡ I put a lot of notes right into the hydroponic.md file instead of here
 
     ♡ EC (Electrical Conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration (so you can tell if the concentration has changed)
 
-    ♡ DO (Dissolved Oxygen)how many oxygen molecules a present in water, essential for the respiration of fish, bacteria, and other aquatic organisms, making it a key indicator of water quality. Low DO stresses roots, slows uptake, and raises the risk of root problems. 
+    ♡ DO (Dissolved Oxygen)how many O₂ molecules a present in water, essential for the respiration of fish, bacteria, and other aquatic organisms, making it a key indicator of water quality. Low DO stresses roots, slows uptake, and raises the risk of root problems. 
 
-    ♡ the rack zone naturally gets good oxygen exposure from the thin moving film, while the LECA zones rely more on drainage, air gaps, and reservoir aeration
+    ♡ the rack zone naturally gets good O₂ exposure from the thin moving film, while the LECA zones rely more on drainage, air gaps, and reservoir aeration
 
-    ♡ I'm not so worried about an upper range for the dissolved oxygen target b/c the most important thing is if it's high enough
+    ♡ I'm not so worried about an upper range for the dissolved O₂ target b/c the most important thing is if it's high enough
 
     ♡ considering equipment for hydroponics, and reservoir sizes.. all three zones will have a different L/m2 b/c of the differnt systems and containers holding water differently (LECA beds retain a lot of moisture in the root zone, Dutch bucket style containers retain some moisture and NFT channels don't hold very much) 
 
@@ -1350,7 +1350,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ container: 
         - ~ 12 µmol/m²/s for V1 zone average
         
-        - sweet corn can get to ~  28–34 µmol/m²/s under ideal controlled conditions, while passionfruit seems to commonly be ~ 10–30 µmol/m²/s, also consindering different growth stages, again
+        - sweet corn can get to ~  28-34 µmol/m²/s under ideal controlled conditions, while passionfruit seems to commonly be ~ 10-30 µmol/m²/s, also consindering different growth stages, again
 
     ♡ rack: 
         - ~ 10 µmol CO₂/m²/s for V1 zone average
@@ -1410,7 +1410,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ replacing the old percentages for transpiration and plant mass, or at least going over the calculations
 
-    ♡ plant water uptake seems to be mainly transpiration.. in some hydroponic experiments, water disappearing from sealed nutrient containers is treated essentially as transpiration, because only the above ground plants are exposed to the air, the water retained is actually quite low compared to that
+    ♡ plant water uptake seems to be mainly transpiration.. in some hydroponic experiments, water disappearing from sealed nutrient containers is treated essentially as transpiration, b/c only the above ground plants are exposed to the air, the water retained is actually quite low compared to that
 
     ♡ NASA ECLSS systems treat condensate as a recoverable wastewater stream, and plant growth life support research looks into recovering and reusing transpired water vapor, so using ~ 95% capturing efficiency seems right so that the recovery isn't perfect, but still a small amount doesn't get collected
 
@@ -1464,7 +1464,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ adding an extra tank for the isru system
 
-    ♡ ISS keeps a minimum reserve of ~ 800–1,600 kg of potable water in contingency after containers and MASA studies size water storage for only ~ 30 days of open-loop operation, and I read that you should plan for the largest expected daily usage plus unanticipated events
+    ♡ ISS keeps a minimum reserve of ~ 800-1,600 kg of potable water in contingency after containers and MASA studies size water storage for only ~ 30 days of open-loop operation, and I read that you should plan for the largest expected daily usage plus unanticipated events
 
     ♡ potable water storage capacity: 10,000.0 kg, 
         usage/sol: ~ 70.5 k (drinking / nourishment only)
@@ -1588,8 +1588,88 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ I don't know why I didn't notice how big the greenhouse reservoirs are compared to how much my plants actual take in per sol, so I'm going to lower some of those values, still keeping an extra amount as a buffer.. NASA's emphasizes fluid delivery/recovery, reliability, maintainability, aeration, low mass and low volume instead of universal L/m² reservoir rule
 
 #### Next Session:
-    ♡  finish hydroponic circulation flow rates / pump duty cycles
     ♡ add treated crew waste nutrient interface
     ♡ revisit greenhouse make-up water demand
     ♡ continue habitat water system
     ♡ finish UPA / WPA / BPA assumptions in water.md
+
+
+##      08/19/2026
+    ♡ starting with crew waste to the nutritent interface today
+
+    ♡ crew waste goes to wastewater, to water/nutrient recovery, to treated nutrient concentrate to greenhouse to zoner reservoirs
+
+
+##      08/20/2026
+    ♡ raised BPA handling capacity from 0.25 kg/h to 0.5 kg/h and added daily capacity calculations for water recovery
+
+
+##      08/22/2026
+    ♡ not every room in the habitat is going to be an octagon shape, only the areas that would be better for effiency and space
+
+    ♡ I'm now looking into the power storage rooms, if I get the size of the subsystems figured out I can get the net habitat volume and then make my calculations include real values instead of a placeholder
+
+    ♡ breaking the secondary power storage into multiple smaller rooms or pod areas seems like it would be neater, less overwhelming in emergencies, easier to maintain and easier to isolate issues if they came up later
+
+    ♡ for the secondary battery storage, I'm picturing a hallway with walls that act like partitioners, so you can walk down the hallway, and on the sides there would be like.. rooms/bays/pods with:
+            - rows of tall metal battery cabinets or racks
+            - smaller rectangular battery modules inserted into those racks
+            - thick electrical cables, etc.
+            - coolant pipes and manifolds
+            - battery management electronics
+            - breakers and electrical isolation equipment
+            - fire detection and suppression equipment
+            - narrow but not too narrow maintenance aisles between rack rows
+    
+    each area would have it's own fire resistant walls and doors, independent thermal monitoring, independent electrical isolation, controlled ventilation, its own suppression system and no unrestricted airflow into the central corridor
+                
+    ♡ I was thinking a backup battery can be allowed to be in a more inconvenient spot, meaning it can be a lesser priority for easiest access areas, I want this area to be quite compact, and not too high because I want this to be clean, easy and boring to walk through
+
+    ♡ if I make each area about 1,000 m³, and the corridor about 4 m wide, with six rooms on each side, so 12 in total, that would be around the size of a medium size-ish grocery store
+
+    ♡ I'm picturing a specific grocery store that I go to in town, considering the main floor space, not including employee only areas,  1.5 GWh battery capacity in 12 isolated battery ares, that would be around tree quarters of the shopping area, it should lead into another room, but not be the main door b/c it's small 
+    
+    ♡ by "system level energy density: ~ 125 kWh/m³" under the secondary batter bank physical layout, I am talking about much battery capacity fits in the complete installed battery system with supporting equipment and maintenance space
+
+    ♡ for the main battery room doesn't need to be huge and can be a taller industrial room, though, I think that there should be seperate battery areas that can be seperated and isolated for maintentence and for emergency handling
+
+    ♡ added full Sabatier behaviour, modes, chemistry, and water contribution into its own note file
+    
+    ♡ documented the intended integration between OGA hydrogen production, Sabatier water recovery, methane handling, and possible future propellant production
+
+    ♡ I think that adding the Sabatier either into the same room or very close to the atmosphere/resource recovery area is a good idea, I've found that the Sabatier rack is around 2.0 m high × 1.05 m wide × 0.86 m deep on the ISS, a ~ 0.4 m³ of rack volume that includes the reactor, condensor, water seporator, vales, sensors, controllers and plumbing (so ~ the size of a washing machine).. the actual reactor is supposed to be smaller
+
+    ♡ I'm wondering if my habitat will need more than one Sabatier, I like to have backup equpiment whever possible so I'll add another one now that i know th actual size. I might have three, depending on room space
+
+    ♡ if I can fit three Sabatier racks and reactors in the same room as the safter pipes from the OGA (the hydrogen buffer), the co2 piip from the atmosphere or storage together I want to do that. 
+
+    ♡ while I consider where to keep the Sabatier I'm going to move to the water processing assembly rooms, I want to avoid contamination, and for everything to stay clean overall, and to make maintenence easier, the potable water will have it's own clean room and area
+
+    ♡ I considered keeping all the non-potable water tanks together, but I'd like the seperation between the ISRU raw water to have it's own area
+
+
+##      08/23/2026
+    ♡ making the changes to move the water processing systems to have rooms to serperate by water quality and function
+
+    ♡ adding in three Sabatier systems, potentially more b/c this IS no resupply, but three for now will be okay
+
+    ♡ hectic day, so I will go over more sytems one at a time that have to do with the atmosphere
+
+#### Next Session:
+    ♡ bug fix:
+        -sabatier.py: ch4_leaked_kpa is adding storage leak into cabin ch4_kpa, it should vent to Mars exterior per sabatier.md, not cabin atmosphere
+
+    ♡ design decision + follow-through
+        - decide: implement Sabatier to WPA water routing in water.py
+        - new sabatier_water_storage_kg holding tank (like condensate)
+        - WPA priority branch: condensate to sabatier water to gray to raw ISRU
+        - stop adding sabatier_water_produced_kg directly in update_water_storages_kg()
+        - update hab_water.md "Water Processing Order" line it still says UPA + WPA + BPA + Sabatier (outdated, doesn't match sabatier.md anymore)
+
+    ♡ room sizing
+        - finalize Wastewater Storage Room (currently 80-100 m² range)
+        - finalize ISRU Water Room (currently 40-60 m² range)
+        - write atmosphere.md:  OGA / CO₂ scrub / buffer gas / Sabatier room layout (next room on the tracker)
+
+    ♡ minor / whenever
+        - potable water storage room says "shape: rectangle" but still has leftover octagon phrasing (width across opposite walls / wall length)
