@@ -249,12 +249,6 @@
 ###### 05/03/2026
     ♡ updating print to show sabatier information
 
-    ♡ I decided to track gases in the atmosphere in kpa and h2 and ch4 in kg for storage and I'm not 100% sure about the other ones yet
-
-    ♡ going to keep things consistent: kg for storage, kpa for atmosphere
-
-    ♡ adding variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others)
-
 ###### 05/20/2026
     ♡ while going over the results from each subsystem, I'm realizing that CO₂ is not being handled right.. I need to fix where the Sabatier is getting it's CO₂ amount from
 
@@ -277,3 +271,17 @@
     
     ♡ documented the intended integration between OGA hydrogen production, Sabatier water recovery, methane handling, and possible future propellant production
 
+###### 08/22/2026
+
+    ♡ added full Sabatier behaviour, modes, chemistry, and water contribution into its own note file
+
+    ♡ I think that adding the Sabatier either into the same room or very close to the atmosphere/resource recovery area is a good idea, I've found that the Sabatier rack is around 2.0 m high × 1.05 m wide × 0.86 m deep on the ISS, a ~ 0.4 m³ of rack volume that includes the reactor, condensor, water seporator, vales, sensors, controllers and plumbing (so ~ the size of a washing machine).. the actual reactor is supposed to be smaller
+
+    ♡ I'm wondering if my habitat will need more than one Sabatier, I like to have backup equpiment whever possible so I'll add another one now that i know th actual size. I might have three, depending on room space
+
+    ♡ if I can fit three Sabatier racks and reactors in the same room as the safter pipes from the OGA (the hydrogen buffer), the co2 piip from the atmosphere or storage together I want to do that. 
+
+    ♡ while I consider where to keep the Sabatier I'm going to move to the water processing assembly rooms, I want to avoid contamination, and for everything to stay clean overall, and to make maintenence easier, the potable water will have it's own clean room and area
+
+###### 08/23/2026
+    ♡ adding in three Sabatier systems, potentially more b/c this IS no resupply, but three for now will be okay
