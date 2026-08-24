@@ -21,10 +21,10 @@
     ♡ see water_process.md for full details
     ♡ floor area: ~ 90 m²
     ♡ height: 4.5 m
-    ♡ entrances: 
-        - wastewater storage room
-        - ISRU water room
-        - utility hallway
+    ♡ access: 
+        - connects to the wastewater storage room
+        - connects to the ISRU water room
+        - connects to the utility hallway
 
     ♡ contains: 
         - UPA
@@ -37,9 +37,9 @@
     ♡ floor area: ~ 80-100 m²
     ♡ height: 4.5 m
     ♡ purpose: holds all dirty wastewater
-    ♡ entrances: 
-        - water processing room
-        - utility hallway  
+    ♡ access: 
+        - connects to the water processing room
+        - connects to the utility hallway  
 
     ♡ contains:
         - gray water tanks
@@ -52,9 +52,9 @@
     ♡ floor area: ~ 40-60 m²
     ♡ height: 4.5 m
     ♡ purpose: holding area for untreated Mars water before it enters the WPA
-    ♡ entrances: 
-        - water processing room
-        - utility hallway  
+    ♡ access: 
+        - connects to the water processing room
+        - connects to the utility hallway  
 
     ♡ contains:
         - raw ISRU water tank (4,000 kg capacity)
@@ -67,28 +67,29 @@
     ♡ floor area: ~ 100-120 m²
     ♡ height: 4.5 m
     ♡ purpose: cleanest water storage area
-    ♡ entrances: 
-        - water processing room
-        - utility hallway  
+    ♡ access: 
+        - connects to the water processing room
+        - connects to the utility hallway  
 
     ♡ contains: 
         - potable water tanks
         - vertical cylindrical tanks inside the pressurized, heated volume
 
-#### Water Storage Room:
+#### Potable Water Storage Room:
     ♡ shape: rectangle
     ♡ floor area: 120 m²
     ♡ total height: 4.5 m
     ♡ width across opposite walls: ~ 12.0 m 
     ♡ wall length: ~ 5.0 m
     ♡ roof: flat or lightly angled
+    ♡ access:
+        - connects to the water processing room
+        - connects to the utility hallway 
+
     ♡ contains: 
         - vertical cylindrical tanks in pressurized heated volume
 
     ♡ greenhouse keeps only its own local zone reservoirs (~ 2,000 kg total)
-
-#### Water Recovery/Processing Rooms:
-
 
 ### ----------------------------------------
 
