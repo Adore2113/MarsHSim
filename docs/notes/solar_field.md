@@ -365,13 +365,25 @@
 ### ----------------------------------------
 
 ### Dev Log notes:
+###### 03/24/2026
+    ♡ since I want to have solar, I'm going to need to have a huge battery storage for when there are dust storms and other impacting factors
+
 ###### 03/29/2026:
+    ♡ started power_system.py
+
     ♡ battery capacity 4000.0 kWh
 
-    ♡ started power_system.py
+###### 03/31/2026
+    ♡ updated solar array list to not be hard coded online but start w. all of them being on standby status and added a function to manage what ones are online w. a new function in power_system.py    
 
 ###### 04/03/2026:
     ♡ using 0.50kw of sunlight for every 1 square meter (m²) for now, b/c my research showed that Mars sunlight is btwn 0.4-0.6 kw / 1 m² during daytime
+
+###### 04/10/2026
+    ♡ added function for solar power recharging habitat batteries
+
+###### 04/25/2026
+    ♡ updated solar arrays list and function to run on how much charge the batteries need
 
 ###### 07/23/2026:
     ♡ since adding in seasons, the daily solar power isn't going to be enough for even daily consumption, I need to consider more options for power
