@@ -75,20 +75,6 @@
         - potable water tanks
         - vertical cylindrical tanks inside the pressurized, heated volume
 
-#### Potable Water Storage Room:
-    ♡ shape: rectangle
-    ♡ floor area: 120 m²
-    ♡ total height: 4.5 m
-    ♡ width across opposite walls: ~ 12.0 m 
-    ♡ wall length: ~ 5.0 m
-    ♡ roof: flat or lightly angled
-    ♡ access:
-        - connects to the water processing room
-        - connects to the utility hallway 
-
-    ♡ contains: 
-        - vertical cylindrical tanks in pressurized heated volume
-
     ♡ greenhouse keeps only its own local zone reservoirs (~ 2,000 kg total)
 
 ### ----------------------------------------
@@ -150,11 +136,12 @@
         - remaining concentrated waste becomes brine
     
     ♡ WPA:
-        - produces potable-grade recovered water
+        - produces potable  recovered water
         - priority order:
-            1. condensate
-            2. gray water
-            3. raw ISRU water
+            - 1. condensate
+            - 2. Sabatier product water
+            - 3. gray water
+            - 4. raw ISRU water
     
     ♡ BPA: brine goes to additional recovered water
 
@@ -170,7 +157,8 @@
 
     ♡ 2. run UPA, BPA, WPA
 
-    ♡ 3. total recovered = UPA + WPA + BPA + Sabatier
+    ♡ 3. total recovered = UPA + WPA + BPA 
+   (Sabatier water goes through the WPA, so it's included in the WPA total)
     
     ♡ 4. subtract subsystem potable uses (OGA + greenhouse make-up)
 
@@ -201,7 +189,9 @@
         - potable water = consumed during O₂ production
 
     ♡ Sabatier:
-        - produces water that goes to potable storage
+        - produces water
+        - water is condensed, checked, and sent to the WPA
+        - only after WPA treatment does it enter potable storage
 
     ♡ raw ISRU water:
         - extracted water goes to raw ISRU water tank
