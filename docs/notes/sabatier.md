@@ -21,6 +21,12 @@
     ♡ Sabatier racks are located in the Atmosphere / Resource Recovery Room
 
     ♡ see atmosphere.md for room layout and connections
+
+### Units:
+    ♡ 3 Sabatier racks planned for redundancy
+
+    ♡ each rack is approximately washing-machine sized (~0.4 m³)
+
 ### Water Production:
     ♡ Sabatier product water is not added directly to potable storage
     
@@ -43,7 +49,7 @@
 
     ♡ capacity limit forces venting if reached
 
-    ♡ a small CH₄ loss from methane storage is modelled as escaping directly to the Mars atompshere, not into the cabin
+    ♡ a small CH₄ loss from methane storage is modelled as escaping directly to the Mars atmosphere, not into the cabin
 
     ♡ CH₄ from the Sabatier vs from contamination of the habitat atmosphere are different
 
@@ -150,6 +156,8 @@
 
     ♡ water production was missing from the storage update
 
+    ♡ there was only one Sabatier system
+
 #### Modes:
     ♡ added limited_co2 / limited_h2 and venting modes
 
@@ -164,10 +172,12 @@
 
     ♡ option to store vs vent methane based on mission phase (propellant or disposal)
 
+    ♡ consider adding more Sabatier racks
+
 ### ----------------------------------------
 
 ## Design Decisions:
-#### Why include water production in the main water balance?
+#### Why route Sabatier water into the overall water system?
     ♡ Sabatier is an important source of recovered water
 
     ♡ it keeps the closed loop efficient
@@ -185,10 +195,10 @@
 
     ♡ it prevents over pressurization
 
-    ♡ it won't have nay negative effect on the Mars atmosphere
+    ♡ it won't have any negative effect on the Mars atmosphere
 
 #### Why 0.88 base efficiency?
-    ♡ realistic instead of than the ideal stoichiometric conversion
+    ♡ realistic instead of the ideal stoichiometric conversion
 
     ♡ it leaves room for real world losses
 
@@ -204,7 +214,6 @@
 ### Dev Log Notes:
 ###### 03/09/2026
     ♡ researched O₂ regeneration and electrolysis w. focus on Oxygen Generation Assembly (OGA), MOXIE like Solid Oxide Electrolysis (SOXE) and Sabatier CO₂ reduction + electrolysis
-
 
 ###### 03/10/2026
     ♡ adding in the hydrogen that the OGA electrolysis makes and venting it FOR NOW and will do research on how I can use it later on (Sabatier?)
@@ -250,7 +259,6 @@
     ♡ while going over the results from each subsystem, I'm realizing that CO₂ is not being handled right.. I need to fix where the Sabatier is getting it's CO₂ amount from
 
     ♡ I made some changes to the Sabatier file and ran a few test for four sols, getting an update every 5 hours while only getting the sol, time and atmosphere info.. CO₂ is much better, but there are still issues w. the buffer gas, as well as a few other things, that I will be working towards 
-
 
 ###### 05/22/2026
     ♡ I added in the Sabatier into water.py, b/c I forgot to add it in the storage update and run_water_system function 
