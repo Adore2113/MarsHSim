@@ -1,14 +1,18 @@
 # Habitat Layout
 ### General Notes:
+    ♡ preliminary estimates
+
     ♡ four central rooms act as local hubs / wings
 
-    ♡ surrounding rooms branch off from each node
+    ♡ each hub has multiple exits into its surrounding rooms that branch off from each node
 
     ♡ secondary corridors / loops connect outer rooms so movement doesn't always require returning to a center
 
     ♡ clear separation between living, food production, utility/process, and power areas
 
-    ♡ supports cleanliness, emergency access, and psychological zoning
+    ♡ utility and power areas remain reachable for maintenance and emergencies without crossing the main living spaces unnecessarily
+
+    ♡ made with cleanliness, emergency access, and psychological wellbeing in mind
 
 ### ----------------------------------------
 
@@ -33,32 +37,63 @@
 #### Utility / Resource Hub:
     ♡ industrial / process zone, clearly separated from living areas
     ♡ contains:
-        - Primary Battery Room
-        - Power Distribution and Transfer Room
-        - entrance to Secondary Battery Corridor
-        - Battery Maintenance and Service Room
+        - water processing Room
+        - wastewater Storage Room
+        - ISRU water Room
+        - potable water Storage Room
+        - atmosphere / resource recovery area(Sabatier, OGA, amine beds, buffer gas, MCA)
 
 #### Power / Energy Hub:
+    ♡ total floor area: ~ 2,750 m²
+    ♡ total volume: ~ 14,945 m³
     ♡ more peripheral, lower everyday access priority
     ♡ contains:
-       - each hub has multiple exits into its surrounding rooms
-       - secondary corridors make connections between hubs
-       - crew can move between related zones without always returning to a central node
+       - primary battery room
+       - secondary battery corridor
+       - power distribution and transfer room
+       - battery maintenence and service room
 
 ### ----------------------------------------
 
 ## Design Evolution:
-####
+#### Early Ideas:
+    ♡ originally considered the greenhouse as the single central hub
+    
+    ♡ later changed to four specialized hubs for clearer zoning and better separation of clean vs process areas
 
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ 
+    ♡ exact corridor widths and emergency routing
+    ♡ visual markers, especially for each hub
+    ♡ height variations between living and utility spaces
+    ♡ possible observation or biophilic details within the Living Hub
 
 ### ----------------------------------------
 
 ## Design Decisions:
-#### 
+#### Why four hubs instead of one central greenhouse?
+    ♡ clearer functional separation
+    
+    ♡ keeps dirty / noisy process areas away from living and food production
+   
+    ♡ supports better emergency and maintenance access
+    
+    ♡ for symmetry, efficiency, and logical placements 
+
+#### Why secondary loops?
+    ♡ prevents bottlenecks, especially if certain rooms are busier at certain times, like during emergencies or harvest times in the greenhouse
+
+    ♡ allows movement between zones without forcing everyone through the same central room
+
+    ♡ improves redundancy if one path is blocked
+
+####  Why keep atmosphere systems inside the Utility / Resource Hub?
+    ♡ because they have connections with the water systems and storage
+    
+    ♡ keeps all major life support process equipment together
+    
+    ♡ avoids scattering industrial systems into living or greenhouse space
 
 ### ----------------------------------------
 
