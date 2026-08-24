@@ -1,22 +1,59 @@
 # Sabatier 
 ### General Notes:
     ♡ converts CO₂ + H₂ into CH₄ + H₂O
-
+    
     ♡ provides both methane and recovered water
 
-    ♡ water produced is added directly to the potable water balance
+    ♡ water produced is condensed, checked, and sent to the WPA for treatment before going to potable storage
 
-    ♡ integrates with OGA: OGA produces hydrogen that can feed the Sabatier (or be vented)
+    ♡ integrates with OGA (OGA supplies hydrogen)
 
-    ♡ SpaceX approach: combines oxygen production (electrolysis / OGA) with methane rocket fuel production with Sabatier + electrolysis
+    ♡ combines oxygen production (OGA) with methane production
 
-    ♡ only runs when so many reactants are available and the system is on
+    ♡ only runs when sufficient reactants are available and the system is commanded on
 
     ♡ includes limited and venting modes for reactant shortages and methane storage limits
 
 ### ----------------------------------------
 
-## Sabatier Plan:
+## Sabatier Plan (updated 08/23/2026):
+### Layout
+    ♡ Sabatier racks are located in the Atmosphere / Resource Recovery Room
+
+    ♡ see atmosphere.md for room layout and connections
+### Water Production:
+    ♡ Sabatier product water is not added directly to potable storage
+    
+    ♡ loop:
+        - 1. produced by the reactor
+        - 2. condensed / cooled
+        - 3. checked / sampled
+        - 4. sent to the WPA
+        - 5. sent to potable storage
+
+    ♡ reason:
+        - product water can be hot and may contain trace impurities
+
+        - keeps all recovered water on a controlled treatment path
+
+### Methane Handling:
+    ♡ produced CH₄ is added to storage
+
+    ♡ when storage exceeds the venting hysteresis, excess is vented/capped
+
+    ♡ capacity limit forces venting if reached
+
+    ♡ a small CH₄ loss from methane storage is modelled as escaping directly to the Mars atompshere, not into the cabin
+
+    ♡ CH₄ from the Sabatier vs from contamination of the habitat atmosphere are different
+
+    ♡ methane inside the habitat atmosphere is not supposed to be normal
+
+### Atmosphere Fallback:
+    ♡ if stored CO₂ is almost gone, a small limited amount can be drawn from cabin atmosphere
+
+    ♡ it's capped so cabin CO₂ doesn't get quickly depleted
+
 ### Reaction Chemistry:
     ♡ min H₂ for reaction: 0.012 kg
     ♡ min CO₂ for reaction: 0.012 kg
@@ -90,6 +127,8 @@
         - reduced power: 0.3 kW
         - reduced  heat: ~ 0.2 kW
 
+### ----------------------------------------
+
 ### Power & Heat:
     ♡ base power: 0.85 kW
     ♡ idle power: ~ 0.1 kW
@@ -97,30 +136,11 @@
     ♡ critical power mode: 0.3 kW
     
     ♡ exothermic heat fraction:
-        0.65 of electrical pow
+        0.65 of electrical power
 
     ♡ calculation:
         heat:
             sabatier_power_used_kw × 0.65
-
-### Water Production:
-    ♡ water produced is added to the potable water storage veach step
-
-    ♡ this is an important recovery source in the water balance
-
-### Methane Handling:
-    ♡ produced CH₄ is added to storage
-
-    ♡ when storage exceeds venting hysteresis excess is vented/capped
-
-    ♡ hard capacity limit forces venting if reached
-
-    ♡ small continuous CH₄ leak from storage is also modelled
-
-### Atmosphere Fallback:
-    ♡ if stored CO₂ is almsot gone, a small limited amount can be drawn from cabin atmosphere
-
-    ♡ capped so cabin CO₂ is not quickly depleated
 
 ### ----------------------------------------
 
@@ -151,11 +171,33 @@
     ♡ Sabatier is an important source of recovered water
 
     ♡ it keeps the closed loop efficient
+   
+    ♡ any source is valuable
+
 
 #### Why allow limited atmosphere CO₂ draw?
     ♡ it prevents the reactor from stopping completely when stored CO₂ is low
 
     ♡ still limited so cabin CO₂ isn't depleted too quickly
+
+#### Why vent excess methane?
+    ♡ storage capacity is limited
+
+    ♡ it prevents over pressurization
+
+    ♡ it won't have nay negative effect on the Mars atmosphere
+
+#### Why 0.88 base efficiency?
+    ♡ realistic instead of than the ideal stoichiometric conversion
+
+    ♡ it leaves room for real world losses
+
+#### Why the Sabatier and OGA / SpaceX approach?
+    ♡ OGA produces the hydrogen needed by Sabatier
+
+    ♡ creates a useful closed loop that makes the most out of my recycling priority
+
+    ♡ supports both life support and potential propellant production which could be relevant eventually
 
 ### ----------------------------------------
 
@@ -164,16 +206,16 @@
     ♡ researched O₂ regeneration and electrolysis w. focus on Oxygen Generation Assembly (OGA), MOXIE like Solid Oxide Electrolysis (SOXE) and Sabatier CO₂ reduction + electrolysis
 
 
-##      03/10/2026
+###### 03/10/2026
     ♡ adding in the hydrogen that the OGA electrolysis makes and venting it FOR NOW and will do research on how I can use it later on (Sabatier?)
 
-##      04/27/2026
+###### 04/27/2026
     ♡ started to add sabatier info/logic into my water system file
 
-##      04/28/2026
+###### 04/28/2026
     ♡ created a new file for the Sabatier
 
-##      04/30/2026
+###### 04/30/2026
     ♡ I am going to keep h2 stored in kg and also I'm going to make the methane(ch4) storage to be in kg b/c these are being treated as resources and I read that the Sabatier uses mass ratios, not pressure ratios
 
     ♡ if I need to convert them at any time, I'll just use the conversion and put it up as a constant in the file
@@ -190,12 +232,12 @@
 
     ♡ I thought adding a little bit of a leak while venting the ch4 was realistic, so I might add this to the other systems that vent
 
-##      05/01/2026
+###### 05/01/2026
     ♡ added sabatier outputs and updates into engine.py and fixed variables for ch4 where I accidentally put kpa insted or kg
 
     ♡ code is running again
 
-##      05/03/2026
+###### 05/03/2026
     ♡ updating print to show sabatier information
 
     ♡ I decided to track gases in the atmosphere in kpa and h2 and ch4 in kg for storage and I'm not 100% sure about the other ones yet
@@ -204,16 +246,16 @@
 
     ♡ adding variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others)
 
-##      05/20/2026
+###### 05/20/2026
     ♡ while going over the results from each subsystem, I'm realizing that CO₂ is not being handled right.. I need to fix where the Sabatier is getting it's CO₂ amount from
 
     ♡ I made some changes to the Sabatier file and ran a few test for four sols, getting an update every 5 hours while only getting the sol, time and atmosphere info.. CO₂ is much better, but there are still issues w. the buffer gas, as well as a few other things, that I will be working towards 
 
 
-##      05/22/2026
+###### 05/22/2026
     ♡ I added in the Sabatier into water.py, b/c I forgot to add it in the storage update and run_water_system function 
 
-##      06/19/2026
+###### 06/19/2026
     ♡ fixing my sabatier file, made the methane go aove the safe limit, so I'm going to see what I can do w. the methane storage and venting 
 
     ♡ I decided to make sure all ch4 is either vented immediately or sent to storage, it's not goin to be added into the cabin atmosphere
@@ -222,4 +264,8 @@
 
     ♡ I noticed my greenhouse is currently producting 75x MORE O₂ than my crew of 30  mean and this is absolutely not right, it doesn't make any sense so I need to fix this
 
+###### 08/20/2026:
+    ♡ added full Sabatier behaviour, modes, chemistry, and water contribution into its own note file
+    
+    ♡ documented the intended integration between OGA hydrogen production, Sabatier water recovery, methane handling, and possible future propellant production
 
