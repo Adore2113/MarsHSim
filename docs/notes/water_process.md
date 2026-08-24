@@ -1,19 +1,18 @@
 # Assembly Processors (UPA / WPA / BPA)
 ### General Notes:
-    ♡ three core water recovery assemblies that form closed loop system
-    
-    ♡ all three share the same control pattern
+    ♡ three main water recovery assemblies that form closed loop system, sharing the same control pattern
     
     ♡ units only run when the relevant tank exceeds the hysteresis threshold
     
-    ♡ recovery rates are intentionally non-perfect
+    ♡ recovery rates are intentionally not perfect
     
     ♡ power and capacity numbers are intentionally conservative for V1
 
 ### ----------------------------------------
 
 ## Assembly Processors Plan (updated 08/22/2026):
-### Layout:
+### Layout
+#### Water Recovery/Processing Rooms:
     ♡ shape: rectangle
     ♡ floor area: ~ 90 m²
     ♡ height: 4.5 m
@@ -22,48 +21,46 @@
     ♡ approximate dimensions: 
         ~ 10 m × 9 m × 4.5 m
     
+    ♡ purpose:
+        - all recovery and treatment work happens here
+
     ♡ access:
         - connects to the water storage room
+        - connects to the ISRU water bay
         - connects to the utility hallway
 
     ♡ contains:
-        - UPA and pretreatment equipment
+        - UPA and pretreatment
         - WPA
         - BPA
-        - pumps
-        - filters
-        - catalytic reactors
+        - pumps, filters, catalytic reactors
         - sampling hardware
         - control cabinets
-        - consumables
+        - consumables storage
         - maintenance aisles
 
     ♡ calculation:
-        10 m × 9 m
+        10 m × 9 m 
         = ~ 90 m² floor area
-        
-        90 m² × 4.5 m
+
+        90 m² × 4.5 m 
         = ~ 405 m³ volume
 
 
 ### Shared Control Modes:
-    ♡ offline: 
-        - system off
+    ♡ offline: system off
 
-    ♡ idle:
-        - unit is ready, but there isn't enough water in the source tank yet
+    ♡ idle: 
+        - ready but not enough water in the source tank yet (small fixed power)
 
-        - uses a small fixed fraction of base power
-
-    ♡ running:
-        - processes available mass up to its processing capacity
-
-        - power scales with the fraction of available processing capacity being used
+    ♡ running: 
+        - processes available mass up to capacity (power scales with load)
 
 ### WPA Processing Priority:
     ♡ 1. condensate
-    ♡ 2. gray water
-    ♡ 3. raw ISRU water
+    ♡ 2. Sabatier produced water
+    ♡ 3. gray water
+    ♡ 4. raw ISRU water
 
 ### Recovery Rates:
     ♡ UPA: 0.87
@@ -81,18 +78,9 @@
     ♡ WPA: 80.0 kg/h
     ♡ BPA: 0.5 kg/h
     
-    ♡ capacity is converted to the amount that can be processed during the current simulation step
-
     ♡ calculation: 
         - maximum available this step: 
             handling capacity × step duration in hours
-        
-        - daily processing capacity:
-            88,775.244 s/sol ÷ 3,600 s/h
-            ≈ 24.66 h/sol
-            
-            0.5 kg/h × 24.66 h/sol
-            ≈ 12.33 kg/sol
 
 ### Power:
     ♡ base power
@@ -105,11 +93,9 @@
         - WPA: 0.50
         - BPA: 0.40
     
-    ♡ running power consists of a fixed baseline amount plus a load dependent amount
-    
-    ♡ the load dependent amount increases with the amount of the processor's available capacity being used
-    
     ♡ idle power is a small fixed fraction of base power
+
+    ♡ running power consists of a fixed baseline amount plus a load dependent amount
 
     ♡ calculation:
         - amount factor: 
@@ -125,10 +111,9 @@
         baseline power + power increase
 
 ### Heat Output:        
-    ♡ heat added to the habitat thermal balance is modeled as ~ 85% of processor electrical power
-    
-    ♡ heat output changes with processor power use
-    
+    ♡ heat added to habitat:
+        ≈ 85 % of electrical power
+
     ♡ calculation:
         processor heat: 
             electrical power × 0.85
@@ -137,17 +122,13 @@
 
 ## Design Evolution:
 #### Early Recovery Rates:
-    ♡ original UPA recovery was higher at ~ 0.94
-    ♡ lowered to 0.87 after researching more
+    ♡ original UPA recovery ~ 0.94 but was lowered to 0.87 after researching
 
 #### Power Logic:
-    ♡ early versions used fixed power
-    ♡ updated to load proportional power (baseline + variable portion)
+    ♡ early versions used fixed power, updated to load proportional power
 
 #### BPA Capacity:
-    ♡ original capacity was 0.25 kg/h
-
-    ♡ raised to 0.5 kg/h so the unit can keep up with brine from 30 crew without long term accumulation
+    ♡ original capacity was 0.25 kg/h, was raised to 0.5 kg/h to keep up with 30-crew brine
 
 ### ----------------------------------------
 
@@ -197,3 +178,8 @@
 
 ###### 08/20/2026:
     ♡ raised BPA handling capacity from 0.25 kg/h to 0.5 kg/h and added daily capacity calculations for water recovery
+
+###### 08/22/2026:
+    ♡ while I consider where to keep the Sabatier I'm going to move to the water processing assembly rooms, I want to avoid contamination, and for everything to stay clean overall, and to make maintenence easier, the potable water will have it's own clean room and area
+
+    ♡ I considered keeping all the non-potable water tanks together, but I'd like the seperation between the ISRU raw water to have it's own area
