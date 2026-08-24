@@ -1,53 +1,94 @@
 # Habitat Water System
 ### General Notes:
-    ♡ crew demand is intentionally over estimated for safety margin
+    ♡ crew demand is intentionally over estimated 
+   
+    ♡ water rooms are separated by water quality and function
 
-    ♡ closed-loop recovery with realistic (non-perfect) efficiencies
+    ♡ closed loop recovery efficiencies are intentionally not perfect
 
     ♡ clear separation of dirty processing from clean storage
 
     ♡ integrates OGA, Sabatier, CHX condensate, greenhouse make-up, and raw ISRU water
 
-    ♡ permanent losses (uncaptured vapor, residual brine, biomass water, operational losses) produces a small net negative that ISRU offsets
+    ♡ permanent losses causes a small net negative that ISRU offsets
 
 ### ----------------------------------------
 
-## Arcadia Water System Plan (08/18/2026):
-### Layout
-#### Water Recovery/Processing Room:
-    ♡ shape: octagon (regular)
-    ♡ floor area: 90 m²
-    ♡ total height: 4.5 m
-    ♡ width across opposite walls: ~ 10.4 m
-    ♡ wall length: 4.3 m
-    ♡ center to wall: ~ 5.2 m
-    ♡ center to corner: ~5.6 m
-    ♡ roof: lightly angled
-    ♡ entrances: two (greenhouse corridor + hub)
+## Arcadia Water System Plan (updated 08/23/2026)
+### Layouts - Four Water Rooms
+
+#### 1. Water Processing Room:
+    ♡ see water_process.md for full details
+    ♡ floor area: ~ 90 m²
+    ♡ height: 4.5 m
+    ♡ entrances: 
+        - wastewater storage room
+        - ISRU water room
+        - utility hallway
+
     ♡ contains: 
-        - UPA + pretreatment
+        - UPA
         - WPA
         - BPA
-        - pumps
-        - filters
-        - catalytic reactors
-        - sampling hardware
-        - control cabinets
-        - consumables
-        - maintenance aisles
+        - all treatment equipment
+
+#### 2. Wastewater Storage Room:
+    ♡ shape: rectangle
+    ♡ floor area: ~ 80-100 m²
+    ♡ height: 4.5 m
+    ♡ purpose: holds all dirty wastewater
+    ♡ entrances: 
+        - water processing room
+        - utility hallway  
+
+    ♡ contains:
+        - gray water tanks
+        - black water tanks
+        - brine tanks
+        - all tanks vertical and cylindrical in pressurized heated volume
+    
+#### 3. ISRU Water Room:
+    ♡ shape: rectangle
+    ♡ floor area: ~ 40-60 m²
+    ♡ height: 4.5 m
+    ♡ purpose: holding area for untreated Mars water before it enters the WPA
+    ♡ entrances: 
+        - water processing room
+        - utility hallway  
+
+    ♡ contains:
+        - raw ISRU water tank (4,000 kg capacity)
+        - basic monitoring and transfer equipment
+        - vertical cylindrical tanks in pressurized heated volume
+        
+        
+#### 4. Potable Water Storage Room:
+    ♡ shape: rectangle
+    ♡ floor area: ~ 100-120 m²
+    ♡ height: 4.5 m
+    ♡ purpose: cleanest water storage area
+    ♡ entrances: 
+        - water processing room
+        - utility hallway  
+
+    ♡ contains: 
+        - potable water tanks
+        - vertical cylindrical tanks inside the pressurized, heated volume
 
 #### Water Storage Room:
-    ♡ shape: octagon (regular)
+    ♡ shape: rectangle
     ♡ floor area: 120 m²
     ♡ total height: 4.5 m
     ♡ width across opposite walls: ~ 12.0 m 
     ♡ wall length: ~ 5.0 m
     ♡ roof: flat or lightly angled
-    ♡ entrances: two (processing room + hub)
     ♡ contains: 
-        -vertical cylindrical tanks fully inside pressurized heated volume
+        - vertical cylindrical tanks in pressurized heated volume
 
     ♡ greenhouse keeps only its own local zone reservoirs (~ 2,000 kg total)
+
+#### Water Recovery/Processing Rooms:
+
 
 ### ----------------------------------------
 
@@ -95,7 +136,7 @@
 
     ♡ shower system:
         - normal: 10 min recommend, cut-off 20 min
-        - conservation: 7–10 min
+        - conservation: 7-10 min
         - low water: 5 min
         - critical / navy style: timed push-button sequence (wet, soap, rinse)
 
@@ -327,7 +368,7 @@
 
     ♡ adding an extra tank for the isru system
 
-    ♡ ISS keeps a minimum reserve of ~ 800–1,600 kg of potable water in contingency after containers and MASA studies size water storage for only ~ 30 days of open-loop operation, and I read that you should plan for the largest expected daily usage plus unanticipated events
+    ♡ ISS keeps a minimum reserve of ~ 800-1,600 kg of potable water in contingency after containers and MASA studies size water storage for only ~ 30 days of open-loop operation, and I read that you should plan for the largest expected daily usage plus unanticipated events
 
     ♡ sticking with my octagon/hive style layout, I can work on a water utility room for the water
 
