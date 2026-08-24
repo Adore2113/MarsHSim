@@ -47,89 +47,11 @@
     ♡ Dust accumulation
     ♡ Alerts + monitoring 
 
-
-#### Variables / Constants:
-    ♡ - There are some variables that haven't been used, b/c I will need them for future plans and ideas
-
-    ♡ - I can sort them and maybe rethink the constants and what variables will be in state, later on
-
-
 ### Mars / Time of Day / Season / Temp Notes:
-    ♡ N spring / S fall:
-        - 194 sols
-        - average temp: ~(-25°C) - ~(-5°C)
-        - daytime highs: ~(-10°C) - ~(10°C)
-        - nighttime lows: ~(-80°C) - ~(-110°C)
-        - warms gradually
-        - slightly better ice stability
-        - dust: frequent dust devils (small, short dust whirlwinds)
-
-    ♡ N summer / S winter:
-        - 178 sols
-        - average temp: ~(-15°C) - ~(0°C)
-        - daytime highs: ~(0°C) - ~(20°C)
-        - nighttime lows: ~(-85°C) - ~(-115°C)
-        - better solar reliability
-        - dust: lower risk
-
-    ♡ N fall / S spring:
-        - 142 sols
-        - average temp: ~(-25°C) - ~(-10°C)
-        - daytime highs: ~(-15°C) - ~(5°C)
-        - nighttime lows: ~(-90°C) - ~(-120°C)
-        - occasional high temp: ~(10°C) - ~(15°C)
-        - cools gradually
-        - dust: frequent dust devils
-
-    ♡ N winter / S summer:
-        - 154 sols
-        - average temp: ~(-35°C) - ~(-15°C)
-        - daytime highs: ~(-25°C) - ~(-5°C)
-        - nighttime lows: ~(-100°C) - ~(-130°C)
-        - dust: storms, sometimes global
-
-    ♡ global dust storms can drop surface temp averages by 10-20°C for weeks
-
-    ♡ I'm going off of approximate surface temp daily averages for mid-latitude from NASA (Viking 2)
-
-    
-    ♡ mission_time_s = current time of day
-
-    ♡ dt_min = how long the step lasts
-
-    ♡ hours_per_step = scaling, production, etc
-
-    ♡ using 0.50kW of sunlight for every 1 square meter (m2) for now
-
-    ♡ Mars sunlight is between 0.4 - 0.6 kW / m2 during daytime
-
-    ♡ Mars time runs at 24 hours and 39 minutes and 35 seconds
-
-    ♡ I'm going to hardcode Mars' tilt to be 25.19 degrees b/c my model isn't going to run long enough to take that slow progression into consideration
-
-    ♡ going to use the midpoint range of each season for now (v1?)
+##### see mars_stats.md
 
 ### Atmosphere Notes:
-    ♡ target pressure:
-        - lower (~65 kilopascals (kPa))
-        - less catastrophic leaks
-
-    ♡ 25% yearly atmosphere pressure changes from co2 freezing and sublimating at the poles
-
-    ♡ kg for storage, kpa for atmosphere
-
-    ♡ adding variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others) - I decided to remove the one for ch4
-
-#### Gas Notes:
-    ♡ going to be using Dalton's Law
-
-    ♡ tracking partial pressure changes per timestep instead of mass
-
-    ♡ 288 five minute intervals in one day
-        ~0.0033 * 288 = 0.9504kPa pp/day
-
-    ♡ 30 crew members
-        ~0.0033 * 30 = 0.099kPa/5min
+##### see atmosphere.md
 
 #### Buffer Gas Notes:
     ♡ buffer gases:
@@ -225,45 +147,16 @@
 ##### see hab_water.md
 
 ### Crew Notes:
-    ♡ crew getting around 8 hours of sleep/night (9:30pm (21:30)- 6:00am)
+##### see crew.md
 
 ### Thermal Notes:
-    ♡ going to use kilowatts (kW) for heat sources (kW = change) (C = result)
-
-    ♡ adding a variable for the habitat's insulation as a heat leak rate and I'm using 1.0 kw/C as a starter value
-
-     ♡ I'm thinking about radiators, electric heaters, obvious insulation, fans and maybe.. a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin
-
-    ♡ I decided to go with radiator arrays, mostly to keep my code more manageable
-
-    ♡ after doing some research, I decided to go with a 6 array set up with a total of 50 panels for now
-
-    ♡ all humidity will be mostly internal, through crew perspiration, breathing, etc. 
-    
-    ♡ considering having a greenhouse b/c of the no resupply
-
-    ♡ a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin but I'm going to make it mainly a humidity control subsystem first with slight cooling, b/c I already have the radiators
-
+##### see thermal.md
 
 ### Mars Dust / Environment Factors:
-
-    ♡ dune migration (research this more)
-    ♡ sun absorption changes from ice/dust
-    ♡ dust factor ranges from 0.0 - 1.0
-    ♡ eventually have Mars dust storms and things added in with random, maybe wind cleaning off some of the dust from the solar arrays as well
-
+##### see mars_stats.md
 
 ### ISRU Notes:
-    ♡ I read about In-Situ Resource Utilization (ISRU) to extract water locally but I'll worry about that later
-
-    ♡ while testing the water outputs, I can see that the net loss per sol is way too high, so I'm going to go over some numbers
-
-    ♡ 115.5kg per sol is just the cost of having a 30 person crew
-
-    ♡ I was thinking about other way to recycle and actually get water and I thought about piercing through the surface with two or three heated pipes that siphon up some frozen mars water every so often? retractable pipes so they don't freeze and can be used at will, I'm going to do some reasearch on this
-
-    ♡ going back to In-Situ Resource Utilization (ISRU) to extract water locally, I'm thinking piercing through the surface with two or three heated pipes that siphon up some frozen mars water every so often with retractable pipes so they don't freeze and can be used when wanted and needed to avoid environmental factors
-
+##### see isru.md
 
 ### Alert Notes:
         ♡ Gas alert ideas for future log:
