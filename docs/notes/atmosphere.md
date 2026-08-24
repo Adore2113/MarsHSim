@@ -85,7 +85,35 @@
 ### ----------------------------------------
 
 ## Design Decisions:
-#### 
+#### Why ~ 65 kPa total pressure?
+    ♡ a leak would release less atmosphere
+
+    ♡ I wanted it to be lower than Earth sea-level pressure
+
+    ♡ pressure loss will be less catastrophic
+
+    ♡ less gas woul be required to pressurize the habitat
+
+    ♡ it can still support a safe Earth like oxygen partial pressure
+
+#### Why kPa for atmosphere and kg for storage?
+    ♡ cabin behaviour is pressure driven (Dalton's Law, crew effects, alerts)
+
+    ♡ stored H₂,CH₄, buffered CO₂ are treated as resources and use mass ratios (especially Sabatier)
+
+    ♡ consistency throughout the code
+
+#### Why put atmosphere systems in the Utility / Resource Recovery Hub?
+    ♡ a lot of systems have connections to the water equipment and storage
+    
+    ♡ keeps industrial process systems together and away from living and greenhouse areas
+    
+    ♡ short runs for H₂, CO₂ and product water
+
+#### Why isolate methane storage?
+    ♡ CH₄ is flammable
+
+    ♡ independent ventilation and fire control are simpler in a dedicated bay
 
 ### ----------------------------------------
 
@@ -108,7 +136,7 @@
 
 ###### 03/04/2026
     ♡ starting w. atmosphere 
-    
+
     ♡ going to be using Dalton's Law
 
 ###### 03/08/2026
