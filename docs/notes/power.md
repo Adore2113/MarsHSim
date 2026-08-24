@@ -133,7 +133,7 @@
         - total volume:
             495 m³ + 13,475 m³ + 315 m³ + 660 m³
             = ~ 14,945 m³
-            
+
 ### ----------------------------------------
 
 #### Primary Battery:
@@ -320,6 +320,8 @@
 
 ### Dev Log notes:
 ###### 03/29/2026:
+    ♡ decided to start w. power_system.py since I already started implementing these features in other functions and updated step in engine.py to include power/energy used for OGA and lights
+
     ♡ battery capacity 4000.0 kWh
 
     ♡ started power_system.py
@@ -329,6 +331,9 @@
 
 ###### 05/25/2026:
     ♡ updating systems to include low power mode
+
+###### 06/12/2026
+    ♡ around sol 43, the battery runs too low
 
 ###### 07/21/2026:
     ♡ considering whether heated pipes should retract automatically when low power begins, since leaving them deployed could require significant heating
