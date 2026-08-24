@@ -169,6 +169,9 @@
 ###### 04/22/2026:
     ♡ chose UPA / WPA / BPA after doing research on reusability
 
+###### 04/23/2026
+    ♡ adding condensate/CHX to water_system and engine and made OGA use potable water
+
 ###### 05/25/2026:
     ♡ added hysteresis and load proportional power logic
 
@@ -182,3 +185,15 @@
     ♡ while I consider where to keep the Sabatier I'm going to move to the water processing assembly rooms, I want to avoid contamination, and for everything to stay clean overall, and to make maintenence easier, the potable water will have it's own clean room and area
 
     ♡ I considered keeping all the non-potable water tanks together, but I'd like the seperation between the ISRU raw water to have it's own area
+
+###### 08/23/2026
+    ♡ making the changes to move the water processing systems to have rooms to serperate by water quality and function
+
+    ♡ sabatier.py: ch4_leaked_kpa is adding storage leak into cabin ch4_kpa, it should vent to Mars exterior per sabatier.md, not cabin atmosphere
+
+        - decide: implement Sabatier to WPA water routing in water.py
+
+        - new sabatier_water_storage_kg holding tank (like condensate)
+
+        - stop adding sabatier_water_produced_kg directly in update_water_storages_kg()
+
