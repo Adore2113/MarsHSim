@@ -48,7 +48,7 @@
 
 ### ----------------------------------------
 
-### Summarized Dev Log Notes:
+### Dev Log Notes:
 ###### From v1_scope:
     ♡ chose a lower target pressure of ~ 65 kPa so leaks would be less catastrophic
 
