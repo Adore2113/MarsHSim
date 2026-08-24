@@ -1,12 +1,49 @@
 # Habitat Layout
 ### General Notes:
-    ♡ 
+    ♡ four central rooms act as local hubs / wings
 
+    ♡ surrounding rooms branch off from each node
+
+    ♡ secondary corridors / loops connect outer rooms so movement doesn't always require returning to a center
+
+    ♡ clear separation between living, food production, utility/process, and power areas
+
+    ♡ supports cleanliness, emergency access, and psychological zoning
 
 ### ----------------------------------------
 
-## Arcadia MarsH Plan (updated 08/24/2026):
-####
+## Arcadia Four Hub Plan (updated 08/24/2026):
+### Layout
+
+#### Living / Social Hub:
+    ♡ clean, comfortable, lower industrial noise
+    ♡ contains:
+        - crew quarters access
+        - galley / cafeteria
+        - recreation and small social spaces
+        - medical / quiet areas
+
+#### Greenhouse / Food Hub:
+    ♡ clean, comfortable, lower industrial noise
+    ♡ contains:
+        - main grow zones
+        - hydroponic reservoir areas
+        - work and harvesting areas
+
+#### Utility / Resource Hub:
+    ♡ industrial / process zone, clearly separated from living areas
+    ♡ contains:
+        - Primary Battery Room
+        - Power Distribution and Transfer Room
+        - entrance to Secondary Battery Corridor
+        - Battery Maintenance and Service Room
+
+#### Power / Energy Hub:
+    ♡ more peripheral, lower everyday access priority
+    ♡ contains:
+       - each hub has multiple exits into its surrounding rooms
+       - secondary corridors make connections between hubs
+       - crew can move between related zones without always returning to a central node
 
 ### ----------------------------------------
 
