@@ -11,35 +11,76 @@
     ♡ shape: rectangle
     ♡ floor area: ~ 60-80 m²
     ♡ height: 4.5 m
+    ♡ volume: ~ 270–360 m³
     ♡ contains:
         - 3 Sabatier racks (each ~ 0.4 m³)
-        -  H₂ buffer from OGA
-        - CO₂ feed small buffer
+        - H₂ buffer from OGA
+        - CO₂ feed / small buffer
         - condenser and water separator
         - controls, valves, sensors
         - maintenance space
 
     ♡ access:
-        - near OGA and atmosphere systems
-        - short water line to the water processing room
+        - near OGA and other atmosphere systems
+        - short water line to water processing room
         - connected to the methane storage bay
+        - connects to the utility hallway
 
 #### Methane Storage Bay:
-    ♡ isolated room for CH₄ tanks
+    ♡ isolated room / bay for CH₄ tanks
     ♡ independent ventilation and fire considerations
+    ♡ next to the atmosphere / resource recovery room
+    ♡ methane is never intentionally added to the cabin atmosphere
 
-####
+### Gas Tracking:
+    ♡ cabin atmosphere:
+        - tracked as partial pressures in kPa
+        - O₂, CO₂, N₂, Ar
+
+    ♡ stored resources: 
+        - tracked as mass in kg
+        - H₂ storage
+        - CH₄ storage
+        - CO₂ storage (when buffered)
+
+    ♡ individual base leak rates per gas, storage venting is separate
+
+### Atmosphere Subsystems:
+    ♡ amine swing beds / CO₂ scrubbing: co2_scrub.py
+    ♡ Oxygen Generation Assembly (OGA): oxygen.py
+    ♡ buffer gas management (N₂ + Ar): buffer_gas.py
+    ♡ Major Constituent Analyzer (MCA)
+    ♡ Sabatier: sabatier.md (racks are in this room)
+    ♡ ISRU atmosphere and sorbent beds: isru_atm.py
 
 ### ----------------------------------------
 
 ## Design Evolution:
 #### 
-    ♡ added variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others) - I decided to remove the one for ch4
+    ♡ early target pressure accidentally set to 60 kPa, so corrected to 65 kPa
+
+    ♡ moved from mixed units toward consistent rule: kPa in cabin, kg in storage
+
+    ♡ added per gas leak rates instead of one
+
+    ♡ Sabatier water path changed from direct potable addition to WPA treatment
+
+    ♡ atmosphere physical location locked to utility / resource hub (08/24/2026)
 
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ 
+    ♡ track other trace gases
+
+    ♡ exact sizing of Methane Storage Bay
+
+    ♡ detailed amine bed and MCA placement for layout
+    
+    ♡ ISRU atmosphere compressor / sorbent bed footprint
+
+    ♡ more refined leak and vent models
+
+    ♡ seasonal / polar CO₂ pressure effects
 
 ### ----------------------------------------
 
