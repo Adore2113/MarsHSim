@@ -1,6 +1,7 @@
 # Atmosphere
 ### General Notes:
-
+    ♡ kg for storage, kpa for atmosphere
+    
 ### ----------------------------------------
 
 ## Atmosphere Plan ():
@@ -32,7 +33,8 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-####
+#### 
+    ♡ added variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others) - I decided to remove the one for ch4
 
 ### ----------------------------------------
 
@@ -47,7 +49,22 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
-###### Notes from May:
+###### From v1_scope:
+    ♡ target pressure:
+        - lower (~ 65 kilopascals (kPa))
+        - less catastrophic leaks
+
+    ♡ 25% yearly atmosphere pressure changes from co2 freezing and sublimating at the poles
+
+    ♡ going to be using Dalton's Law
+
+    ♡ tracking partial pressure changes per timestep instead of mass
+
+    ♡ 288 five minute intervals in one day
+        ~ 0.0033 * 288 = 0.9504 kPa pp/day
+
+    ♡ 30 crew members
+        ~ 0.0033 * 30 = 0.099 kPa/5min
 
 ###### 03/04/2026
     ♡ starting w. atmosphere 
