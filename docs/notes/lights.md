@@ -210,6 +210,23 @@
 ###### 04/05/2026:
         ♡ the lighting function will react and adjust to the level of daylight
 
+###### 04/09/2026
+    ♡ fixed variables in v1_state_variables.md and added / fixed section headers in other files
+
+    ♡ fixed light function to work w. daylight and sunlight logic
+
+    ♡ considering extra lighting option for when there are times where there isn't any sunlight for so many days, to help keep crew moral up (wellness lights)
+
+    ♡ going to add three more variables related to sunlight mostly for the UI later
+
+    ♡ added a wellness light function b/c I figured that the crew would need a bit more if there are frequent dust storms or anything that would effect sunlight for a few days
+
+
+###### 04/13/2026
+    ♡ I'm trying to decide if I should keep my lights function so it's controlling the brightness based on its own battery storage check, or move it to the function where it handles low power.. I'm leaning towards the latter
+
+    ♡ moved it and capped the min and max light level
+
 ###### 05/08/2026:
     ♡ started light for the greenhouse
 
