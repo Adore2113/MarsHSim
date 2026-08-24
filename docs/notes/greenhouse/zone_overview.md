@@ -78,7 +78,7 @@
 
 ### Lighting:
     ♡ photoperiod: 16 hours
-    ♡ light period: 05:00–21:00 LMST
+    ♡ light period: 05:00-21:00 LMST
     ♡ zone light target: 0.26 kW/m²
 
     ♡ lighting:
@@ -205,7 +205,7 @@
 
 ### Lighting:
     ♡ photoperiod: 16 hours
-    ♡ light period: 05:00–21:00 LMST
+    ♡ light period: 05:00-21:00 LMST
     ♡ zone light target: 0.23 kW/m²
 
     ♡ lighting:
@@ -281,7 +281,7 @@
 
     ♡ growing system:
         - multi-level NFT growing racks
-        - 2–3 growing levels
+        - 2-3 growing levels
         - ~ 30 rack modules
         - ~ 15 m² effective grow area per rack module
 
@@ -301,7 +301,7 @@
     ♡ pH target: ~ 6.0
     ♡ EC target: ~ 1.8
     ♡ solution temperature target: ~ 22°C
-    ♡ dissolved oxygen: ≥ 5.5–6 mg/L
+    ♡ dissolved oxygen: ≥ 5.5-6 mg/L
 
 ### Reservoir:
     ♡ tank capacity: ~ 10,000 L
@@ -327,7 +327,7 @@
 
 ### Lighting:
     ♡ photoperiod: 16 hours
-    ♡ light period: 05:00–21:00 LMST
+    ♡ light period: 05:00-21:00 LMST
     ♡ zone light target: 0.19 kW/m²
 
     ♡ lighting:

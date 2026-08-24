@@ -534,7 +534,7 @@
     ♡ keeping the rates with each zone makes the differences easier to understand
 
 #### Why ~ 2% of crew O₂ and CO₂ needs?
-    ♡ I read that NASA shows ~ 20–25 m² of well lit crops can supply the full O₂ needs of one person
+    ♡ I read that NASA shows ~ 20-25 m² of well lit crops can supply the full O₂ needs of one person
 
     ♡ my greenhouse priorities are food production and morale first, minor atmosphere contributions, moderate light levels (sunlight + supplemental LEDs) and to be power-concious, so ~ 2% made sense to me
 
@@ -552,7 +552,7 @@
 
     ♡ my simulator uses more moderate lighting and I have mixed crops, different growing rates and crop that aren't all at the same density, so I decided to go for more conservative averages
 
-    ♡ sweet corn can reach ~ 28–34 µmol/m²/s under ideal controlled conditions, while passionfruit commonly falls around ~ 10–30 µmol/m²/s, so 12 µmol/m²/s was chosen as a conservative mixed zone average
+    ♡ sweet corn can reach ~ 28-34 µmol/m²/s under ideal controlled conditions, while passionfruit commonly falls around ~ 10-30 µmol/m²/s, so 12 µmol/m²/s was chosen as a conservative mixed zone average
 
     ♡ hydroponic spinach can photosynthesize at much more than 10 µmol CO₂/m²/s under ideal controlled lighting, so 10 µmol/m²/s was chosen as a conservative rack zone average rather than assuming every rack is mature and perfectly lit
     
@@ -614,7 +614,7 @@
     ♡ container: 
         - ~ 12 µmol/m²/s for V1 zone average
         
-        - sweet corn can get to ~  28–34 µmol/m²/s under ideal controlled conditions, while passionfruit seems to commonly fall around 10–30 µmol/m²/s, also consindering different growth stages, again
+        - sweet corn can get to ~  28-34 µmol/m²/s under ideal controlled conditions, while passionfruit seems to commonly fall around 10-30 µmol/m²/s, also consindering different growth stages, again
 
     ♡ rack: 
         - ~ 10 µmol CO₂/m²/s for V1 zone average

@@ -62,7 +62,7 @@
         - contains multi level NFT growing racks
         - floor area: ~ 180 m²
         - effective grow area: ~ 450 m²
-        - 2–3 growing levels
+        - 2-3 growing levels
         - planning estimate: ~ 30 rack modules
         - calculation:
             450 m² ÷ 30 = 15 m² grow area/rack

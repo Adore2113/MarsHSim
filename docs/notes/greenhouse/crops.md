@@ -15,7 +15,7 @@
 ### ----------------------------------------
 
 ## Nutrition Plan (08/09/2026):
-#### Crew Nutrition Targets:
+### Crew Nutrition Targets:
     ♡ macronutrient targets:
         - carbohydrates: 40%
         - fat: 40%
@@ -23,7 +23,7 @@
 
 ### ----------------------------------------
 
-#### Zone Crop Roles:
+### Zone Crop Roles:
     ♡ structural zone:
         - larger crops
         - longer cycle crops
@@ -71,7 +71,7 @@
         - herbs and small vertical plants:
             almost always racks
 
-#### Crop Rotation:
+### Crop Rotation:
     ♡ rotation notes:
         - the greenhouse stays consistent all the time, so season changes don't really apply
         
@@ -84,7 +84,7 @@
 ### ----------------------------------------
 
 ## Growth Model:
-#### Growth:
+### Growth:
     ♡ default starting health: 0.98
     ♡ default starting light exposure: 0.65
     ♡ default growth multiplier: 1.0
@@ -95,7 +95,7 @@
         - growth increase:
             base growth rate × growth multiplier × light exposure × health × sol fraction
 
-#### Harvest:
+### Harvest:
     ♡ triggers when growth progress reaches or exceeds: 1.0
 
     ♡ growth progress resets to 0.0 after harvest
@@ -110,6 +110,7 @@
             ♡ growth progress ≥ 1.0
 
 ### ----------------------------------------
+
 ## Primary Crop List:
     ♡ dual-purpose and crops that do not require a lot of processing are preffered
 
@@ -156,7 +157,7 @@
 
 ### ----------------------------------------
 
-#### Future Considerations:
+### Future Considerations:
     ♡ zone subdivisions, I don't have racks per zone or containers per rack counts recorded yet
 
     ♡ determine how nutrient imbalance will be represented

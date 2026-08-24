@@ -58,6 +58,22 @@
             3. NFT channels
             4. return/loop
 
+### ----------------------------------------
+
+### Nutrients:
+#### Nutrient Supply:
+    ♡ reservoirs receive nutrient concentrate through the greenhouse nutrient system
+
+    ♡ nutrients can come from:
+        - stored / supplied nutrient reserves
+        - recovered habitat waste nutrients
+
+    ♡ recovered crew waste nutrients get fully treated, sanitized and balanced before entering the system
+
+    ♡ untreated crew waste is never brought directly into the reservoirs
+
+    ♡ detailed nutrient recovery is handled by the habitat waste / resource-recovery system
+
 #### Nutrient Solution Management:
     ♡ one target range per zone
 
@@ -69,7 +85,7 @@
 
     ♡ EC (Electrical Conductivity) is measures in mS/cm, letting you know how much the concentration of the solution has changed
 
-    ♡ DO (Dissolved Oxygen)how much oxygen is dissolved in the solution for the roots to use
+    ♡ DO (Dissolved O₂)how much O₂ is dissolved in the solution for the roots to use
     
     ♡ structural:
         - pH target range: 5.5-6.2 (~ 5.8)
@@ -251,6 +267,11 @@
 
     ♡ water came from a tank instead of nutrient solution as a base for my code until I did more reasearch
 
+    ♡ previous reservoir capacities:
+        - structural: ~ 7,000 L
+        - container: ~ 9,500 L
+        - rack: ~ 10,000 L
+    
 ### ----------------------------------------
 
 ## Future Considerations:
@@ -261,9 +282,10 @@
         - decide replacement schedule
     
     ♡ continue hydroponics: 
-        -add that to power 
-        -calculate flow rate 
-        -etc.
+        - add that to power 
+        - calculate flow rate 
+        - etc.
+        - finish hydroponic circulation flow rates / pump duty cycles
     
     ♡ figure out pump failure:
         - NFT flow stops  
@@ -302,11 +324,7 @@
             ♡ rack health falls
             ♡ growth falls
         
-    ♡ previous reservoir capacities:
-        - structural: ~ 7,000 L
-        - container: ~ 9,500 L
-        - rack: ~ 10,000 L
-    
+
 ### ----------------------------------------
 
 ## Design Decisions:
@@ -346,12 +364,12 @@
     ♡ this is a simplification for my simulator, instead of going into detail about specific  plant nutrients like potassium or magnesium
 
 #### Why is the range for DO lower for the rack zone?
-    ♡ b/c of using NFT, the rack zone naturally gets good oxygen exposure from the thin moving film
+    ♡ b/c of using NFT, the rack zone naturally gets good O₂ exposure from the thin moving film
 
     ♡ the LECA zones rely more on drainage, air gaps, and reservoir aeration
 
 
-#### Why not simulate  pH, EC nutrients, solution temp and dissolved oxygen for V1?
+#### Why not simulate  pH, EC nutrients, solution temp and dissolved O₂ for V1?
     ♡ all things that really would only impact plant health and growth rate
 
     ♡ instead of modeling each factor individually, the simulator can use them as inputs to overall zone/root zone health, which affects growth
@@ -386,17 +404,17 @@
 
     ♡ I'm choosing targets to be averaged per zone
 
-    ♡ I'm trying to decide how in depth to make this, I was considering pH, EC nutrients, solution temp and dissolved oxygen, but these are all things that really would only impact plant health and growth rate, so I'll just make note of them for now, for potential future reference
+    ♡ I'm trying to decide how in depth to make this, I was considering pH, EC nutrients, solution temp and dissolved O₂, but these are all things that really would only impact plant health and growth rate, so I'll just make note of them for now, for potential future reference
 
     ♡ I put a lot of notes right into the hydroponic.md file instead of here
 
     ♡ EC (Electrical Conductivity) is measures in mS/cm, indicating how concentraed the solution is, not which nutrients are present or if the ratios are perfect, just the overall ionic concentration (so you can tell if the concentration has changed)
 
-    ♡ DO (Dissolved Oxygen)how many oxygen molecules a present in water, essential for the respiration of fish, bacteria, and other aquatic organisms, making it a key indicator of water quality. Low DO stresses roots, slows uptake, and raises the risk of root problems. 
+    ♡ DO (Dissolved O₂)how many O₂ molecules a present in water, essential for the respiration of fish, bacteria, and other aquatic organisms, making it a key indicator of water quality. Low DO stresses roots, slows uptake, and raises the risk of root problems. 
 
-    ♡ the rack zone naturally gets good oxygen exposure from the thin moving film, while the LECA zones rely more on drainage, air gaps, and reservoir aeration
+    ♡ the rack zone naturally gets good O₂ exposure from the thin moving film, while the LECA zones rely more on drainage, air gaps, and reservoir aeration
 
-    ♡ I'm not so worried about an upper range for the dissolved oxygen target b/c the most important thing is if it's high enough
+    ♡ I'm not so worried about an upper range for the dissolved O₂ target b/c the most important thing is if it's high enough
     
 ###### 08/14/2026
     ♡ considering pums for each greenhouse zone, I want to have one backup incase the prmary fails that would be automatic 
