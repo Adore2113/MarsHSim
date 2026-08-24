@@ -128,7 +128,6 @@ The current dashboard is a visual prototype designed to display the simulator's 
 
 ♡ interactive monitoring and control interface
 
-
 ## Current Focus:
 ♡ reconnecting and testing subsystem interactions during the current rewrite
 
@@ -143,7 +142,6 @@ The current dashboard is a visual prototype designed to display the simulator's 
 This project is in active development.
 
 ## Project Structure:
-
 ♡ docs /
 
     - dev_log.md = active development log and my thought process
@@ -155,18 +153,25 @@ This project is in active development.
     - v1_state_variables.md = reference of all tracked variables
     
 ♡ docs / notes
+    - atmosphere.md = future atmosphere design notes
+    
+    - hab_water.md = overall habitat water design notes
 
     - isru.md = future ISRU atmosphere and water notes
 
     - layout.md = future habitat structure and layout notes
 
-    - lights.md = habitat lighting design and simulation notes
+    - lights.md = habitat lighting design notes
     
-    - power.md = habitat power system design and planning notes
+    - power.md = habitat power system design and simulation notes
     
+    - sabatier.md = sabatier design notes
+
     - solar_field.md = solar field design, operation and power generation notes
 
     - template.md = my own template I'm using for note structure
+
+    - water_process.md = UPA, BPA and WPA design notes
 
 ♡ docs / notes / greenhouse /
 
