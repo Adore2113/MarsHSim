@@ -35,7 +35,10 @@
         - work and harvesting areas
 
 #### Utility / Resource Hub:
-    ♡ industrial / process zone, clearly separated from living areas
+    ♡ Four Water Rooms:
+        - total floor area: ~ 340 m²
+        - total volume: ~ 1,530 m³
+    ♡ industrial zone, separated from living areas
     ♡ contains:
         - water processing Room
         - wastewater Storage Room
@@ -207,3 +210,5 @@
 
 ###### 08/24/2026
     ♡ originally I had pictured the greenhouse as a kind of central hub for the entire habitat, but now I'm thinking of having four central hub areas one for a living/social almost wing area, greenhouse/food hub, a resource and utility hub and a power/energy hub, wher the surrounding rooms branch off from those hubs and there are corridors/secondary loops that connect the outer rooms so the crew could move between zones without going back through the center always
+
+    ♡ after entering the total floor area and volume for the utility / resource area, the water rooms seem small compared to the power rooms, but potable holds ~ 10 m³ of water itself, so ~ 110 m² room gives generous tank space, access, and structure, the other gray, black and brine water are smaller, so that space makes sense as well, the raw ISRU water at 4,000kg fits in 40–60 m² and the UPA, WPA and BPA equipment fits in ~ 90 m² with aisles sounds good for a 30 crew plan.. power just seems massive in comparison b/c the secondary battery corridor I made is bigger than my original habitat plan b/c of the amount of space they need.. when I add more rooms to the resource recovery area it will be bigger for sure 
