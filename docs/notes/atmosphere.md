@@ -9,7 +9,7 @@
 
 #### Resource Recovery Room:
     ♡ shape: rectangle
-    ♡ floor area: ~ 60-80 m²
+    ♡ floor area: ~ 120–140 m²
     ♡ height: 4.5 m
     ♡ volume: ~ 270–360 m³
     ♡ contains:
@@ -143,8 +143,6 @@
 ###### 03/08/2026
     ♡ resuming atmosphere creation w. updated knowledge
 
-    ♡ CO₂ was defaulting to zero, need to fix my scrubbing system
-
     ♡ today I learned that I needed to get the skeleton figured out and that it's okay to refine the numbers afterwards
 
 ###### 03/09/2026
@@ -182,10 +180,6 @@
 
     ♡ finished OGA and water electrolysis for now, moving onto argon and nitrogen
 
-
-###### 03/14/2026
-    ♡ I added the variable CO₂_stored_kpa to collect and temporarily store the CO₂ the amine bed scrubs until I use it later in my code
-
 ###### 03/17/2026
 
     ♡ while adding the temp variables to run_oga, I decided to rename a few variables to make reading/going over my code later easier and I also decided to make these functions more efficient overall
@@ -204,29 +198,13 @@
 
     ♡ broke up one long buffer gas system function into smaller ones for readability, organization and future handling
 
-###### 03/28/2026
-    ♡ breaking up the CO₂ scrubber system into different functions and adding heat, taking into consideration that I want there to be a baseline power/online bed like there is for heat, power usage used on actual CO₂ removed, emergency events and full power loss (these last two will be handled later though)
-
-    ♡ added power usage to CO₂ scrubber, updated engine and quick_test to work w. the file properly
-
-###### 03/29/2026
-    ♡ while looking at the amine bed list, I'm not happy w. how it's running right now b/c of how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that
-
-###### 04/21/2026
-    ♡ going back to CO₂_scrubber_system and changing hardcoding to calculations
-
-###### 04/25/2026
-    ♡ updated amine beds to come online w. how much CO₂ is needed, I used two different hysteresis for that
-
 ###### 04/27/2026
     ♡ added venting for OGA
 
 ###### 04/28/2026
-
     ♡ changed the targets for N₂ and Ar and the target pressure to 65.0kpa (which it should have been this whole time, I accidentally had it at 60.0kpa)
 
 ###### 04/30/2026
-
     ♡ updated OGA logic, by removing the pa conversation at all and made r for the universal gas constant in kpa instead
 
     ♡ I am going to keep h2 stored in kg and also I'm going to make the methane(ch4) storage to be in kg b/c these are being treated as resources and I read that the Sabatier uses mass ratios, not pressure ratios
@@ -236,25 +214,16 @@
     ♡ I thought adding a little bit of a leak while venting the ch4 was realistic, so I might add this to the other systems that vent
 
 ###### 05/03/2026
-
     ♡ I decided to track gases in the atmosphere in kpa and h2 and ch4 in kg for storage and I'm not 100% sure about the other ones yet
 
     ♡ going to keep things consistent: kg for storage, kpa for atmosphere
 
     ♡ adding variables for each gas to have a base leak rate, to use for venting and other things (using individual ones b/c some leak faster than others)
 
-###### 05/05/2026
-    ♡ working on CO₂_scrubber_system.py making the logic closer to the sabatier and other systems logic
-
 ###### 05/14/2026
     ♡ going to add in the gas leak logic so the variables are actually getting used so I can delete the vague universal gas leak/hour variable
 
     ♡ adding gas_leak.py file to handle that ^
-
-###### 05/20/2026
-    ♡ I added handling excess O₂ to oxygen.py
-
-    ♡ while going over the results from each subsystem, I'm realizing that CO₂ is not being handled right.. I need to fix where the Sabatier is getting it's CO₂ amount from
 
     ♡ I made some changes to buffer gas, double check them tomorrow
 
@@ -275,6 +244,5 @@
     ♡ fixing buffer gas
 
 ###### 08/24/2026
-
     ♡ the atmosphere are will be with the utility/resource area b/c a lot of those sytems have certain connections to the water eqipment and storage so it makes sense that they are kept in closer proximity
 

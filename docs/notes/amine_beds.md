@@ -17,9 +17,9 @@
     ♡ shared resource recovery room: ~ 120–140 m²
 
     ♡ beds and support equipment are part of the atmosphere / resource area
-    
+
     ♡ see atmosphere.md for room placement and connections
-    
+
     ♡ full set of 8 beds, manifolds, valves, blowers and aisles fit as a bay inside the resource recovery room at ~ 50-60 m² of floor space for the bed row
 
 ### Beds:
@@ -27,9 +27,9 @@
     ♡ max beds online: 8
     ♡ beds have type: primary or backup
     ♡ each bed tracks: status, co2 load, capacity in kg and regen_timer_min
-    
+
     ♡ primary beds are preferred when bringing capacity online
-    
+
     ♡ backup beds are preferred when shedding capacity
 
 ### Scrub Efficiency:
@@ -52,11 +52,11 @@
 
 ### Operating Logic:
     ♡ CO₂ above target decides the number of beds actively adsorbing
-    
+
     ♡ scrubbed CO₂ from the cabin is converted to kg and added to CO₂ storage
-    
+
     ♡ CO₂ released during bed regeneration is also added to CO₂ storage for the Sabatier system
-   
+
     ♡ cannot remove more CO₂ than exists above target or than online beds have room for
 
     ♡ hysteresis:
@@ -71,15 +71,15 @@
     ♡ when an online bed reaches capacity it switches to regenerating
 
     ♡ regen duration: 55 min
-    
+
     ♡ during regen, CO₂ load is released over time into storage
-    
+
     ♡ when regen finishes, the bed returns to standby
-    
+
     ♡ on any bed-switch this step:
         - max scrub reduced to 80%
         - power multiplied by 1.25
-    
+
     ♡ standby beds can be brought online the same step to replace a saturated bed
 
 ### Power & Heat
