@@ -153,7 +153,32 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
-##### see atmosphere.md
+###### 03/08/2026
+    ♡ CO₂ was defaulting to zero, need to fix my scrubbing system
+
+###### 03/14/2026
+    ♡ I added the variable CO₂_stored_kpa to collect and temporarily store the CO₂ the amine bed scrubs until I use it later in my code
+
+###### 03/28/2026
+    ♡ breaking up the CO₂ scrubber system into different functions and adding heat, taking into consideration that I want there to be a baseline power/online bed like there is for heat, power usage used on actual CO₂ removed, emergency events and full power loss (these last two will be handled later though)
+
+    ♡ added power usage to CO₂ scrubber, updated engine and quick_test to work w. the file properly
+
+###### 03/29/2026
+    ♡ while looking at the amine bed list, I'm not happy w. how it's running right now b/c of how I hardcoded and pre-assigned the roles, when I actually want this to be a living working system, so before starting the solar power functions, I'm going to go back and try to fix that
+
+###### 04/21/2026
+    ♡ going back to CO₂_scrubber_system and changing hardcoding to calculations
+
+###### 04/25/2026
+    ♡ updated amine beds to come online w. how much CO₂ is needed, I used two different hysteresis for that
+
+###### 05/05/2026
+    ♡ working on CO₂_scrubber_system.py making the logic closer to the sabatier and other systems logic
+###### 05/20/2026
+    ♡ I added handling excess O₂ to oxygen.py
+
+    ♡ while going over the results from each subsystem, I'm realizing that CO₂ is not being handled right.. I need to fix where the Sabatier is getting it's CO₂ amount from
 
 ###### 08/24/2026
     ♡ increasing the scrubber set from six to eight beds to improve redundancy, maintenance availability and recovery from elevated CO₂
@@ -175,3 +200,10 @@
     ♡ for my surface habitat I can consider regenerating beds can return moisture to a recovery path or to a vent system, CHX / humidity control and amine beds both affect cabin water vapor and scrubbed CO₂ sent to storage / Sabatier should be considered for residual moisture for product purity
 
     ♡ I will save this for the future, not V1
+
+
+    ♡ updating co2_scrub.py to stop just using the beds online in the order they are on the list, and the co2_load needs to be implemented like the sorbent beds so the bed switching is actually calculated and based on saturation instead of the automatic 55min timer, so even though with capacity at 3.0kg per bed, the beds probably won't reach full saturation within the 55 min, so it will still sort of be the same
+
+    ♡ updated co2_scrub to have regeneration, standby and online, there are now four beds primary, four beds backup, added kg to capacity in the amine beds list, 
+
+    ♡ co2 now goes into co2 storage
