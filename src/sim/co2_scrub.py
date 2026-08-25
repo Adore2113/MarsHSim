@@ -222,7 +222,6 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
     co2_leak_kpa = state.co2_leak_rate_kpa_per_hr * hours_per_step
     final_co2_kpa = max(0.0, co2_after_scrub_kpa - co2_leak_kpa)
 
-
     #------------dict for updating state-------------♡ 
     co2_scrubber_updates = {
         "co2_kpa": final_co2_kpa,
@@ -236,10 +235,11 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
         "bed_switch_this_step": bed_switch,
         "co2_removed_kpa": co2_removed_kpa,
         "co2_removed_kg": co2_removed_kg,
-        
+ 
         "beds_online_count": beds_online_count,
+        "beds_regenerating_count": sum(1 for bed in new_beds if bed["status"] == "regenerating"),
         "co2_for_scrub_kpa": co2_for_scrub,
-        
+ 
         "amine_bed_power_used_kw": amine_bed_power_used_kw,
         "amine_bed_energy_used_kwh": amine_bed_power_used_kw * hours_per_step,
         "amine_bed_heat_added_kw": amine_bed_heat_added_kw,
