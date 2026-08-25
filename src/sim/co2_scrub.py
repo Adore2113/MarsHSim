@@ -172,7 +172,21 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
     else:
         attempted_removal_kg = 0.0
 
-
+    #-------------checking bed saturation------------♡ 
+    online_beds = [bed for bed in new_beds if bed["status"] == "online"]
+    room_left_kg = sum(max(0.0, bed["capacity_kg"] - bed["co2_load"]) for bed in online_beds)
+ 
+    co2_removed_kg = min(attempted_removal_kg, room_left_kg)
+ 
+    if co2_removed_kg > 0.0:
+        co2_removed_moles = co2_removed_kg / co2_molar_mass
+        co2_removed_kpa = (co2_removed_moles * r_kpa * (state.hab_temp_c + kelvin_offset)) / state.hab_vol_m3
+ 
+    else:
+        co2_removed_kpa = 0.0
+ 
+    co2_after_scrub_kpa = co2_for_scrub - co2_removed_kpa
+    new_co2_stored_kg = state.co2_stored_kg + co2_removed_kg
 
     #----------------power and heat------------------♡ 
     if beds_online_count > 0:
