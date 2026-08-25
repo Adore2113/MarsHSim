@@ -124,42 +124,38 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
     elif beds_online_count > target_beds_online:
         beds_to_deactivate = beds_online_count - target_beds_online
     
-    #-------handling primary beds first--------♡ 
+    #----------handling primary beds first-----------♡ 
     if beds_needed_online > 0:
-        for bed in state.amine_beds:
-            new_bed = bed.copy()
-            if beds_needed_online > 0 and new_bed["status"] == "standby":
-                if new_bed["type"] == "primary":
-                    new_bed["status"] = "online"
+        for bed in new_beds:
+            if beds_needed_online > 0 and bed["status"] == "standby":
+                if bed["type"] == "primary":
+                    bed["status"] = "online"
                     beds_needed_online -= 1
-            new_beds.append(new_bed)
-
+ 
         if beds_needed_online > 0:
-            for new_bed in new_beds:
-                if beds_needed_online > 0 and new_bed["status"] == "standby":
-                    if new_bed["type"] == "backup":
-                        new_bed["status"] = "online"
+            for bed in new_beds:
+                if beds_needed_online > 0 and bed["status"] == "standby":
+                    if bed["type"] == "backup":
+                        bed["status"] = "online"
                         beds_needed_online -= 1
 
- #---------------switch to standby---------------♡ 
+ #-----------------switch to standby-----------------♡ 
     elif beds_to_deactivate > 0:
-        new_beds = [bed.copy() for bed in state.amine_beds]
-
-        for new_bed in new_beds:
-            if beds_to_deactivate > 0 and new_bed["status"] == "online":
-                if new_bed["type"] == "backup":
-                    new_bed["status"] = "standby"
+        for bed in new_beds:
+            if beds_to_deactivate > 0 and bed["status"] == "online":
+                if bed["type"] == "backup":
+                    bed["status"] = "standby"
                     beds_to_deactivate -= 1
 
         if beds_to_deactivate > 0:
-            for new_bed in new_beds:
-                if beds_to_deactivate > 0 and new_bed["status"] == "online":
-                    if new_bed["type"] == "primary":
-                        new_bed["status"] = "standby"
+            for bed in new_beds:
+                if beds_to_deactivate > 0 and bed["status"] == "online":
+                    if bed["type"] == "primary":
+                        bed["status"] = "standby"
                         beds_to_deactivate -= 1
 
-    else:
-        new_beds = [bed.copy() for bed in state.amine_beds]
+    
+    beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
 
     #------------------co2 removal-------------------♡ 
     max_scrub_kpa = beds_online_count * state.scrub_per_bed_kpa * get_co2_scrub_efficiency(co2_for_scrub)
