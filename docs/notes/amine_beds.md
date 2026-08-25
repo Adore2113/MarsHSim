@@ -11,10 +11,10 @@
 ### ----------------------------------------
 ## CO₂ Scrubbing Plan (updated 08/24/2026):
 
-### Layout
-    ♡ bed bay footprint: ~ 50-60 m²
+### Layout:
+    ♡ bed bay: ~ 50-60 m²
 
-    ♡ room size in shared process room: ~ 90-110 m²
+    ♡ shared resource recovery room: ~ 120–140 m²
 
     ♡ beds and support equipment are part of the atmosphere / resource area
     
@@ -22,35 +22,44 @@
     
     ♡ full set of 8 beds, manifolds, valves, blowers and aisles fit as a bay inside the resource recovery room at ~ 50-60 m² of floor space for the bed row
 
-### Beds
+### Beds:
     ♡ total beds: 8
-    ♡ min beds online: 2
+    ♡ max beds online: 8
+    ♡ beds have type: primary or backup
+    ♡ each bed tracks: status, co2 load, capacity in kg and regen_timer_min
     
-    ♡ stored as a list so individual beds can be "online" or "standby"
+    ♡ primary beds are preferred when bringing capacity online
     
-    ♡ number of beds online is calculated from CO₂ load
+    ♡ backup beds are preferred when shedding capacity
 
-### Operating Modes / States (per bed or system)
+### Scrub Efficiency:
+    ♡ efficiency depends on current CO₂ level:
+        - ≤ 0.2 kPa → 0.55
+        - 0.2–0.4 kPa → ramps 0.55 → 0.85
+        - 0.4–0.5 kPa → ramps 0.85 → 1.00
+        - > 0.5 kPa → 1.00
+
+    ♡ calculation:
+        max removal this step =
+            beds_online × scrub_per_bed_kpa × efficiency
+
+### Operating Modes and States:
     ♡ offline
-    ♡ standby / idle
-    ♡ adsorbing / removing CO₂
+    ♡ standby
+    ♡ online (adsorbing / removing CO₂)
     ♡ regenerating
     ♡ emergency behaviour later
 
-### Operating Logic
-    ♡ CO₂ above target decides how many beds are needed:
-        - ≤ 0.0 kPa above target: 0 beds
-        - > 0.012 kPa: 1 bed
-        - > 0.03 kPa: 2 beds
-        - > 0.06 kPa: 3 beds
-        - > 0.12 kPa: 4 beds
-        - > 0.25 kPa: 5 beds
-        - > 0.40 kPa: 6 beds
-        - > 0.55 kPa: 7 beds
-        - > 0.70 kPa: 8 beds
+### Operating Logic:
+    ♡ CO₂ above target decides the number of beds actively adsorbing
+    
+    ♡ scrubbed CO₂ from the cabin is converted to kg and added to CO₂ storage
+    
+    ♡ CO₂ released during bed regeneration is also added to CO₂ storage for the Sabatier system
+   
+    ♡ cannot remove more CO₂ than exists above target or than online beds have room for
 
     ♡ hysteresis:
-        - co2_hysteresis_for_on = 0.05
         - co2_hysteresis_for_off = 0.03
         - once any beds are online, at least 1 stays until CO₂ drops below target minus the off hysteresis
 
@@ -58,17 +67,20 @@
 
     ♡ scrubbed CO₂ is converted to kg and added to CO₂ stored for Sabatier / storage
 
-### Scrub Efficiency
-    ♡ efficiency depends on current CO₂ level
-
-    ♡ calculation:
-        max removal this step =
-            beds_online × scrub_per_bed_kpa × efficiency
-
 ### Bed Switching
-    ♡ every 3300 s (~ 55 min) a bed-switch event can occur
-    ♡ during switch: max scrub is reduced to 80%
-    ♡ power is multiplied by 1.25 during the bed switch that step
+    ♡ when an online bed reaches capacity it switches to regenerating
+
+    ♡ regen duration: 55 min
+    
+    ♡ during regen, CO₂ load is released over time into storage
+    
+    ♡ when regen finishes, the bed returns to standby
+    
+    ♡ on any bed-switch this step:
+        - max scrub reduced to 80%
+        - power multiplied by 1.25
+    
+    ♡ standby beds can be brought online the same step to replace a saturated bed
 
 ### Power & Heat
     ♡ base power per online bed: 0.65 kW
@@ -105,15 +117,11 @@
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ fuller adsorb and regenerate cycle per bed 
-
-    ♡ humidity interaction with amine beds
-
     ♡ degraded or failed bed behaviour
 
     ♡ more detailed regeneration energy if beds get individual timers
 
-    ♡ if adding more beds, add another room for all beds
+    ♡ change beds online and offline to more specific, generating, regenerating, etc.
 
 ### ----------------------------------------
 
@@ -145,4 +153,25 @@
 ### ----------------------------------------
 
 ### Dev Log Notes:
-######
+##### see atmosphere.md
+
+###### 08/24/2026
+    ♡ increasing the scrubber set from six to eight beds to improve redundancy, maintenance availability and recovery from elevated CO₂
+
+    ♡ a single swingbed system together is ~ 40 × 43 × 30 cm (16" × 17" × 12")
+
+    ♡ solid amine swing beds have been used and demonstrated for spacecraft CO₂ removal for 30+ years (CAMRAS, Amine Swingbed Payload, TAS, RCA)
+
+    ♡ the beds are thermally linked so adsorption heat helps desorption (low extra heater demand in some designs)
+    
+    ♡ I am comparing each bed to the size of a washing machine
+
+    ♡ a lot of amine systems take up water vapor along with CO₂
+
+    ♡ absorption is often stronger when air is humid; some designs I found intentionally managed both CO₂ and humidity in the same swing beds
+
+    ♡ water with CO₂ is usually released during regeneration (vacuum or thermal swing)
+    
+    ♡ for my surface habitat I can consider regenerating beds can return moisture to a recovery path or to a vent system, CHX / humidity control and amine beds both affect cabin water vapor and scrubbed CO₂ sent to storage / Sabatier should be considered for residual moisture for product purity
+
+    ♡ I will save this for the future, not V1
