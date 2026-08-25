@@ -7,7 +7,7 @@
 ## Atmosphere Plan ():
 ### Layout:
 
-#### Sabatier + Atmosphere Recovery Room:
+#### Resource Recovery Room:
     ♡ shape: rectangle
     ♡ floor area: ~ 60-80 m²
     ♡ height: 4.5 m
@@ -17,8 +17,9 @@
         - H₂ buffer from OGA
         - CO₂ feed / small buffer
         - condenser and water separator
-        - controls, valves, sensors
-        - maintenance space
+        - controls, valves, sensors, MCA interface
+        - maintenance space(~ 1.2 m)
+        - amine bed bay for 8 beds in a row with thermal and vent connections, and a clear service isle (~ 40–50 m²)
 
     ♡ access:
         - near OGA and other atmosphere systems
@@ -183,7 +184,6 @@
 
 
 ###### 03/14/2026
-
     ♡ I added the variable CO₂_stored_kpa to collect and temporarily store the CO₂ the amine bed scrubs until I use it later in my code
 
 ###### 03/17/2026
