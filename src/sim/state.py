@@ -202,6 +202,7 @@ class Habitat_State:
     black_water_storage_kg: float   
     condensate_storage_kg: float   
     brine_storage_kg: float
+    raw_isru_water_storage_kg: float
     
     #------water storage limits----♡
     potable_water_storage_capacity_kg: float
@@ -209,6 +210,7 @@ class Habitat_State:
     black_water_storage_capacity_kg: float
     condensate_storage_capacity_kg: float
     brine_storage_capacity_kg: float 
+    raw_isru_water_storage_capacity_kg: float
 
     upa_on: bool
     bpa_on: bool
@@ -221,9 +223,6 @@ class Habitat_State:
     #-------------------isru water-------------------♡
     isru_water_on: bool
     isru_pipes: list
-
-    raw_isru_water_storage_kg: float
-    raw_isru_water_storage_capacity_kg: float
 
     #---------------isru atmosphere (atm)------------♡
     isru_atm_on: bool
