@@ -23,7 +23,6 @@ power_per_kpa_removed_kw = 4.2
 heat_per_kpa_removed_kw = 1.8
 
 #------control logic---------♡
-co2_hysteresis_for_on = 0.05
 co2_hysteresis_for_off = 0.03
 #----------------------------------------------------♡
 
@@ -55,11 +54,11 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
     else:
         co2_for_scrub = co2_after_crew_kpa
 
-    new_beds = []
     beds_needed_online = 0
     beds_to_deactivate = 0
     target_beds_online = min_beds_online
     bed_switch = False
+    attempted_removal_kg = 0.0
 
     amine_bed_power_used_kw = 0.0
     amine_bed_heat_added_kw = 0.0
@@ -196,11 +195,30 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
             if bed["status"] == "online":
                 bed["co2_load"] = min(bed["capacity_kg"], bed["co2_load"] + removed_per_bed_kg)
  
-                #----------bed hit capacity, needs to regen----------♡ 
+            #-----bed at capacity needs to regen-----♡ 
                 if bed["co2_load"] >= bed["capacity_kg"]:
                     bed["status"] = "regenerating"
                     bed["regen_timer_min"] = bed_regen_time_min
                     bed_switch = True
+ 
+    beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
+
+    #-----------replace fully saturated bed----------♡ 
+    beds_needed_online = max(0, target_beds_online - beds_online_count)
+ 
+    if beds_needed_online > 0:
+        for bed in new_beds:
+            if beds_needed_online > 0 and bed["status"] == "standby":
+                if bed["type"] == "primary":
+                    bed["status"] = "online"
+                    beds_needed_online -= 1
+ 
+        if beds_needed_online > 0:
+            for bed in new_beds:
+                if beds_needed_online > 0 and bed["status"] == "standby":
+                    if bed["type"] == "backup":
+                        bed["status"] = "online"
+                        beds_needed_online -= 1
  
     beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
 
