@@ -65,6 +65,46 @@
         max removal this step =
             beds_online × scrub_per_bed_kpa × efficiency
 
+### Bed Switching
+    ♡ every 3300 s (~ 55 min) a bed-switch event can occur
+    ♡ during switch: max scrub is reduced to 80%
+    ♡ power is multiplied by 1.25 during the bed switch that step
+
+### Power & Heat
+    ♡ base power per online bed: 0.65 kW
+    ♡ base heat per online bed: 0.35 kW
+    ♡ extra power from removal: ~ 4.2 kW per kPa removed
+    ♡ extra heat from removal: 1.8 kW per kPa removed
+
+    ♡ calculation:
+        baseline_power:
+            beds_online × 0.65
+
+        removal_power:
+            co2_removed_kpa × 4.2
+
+        total_power:
+            baseline_power + removal_power
+        (same pattern for heat)
+
+### Connections
+    ♡ input: cabin CO₂ kPa
+    ♡ output: reduced cabin CO₂, buffered/stored CO₂ 
+    ♡ connects to: crew metabolism, Sabatier (CO₂ source), MCA (monitoring), thermal (heat)
+
+### ----------------------------------------
+
+## Design Evolution:
+#### Starting Plan:
+    ♡ hard-coded / pre assigned bed roles
+    
+    ♡ changed so beds come online from calculated CO₂ need
+
+    ♡ brought closer to other subsystems (clear modes, power/heat split, dictionary returns)
+
+### ----------------------------------------
+
+
 
 ### ----------------------------------------
 
