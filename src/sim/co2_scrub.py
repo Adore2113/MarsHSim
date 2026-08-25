@@ -10,7 +10,7 @@ co2_molar_mass = 0.04401    # kg per mole
 
 #--------amine beds----------♡
 min_beds_online = 2
-max_beds_online = 6
+max_beds_online = 8
 bed_switch_interval_s = 3300
 bed_switch_power_multiplier = 1.25
 
