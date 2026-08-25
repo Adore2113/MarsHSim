@@ -77,6 +77,46 @@
 
     ♡ greenhouse keeps only its own local zone reservoirs (~ 2,000 kg total)
 
+#### Total Water System Space:
+    ♡ floor areas:
+        - water processing room: ~ 90 m²
+        - wastewater storage room: ~ 90 m²
+        - ISRU water room: ~ 50 m²
+        - potable water storage room: ~ 110 m²
+        - total: ~ 340 m²
+
+    ♡ volumes:
+        - water processing room: ~ 405 m³
+        - wastewater storage room: ~ 405 m³
+        - ISRU water room: ~ 225 m³
+        - potable water storage room: ~ 495 m³
+        - total: ~ 1,530 m³
+
+    ♡ calculation:
+        - water processing room:
+            90 m² × 4.5 m
+            = ~ 405 m³
+
+        - wastewater storage room:
+            90 m² × 4.5 m
+            = ~ 405 m³
+
+        - ISRU water room:
+            50 m² × 4.5 m
+            = ~ 225 m³
+
+        - potable water storage room:
+            110 m² × 4.5 m
+            = ~ 495 m³
+
+        - total floor area:
+            90 m² + 90 m² + 50 m² + 110 m²
+            = ~ 340 m²
+
+        - total volume:
+            405 m³ + 405 m³ + 225 m³ + 495 m³
+            = ~ 1,530 m³
+
 ### ----------------------------------------
 
 #### Tank Capacities
@@ -86,7 +126,7 @@
     ♡ condensate storage capacity: 5,000 kg
     ♡ brine storage capacity:1000 kg
     ♡ raw ISRU water: 4,000 kg capacity
-    ♡ greenhouse reservoirs (total): ~2,000 kg
+    ♡ greenhouse reservoirs (total): ~ 2,000 kg
    
 #### Crew Water Demands: 
     ♡ demand total: ~ 1,450 kg/sol
@@ -212,7 +252,7 @@
         - condensate storage capacity: 250.0 kg
         - brine storage capacity: 400.0 kg
 
-    ♡ condensate alone can reach ~2 600 kg/sol
+    ♡ condensate alone can reach ~ 2 600 kg/sol
 
     ♡ capacities were increased for long duration buffers and contingencies
 
