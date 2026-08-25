@@ -83,43 +83,47 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
                 bed["regen_timer_min"] = timer
  
     beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
- 
 
+    #-------how many beds should be adsorbing--------♡ 
     co2_above_target_kpa = co2_for_scrub - state.target_co2_kpa
     
     if co2_above_target_kpa <= 0.0:
         target_beds_online = 0
-
+ 
+    elif co2_above_target_kpa > 0.70:
+        target_beds_online = 8
+ 
     elif co2_above_target_kpa > 0.55:
         target_beds_online = 7
-
+ 
     elif co2_above_target_kpa > 0.40:
         target_beds_online = 6
-
+ 
     elif co2_above_target_kpa > 0.25:
         target_beds_online = 5
-
+ 
     elif co2_above_target_kpa > 0.12:
         target_beds_online = 4
-
+ 
     elif co2_above_target_kpa > 0.06:
         target_beds_online = 3
-    
+ 
     elif co2_above_target_kpa > 0.03:
         target_beds_online = 2
-    
+ 
     elif co2_above_target_kpa > 0.012:
         target_beds_online = 1
 
-#-------------------hysteresis---------------------♡ 
+    #-----------------hysteresis---------------------♡ 
     if beds_online_count > 0 and co2_above_target_kpa > -co2_hysteresis_for_off:
         target_beds_online = max(target_beds_online, 1)
-
+ 
     if beds_online_count < target_beds_online:
         beds_needed_online = target_beds_online - beds_online_count
+ 
     elif beds_online_count > target_beds_online:
         beds_to_deactivate = beds_online_count - target_beds_online
-
+    
     #-------handling primary beds first--------♡ 
     if beds_needed_online > 0:
         for bed in state.amine_beds:
