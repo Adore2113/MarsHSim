@@ -282,13 +282,15 @@ s0 = Habitat_State(
 
     #------------------amine_beds--------------------♡
     amine_beds = [
-        {"id": 1, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "primary"},
-        {"id": 2, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "primary"},
-        {"id": 3, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "primary"},
-        {"id": 4, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "primary"},
+        {"id": 1, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0},
+        {"id": 2, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0},
+        {"id": 3, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0},
+        {"id": 4, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0},
         
-        {"id": 5, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "backup"},
-        {"id": 6, "status": "standby", "capacity": 3.0, "co2_load": 0.0, "type": "backup"},
+        {"id": 5, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0},
+        {"id": 6, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0},
+        {"id": 7, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0},
+        {"id": 8, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0},
     ],
     scrub_per_bed_kpa = 0.0035,
 
@@ -317,6 +319,8 @@ s0 = Habitat_State(
     black_water_storage_kg = 0.0,
     condensate_storage_kg = 0.0,
     brine_storage_kg = 0.0,
+    raw_isru_water_storage_kg = 0.0,
+
 
     potable_water_storage_capacity_kg = 10000.0,
     gray_water_storage_capacity_kg = 3500.0,
@@ -346,9 +350,6 @@ s0 = Habitat_State(
         {"id": 5, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
         {"id": 6, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
     ],
-
-    raw_isru_water_storage_kg = 0.0,
-    raw_isru_water_storage_capacity_kg = 1000.0,
 
 
     #---------------isru atmosphere (atm)------------♡
