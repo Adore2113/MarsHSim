@@ -257,6 +257,7 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
         "bed_switch_this_step": bed_switch,
         "co2_removed_kpa": co2_removed_kpa,
         "co2_removed_kg": co2_removed_kg,
+        "regen_released_kg": regen_released_kg,
  
         "beds_online_count": beds_online_count,
         "beds_regenerating_count": sum(1 for bed in new_beds if bed["status"] == "regenerating"),
