@@ -104,28 +104,43 @@
 
 ### ----------------------------------------
 
+## Future Considerations:
+    ♡ fuller adsorb and regenerate cycle per bed 
 
+    ♡ humidity interaction with amine beds
+
+    ♡ degraded or failed bed behaviour
+
+    ♡ more detailed regeneration energy if beds get individual timers
+
+    ♡ if adding more beds, add another room for all beds
 
 ### ----------------------------------------
 
 ## Design Decisions:
-#### Why 2-6 beds instead of one large unit?
-    ♡ continuous capacity scaling with load
-    ♡ redundancy for a no-resupply habitat
-    ♡ easier to take individual beds offline
+#### Why 2–8 beds instead of one large unit?
+    ♡ for continuous capacity scaling
+    
+    ♡ redundancy for no resupply
+    
+    ♡ so it's easier to take individual beds offline
+
+    ♡  8 beds still fit as a bay inside the shared resource recover room
 
 #### Why drive bed count from CO₂ above target?
-    ♡ more realistic than fixed roles
+    ♡ it's more realistic
+
     ♡ saves power when CO₂ is already near target
-    ♡ responds naturally to crew activity and events
+    
+    ♡ it responds naturally to crew activity and events
 
 #### Why buffer scrubbed CO₂ as kg?
-    ♡ supports Sabatier and other downstream uses
-    ♡ keeps cabin tracking in kPa and stored resources in kg
+    ♡ supports Sabatier and other system uses
+    
+    ♡ keeps cabin tracking in kPa and stored resources in kg, for consistency
 
 #### Why the efficiency curve?
-    ♡ lower efficiency at low CO₂ (harder to pull the last amount)
-    ♡ higher efficiency when CO₂ is elevated
+    ♡ so I could model lower efficiency at low CO₂ and higher efficiency when CO₂ is elevated
 
 ### ----------------------------------------
 
