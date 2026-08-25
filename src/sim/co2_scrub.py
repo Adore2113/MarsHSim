@@ -159,19 +159,19 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
 
     #------------------co2 removal-------------------♡ 
     max_scrub_kpa = beds_online_count * state.scrub_per_bed_kpa * get_co2_scrub_efficiency(co2_for_scrub)
+    
+    if bed_switch:
+        max_scrub_kpa *= regen_switch_efficiency_penalty
 
-    if next_time_s % bed_switch_interval_s == 0 and next_time_s != 0:    # every 55min switch beds w. a brief co2 spike
-        max_scrub_kpa *= 0.80
-        bed_switch = True
-    
-    co2_removed_kpa = min(max_scrub_kpa, max(0.0, co2_for_scrub - state.target_co2_kpa)) 
-    co2_after_scrub_kpa = co2_for_scrub - co2_removed_kpa
-    
-    if co2_removed_kpa > 0.0:
-        co2_removed_moles = (co2_removed_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
-        co2_removed_kg = co2_removed_moles * co2_molar_mass
-    
-    new_co2_stored_kg = state.co2_stored_kg + co2_removed_kg 
+    attempted_removal_kpa = min(max_scrub_kpa, max(0.0, co2_for_scrub - state.target_co2_kpa))
+ 
+    if attempted_removal_kpa > 0.0:
+        attempted_removal_moles = (attempted_removal_kpa * state.hab_vol_m3) / (r_kpa * (state.hab_temp_c + kelvin_offset))
+        attempted_removal_kg = attempted_removal_moles * co2_molar_mass
+ 
+    else:
+        attempted_removal_kg = 0.0
+
 
 
     #----------------power and heat------------------♡ 
