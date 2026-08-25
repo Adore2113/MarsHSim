@@ -208,16 +208,15 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
     if beds_online_count > 0:
         baseline_power_kw = beds_online_count * base_power_per_bed_kw
         baseline_heat_kw = beds_online_count * base_heat_per_bed_kw
-
+ 
         removal_power_used_kw = co2_removed_kpa * power_per_kpa_removed_kw
         removal_heat_added_kw = co2_removed_kpa * heat_per_kpa_removed_kw
-
+ 
         amine_bed_power_used_kw = baseline_power_kw + removal_power_used_kw
         amine_bed_heat_added_kw = baseline_heat_kw + removal_heat_added_kw
 
-        if next_time_s % bed_switch_interval_s == 0 and next_time_s != 0:    # temporary power increase when beds switch
-            amine_bed_power_used_kw *= bed_switch_power_multiplier
-
+        if bed_switch:
+            amine_bed_power_used_kw *= regen_switch_power_multiplier
 
     #-----------------small gas leaks----------------♡  
     co2_leak_kpa = state.co2_leak_rate_kpa_per_hr * hours_per_step
