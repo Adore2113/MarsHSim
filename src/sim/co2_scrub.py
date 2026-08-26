@@ -2,16 +2,16 @@
 
 #--------------------constants-----------------------♡
 #---------conversions---------♡
-kelvin_offset = 273.15   # add to celsius to convert to kelvin
+kelvin_offset = 273.15
 pa_per_kpa = 1000.0   # kilopascals to pascals
 r_kpa = 0.008314   # universal gas constant, 8.314 / 1000
 kg_per_g = 0.001
 co2_molar_mass = 0.04401    # kg per mole
 
 #--------amine beds----------♡
-min_beds_online = 2
 max_beds_online = 8
 bed_regen_time_min = 55.0
+max_time_on_bed_min = 55.0    # placeholder
 regen_switch_power_multiplier = 1.25
 regen_switch_efficiency_penalty = 0.80
 
@@ -31,7 +31,7 @@ co2_hysteresis_for_off = 0.03
 def get_co2_scrub_efficiency(co2_kpa):
     if co2_kpa <= 0.2:
         co2_scrub_efficiency = 0.55
-    
+
     elif co2_kpa <= 0.4:
         co2_scrub_efficiency = 0.55 + (co2_kpa - 0.2) / 0.2 * 0.30
 
@@ -45,18 +45,18 @@ def get_co2_scrub_efficiency(co2_kpa):
 
 
 #-------------------co2 scrubbing--------------------♡
-def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time_s, dt_min):
+def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min):
     hours_per_step = dt_min / 60
 
     if co2_after_greenhouse_kpa is not None and co2_after_greenhouse_kpa >= 0:
         co2_for_scrub = co2_after_greenhouse_kpa
-    
+
     else:
         co2_for_scrub = co2_after_crew_kpa
 
     beds_needed_online = 0
     beds_to_deactivate = 0
-    target_beds_online = min_beds_online
+    target_beds_online = 0
     bed_switch = False
     attempted_removal_kg = 0.0
     regen_released_kg = 0.0
@@ -65,7 +65,7 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
     amine_bed_heat_added_kw = 0.0
 
     new_beds = [bed.copy() for bed in state.amine_beds]
-    
+
     #-----------beds already regenerating------------♡ 
     for bed in new_beds:
         if bed["status"] == "regenerating":
@@ -81,6 +81,7 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
                 bed["status"] = "standby"
                 bed["co2_load"] = 0.0
                 bed["regen_timer_min"] = 0.0
+                bed["time_online_min"] = 0.0
                 bed_switch = True
             else:
                 bed["regen_timer_min"] = timer
@@ -89,32 +90,35 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
 
     #-------how many beds should be adsorbing--------♡ 
     co2_above_target_kpa = co2_for_scrub - state.target_co2_kpa
-    
+
     if co2_above_target_kpa <= 0.0:
         target_beds_online = 0
- 
+
     elif co2_above_target_kpa > 0.70:
         target_beds_online = 8
  
     elif co2_above_target_kpa > 0.55:
         target_beds_online = 7
- 
+
     elif co2_above_target_kpa > 0.40:
         target_beds_online = 6
- 
+
     elif co2_above_target_kpa > 0.25:
         target_beds_online = 5
- 
+
     elif co2_above_target_kpa > 0.12:
         target_beds_online = 4
- 
+
     elif co2_above_target_kpa > 0.06:
         target_beds_online = 3
  
     elif co2_above_target_kpa > 0.03:
         target_beds_online = 2
- 
+
     elif co2_above_target_kpa > 0.012:
+        target_beds_online = 1
+
+    else:
         target_beds_online = 1
 
     #-----------------hysteresis---------------------♡ 
@@ -156,7 +160,6 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
                     if bed["type"] == "primary":
                         bed["status"] = "standby"
                         beds_to_deactivate -= 1
-
     
     beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
 
@@ -184,27 +187,35 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
     if co2_removed_kg > 0.0:
         co2_removed_moles = co2_removed_kg / co2_molar_mass
         co2_removed_kpa = (co2_removed_moles * r_kpa * (state.hab_temp_c + kelvin_offset)) / state.hab_vol_m3
- 
+
     else:
         co2_removed_kpa = 0.0
- 
+
     co2_after_scrub_kpa = co2_for_scrub - co2_removed_kpa
-    new_co2_stored_kg = state.co2_stored_kg + co2_removed_kg + regen_released_kg
+    new_co2_stored_kg = state.co2_stored_kg + regen_released_kg
 
     #-----distribute loads for the online beds-------♡ 
     if online_beds and co2_removed_kg > 0.0:
         removed_per_bed_kg = co2_removed_kg / len(online_beds)
- 
+
         for bed in new_beds:
             if bed["status"] == "online":
                 bed["co2_load"] = min(bed["capacity_kg"], bed["co2_load"] + removed_per_bed_kg)
- 
-            #-----bed at capacity needs to regen-----♡ 
-                if bed["co2_load"] >= bed["capacity_kg"]:
-                    bed["status"] = "regenerating"
-                    bed["regen_timer_min"] = bed_regen_time_min
-                    bed_switch = True
- 
+
+    #-----age online beds & check regen triggers-----♡ 
+    for bed in new_beds:
+        if bed["status"] == "online":
+            bed["time_online_min"] = bed.get("time_online_min", 0.0) + dt_min
+
+            saturated = bed["co2_load"] >= bed["capacity_kg"]
+            timed_out = bed["time_online_min"] >= max_time_on_bed_min
+
+            if saturated or timed_out:
+                bed["status"] = "regenerating"
+                bed["regen_timer_min"] = bed_regen_time_min
+                bed["time_online_min"] = 0.0
+                bed_switch = True
+
     beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
 
     #-----------replace fully saturated bed----------♡ 
@@ -215,15 +226,17 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
             if beds_needed_online > 0 and bed["status"] == "standby":
                 if bed["type"] == "primary":
                     bed["status"] = "online"
+                    bed["time_online_min"] = 0.0
                     beds_needed_online -= 1
- 
+
         if beds_needed_online > 0:
             for bed in new_beds:
                 if beds_needed_online > 0 and bed["status"] == "standby":
                     if bed["type"] == "backup":
                         bed["status"] = "online"
+                        bed["time_online_min"] = 0.0
                         beds_needed_online -= 1
- 
+
     beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
 
     #----------------power and heat------------------♡ 
@@ -250,7 +263,6 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
         "co2_stored_kg": new_co2_stored_kg,
         "amine_beds": new_beds,
     }
-    
 
     #-----------dict for printing outputs------------♡ 
     co2_scrubber_outputs = {
@@ -267,6 +279,5 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time
         "amine_bed_energy_used_kwh": amine_bed_power_used_kw * hours_per_step,
         "amine_bed_heat_added_kw": amine_bed_heat_added_kw,
         "amine_bed_heat_added_kwh": amine_bed_heat_added_kw * hours_per_step,
-    }
-
+        }
     return co2_scrubber_updates, co2_scrubber_outputs

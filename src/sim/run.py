@@ -282,15 +282,15 @@ s0 = Habitat_State(
 
     #------------------amine_beds--------------------♡
     amine_beds = [
-        {"id": 1, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0},
-        {"id": 2, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0},
-        {"id": 3, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0},
-        {"id": 4, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0},
+        {"id": 1, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0, "time_online_min": 0.0},
+        {"id": 2, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0, "time_online_min": 0.0},
+        {"id": 3, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0, "time_online_min": 0.0},
+        {"id": 4, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "primary", "regen_timer_min": 0.0, "time_online_min": 0.0},
         
-        {"id": 5, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0},
-        {"id": 6, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0},
-        {"id": 7, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0},
-        {"id": 8, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0},
+        {"id": 5, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0, "time_online_min": 0.0},
+        {"id": 6, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0, "time_online_min": 0.0},
+        {"id": 7, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0, "time_online_min": 0.0},
+        {"id": 8, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0, "time_online_min": 0.0},
     ],
     scrub_per_bed_kpa = 0.0035,
 
@@ -350,7 +350,6 @@ s0 = Habitat_State(
         {"id": 5, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
         {"id": 6, "status": "offline", "dust_factor": 1.0, "condition": 0.99, "type": "backup"},
     ],
-
 
     #---------------isru atmosphere (atm)------------♡
     isru_atm_on = True,
