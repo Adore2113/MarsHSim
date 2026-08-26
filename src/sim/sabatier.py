@@ -146,7 +146,7 @@ def run_sabatier(state, dt_min):
         
     #-----------------small gas leaks----------------♡  
     ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
-    new_ch4_kpa = state.ch4_kpa + ch4_leaked_kpa
+    new_ch4_kpa = state.ch4_kpa - ch4_leaked_kpa
    
     #------------dict for updating state-------------♡ 
     sabatier_updates = {
