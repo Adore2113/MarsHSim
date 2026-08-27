@@ -95,21 +95,21 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     new_state = replace(new_state, **isru_atm_updates)
 
     #-------------atmosphere--------------♡
-    min_greenhouse_co2_kpa = state.target_co2_kpa - 0.05    # temporary greenhouse CO₂ floor during systems update
+    min_gh_co2_kpa = state.target_co2_kpa - 0.05    # temporary greenhouse CO₂ floor during systems update
 
     o2_after_crew_kpa = new_state.o2_kpa - crew_results["o2_drop_kpa"]
-    greenhouse_o2_produced_kpa = mol_to_kpa(new_state, greenhouse_outputs.get("greenhouse_o2_produced_mol", 0.0))
-    greenhouse_o2_consumed_kpa = mol_to_kpa(new_state, greenhouse_outputs.get("greenhouse_o2_consumed_mol", 0.0))
-    greenhouse_o2_change_kpa = greenhouse_o2_produced_kpa - greenhouse_o2_consumed_kpa
-    o2_after_greenhouse_kpa = min(state.max_safe_o2_kpa, o2_after_crew_kpa + greenhouse_o2_change_kpa)
+    gh_o2_produced_kpa = mol_to_kpa(new_state, greenhouse_outputs.get("gh_o2_produced_mol", 0.0))
+    gh_o2_consumed_kpa = mol_to_kpa(new_state, greenhouse_outputs.get("gh_o2_consumed_mol", 0.0))
+    gh_o2_change_kpa = gh_o2_produced_kpa - gh_o2_consumed_kpa
+    o2_after_greenhouse_kpa = min(state.max_safe_o2_kpa, o2_after_crew_kpa + gh_o2_change_kpa)
 
     co2_after_crew_kpa = new_state.co2_kpa + crew_results["co2_rise_kpa"]
-    greenhouse_co2_consumed_kpa = mol_to_kpa(new_state, greenhouse_outputs.get("greenhouse_co2_consumed_mol", 0.0))
-    greenhouse_co2_released_kpa = mol_to_kpa(new_state, greenhouse_outputs.get("greenhouse_co2_released_mol", 0.0))
-    greenhouse_co2_change_kpa = greenhouse_co2_released_kpa - greenhouse_co2_consumed_kpa
-    co2_after_greenhouse_kpa = max(min_greenhouse_co2_kpa, co2_after_crew_kpa + greenhouse_co2_change_kpa)
+    gh_co2_consumed_kpa = mol_to_kpa(new_state, greenhouse_outputs.get("gh_co2_consumed_mol", 0.0))
+    gh_co2_released_kpa = mol_to_kpa(new_state, greenhouse_outputs.get("gh_co2_released_mol", 0.0))
+    gh_co2_change_kpa = gh_co2_released_kpa - gh_co2_consumed_kpa
+    co2_after_greenhouse_kpa = max(min_gh_co2_kpa, co2_after_crew_kpa + gh_co2_change_kpa)
 
-    co2_scrubber_updates, co2_scrubber_outputs = run_co2_scrub(new_state, co2_after_crew_kpa, co2_after_greenhouse_kpa, next_time_s, dt_min)
+    co2_scrubber_updates, co2_scrubber_outputs = run_co2_scrub(new_state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min)
     oga_updates, oga_outputs = run_oga(new_state, o2_after_greenhouse_kpa, dt_min)
 
     #-------------buffer gas--------------♡
@@ -144,8 +144,8 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         co2_scrubber_outputs["amine_bed_heat_added_kw"],
         light_results["light_heat_kw"],
         light_results["w_light_heat_kw"],
-        greenhouse_outputs.get("total_greenhouse_heat_kw", 0.0),
-        greenhouse_outputs.get("greenhouse_led_heat_kw", 0.0),
+        greenhouse_outputs.get("total_gh_heat_kw", 0.0),
+        greenhouse_outputs.get("gh_led_heat_kw", 0.0),
         humidity_results["chx_heat_added_kw"],
         isru_water_outputs["isru_water_heat_added_kw"],
         isru_atm_outputs["isru_atm_heat_added_kw"],
