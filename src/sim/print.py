@@ -64,7 +64,7 @@ def print_sol_summary(state, sol_totals):
     print(f"{'CO₂ Scrubber:':<{lw}} {sol_totals['amine_bed_energy_kwh']:.2f} kWh")
     print(f"{'Lights:':<{lw}} {sol_totals['lights_energy_kwh']:.2f} kWh")
     print(f"{'CHX:':<{lw}} {sol_totals['chx_energy_kwh']:.2f} kWh")
-    print(f"{'Greenhouse LEDs:':<{lw}} {sol_totals['greenhouse_led_energy_kwh']:.2f} kWh")
+    print(f"{'Greenhouse LEDs:':<{lw}} {sol_totals['gh_led_energy_kwh']:.2f} kWh")
     print(f"{'Radiators:':<{lw}} {sol_totals['radiator_energy_kwh']:.2f} kWh")
     print(f"{'Heaters:':<{lw}} {sol_totals['heater_energy_kwh']:.2f} kWh")
     print(f"{'ISRU Water:':<{lw}} {sol_totals['isru_water_energy_kwh']:.2f} kWh")
@@ -229,7 +229,7 @@ def print_power(state, outputs):
     print(f"{'CO₂ Scrubber:':<{lw}} {outputs.get('amine_bed_power_used_kw', 0):.2f} kW")
     print(f"{'Lights:':<{lw}} {outputs.get('light_power_used_kw', 0):.2f} kW")
     print(f"{'CHX:':<{lw}} {outputs.get('chx_power_used_kw', 0):.2f} kW")
-    print(f"{'Greenhouse:':<{lw}} {outputs.get('greenhouse_led_power_kw', 0):.2f} kW")
+    print(f"{'Greenhouse:':<{lw}} {outputs.get('gh_led_power_kw', 0):.2f} kW")
     print(f"{'Radiators:':<{lw}} {outputs.get('radiator_power_kw', 0):.2f} kW")
     print(f"{'Heaters:':<{lw}} {outputs.get('heater_power_kw', 0):.2f} kW")
     print(f"{'ISRU Water:':<{lw}} {outputs.get('isru_water_power_used_kw', 0):.2f} kW")
@@ -260,7 +260,7 @@ def print_thermal(state, outputs):
     print(f"{'Amine Bed Heat:':<{lw}} {outputs.get('amine_bed_heat_added_kw', 0):.2f} kW")
     print(f"{'Light Heat:':<{lw}} {outputs.get('light_heat_kw', 0):.2f} kW")
     print(f"{'CHX Heat:':<{lw}} {outputs.get('chx_heat_added_kw', 0):.2f} kW")
-    print(f"{'GH Heat:':<{lw}} {outputs.get('total_greenhouse_heat_kw', 0):.3f} kW")
+    print(f"{'GH Heat:':<{lw}} {outputs.get('total_gh_heat_kw', 0):.3f} kW")
     print(f"{'ISRU Water Heat:':<{lw}} {outputs.get('isru_water_heat_added_kw', 0):.2f} kW")
     print(f"{'ISRU ATM Heat:':<{lw}} {outputs.get('isru_atm_heat_added_kw', 0):.2f} kW")
     
@@ -308,10 +308,10 @@ def print_greenhouse(outputs):
     print_section_header("GREENHOUSE")
 
     print(f"{'Mode:':<{lw}} {outputs.get('greenhouse_mode', 'offline')}")
-    print(f"{'Food Produced:':<{lw}} {outputs.get('greenhouse_food_produced_kg', 0):.3f} kg")
+    print(f"{'Food Produced:':<{lw}} {outputs.get('gh_food_produced_kg', 0):.3f} kg")
 
-    print(f"\n{'CO₂ Consumed:':<{lw}} {outputs.get('greenhouse_co2_consumed_kpa', 0):.7f} kPa")
-    print(f"{'O₂ Produced:':<{lw}} {outputs.get('greenhouse_o2_produced_kpa', 0):.7f} kPa")
+    print(f"\n{'CO₂ Consumed:':<{lw}} {outputs.get('gh_co2_consumed_kpa', 0):.7f} kPa")
+    print(f"{'O₂ Produced:':<{lw}} {outputs.get('gh_o2_produced_kpa', 0):.7f} kPa")
 
     print(f"\n{'Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
     print(f"{'Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")

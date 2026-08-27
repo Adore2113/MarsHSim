@@ -398,7 +398,7 @@ sol_totals = {
     "amine_bed_energy_kwh": 0.0,
     "lights_energy_kwh": 0.0,
     "chx_energy_kwh": 0.0,
-    "greenhouse_led_energy_kwh": 0.0,
+    "gh_led_energy_kwh": 0.0,
     "radiator_energy_kwh": 0.0,
     "heater_energy_kwh": 0.0,
     "isru_water_energy_kwh": 0.0,
@@ -423,14 +423,14 @@ for i in range(max_possible_steps):
     sol_totals["greenhouse_water_used_kg"] += outputs.get("greenhouse_make_up_water_kg", 0.0)
     sol_totals["isru_water_added_kg"] += outputs.get("isru_raw_water_added_kg", 0.0)
     sol_totals["co2_scrubbed_kg"] += outputs.get("co2_removed_kg", 0.0)
-    sol_totals["food_produced_kg"] += outputs.get("greenhouse_food_produced_kg", 0.0)
+    sol_totals["food_produced_kg"] += outputs.get("gh_food_produced_kg", 0.0)
 
     sol_totals["oga_energy_kwh"] += outputs.get("oga_energy_used_kwh", 0.0)
     sol_totals["sabatier_energy_kwh"] += outputs.get("sabatier_energy_used_kwh", 0.0)
     sol_totals["amine_bed_energy_kwh"] += outputs.get("amine_bed_energy_used_kwh", 0.0)
     sol_totals["lights_energy_kwh"] += outputs.get("light_energy_used_kwh", 0.0)
     sol_totals["chx_energy_kwh"] += outputs.get("chx_energy_used_kwh", 0.0)
-    sol_totals["greenhouse_led_energy_kwh"] += outputs.get("greenhouse_led_energy_kwh", 0.0)
+    sol_totals["gh_led_energy_kwh"] += outputs.get("gh_led_energy_kwh", 0.0)
     sol_totals["radiator_energy_kwh"] += outputs.get("radiator_energy_kwh", 0.0)
     sol_totals["heater_energy_kwh"] += outputs.get("heater_energy_kwh", 0.0)
     sol_totals["isru_water_energy_kwh"] += outputs.get("isru_water_energy_used_kwh", 0.0)
