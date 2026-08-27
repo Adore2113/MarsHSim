@@ -33,12 +33,15 @@
         - main grow zones
         - hydroponic reservoir areas
         - work and harvesting areas
+        - greenhouse chx bay
 
 #### Utility / Resource Hub:
     ♡ Four Water Rooms:
         - total floor area: ~ 340 m²
         - total volume: ~ 1,530 m³
+    
     ♡ industrial zone, separated from living areas
+    
     ♡ contains:
         - water processing Room
         - wastewater Storage Room
@@ -59,6 +62,15 @@
 ### ----------------------------------------
 
 ## Design Evolution:
+#### Starting Plan:
+    ♡ habitat pressurized volume: 2,000 m³
+
+    ♡ ~ 66 m³/person was chosen as a reasonable amount of space without making the initial habitat excessively large
+
+    ♡ location: Arcadia Planitia
+    ♡ latitude: 47° North
+    ♡ longitude: 184° East
+
 #### Early Ideas:
     ♡ originally considered the greenhouse as the single central hub
     

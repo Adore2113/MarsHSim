@@ -1680,6 +1680,25 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I will save this for the future, not V1
 
-    ♡ updating co2_scrub.py to stop just using the beds online in the order they are on the list, and the co2_load needs to be implemented like the sorbent beds so the bed switching is actually calculated and based on saturation instead of the autmatic 55min timer, so even though with capacity at 3.0kg per bed, the beds probabl won't reach full saturation within the 55 min, so it will still sort of be the same
+    ♡ updating co2_scrub.py to stop just using the beds online in the order they are on the list, and the co2_load needs to be implemented like the sorbent beds so the bed switching is actually calculated and based on saturation instead of the automatic 55min timer, so even though with capacity at 3.0kg per bed, the beds probably won't reach full saturation within the 55 min, so it will still sort of be the same
 
     ♡ updated co2_scrub to have regeneration, standby and online, there are now four beds primary, four beds backup, added kg to capacity in the amine beds list, 
+
+    ♡ CO₂ now goes into CO₂ storage
+
+
+##      08/25/2026
+    ♡ I was lookig over co2_scrub.py..real amine swing beds run by the CO₂ bonding to the sorbant, removing it from the air. That CO₂ isn't actually a usable capturable resource b/c it's bonded ot the bed material. The regeneration is made to sent that CO₂ off of the sorbant as a captured gas steam where it then becomes something that can be captured and routed.
+
+    ♡ right now, the CO₂ gets sent to storage as soon as it's bonded, so my simplification is actually wrong b/c rigt now it's saying it's stored AND bonded, which doesn't make any sense,so I just need to move the storage step higher to fix this so it's included in the regen/release step
+
+    ♡ max_time_on_bed_min = 55.0 < placeholder, research actual time 
+
+##      08/26/2026
+    ♡ fixed methane venting from inside the habitat to outside
+
+    ♡ I realize that I also had a storage leak which I'm questioning now.. the gas leaking in the atmosphere makes sense, but leaking from storage is a problem, and unrealistic
+
+    ♡ fixing sabatier water produced, and making it go to it's greenhouse CHX
+
+    ♡ fixing plant transpiration, and renaming some variables from saying "greenhouse" to "gh"

@@ -62,8 +62,6 @@
         ~ 10 m × 7 m × 4.5 m
 
     ♡ access:
-        - entrance into the secondary battery corridor
-   
         - connects the primary battery room to the secondary battery corridor
 
     ♡ contains:
@@ -85,7 +83,7 @@
 
     ♡ access:
         - far end of the secondary battery corridor
-        - *to do*
+        - main industrial hub
 
     ♡ contains:
         - diagnostic equipment
@@ -122,7 +120,7 @@
             70 m² × 4.5 m
             = ~ 315 m³
 
-        - battery maint and service room:
+        - battery maint. and service room:
             120 m² × 5.5 m
             = ~ 660 m³
 
