@@ -26,7 +26,7 @@
     ♡ total beds: 8
     ♡ max beds online: 8
     ♡ beds have type: primary or backup
-    ♡ each bed tracks: status, co2 load, capacity in kg and regen_timer_min
+    ♡ each bed tracks: status, CO₂ load, capacity in kg and regen_timer_min
 
     ♡ primary beds are preferred when bringing capacity online
 
@@ -206,4 +206,4 @@
 
     ♡ updated co2_scrub to have regeneration, standby and online, there are now four beds primary, four beds backup, added kg to capacity in the amine beds list, 
 
-    ♡ co2 now goes into co2 storage
+    ♡ CO₂ now goes into CO₂ storage
