@@ -320,7 +320,7 @@ s0 = Habitat_State(
     condensate_storage_kg = 0.0,
     brine_storage_kg = 0.0,
     raw_isru_water_storage_kg = 0.0,
-
+    sabatier_water_storage_kg = 0.0,
 
     potable_water_storage_capacity_kg = 10000.0,
     gray_water_storage_capacity_kg = 3500.0,
@@ -328,6 +328,7 @@ s0 = Habitat_State(
     condensate_storage_capacity_kg = 5000.0,
     brine_storage_capacity_kg = 1000.0,
     raw_isru_water_storage_capacity_kg = 4000.0,
+    sabatier_water_storage_capacity_kg = 100.0,    # placeholder
 
     upa_on = True,
     bpa_on = True,
