@@ -68,9 +68,11 @@
             = 145.8 kg/sol
 
 ### Transpiration Recovery:
-    ♡ transpired plant water enters the greenhouse atmosphere and the CHX removes most of this water as condensate
+    ♡ greenhouse has its own CHX to capture plant transpiration condensate
 
-    ♡ captured condensate is sent to the WPA for processing
+    ♡ captured condensate is sent through WPA before potable storage
+
+    ♡ uncaptured vapor remains a small humidity / water loss
 
     ♡ CHX transpiration capture efficiency: ~ 95%
     ♡ greenhouse transpiration: ~ 2,770.2 kg/sol
@@ -94,8 +96,6 @@
             2,631.69 × 0.05
             = 131.5845 kg/sol
             ≈ 131.58 kg/sol
-
-    ♡ captured condensate is sent into the habitat water recovery system
 
 ### ----------------------------------------
 
@@ -138,12 +138,12 @@
 ### Make-up Water System:
     ♡ make-up happens when a reservoir drops to 70%
 
-    ♡ the greenhouse only draws the actual volume needed to return to normal level
+    ♡ the greenhouse raws the volume needed to return to normal level
 
     ♡ make-up water replaces water that doesn't return to the greenhouse/habitat water loop during normal operation
 
-    ♡ baseline sources of make-up demand:
-        - water retained in plant biomass
+    ♡ main sources of make-up demand:
+        - water kept in plant biomass
         - transpiration not captured by the CHX
         - operational hydroponic water losses
 
@@ -157,21 +157,20 @@
         3. zone valves
         4. nutrient reservoir
 
-
     ♡ calculation:
         145.8 kg/sol (plant biomass)
         + 138.51 kg/sol
         + 89.88 kg/sol
         = 374.19 kg/sol
 
-        - baseline greenhouse make-up water demand before WPA losses:
+        - greenhouse make-up demand before WPA losses:
             ~ 374.19 kg/sol
         
-        - total baseline reservoir make-up demand:
+        - total reservoir make-up demand:
             374.19 + 131.58
             = 505.77 kg/sol
         
-        - this is water that must be replaced in the greenhouse reservoirs, not permanent water loss from the entire habitat
+        - is water is replaced in the greenhouse reservoirs, not permanent water loss from the entire habitat
 
 ### ----------------------------------------
 
@@ -202,79 +201,36 @@
     ♡ V1:
         - greenhouse make-up water comes from treated habitat water
 
-        - greenhouse nutrients are assumed to be supplied separately
 
 ### ----------------------------------------
 
 ### Design Evolution:
-    ♡ each zone has its own efficiency:
-        - structural: 82%
-        - container: 88%
-        - rack: 94%
+    ♡ zone efficency was updated
 
     ♡ the water taken up by plants is what actually leaves the recirculating loop
 
-    ♡ water requirements are calculated by zone:
+    ♡ water requirements calculated by zone were updated
 
-        ♡ structural:
-            - base water: 3.4 kg/m²/sol
-            - multiplier: 1.15
-            - effective rate ≈ 3.91 kg/m²/sol
+    ♡ water taken up by plants went into the greenhouse air and then the CHX
 
-        ♡ container:
-            - base water: 2.6 kg/m²/sol
-            - multiplier: 1.00
-            - effective rate ≈ 2.6 kg/m²/sol
-
-        ♡ rack:
-            - base water: 1.95 kg/m²/sol
-            - multiplier: 0.90
-            - effective rate ≈ 1.76 kg/m²/sol
-
-    ♡ water taken up by plants:
-        - 85% becomes transpiration (goes into the greenhouse air and then the CHX): 
-            plant water uptake × 0.85
-
-        - 15% stays in plant mass (permanent loss):
-            plant water uptake × 0.15
-
-    ♡ the biomass water will eventually be calculated from crop production, but not for v1, so in the meantime the placeholder is just going to be ~ 5%
-
-    loop:
-        1. crew wastewater / other waste
-        2. UPA / WPA and other treatment
-        3. recovered clean water
-        4. nutrient recovery / processing
-        5. greenhouse nutrient solution
-        6. plants
-        7. plant transpiration
-        8. greenhouse humidity
-        9. CHX condensate capture
-        10. WPA processing
-        11. recovered water returns to habitat storage
+    ♡ recovered water returned to habitat storage
+    
+    ♡ greenhouse didn't have it's own CHX
 
 ### ----------------------------------------
 
 ### Future Considerations:
     ♡ implement: the full crew waste to water recovery to nutrient recovery to greenhouse loop
     
-    ♡ future goal:
-    - recover both water and useful nutrients from habitat waste streams
-    - reduce imported fertilizer requirements
-    - reduce long term replacement water demand
-    - make the habitat more self-sustaining
-
-    ♡ determine which crew waste streams can realistically contribute nutrients
-
     ♡ determine what nutrient recovery / treatment is required before reuse
-
-    ♡ determine how nitrogen, phosphorus, potassium and micronutrients are balanced
 
     ♡ determine how salts or unwanted compounds are prevented from accumulating in the greenhouse reservoirs
 
     ♡ eventually connect recovered nutrient production to greenhouse nutrient demand
 
     ♡ remember to go back over my make-up water demand values so they don't dominate the water balance
+
+    ♡ the biomass water will eventually be calculated from crop production, but not for v1, so in the meantime the placeholder is just going to be ~ 5%
 
 ### ----------------------------------------
 
@@ -314,10 +270,13 @@
 
     ♡ replacing the old percetages for transpiration and plant mass, or at least going over the calculations
 
-    ♡ plant water uptake seems to be mainly transpiration.. in some hydroponic experiments, water disappearing from sealed nutrient containers is treated essentially as transpiration, because only the above ground plants are exposed to the air, the water retained is actually quite low compared to that
+    ♡ plant water uptake seems to be mainly transpiration.. in some hydroponic experiments, water disappearing from sealed nutrient containers is treated essentially as transpiration, because only the above ground plants are exposed to the air, the water kept is actually quite low compared to that
 
     ♡ NASA ECLSS systems treat condensate as a recoverable wastewater stream, and plant growth life support research looks into recovering and reusing transpired water vapor, so using ~ 95% capturing efficiency seems right so that the recovery isn't perfect, but still small amount goesn't get collected
 
-    ♡ things like maintenance/flushing, minor leakage, evaporation from exposed solution or wet surfaces, and solution retained in equipment/LECA during servicing all add into the the water losses, but I think I'm just going to use a small recirculation loss, and make each zone have a different percentage, mostly b/c of the different growing conditions, considering the ~ 95% capturing efficiency 
+    ♡ things like maintenance/flushing, minor leakage, evaporation from exposed solution or wet surfaces, and solution kept in equipment/LECA during servicing all add into the the water losses, but I think I'm just going to use a small recirculation loss, and make each zone have a different percentage, mostly b/c of the different growing conditions, considering the ~ 95% capturing efficiency 
 
     ♡ the biomass water will eventually be calculated from crop production, but not for v1, so in the meantime the placeholder is just going to be ~ 5%
+
+###### 08/26/2026
+    ♡ fixing plant transpiration, added a seperate greenhouse CHX and renaming some variables from saying "greenhouse" to "gh"
