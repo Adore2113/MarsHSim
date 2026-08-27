@@ -28,6 +28,7 @@
         - connects to the water storage room
         - connects to the ISRU water bay
         - connects to the utility hallway
+        - receives condensate from habitat CHX and greenhouse CHX
 
     ♡ contains:
         - UPA and pretreatment
@@ -57,6 +58,8 @@
 
 ### WPA Processing Priority:
     ♡ 1. condensate
+        - habitat CHX condensate
+        - greenhouse CHX condensate
     ♡ 2. Sabatier produced water
     ♡ 3. gray water
     ♡ 4. raw ISRU water
