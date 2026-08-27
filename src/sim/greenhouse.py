@@ -18,7 +18,8 @@ gh_light_start_hour = 5
 
 #---greenhouse operation---♡
 base_power_per_m2_kw = 0.05
-greenhouse_heat_per_m2_kw = 0.015
+gh_heat_per_m2_kw = 0.015
+gh_chx_capture_efficency = 0.95
 
 #-------gas exchange-------♡
 pq = 1.03    # photosynthetic quotient
@@ -97,11 +98,9 @@ def greenhouse_lighting(state, dt_min):
         zone_lighting[zone_name] = {
             "light_mode": light_mode,
             "effective_light_kw_per_m2": effective_light_kw_per_m2,
-
             "led_level": led_level,
             "led_power_kw": led_power_kw,
             "led_heat_kw": led_heat_kw,
-        
             "light_exposure": light_exposure,
         }
 
@@ -143,7 +142,7 @@ def greenhouse_zone_growth(zone, zone_light, sol_fraction):
     return new_growth_progress, harvest_ready, food_produced_kg
 
 
-#-------------water (updated 08/15/2026)-------------♡
+#-------------water / CHX  / humidity-------------♡
 def greenhouse_water(zone, sol_fraction):
     area_m2 = zone["effective_grow_area_m2"]
     uptake_rate_kg_per_m2 = zone["plant_water_uptake_kg_per_m2_per_sol"]
@@ -153,19 +152,23 @@ def greenhouse_water(zone, sol_fraction):
     transpiration_kg = plant_water_uptake_kg * transpiration_ratio
     plant_mass_water_kg = plant_water_uptake_kg * (1.0 - transpiration_ratio)
  
+    gh_condensate_captured_kg = transpiration_kg * gh_chx_capture_efficency
+    gh_transpiration_uncaptured_kg = transpiration_kg * (1.0 - gh_chx_capture_efficency)
+
     operational_loss_kg = plant_water_uptake_kg * operational_loss_pct
     make_up_water_kg = plant_mass_water_kg + operational_loss_kg
 
     return {
         "plant_water_uptake_kg": plant_water_uptake_kg,
-        "transpiration_uncaptured_kg": transpiration_kg,
+        "gh_condensate_captured_kg": gh_condensate_captured_kg,
+        "gh_transpiration_uncaptured_kg": transpiration_kg,
         "plant_mass_water_kg": plant_mass_water_kg,
         "operational_loss_kg": operational_loss_kg,
         "make_up_water_kg": make_up_water_kg,
     }
 
 
-#---------gas exchange (updated 08/15/2026)----------♡
+#-------------------gas exchange---------------------♡
 def greenhouse_gas_exchange(zone, zone_light, sol_fraction):
     area_m2 = zone["effective_grow_area_m2"]
     light_exposure = zone_light["light_exposure"]
@@ -203,27 +206,28 @@ def run_greenhouse(state, dt_min):
     if not state.greenhouse_on:
         return {}, {
             "greenhouse_mode": "offline",
-            "greenhouse_food_produced_kg": 0.0,
+            "gh_food_produced_kg": 0.0,
  
-            "greenhouse_plant_water_uptake_kg": 0.0,
-            "greenhouse_transpiration_uncaptured_kg": 0.0,
-            "greenhouse_plant_mass_water_kg": 0.0,
-            "greenhouse_operational_loss_kg": 0.0,
-            "greenhouse_direct_make_up_kg": 0.0,
+            "gh_plant_water_uptake_kg": 0.0,
+            "gh_condensate_captured_kg": 0.0,
+            "gh_transpiration_uncaptured_kg": 0.0,
+            "gh_plant_mass_water_kg": 0.0,
+            "gh_operational_loss_kg": 0.0,
+            "gh_direct_make_up_kg": 0.0,
 
-            "greenhouse_co2_consumed_mol": 0.0,
-            "greenhouse_co2_released_mol": 0.0,
-            "greenhouse_o2_produced_mol": 0.0,
-            "greenhouse_o2_consumed_mol": 0.0,
+            "gh_co2_consumed_mol": 0.0,
+            "gh_co2_released_mol": 0.0,
+            "gh_o2_produced_mol": 0.0,
+            "gh_o2_consumed_mol": 0.0,
 
-            "total_greenhouse_heat_kw": 0.0,
-            "total_greenhouse_heat_kwh": 0.0,
-            "greenhouse_equipment_power_kw": 0.0,
-            "greenhouse_equipment_energy_kwh": 0.0,
-            "greenhouse_led_power_kw": 0.0,
-            "greenhouse_led_energy_kwh": 0.0,
-            "greenhouse_led_heat_kw": 0.0,
-            "greenhouse_led_heat_kwh": 0.0,
+            "total_gh_heat_kw": 0.0,
+            "total_gh_heat_kwh": 0.0,
+            "gh_equipment_power_kw": 0.0,
+            "gh_equipment_energy_kwh": 0.0,
+            "gh_led_power_kw": 0.0,
+            "gh_led_energy_kwh": 0.0,
+            "gh_led_heat_kw": 0.0,
+            "gh_led_heat_kwh": 0.0,
             "natural_light_kw_per_m2": 0.0,
             "zone_outputs": {}
             }
@@ -233,6 +237,7 @@ def run_greenhouse(state, dt_min):
     total_equipment_power_kw = 0.0
  
     total_plant_water_uptake_kg = 0.0
+    total_condensate_captured_kg = 0.0
     total_transpiration_kg = 0.0
     total_plant_mass_water_kg = 0.0
     total_operational_loss_kg = 0.0
@@ -244,7 +249,7 @@ def run_greenhouse(state, dt_min):
     total_o2_consumed_mol = 0.0
  
     total_food_produced_kg = 0.0
-    total_greenhouse_heat_added_kw = 0.0
+    total_gh_heat_added_kw = 0.0
  
     new_zones = []
     zone_outputs = {}
@@ -263,7 +268,8 @@ def run_greenhouse(state, dt_min):
         total_food_produced_kg += food_produced_kg
         
         total_plant_water_uptake_kg += water_results["plant_water_uptake_kg"]
-        total_transpiration_kg += water_results["transpiration_uncaptured_kg"]
+        total_condensate_captured_kg += water_results["gh_condensate_captured_kg"]
+        total_transpiration_kg += water_results["gh_transpiration_uncaptured_kg"]
         total_plant_mass_water_kg += water_results["plant_mass_water_kg"]
         total_operational_loss_kg += water_results["operational_loss_kg"]
         total_direct_make_up_kg += water_results["make_up_water_kg"]
@@ -273,8 +279,8 @@ def run_greenhouse(state, dt_min):
         total_o2_produced_mol += gas_results["o2_produced_mol"]
         total_o2_consumed_mol += gas_results["o2_consumed_mol"]
         
-        greenhouse_heat_added_kw = greenhouse_heat_per_m2_kw * zone["effective_grow_area_m2"]
-        total_greenhouse_heat_added_kw += greenhouse_heat_added_kw
+        gh_heat_added_kw = gh_heat_per_m2_kw * zone["effective_grow_area_m2"]
+        total_gh_heat_added_kw += gh_heat_added_kw
 
         new_zone = zone.copy()
         new_zone["growth_progress"] = new_growth_progress
@@ -292,7 +298,8 @@ def run_greenhouse(state, dt_min):
             "food_produced_kg": food_produced_kg,
             
             "plant_water_uptake_kg": water_results["plant_water_uptake_kg"],
-            "transpiration_uncaptured_kg": water_results["transpiration_uncaptured_kg"],
+            "gh_condensate_captured_kg": water_results["gh_condensate_captured_kg"],
+            "gh_transpiration_uncaptured_kg": water_results["gh_transpiration_uncaptured_kg"],
             "plant_mass_water_kg": water_results["plant_mass_water_kg"],
             "operational_loss_kg": water_results["operational_loss_kg"],
             "make_up_water_kg": water_results["make_up_water_kg"],
@@ -302,7 +309,7 @@ def run_greenhouse(state, dt_min):
             "o2_produced_mol": gas_results["o2_produced_mol"],
             "o2_consumed_mol": gas_results["o2_consumed_mol"],
             
-            "greenhouse_heat_added_kw": greenhouse_heat_added_kw,
+            "gh_heat_added_kw": gh_heat_added_kw,
             
             "growth_progress": new_growth_progress,
             "harvest_ready": harvest_ready,
@@ -316,29 +323,30 @@ def run_greenhouse(state, dt_min):
     #-----------dict for printing outputs------------♡ 
     greenhouse_outputs = {
         "greenhouse_mode": "online",
-        "greenhouse_food_produced_kg": total_food_produced_kg,
+        "gh_food_produced_kg": total_food_produced_kg,
  
-        "greenhouse_plant_water_uptake_kg": total_plant_water_uptake_kg,
-        "greenhouse_transpiration_uncaptured_kg": total_transpiration_kg,
-        "greenhouse_plant_mass_water_kg": total_plant_mass_water_kg,
-        "greenhouse_operational_loss_kg": total_operational_loss_kg,
-        "greenhouse_make_up_water_kg": total_direct_make_up_kg,
+        "gh_plant_water_uptake_kg": total_plant_water_uptake_kg,
+        "gh_condensate_captured_kg": total_condensate_captured_kg,
+        "gh_transpiration_uncaptured_kg": total_transpiration_kg,
+        "gh_plant_mass_water_kg": total_plant_mass_water_kg,
+        "gh_operational_loss_kg": total_operational_loss_kg,
+        "gh_make_up_water_kg": total_direct_make_up_kg,
  
-        "greenhouse_co2_consumed_mol": total_co2_consumed_mol,
-        "greenhouse_co2_released_mol": total_co2_released_mol,
-        "greenhouse_o2_produced_mol": total_o2_produced_mol,
-        "greenhouse_o2_consumed_mol": total_o2_consumed_mol,
+        "gh_co2_consumed_mol": total_co2_consumed_mol,
+        "gh_co2_released_mol": total_co2_released_mol,
+        "gh_o2_produced_mol": total_o2_produced_mol,
+        "gh_o2_consumed_mol": total_o2_consumed_mol,
  
-        "total_greenhouse_heat_kw": total_greenhouse_heat_added_kw,
-        "total_greenhouse_heat_kwh": total_greenhouse_heat_added_kw * hours_per_step,
+        "total_gh_heat_kw": total_gh_heat_added_kw,
+        "total_gh_heat_kwh": total_gh_heat_added_kw * hours_per_step,
        
-        "greenhouse_equipment_power_kw": total_equipment_power_kw,
-        "greenhouse_equipment_energy_kwh": total_equipment_power_kw * hours_per_step,
+        "gh_equipment_power_kw": total_equipment_power_kw,
+        "gh_equipment_energy_kwh": total_equipment_power_kw * hours_per_step,
  
-        "greenhouse_led_power_kw": lighting["total_led_power_kw"],
-        "greenhouse_led_energy_kwh": lighting["total_led_energy_kwh"],
-        "greenhouse_led_heat_kw": lighting["total_led_heat_kw"],
-        "greenhouse_led_heat_kwh": lighting["total_led_heat_kwh"],
+        "gh_led_power_kw": lighting["total_led_power_kw"],
+        "gh_led_energy_kwh": lighting["total_led_energy_kwh"],
+        "gh_led_heat_kw": lighting["total_led_heat_kw"],
+        "gh_led_heat_kwh": lighting["total_led_heat_kwh"],
  
         "natural_light_kw_per_m2": lighting["natural_light_kw_per_m2"],
         "zone_outputs": zone_outputs,
