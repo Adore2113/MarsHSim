@@ -70,13 +70,25 @@
 ### Transpiration Recovery:
     ♡ greenhouse has its own CHX to capture plant transpiration condensate
 
+    ♡ vapor path:
+        reservoirs to plants to greenhouse air, to greenhouse CHX, to condensate to WPA to potable storage, to makeup back to greenhouse reservoirs as needed
+
     ♡ captured condensate is sent through WPA before potable storage
 
-    ♡ uncaptured vapor remains a small humidity / water loss
+    ♡ uncaptured vapor remains a small humidity /water loss
+
+    ♡ habitat CHX stays responsible for the rest of the habitat
 
     ♡ CHX transpiration capture efficiency: ~ 95%
     ♡ greenhouse transpiration: ~ 2,770.2 kg/sol
     ♡ CHX condensate captured: ~ 2,631.69 kg/sol
+    
+    ♡ heat from condensation:~2,450 kJ/kg:
+    ♡ full-sol average: ≈ 80 kW
+    ♡ lights-on: 
+            ≈ 124 kW total vapor, ≈ 118 kW on captured condensate
+
+    ♡ heat is passed to the habitat thermal system later
 
     ♡ calculation:
         - condensate captured:
@@ -96,6 +108,18 @@
             2,631.69 × 0.05
             = 131.5845 kg/sol
             ≈ 131.58 kg/sol
+    
+        - rate:
+            ♡ averaged over a full sol (~24.66 h):
+                2,770.2 ÷ 24.66
+                ≈ 112 kg vapor/h at the CHX
+                (total transpiration ≈ 118 kg/h before capture)
+
+            ♡ if most uptake happens in the 16 hour light period:
+                2,770.2 ÷ 16
+                ≈ 173 kg condensate/h captured
+                (total transpiration ≈ 182 kg/h before capture)
+
 
 ### ----------------------------------------
 
