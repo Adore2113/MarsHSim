@@ -203,6 +203,7 @@ class Habitat_State:
     condensate_storage_kg: float   
     brine_storage_kg: float
     raw_isru_water_storage_kg: float
+    sabatier_water_storage_kg = float
     
     #------water storage limits----♡
     potable_water_storage_capacity_kg: float
@@ -211,6 +212,7 @@ class Habitat_State:
     condensate_storage_capacity_kg: float
     brine_storage_capacity_kg: float 
     raw_isru_water_storage_capacity_kg: float
+    sabatier_water_storage_capacity_kg = float
 
     upa_on: bool
     bpa_on: bool
