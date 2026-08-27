@@ -1,12 +1,12 @@
 # Greenhouse:
 ### General Notes:
-    ♡ originally my plan was a hexagon shape so I called it Helix Hive, since changing my plans I decided on Hive-8 because it's now an octagon
+    ♡ originally my plan was hexagon so I called it Helix Hive, since changing my plans I decided on Hive-8 because it's now an octagon
 
     ♡ this isn't a greenhouse simulator, so it's intentionally not as complex as it could be
 
     ♡ each zone uses averaged plant data instead of simulating individual crops
 
-    ♡ grow area can be larger than the greenhouse floor area b/c of the vertical growing area
+    ♡ grow area can be larger than the greenhouse floor area because of the vertical growing area
 ### ----------------------------------------
 
 ### Arcadia Planitia: Hive-8 Arcadia (06/08/2026):
@@ -14,26 +14,22 @@
     ♡ shape: octagon (regular)
     ♡ floor area: 1,326 m²
     ♡ total height: 11.0 m
-    ♡ width: 
-        40.0 m across opposite walls
+    
+    ♡ width: 40.0 m across opposite walls
+    ♡ wall length: ~ 16.6 m/outside wall
+    ♡ center distance: 20.0 m, center to each wall
+   
+    ♡ corner distance: 
+        ~ 21.7 m, center to each corner
 
-    ♡ wall length:
-        ~ 16.6 m for each outside wall
-
-    ♡ center distance:
-        20.0 m from the center to each wall
-
-    ♡ corner distance:
-        ~ 21.7 m from the center to each corner
-
-    ♡ overall length:
-        ~ 43.3 m from one corner to the opposite corner
+    ♡ overall length: 
+        ~ 43.3 m, one corner to the opposite corner
 
     ♡ roof: angled to improve natural light
     ♡ entrances: two, on opposite sides
 
 #### Zones:
-    ♡ zones seal separately for redundancy and quarantine
+    ♡ zones seal separately for redundancy, quarantine, 
 
     ♡ modules are grouped sections of the growing system, not individual planters, containers, NFT channels or plants
 
@@ -153,12 +149,38 @@
 
         - stepped/terraced boxes sit on top, each level flat so clay balls and roots sit evenly
 
-        - see hydroponics.md
+        - see greenhouse\hydroponics.md
         
 #### Storage: 
     ♡ under the higher inner sections of the planter slopes, around the outside ground floor, accessible from flat ground paths
 
     ♡ minor smaller storage inside the  center
+
+#### Greenhouse CHX Bay:
+    ♡ location: Greenhouse / Food Hub, ground floor support space
+    ♡ not in the Utility / Resource Recovery Hub
+    ♡ shape: rectangle
+    ♡ floor area: ~ 25–40 m²
+    ♡ height: 4.0–4.5 m
+    ♡ volume: ~ 100–180 m³
+
+    ♡ purpose:
+        - capture plant transpiration from greenhouse air
+        - send condensate toward water processing
+
+    ♡ contains:
+        - controls, 2 coil / fan banks
+        - condensate collection and drain
+        - pumps and transfer line toward WPA
+        - service aisle (~ 1.2 m)
+
+    ♡ access:
+        - ground floor ring / storage path
+        - condensate line to water processing room
+
+
+    ♡ see greenhouse/water.md
+
 ### ----------------------------------------
 
 ### Design Decisions:
@@ -183,7 +205,7 @@
         ♡ I can visualize this as a typical two story house, including the roof
 
 #### Why a 6m wide octagon for the central core?
-        ♡ I was thinking about six queen sized mattresses laying flat to make a rectangle for a starting reference, with some added space to make it an easy octagon
+        ♡ I was pictured ~ 6 queen sized mattresses laying flat to make a rectangle for a starting reference, with some added space to make it an easy octagon
 
         ♡ so the bottom of the helix has a flat, specific and designated place to meet the core evenly
 
@@ -205,22 +227,18 @@
 
     ♡ works with the vertical racks and hanging containers already planned
 
-    ♡ gradual slope makes carrying things, moving around, cart moving and other things easier
+    ♡ to make carrying things, moving around, cart moving and other things not difficult
 
     ♡ I didn't want it to become too disorienting
 
-    ♡ helps create longer continuous growing areas for the stepped clay ball terraces without making the path feel endless, daunting or exhausting
+    ♡ it helps create continuous growing areas for the stepped clay ball terraces without making the path feel endless, daunting or exhausting
 
-    ♡ it didn't seem too structurally complex 
+    ♡ to take away from structural complexity
 
 #### Why these pathway widths?
-    ♡ storage pathways (2.0 m):
-        - I figured it should be large enough for two large utility carts (~ 0.65 - 0.80 m) 
-        
-        - to move comfortably with carts and a little bit more room so it isn't too tight
-
-    ♡ ground floor (3.5 m): 
-        - I wanted enough room for comfortable walking space, equipment, and tree so that it didn't put too much shade around it to make sure the plants around it get enough light
+    ♡ 2.0 m - should be large enough for two large utility carts with a bit more room so it isn't too tight
+ 
+    ♡ 3.5 m - I wanted enough room for comfortable walking space, equipment, and tree so that it didn't put too much shade around it to make sure the plants around it get enough light
 
 #### Why one 1.5 m wide catwalk/secured ramp?
     ♡ I figured plants along this path are smaller, so less path width would be needed
@@ -230,7 +248,7 @@
     ♡ keeping this walkway narrower helps preserve sunlight reaching the plants below
 
 #### Why a dumbwaiter?:
-    ♡ it seems practical and keeps the core efficient on both floors
+    ♡ it seems practical and keeps the center efficient on both floors
 
     ♡ I wanted to make sure there wasn't constant movement up and down the ladders that gets monotonous
 
@@ -242,8 +260,6 @@
     ♡ this way I can keep my zone isolation/quarantine design
 
     ♡ one overall greenhouse setting seemed too simple
-
-    ♡ three zones provide a middle ground between detail and simplicity
 
     ♡ zone averages allow different growing arrangements without tracking every plant
 
