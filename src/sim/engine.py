@@ -116,7 +116,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     buffer_gas_updates, buffer_gas_outputs = run_buffer_gas_control(new_state, dt_min)
  
     #--------------humidity---------------♡
-    humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], greenhouse_outputs.get("greenhouse_transpiration_uncaptured_kg", 0.0), dt_min)
+    humidity_results = update_humidity(new_state, crew_results["breath_vapor_added_kg"], crew_results["skin_vapor_added_kg"], greenhouse_outputs.get("gh_transpiration_uncaptured_kg", 0.0), dt_min)
     
     #-------------isru water--------------♡
     isru_water_updates, isru_water_outputs = run_isru_water(new_state, dt_min)
@@ -126,9 +126,9 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
     water_updates, water_outputs = run_water_system(
         new_state,
         crew_results,
-        humidity_results["vapor_removed_kg"],
+        humidity_results["vapor_removed_kg"] + greenhouse_outputs.get("gh_condensate_captured_kg", 0.0),
         oga_outputs["oga_water_used_kg"],
-        greenhouse_outputs.get("greenhouse_make_up_water_kg", 0.0),
+        greenhouse_outputs.get("gh_make_up_water_kg", 0.0),
         sabatier_outputs.get("sabatier_water_produced_kg", 0.0),
         dt_min
     )
