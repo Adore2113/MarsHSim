@@ -420,7 +420,7 @@ for i in range(max_possible_steps):
     sol_totals["net_energy_kwh"] += outputs.get("net_energy_kwh", 0.0)
     sol_totals["water_recovered_kg"] += outputs.get("total_recovered_water_kg", 0.0)
     sol_totals["potable_water_used_kg"] += outputs.get("potable_water_used_kg", 0.0)
-    sol_totals["greenhouse_water_used_kg"] += outputs.get("greenhouse_make_up_water_kg", 0.0)
+    sol_totals["greenhouse_water_used_kg"] += outputs.get("gh_make_up_water_kg", 0.0)
     sol_totals["isru_water_added_kg"] += outputs.get("isru_raw_water_added_kg", 0.0)
     sol_totals["co2_scrubbed_kg"] += outputs.get("co2_removed_kg", 0.0)
     sol_totals["food_produced_kg"] += outputs.get("gh_food_produced_kg", 0.0)

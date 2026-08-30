@@ -313,8 +313,8 @@ def print_greenhouse(outputs):
     print(f"\n{'CO₂ Consumed:':<{lw}} {outputs.get('gh_co2_consumed_kpa', 0):.7f} kPa")
     print(f"{'O₂ Produced:':<{lw}} {outputs.get('gh_o2_produced_kpa', 0):.7f} kPa")
 
-    print(f"\n{'Transpiration:':<{lw}} {outputs.get('greenhouse_transpiration_kg', 0):.3f} kg")
-    print(f"{'Water Needed:':<{lw}} {outputs.get('greenhouse_water_needed_kg', 0):.3f} kg")
-    print(f"{'Water Used:':<{lw}} {outputs.get('greenhouse_water_consumed_kg', 0):.3f} kg")
-    print(f"{'Recirculated:':<{lw}} {outputs.get('greenhouse_water_recirculated_kg', 0):.3f} kg")
+    print(f"\n{'Transpiration:':<{lw}} {outputs.get('gh_transpiration_kg', 0):.3f} kg")
+    print(f"{'Water Needed:':<{lw}} {outputs.get('gh_water_needed_kg', 0):.3f} kg")
+    print(f"{'Water Used:':<{lw}} {outputs.get('gh_water_consumed_kg', 0):.3f} kg")
+    print(f"{'Recirculated:':<{lw}} {outputs.get('gh_water_recirculated_kg', 0):.3f} kg")
 #----------------------------------------------------♡

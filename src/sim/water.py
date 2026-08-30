@@ -150,12 +150,13 @@ def run_wpa(state, dt_min):
     recovered_water_kg = 0.0
     water_processed_kg = 0.0
     condensate_removed_kg = 0.0
+    sabatier_water_removed_kg = 0.0
     gray_water_removed_kg = 0.0
     isru_water_removed_kg = 0.0
     wpa_power_used_kw = 0.0
     wpa_heat_added_kw = 0.0
 
-    total_water_input_kg = state.gray_water_storage_kg + state.condensate_storage_kg + state.raw_isru_water_storage_kg
+    total_water_input_kg = state.gray_water_storage_kg + state.condensate_storage_kg + state.sabatier_water_storage_kg + state.raw_isru_water_storage_kg
 
     if not state.wpa_on:
         wpa_mode = "offline"
@@ -165,15 +166,20 @@ def run_wpa(state, dt_min):
         
         max_available_kg = wpa_handling_capacity_per_hour_kg * hours_per_step
         water_processed_kg = min(total_water_input_kg, max_available_kg)
-        
+
+        #---------------1. condensate----------------♡
         condensate_removed_kg = min(state.condensate_storage_kg, water_processed_kg)
         remaining = water_processed_kg - condensate_removed_kg
-        
+        #---------------2. sabatier------------------♡
+        sabatier_water_removed_kg = min(state.sabatier_water_storage_kg, remaining)
+        remaining -= sabatier_water_removed_kg
+
+        #---------------3. gray water----------------♡
         gray_water_removed_kg = min(state.gray_water_storage_kg, remaining)
         remaining -= gray_water_removed_kg
         
+        #-------------4. raw isru water--------------♡
         isru_water_removed_kg = min(state.raw_isru_water_storage_kg, remaining)
-
         recovered_water_kg = water_processed_kg * wpa_recovery_rate
 
         if max_available_kg > 0:
@@ -197,6 +203,7 @@ def run_wpa(state, dt_min):
         "recovered_water_kg": recovered_water_kg,
         "water_processed_kg": water_processed_kg,
         "condensate_removed_kg": condensate_removed_kg,
+        "sabatier_water_removed_kg": sabatier_water_removed_kg,
         "gray_water_removed_kg": gray_water_removed_kg,
         "isru_water_removed_kg": isru_water_removed_kg,
         "wpa_power_used_kw": wpa_power_used_kw,
@@ -207,14 +214,15 @@ def run_wpa(state, dt_min):
 
 
 #---------water storage (updated 08/15/2026)---------♡
-def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, greenhouse_make_up_water_kg, condensate_added_kg, sabatier_water_produced_kg):
+def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, gh_make_up_water_kg, condensate_added_kg, sabatier_water_produced_kg):
     total_recovered_water_kg = (upa_results["recovered_water_kg"] + wpa_results["recovered_water_kg"] + bpa_results["recovered_water_kg"] + sabatier_water_produced_kg)
-    subsystem_potable_water_used_kg = oga_water_used_kg + greenhouse_make_up_water_kg
+    subsystem_potable_water_used_kg = oga_water_used_kg + gh_make_up_water_kg
 
     new_potable_water_storage_kg = min(state.potable_water_storage_capacity_kg, max(0.0, crew_water_results["new_potable_water_storage_kg"] - subsystem_potable_water_used_kg + total_recovered_water_kg))
     new_gray_water_storage_kg = min(state.gray_water_storage_capacity_kg, max(0.0, crew_water_results["new_gray_water_storage_kg"] - wpa_results["gray_water_removed_kg"]))
     new_black_water_storage_kg = min(state.black_water_storage_capacity_kg, max(0.0, crew_water_results["new_black_water_storage_kg"] - upa_results["black_water_removed_kg"]))
     new_condensate_storage_kg = min(state.condensate_storage_capacity_kg, max(0.0, state.condensate_storage_kg + condensate_added_kg - wpa_results["condensate_removed_kg"]))
+    new_sabatier_water_storage_kg = min(state.sabatier_water_storage_capacity_kg, max(0.0, state.sabatier_water_storage_kg + sabatier_water_produced_kg - wpa_results["sabatier_water_removed_kg"]))
     new_brine_storage_kg = min(state.brine_storage_capacity_kg, max(0.0, state.brine_storage_kg + upa_results["brine_added_kg"] - bpa_results["water_processed_kg"]))
     new_raw_isru_water_storage_kg = min(state.raw_isru_water_storage_capacity_kg, max(0.0, state.raw_isru_water_storage_kg - wpa_results["isru_water_removed_kg"]))
 
@@ -223,6 +231,7 @@ def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results
         "gray_water_storage_kg": new_gray_water_storage_kg,
         "black_water_storage_kg": new_black_water_storage_kg,
         "condensate_storage_kg": new_condensate_storage_kg,
+        "sabatier_water_storage_kg": new_sabatier_water_storage_kg,
         "brine_storage_kg": new_brine_storage_kg,
         "raw_isru_water_storage_kg": new_raw_isru_water_storage_kg,
     }
@@ -233,7 +242,7 @@ def update_water_storages_kg(state, crew_water_results, upa_results, wpa_results
 
 
 #----------------run full water system---------------♡
-def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg, greenhouse_make_up_water_kg, sabatier_water_produced_kg, dt_min):
+def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg, gh_make_up_water_kg, sabatier_water_produced_kg, dt_min):
     crew_water_results = crew_water_usage(state, crew_results, dt_min)
     
     # greenhouse transpiration currently goes to thermal.py
@@ -243,14 +252,15 @@ def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg
     bpa_results = run_bpa(state, dt_min)
     wpa_results = run_wpa(state, dt_min)
 
-    water_updates, water_storage_outputs = update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, greenhouse_make_up_water_kg, condensate_added_kg, sabatier_water_produced_kg)
+    water_updates, water_storage_outputs = update_water_storages_kg(state, crew_water_results, upa_results, wpa_results, bpa_results, oga_water_used_kg, gh_make_up_water_kg, condensate_added_kg, sabatier_water_produced_kg)
 
     water_outputs = {
         "potable_water_used_kg": crew_water_results["potable_water_used_kg"],
         "gray_water_added_kg": crew_water_results["gray_water_added_kg"],
         "black_water_added_kg": crew_water_results["black_water_added_kg"],
         "condensate_added_kg": condensate_added_kg,
-        "greenhouse_make_up_water_kg": greenhouse_make_up_water_kg,
+        "sabatier_water_produced_kg": sabatier_water_produced_kg,
+        "gh_make_up_water_kg": gh_make_up_water_kg,
         "wpa_isru_water_removed_kg": wpa_results["isru_water_removed_kg"],
         "oga_water_used_kg": oga_water_used_kg,
  
@@ -267,6 +277,7 @@ def run_water_system(state, crew_results, condensate_added_kg, oga_water_used_kg
         "wpa_recovered_water_kg": wpa_results["recovered_water_kg"],
         "wpa_water_processed_kg": wpa_results["water_processed_kg"],
         "wpa_condensate_removed_kg": wpa_results["condensate_removed_kg"],
+        "wpa_sabatier_water_removed_kg": wpa_results["sabatier_water_removed_kg"],
         "wpa_gray_water_removed_kg": wpa_results["gray_water_removed_kg"],
         "wpa_power_used_kw": wpa_results["wpa_power_used_kw"],
         "wpa_energy_used_kwh": wpa_results["wpa_energy_used_kwh"],
