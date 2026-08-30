@@ -164,7 +164,7 @@ def greenhouse_water(zone, sol_fraction):
 
     operational_loss_kg = plant_water_uptake_kg * operational_loss_pct
     
-    make_up_water_kg = plant_mass_water_kg + + gh_transpiration_uncaptured_kg + operational_loss_kg
+    make_up_water_kg = plant_mass_water_kg + gh_transpiration_uncaptured_kg + operational_loss_kg
 
     return {
         "plant_water_uptake_kg": plant_water_uptake_kg,
@@ -221,7 +221,7 @@ def greenhouse_chx(total_condensate_captured_kg, dt_min):
     else:
         amount_factor = 0.0
 
-    gh_chx_power_kw = base_gh_chx_power_kw + (gh_chx_running_power_kw - base_gh_chx_power_kw) + amount_factor
+    gh_chx_power_kw = base_gh_chx_power_kw + (gh_chx_running_power_kw - base_gh_chx_power_kw) * amount_factor
     gh_chx_waste_heat_kw = gh_chx_power_kw * gh_chx_waste_heat_ratio
     gh_chx_heat_added_kw = max(0.0, gh_chx_waste_heat_kw - gh_chx_cooling_kw)
 
@@ -233,6 +233,7 @@ def greenhouse_chx(total_condensate_captured_kg, dt_min):
         "gh_chx_heat_added_kw": gh_chx_heat_added_kw,
         "gh_chx_heat_added_kwh": gh_chx_heat_added_kw * hours_per_step
     } 
+
 
 #-------------main greenhouse function---------------♡
 def run_greenhouse(state, dt_min):
@@ -343,6 +344,9 @@ def run_greenhouse(state, dt_min):
             "growth_progress": new_growth_progress,
             "harvest_ready": harvest_ready,
         }
+
+    chx_results = greenhouse_chx(total_condensate_captured_kg, dt_min)
+
 
     #------------dict for updating state-------------♡ 
     greenhouse_updates = {
