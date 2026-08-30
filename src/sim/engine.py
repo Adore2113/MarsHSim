@@ -146,6 +146,7 @@ def step(state: Habitat_State, dt_min: int = default_dt_min):
         light_results["w_light_heat_kw"],
         greenhouse_outputs.get("total_gh_heat_kw", 0.0),
         greenhouse_outputs.get("gh_led_heat_kw", 0.0),
+        greenhouse_outputs.get("gh_chx_heat_added_kw", 0.0),
         humidity_results["chx_heat_added_kw"],
         isru_water_outputs["isru_water_heat_added_kw"],
         isru_atm_outputs["isru_atm_heat_added_kw"],
