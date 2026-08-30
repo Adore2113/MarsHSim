@@ -12,7 +12,6 @@ min_useful_sunlight_per_m2_kw = 0.15
 base_heat_light_power_usage_kw = 0.12
 led_power_per_m2_kw = 0.12
 led_heat_ratio = 0.68
-
 base_gh_light_hours_per_sol = 16.0    # test and try 12 or 14
 gh_light_start_hour = 5
 
@@ -20,6 +19,13 @@ gh_light_start_hour = 5
 base_power_per_m2_kw = 0.05
 gh_heat_per_m2_kw = 0.015
 gh_chx_capture_efficency = 0.95
+
+#------greenhouse CHX------♡
+gh_condensation_heat_kj_per_kg = 2450.0
+base_gh_chx_power_kw = 0.5
+gh_chx_running_power_kw = 8.0    # placeholder
+gh_chx_waste_heat_ratio = 0.60
+gh_chx_capacity_kg_per_hour = 173.0
 
 #-------gas exchange-------♡
 pq = 1.03    # photosynthetic quotient
@@ -161,7 +167,7 @@ def greenhouse_water(zone, sol_fraction):
     return {
         "plant_water_uptake_kg": plant_water_uptake_kg,
         "gh_condensate_captured_kg": gh_condensate_captured_kg,
-        "gh_transpiration_uncaptured_kg": transpiration_kg,
+        "gh_transpiration_uncaptured_kg": gh_transpiration_uncaptured_kg,
         "plant_mass_water_kg": plant_mass_water_kg,
         "operational_loss_kg": operational_loss_kg,
         "make_up_water_kg": make_up_water_kg,
@@ -213,7 +219,7 @@ def run_greenhouse(state, dt_min):
             "gh_transpiration_uncaptured_kg": 0.0,
             "gh_plant_mass_water_kg": 0.0,
             "gh_operational_loss_kg": 0.0,
-            "gh_direct_make_up_kg": 0.0,
+            "gh_make_up_water_kg": 0.0,
 
             "gh_co2_consumed_mol": 0.0,
             "gh_co2_released_mol": 0.0,
