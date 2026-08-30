@@ -1,5 +1,14 @@
 # Oxygen Generation Assembly
 ### General Notes:
+    ♡ electrolyzes potable water into O₂ and H₂
+    
+    ♡ O₂ is added to the cabin atmosphere in kPa
+    
+    ♡ H₂ is stored and sent to the Sabatier
+    
+    ♡ extra O₂ above target is stored, vented if storage is full
+    
+    ♡ water used here is subtracted from potable storage by the water system
 
 ### ----------------------------------------
 
