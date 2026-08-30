@@ -21,7 +21,7 @@ gh_heat_per_m2_kw = 0.015
 gh_chx_capture_efficency = 0.95
 
 #------greenhouse CHX------♡
-gh_condensation_heat_kj_per_kg = 2450.0
+gh_condensate_heat_kj_per_kg = 2450.0
 base_gh_chx_power_kw = 0.5
 gh_chx_running_power_kw = 8.0    # placeholder
 gh_chx_waste_heat_ratio = 0.60
@@ -46,6 +46,7 @@ def are_timed_gh_lights_on(state, gh_light_hours_per_sol):
     hours_since_start = (current_hour - gh_light_start_hour) % 24
     
     return hours_since_start < gh_light_hours_per_sol
+
 
 #----------------greenhouse lighting-----------------♡
 def greenhouse_lighting(state, dt_min):
@@ -148,7 +149,7 @@ def greenhouse_zone_growth(zone, zone_light, sol_fraction):
     return new_growth_progress, harvest_ready, food_produced_kg
 
 
-#-------------water / CHX  / humidity-------------♡
+#-----------------------water------------------------♡
 def greenhouse_water(zone, sol_fraction):
     area_m2 = zone["effective_grow_area_m2"]
     uptake_rate_kg_per_m2 = zone["plant_water_uptake_kg_per_m2_per_sol"]
@@ -162,7 +163,8 @@ def greenhouse_water(zone, sol_fraction):
     gh_transpiration_uncaptured_kg = transpiration_kg * (1.0 - gh_chx_capture_efficency)
 
     operational_loss_kg = plant_water_uptake_kg * operational_loss_pct
-    make_up_water_kg = plant_mass_water_kg + operational_loss_kg
+    
+    make_up_water_kg = plant_mass_water_kg + + gh_transpiration_uncaptured_kg + operational_loss_kg
 
     return {
         "plant_water_uptake_kg": plant_water_uptake_kg,
@@ -203,6 +205,34 @@ def greenhouse_gas_exchange(zone, zone_light, sol_fraction):
         "o2_consumed_mol": o2_consumed_mol,
     }
 
+#-----------------greenhouse CHX---------------------♡
+def greenhouse_chx(total_condensate_captured_kg, dt_min):
+    hours_per_step = dt_min / 60.0
+    seconds_per_step = dt_min * 60.0
+
+    gh_chx_cooling_kj = total_condensate_captured_kg * gh_condensate_heat_kj_per_kg
+    gh_chx_cooling_kw = gh_chx_cooling_kj / seconds_per_step
+
+    max_capacity_kg_this_step = gh_chx_capacity_kg_per_hour * hours_per_step
+
+    if max_capacity_kg_this_step > 0:
+        amount_factor = min(1.0, total_condensate_captured_kg / max_capacity_kg_this_step)
+
+    else:
+        amount_factor = 0.0
+
+    gh_chx_power_kw = base_gh_chx_power_kw + (gh_chx_running_power_kw - base_gh_chx_power_kw) + amount_factor
+    gh_chx_waste_heat_kw = gh_chx_power_kw * gh_chx_waste_heat_ratio
+    gh_chx_heat_added_kw = max(0.0, gh_chx_waste_heat_kw - gh_chx_cooling_kw)
+
+    return {
+        "gh_chx_power_kw": gh_chx_power_kw,
+        "gh_chx_energy_kwh": gh_chx_power_kw * hours_per_step,
+        "gh_chx_cooling_kw": gh_chx_cooling_kw,
+        "gh_chx_cooling_kwh": gh_chx_cooling_kw * hours_per_step,
+        "gh_chx_heat_added_kw": gh_chx_heat_added_kw,
+        "gh_chx_heat_added_kwh": gh_chx_heat_added_kw * hours_per_step
+    } 
 
 #-------------main greenhouse function---------------♡
 def run_greenhouse(state, dt_min):
@@ -211,31 +241,24 @@ def run_greenhouse(state, dt_min):
   
     if not state.greenhouse_on:
         return {}, {
-            "greenhouse_mode": "offline",
-            "gh_food_produced_kg": 0.0,
- 
-            "gh_plant_water_uptake_kg": 0.0,
-            "gh_condensate_captured_kg": 0.0,
-            "gh_transpiration_uncaptured_kg": 0.0,
-            "gh_plant_mass_water_kg": 0.0,
-            "gh_operational_loss_kg": 0.0,
-            "gh_make_up_water_kg": 0.0,
+            "greenhouse_mode": "offline", "gh_food_produced_kg": 0.0,
+            "gh_plant_water_uptake_kg": 0.0, "gh_condensate_captured_kg": 0.0,
+            "gh_transpiration_uncaptured_kg": 0.0, "gh_plant_mass_water_kg": 0.0,
+            "gh_operational_loss_kg": 0.0, "gh_make_up_water_kg": 0.0,
 
-            "gh_co2_consumed_mol": 0.0,
-            "gh_co2_released_mol": 0.0,
-            "gh_o2_produced_mol": 0.0,
-            "gh_o2_consumed_mol": 0.0,
+            "gh_co2_consumed_mol": 0.0, "gh_co2_released_mol": 0.0,
+            "gh_o2_produced_mol": 0.0, "gh_o2_consumed_mol": 0.0,
 
-            "total_gh_heat_kw": 0.0,
-            "total_gh_heat_kwh": 0.0,
-            "gh_equipment_power_kw": 0.0,
-            "gh_equipment_energy_kwh": 0.0,
-            "gh_led_power_kw": 0.0,
-            "gh_led_energy_kwh": 0.0,
-            "gh_led_heat_kw": 0.0,
-            "gh_led_heat_kwh": 0.0,
-            "natural_light_kw_per_m2": 0.0,
-            "zone_outputs": {}
+            "total_gh_heat_kw": 0.0, "total_gh_heat_kwh": 0.0,
+            "gh_equipment_power_kw": 0.0, "gh_equipment_energy_kwh": 0.0,
+            "gh_led_power_kw": 0.0, "gh_led_energy_kwh": 0.0,
+            "gh_led_heat_kw": 0.0, "gh_led_heat_kwh": 0.0,
+            
+            "gh_chx_power_kw": 0.0, "gh_chx_energy_kwh": 0.0,
+            "gh_chx_cooling_kw": 0.0, "gh_chx_cooling_kwh": 0.0,
+            "gh_chx_heat_added_kw": 0.0, "gh_chx_heat_added_kwh": 0.0,
+
+            "natural_light_kw_per_m2": 0.0, "zone_outputs": {}
             }
     
     lighting = greenhouse_lighting(state, dt_min)
@@ -264,7 +287,7 @@ def run_greenhouse(state, dt_min):
         zone_name = zone["zone"]
         zone_light = zone_lighting[zone_name]
 
-        floor_area = zone.get("floor_area_m2", zone["effective_grow_area_m2"])    # growing zone floor area only
+        floor_area = zone.get("floor_area_m2", zone["effective_grow_area_m2"])
         total_equipment_power_kw += base_power_per_m2_kw * floor_area
 
         new_growth_progress, harvest_ready, food_produced_kg = greenhouse_zone_growth(zone, zone_light, sol_fraction)
@@ -354,6 +377,13 @@ def run_greenhouse(state, dt_min):
         "gh_led_heat_kw": lighting["total_led_heat_kw"],
         "gh_led_heat_kwh": lighting["total_led_heat_kwh"],
  
+        "gh_chx_power_kw": chx_results["gh_chx_power_kw"],
+        "gh_chx_energy_kwh": chx_results["gh_chx_energy_kwh"],
+        "gh_chx_cooling_kw": chx_results["gh_chx_cooling_kw"],
+        "gh_chx_cooling_kwh": chx_results["gh_chx_cooling_kwh"],
+        "gh_chx_heat_added_kw": chx_results["gh_chx_heat_added_kw"],
+        "gh_chx_heat_added_kwh": chx_results["gh_chx_heat_added_kwh"],
+
         "natural_light_kw_per_m2": lighting["natural_light_kw_per_m2"],
         "zone_outputs": zone_outputs,
     }
