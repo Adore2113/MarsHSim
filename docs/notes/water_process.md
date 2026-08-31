@@ -155,6 +155,8 @@
     ♡ raw ISRU water is last so it does not displace higher priority sources
 
 #### Why BPA capacity of 0.5 kg/h?
+    ♡ BPS is crew sized, not UPA max-size
+
     ♡ brine volume is much smaller than gray or black water
 
     ♡ low power and thermal impact
