@@ -1,9 +1,18 @@
 # Crew and Scheduling
 ### General Notes:
+    ♡ crew quarters are designed for long term habitation instead of short mission use
+
+    ♡ each crew member has a private space for sleep, work, relaxation and time alone
+
+    ♡ room customization is intended to provide familiarity, personal identity and psychological wellbeing
+
+    ♡ comfort features are limited by habitat wide safety, atmosphere, power, water and thermal requirements
+
+    ♡ the two unassigned quarters provide temporary housing during maintenance, medical isolation and other crew needs
 
 ### ----------------------------------------
 
-## _____ Plan ():
+## Crew and Habitability Plan (updated 08/31/2026):
 
 ### Crew Quarter Layout:
     ♡ total quarters: 32
@@ -28,8 +37,6 @@
 
     ♡ quarters are placed along a quiet exterior side of the habitat, away from the main industrial areas    
 
-    ♡ two quarters remain unassigned for flexibility
-
 ### Crew Quarter Interior:
     ♡ intended to feel like a private room instead of a sleeping pod
 
@@ -44,30 +51,37 @@
         - vanity/counter/drawer area
         - a small area for beverages
 
+    ♡ the small beverage area contains:
+        - counter
+        - drawers
+        - secured cup storage
+        - small water dispenser
+        - space for approved personal beverage equipment
+
     ♡ enough storage is included to keep the room organized and prevent it from feeling cluttered, including wall hooks
 
     ♡ sound insulated for privacy and protection from surrounding habitat noise
 
-    ♡ soft/natural patterns and textures (things like mock wood or stone appearance or texture)
+    ♡ soft, natural-looking patterns and textures, including mock wood or stone finishes
 
-    ♡ a small soft carpet
+    ♡ surfaces are fire-resistant and easy to clean
+
+    ♡ a small removable, washable soft rug for comfort and familiarity
 
     ♡ customizable room settings:
         - lighting color and brightness
         
-        - ambient sound or music options (noisy cafe,calming rain sounds, sounds of places on earth that are familiar or grounding)
+        - ambient sound or music options (noisy cafe, calming rain sounds, sounds of places on earth that are familiar or grounding)
 
-
-        - display screens / digital scenery (including the ceiling)
+        - display screens / digital scenery, including the ceiling
         
         - photo frames for familiarity and psychological grounding
         
         - temperature within an allowed comfort range
         
-        - humidity and dehumidification within an allowed comfort range
+        - localized airflow and humidity comfort within an allowed range
+    
         
-        - screen on the cieling to choose scenery/
-
     ♡ individual settings do remain limited by habitat wide atmosphere, power and thermal requirements
 
     ♡ furniture and storage are secured for normal use but designed to remain comfortable instead of overly industrial
@@ -139,12 +153,20 @@
 
     ♡ for crew to see Mars around them privately, having time to be alone is important
 
+#### Why the ambient sound and scene options?
+    ♡ I wanted the crew to be able to have a very immersive experience for their pshycological wellbeing
+
+    ♡ they can choose scenes and sounds that remind them of home, their favorite places on earth, etc.
+
+    ♡ it seemed like a good, customizable option
+
 ### ----------------------------------------
 
 ### Dev Log Notes:
 ###### From v1_scope:
-    ♡ crew getting around 8 hours of sleep/night (9:30pm (21:30)- 6:00am)
+    ♡ crew receive an 8.5 hour overnight sleep period from 21:30–06:00 LMST, to allow ~ 8 hours of actual sleep
 
+    ♡ habitat lights begin dimming at 21:30 LMST and brighten at 06:00 LMST
 
 ###### 03/09/2026
     ♡ NASA references: crew CO₂ production is ~ 1 kg pp/day
