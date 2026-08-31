@@ -1694,6 +1694,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ max_time_on_bed_min = 55.0 < placeholder, research actual time 
 
+
 ##      08/26/2026
     ♡ fixed methane venting from inside the habitat to outside
 
@@ -1702,3 +1703,35 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ fixing sabatier water produced, and making it go to it's greenhouse CHX
 
     ♡ fixing plant transpiration, and renaming some variables from saying "greenhouse" to "gh"
+
+
+##      08/27/2026
+    ♡ I still need to update the thermal system and the CHX needs to be taken care of, I'm starting with the gh CHX first
+
+    ♡ sabatier.py: ch4_leaked_kpa is adding storage leak into cabin ch4_kpa, it should vent to Mars exterior per sabatier.md, not cabin atmosphere
+   
+
+##      08/30/2026
+    ♡ adding function in greenhouse.py for greenhouse CHX
+
+    ♡ while going over my habitat systems, the layout is starting to become muddy. I am deciding on a shape and overall rough size of the habitat, and I'm going to use Arcadia Planitia: 50 Acre Solar Plan for sizing references and ideas
+
+    ♡ after looking at NASA habitat and construction studies, I think a ratio of 1 m2 for everu ~ 20 - 25 m2 of solar field area seems like a starting point
+
+    ♡ I also wanted to consider Space X as well. Considering the initial base into a self-sustaining city plan, an idea could be to create a habitat that could eventually be a kind of settlement block that can handle attachments for repeatable settlement blocks, this won't be simulated in v1 though
+
+    ♡ I'm definitely sticking with the dome idea for each individual cabin, the dome is a customizable room extension, not a space intended to hold every option at once
+
+#### Next Session:
+    ♡ to do: 
+        -add crew quarter power usage estimates to total power, include the dome shutters, can use the solar array covers as reference for power usage  ♡ design decision + follow-through
+        - WPA priority branch: condensate to sabatier water to gray to raw ISRU
+    
+    ♡ room sizing
+        - finalize Wastewater Storage Room (currently 80-100 m²)
+        - finalize ISRU Water Room (currently 40-60 m²)
+        - write atmosphere.md:  OGA / CO₂ scrub / buffer gas / Sabatier room layout
+    
+    ♡ continue mapping habitat layout
+
+    ♡ move onto OGA system after/during layout plans
