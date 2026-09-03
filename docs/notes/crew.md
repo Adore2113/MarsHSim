@@ -40,6 +40,8 @@
 ### Crew Quarter Interior:
     ♡ intended to feel like a private room instead of a sleeping pod
 
+    ♡ potable water avaliable in the quarters is represented in the hygiene / misc for V1
+
     ♡ contains:
         - bed
         - desk / workstation
@@ -62,7 +64,7 @@
 
     ♡ sound insulated for privacy and protection from surrounding habitat noise
 
-    ♡ soft, natural-looking patterns and textures, including mock wood or stone finishes
+    ♡ soft, natural looking patterns and textures, including mock wood or stone finishes
 
     ♡ surfaces are fire-resistant and easy to clean
 
@@ -79,8 +81,7 @@
         
         - temperature within an allowed comfort range
         
-        - localized airflow and humidity comfort within an allowed range
-    
+        - localized airflow and humidity comfort within an allowed range (local comfort not 32 independant loops)
         
     ♡ individual settings do remain limited by habitat wide atmosphere, power and thermal requirements
 
@@ -99,9 +100,8 @@
         - digital scenery
         - protection from excessive glare
 
-    ♡ protective exterior shutters can close during:
+    ♡ protective exterior shutters close during:
         - severe dust storms
-        - elevated radiation events
         - exterior maintenance
         - debris risk
         - dome damage or emergencies
@@ -141,7 +141,12 @@
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ 
+    ♡ crew waste goes to wastewater, to water/nutrient recovery, to treated nutrient concentrate to greenhouse to zoner reservoirs
+
+    ♡ protective exterior shutters close during:
+        - elevated radiation events
+
+    ♡ dome seals inspecteded on a cycle (32 room dome doors + 32 dome perimeters)
 
 ### ----------------------------------------
 
@@ -187,5 +192,5 @@
     ♡ see this date in layout.py for layout and psychological considerations
 
 ###### 08/19/2026
-    ♡ crew waste goes to wastewater, to water/nutrient recovery, to treated nutrient concentrate to greenhouse to zoner reservoirs
+
 

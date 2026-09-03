@@ -15,7 +15,6 @@
     ♡ made with cleanliness, emergency access, and psychological wellbeing in mind
 
 ### ----------------------------------------
-
 ## Arcadia Four Hub Plan (updated 08/24/2026):
 ### Layout
 
