@@ -18,15 +18,21 @@
 ## Arcadia Four Hub Plan (updated 08/24/2026):
 ### Layout
 
-#### Living / Social Hub:
+#### Total Living / Social / Food Space:
+    ♡ Kitchen / Dining total floor area: ~ 930 m²
+    ♡ Crew Quarters total floor area: ~ 1,120 m²
+    
     ♡ clean, comfortable, lower industrial noise
     ♡ contains:
         - crew quarters access
         - galley / cafeteria
         - recreation and small social spaces
         - medical / quiet areas
-
+        
 #### Greenhouse / Food Hub:
+    ♡  total floor area: 1,326 m²
+    ♡  total volume: 14,586 m³
+
     ♡ clean, comfortable, lower industrial noise
     ♡ contains:
         - main grow zones
@@ -59,6 +65,128 @@
        - battery maintenence and service room
 
 ### ----------------------------------------
+### Food and Dining Area:
+    ♡ total combined floor area: ~ 930 m²
+
+    ♡ positioned between the Living / Social hub and the Greenhouse / Food area
+
+    ♡ supports daily meals, food preparation, crop processing, long-term storage and larger community gatherings
+
+    ♡ includes:
+        - main dining hall
+        - smaller dining area
+        - galley / kitchen
+        - food processing and preservation area
+        - food storage
+
+#### Main Dining Hall:
+    ♡ floor area: ~ 250 m²
+
+    ♡ real world size reference example:
+        - ~ small banquet hall
+        - ~ one doubles tennis court
+
+    ♡ comfortably seats all 30 crew members
+
+    ♡ includes:
+        - movable tables and chairs
+        - multiple seating arrangements
+        - generous circulation space
+        - serving area
+        - space for celebrations and community events
+
+    ♡ can also support habitat meetings and group activities
+
+#### Smaller Dining Area:
+    ♡ floor area: ~ 80 m²
+
+    ♡ real world size reference example:
+        - ~ a modest two bedroom apartment
+        - ~ a large private dining or event room
+
+    ♡ quieter, less crowded
+
+    ♡ seats ~ 10–12 crew members
+
+    ♡ can support:
+        - ordinary meals
+        - private dinners
+        - small celebrations
+        - casual meetings
+
+#### Kitchen / Food Area:
+    ♡ floor area: ~ 180 m²
+
+    ♡ real world size reference example:
+        - ~  a fairly large three bedroom house
+        - ~ larger than a typical restaurant kitchen
+
+    ♡ commercial-style shared area designed to allow multiple crew members to prepare food at the same time
+
+    ♡ includes:
+        - multiple cooking stations
+        - preparation islands
+        - baking area
+        - sinks and sanitation stations
+        - dishwashing area
+        - short-term refrigeration
+        - beverage area
+        - serving counters
+        - accessible circulation space
+
+#### Food Processing and Preservation Area:
+    ♡ floor area: ~ 120 m²
+
+    ♡ real world size reference example:
+        - ~ a small three-bedroom bungalow
+        - ~ a medium commercial workshop
+
+    ♡ positioned between the greenhouse harvest area, food storage and kitchen / food area
+
+    ♡ used for:
+        - receiving greenhouse harvests
+        - washing and sorting crops
+        - trimming and preparation
+        - drying and freezing
+        - preserving and packaging
+        - preparing food for storage or galley use
+
+    ♡ kept separate from the primary galley to prevent harvest processing from interfering with daily meal preparation
+
+#### Food Storage:
+    ♡ floor area: ~ 300 m²
+
+    ♡ real world size reference example:
+        - ~ a large house
+
+    ♡ divided into separate storage conditions instead of one open room
+
+    ♡ includes:
+        - dry food storage
+        - refrigerated storage
+        - frozen storage
+        - preserved food storage
+        - seed and planting-stock storage
+        - emergency food reserves
+        - a more secure storage for less frequently used ingredients
+
+    ♡ located for short transport routes between the greenhouse, food processing area and kitchen / food area
+
+    ♡ emergency reserves are organized separately from daily use food to prevent accidental overuse
+
+#### Combined Area:
+    ♡ main dining hall: ~ 250 m²
+    ♡ smaller dining area: ~ 80 m²
+    ♡ galley / kitchen: ~ 180 m²
+    ♡ food processing and preservation area: ~ 120 m²
+    ♡ food storage: ~ 300 m²
+
+    ♡ combined floor area: ~ 930 m²
+
+    ♡ real world size reference example:
+        - ~ a small grocery store
+        - ~ five average 2,000 ft² houses
+
 
 ## Design Evolution:
 #### Starting Plan:
