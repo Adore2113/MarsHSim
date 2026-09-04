@@ -2,24 +2,33 @@
 
 ![MarsHSim Banner](assets/github_preview.jpg "MarsHSim")
 
-**major subsystem rewrite in progress**
+**major subsystem rewrite and settlement redesign in progress**
 
-I'm building a Mars habitat simulation where a closed system keeps a crew of 30 alive with no resupply, one subsystem at a time.
+**visuals / web based design currently on hold**
+
+I'm building a Python based simulation of a permanent first settlement habitat on Mars, designed to support a crew of 30 with no resupply.
+
+MarsHSim began as a closed loop Environmental Control and Life Support System (ECLSS) simulator. As the project developed, it expanded past keeping the crew alive to explore what they would need to live, work and remain psychologically well inside a permanent settlement.
+
+The ECLSS remains the heart of the project, connecting atmosphere, water, power, thermal control, food production, crew metabolism and resource recovery into one continuously changing system.
 
 <p align="center">
 ♡♡♡
 </p>
 
-MarsHSim models a self-sustaining Environmental Control and Life Support System (ECLSS) for a crew of 30 inside a closed 2400 m³ habitat on Mars in Arcadia Planitia (47° North, 184° East)
+MarsHSim is set in Arcadia Planitia at 47° North, 184° East.
 
-♡ The focus is on reliability, realistic subsystem behavior, reusability, and future machine learning integration.
-
+The focus is on realistic subsystem behavior, reliability, long-term habitability, resource reuse, autonomous operation and future machine-learning integration
 
 ## Overview:
 
-MarsHSim simulates a habitat in Arcadia Planitia running on Mars time (sols and LMST).
+MarsHSim simulates the interconnected systems of a permanent first Mars settlement for 30 people.
 
-The system updates continuously using a timestep based simulation, modeling how a closed life support system maintains stability over time.
+The settlement is centered around one compact pressurized habitat containing crew living spaces, food production, life support equipment, power production, environment resourcing, resource storage, maintenance areas and shared community spaces. External infrastructure includes the solar field and water and atmospheric ISRU systems.
+
+The simulation runs continuously using Mars sols, Local Mean Solar Time (LMST) and timestep-based updates.
+
+Instead of than modeling a collection of isolated calculations, MarsHSim focuses on whether the settlement's systems can work together to keep the crew alive, maintain stable conditions and support long-term habitation without resupply.
 
 > **Notice:** MarsHSim is currently undergoing a major subsystem rewrite. The simulator runs, but some systems are still being reconnected and calibrated, so certain outputs and alerts may not yet reflect the intended behavior.
 
@@ -27,7 +36,7 @@ The system updates continuously using a timestep based simulation, modeling how 
 ♡♡♡
 </p>
 
-My goal is to build something that feels real, structured, autonomous and potentially slightly interactive on a UI I designed.
+My goal is to build something that feels real, grounded, structured, autonomous and potentially slightly interactive on a UI.
 
 
 ## Dashboard
@@ -101,15 +110,45 @@ The current dashboard is a visual prototype designed to display the simulator's 
 ♡ atmospheric gas storage
 
 
-#### Crew and Habitat:
+#### Crew and Habitability:
 ♡ crew metabolism
 
-♡ oxygen consumption & CO₂ production
+♡ oxygen consumption and CO₂ production
 
 ♡ crew heat generation
 
-♡ day and night behavior 
+♡ day and night behavior
 
+♡ crew scheduling and sleep periods
+
+♡ permanent private crew quarters
+
+♡ customizable personal geometric domes
+
+♡ shared dining, recreation and community spaces
+
+♡ long term comfort and psychological considerations
+
+#### Settlement Design:
+♡ permanent central habitat for a crew of 30
+
+♡ compact rounded square external structure
+
+♡ isolatable internal functional zones
+
+♡ two level terraced crew quarter area
+
+♡ 32 private crew quarters, including 2 flexible unassigned rooms
+
+♡ Hive-8 Arcadia hydroponic greenhouse
+
+♡ food preparation, preservation, storage and communal dining areas
+
+♡ maintenance, repair and spare part facilities
+
+♡ external solar and ISRU extraction
+
+♡ long term operation without resupply
 
 ## Planned Features:
 ♡ environmental monitoring
@@ -131,13 +170,17 @@ The current dashboard is a visual prototype designed to display the simulator's 
 ## Current Focus:
 ♡ reconnecting and testing subsystem interactions during the current rewrite
 
-♡ refining system balancing, constants, and resource flow
+♡ refining system balancing, constants and resource flows
+
+♡ redesigning the original habitat as a permanent first settlement for 30 people
+
+♡ planning internal habitat zones, crew spaces and long-term habitability features
+
+♡ expanding closed-loop water, atmosphere, power and food management
 
 ♡ improving terminal output
 
-♡ expanding closed loop habitat resource management  
-
-♡ laying groundwork for future AI habitat oversight
+♡ laying the groundwork for future autonomous and AI-assisted habitat oversight
 
 This project is in active development.
 
@@ -277,11 +320,13 @@ The dashboard displays the latest simulation output from `ui/data/latest.json`.
 
 ## Why this project:
 
-I wanted to build something that feels real, and something I was genuinely interested in and excited about.
+I wanted to build something that feels real, and something I was genuinely interested in understanding and excited about.
 
 MarsHSim started as a way to explore how a closed life support system actually behaves over time, not just as isolated calculations but as a connected system where everything affects everything else.
 
 Instead of solving problems individually, this project focuses on how systems interact, drift, stabilize, learn, and fail.
+
+As I developed the individual systems, the project naturally raised a larger question: what would 30 people need not only to survive on Mars, but to permanently live there, and expand with?
 
 My long term goal is to move toward a simulation that can support autonomous decision making and eventually integrate machine learning for prediction and control, while keeping it structured, autonomous, and slightly interactive to make it more engaging.
 
