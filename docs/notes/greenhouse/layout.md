@@ -181,6 +181,38 @@
 
     ♡ see greenhouse/water.md
 
+#### Total Greenhouse Space:
+    ♡ floor areas:
+        - Hive-8 envelope: 1,326 m²
+        - grow zone floors: ~ 980 m²
+        - core, paths, storage and CHX bay: ~ 346 m²
+        - CHX bay (inside Hive-8): ~ 30 m²
+        - total floor area: 1,326 m²
+
+    ♡ volumes:
+        - Hive-8 envelope: 14,586 m³
+        - CHX bay (inside Hive-8): ~ 135 m³
+        - total volume: 14,586 m³
+
+    ♡ calculation:
+        - core, paths, storage and CHX bay:
+            1,326 m² − 980 m²
+            = 346 m²
+
+        - Hive-8 envelope:
+            1,326 m² × 11.0 m
+            = 14,586 m³
+
+        - CHX bay:
+            30 m² × 4.5 m
+            = 135 m³
+
+        - total floor area:
+            1,326 m²
+
+        - total volume:
+            14,586 m³
+
 ### ----------------------------------------
 
 ### Design Decisions:
