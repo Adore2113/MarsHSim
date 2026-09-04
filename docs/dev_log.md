@@ -1266,7 +1266,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
         Sweet potato, peanuts (higher light demand):
              400-600+ for strong yields
 
-    ♡ so I'm chanding my light targets per m2 to structural zone: 0.26, container zone "light_target_kw_per_m2": 0.23, rack zone "light_target_kw_per_m2": 0.19,
+    ♡ so I'm chanding my light targets per m² to structural zone: 0.26, container zone "light_target_kw_per_m²": 0.23, rack zone "light_target_kw_per_m²": 0.19,
 
     ♡ updating greenhouse to include new values, and equipment power
 
@@ -1294,7 +1294,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ I'm not so worried about an upper range for the dissolved O₂ target b/c the most important thing is if it's high enough
 
-    ♡ considering equipment for hydroponics, and reservoir sizes.. all three zones will have a different L/m2 b/c of the differnt systems and containers holding water differently (LECA beds retain a lot of moisture in the root zone, Dutch bucket style containers retain some moisture and NFT channels don't hold very much) 
+    ♡ considering equipment for hydroponics, and reservoir sizes.. all three zones will have a different L/m² b/c of the differnt systems and containers holding water differently (LECA beds retain a lot of moisture in the root zone, Dutch bucket style containers retain some moisture and NFT channels don't hold very much) 
 
     ♡ continue hydroponics including ciruclation pumps, add that to power, calculate flow rate, etc.
 
@@ -1716,7 +1716,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ while going over my habitat systems, the layout is starting to become muddy. I am deciding on a shape and overall rough size of the habitat, and I'm going to use Arcadia Planitia: 50 Acre Solar Plan for sizing references and ideas
 
-    ♡ after looking at NASA habitat and construction studies, I think a ratio of 1 m2 for everu ~ 20 - 25 m2 of solar field area seems like a starting point
+    ♡ after looking at NASA habitat and construction studies, I think a ratio of 1 m² for everu ~ 20 - 25 m² of solar field area seems like a starting point
 
     ♡ I also wanted to consider Space X as well. Considering the initial base into a self-sustaining city plan, an idea could be to create a habitat that could eventually be a kind of settlement block that can handle attachments for repeatable settlement blocks, this won't be simulated in v1 though
 
@@ -1735,3 +1735,12 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ continue mapping habitat layout
 
     ♡ move onto OGA system after/during layout plans
+
+##      09/03/2026
+    ♡ looking at the dining area and food storage to wrap up the crew part of the habitat, I think ~ 300 m² (around the floor area of a large house)
+
+    ♡ I decided on some floor space for food and kitcen areas
+
+    ♡ I don't like the idea of having one large communal recreation hall area, b/c it seems exposed, awkward, and more institutional like a hotel lobby or something. I like the idea of having a space for events, but the dining hall seems like it would work for that. 
+
+    ♡ I decided to have a few different living space areas, like a lounge, more private areas and other places I mentioned in my notes previously
