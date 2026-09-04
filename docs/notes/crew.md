@@ -134,6 +134,37 @@
 
 
 ### ----------------------------------------
+### Dome Shutters & Seal Cycle:
+    ♡ shutters close for events, not on a clock
+
+    ♡ cycle (V1 planning):
+        - visual seal check: 
+            every 7 sols
+        
+        - dust clear on shutters / frames: 
+            after each storm, or every 10 sols if no storm
+       
+        - pressure door seal test: 
+            every 30 sols
+    
+        - full panel / gasket inspection: 
+            every 90 sols
+        
+        - deep service (one quarter at a time): 
+            every 180 sols
+
+    ♡ during deep service:
+        - that quarter is taken offline
+        - crew uses one of the 2 unassigned rooms
+
+    ♡ calculation:
+        32 doors + 32 dome perimeters
+        = 64 seal lines
+
+        64 seal lines ÷ 7 sols
+        ≈ 9 seal lines/sol for the weekly visual check
+
+### ----------------------------------------
 
 ## Design Evolution:
 ####
@@ -151,12 +182,19 @@
 ### ----------------------------------------
 
 ## Design Decisions:
-#### Why the sealed geometric domes?
-    ♡ if a dome is damaged, the pressure-rated door allows it to be isolated without making the main crew quarter unusable
-
+#### Why have domes?
     ♡ more habitat space and the feel of a different room or patio
 
     ♡ for crew to see Mars around them privately, having time to be alone is important
+
+#### Why shutters and sealed domes?
+    ♡ if a dome is damaged, the pressure-rated door allows it to be isolated without making the main crew quarter unusable
+
+   ♡ dust and UV hit seals the same way they hit array covers
+
+   ♡ event driven shutters keep light and view when conditions are good
+
+   ♡ timed seal checks catch slow leaks early
 
 #### Why the ambient sound and scene options?
     ♡ I wanted the crew to be able to have a very immersive experience for their pshycological wellbeing
