@@ -7,6 +7,39 @@
 ### ----------------------------------------
 
 ## Arcadia Living Space Plan (updated 09/04/2026):
+
+#### Total Living / Social / Food Space:
+    ♡ current combined floor area: ~ 2,875 m²
+
+    ♡ Kitchen / Dining:
+        - floor area: ~ 930 m²
+        - volume: to be calculated
+
+    ♡ Crew Quarters:
+        - floor area: ~ 1,120 m²
+        - volume: to be calculated
+
+    ♡ Shared Living / Social Rooms:
+        - floor area: ~ 250 m²
+        - volume: ~ 983 m³
+
+    ♡ Medical and Quiet Areas:
+        - floor area: ~ 405 m²
+        - volume: ~ 1,432 m³
+
+    ♡ Library and Reading Room:
+        - floor area: ~ 85 m²
+        - volume: ~ 340 m³
+
+    ♡ Creative / Hobby Studio:
+        - floor area: ~ 85 m²
+        - volume: ~ 340 m³
+
+    ♡ current calculated volume: ~ 3,095 m³
+
+
+### ----------------------------------------
+
 #### Identification:   
     ♡ all rooms are visually distinct and easy to identify through their own colors, symbols, lighting and corridor markers
 
@@ -26,8 +59,8 @@
     ♡ Kitchen / Dining total floor area: ~ 930 m²
     ♡ Crew Quarters total floor area: ~ 1,120 m²
     
-    ♡ Shared Living total floor area: ~ 285 m²
-    ♡ Shared Living total volume: ~ 1,105.5 m³
+    ♡ Shared Living total floor area: ~ 250 m²
+    ♡ Shared Living total volume: ~ 983 m³
 
     ♡ clean, comfortable, lower industrial noise
     ♡ contains:
@@ -37,7 +70,6 @@
         - Medical / Quiet Rooms
 
 ### ----------------------------------------
-
 
 ### Crew Quarter Layout:
     ♡ total quarters: 32
@@ -65,7 +97,7 @@
 ### Crew Quarter Interior:
     ♡ intended to feel like a private room instead of a sleeping pod
 
-    ♡ potable water avaliable in the quarters is represented in the hygiene / misc for V1
+    ♡ potable water available in the quarters is represented in the hygiene / misc for V1
 
     ♡ contains:
         - bed
@@ -106,7 +138,7 @@
         
         - temperature within an allowed comfort range
         
-        - localized airflow and humidity comfort within an allowed range (local comfort not 32 independant loops)
+        - localized airflow and humidity comfort within an allowed range (local comfort not 32 independent loops)
         
     ♡ individual settings do remain limited by habitat wide atmosphere, power and thermal requirements
 
@@ -204,7 +236,7 @@
     ♡ includes:
         - main dining hall
         - smaller dining area
-        - kitchen / kitchen
+        - kitchen / food area
         - food processing / preservation area
         - food storage
 
@@ -335,7 +367,7 @@
 
     ♡ uses softer seating and slightly lower lighting than the large living room
 
-#### Small Reservable(?) Lounge:
+#### Small Reservable Lounge:
     ♡ floor area: ~ 50 m²
     ♡ height: ~ 3.5 m
     ♡ volume: ~ 175 m³
@@ -434,45 +466,16 @@
         - one private counseling room 
         - one multi-faith reflection room
     
-    ♡ four study pods are in the Library / Reading Room
-
-#### Individual Soundproof Study Pods:
-    ♡ total pods: 6
-    ♡ floor area: ~ 4 m²/pod
-    ♡ ~ dimensions: ~ 2 m × 2 m
-    ♡ combined floor area: ~ 24 m²
-
-    ♡ height: ~ 2.4 m
-    ♡ volume: ~ 9.6 m³/pod
-    ♡ combined volume: ~ 57.6 m³
-
-    ♡ these are enclosed soundproof work pods used in offices
-
-    ♡ each pod is larger than a typical office phone booth to support longer work or study periods
-
-    ♡ each pod includes:
-        - built in desk
-        - adjustable chair
-        - power and data connections
-        - personal AI access
-        - display screen
-        - dimmable task lighting
-        - adjustable ventilation
-        - ambient sound or complete quiet
-        - occupancy indicator
-        - emergency communication
-        - frosted or adjustable privacy glass
-
-    ♡ glass doors or small windows so the pods don't feel too closed in while maintaining sound separation and privacy
+    ♡ three study pods are included in the Library / Reading Room
 
 #### Private Quiet / Focus Room:
     ♡ total rooms: 1
     ♡ floor area: ~ 15 m²
     ♡ height: ~ 3.2 m
     ♡ volume: ~ 48 m³
-
     ♡ real world size reference:
         - ~ a comfortable bedroom or private office
+    ♡ sound insulated
 
     ♡ used for:
         - spreading out books or project materials
@@ -493,14 +496,11 @@
         - personal AI access
         - occupancy indicator
 
-    ♡ very sound insulated
-
 #### Private Counseling Room:
     ♡ total rooms: 1
     ♡ floor area: ~ 20 m²
     ♡ height: ~ 3.2 m
     ♡ volume: ~ 64 m³
-
     ♡ real world size reference:
         - ~ a large bedroom or comfortable office
 
@@ -573,23 +573,14 @@
     ♡ made to feel like a specific destination instead of a storage room filled with bookshelves
 
     ♡ includes:
-        - reading / seating areas: ~ 35 m²
-        - shelving / physical collection: ~ 25 m²
-        - four soundproof study pods: ~ 16 m²
-        - shared tables / digital stations: ~ 15 m²
-        - book storage / repair area: ~ 9 m²
-
-    ♡ digital stations provide access to a large collection of books
-
-    ♡ all bookshelves are built along the library walls
-
-    ♡ includes: 
-        - physical and digital book collections 
-        - wall only bookshelves 
-        - comfortable reading areas 
-        - shared tables and digital stations 
-        - four soundproof study pods 
+        - physical and digital book collections
+        - wall-only bookshelves
+        - comfortable reading areas
+        - shared tables and digital stations
+        - three soundproof study pods
         - plants and simulated natural views
+
+    ♡ no freestanding shelving rows, to keep the center open for seating and clear walking paths
 
     ♡ sound insulated from nearby social and activity spaces
 
@@ -598,24 +589,22 @@
     ♡ floor area: ~ 4 m²/pod
     ♡ approximate dimensions: ~ 2 m × 2 m
     ♡ combined floor area: ~ 12 m²
-    ♡ height: ~ 2.4 m 
-    
-    ♡ based on private soundproof work pods used in offices 
-    
-    ♡ each pod includes: 
-        - built-in desk 
-        - adjustable chair 
-        - power and data connections 
-        - display screen 
-        - adjustable ventilation 
-        - dimmable lighting 
-        - occupancy indicator 
-        - adjustable privacy glass 
-        
-    ♡ mainly for focused work and longer study periods 
+    ♡ height: ~ 2.4 m
+    ♡ based on private soundproof work pods used in offices
+
+    ♡ each pod includes:
+        - built-in desk
+        - adjustable chair
+        - power and data connections
+        - display screen
+        - adjustable ventilation
+        - dimmable lighting
+        - occupancy indicator
+        - adjustable privacy glass
+
+    ♡ mainly used for focused work and longer study periods
 
     ♡ the study pods are included in the library's total floor area and volume
-
 
 #### Indoor Walking / Running Route:
    ♡ crew members can use designated areas of the habitat's secondary corridor loops for indoor walking and running
@@ -695,7 +684,7 @@
 
     ♡ protective exterior shutters close during elevated radiation events
 
-    ♡ dome seals inspecteded on a cycle (32 room dome doors + 32 dome perimeters)
+    ♡ dome seals inspected on a cycle (32 room dome doors + 32 dome perimeters)
 
 ### ----------------------------------------
 
@@ -720,7 +709,7 @@
    ♡ timed seal checks catch slow leaks early
 
 #### Why the ambient sound and scene options?
-    ♡ I wanted the crew to be able to have a very immersive experience for their pshycological wellbeing
+    ♡ I wanted the crew to be able to have a very immersive experience for their psychological wellbeing
 
     ♡ they can choose scenes and sounds that remind them of home, their favorite places on earth, etc.
 
