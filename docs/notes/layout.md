@@ -2,17 +2,17 @@
 ### General Notes:
     ♡ preliminary estimates
 
-    ♡ four central rooms act as local hubs / wings
+    ♡ each hub has multiple exits into its surrounding rooms that branch off from each area
 
-    ♡ each hub has multiple exits into its surrounding rooms that branch off from each node
-
-    ♡ secondary corridors / loops connect outer rooms so movement doesn't always require returning to a center
+    ♡ secondary corridors / loops connect outer rooms withou returning to the center
 
     ♡ clear separation between living, food production, utility/process, and power areas
 
-    ♡ utility and power areas are reachable for maintenance and emergencies without crossing the main living spaces unnecessarily
+    ♡ utility and power areas are reachable for maintenance and emergencies without passing the main living spaces
 
     ♡ made with cleanliness, emergency access, and psychological wellbeing in mind
+
+    ♡ the habitat does not include a separate dedicated running track for V1
 
 ### ----------------------------------------
 ## Arcadia Four Hub Plan (updated 08/24/2026):
@@ -192,18 +192,17 @@
 ### ----------------------------------------
 
 ### Shared Living / Social Rooms:
-    ♡ total rooms: 4
-    ♡ total floor area: ~ 285 m²
+    ♡ total rooms: 3
+    ♡ total floor area: ~ 250 m² 
+    ♡ total volume: ~ 983 m³ 
+    ♡ includes: 
+        - large shared living room: ~ 120 m² 
+        - casual lounge: ~ 80 m² 
+        - small reservable lounge: ~ 50 m²
 
-    ♡ includes:
-        - large shared living room: ~ 120 m²
-        - casual lounge: ~ 80 m²
-        - small lounge: ~ 50 m²
-        - private social room: ~ 35 m²
-
-    ♡ the rooms provide different levels of social activity instead of placing all recreation into one large hall
-
-    ♡ each room is visually distinct and easy to identify
+    ♡ the rooms provide different areas for social activity instead of placing all recreation into one large hall
+    
+     ♡ each room is visually distinct and easy to identify, consistent at the room entrance and along the corridor leading toward it, for easy navigation
 
     ♡ visual differences may include:
         - individual color palettes
@@ -212,8 +211,6 @@
         - distinct wall patterns and textures
         - different furniture arrangements
         - specific plants or decorative features
-
-    ♡ visual identity is consistent at the room entrance and along the corridor leading toward it, for easy navigation
 
     ♡ differences between rooms support navigation, familiarity and choice
 
@@ -226,7 +223,7 @@
 
     ♡ for larger casual gatherings without feeling like an open event hall
 
-    ♡ includes several smaller furniture groups instead of one central seating arrangement
+    ♡ smaller furniture groups instead of one central seating arrangement
 
     ♡ brighter and more open than the smaller lounges
 
@@ -239,35 +236,30 @@
 
     ♡ uses softer seating and slightly lower lighting than the large living room
 
-#### Small Lounge:
+#### Small Reservable(?) Lounge:
     ♡ floor area: ~ 50 m²
     ♡ height: ~ 3.5 m
     ♡ volume: ~ 175 m³
 
-    ♡ intended for ~ 4–6 crew members
+    ♡ intended for ~ 2–6 crew members
 
-    ♡ a quieter and more enclosed setting for conversation or relaxation
-
-#### Private Social Room:
-    ♡ floor area: ~ 35 m²
-    ♡ height: ~ 3.5 m
-    ♡ volume: ~ 122.5 m³
-
-    ♡ intended for ~ 2–4 crew members
-
-    ♡ reservable for private conversations, small visits or activities that could disturb a shared lounge
-
-    ♡ includes additional sound insulation
+    ♡ provides a quieter and more enclosed setting for: 
+        - conversation 
+        - relaxation 
+        - private social gatherings 
+        - small meetings 
+        - tabletop or RPGs 
+        - activities that could disturb others
 
 #### Combined Area:
-    ♡ total floor area: ~ 285 m²
-    ♡ total volume: ~ 1,105.5 m³
+    ♡ total floor area: ~ 250 m²
+    ♡ total volume: ~ 983 m³
 
 ### ----------------------------------------
 
 ### Medical and Quiet Areas:
-♡ combined floor area: ~ 532 m²
-    ♡ combined volume: ~ 1,813 m³
+    ♡ combined floor area: ~ 405 m²
+    ♡ combined volume: ~ 1,432 m³
 
     ♡ medical and quiet areas are located in the Living / Social area but are physically separated from one another
 
@@ -333,18 +325,19 @@
     ♡ the emergency treatment room provides space for urgent procedures, stabilization and longer treatment when evacuation isn't available
 
 #### Quiet and Private Support Areas:
-    ♡ total floor area: ~ 124 m²
-    ♡ total volume: ~ 417.6 m³
-
-    ♡ sound insulated spaces for crew members who need concentration, privacy, lower sensory activity or time away from shared living areas
-
-    ♡ areas are available for temporary use instead of being permanently assigned to individual crew members
-
-    ♡ includes:
-        - six individual soundproof study pods
-        - two private quiet / focus rooms
-        - one private counseling room
+    ♡ total floor area: ~ 85 m²
+    ♡ total volume: ~ 312 m³
+    
+    ♡ sound-insulated for crew members who need privacy, lower sensory activity or time away from shared living areas
+    
+    ♡ for temporary use instead of being assigned to individual crew members
+    
+    ♡ includes: 
+        - one private quiet / focus room 
+        - one private counseling room 
         - one multi-faith reflection room
+    
+    ♡ four study pods are in the Library / Reading Room
 
 #### Individual Soundproof Study Pods:
     ♡ total pods: 6
@@ -381,24 +374,23 @@
 
     ♡ pods are visually easy to identify through numbering, colors or individual symbol
 
-#### Private Quiet / Focus Rooms:
-    ♡ total rooms: 2
-    ♡ floor area: ~ 15 m²/room
-    ♡ combined floor area: ~ 30 m²
+#### Private Quiet / Focus Room:
+    ♡ total rooms: 1
+    ♡ floor area: ~ 15 m²
     ♡ height: ~ 3.2 m
-    ♡ combined volume: ~ 96 m³
+    ♡ volume: ~ 48 m³
 
     ♡ real world size reference:
-        - each room is ~ a comfortable bedroom or private office
+        - ~ a comfortable bedroom or private office
 
     ♡ used for:
-        - spreading out books or project materials 
-        - drawing or writing 
-        - working with multiple screens 
-        - studying with one other person 
-        - sensory decompression 
-        - working comfortably for several hours 
-        - confidential conversations when the counseling room is unavailable
+        - spreading out books or project materials
+        - drawing or writing
+        - working with multiple screens
+        - studying with one other person
+        - sensory decompression
+        - working comfortably for several hours
+        - confidential conversations when the counseling room isn't available
 
     ♡ includes:
         - adjustable desk or worktable
@@ -410,7 +402,7 @@
         - personal AI access
         - occupancy indicator
 
-    ♡ sound insulated rooms
+    ♡ very sound insulated
 
 #### Private Counseling Room:
     ♡ total rooms: 1
@@ -455,34 +447,98 @@
     ♡ the slightly taller ceiling gives the room a quiet, open feeling without making it too large
 
 #### Combined Area:
-♡ medical clinic:
-    - floor area: ~ 320 m²
-    - volume: ~ 1,120 m³
+    ♡ medical clinic:
+        - floor area: ~ 320 m²
+        - volume: ~ 1,120 m³
 
-♡ individual soundproof study pods:
-    - combined floor area: ~ 24 m²
-    - combined volume: ~ 57.6 m³
+    ♡ private quiet / focus room:
+        - floor area: ~ 15 m²
+        - volume: ~ 48 m³
 
-♡ private quiet / focus rooms:
-    - combined floor area: ~ 30 m²
-    - combined volume: ~ 96 m³
+    ♡ private counseling room:
+        - floor area: ~ 20 m²
+        - volume: ~ 64 m³
 
-♡ private counseling room:
-    - floor area: ~ 20 m²
-    - volume: ~ 64 m³
+    ♡ multi-faith reflection room:
+        - floor area: ~ 50 m²
+        - volume: ~ 200 m³
 
-♡ multi-faith reflection room:
-    - floor area: ~ 50 m²
-    - volume: ~ 200 m³
-
-♡ combined floor area: ~ 444 m²
-♡ combined volume: ~ 1,537.6 m³
+    ♡ combined floor area: ~ 405 m²
+    ♡ combined volume: ~ 1,432 m³
 
 ### ----------------------------------------
 
+#### Indoor Walking / Running Route:
+   ♡ crew members can use designated areas of the habitat's secondary corridor loops for indoor walking and running
+
+    ♡ the route uses existing space and doesn't need a separate floor area
+
+    ♡ the route avoids:
+        - medical and quiet areas
+        - Crew Quarter corridors
+        - food processing areas
+        - narrow maintenance routes
+        - industrial and emergency-access corridors
+
+### Creative and Hobby Studio:
+    ♡ floor area: ~ 110 m²
+    ♡ height: ~ 4.0 m
+    ♡ volume: ~ 440 m³
+    ♡ comfortable capacity: ~ 10–12 crew members 
+    
+    ♡ real world size reference: 
+        - ~ the floor area of a small bungalow 
+        - ~ a large commercial art or craft studio
+
+    ♡ includes:
+        - creative workspace: ~ 90 m²
+        - storage: ~ 20 m²
+
+    ♡ supports:
+        - visual art
+        - crafts
+        - model building
+        - writing
+        - music / other approved hobbies
+        - personal projects etc.
+
+    ♡ includes:
+        - large washable worktables
+        - adjustable seating
+        - durable, easy-to-clean flooring
+        - sinks / cleanup area
+        - tool / material storage
+        - drying areas
+        - adjustable lighting
+        - power / data connections
+        - additional ventilation where needed
+
+    ♡ individual storage for unfinished projects
+
+    ♡ visually distinct and easy to identify through its own colors, symbols, lighting and corridor markers
+
+#### Shared Games and Media:
+    ♡ a separate game or media room isn't included for V1
+
+    ♡ games and media are distributed through existing shared and private spaces
+
+    ♡ possible locations include:
+        - large shared living room for group video games, movies and party games
+        - casual lounge for card games and casual multiplayer games
+        - small lounge for board games, puzzles and quieter games
+        - private social room for RPGs or activities requiring concentration
+        - main dining hall for occasional tournaments or whole crew meetings
+        - library for chess, puzzles and other quiet games
+
+        - Crew Quarters and personal domes for private media and gaming
+
+    ♡ selected social rooms include screens, power and data connections for games and media
+
+    ♡ game equipment can be stored in cabinets or behind built in panels when it isn't being used
+
+    ♡ these are just rough ideas for now
 
 ### ----------------------------------------
-
 
 ## Design Evolution:
 #### Starting Plan:
@@ -504,8 +560,14 @@
 ## Future Considerations:
     ♡ exact corridor widths and emergency routing
     ♡ visual markers, especially for each hub
+    
     ♡ height variations between living and utility spaces
+   
     ♡ possible observation or biophilic details in the Living Hub
+    
+    ♡ the final running route length will be calculated
+    
+    ♡ activities producing hazardous fumes, excessive dust or elevated fire risk are completed in an appropriate workshop instead of the hobby studio
 
 ### ----------------------------------------
 
