@@ -10,7 +10,7 @@
 
     ♡ clear separation between living, food production, utility/process, and power areas
 
-    ♡ utility and power areas remain reachable for maintenance and emergencies without crossing the main living spaces unnecessarily
+    ♡ utility and power areas are reachable for maintenance and emergencies without crossing the main living spaces unnecessarily
 
     ♡ made with cleanliness, emergency access, and psychological wellbeing in mind
 
@@ -30,7 +30,7 @@
         - Crew Quarters access
         - Kitchen / Dining
         - Shared Living / Social Rooms
-        - medical / quiet areas
+        - Medical / Quiet Rooms
         
 #### Greenhouse / Food Hub:
     ♡ total floor area: 1,326 m²
@@ -88,7 +88,6 @@
 
     ♡ real world size reference:
         - ~ small banquet hall
-        - ~ one doubles tennis court
 
     ♡ comfortably seats all 30 crew members
 
@@ -222,8 +221,8 @@
 
 #### Large Shared Living Room:
     ♡ floor area: ~ 120 m²
-    ♡ internal height: ~ 4.2 m
-    ♡ internal volume: ~ 504 m³
+    ♡ height: ~ 4.2 m
+    ♡ volume: ~ 504 m³
 
     ♡ for larger casual gatherings without feeling like an open event hall
 
@@ -233,8 +232,8 @@
 
 #### Casual Lounge:
     ♡ floor area: ~ 80 m²
-    ♡ internal height: ~ 3.8 m
-    ♡ internal volume: ~ 304 m³
+    ♡ height: ~ 3.8 m
+    ♡ volume: ~ 304 m³
 
     ♡ comfortable everyday social room for ~ 8–12 crew members
 
@@ -242,8 +241,8 @@
 
 #### Small Lounge:
     ♡ floor area: ~ 50 m²
-    ♡ internal height: ~ 3.5 m
-    ♡ internal volume: ~ 175 m³
+    ♡ height: ~ 3.5 m
+    ♡ volume: ~ 175 m³
 
     ♡ intended for ~ 4–6 crew members
 
@@ -251,8 +250,8 @@
 
 #### Private Social Room:
     ♡ floor area: ~ 35 m²
-    ♡ internal height: ~ 3.5 m
-    ♡ internal volume: ~ 122.5 m³
+    ♡ height: ~ 3.5 m
+    ♡ volume: ~ 122.5 m³
 
     ♡ intended for ~ 2–4 crew members
 
@@ -262,12 +261,228 @@
 
 #### Combined Area:
     ♡ total floor area: ~ 285 m²
-    ♡ total internal volume: ~ 1,105.5 m³
+    ♡ total volume: ~ 1,105.5 m³
+
+### ----------------------------------------
+
+### Medical and Quiet Areas:
+♡ combined floor area: ~ 532 m²
+    ♡ combined volume: ~ 1,813 m³
+
+    ♡ medical and quiet areas are located in the Living / Social area but are physically separated from one another
+
+    ♡ medical spaces are easy to reach from the Crew Quarters, shared living spaces and emergency routes
+
+    ♡ quiet spaces are positioned away from:
+        - dining areas
+        - recreation rooms
+        - busy corridors
+        - industrial noise
+        - medical treatment activity
+
+    ♡ both areas are visibly distinct and easy to identify through consistent colors, symbols, lighting and corridor marker
+
+#### Medical Clinic:
+    ♡ floor area: ~ 320 m²
+    ♡ height: ~ 3.5 m
+    ♡ volume: ~ 1,120 m³
+
+    ♡ real world size reference:
+        - ~ a small outpatient medical clinic
+        - ~ the floor area of a large house
+
+    ♡ sized for a permanent 30 person settlement with no access to an outside hospital
+
+    ♡ includes:
+        - unstaffed medical entry and self-check-in area
+        - compact assessment station
+        - two examination rooms
+        - emergency treatment / procedure room
+        - dental treatment area
+        - two short-term observation rooms
+        - two medical isolation rooms
+        - compact laboratory and diagnostic area
+        - medication and medical supply storage
+        - staff workstation
+        - sanitation and medical waste area
+        - accessible bathroom
+        - changing and protective equipment storage
+
+    ♡ the medical entry is normally unstaffed to avoid using limited crew time for reception 
+    
+    ♡ routine appointments and non-emergency visits use: 
+        - self-check-in 
+        - personal AI assistance 
+        - communication with an on-duty medical crew member 
+    
+    ♡ emergency cases bypass the self-check-in area and move directly into treatment 
+    
+    ♡ examination and treatment rooms have sealed, easy-to-clean surfaces 
+    
+    ♡ the clinic is comfortable and calming without using materials that interfere with sanitation 
+    
+    ♡ medical isolation rooms include: 
+        - independent pressure and airflow control 
+        - private bathroom access 
+        - separate monitoring 
+        - communication with medical staff 
+        - small entry area for changing protective equipment 
+    
+    ♡ observation and isolation rooms include digital scenery, adjustable lighting and communication options to reduce the feeling of confinement 
+    
+    ♡ the emergency treatment room provides space for urgent procedures, stabilization and longer treatment when evacuation isn't available
+
+#### Quiet and Private Support Areas:
+    ♡ total floor area: ~ 124 m²
+    ♡ total volume: ~ 417.6 m³
+
+    ♡ sound insulated spaces for crew members who need concentration, privacy, lower sensory activity or time away from shared living areas
+
+    ♡ areas are available for temporary use instead of being permanently assigned to individual crew members
+
+    ♡ includes:
+        - six individual soundproof study pods
+        - two private quiet / focus rooms
+        - one private counseling room
+        - one multi-faith reflection room
+
+#### Individual Soundproof Study Pods:
+    ♡ total pods: 6
+    ♡ floor area: ~ 4 m²/pod
+    ♡ approximate dimensions: ~ 2 m × 2 m
+    ♡ combined floor area: ~ 24 m²
+
+    ♡ height: ~ 2.4 m
+    ♡ volume: ~ 9.6 m³/pod
+    ♡ combined volume: ~ 57.6 m³
+
+    ♡ these are enclosed soundproof work pods used in offices
+
+    ♡ each pod is larger than a typical office phone booth to support longer work or study periods
+
+    ♡ provides a separate environment for focused work when a crew member doesn't want to work in their private quarter
+
+    ♡ each pod includes:
+        - built in desk
+        - adjustable chair
+        - power and data connections
+        - personal AI access
+        - display screen
+        - dimmable task lighting
+        - adjustable ventilation
+        - ambient sound or complete quiet
+        - occupancy indicator
+        - emergency communication
+        - frosted or adjustable privacy glass
+
+    ♡ glass doors or small windows prevent the pods from feeling completely enclosed while maintaining sound separation and privacy
+
+    ♡ seating and ventilation are designed for longer study periods instead of short calls
+
+    ♡ pods are visually easy to identify through numbering, colors or individual symbol
+
+#### Private Quiet / Focus Rooms:
+    ♡ total rooms: 2
+    ♡ floor area: ~ 15 m²/room
+    ♡ combined floor area: ~ 30 m²
+    ♡ height: ~ 3.2 m
+    ♡ combined volume: ~ 96 m³
+
+    ♡ real world size reference:
+        - each room is ~ a comfortable bedroom or private office
+
+    ♡ used for:
+        - spreading out books or project materials 
+        - drawing or writing 
+        - working with multiple screens 
+        - studying with one other person 
+        - sensory decompression 
+        - working comfortably for several hours 
+        - confidential conversations when the counseling room is unavailable
+
+    ♡ includes:
+        - adjustable desk or worktable
+        - comfortable seating
+        - dimmable lighting
+        - adjustable ambient sound
+        - digital scenery
+        - reduced visual clutter
+        - personal AI access
+        - occupancy indicator
+
+    ♡ sound insulated rooms
+
+#### Private Counseling Room:
+    ♡ total rooms: 1
+    ♡ floor area: ~ 20 m²
+    ♡ height: ~ 3.2 m
+    ♡ volume: ~ 64 m³
+
+    ♡ real world size reference:
+        - ~ a large bedroom or comfortable office
+
+    ♡ highly sound insulated
+
+    ♡ used for:
+        - mental health support
+        - private medical discussions
+        - conflict mediation
+        - confidential conversations
+        - grief support, etc.
+
+    ♡ designed to feel private, comfortable and calming instead of clinical
+
+    ♡ room reservations are private and do not publicly display the reason for use
+
+#### Multi-Faith Reflection Room:
+    ♡ floor area: ~ 50 m²
+    ♡ height: ~ 4.0 m
+    ♡ volume: ~ 200 m³
+
+    ♡ real world size reference:
+        - ~ a large living room
+        - ~ a small yoga or meditation studio
+
+    ♡ non-denominational space available for:
+        - worship
+        - meditation
+        - grief and remembrance
+        - private reflection
+        - small religious or spiritual gatherings
+
+    ♡ kept visually calm and adaptable instead of being permanently designed around one religion or belief system
+
+    ♡ the slightly taller ceiling gives the room a quiet, open feeling without making it too large
+
+#### Combined Area:
+♡ medical clinic:
+    - floor area: ~ 320 m²
+    - volume: ~ 1,120 m³
+
+♡ individual soundproof study pods:
+    - combined floor area: ~ 24 m²
+    - combined volume: ~ 57.6 m³
+
+♡ private quiet / focus rooms:
+    - combined floor area: ~ 30 m²
+    - combined volume: ~ 96 m³
+
+♡ private counseling room:
+    - floor area: ~ 20 m²
+    - volume: ~ 64 m³
+
+♡ multi-faith reflection room:
+    - floor area: ~ 50 m²
+    - volume: ~ 200 m³
+
+♡ combined floor area: ~ 444 m²
+♡ combined volume: ~ 1,537.6 m³
 
 ### ----------------------------------------
 
 
 ### ----------------------------------------
+
 
 ## Design Evolution:
 #### Starting Plan:
@@ -290,7 +505,7 @@
     ♡ exact corridor widths and emergency routing
     ♡ visual markers, especially for each hub
     ♡ height variations between living and utility spaces
-    ♡ possible observation or biophilic details within the Living Hub
+    ♡ possible observation or biophilic details in the Living Hub
 
 ### ----------------------------------------
 
