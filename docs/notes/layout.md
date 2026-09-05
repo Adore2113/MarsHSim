@@ -22,16 +22,19 @@
     ♡ Kitchen / Dining total floor area: ~ 930 m²
     ♡ Crew Quarters total floor area: ~ 1,120 m²
     
+    ♡ Shared Living total floor area: ~ 285 m²
+    ♡ Shared Living total volume: ~ 1,105.5 m³
+
     ♡ clean, comfortable, lower industrial noise
     ♡ contains:
-        - crew quarters access
-        - galley / cafeteria
-        - recreation and small social spaces
+        - Crew Quarters access
+        - Kitchen / Dining
+        - Shared Living / Social Rooms
         - medical / quiet areas
         
 #### Greenhouse / Food Hub:
-    ♡  total floor area: 1,326 m²
-    ♡  total volume: 14,586 m³
+    ♡ total floor area: 1,326 m²
+    ♡ total volume: 14,586 m³
 
     ♡ clean, comfortable, lower industrial noise
     ♡ contains:
@@ -48,16 +51,17 @@
     ♡ industrial zone, separated from living areas
     
     ♡ contains:
-        - water processing Room
-        - wastewater Storage Room
-        - ISRU water Room
-        - potable water Storage Room
-        - atmosphere / resource recovery area(Sabatier, OGA, amine beds, buffer gas, MCA)
+        - Water Processing Room
+        - Wastewater Storage Room
+        - ISRU Water Room
+        - Potable Water Storage Room
+        - Atmosphere / Resource Recovery Area(Sabatier, OGA, amine beds, buffer gas, MCA)
 
 #### Power / Energy Hub:
     ♡ total floor area: ~ 2,750 m²
     ♡ total volume: ~ 14,945 m³
-    ♡ more peripheral, lower everyday access priority
+    
+    ♡ lower, everyday access priority
     ♡ contains:
        - primary battery room
        - secondary battery corridor
@@ -68,7 +72,7 @@
 ### Food and Dining Area:
     ♡ total combined floor area: ~ 930 m²
 
-    ♡ positioned between the Living / Social hub and the Greenhouse / Food area
+    ♡ positioned between the Living / Social Hub and the Greenhouse / Food Area
 
     ♡ supports daily meals, food preparation, crop processing, long-term storage and larger community gatherings
 
@@ -82,7 +86,7 @@
 #### Main Dining Hall:
     ♡ floor area: ~ 250 m²
 
-    ♡ real world size reference example:
+    ♡ real world size reference:
         - ~ small banquet hall
         - ~ one doubles tennis court
 
@@ -100,7 +104,7 @@
 #### Smaller Dining Area:
     ♡ floor area: ~ 80 m²
 
-    ♡ real world size reference example:
+    ♡ real world size reference:
         - ~ a modest two bedroom apartment
         - ~ a large private dining or event room
 
@@ -117,8 +121,8 @@
 #### Kitchen / Food Area:
     ♡ floor area: ~ 180 m²
 
-    ♡ real world size reference example:
-        - ~  a fairly large three bedroom house
+    ♡ real world size reference:
+        - ~ a large three bedroom house
         - ~ larger than a typical restaurant kitchen
 
     ♡ commercial-style shared area designed to allow multiple crew members to prepare food at the same time
@@ -137,7 +141,7 @@
 #### Food Processing and Preservation Area:
     ♡ floor area: ~ 120 m²
 
-    ♡ real world size reference example:
+    ♡ real world size reference:
         - ~ a small three-bedroom bungalow
         - ~ a medium commercial workshop
 
@@ -156,8 +160,7 @@
 #### Food Storage:
     ♡ floor area: ~ 300 m²
 
-    ♡ real world size reference example:
-        - ~ a large house
+    ♡ real world size reference: ~ a large house
 
     ♡ divided into separate storage conditions instead of one open room
 
@@ -183,10 +186,88 @@
 
     ♡ combined floor area: ~ 930 m²
 
-    ♡ real world size reference example:
+    ♡ real world size reference:
         - ~ a small grocery store
         - ~ five average 2,000 ft² houses
 
+### ----------------------------------------
+
+### Shared Living / Social Rooms:
+    ♡ total rooms: 4
+    ♡ total floor area: ~ 285 m²
+
+    ♡ includes:
+        - large shared living room: ~ 120 m²
+        - casual lounge: ~ 80 m²
+        - small lounge: ~ 50 m²
+        - private social room: ~ 35 m²
+
+    ♡ the rooms provide different levels of social activity instead of placing all recreation into one large hall
+
+    ♡ each room is visually distinct and easy to identify
+
+    ♡ visual differences may include:
+        - individual color palettes
+        - recognizable symbols or artwork
+        - different lighting styles
+        - distinct wall patterns and textures
+        - different furniture arrangements
+        - specific plants or decorative features
+
+    ♡ visual identity is consistent at the room entrance and along the corridor leading toward it, for easy navigation
+
+    ♡ differences between rooms support navigation, familiarity and choice
+
+    ♡ room identities are consistent enough that crew members can recognize each space quickly
+
+#### Large Shared Living Room:
+    ♡ floor area: ~ 120 m²
+    ♡ internal height: ~ 4.2 m
+    ♡ internal volume: ~ 504 m³
+
+    ♡ for larger casual gatherings without feeling like an open event hall
+
+    ♡ includes several smaller furniture groups instead of one central seating arrangement
+
+    ♡ brighter and more open than the smaller lounges
+
+#### Casual Lounge:
+    ♡ floor area: ~ 80 m²
+    ♡ internal height: ~ 3.8 m
+    ♡ internal volume: ~ 304 m³
+
+    ♡ comfortable everyday social room for ~ 8–12 crew members
+
+    ♡ uses softer seating and slightly lower lighting than the large living room
+
+#### Small Lounge:
+    ♡ floor area: ~ 50 m²
+    ♡ internal height: ~ 3.5 m
+    ♡ internal volume: ~ 175 m³
+
+    ♡ intended for ~ 4–6 crew members
+
+    ♡ a quieter and more enclosed setting for conversation or relaxation
+
+#### Private Social Room:
+    ♡ floor area: ~ 35 m²
+    ♡ internal height: ~ 3.5 m
+    ♡ internal volume: ~ 122.5 m³
+
+    ♡ intended for ~ 2–4 crew members
+
+    ♡ reservable for private conversations, small visits or activities that could disturb a shared lounge
+
+    ♡ includes additional sound insulation
+
+#### Combined Area:
+    ♡ total floor area: ~ 285 m²
+    ♡ total internal volume: ~ 1,105.5 m³
+
+### ----------------------------------------
+
+
+### ----------------------------------------
 
 ## Design Evolution:
 #### Starting Plan:
@@ -293,7 +374,7 @@
             those clear geometric greenhouse domes that some places have in the summer where you can sit and eat
         
             - crew quarter considerations:
-                    - private crew quarters, that are small but large enough to be alone and not have to lie in a pod/bed, a place to actually relax, I'm thinking basing it on cruise rooms and how they have the storage and bathrooms, and down hallways that actually separate them from the main rooms of the habitat
+                    - private Crew Quarters, that are small but large enough to be alone and not have to lie in a pod/bed, a place to actually relax, I'm thinking basing it on cruise rooms and how they have the storage and bathrooms, and down hallways that actually separate them from the main rooms of the habitat
 
                     - figure out how to handle smell?
 
@@ -322,7 +403,7 @@
                     - calming rain sounds
                     - the sound of an ocean to remind the crew of home etc. or they can close their eyes and imagine they are on earth somewhere)
                     - very comfortable rooms and furniture
-                    - the crew quarters are VERY important
+                    - the Crew Quarters are VERY important
                     - I will add more as I think of more things (I am basing a lot of this on my own experience and preferences while considering observations about friends and family) personnel need to feel cared for and very comfortable
 
     ♡ the thing about a habitat like this, is that the crew needs to feel not only lucky to be going b/c of the oportunity but also feel as if they are getting special luxuries from earth, that ultimately don't even neccessarily need to be too expensive, the rooms are small, this sounds like a lot but when you consider the risk the crew is taking and how important their mental state is, a bit of extra items and options won't hurt in the long run

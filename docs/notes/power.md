@@ -11,7 +11,7 @@
 ### ----------------------------------------
  
 ## Habitat Power System Plan (updated 08/22/2026):
-## Layout
+## Layout Power / Energy Hub
 #### Primary Battery Room:
     ♡ shape: rectangle
     ♡ floor area: ~ 110 m²

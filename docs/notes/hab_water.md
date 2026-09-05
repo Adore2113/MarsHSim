@@ -22,8 +22,8 @@
     ♡ floor area: ~ 90 m²
     ♡ height: 4.5 m
     ♡ access: 
-        - connects to the wastewater storage room
-        - connects to the ISRU water room
+        - connects to the Wastewater Storage Room
+        - connects to the ISRU Water Room
         - connects to the utility hallway
 
     ♡ contains: 
@@ -38,7 +38,7 @@
     ♡ height: 4.5 m
     ♡ purpose: holds all dirty wastewater
     ♡ access: 
-        - connects to the water processing room
+        - connects to the Water Processing Room
         - connects to the utility hallway  
 
     ♡ contains:
@@ -53,7 +53,7 @@
     ♡ height: 4.5 m
     ♡ purpose: holding area for untreated Mars water before it enters the WPA
     ♡ access: 
-        - connects to the water processing room
+        - connects to the Water Processing Room
         - connects to the utility hallway  
 
     ♡ contains:
@@ -68,7 +68,7 @@
     ♡ height: 4.5 m
     ♡ purpose: cleanest water storage area
     ♡ access: 
-        - connects to the water processing room
+        - connects to the Water Processing Room
         - connects to the utility hallway  
 
     ♡ contains: 
@@ -79,33 +79,33 @@
 
 #### Total Water System Space:
     ♡ floor areas:
-        - water processing room: ~ 90 m²
-        - wastewater storage room: ~ 90 m²
-        - ISRU water room: ~ 50 m²
-        - potable water storage room: ~ 110 m²
+        - Water Processing Room: ~ 90 m²
+        - Wastewater Storage Room: ~ 90 m²
+        - ISRU Water Room: ~ 50 m²
+        - Potable Water Storage Room: ~ 110 m²
         - total: ~ 340 m²
 
     ♡ volumes:
-        - water processing room: ~ 405 m³
-        - wastewater storage room: ~ 405 m³
-        - ISRU water room: ~ 225 m³
-        - potable water storage room: ~ 495 m³
+        - Water Processing Room: ~ 405 m³
+        - Wastewater Storage Room: ~ 405 m³
+        - ISRU Water Room: ~ 225 m³
+        - Potable Water Storage Room: ~ 495 m³
         - total: ~ 1,530 m³
 
     ♡ calculation:
-        - water processing room:
+        - Water Processing Room:
             90 m² × 4.5 m
             = ~ 405 m³
 
-        - wastewater storage room:
+        - Wastewater Storage Room:
             90 m² × 4.5 m
             = ~ 405 m³
 
-        - ISRU water room:
+        - ISRU Water Room:
             50 m² × 4.5 m
             = ~ 225 m³
 
-        - potable water storage room:
+        - Potable Water Storage Room:
             110 m² × 4.5 m
             = ~ 495 m³
 
