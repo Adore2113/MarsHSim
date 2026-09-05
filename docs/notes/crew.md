@@ -1,6 +1,6 @@
 # Crew and Scheduling
 ### General Notes:
-    ♡ crew quarters are designed for long term habitation instead of short mission use
+    ♡ Crew Quarters are designed for long term habitation instead of short mission use
 
     ♡ each crew member has a private space for sleep, work, relaxation and time alone
 
@@ -13,6 +13,16 @@
 ### ----------------------------------------
 
 ## Crew and Habitability Plan (updated 08/31/2026):
+
+### Crew Staffing:
+    ♡ command, scheduling / general operations: 3
+    ♡ ECLSS, atmosphere / water: 5
+    ♡ Power, thermal / ISRU: 4
+    ♡ Greenhouse / food systems: 6
+    ♡ Medical / crew health: 3
+    ♡ Maintenance, fabrication / repair: 5
+    ♡ Software, automation, communications / science: 4
+    ♡ Total: 30
 
 ### Crew Quarter Layout:
     ♡ total quarters: 32
