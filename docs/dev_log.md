@@ -1744,3 +1744,28 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ I don't like the idea of having one large communal recreation hall area, b/c it seems exposed, awkward, and more institutional like a hotel lobby or something. I like the idea of having a space for events, but the dining hall seems like it would work for that. 
 
     ♡ I decided to have a few different living space areas, like a lounge, more private areas and other places I mentioned in my notes previously
+
+##      09/04/2026
+    ♡ looking back at my layout notes, I am going to include my idea of including those study pod / sound proof cubicles I've seen ads for online for work spaces
+
+    ♡ I decided that two larger, quieter focus rooms and private spaces can be used for areas for smaller groups to study 
+
+    ♡ this simulation is assumed to have a lot of full autonomy to stay functional with only 30 crew to run it
+
+    ♡ I'm considering the space for the creative / media / game room area, for sure media and game room can go together, and they can go into a casual lounge area or private social rooms
+
+    ♡ I've decided that the private pods can go in the library which can be ~ a small community library room, with a mixture of physical and digital books and comfortable reading areas where the lighting is warmer and softer than in general work areas while still bright enough for comfortable reading
+
+    ♡ a separate game or media room isn't included for V1
+
+    ♡ games and media are distributed through existing shared and private spaces like:
+        - large shared living room for group video games, movies and party games
+        - casual lounge for card games and casual multiplayer games
+        - small lounge for board games, puzzles and quieter games
+        - private social room for RPGs or activities requiring concentration
+        - main dining hall for occasional tournaments or whole crew meetings
+        - library for chess, puzzles and other quiet games
+        - Crew Quarters and personal domes for private media and gaming
+
+#### Next Session:
+    ♡ include Kitchen / Dining or Crew Quarter volumes in living.md
