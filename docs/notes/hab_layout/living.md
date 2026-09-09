@@ -150,36 +150,22 @@
 ### Crew Quarter Dome:
     ♡ faceted structures made from multiple reinforced transparent panels instead of a smooth rounded surface
 
-    ♡ each dome is configured for one primary purpose at a time based on the crew member's choice
-
-    ♡ geometric framing provides distinct panel sections for privacy screens, digital scenery and protective shutters
-
-    ♡ intended to act as a customizable extension of the crew member's private space
-
-    ♡ clear surfaces include adjustable screens for:
-        - privacy
-        - light control
-        - digital scenery
-        - protection from excessive glare
-
-    ♡ protective exterior shutters close during:
-        - severe dust storms
-        - exterior maintenance
-        - debris risk
-        - dome damage or emergencies
+    ♡ clear flat surfaces include adjustable screens for privacy, light control, digital scenery, protection from excessive glare
 
     ♡ each crew member chooses one primary dome plan:
-        - modular couch / lounge
+        - modular couch / lounge / chairs
         - guest or alternate sleeping space
-        - table and chairs
+        - table (thin, lightweight)
         - personal hobby garden
-        - art, music, or hobby room
+        - art, music, or minimal hobby room
         - exercise or meditation space
         - mostly open relaxation area
 
-    ♡ modular furniture can be rearranged within the selected plan
+    ♡ each dome is configured for one primary purpose at a time based on the crew member's choice 
 
-    ♡ changing the dome to a completely different plan requires furniture or equipment to be moved into storage
+    ♡ plan can be changed, requiring only some furniture to be moved into storage while the modular furniture remains
+
+    ♡ modular furniture can be rearranged within the selected plan
 
     ♡ sleeping in the dome is allowed but is not recommended as the crew member's normal sleeping location
 
@@ -197,24 +183,20 @@
 ### ----------------------------------------
 
 ### Dome Shutters & Seal Cycle:
+    ♡ protective exterior shutters close during:
+        - severe dust storms
+        - exterior maintenance
+        - debris risk
+        - dome damage or emergencies
+    
     ♡ shutters close for events, not on a clock
 
-    ♡ cycle (V1 planning):
-        - visual seal check: 
-            every 7 sols
+    ♡ shutter cycle:
+        - visual seal check: every 7 sols
         
         - dust clear on shutters / frames: 
             after each storm, or every 10 sols if no storm
        
-        - pressure door seal test: 
-            every 30 sols
-    
-        - full panel / gasket inspection: 
-            every 90 sols
-        
-        - deep service (one quarter at a time): 
-            every 180 sols
-
     ♡ during deep service:
         - that quarter is taken offline
         - crew uses one of the 2 unassigned rooms
@@ -690,18 +672,24 @@
 
     ♡ dome seals inspected on a cycle (32 room dome doors + 32 dome perimeters)
 
+    ♡ implement:
+        - pressure door seal test: every 30 sols
+    
+        - full panel / gasket inspection: every 90 sols
+        
+        - deep service (one quarter at a time): every 180 sols
+
 ### ----------------------------------------
 
 ## Design Decisions:
-#### Why include private study pods?
-    ♡ they provide a separate environment for focused work when a crew member doesn't want to work in their private quarter, especially for longer study periods
-
-    ♡ variation
-
-#### Why have domes?
+#### Why have geometric domes?
     ♡ more habitat space and the feel of a different room or patio
 
     ♡ for crew to see Mars around them privately, having time to be alone is important
+
+    ♡ theyr're intended to act as a customizable extension of the crew member's private space for maximum comfort and privacy
+
+    ♡ geometric framing provides distinct panel sections for privacy screens, digital scenery and protective shutters
 
 #### Why shutters and sealed domes?
     ♡ if a dome is damaged, the pressure-rated door allows it to be isolated without making the main crew quarter unusable
@@ -717,7 +705,12 @@
 
     ♡ they can choose scenes and sounds that remind them of home, their favorite places on earth, etc.
 
-    ♡ it seemed like a good, customizable option
+    ♡ it seemed like a peronal, customizable option
+
+#### Why include private study pods?
+    ♡ they provide a separate environment for focused work when a crew member doesn't want to work in their private quarter, especially for longer study periods
+
+    ♡ variation and a quick place to pop in if not close to crew quarters
 
 ### ----------------------------------------
 
