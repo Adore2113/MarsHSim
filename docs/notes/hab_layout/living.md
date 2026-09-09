@@ -296,7 +296,6 @@
     ♡ height: ~ 3.5 m
     ♡ volume: ~ 420 m³
     ♡ calculation: ~ 12.0 m × 10.0 m = 120 m²
-
     ♡ real world size reference:
         - ~ a small three-bedroom bungalow
         - ~ a medium commercial workshop
@@ -321,7 +320,6 @@
     ♡ volume: ~ 1,080 m³
     ♡ calculation: ~ 20.0 m × 15.0 m = 300 m²
     ♡ divided into separate storage conditions
-   
     ♡ real world size reference: ~ a large house
 
     ♡ access / placement:
@@ -414,7 +412,7 @@
     ♡ height: ~ 3.5 m
     ♡ volume: ~ 175 m³
     ♡ calculation: ~ 8.0 m × 6.25 m = 50 m²
-    ♡ capacity: ~ 2–6 crew members
+    ♡ capacity: ~ 2-6 crew members
 
     ♡ quieter and more private settings for: 
         - conversation 
@@ -433,8 +431,8 @@
 ### Medical and Quiet Areas:
     ♡ combined floor area: ~ 405 m²
     ♡ combined volume: ~ 1,432 m³
-
-    ♡ located in the Living / Social area but are physically separated from each other
+    ♡ access / placement:
+        - in Living / Social area but are physically separated from each other
 
     ♡ easy to reach from the Crew Quarters, shared living spaces and emergency routes
 
@@ -447,29 +445,34 @@
 
 #### Medical Clinic:
     ♡ floor area: ~ 320 m²
+    ♡ width: ~ 20.0 m
     ♡ height: ~ 3.5 m
     ♡ volume: ~ 1,120 m³
-
+    ♡ calculation: ~ 20.0 m × 16.0 m = 320 m²
     ♡ real world size reference:
         - ~ a small outpatient medical clinic
         - ~ the floor area of a large house
 
     ♡ sized for a permanent 30 person settlement with no access to an outside hospital
 
-    ♡ includes:
-        - unstaffed medical entry and self-check-in area
-        - compact assessment station
-        - two examination rooms
-        - emergency treatment / procedure room
-        - dental treatment area
-        - two short-term observation rooms
-        - two medical isolation rooms
-        - compact laboratory and diagnostic area
-        - medication and medical supply storage
-        - staff workstation
-        - sanitation and medical waste area
-        - accessible bathroom
-        - changing and protective equipment storage
+    ♡ clinic includes:
+        - compact assessment station: ~ 10 m²
+        - two examination rooms: ~ 24 m²
+        - dental treatment area: ~ 16 m²
+        - two short-term observation rooms: ~ 28 m²
+        - two medical isolation rooms: ~ 32 m²
+        - unstaffed entry / self-check-in area: ~ 20 m²
+        - emergency / procedure room: ~ 28 m²
+        - laboratory / diagnostic area: ~ 24 m²
+        - medication / medical supply storage: ~ 22 m²
+        - staff workstation: ~ 12 m²
+        - sanitation / medical waste area: ~ 14 m²
+        - accessible bathroom: ~ 8 m²
+        - walking space: ~ 70 m²
+        - changing / protective equipment storage:
+            ~ 12 m²
+    
+    ♡ all areas have sealable, easy to clean surfaces while still being comfortable and calming
 
     ♡ the medical entry is normally unstaffed to avoid using limited crew time for reception 
     
@@ -479,11 +482,7 @@
         - communication with an on-duty medical crew member 
     
     ♡ emergency cases bypass the self-check-in area and move directly into treatment 
-    
-    ♡ examination and treatment rooms have sealed, easy-to-clean surfaces 
-    
-    ♡ the clinic is comfortable and calming without using materials that interfere with sanitation 
-    
+
     ♡ medical isolation rooms include: 
         - independent pressure and airflow control 
         - private bathroom access 
@@ -508,21 +507,22 @@
         - one private quiet / focus room 
         - one private counseling room 
         - one multi-faith reflection room
-    
-    ♡ three study pods are included in the Library / Reading Room
 
 #### Private Quiet / Focus Room:
     ♡ total rooms: 1
     ♡ floor area: ~ 15 m²
+    ♡ width: ~ 5.0 m
     ♡ height: ~ 3.2 m
     ♡ volume: ~ 48 m³
-    ♡ real world size reference:
-        - ~ a comfortable bedroom or private office
+    ♡ calculation: ~ 5.0 m × 3.0 m = 15 m²
     ♡ sound insulated
+    
+    ♡ real world size reference: 
+        ~ a comfortable bedroom or private office
 
     ♡ used for:
-        - spreading out books or project materials
-        - drawing or writing
+        - space for books / project materials
+        - drawing / writing
         - working with multiple screens
         - studying with one other person
         - sensory decompression
@@ -542,12 +542,14 @@
 #### Private Counseling Room:
     ♡ total rooms: 1
     ♡ floor area: ~ 20 m²
+    ♡ width: ~ 5.0 m
     ♡ height: ~ 3.2 m
     ♡ volume: ~ 64 m³
-    ♡ real world size reference:
-        - ~ a large bedroom or comfortable office
-
-    ♡ highly sound insulated
+    ♡ calculation: ~ 5.0 m × 4.0 m = 20 m²
+    ♡ sound insulated
+    
+    ♡ real world size reference: 
+        ~ a large bedroom or comfortable office
 
     ♡ used for:
         - mental health support
@@ -562,8 +564,10 @@
 
 #### Multi-Faith Reflection Room:
     ♡ floor area: ~ 50 m²
+    ♡ width: ~ 8.0 m
     ♡ height: ~ 4.0 m
     ♡ volume: ~ 200 m³
+    ♡ calculation: ~ 8.0 m × 6.25 m = 50 m²
 
     ♡ real world size reference:
         - ~ a large living room
@@ -576,7 +580,7 @@
         - private reflection
         - small religious or spiritual gatherings
 
-    ♡ kept visually calm and adaptable instead of being permanently designed around one religion or belief system
+    ♡ kept visually calm and adaptable instead of being designed around one religion or belief system
 
     ♡ the slightly taller ceiling gives the room a quiet, open feeling without making it too large
 
