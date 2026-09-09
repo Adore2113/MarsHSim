@@ -608,14 +608,15 @@
 
 ### Library and Reading Room:
     ♡ floor area: ~ 85 m²
+    ♡ width: ~ 10.0 m
     ♡ height: ~ 4.0 m
     ♡ volume: ~ 340 m³
-    ♡ ideal capacity: ~ 8-11 crew members, including the study pods
+    ♡ calculation: ~ 10.0 m × 4.0 m = 85 m²
+    ♡ capacity: ~ 8-11 crew members, including the study pods
 
     ♡ real world size reference:
         - ~ a small community library room
-
-    ♡ based loosely on a cruise-sized library
+        - ~ cruise-sized library
 
     ♡ made to feel like a specific destination instead of a storage room filled with bookshelves
 
@@ -633,6 +634,13 @@
 
 #### Individual Soundproof Study Pods:
     ♡ total pods: 3
+    ♡ floor area: ~ 4 m²/pod
+    ♡ width: ~ 2.0 m
+    ♡ height: ~ 2.4 m
+    ♡ volume: ~ 64 m³
+    ♡ calculation: ~ 2.0 m × 2.0 m = 4 m²
+    ♡ sound insulated
+
     ♡ floor area: ~ 4 m²/pod
     ♡ approximate dimensions: ~ 2 m × 2 m
     ♡ combined floor area: ~ 12 m²
