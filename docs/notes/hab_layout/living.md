@@ -633,18 +633,16 @@
     ♡ sound insulated from nearby social and activity spaces
 
 #### Individual Soundproof Study Pods:
-    ♡ total pods: 3
     ♡ floor area: ~ 4 m²/pod
     ♡ width: ~ 2.0 m
+    ♡ depth: ~ 2.0 m
     ♡ height: ~ 2.4 m
-    ♡ volume: ~ 64 m³
-    ♡ calculation: ~ 2.0 m × 2.0 m = 4 m²
+    ♡ volume: ~ 9.6 m³/pod
+    ♡ combined floor area: ~ 12 m²
+    ♡ combined volume: ~ 28.8 m³
+    ♡ calculation: ~ 2.0 m × 2.0 m × 2.4 m = 9.6 m³/pod
     ♡ sound insulated
 
-    ♡ floor area: ~ 4 m²/pod
-    ♡ approximate dimensions: ~ 2 m × 2 m
-    ♡ combined floor area: ~ 12 m²
-    ♡ height: ~ 2.4 m
     ♡ based on private soundproof work pods used in offices
 
     ♡ each pod includes:
@@ -661,10 +659,17 @@
 
     ♡ the study pods are included in the library's total floor area and volume
 
+### ----------------------------------------
+
 #### Indoor Walking / Running Route:
-   ♡ crew members can use designated areas of the habitat's secondary corridor loops for indoor walking and running
+    ♡ crew members can use designated areas of the habitat's secondary corridor loops for indoor walking and running
 
     ♡ the route uses existing space and doesn't need a separate floor area
+
+    ♡ corridor widths:
+        - Crew Quarter hallways: ~ 2.0 m
+        - main living loop: ~ 2.2 m
+        - emergency routes: ~ 1.8 m minimum
 
     ♡ will avoid:
         - medical and quiet areas
@@ -672,6 +677,23 @@
         - food processing areas
         - narrow maintenance routes
         - industrial and emergency-access corridors
+
+#### Corridors and Connecting Space:
+    ♡ this is the space used to walk between rooms and is not part of the 2,875 m² rooms total
+
+    ♡ includes:
+        - Crew Quarter hallways
+        - the loop around the living rooms
+        - stairs or ramps between the two terrace levels
+        - the short path used to move food from the greenhouse into processing
+
+    ♡ current estimate: ~ 530 m²
+
+    ♡ this estimate can change when exact corridor lengths are calculated / figured out
+
+    ♡ if the connecting space is added to the rooms, the living / social / food floor area is ~ 3,400 m²
+
+### ----------------------------------------
 
 ### Creative / Hobby Studio:
     ♡ floor area: ~ 85 m²
