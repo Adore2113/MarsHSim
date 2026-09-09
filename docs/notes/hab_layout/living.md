@@ -188,36 +188,40 @@
         - exterior maintenance
         - debris risk
         - dome damage or emergencies
-    
-    ♡ shutters close for events, not on a clock
 
     ♡ shutter cycle:
         - visual seal check: every 7 sols
-        
+    
         - dust clear on shutters / frames: 
-            after each storm, or every 10 sols if no storm
-       
-    ♡ during deep service:
-        - that quarter is taken offline
-        - crew uses one of the 2 unassigned rooms
+            - after each storm
+            - every 10 sols if no storm
+    
+        - pressure door seal test: every 30 sols
+
+        - full panel / gasket inspection: every 90 sols
+        
+        - deep service (one quarter at a time): 
+            - every 180 sols
+            - that quarter is taken offline
+            - crew uses one of 2 unassigned rooms
 
     ♡ calculation:
         32 doors + 32 dome perimeters
         = 64 seal lines
 
         64 seal lines ÷ 7 sols
-        ≈ 9 seal lines/sol for the weekly visual check
-
+        ≈ 9 seal lines/sol for weekly visual check
 
 ### ----------------------------------------
 
 ## Kitchen / Dining:
 ### Food and Dining Area:
     ♡ total combined floor area: ~ 930 m²
+    ♡ total combined volume: ~ 3,442 m³
 
     ♡ positioned between the Living / Social Hub and the Greenhouse / Food Area
 
-    ♡ supports daily meals, food preparation, crop processing, long-term storage and larger community gatherings
+    ♡ for daily meals, food prep, crop processing, long-term storage and larger gatherings
 
     ♡ includes:
         - main dining hall
@@ -228,9 +232,13 @@
 
 #### Main Dining Hall:
     ♡ floor area: ~ 250 m²
+    ♡ width: 20.0
+    ♡ height: ~ 4.2 m
+    ♡ volume: ~ 1,050 m³
+    ♡ calculation: ~ 20.0 m × 12.5 m = 250 m²
+
     ♡ real world size reference: ~ small banquet hall
     ♡ comfortably seats all 30 crew members
-
     ♡ includes:
         - movable tables / chairs
         - multiple seating arrangements
@@ -242,9 +250,11 @@
 
 #### Smaller Dining Area:
     ♡ floor area: ~ 80 m²
-    ♡ quieter, less crowded
-    ♡ seats ~ 10–12 crew members
-    
+    ♡ width: ~ 10.0 m 
+    ♡ height: ~ 3.5 m
+    ♡ volume: ~ 280 m³
+    ♡ calculation: ~ 10.0 m × 8.0 m = 80 m²
+
     ♡ real world size reference:
         - ~ a modest two bedroom apartment
         - ~ a large private dining or event room
@@ -257,6 +267,11 @@
 
 #### Kitchen / Food Area:
     ♡ floor area: ~ 180 m²
+    ♡ width: ~ 15.0 m 
+    ♡ height: ~ 3.4 m
+    ♡ volume: ~ 612 m³
+    ♡ calculation: ~ 15.0 m × 12.0 m = 180 m²
+
     ♡ shared area for crew members to prepare food at the same time
 
     ♡ real world size reference:
@@ -682,6 +697,9 @@
 ### ----------------------------------------
 
 ## Design Decisions:
+#### 
+
+
 #### Why have geometric domes?
     ♡ more habitat space and the feel of a different room or patio
 
