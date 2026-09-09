@@ -2,11 +2,11 @@
 ### General Notes:
     ♡ preliminary estimates
 
-    ♡ the habitat does not include a separate dedicated running track for V1
-
     ♡ floor areas below are net room area unless marked otherwise
 
-    ♡ corridors, stairs and the walking loop are counted separately so they don't get mixed into the room totals
+    ♡ every room is assumed to have sensors
+   
+    ♡ daylight is calculated in a separate file
 
     ♡ all rooms are easy to identify through their own colors, symbols, lighting, markers, etc. to support navigation, familiarity and choice
 
@@ -403,7 +403,7 @@
     ♡ height: ~ 3.8 m
     ♡ volume: ~ 304 m³
     ♡ calculation: ~ 10.0 m × 8.0 m = 80 m²
-    ♡ capacity: ~ 8-12 crew members
+    ♡ capacity: 8-12 crew members
     ♡ uses softer seating and slightly lower lighting
 
 #### Small Reservable Lounge:
@@ -412,7 +412,7 @@
     ♡ height: ~ 3.5 m
     ♡ volume: ~ 175 m³
     ♡ calculation: ~ 8.0 m × 6.25 m = 50 m²
-    ♡ capacity: ~ 2-6 crew members
+    ♡ capacity: 2-6 crew members
 
     ♡ quieter and more private settings for: 
         - conversation 
@@ -612,7 +612,7 @@
     ♡ height: ~ 4.0 m
     ♡ volume: ~ 340 m³
     ♡ calculation: ~ 10.0 m × 4.0 m = 85 m²
-    ♡ capacity: ~ 8-11 crew members, including the study pods
+    ♡ capacity: 8-11 crew members, including the study pods
 
     ♡ real world size reference:
         - ~ a small community library room
@@ -697,15 +697,16 @@
 
 ### Creative / Hobby Studio:
     ♡ floor area: ~ 85 m²
+    ♡ width: ~ 10.0 m
     ♡ height: ~ 4.0 m
     ♡ volume: ~ 340 m³
+    ♡ calculation: ~ 10.0 m × 8.5 m = 85 m²
+    ♡ capacity: 
+        - 6-12 crew members depending on project size
 
-    ♡ ideal capacity:
-        - ~ 6- 12 crew members depending on project size
-
-♡ real world size reference:
+    ♡ real world size reference:
         - ~ a modest two-bedroom apartment
-        - ~ a small art or craft studio
+        - ~ a small art / craft studio
 
     ♡ includes:
         - creative workspace: ~ 70 m²
@@ -743,8 +744,12 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-    ♡ 
-
+    ♡ 09/09/2026:
+        - added volumes for Kitchen / Dining and Crew Quarters
+        - added room sizes
+        - added a separate estimate for hallways and connecting space
+        - Crew Quarters are arranged as two 8 room wings instead of one long row
+        - Medical Clinic rooms now have their own floor areas
 ### ----------------------------------------
 
 ## Future Considerations:
@@ -773,9 +778,6 @@
 ### ----------------------------------------
 
 ## Design Decisions:
-#### 
-
-
 #### Why have geometric domes?
     ♡ more habitat space and the feel of a different room or patio
 
@@ -875,3 +877,26 @@
         - main dining hall for occasional tournaments or whole crew meetings
         - library for chess, puzzles and other quiet games
         - Crew Quarters and personal domes for private media and gaming
+
+###### 09/09/2026
+    ♡ all rooms are easy to identify through their own colors, symbols, lighting, markers, etc.
+
+    ♡ visual differences may include:
+        - individual color palettes
+        - recognizable symbols or artwork
+        - different lighting styles
+        - distinct wall patterns and textures
+        - different furniture arrangements
+        - specific plants or decorative features
+
+    ♡ differences between rooms support navigation, familiarity and choice, room identities are consistent enough that crew members can recognize each space quickly
+
+    ♡ crew quarters: each enclosed room face is ~ 4.0 m wide, each 8 room wing is ~ 33.6 m long, a single row of 16 rooms would be ~ 67.2 m and is too long for the habitat shape, terraced placement allows both levels to retain an exterior view through their personal domes
+    
+    ♡ added the missing volumes for Kitchen / Dining and Crew Quarters
+
+    ♡ living / social / food volume is now ~ 9,633 m³
+
+    ♡ added room sizes
+
+    ♡ hallways and connecting space are listed on their own so they don't change the 2,875 m² room total
