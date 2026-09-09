@@ -219,7 +219,8 @@
     ♡ total combined floor area: ~ 930 m²
     ♡ total combined volume: ~ 3,442 m³
 
-    ♡ positioned between the Living / Social Hub and the Greenhouse / Food Area
+    ♡ access / placement:
+        - between Living / Social Hub and Greenhouse / Food Area
 
     ♡ for daily meals, food prep, crop processing, long-term storage and larger gatherings
 
@@ -268,9 +269,9 @@
 #### Kitchen / Food Area:
     ♡ floor area: ~ 180 m²
     ♡ width: ~ 15.0 m 
-    ♡ height: ~ 3.4 m
-    ♡ volume: ~ 612 m³
-    ♡ calculation: ~ 15.0 m × 12.0 m = 180 m²
+    ♡ height: ~ 3.5 m
+    ♡ volume: ~ 630 m³
+    ♡ calculation: ~ 15.0 m × 12.0 m × 3.5 m = 630 m³
 
     ♡ shared area for crew members to prepare food at the same time
 
@@ -280,7 +281,7 @@
 
     ♡ includes:
         - multiple cooking stations
-        - preparation islands
+        - prep islands
         - baking area
         - sinks and sanitation stations
         - dishwashing area
@@ -291,27 +292,44 @@
 
 #### Food Processing and Preservation Area:
     ♡ floor area: ~ 120 m²
+    ♡ width: ~ 12.0 m
+    ♡ height: ~ 3.5 m
+    ♡ volume: ~ 420 m³
+    ♡ calculation: ~ 12.0 m × 10.0 m = 120 m²
 
     ♡ real world size reference:
         - ~ a small three-bedroom bungalow
         - ~ a medium commercial workshop
 
-    ♡ positioned between the greenhouse harvest area, food storage and kitchen / food area
+    ♡ access / placement:
+        - between the greenhouse harvest area, food storage and kitchen / food area
 
     ♡ used for:
         - receiving greenhouse harvests
         - washing / sorting crops
-        - trimming / preparation
+        - trimming / prep
         - drying / freezing
         - preserving / packaging
         - preparing food for storage or kitchen use
 
-    ♡ kept separate from the primary kitchen to prevent harvest processing from interfering with daily meal preparation
+    ♡ kept separate from the kitchen to prevent processing from interfering with daily meal prep
 
 #### Food Storage:
     ♡ floor area: ~ 300 m²
-    ♡ real world size reference: ~ a large house
+    ♡ width: ~ 20.0 ,
+    ♡ height: ~ 3.6 m
+    ♡ volume: ~ 1,080 m³
+    ♡ calculation: ~ 20.0 m × 15.0 m = 300 m²
     ♡ divided into separate storage conditions
+   
+    ♡ real world size reference: ~ a large house
+
+    ♡ access / placement:
+        - between the greenhouse harvest area, food storage and kitchen / food area
+
+    ♡ located for short routes between the greenhouse, food processing area and kitchen / food area
+
+    ♡ emergency reserves are serpate from daily use food to prevent accidental overuse
 
     ♡ includes:
         - dry food storage
@@ -320,21 +338,45 @@
         - preserved food storage
         - seed / planting-stock storage
         - emergency food reserves
-        - a more secure storage for less frequently used ingredients
-
-    ♡ located for short transport routes between the greenhouse, food processing area and kitchen / food area
-
-    ♡ emergency reserves are serpate from daily use food to prevent accidental overuse
+        - more secure storage for ingredients used less often 
 
 #### Combined Area:
-    ♡ main dining hall: ~ 250 m²
-    ♡ smaller dining area: ~ 80 m²
-    ♡ kitchen / kitchen: ~ 180 m²
-    ♡ food processing / preservation area: ~ 120 m²
-    ♡ food storage: ~ 300 m²
-    ♡ combined floor area: ~ 930 m²
-    ♡ real world size reference: 
-        - ~ a small grocery store
+    ♡ main dining hall:
+        - floor area: ~ 250 m²
+        - height: ~ 4.2 m
+        - volume: ~ 1,050 m³
+
+    ♡ smaller dining area:
+        - floor area: ~ 80 m²
+        - height: ~ 3.5 m
+        - volume: ~ 280 m³
+
+    ♡ kitchen / food area:
+        - floor area: ~ 180 m²
+        - height: ~ 3.5 m
+        - volume: ~ 630 m³
+
+    ♡ food processing / preservation area:
+        - floor area: ~ 120 m²
+        - height: ~ 3.5 m
+        - volume: ~ 420 m³
+
+    ♡ food storage:
+        - floor area: ~ 300 m²
+        - height: ~ 3.6 m
+        - volume: ~ 1,080 m³
+
+    ♡ combined totals:
+        - floor area: ~ 930 m²
+        - volume: ~ 3,460 m³
+        - calculation:
+            ~ 250 + 80 + 180 + 120 + 300
+            = ~ 930 m²
+            
+            ~ 1,050 + 280 + 630 + 420 + 1,080
+            = ~ 3,460 m³
+    
+    ♡ real world size reference: ~ small grocery store
 
 ### ----------------------------------------
 
@@ -347,34 +389,34 @@
         - casual lounge: ~ 80 m² 
         - small reservable lounge: ~ 50 m²
 
-    ♡ the rooms provide different areas for social activity instead of placing all recreation into one large hall
+    ♡ these provide different areas for social activity instead of all recreation being in one large hall
 
 #### Large Shared Living Room:
     ♡ floor area: ~ 120 m²
     ♡ height: ~ 4.2 m
     ♡ volume: ~ 504 m³
     ♡ for larger gatherings
-
-    ♡ smaller furniture groups instead of one central seating arrangement
-
+    ♡ smaller furniture groups instead of one main area
     ♡ brighter and more open than the smaller lounges
 
 #### Casual Lounge:
     ♡ floor area: ~ 80 m²
+    ♡ width: ~ 10.0 m
     ♡ height: ~ 3.8 m
     ♡ volume: ~ 304 m³
-
-    ♡ ideal capacity: ~ 8–12 crew members
-
-    ♡ uses softer seating and slightly lower lighting than the large living room
+    ♡ calculation: ~ 10.0 m × 8.0 m = 80 m²
+    ♡ capacity: ~ 8-12 crew members
+    ♡ uses softer seating and slightly lower lighting
 
 #### Small Reservable Lounge:
     ♡ floor area: ~ 50 m²
+    ♡ width: ~ 8.0 m
     ♡ height: ~ 3.5 m
     ♡ volume: ~ 175 m³
-    ♡ ideal capacity: ~ 2–6 crew members
+    ♡ calculation: ~ 8.0 m × 6.25 m = 50 m²
+    ♡ capacity: ~ 2–6 crew members
 
-    ♡ for quieter and more private settings for: 
+    ♡ quieter and more private settings for: 
         - conversation 
         - relaxation 
         - private social gatherings 
@@ -564,7 +606,7 @@
     ♡ floor area: ~ 85 m²
     ♡ height: ~ 4.0 m
     ♡ volume: ~ 340 m³
-    ♡ ideal capacity: ~ 8–11 crew members, including the study pods
+    ♡ ideal capacity: ~ 8-11 crew members, including the study pods
 
     ♡ real world size reference:
         - ~ a small community library room
