@@ -4,20 +4,25 @@
 
     ♡ the habitat does not include a separate dedicated running track for V1
 
+    ♡ floor areas below are net room area unless marked otherwise
+
+    ♡ corridors, stairs and the walking loop are counted separately so they don't get mixed into the room totals
+
+    ♡ all rooms are easy to identify through their own colors, symbols, lighting, markers, etc. to support navigation, familiarity and choice
+
 ### ----------------------------------------
 
-## Arcadia Living Space Plan (updated 09/04/2026):
-
+## Arcadia Living Space Plan (updated 09/09/2026):
 #### Total Living / Social / Food Space:
     ♡ current combined floor area: ~ 2,875 m²
 
     ♡ Kitchen / Dining:
         - floor area: ~ 930 m²
-        - volume: to be calculated
+        - volume: ~ 3,442 m³
 
     ♡ Crew Quarters:
         - floor area: ~ 1,120 m²
-        - volume: to be calculated
+        - volume: ~ 3,096 m³
 
     ♡ Shared Living / Social Rooms:
         - floor area: ~ 250 m²
@@ -35,30 +40,17 @@
         - floor area: ~ 85 m²
         - volume: ~ 340 m³
 
-    ♡ current calculated volume: ~ 3,095 m³
-
+    ♡ current calculated volume: ~ 9,633 m³
 
 ### ----------------------------------------
 
-#### Identification:   
-    ♡ all rooms are visually distinct and easy to identify through their own colors, symbols, lighting and corridor markers
-
-    ♡ visual differences may include:
-        - individual color palettes
-        - recognizable symbols or artwork
-        - different lighting styles
-        - distinct wall patterns and textures
-        - different furniture arrangements
-        - specific plants or decorative features
-
-    ♡ differences between rooms support navigation, familiarity and choice
-
-    ♡ room identities are consistent enough that crew members can recognize each space quickly
-
 #### Total Living / Social / Food Space:
     ♡ Kitchen / Dining total floor area: ~ 930 m²
-    ♡ Crew Quarters total floor area: ~ 1,120 m²
+    ♡ Kitchen / Dining total volume: ~ 3,442 m³
     
+    ♡ Crew Quarters total floor area: ~ 1,120 m²
+    ♡ Crew Quarters total volume: ~ 3,096 m³
+
     ♡ Shared Living total floor area: ~ 250 m²
     ♡ Shared Living total volume: ~ 983 m³
 
@@ -68,29 +60,40 @@
         - Kitchen / Dining
         - Shared Living / Social Rooms
         - Medical / Quiet Rooms
+        - Library and Reading Room
+        - Creative / Hobby Studio
 
 ### ----------------------------------------
 
-### Crew Quarter Layout:
+### Crew Quarters:
     ♡ total quarters: 32
 
-    ♡ arrangement:
-        - 16 rooms/level across two terraced levels
-        - 30 rooms are assigned to crew members
-        - 2 rooms remain unassigned for flexibility
+    ♡ enclosed room: ~ 20 m²/room
+        - width: ~ 4.0 m 
+        - height: ~ 2.70 m
+        - volume: ~ 54 m³
+        - calculation: 4.0 m × 5.0 m = 20 m²
 
-    ♡ lower level quarters extend farther outward, upper level quarters are set farther back toward the habitat
+    ♡ personal dome: ~ 15 m²/dome
+        - width: ~ 4.0 m
+        - walls: ~ 2.2 m
+        - roof rise: ~ 1.3 m
+        - highest point: ~ 3.5 m
+        - volume: ~ 42.8 m³
+        - calculation: 4.0 m × 3.75 m = 15 m²
 
-    ♡ terraced placement allows both levels to retain an exterior view through their personal domes
-
-    ♡ enclosed room: ~ 20 m² each
-    ♡ personal dome: ~ 15 m² each
     ♡ total private area: ~ 35 m² each
+    ♡ total private volume: ~ 96.8 m³ each
     ♡ combined area for all quarters: ~ 1,120 m²
+    ♡ combined volume for all quarters: ~ 3,096 m³
     
-    ♡ each dome is configured for one primary purpose at a time based on the crew member's choice
+    ♡ enclosed room layout that fits 20 m²:
+        - compact bathroom: ~ 2.0 m × 2.2 m
+        - bed along the back wall
+        - door into the dome on the exterior wall
+        - desk / vanity / beverage counter along the long wall
 
-    ♡ clear geometric dome connected directly to each crew quarter and physically isolated from the main room by a pressure rated door
+    ♡ clear geometric domes are connected directly to each crew quarter and physically isolated from the main room by a pressure rated door
 
     ♡ quarters are placed along a quiet exterior side of the habitat, away from the main industrial areas    
 
@@ -117,11 +120,11 @@
         - small water dispenser
         - space for approved personal beverage equipment
 
-    ♡ enough storage is included to keep the room organized and prevent it from feeling cluttered, including wall hooks
+    ♡ enough storage to keep the room organized and prevent it from feeling cluttered, including wall hooks
 
-    ♡ sound insulated for privacy and protection from surrounding habitat noise
+    ♡ sound insulated for privacy and protection
 
-    ♡ soft, natural looking patterns and textures, including mock wood or stone finishes
+    ♡ soft, natural looking patterns and textures like mock wood or stone finishes
 
     ♡ surfaces are fire-resistant and easy to clean
 
@@ -145,7 +148,9 @@
     ♡ furniture and storage are secured for normal use but designed to remain comfortable instead of overly industrial
 
 ### Crew Quarter Dome:
-    ♡ dome has a faceted structure made from multiple reinforced transparent panels instead of a smooth rounded surface
+    ♡ faceted structures made from multiple reinforced transparent panels instead of a smooth rounded surface
+
+    ♡ each dome is configured for one primary purpose at a time based on the crew member's choice
 
     ♡ geometric framing provides distinct panel sections for privacy screens, digital scenery and protective shutters
 
@@ -188,7 +193,6 @@
         - removable furniture anchor points
         - emergency communication
         - independent pressure monitoring
-
 
 ### ----------------------------------------
 

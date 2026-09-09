@@ -23,7 +23,7 @@
 
     ♡ access:
         - near OGA and other atmosphere systems
-        - short water line to water processing room
+        - short water line to Water Processing Room
         - connected to the methane storage bay
         - connects to the utility hallway
 
@@ -66,7 +66,7 @@
 
     ♡ Sabatier water path changed from direct potable addition to WPA treatment
 
-    ♡ atmosphere physical location locked to utility / resource hub (08/24/2026)
+    ♡ atmosphere physical location locked to Utility / Resource Hub (08/24/2026)
 
 ### ----------------------------------------
 
