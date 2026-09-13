@@ -194,7 +194,20 @@
         - walkable growing surface
         - storage underneath the higher inner sections
 
-    ♡ see greenhouse/hydroponics.md
+#### Growing / Hydroponic Surface:
+    ♡ growing surface:
+        stepped LECA (clay ball) grow boxes mounted on smooth sloped ramps
+
+    ♡ how it works:
+        - underlying structural ramp is smooth and continuous
+        - stepped / terraced boxes sit on top
+        - each box level is flat so clay balls and roots sit evenly
+
+    ♡ used for:
+        - holding clay balls and roots level
+        - letting nutrient water move down the slope
+
+    ♡ see greenhouse/hydroponics.md   
 
 #### Pathways:
     ♡ storage pathways (flat paths): ~ 2.0 m
@@ -445,7 +458,7 @@
     ♡ began considering a helix/hive layout w. layered growing areas spiraling toward a central utility area for utilities, maintenance, water systems and other things instead of just rows and boxes
 
     ♡ thought a gradual slope might make plants easier to monitor and work well w. vertical racks and hanging containers
-    
+
 ###### 08/04/2026:
     ♡ created Hive-8 Arcadia plan, updating the greenhouse plans almost completely
 
@@ -453,6 +466,9 @@
     ♡ the sizes for the zones for the containers and growing space, are rough estimates, I didn't think it was neccessary to have an exact amount of boxes or containers for v1, and they are going to be made using the zones plant averages and growing area
 
     ♡ I'm going to decide starting module sizes based on the measurements I have already for Hive-8 Arcadia
+
+###### 08/24/2026
+    ♡ originally I had pictured the greenhouse as a kind of central hub for the entire habitat, but now I'm thinking of having four central hub areas one for a living/social almost wing area, greenhouse/food hub, a resource and utility hub and a power/energy hub, wher the surrounding rooms branch off from those hubs and there are corridors/secondary loops that connect the outer rooms so the crew could move between zones without going back through the center always
 
 ###### 09/13/2026:
     ♡ rewrote Hive-8 rooms into the same block order as the living notes
