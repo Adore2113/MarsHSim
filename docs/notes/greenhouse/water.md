@@ -83,7 +83,7 @@
     ♡ greenhouse transpiration: ~ 2,770.2 kg/sol
     ♡ CHX condensate captured: ~ 2,631.69 kg/sol
     
-    ♡ heat from condensation:~2,450 kJ/kg:
+    ♡ heat from condensation: ~ 2,450 kJ/kg:
     ♡ full-sol average: ≈ 80 kW
     ♡ lights-on: 
             ≈ 124 kW total vapor, ≈ 118 kW on captured condensate
@@ -119,7 +119,6 @@
                 2,770.2 ÷ 16
                 ≈ 173 kg condensate/h captured
                 (total transpiration ≈ 182 kg/h before capture)
-
 
 ### ----------------------------------------
 

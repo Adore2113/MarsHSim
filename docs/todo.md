@@ -23,6 +23,8 @@
 
     ♡ add crew scheduling, maintenance, and a few updates, with any complaints or any positive feedback from the crew when things are running well
 
+ ♡ todo: implement power for automated serving area?
+    
 ### Later Focus:
     ♡ add tank depletion alerts   
 

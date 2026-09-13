@@ -339,7 +339,7 @@
         - protein
         - carbohydrates
         - resilient
-        - low preparation after harvest
+        - low prep after harvest
         - germination: 2-3 weeks
         - vegetative growth: 2-4 weeks
         - flowering: 4-6 weeks

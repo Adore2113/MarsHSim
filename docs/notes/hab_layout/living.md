@@ -18,11 +18,13 @@
 
     ♡ Kitchen / Dining:
         - floor area: ~ 930 m²
-        - volume: ~ 3,442 m³
+        - volume: ~ 3,460 m³
 
     ♡ Crew Quarters:
         - floor area: ~ 1,120 m²
-        - volume: ~ 3,096 m³
+        - total private volume: ~ 96.8 m³ each
+        - combined volume for all quarters: 
+            ~ 3,096 m³ (calculated using the unrounded volume of 96.75 m³/quarter)
 
     ♡ Shared Living / Social Rooms:
         - floor area: ~ 250 m²
@@ -40,13 +42,13 @@
         - floor area: ~ 85 m²
         - volume: ~ 340 m³
 
-    ♡ current calculated volume: ~ 9,633 m³
+    ♡ current calculated volume: ~ 9,651 m³
 
 ### ----------------------------------------
 
 #### Total Living / Social / Food Space:
     ♡ Kitchen / Dining total floor area: ~ 930 m²
-    ♡ Kitchen / Dining total volume: ~ 3,442 m³
+    ♡ Kitchen / Dining total volume: ~ 3,460 m³
     
     ♡ Crew Quarters total floor area: ~ 1,120 m²
     ♡ Crew Quarters total volume: ~ 3,096 m³
@@ -67,6 +69,9 @@
 
 ### Crew Quarters:
     ♡ total quarters: 32
+    ♡ 16 rooms/level across two terraced levels
+    ♡ two wings of 8 rooms
+    ♡ 30 assigned, 2 unassigned
 
     ♡ enclosed room: ~ 20 m²/room
         - width: ~ 4.0 m 
@@ -217,7 +222,7 @@
 ## Kitchen / Dining:
 ### Food and Dining Area:
     ♡ total combined floor area: ~ 930 m²
-    ♡ total combined volume: ~ 3,442 m³
+    ♡ total combined volume: ~ 3,460 m³
 
     ♡ access / placement:
         - between Living / Social Hub and Greenhouse / Food Area
@@ -233,7 +238,7 @@
 
 #### Main Dining Hall:
     ♡ floor area: ~ 250 m²
-    ♡ width: 20.0
+    ♡ width: 20.0 m
     ♡ height: ~ 4.2 m
     ♡ volume: ~ 1,050 m³
     ♡ calculation: ~ 20.0 m × 12.5 m = 250 m²
@@ -315,7 +320,7 @@
 
 #### Food Storage:
     ♡ floor area: ~ 300 m²
-    ♡ width: ~ 20.0 ,
+    ♡ width: ~ 20.0 m
     ♡ height: ~ 3.6 m
     ♡ volume: ~ 1,080 m³
     ♡ calculation: ~ 20.0 m × 15.0 m = 300 m²
@@ -327,7 +332,7 @@
 
     ♡ located for short routes between the greenhouse, food processing area and kitchen / food area
 
-    ♡ emergency reserves are serpate from daily use food to prevent accidental overuse
+    ♡ emergency reserves are separate from daily use food to prevent accidental overuse
 
     ♡ includes:
         - dry food storage
@@ -380,8 +385,8 @@
 
 ### Shared Living / Social Rooms:
     ♡ total rooms: 3
-    ♡ total floor area: ~ 250 m² 
-    ♡ total volume: ~ 983 m³ 
+    ♡ total floor area: ~ 250 m²
+    ♡ total volume: ~ 983 m³
     ♡ includes: 
         - large shared living room: ~ 120 m² 
         - casual lounge: ~ 80 m² 
@@ -391,8 +396,10 @@
 
 #### Large Shared Living Room:
     ♡ floor area: ~ 120 m²
+    ♡ width: ~ 12.0 m
     ♡ height: ~ 4.2 m
     ♡ volume: ~ 504 m³
+    ♡ calculation: ~ 12.0 m × 10.0 m = 120 m²
     ♡ for larger gatherings
     ♡ smaller furniture groups instead of one main area
     ♡ brighter and more open than the smaller lounges
@@ -610,8 +617,7 @@
     ♡ floor area: ~ 85 m²
     ♡ width: ~ 10.0 m
     ♡ height: ~ 4.0 m
-    ♡ volume: ~ 340 m³
-    ♡ calculation: ~ 10.0 m × 4.0 m = 85 m²
+    ♡ volume: ~ 340 m³    ♡ calculation: ~ 10.0 m × 8.5 m = 85 m²
     ♡ capacity: 8-11 crew members, including the study pods
 
     ♡ real world size reference:
@@ -783,7 +789,7 @@
 
     ♡ for crew to see Mars around them privately, having time to be alone is important
 
-    ♡ theyr're intended to act as a customizable extension of the crew member's private space for maximum comfort and privacy
+    ♡ they're intended to act as a customizable extension of the crew member's private space for maximum comfort and privacy
 
     ♡ geometric framing provides distinct panel sections for privacy screens, digital scenery and protective shutters
 
@@ -801,7 +807,7 @@
 
     ♡ they can choose scenes and sounds that remind them of home, their favorite places on earth, etc.
 
-    ♡ it seemed like a peronal, customizable option
+    ♡ it seemed like a personal, customizable option
 
 #### Why include private study pods?
     ♡ they provide a separate environment for focused work when a crew member doesn't want to work in their private quarter, especially for longer study periods
@@ -895,7 +901,7 @@
     
     ♡ added the missing volumes for Kitchen / Dining and Crew Quarters
 
-    ♡ living / social / food volume is now ~ 9,633 m³
+    ♡ living / social / food volume is now ~ 9,651 m³
 
     ♡ added room sizes
 

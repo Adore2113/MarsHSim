@@ -176,7 +176,7 @@
 
     ♡ access:
         - ground floor ring / storage path
-        - condensate line to water processing room
+        - condensate line to Water Processing Room
 
 
     ♡ see greenhouse/water.md
