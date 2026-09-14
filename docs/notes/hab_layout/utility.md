@@ -16,7 +16,7 @@
 
 ### ----------------------------------------
 
-## Arcadia Utility / Resource Hub (updated 09/13/2026):
+## Arcadia Utility / Resource Hub (updated 09/14/2026):
 #### Totals:
     ♡ water rooms: ~ 340 m² / 1,530 m³
     ♡ ISRU Atmosphere Room: ~ 80 m² / 360 m³
@@ -93,6 +93,10 @@
     ♡ volume: ~ 225 m³
     ♡ calculation: ~ 8.0 m × 6.25 m × 4.5 m = 225 m³
 
+    ♡ real world size reference:
+        - ~ a large industrial workshop
+        - ~ small utility building
+
     ♡ access / placement:
         - in the utility hub
         - connects to the Water Processing Room
@@ -102,6 +106,10 @@
         - raw ISRU water storage
         - service space around the tanks
         - transfer toward water processing
+        - pipe-heating and power controls
+        - extraction pumps and manifold
+        - exterior pipe connections
+        - deployment and retraction controls for 6 heated extraction pipes
 
     ♡ used for:
         - holding incoming ISRU water before it is cleaned
@@ -330,17 +338,13 @@
 ## Design Evolution:
     ♡ wastewater storage started as an 80-100 m² range
     ♡ ISRU water started as a 40-60 m² range
-    
     ♡ those ranges were locked to 90 m² and 50 m² so the four rooms add to 340 m²
-    
-    ♡ atmosphere recovery started as a 120-140 m² range that is still open
+    ♡ atmosphere recovery started as a 120-140 m² range and was finalized at 140 m² to include the habitat CHX
 
 ### ----------------------------------------
 
 ## Future Considerations:
     ♡ methane post-processing after V1
-
-    ♡ lock one floor size for the Atmosphere / Resource Recovery Room
 
     ♡ exact corridor widths and emergency routing around this hub
 
