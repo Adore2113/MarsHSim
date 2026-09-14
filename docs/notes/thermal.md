@@ -1,25 +1,17 @@
-#  
+# Thermal / Humidity Control
 ### General Notes:
+    ♡ preliminary estimates
 
-### ----------------------------------------
+    ♡ V1 uses one cabin temperature
+    ♡ heaters, radiators, solar gain, leak, crew and equipment heat all hit that one number
 
-## _____ Plan ():
-####
+    ♡ greenhouse CHX stays in Hive-8
+    ♡ habitat CHX lives in the Atmosphere / Resource Recovery Room
+    ♡ both still report heat into the same cabin temperature for V1
 
-### ----------------------------------------
+    ♡ kW is the heat flow
+    ♡ °C is the result after it hits thermal mass
 
-## Design Evolution:
-####
-
-### ----------------------------------------
-
-## Future Considerations:
-    ♡ 
-
-### ----------------------------------------
-
-## Design Decisions:
-#### 
 
 ### ----------------------------------------
 
@@ -29,15 +21,9 @@
 
     ♡ adding a variable for the habitat's insulation as a heat leak rate and I'm using 1.0 kw/C as a starter value
 
-     ♡ I'm thinking about radiators, electric heaters, obvious insulation, fans and maybe.. a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin
-
     ♡ I decided to go with radiator arrays, mostly to keep my code more manageable
 
     ♡ after doing some research, I decided to go with a 6 array set up with a total of 50 panels for now
-
-    ♡ all humidity will be mostly internal, through crew perspiration, breathing, etc. 
-    
-    ♡ considering having a greenhouse b/c of the no resupply
 
     ♡ a condensing heat exchanger (CHX) which I read removes humidity while it could cool the cabin but I'm going to make it mainly a humidity control subsystem first with slight cooling, b/c I already have the radiators
 
@@ -103,5 +89,7 @@
     ♡ fixing radiator and heaters to make things smooth and effective
 
     ♡ I'm happy w. how the temp system is running for now, so now I'm running atmosphere again
+
+
 
 
