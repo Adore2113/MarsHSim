@@ -226,75 +226,117 @@
 
     ♡ V1 room size remains ~ 120-140 m² until equipment placement and maintenance clearances are finalized
 
- **#### Atmosphere / Resource Recovery Room:**
-
-    ♡ access / placement:
-
-        - in the Utility / Resource Hub
-
-        - near the Habitat CHX / Air-Handling Room
-
-        - near the ISRU Atmosphere Room
-
-        - short water line to the Water Processing Room
-
-        - connects to the utility hallway
-
-        - controlled methane vent line leads outside the habitat
-
-    ♡ includes:
-
-        - OGA
-
-        - oxygen distribution connection
-
-        - hydrogen buffer and transfer line to Sabatier
-
-        - 3 Sabatier racks
-
-        - each Sabatier rack is approximately washing-machine sized (~ 0.4 m³)
-
-        - CO₂ feed and small buffer
-
-        - condenser and water separator
-
-        - Sabatier water line toward the Water Processing Room
-
-        - 8 amine beds
-
-        - amine-bed thermal and vent connections
-
-        - amine-bed bay: ~ 40-50 m² within the room
-
-        - controlled Sabatier methane vent line
-
-        - methane sensors and automatic isolation valve
-
-        - controls, valves and sensors
-
-        - MCA interface
-
-        - minimum maintenance aisle width: ~ 1.2 m
-
-    ♡ used for:
-
-        - oxygen generation
-
-        - CO₂ removal and temporary storage
-
-        - Sabatier water recovery
-
-        - atmosphere monitoring and recovery
-
-        - keeping connected life-support equipment together
-
-    ♡ methane produced by the Sabatier is vented outside through a controlled line for V1
-
-    ♡ methane is never intentionally released into the habitat atmosphere
-
-    ♡ dedicated methane storage is not included in V1
-
-    ♡ this room is not part of the 340 m² / 1,530 m³ water-room subtotal
-
-    ♡ V1 room size remains ~ 120-140 m² until equipment placement and maintenance clearances are finalized
 ### ----------------------------------------
+
+### Combined Area:
+    ♡ Water Processing Room:
+        - floor area: ~ 90 m²
+        - height: ~ 4.5 m
+        - volume: ~ 405 m³
+
+    ♡ Wastewater Storage Room:
+        - floor area: ~ 90 m²
+        - height: ~ 4.5 m
+        - volume: ~ 405 m³
+
+    ♡ ISRU Water Room:
+        - floor area: ~ 50 m²
+        - height: ~ 4.5 m
+        - volume: ~ 225 m³
+
+    ♡ Potable Water Storage Room:
+        - floor area: ~ 110 m²
+        - height: ~ 4.5 m
+        - volume: ~ 495 m³
+
+    ♡ combined water-room totals:
+        - floor area: ~ 340 m²
+        - volume: ~ 1,530 m³
+        - calculation:
+            ~ 90 + 90 + 50 + 110
+            = ~ 340 m²
+
+            ~ 405 + 405 + 225 + 495
+            = ~ 1,530 m³
+
+    ♡ Atmosphere / Resource Recovery Room:
+        - floor area: ~ 120-140 m²
+        - volume: ~ 540-630 m³
+        - not included in the 340 m² water total
+
+    ♡ Methane Storage Bay:
+        - not sized yet
+        - not included in the 340 m² water total
+
+### ----------------------------------------
+
+### Design Decisions:
+#### Why keep the utility rooms out of living and greenhouse space?
+    ♡ dirty / noisy process areas should stay away from where people eat, sleep and grow food
+
+    ♡ maintenance and emergencies should not have to go through the main living rooms
+
+#### Why keep atmosphere systems in this hub?
+    ♡ they connect with the water systems and storage
+
+    ♡ it keeps the major life-support process equipment together
+
+    ♡ it avoids scattering industrial systems into living or greenhouse space
+
+#### Why are the water rooms small next to the power rooms?
+    ♡ potable water itself is only about 10 m³
+    ♡ 110 m² is already generous for that tank, access and structure
+
+    ♡ gray, black and brine tanks are smaller than the battery corridor
+    ♡ 4,000 kg of raw ISRU water fits in 40-60 m²
+    ♡ UPA, WPA and BPA with aisles fit in about 90 m² for 30 crew
+
+    ♡ the utility hub gets bigger when atmosphere recovery and methane storage are counted with the water rooms
+
+#### Why is the greenhouse CHX bay not in this file?
+    ♡ it sits on the greenhouse ground floor so it can take plant air there
+
+    ♡ only the condensate line comes here
+
+### ----------------------------------------
+
+## Design Evolution:
+    ♡ wastewater storage started as an 80-100 m² range
+
+    ♡ ISRU water started as a 40-60 m² range
+
+    ♡ those ranges were locked to 90 m² and 50 m² so the four rooms add to 340 m²
+
+    ♡ atmosphere recovery started as a 120-140 m² range
+    ♡ that range is still open
+
+### ----------------------------------------
+
+## Future Considerations:
+    ♡ lock one floor size for the Atmosphere / Resource Recovery Room
+
+    ♡ size the methane storage bay
+
+    ♡ exact corridor widths and emergency routing around this hub
+
+    ♡ height variations between living and utility spaces
+
+    ♡ workshop space for fumes, dust and fire-risk work stays out of the hobby studio
+
+### ----------------------------------------
+
+## Dev Log Notes:
+###### 08/23/2026
+    ♡ finalize Wastewater Storage Room (currently 80-100 m² range)
+
+    ♡ finalize ISRU Water Room (currently 40-60 m² range)
+
+    ♡ Sabatier racks are located in the Atmosphere / Resource Recovery Room
+    ♡ 3 Sabatier racks planned for redundancy
+    ♡ each rack is approximately washing-machine sized (~ 0.4 m³)
+
+###### 08/24/2026
+    ♡ after entering the total floor area and volume for the utility / resource area, the water rooms seem small compared to the power rooms, but potable holds ~ 10 m³ of water itself, so ~ 110 m² room gives generous tank space, access, and structure, the other gray, black and brine water are smaller, so that space makes sense as well, the raw ISRU water at 4,000kg fits in 40–60 m² and the UPA, WPA and BPA equipment fits in ~ 90 m² with aisles sounds good for a 30 crew plan.. power just seems massive in comparison b/c the secondary battery corridor I made is bigger than my original habitat plan b/c of the amount of space they need.. when I add more rooms to the resource recovery area it will be bigger for sure
+
+###### 09/13/2026
+    ♡ although NASA investigated methane post-processing for deeper oxygen loop closures, it would be another subsystem, which I will be something to be implemented in the future
