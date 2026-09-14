@@ -115,8 +115,6 @@
 ### ----------------------------------------
 
 #### Future Considerations:
-    ♡ how much room/space the primary and backup banks will use
-    
     ♡ finalize subsystem power priority calculations (kWh/sol per tier)
 
     ♡ finalize power mode transition thresholds (battery % or kWh)
