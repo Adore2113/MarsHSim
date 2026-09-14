@@ -18,43 +18,11 @@
 
 ## Arcadia Utility / Resource Hub (updated 09/13/2026):
 #### Totals:
-    ♡ four water rooms:
-        - floor area: ~ 340 m²
-        - volume: ~ 1,530 m³
-
-    ♡ Atmosphere / Resource Recovery Room:
-        - floor area: ~ 120-140 m²
-        - volume: ~ 540-630 m³
-
-    ♡ ISRU Atmosphere Room:
-        - floor area: ~ 80 m²
-        - volume: ~ 360 m³
-
-    ♡ current utility rooms:
-        - floor area: ~ 540-560 m²
-        - volume: ~ 2,430-2,520 m³
-
-    ♡ calculation:
-        - 90 + 90 + 50 + 110 = 340 m² water rooms
-        - 340 + 120 + 80 = 540 m²
-        - 340 + 140 + 80 = 560 m²
-        - 1,530 + 540 + 360 = 2,430 m³
-        - 1,530 + 630 + 360 = 2,520 m³
-
-    ♡ height used for V1: ~ 4.5 m
-
-    ♡ access / placement:
-        - industrial zone
-        - more than one way in and out
-        - reachable for maintenance and emergencies without passing the main living spaces
-
-    ♡ contains:
-        - Water Processing Room
-        - Wastewater Storage Room
-        - ISRU Water Room
-        - Potable Water Storage Room
-        - Atmosphere / Resource Recovery Room
-        - ISRU Atmosphere Room
+    ♡ water rooms: ~ 340 m² / 1,530 m³
+    ♡ ISRU Atmosphere Room: ~ 80 m² / 360 m³
+    ♡ utility rooms for V1: ~ 560 m² / 2,520 m³
+    ♡ Atmosphere / Resource Recovery Room: 
+        ~ 140 m² / 630 m³
 
 ### ----------------------------------------
 
@@ -163,21 +131,23 @@
     ♡ the extra floor area is for tanks, structure and walking space
 
 ### ----------------------------------------
-
 #### Atmosphere / Resource Recovery Room:
     ♡ shape: rectangle
-    ♡ floor area: ~ 120-140 m²
+    ♡ floor area: ~ 140 m²
+    ♡ width: ~ 14.0 m
     ♡ height: ~ 4.5 m
-    ♡ volume: ~ 540-630 m³
+    ♡ volume: ~ 630 m³
     ♡ calculation:
-        - 120 m² × 4.5 m = 540 m³
-        - 140 m² × 4.5 m = 630 m³
-    
+        - ~ 14.0 m × 10.0 m = 140 m²
+        - ~ 140 m² × 4.5 m = 630 m³
+
     ♡ minimum maintenance aisle width: ~ 1.2 m
+
+    ♡ real world size reference:
+        - ~ a medium industrial mechanical room
 
     ♡ access / placement:
         - in the Utility / Resource Hub
-        - near the Habitat CHX / Air-Handling Room
         - near the ISRU Atmosphere Room
         - short water line to the Water Processing Room
         - connects to the utility hallway
@@ -187,31 +157,34 @@
         - OGA
         - oxygen distribution connection
         - hydrogen buffer and transfer line to Sabatier
-        - 3 Sabatier racks:
-            ~ washing-machine sized (~ 0.4 m³/rack)
+        - 3 Sabatier racks (~ 0.4 m³/rack)
         - CO₂ feed and small buffer
         - condenser and water separator
         - Sabatier water line to Water Processing Room
         - 8 amine beds
-        - amine bed thermal and vent connections
         - amine bed bay: ~ 40-50 m² within the room
+        - habitat CHX coil / fan banks
+        - habitat air circulation fans and filters
+        - condensate collection and transfer pumps
+        - condensate line to the Water Processing Room
         - controlled Sabatier methane vent line
         - methane sensors and automatic isolation valve
-        - controls, valves and sensors
-        - MCA interface
+        - controls, valves, sensors, MCA interface
 
     ♡ used for:
         - oxygen generation
         - CO₂ removal and temporary storage
         - Sabatier water recovery
+        - habitat humidity removal
+        - habitat air circulation and filtration
+        - collecting habitat condensate
         - atmosphere monitoring and recovery
-        - keeping connected life-support equipment together
 
-     ♡ methane produced by the Sabatier is vented outside through a controlled line for V1 and is never intentionally released into the habitat
+    ♡ the habitat CHX is in this room
+    ♡ the greenhouse CHX stays inside Hive-8 and is not added here
 
     ♡ dedicated methane storage is not included in V1
-
-    ♡ V1 room size is ~ 120-140 m² until equipment placement and maintenance clearances are finalized
+    ♡ Sabatier methane is vented outside through a controlled line
 
 #### ISRU Atmosphere Room:
     ♡ shape: rectangle
@@ -289,8 +262,9 @@
             = ~ 1,530 m³
 
     ♡ Atmosphere / Resource Recovery Room:
-        - floor area: ~ 120-140 m²
-        - volume: ~ 540-630 m³
+        - floor area: ~ 140 m²
+        - height: ~ 4.5 m
+        - volume: ~ 630 m³
         - not included in the 340 m² water total
 
     ♡ ISRU Atmosphere Room:
@@ -300,16 +274,36 @@
         - not included in the 340 m² water total
 
     ♡ utility rooms for V1:
-        - floor area: ~ 540-560 m²
-        - volume: ~ 2,430-2,520 m³
+        - floor area: ~ 560 m²
+        - volume: ~ 2,520 m³
         - calculation:
-            ~ 340 + 120 + 80 = 540 m²
             ~ 340 + 140 + 80 = 560 m²
-
-            ~ 1,530 + 540 + 360 = 2,430 m³
             ~ 1,530 + 630 + 360 = 2,520 m³
 
     ♡ a separate methane storage bay is not included for V1
+
+#### Utility Corridors:
+    ♡ floor area: ~ 150 m²
+    ♡ width: ~ 2.2 m on the main utility loop
+    ♡ emergency routes: ~ 1.8 m minimum
+    ♡ height: ~ 4.5 m
+    ♡ volume: ~ 675 m³
+    ♡ calculation:
+        - ~ 68 m of hallway × 2.2 m ≈ 150 m²
+        - ~ 150 m² × 4.5 m = 675 m³
+
+    ♡ utility rooms: ~ 560 m²
+    ♡ utility corridors: ~ 150 m²
+    ♡ rooms and corridors together: ~ 710 m²
+    ♡ rooms and corridors volume together: ~ 3,195 m³
+
+    ♡ this is the space used to walk between utility rooms and is not part of the 560 m² room total
+
+    ♡ includes:
+        - loop around the four water rooms
+        - short path to the Atmosphere / Resource Recovery Room
+        - short path to the ISRU Atmosphere Room
+        - connection toward the Power / Energy Hub
 
 ### ----------------------------------------
 
@@ -344,6 +338,8 @@
 ### ----------------------------------------
 
 ## Future Considerations:
+    ♡ methane post-processing after V1
+
     ♡ lock one floor size for the Atmosphere / Resource Recovery Room
 
     ♡ exact corridor widths and emergency routing around this hub
