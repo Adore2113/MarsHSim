@@ -81,9 +81,8 @@
         - connects to potable storage
         - connects to the ISRU water room
         - connects to the utility hallway
-        - receives condensate from habitat CHX and greenhouse CHX
 
-    ♡ located for short routes between gray / black / brine tanks and clean water storage
+    ♡ short routes between gray / black / brine tanks and clean water storage
 
     ♡ includes:
         - UPA and pretreatment
@@ -101,8 +100,8 @@
         - handling brine in bursts, not as a continuous full-load process
 
     ♡ BPA is kept at 0.5 kg/h
-    ♡ it is sized for 30-crew brine with hysteresis, not continuous full UPA
     ♡ the large brine tank is the burst buffer
+    ♡ it is sized for 30-crew brine with hysteresis, not continuous full UPA
 
 #### Wastewater Storage Room:
     ♡ floor area: ~ 90 m²
@@ -113,7 +112,7 @@
 
     ♡ access / placement:
         - next to the Water Processing Room
-        - away from living rooms and the greenhouse grow floor
+        - away from living rooms and greenhouse 
 
     ♡ includes:
         - gray water storage
@@ -123,10 +122,7 @@
 
     ♡ used for:
         - holding wastewater before processing
-        - giving UPA / WPA / BPA a buffer so they do not have to run flat-out
-
-    ♡ earlier size range was 80-100 m²
-    ♡ 90 m² is the V1 size used in the 340 m² total
+        - giving UPA / WPA / BPA a buffer
 
 #### ISRU Water Room:
     ♡ floor area: ~ 50 m²
@@ -138,7 +134,7 @@
     ♡ access / placement:
         - in the utility hub
         - connects to the Water Processing Room
-        - not on the living side
+        - not on the living area side
 
     ♡ includes:
         - raw ISRU water storage
@@ -149,8 +145,6 @@
         - holding incoming ISRU water before it is cleaned
 
     ♡ raw ISRU water at ~ 4,000 kg fits in this room
-    ♡ earlier size range was 40-60 m²
-    ♡ 50 m² is the V1 size used in the 340 m² total
 
 #### Potable Water Storage Room:
     ♡ floor area: ~ 110 m²
@@ -184,6 +178,8 @@
     ♡ calculation:
         - 120 m² × 4.5 m = 540 m³
         - 140 m² × 4.5 m = 630 m³
+    
+    ♡ minimum maintenance aisle width: ~ 1.2 m
 
     ♡ access / placement:
         - in the Utility / Resource Hub
@@ -198,10 +194,10 @@
         - oxygen distribution connection
         - hydrogen buffer and transfer line to Sabatier
         - 3 Sabatier racks:
-            ~ washing-machine sized, ~ 0.4 m³/rack
+            ~ washing-machine sized (~ 0.4 m³/rack)
         - CO₂ feed and small buffer
         - condenser and water separator
-        - Sabatier water line towards Water Processing Room
+        - Sabatier water line to Water Processing Room
         - 8 amine beds
         - amine bed thermal and vent connections
         - amine bed bay: ~ 40-50 m² within the room
@@ -209,7 +205,6 @@
         - methane sensors and automatic isolation valve
         - controls, valves and sensors
         - MCA interface
-        - minimum maintenance aisle width: ~ 1.2 m
 
     ♡ used for:
         - oxygen generation
@@ -218,13 +213,11 @@
         - atmosphere monitoring and recovery
         - keeping connected life-support equipment together
 
-    ♡ this room is not part of the 340 m² / 1,530 m³ water room total
-
-     ♡ methane produced by the Sabatier is vented outside through a controlled line for V1and is never intentionally released into the habitat
+     ♡ methane produced by the Sabatier is vented outside through a controlled line for V1 and is never intentionally released into the habitat
 
     ♡ dedicated methane storage is not included in V1
 
-    ♡ V1 room size remains ~ 120-140 m² until equipment placement and maintenance clearances are finalized
+    ♡ V1 room size is ~ 120-140 m² until equipment placement and maintenance clearances are finalized
 
 #### ISRU Atmosphere Room:
     ♡ shape: rectangle
@@ -234,8 +227,9 @@
     ♡ volume: ~ 360 m³
     ♡ calculation:
         - ~ 10.0 m × 8.0 m = 80 m²
-
         - ~ 80 m² × 4.5 m = 360 m³
+
+    ♡ minimum maintenance aisle width: ~ 1.2 m
 
     ♡ real world size reference:
         - ~ a large industrial workshop room
@@ -244,8 +238,8 @@
         - at the exterior edge of the Utility / Resource Hub
         - near the Atmosphere / Resource Recovery Room
         - connects to the utility hallway
-        - exterior connection for Mars atmosphere intake
-        - reachable for maintenance without passing through living areas
+        - exterior connection to Mars atmosphere
+        - reachable without passing through living areas
 
     ♡ includes:
         - exterior atmosphere intake
@@ -255,22 +249,19 @@
         - sorbent beds
         - separated gas transfer lines
         - controls, valves and sensors
-        - minimum maintenance aisle width: ~ 1.2 m
 
     ♡ used for:
-        - drawing in Martian atmosphere
+        - drawing in Mars atmosphere
         - removing dust before compression
         - compressing the intake gas
         - separating useful atmospheric gases
-        - transferring recovered gases toward habitat storage or use
+        - transferring recovered gases
     
     ♡ exterior intake equipment is not included in the pressurized room volume
     
-    ♡ the room can be isolated from the rest of the Utility Hub during intake-system faults or maintenance
+    ♡ the room can be isolated from the rest of the Utility Hub during issues or maintenance
 
 ### ----------------------------------------
-
-
 
 ### Combined Area:
     ♡ Water Processing Room:
