@@ -226,7 +226,51 @@
 
     ♡ V1 room size remains ~ 120-140 m² until equipment placement and maintenance clearances are finalized
 
+#### ISRU Atmosphere Room:
+    ♡ shape: rectangle
+    ♡ floor area: ~ 80 m²
+    ♡ width: ~ 10.0 m
+    ♡ height: ~ 4.5 m
+    ♡ volume: ~ 360 m³
+    ♡ calculation:
+        - ~ 10.0 m × 8.0 m = 80 m²
+
+        - ~ 80 m² × 4.5 m = 360 m³
+
+    ♡ real world size reference:
+        - ~ a large industrial workshop room
+
+    ♡ access / placement:
+        - at the exterior edge of the Utility / Resource Hub
+        - near the Atmosphere / Resource Recovery Room
+        - connects to the utility hallway
+        - exterior connection for Mars atmosphere intake
+        - reachable for maintenance without passing through living areas
+
+    ♡ includes:
+        - exterior atmosphere intake
+        - intake isolation valve
+        - dust filtration and dust collection
+        - compressor equipment
+        - sorbent beds
+        - separated gas transfer lines
+        - controls, valves and sensors
+        - minimum maintenance aisle width: ~ 1.2 m
+
+    ♡ used for:
+        - drawing in Martian atmosphere
+        - removing dust before compression
+        - compressing the intake gas
+        - separating useful atmospheric gases
+        - transferring recovered gases toward habitat storage or use
+    
+    ♡ exterior intake equipment is not included in the pressurized room volume
+    
+    ♡ the room can be isolated from the rest of the Utility Hub during intake-system faults or maintenance
+
 ### ----------------------------------------
+
+
 
 ### Combined Area:
     ♡ Water Processing Room:
