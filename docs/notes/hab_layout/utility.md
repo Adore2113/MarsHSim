@@ -17,42 +17,36 @@
 ### ----------------------------------------
 
 ## Arcadia Utility / Resource Hub (updated 09/13/2026):
+#### Totals:
+    ♡ four water rooms:
+        - floor area: ~ 340 m²
+        - volume: ~ 1,530 m³
 
-#### Total Utility Water Rooms:
-    ♡ current combined floor area: ~ 340 m²
-    ♡ current combined volume: ~ 1,530 m³
-    ♡ height used for V1: ~ 4.5 m
+    ♡ Atmosphere / Resource Recovery Room:
+        - floor area: ~ 120-140 m²
+        - volume: ~ 540-630 m³
 
-    ♡ Water Processing Room:
-        - floor area: ~ 90 m²
-        - volume: ~ 405 m³
+    ♡ ISRU Atmosphere Room:
+        - floor area: ~ 80 m²
+        - volume: ~ 360 m³
 
-    ♡ Wastewater Storage Room:
-        - floor area: ~ 90 m²
-        - volume: ~ 405 m³
-
-    ♡ ISRU Water Room:
-        - floor area: ~ 50 m²
-        - volume: ~ 225 m³
-
-    ♡ Potable Water Storage Room:
-        - floor area: ~ 110 m²
-        - volume: ~ 495 m³
+    ♡ current utility rooms:
+        - floor area: ~ 540-560 m²
+        - volume: ~ 2,430-2,520 m³
 
     ♡ calculation:
-        - 90 + 90 + 50 + 110
-          = 340 m²
+        - 90 + 90 + 50 + 110 = 340 m² water rooms
+        - 340 + 120 + 80 = 540 m²
+        - 340 + 140 + 80 = 560 m²
+        - 1,530 + 540 + 360 = 2,430 m³
+        - 1,530 + 630 + 360 = 2,520 m³
 
-        - 405 + 405 + 225 + 495
-          = 1,530 m³
-
-        - 340 m² × 4.5 m
-          = 1,530 m³
+    ♡ height used for V1: ~ 4.5 m
 
     ♡ access / placement:
         - industrial zone
-        - reachable for maintenance and emergencies without passing the main living spaces
         - more than one way in and out
+        - reachable for maintenance and emergencies without passing the main living spaces
 
     ♡ contains:
         - Water Processing Room
@@ -60,7 +54,7 @@
         - ISRU Water Room
         - Potable Water Storage Room
         - Atmosphere / Resource Recovery Room
-        - Methane Storage Bay
+        - ISRU Atmosphere Room
 
 ### ----------------------------------------
 
@@ -299,9 +293,23 @@
         - volume: ~ 540-630 m³
         - not included in the 340 m² water total
 
-    ♡ Methane Storage Bay:
-        - not sized yet
+    ♡ ISRU Atmosphere Room:
+        - floor area: ~ 80 m²
+        - height: ~ 4.5 m
+        - volume: ~ 360 m³
         - not included in the 340 m² water total
+
+    ♡ utility rooms for V1:
+        - floor area: ~ 540-560 m²
+        - volume: ~ 2,430-2,520 m³
+        - calculation:
+            ~ 340 + 120 + 80 = 540 m²
+            ~ 340 + 140 + 80 = 560 m²
+
+            ~ 1,530 + 540 + 360 = 2,430 m³
+            ~ 1,530 + 630 + 360 = 2,520 m³
+
+    ♡ a separate methane storage bay is not included for V1
 
 ### ----------------------------------------
 
@@ -318,16 +326,6 @@
 
     ♡ it avoids scattering industrial systems into living or greenhouse space
 
-#### Why are the water rooms small next to the power rooms?
-    ♡ potable water itself is only about 10 m³
-    ♡ 110 m² is already generous for that tank, access and structure
-
-    ♡ gray, black and brine tanks are smaller than the battery corridor
-    ♡ 4,000 kg of raw ISRU water fits in 40-60 m²
-    ♡ UPA, WPA and BPA with aisles fit in about 90 m² for 30 crew
-
-    ♡ the utility hub gets bigger when atmosphere recovery and methane storage are counted with the water rooms
-
 #### Why is the greenhouse CHX bay not in this file?
     ♡ it sits on the greenhouse ground floor so it can take plant air there
 
@@ -337,20 +335,16 @@
 
 ## Design Evolution:
     ♡ wastewater storage started as an 80-100 m² range
-
     ♡ ISRU water started as a 40-60 m² range
-
+    
     ♡ those ranges were locked to 90 m² and 50 m² so the four rooms add to 340 m²
-
-    ♡ atmosphere recovery started as a 120-140 m² range
-    ♡ that range is still open
+    
+    ♡ atmosphere recovery started as a 120-140 m² range that is still open
 
 ### ----------------------------------------
 
 ## Future Considerations:
     ♡ lock one floor size for the Atmosphere / Resource Recovery Room
-
-    ♡ size the methane storage bay
 
     ♡ exact corridor widths and emergency routing around this hub
 
@@ -362,16 +356,21 @@
 
 ## Dev Log Notes:
 ###### 08/23/2026
-    ♡ finalize Wastewater Storage Room (currently 80-100 m² range)
-
-    ♡ finalize ISRU Water Room (currently 40-60 m² range)
+    ♡ wastewater storage was 80-100 m², now 90 m²
+    ♡ ISRU water was 40-60 m², now 50 m²
+    ♡ 3 Sabatier racks planned for redundancy
 
     ♡ Sabatier racks are located in the Atmosphere / Resource Recovery Room
-    ♡ 3 Sabatier racks planned for redundancy
-    ♡ each rack is approximately washing-machine sized (~ 0.4 m³)
+
+    ♡ each rack is ~ washing-machine sized (~ 0.4 m³)
 
 ###### 08/24/2026
     ♡ after entering the total floor area and volume for the utility / resource area, the water rooms seem small compared to the power rooms, but potable holds ~ 10 m³ of water itself, so ~ 110 m² room gives generous tank space, access, and structure, the other gray, black and brine water are smaller, so that space makes sense as well, the raw ISRU water at 4,000kg fits in 40–60 m² and the UPA, WPA and BPA equipment fits in ~ 90 m² with aisles sounds good for a 30 crew plan.. power just seems massive in comparison b/c the secondary battery corridor I made is bigger than my original habitat plan b/c of the amount of space they need.. when I add more rooms to the resource recovery area it will be bigger for sure
 
 ###### 09/13/2026
     ♡ although NASA investigated methane post-processing for deeper oxygen loop closures, it would be another subsystem, which I will be something to be implemented in the future
+
+###### 09/13/2026
+    ♡ added ISRU Atmosphere Room, 80 m² / 360 m³
+    ♡ utility rooms for V1 are ~ 540-560 m²
+    ♡ one totals block, water rooms are not listed twice
