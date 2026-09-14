@@ -2,6 +2,8 @@
 ### General Notes:
     ♡ preliminary estimates
 
+    ♡ floor areas below are net room area unless marked otherwise
+
     ♡ originally my plan was hexagon so I called it Helix Hive, since changing my plans I decided on Hive-8 because it's now an octagon
 
     ♡ grow area can be larger than the greenhouse floor area because of the vertical growing area and hanging racks
@@ -144,6 +146,9 @@
 #### Central Core:
     ♡ shape: octagon (regular)
     ♡ floor area: ~ 29-30 m²/floor
+    ♡ second floor: ~ 29-30 m²
+    ♡ both floors together: ~ 58-60 m²
+    ♡ only the ground floor is part of the 1,326 m²
     ♡ width: ~ 6.0 m (across opposite walls)
     ♡ height: ~ 11.0 m
     ♡ second floor level: ~ 5.5 m
@@ -311,6 +316,7 @@
         - floor area: ~ 1,326 m²
         - height: ~ 11.0 m
         - volume: ~ 14,586 m³
+        - the core's second floor is extra usable area, it's not added to 1,326 m²
 
     ♡ grow zone floors:
         - floor area: ~ 980 m²

@@ -11,126 +11,15 @@
 ### ----------------------------------------
  
 ## Habitat Power System Plan (updated 08/22/2026):
-## Layout Power / Energy Hub
-#### Primary Battery Room:
-    ♡ shape: rectangle
-    ♡ floor area: ~ 110 m²
-    ♡ height: 4.5 m
-    ♡ volume: ~ 495 m³
-    ♡ 4 seperate battery banks
-    ♡ capacity per bank: ~ 6,250 kWh
-    ♡ battery banks arranged symmetrically
-    ♡ central maintenance and access area
-    ♡ minimum maintenance aisle width: ~ 1.2 m
-    ♡ approximate dimensions: 
-        ~ 11 m × 10 m × 4.5 m
+## Layout:
+    ♡ rooms: ~ 2,482 m² / 13,470 m³
+    ♡ corridor: ~ 268 m² / 1,475 m³
+    ♡ together: ~ 2,750 m² / 14,945 m³
 
-    ♡ access:
-        - entrance into power distribution and transfer room
+    ♡ primary: 25,000 kWh in the 110 m² room
+    ♡ secondary: 1.5 GWh in the 12 rooms
 
-        - *to do*
-
-#### Secondary Battery Corridor Layout:
-    ♡ shape: rectangle
-    ♡ total volume across all rooms: ~ 12,000 m³
-    ♡ 12 isolated battery rooms
-    ♡ each room: ~ 1,000 m³
-    ♡ height: 5.5 m
-    ♡ floor area per room: ~ 182 m²
-    ♡ total floor area of all rooms: ~ 2,182 m²
-    ♡ room dimensions: ~ 15.6 m × 11.7 m × 5.5 m
-    ♡ complete area with hallway:  ~ 2,450 m²
-    ♡ lower access priority
-    
-    ♡ central hallway with 6 battery rooms along each side
-
-    ♡ each room can be isolated for maintenance or emergencies 
-
-    ♡ access:
-        - one end of the corridor connects to the power distribution and transfer room
-
-        - the other end connects to a battery maintenance and service room with an emergency exit
-
-        - the primary battery room connects through the power distribution and transfer room instead of directly into the corridor
-
-#### Power Distribution and Transfer Room:
-    ♡ shape: rectangle
-    ♡ floor area: ~ 70 m²
-    ♡ height: 4.5 m
-    ♡ volume: ~ 315 m³
-    ♡ approximate dimensions: 
-        ~ 10 m × 7 m × 4.5 m
-
-    ♡ access:
-        - connects the primary battery room to the secondary battery corridor
-
-    ♡ contains:
-        - battery transfer equipment
-        - power converters
-        - monitoring and control equipment
-        - main breakers
-        - electrical isolation equipment
-        - connections between the primary and secondary battery bank and habitat power distribution
-
-#### Battery Maintenance and Service Room:
-    ♡ shape: rectangle
-    ♡ floor area: ~ 120 m²
-    ♡ height: 5.5 m
-    ♡ volume: ~ 660 m³
-    ♡ approximate dimensions: ~ 12 m × 10 m × 5.5 m
-    ♡ separate equipment access
-    ♡ used for inspecting, testing and replacing battery-system components
-
-    ♡ access:
-        - far end of the secondary battery corridor
-        - main industrial hub
-
-    ♡ contains:
-        - diagnostic equipment
-        - insulated tools
-        - replacement component things
-        - lifting and handling equipment
-        - temporary space for components removed from the battery rooms
-
-#### Total Power System Space:
-    ♡ floor areas:
-        - primary battery room: ~ 110 m²
-        - secondary battery corridor: ~ 2,450 m²
-        - power dist. and transfer room: ~ 70 m²
-        - battery maint. and service room: ~ 120 m²
-        - total: ~ 2,750 m²
-
-    ♡ volumes:
-        - primary battery room: ~ 495 m³
-        - secondary battery corridor: ~ 13,475 m³
-        - power dist. and transfer room: ~ 315 m³
-        - battery maint. and service room: ~ 660 m³
-        - total: ~ 14,945 m³
-
-    ♡ calculation:
-        - primary battery room:
-            110 m² × 4.5 m
-            = ~ 495 m³
-
-        - secondary battery corridor:
-            2,450 m² × 5.5 m
-            = ~ 13,475 m³
-
-        - power dist. and transfer room:
-            70 m² × 4.5 m
-            = ~ 315 m³
-
-        - battery maint. and service room:
-            120 m² × 5.5 m
-            = ~ 660 m³
-
-        - total floor area:
-            110 m² + 2,450 m² + 70 m² + 120 m²
-            = ~ 2,750 m²
-
-        - total volume:
-            495 m³ + 13,475 m³ + 315 m³ + 660 m³
-            = ~ 14,945 m³
+    ♡ room sizes live in the Power / Energy Hub layout file
 
 ### ----------------------------------------
 
@@ -237,7 +126,6 @@
     ♡ go over crew psychology / morale considerations with power availability (mentioned 07/22/2026 dev log)
 
     ♡ consider whether battery capacity needs to scale with the 50 acre solar plan's seasonal changes
-
 
 ### ----------------------------------------
 
@@ -360,31 +248,3 @@
 
     ♡ considering whether subsystem constants should remain together or be split into dedicated constants files
 
-###### 08/22/2026:
-     ♡ not every room in the habitat is going to be an octagon shape, only the areas that would be better for effiency and space
-
-    ♡ I'm now looking into the power storage rooms, if I get the size of the subsystems figured out I can get the net habitat volume and then make my calculations include real values instead of a placeholder
-
-    ♡ breaking the secondary power storage into multiple smaller rooms or pod areas seems like it would be neater, less overwhelming in emergencies, easier to maintain and easier to isolate issues if they came up later
-
-    ♡ for the secondary battery storage, I'm picturing a hallway with walls that act like partitioners, so you can walk down the hallway, and on the sides there would be like.. rooms/bays/pods with:
-            - rows of tall metal battery cabinets or racks
-            - smaller rectangular battery modules inserted into those racks
-            - thick electrical cables, etc.
-            - coolant pipes and manifolds
-            - battery management electronics
-            - breakers and electrical isolation equipment
-            - fire detection and suppression equipment
-            - narrow but not too narrow maintenance aisles between rack rows
-    
-    each area would have it's own fire resistant walls and doors, independent thermal monitoring, independent electrical isolation, controlled ventilation, its own suppression system and no unrestricted airflow into the central corridor
-                
-    ♡ I was thinking a backup battery can be allowed to be in a more inconvenient spot, meaning it can be a lesser priority for easiest access areas, I want this area to be quite compact, and not too high because I want this to be clean, easy and boring to walk through
-
-    ♡ if I make each area about 1,000 m³, and the corridor about 4 m wide, with six rooms on each side, so 12 in total, that would be around the size of a medium size-ish grocery store
-
-    ♡ I'm picturing a specific grocery store that I go to in town, considering the main floor space, not including employee only areas,  1.5 GWh battery capacity in 12 isolated battery ares, that would be around tree quarters of the shopping area, it should lead into another room, but not be the main door b/c it's small 
-    
-    ♡ by "system level energy density: ~ 125 kWh/m³" under the secondary batter bank physical layout, I am talking about much battery capacity fits in the complete installed battery system with supporting equipment and maintenance space
-
-    ♡ for the main battery room doesn't need to be huge and can be a taller industrial room, though, I think that there should be seperate battery areas that can be seperated and isolated for maintentence and for emergency handling
