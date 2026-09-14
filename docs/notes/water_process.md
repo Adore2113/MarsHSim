@@ -11,45 +11,14 @@
 ### ----------------------------------------
 
 ## Assembly Processors Plan (updated 08/22/2026):
-### Layout
-#### Water Recovery/Processing Rooms:
-    ♡ shape: rectangle
-    ♡ floor area: ~ 90 m²
-    ♡ height: 4.5 m
-    ♡ volume: ~ 405 m³
-    ♡ minimum maintenance aisle width: ~ 1.2 m
-    ♡ approximate dimensions: 
-        ~ 10 m × 9 m × 4.5 m
-    
-    ♡ purpose:
-        - all recovery and treatment work happens here
-
-    ♡ access:
-        - connects to the water storage room
-        - connects to the ISRU water bay
-        - connects to the utility hallway
-        - receives condensate from habitat CHX and greenhouse CHX
-
-    ♡ contains:
-        - UPA and pretreatment
-        - WPA
-        - BPA
-        - pumps, filters, catalytic reactors
-        - sampling hardware
-        - control cabinets
-        - consumables storage
-        - maintenance aisles
-
-    ♡ calculation:
-        10 m × 9 m 
-        = ~ 90 m² floor area
-
-        90 m² × 4.5 m 
-        = ~ 405 m³ volume
+## Layout:
+    ♡ Water Processing Room: ~ 90 m² / 405 m³
+    ♡ UPA, WPA and BPA are in the Water Processing Room
+    ♡ room sizes are in the Utility / Resource Hub file
+    ♡ condensate from habitat CHX and greenhouse CHX comes here
 
 ### Shared Control Modes:
     ♡ offline: system off
-
     ♡ idle: 
         - ready but not enough water in the source tank yet (small fixed power)
 
