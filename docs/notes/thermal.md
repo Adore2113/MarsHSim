@@ -2,29 +2,27 @@
 ### General Notes:
     ♡ preliminary estimates
 
-    ♡ V1 uses one cabin temperature
-    ♡ heaters, radiators, solar gain, leak, crew and equipment heat all hit that one number
+    ♡ V1 uses one shared cabin temperature
 
-    ♡ greenhouse CHX stays in Hive-8
-    ♡ habitat CHX lives in the Atmosphere / Resource Recovery Room
-    ♡ both still report heat into the same cabin temperature for V1
+    ♡ heaters, radiators, solar gain, heat leakage, crew heat and equipment heat all affect that one temperature
 
-    ♡ kW is the heat flow
-    ♡ °C is the result after it hits thermal mass
+    ♡ kW represents heat flow
+
+    ♡ °C represents the resulting temperature after the net heat flow affects the habitat's thermal mass
+
 ### ----------------------------------------
 
 ## Habitat Thermal Plan (updated 09/15/2026):
 
-#### Targets:
-    ♡ habitat start / target: ~ 23.0 °C
-    ♡ comfort: ~ 20.0-25.0 °C
-    ♡ too hot alert: > 28 °C
-    ♡ too cold alert: < 18 °C
-    ♡ humidity start / target: ~ 48 %
-    ♡ humidity stays between 20 % and 80 %
-
-    ♡ low power target: ~ 21.0 °C
-    ♡ critical power target: ~ 19.0 °C
+### Temperature and Humidity Targets:
+    ♡ habitat starting temperature / target: ~ 23.0 °C
+    ♡ comfort range: ~ 20.0-25.0 °C
+    ♡ too hot alert: > 28.0 °C
+    ♡ too cold alert: < 18.0 °C
+    ♡ low-power target: ~ 21.0 °C
+    ♡ critical-power target: ~ 19.0 °C
+    ♡ habitat starting humidity / target: ~ 48 %
+    ♡ allowed humidity range: 20-80 %
 
     ♡ V1 uses one temperature for the whole habitat
 
@@ -34,19 +32,21 @@
     ♡ insulation: ~ 0.65 kW/°C
     ♡ thermal mass: ~ 95 kWh/°C
     ♡ calculation:
-        - leak:
+        - heat leakage:
             (habitat °C - Mars °C) × 0.65
         = heat_loss_kw
 
-        - time to move 1°C from leak only:
+        - ~ thermal response timescale:
             95 ÷ 0.65
             ≈ 146 hours
     
+    
     ♡ used for:
-        - how fast heat leaves through the hull
-        - how slowly the temperature moves
+        - calculating how quickly heat leaves through the habitat hull
 
-    ♡ 95 kWh/°C counts walls, water, tanks and other things inside, not just air
+        - calculating how slowly the habitat temperature changes
+
+    ♡ the 95 kWh/°C thermal mass includes walls, water, tanks, equipment and other internal material, not only the cabin air
 
 #### Outside Environment:
     ♡ season base + day / night from sunlight
@@ -164,7 +164,7 @@
     ♡ condensation from the plants is in Hive-8 and habitat CHX is in the atmosphere room, I am keeping them seperate
     
     ♡ both still add their leftover heat into the same V1 cabin
-    
+
 ### ----------------------------------------
 
 ### Dev Log Notes:
