@@ -88,8 +88,29 @@
     ♡ primary units come on first
     ♡ if heaters come on, radiators go to standby
 
+#### Radiators:
+    ♡ total units: 7
+    ♡ 5 primary
+    ♡ 2 backup
+    ♡ max online: 7
+    ♡ hysteresis: ~ 0.10 °C
+    ♡ pump power: ~ 0.08 kW per radiator that is on
 
-### ----------------------------------------
+    ♡ calculation:
+        - 5 × 68 m² = 340 m²
+        - 2 × 55 m² = 110 m²
+        - 340 + 110 = 450 m²
+
+    ♡ includes:
+        - 5 primary panels, 68 m² each
+        - 2 backup panels, 55 m² each
+
+    ♡ used for:
+        - dealing with extra heat when the habitat is above target
+    
+    ♡ if radiators come on, heaters go to standby
+    ♡ V1 compares habitat temperature to Mars air temperature
+
 
 ### Dev Log Notes:
 ###### From v1_scope:
