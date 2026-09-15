@@ -30,6 +30,28 @@
 
 ### ----------------------------------------
 
+#### Insulation and mass:
+    ♡ insulation: ~ 0.65 kW/°C
+    ♡ thermal mass: ~ 95 kWh/°C
+    ♡ calculation:
+        - leak:
+            (habitat °C - Mars °C) × 0.65
+        = heat_loss_kw
+
+        - time to move 1°C from leak only:
+            95 ÷ 0.65
+            ≈ 146 hours
+    
+    ♡ used for:
+        - how fast heat leaves through the hull
+        - how slowly the temperature moves
+
+    ♡ 95 kWh/°C counts walls, water, tanks and other things inside, not just air
+
+
+
+### ----------------------------------------
+
 ### Dev Log Notes:
 ###### From v1_scope:
     ♡ going to use kilowatts (kW) for heat sources (kW = change) (C = result)
