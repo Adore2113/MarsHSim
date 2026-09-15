@@ -28,7 +28,7 @@
 
 ### ----------------------------------------
 
-#### Insulation and mass:
+### Insulation and Thermal Mass:
     ♡ insulation: ~ 0.65 kW/°C
     ♡ thermal mass: ~ 95 kWh/°C
     ♡ calculation:
@@ -36,10 +36,9 @@
             (habitat °C - Mars °C) × 0.65
         = heat_loss_kw
 
-        - ~ thermal response timescale:
+        - approx. thermal response time:
             95 ÷ 0.65
             ≈ 146 hours
-    
     
     ♡ used for:
         - calculating how quickly heat leaves through the habitat hull
@@ -48,20 +47,40 @@
 
     ♡ the 95 kWh/°C thermal mass includes walls, water, tanks, equipment and other internal material, not only the cabin air
 
-#### Outside Environment:
-    ♡ season base + day / night from sunlight
-    ♡ northern spring: base -10 °C, swing 12 °C
-    ♡ northern summer: base 0 °C, swing 15 °C
-    ♡ northern autumn: base -15 °C, swing 12 °C
-    ♡ northern winter: base -25 °C, swing 10 °C
-    
-    ♡ V1 weather used for:
-        - Mars air temperature
-        - sunlight hits about 48 m² of the habitat in this calculation
+### Outside Environment and Solar Gain:
+    ♡ outside temperature uses a seasonal base temperature plus a day / night swing based on sunlight
+
+    ♡ northern spring:
+        - base temperature: -10 °C
+        - day / night swing: 12 °C
+
+    ♡ northern summer:
+        - base temperature: 0 °C
+        - day / night swing: 15 °C
+
+    ♡ northern autumn:
+        - base temperature: -15 °C
+        - day / night swing: 12 °C
+
+    ♡ northern winter:
+        - base temperature: -25 °C
+        - day / night swing: 10 °C
+
+    ♡ V1 weather is used to calculate:
+        - Mars outside air temperature
+        - sunlight heating ~ 48 m² of habitat surface
 
     ♡ sunlight-facing area: ~ 48.0 m²
-    ♡ max daylight: ~ 0.59 kW/m²
+    ♡ maximum daylight intensity: ~ 0.59 kW/m²
     ♡ how much of that heat gets through: ~ 0.75
+    
+    ♡ calculation:
+        sunlight intensity × sunlight-facing area × solar heat-transfer fraction
+        = solar gain
+ 
+    ♡ V1 weather is used for:
+        - Mars air temperature
+        - sunlight hits about 48 m² of the habitat in this calculation
 
 ### ----------------------------------------
 
