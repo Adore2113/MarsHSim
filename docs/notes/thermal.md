@@ -126,6 +126,29 @@
 
 ### ----------------------------------------
 
+## Design Evolution:
+    ♡ first insulation idea was 1.0 kW/°C
+    ♡ later tested with 0.3-0.8 and now uses 0.65
+    ♡ CHX started as humidity only
+    ♡ cooling from condensation was added later
+    ♡ radiators stayed the main heat reject
+    ♡ 6 array / 50 panel note was an early count
+    ♡ code now uses 7 radiator units, 450 m² total
+    ♡ started with radiators only, then heaters as a list like amine beds
+
+### ----------------------------------------
+
+## Future Considerations:
+    ♡ separate greenhouse air temperature from cabin temperature and potentially battery rooms
+
+    ♡ use a colder sky temperature instead of Mars air, potentially
+
+    ♡ decide if my habiatat will be half buried or not, if so change 0.65
+
+    ♡ figure out humidity volume vs layout volume
+
+### ----------------------------------------
+
 
 ### ----------------------------------------
 
