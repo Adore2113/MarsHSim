@@ -65,6 +65,29 @@
 
 ### ----------------------------------------
 
+#### Heaters:
+    ♡ total units: 6
+    ♡ 4 primary
+    ♡ 2 backup
+    ♡ max online: 6
+    ♡ hysteresis: ~ 0.5 °C
+
+    ♡ calculation:
+        - 4 × 9.0 kW = 36 kW
+        - 2 × 8.0 kW = 16 kW
+        - 36 + 16 = 52 kW
+
+    ♡ includes:
+        - 4 primary heaters, 9.0 kW each
+        - 2 backup heaters, 8.0 kW each
+
+    ♡ used for:
+        - heating when the habitat is below target
+        - covering the winter leak plus a bit extra
+
+    ♡ primary units come on first
+    ♡ if heaters come on, radiators go to standby
+
 
 ### ----------------------------------------
 
