@@ -48,6 +48,22 @@
 
     ♡ 95 kWh/°C counts walls, water, tanks and other things inside, not just air
 
+#### Outside Environment:
+    ♡ season base + day / night from sunlight
+    ♡ northern spring: base -10 °C, swing 12 °C
+    ♡ northern summer: base 0 °C, swing 15 °C
+    ♡ northern autumn: base -15 °C, swing 12 °C
+    ♡ northern winter: base -25 °C, swing 10 °C
+    
+    ♡ V1 weather used for:
+        - Mars air temperature
+        - sunlight hits about 48 m² of the habitat in this calculation
+
+    ♡ sunlight-facing area: ~ 48.0 m²
+    ♡ max daylight: ~ 0.59 kW/m²
+    ♡ how much of that heat gets through: ~ 0.75
+
+### ----------------------------------------
 
 
 ### ----------------------------------------
