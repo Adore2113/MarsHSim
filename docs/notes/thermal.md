@@ -149,7 +149,22 @@
 
 ### ----------------------------------------
 
+## Design Decisions:
+#### Why one cabin temperature?
+    ♡ V1 only needs to know if the crew volume is too hot or too cold
 
+    ♡ splitting Hive-8 batteries and utility into their own loops is another subsystem to be considered in the future
+
+#### Why radiators plus heaters, not only CHX?
+    ♡ CHX follows the humidity
+    
+    ♡ you can need cooling when the air is already dry and you can need heat when CHX is running
+
+#### Why keep greenhouse CHX out of the utility room?
+    ♡ condensation from the plants is in Hive-8 and habitat CHX is in the atmosphere room, I am keeping them seperate
+    
+    ♡ both still add their leftover heat into the same V1 cabin
+    
 ### ----------------------------------------
 
 ### Dev Log Notes:
