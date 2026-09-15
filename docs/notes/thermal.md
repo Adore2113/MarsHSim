@@ -111,6 +111,23 @@
     ♡ if radiators come on, heaters go to standby
     ♡ V1 compares habitat temperature to Mars air temperature
 
+#### CHX:
+    ♡ habitat CHX power: ~ 0.35 kW when removing vapor
+    ♡ 60 % of power comes back as waste heat
+    ♡ removes 0.85 of the extra vapor above target
+    ♡ condensation heat: 2,260 kJ/kg
+
+    ♡ greenhouse CHX stays in Hive-8 and habitat CHX stays in the Atmosphere / Resource Recovery Room
+    
+    ♡ both still change the same habitat temperature in V1
+
+    ♡ CHX is for humidity first
+    ♡ radiators do most of the cooling
+
+### ----------------------------------------
+
+
+### ----------------------------------------
 
 ### Dev Log Notes:
 ###### From v1_scope:
