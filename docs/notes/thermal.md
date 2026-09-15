@@ -162,13 +162,19 @@
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ separate greenhouse air temperature from cabin temperature and potentially battery rooms
+    ♡ separate greenhouse air temperature from cabin temperature
 
-    ♡ use a colder sky temperature instead of Mars air, potentially
+    ♡ potentially give the battery rooms their own thermal loop
 
-    ♡ decide if my habiatat will be half buried or not, if so change 0.65
+    ♡ consider using effective sky temperature instead of Mars air temperature for radiator heat rejection
 
-    ♡ figure out humidity volume vs layout volume
+    ♡ decide if the habitat will be partially buried and update the 0.65 kW/°C heat loss, if necessary
+
+    ♡ UPDATE humidity-control volume with the final habitat layout volume!
+
+    ♡ look into the radiator heat-rejection and maximum rejection capacity under during different outside conditions
+
+    ♡ define where each CHX rejects condensation heat and equipment waste heat
 
 ### ----------------------------------------
 
@@ -179,14 +185,26 @@
     ♡ splitting Hive-8 batteries and utility into their own loops is another subsystem to be considered in the future
 
 #### Why radiators plus heaters, not only CHX?
-    ♡ CHX follows the humidity
+    ♡ CHX follows the humidity demand
     
     ♡ you can need cooling when the air is already dry and you can need heat when CHX is running
 
+    ♡ radiators and heaters let temperature control operate independently from humidity control
+
 #### Why keep greenhouse CHX out of the utility room?
-    ♡ condensation from the plants is in Hive-8 and habitat CHX is in the atmosphere room, I am keeping them seperate
+    ♡ most greenhouse condensation comes directly from plant transpiration inside Hive-8
+
+    ♡ the systems handle their physical locations and functions 
     
     ♡ both still add their leftover heat into the same V1 cabin
+
+#### Why use staged primary and backup units?
+
+    ♡ primary units handle normal temperature control
+
+    ♡ backup units give extra capacity during larger heating or cooling needs
+
+    ♡ they allow power use and thermal output to increase gradually
 
 ### ----------------------------------------
 
@@ -265,6 +283,6 @@
 
     ♡ I'm happy w. how the temp system is running for now, so now I'm running atmosphere again
 
-
-
+###### 08/27/2026
+    ♡ I still need to update the thermal system and the CHX needs to be taken care of, I'm starting with the gh CHX first
 
