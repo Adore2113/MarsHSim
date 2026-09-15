@@ -84,13 +84,13 @@
 
 ### ----------------------------------------
 
-#### Heaters:
+## Heaters:
     ♡ total units: 6
-    ♡ 4 primary
-    ♡ 2 backup
-    ♡ max online: 6
+    ♡ primary units: 4
+    ♡ backup units: 2
+    ♡ maximum online: 6
     ♡ hysteresis: ~ 0.5 °C
-
+    ♡ total heating capacity: 52 kW
     ♡ calculation:
         - 4 × 9.0 kW = 36 kW
         - 2 × 8.0 kW = 16 kW
@@ -101,36 +101,40 @@
         - 2 backup heaters, 8.0 kW each
 
     ♡ used for:
-        - heating when the habitat is below target
-        - covering the winter leak plus a bit extra
+        - heating when the habitat is below its active temperature target
+
+        - covering winter heat leakage with some extra capacity
 
     ♡ primary units come on first
     ♡ if heaters come on, radiators go to standby
 
 #### Radiators:
     ♡ total units: 7
-    ♡ 5 primary
-    ♡ 2 backup
-    ♡ max online: 7
+    ♡ primary units: 5, 68 m²/unit
+    ♡ backup units: 2, 55 m²/unit
+    ♡ maximum online: 7
+    ♡ total radiator area: ~ 450 m²
+    ♡ primary radiator area: 340 m²
+    ♡ backup radiator area: 110 m²
     ♡ hysteresis: ~ 0.10 °C
-    ♡ pump power: ~ 0.08 kW per radiator that is on
+    ♡ pump power: ~ 0.08 kW per active radiator
 
     ♡ calculation:
         - 5 × 68 m² = 340 m²
         - 2 × 55 m² = 110 m²
         - 340 + 110 = 450 m²
-
-    ♡ includes:
-        - 5 primary panels, 68 m² each
-        - 2 backup panels, 55 m² each
+        
+        number of active radiators × 0.08 kW
+        = number of active radiators
 
     ♡ used for:
         - dealing with extra heat when the habitat is above target
     
-    ♡ if radiators come on, heaters go to standby
+    ♡ primary radiators come online first
+    ♡ if radiators come online, heaters enter standby
     ♡ V1 compares habitat temperature to Mars air temperature
 
-#### CHX:
+### Condensing Heat Exchangers (CHX):
     ♡ habitat CHX power: ~ 0.35 kW when removing vapor
     ♡ 60 % of power comes back as waste heat
     ♡ removes 0.85 of the extra vapor above target
