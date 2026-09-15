@@ -11,7 +11,22 @@
 
     ♡ kW is the heat flow
     ♡ °C is the result after it hits thermal mass
+### ----------------------------------------
 
+## Habitat Thermal Plan (updated 09/15/2026):
+
+#### Targets:
+    ♡ habitat start / target: ~ 23.0 °C
+    ♡ comfort: ~ 20.0-25.0 °C
+    ♡ too hot alert: > 28 °C
+    ♡ too cold alert: < 18 °C
+    ♡ humidity start / target: ~ 48 %
+    ♡ humidity stays between 20 % and 80 %
+
+    ♡ low power target: ~ 21.0 °C
+    ♡ critical power target: ~ 19.0 °C
+
+    ♡ V1 uses one temperature for the whole habitat
 
 ### ----------------------------------------
 
