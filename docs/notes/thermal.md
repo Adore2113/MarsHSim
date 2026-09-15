@@ -139,13 +139,13 @@
     ♡ 60 % of power comes back as waste heat
     ♡ removes 0.85 of the extra vapor above target
     ♡ condensation heat: 2,260 kJ/kg
-
-    ♡ greenhouse CHX stays in Hive-8 and habitat CHX stays in the Atmosphere / Resource Recovery Room
-    
-    ♡ both still change the same habitat temperature in V1
-
-    ♡ CHX is for humidity first
+   
+    ♡ CHX is controlled by humidity first
     ♡ radiators do most of the cooling
+    ♡ both CHX systems change the same habitat temperature in V1
+
+    ♡ greenhouse CHX stays in Hive-8
+    ♡ habitat CHX stays in the Atmosphere / Resource Recovery Room
 
 ### ----------------------------------------
 
@@ -154,7 +154,7 @@
     ♡ later tested with 0.3-0.8 and now uses 0.65
     ♡ CHX started as humidity only
     ♡ cooling from condensation was added later
-    ♡ radiators stayed the main heat reject
+    ♡ radiators stayed the main heat rejection system
     ♡ 6 array / 50 panel note was an early count
     ♡ code now uses 7 radiator units, 450 m² total
     ♡ started with radiators only, then heaters as a list like amine beds
