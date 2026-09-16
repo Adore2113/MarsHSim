@@ -4,10 +4,6 @@
 
     ♡ one Martian sol is divided into 24 LMST hours for display
 
-    ♡ Mars' elliptical orbit is modeled so seasonal timing doesn't progress at a constant angular speed
-
-    ♡ northern seasons are defined by areocentric solar longitude (Lₛ)
-
     ♡ daylight length changes with season and the habitat's latitude
 
     ♡ sunlight rises and falls smoothly across the daylight period using a sine wave
@@ -59,6 +55,32 @@
 
         - current LMST minute:
             whole-number portion of remaining hour seconds ÷ LMST minute length
+
+### ----------------------------------------
+
+### Habitat Location:
+    ♡ location: Arcadia Planitia
+    ♡ latitude: 47.0°N
+    ♡ longitude: 184.0°E
+    ♡ latitude is used to calculate seasonal daylight length
+    ♡ longitude is stored but is not currently used by the V1 time or daylight calculations
+
+### Mars Orbit:
+    ♡ axial tilt: 25.19°
+    ♡ orbital eccentricity: 0.0934
+    ♡ Lₛ at perihelion: 251.0°
+    ♡ mean anomaly at mission start: 98.658°
+    ♡ mean anomaly represents time-based progress around the orbit
+
+    ♡ eccentric anomaly is an intermediate angle used to solve the elliptical orbit
+
+    ♡ true anomaly represents Mars' actual angular position relative to perihelion
+
+    ♡ northern seasons are defined by areocentric solar longitude as Lₛ, Mars' seasonal position around the Sun
+
+    ♡ Mars' elliptical orbit is modeled so seasonal timing doesn't progress at a constant angular speed
+
+    ♡ northern seasons are defined by areocentric solar longitude (Lₛ)
 
 ### ----------------------------------------
 
