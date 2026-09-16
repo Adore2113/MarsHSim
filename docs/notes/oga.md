@@ -38,7 +38,6 @@
         
         - currently uses 55 % of normal running power and heat
 
-    ♡ water used: 1.11 kg water / kg O₂
     ♡ H₂ made from the same split
     ♡ leaves 2.0 kg/crew + 30 kg before OGA can run
 
@@ -238,10 +237,21 @@
 ## Future Considerations:
     ♡ currently doesn't separately record or report H₂ that exceeds storage capacity
 
+    ♡ 6.0 kPa/h is a large cap if hab_vol_m3 is big.. come back to this after a couple runs
+
 ### ----------------------------------------
 
 ## Design Decisions:
-#### 
+#### Why kPa instead of a fixed kg of O₂ each step?
+    ♡ the cabin O₂ is already tracked in kPa
+    
+    ♡ volume and temperature change how much mass that kPa is
+
+#### Why idle at 0.002 kPa?
+    ♡ so it doesn't start and stop every tiny change
+
+#### Why limited_water still draws power?
+    ♡ the unit is on, it just is not allowed to make O₂ that step
 
 ### ----------------------------------------
 
