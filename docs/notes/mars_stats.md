@@ -190,7 +190,73 @@
     ♡ if the peak sunlight for the completed sol is below the threshold, the low-sunlight streak increases by one sol
 
     ♡ otherwise, the streak resets to 0
-    
+
+### ----------------------------------------
+
+### Atmospheric Dust and Storms:
+#### Background Atmospheric Opacity:
+    ♡ opacity is represented by optical depth, or tau
+    ♡ clear-sky opacity: ~ 0.35 tau
+    ♡ maximum background storm-season opacity: 
+        ~ 1.15 tau
+
+    ♡ background opacity follows the same seasonal sine shape as storm likelihood
+
+    ♡ calculation:
+        - background opacity:
+            0.35 + (1.15 - 0.35) × storm-season probability
+
+#### Storm Season:
+    ♡ storm season begins at Lₛ 180°
+    ♡ storm season ends at Lₛ 330°
+
+    ♡ the seasonal probability factor begins at 0.0, peaks halfway through the season and returns to 0.0 at the end
+
+    ♡ peak seasonal probability occurs near Lₛ 255°
+    ♡ calculation:
+        - degrees into storm season:
+            current Lₛ - 180°
+
+        - storm-season length:
+            330° - 180° = 150°
+
+        - progress through storm season:
+            degrees into storm season ÷ 150°
+
+        - storm-season probability factor:
+            sin(π × progress through storm season)
+
+#### Daily Storm Chance:
+    ♡ base daily storm probability: 0.001
+    ♡ maximum seasonal probability bonus: 0.02
+    ♡ daily storm chance outside storm season: 0.001, or 0.1 %
+
+    ♡ maximum daily storm chance near the middle of storm season: 0.021, or 2.1 %
+
+    ♡ calculation:
+        - daily storm chance:
+            0.001 + 0.02 × storm-season probability factor
+
+        - storm begins:
+            random number from 0.0 to below 1.0 < daily storm chance
+
+#### Storm Duration and Severity:
+    ♡ daily storm-end probability: 0.15
+
+    ♡ when a storm starts, its tau is selected randomly from 1.75 to 5.0
+
+    ♡ storm severity stays unchanged for the duration of that storm in V1
+
+    ♡ storm_sols_passed starts at 1 on the starting sol
+
+    ♡ if the storm continues, storm_sols_passed increases by one each sol
+
+    ♡ when the storm ends, storm tau and sols passed reset to 0
+
+    ♡ calculation:
+        - storm ends today:
+            random number from 0.0 to below 1.0 < 0.15
+
 ### ----------------------------------------
 
 ## Design Evolution:
