@@ -82,6 +82,53 @@
 
     ♡ northern seasons are defined by areocentric solar longitude (Lₛ)
 
+#### Kepler's Equation:
+    ♡ equation: M = E - e sin(E)
+    ♡ M: mean anomaly
+    ♡ E: eccentric anomaly
+    ♡ e: orbital eccentricity
+
+    ♡ Kepler error: E - e sin(E) - M
+    ♡ Kepler slope: 1 - e cos(E)
+
+    ♡ the code uses five Newton-Raphson iterations to solve for eccentric anomaly
+
+    ♡ each iteration measures the current error and divides it by the slope to improve the estimate
+
+    ♡ calculation:
+        - mean anomaly at the current time:
+            starting mean anomaly + mission seconds × degrees advanced per second
+
+        - improved eccentric anomaly:
+             current E - Kepler error ÷ Kepler slope
+
+        - true anomaly:
+            convert the solved eccentric anomaly through the elliptical-orbit angle relationship
+
+        - areocentric solar longitude:
+            (true anomaly + 251.0°) modulo 360°
+
+### Northern Seasons:
+    ♡ northern spring:
+        - Lₛ from 0° to below 90°
+
+    ♡ northern summer:
+        - Lₛ from 90° to below 180°
+
+    ♡ northern autumn:
+        - Lₛ from 180° to below 270°
+
+    ♡ northern winter:
+        - Lₛ from 270° to below 360°
+
+    ♡ the 90° Lₛ ranges do not take equal amounts of time because Mars moves faster near perihelion and slower near aphelion
+
+    ♡ approximate research estimates:
+        - northern spring: ~ 194 sols
+        - northern summer: ~ 178 sols
+        - northern autumn: ~ 142 sols
+        - northern winter: ~ 154 sols
+        
 ### ----------------------------------------
 
 ## Design Evolution:
