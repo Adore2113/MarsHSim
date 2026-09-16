@@ -79,6 +79,54 @@
 
         - outside a water emergency, a retracting pipe finishes retracting before it can be selected again
 
+#### Water Extraction:
+    ♡ base extraction rate: 
+        ~ 15.0 kg/h per extracting pipe
+
+    ♡ pipe efficiency: ~ 0.82
+    ♡ dust factor reduces usable extraction
+    ♡ water added is limited by the remaining capacity of the raw ISRU water tank
+
+    ♡ calculation:
+        - step duration in hours:
+            step duration in minutes ÷ 60
+
+        - ice melted this step:
+            15.0 kg/h × extracting pipes × step duration in hours
+
+        - average dust effect:
+            sum of active-pipe dust factors ÷ number of extracting pipes
+
+        - usable raw water extracted:
+            ice melted × 0.82 × average dust effect
+
+        - raw-water storage space remaining:
+            raw-water storage capacity - current raw-water storage
+
+        - water added to storage:
+            the smaller of usable raw water extracted or storage space remaining
+
+#### Water Extraction Power and Heat:
+    ♡ heated-pipe power: ~ 8.5 kW per active pipe
+    ♡ heat output: ~ 85 % of electrical power
+    ♡ currenly counts extracting and deploying pipes as active for power
+
+    ♡ calculation:
+        - active pipes:
+            extracting pipes + deploying pipes
+
+        - electrical power:
+            8.5 kW × active pipes
+
+        - electrical energy used:
+            electrical power × step duration in hours
+
+        - heat output:
+            electrical power × 0.85
+
+        - heat energy added:
+            heat output × step duration in hours
+
 ### ----------------------------------------
 
 ## Design Evolution:
