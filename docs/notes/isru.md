@@ -301,17 +301,104 @@
 
 ### ----------------------------------------
 ## Design Evolution:
-####
+    ♡ local water extraction was left for a later v.
+
+    ♡ high daily water losses led to development of retractable heated extraction pipes
+
+    ♡ the first concept used two or three pipes(now uses six with automatic staging)
+    
+    ♡ raw ISRU water went to general water system without its own dedicated tank, a separate raw ISRU water tank and storage area were added later
+
+    ♡ atmosphere ISRU was added to provide N₂ and Ar without resupply
+
+    ♡ compressors had only direct on / off control
+
+    ♡ sorbent beds were added before connecting the atmosphere system to the rest of the habitat
+
+    ♡ the system uses a swing-bed cycle similar to the habitat amine beds
+
+    ♡ five beds were selected so some can remain available while others regenerate
+
+    ♡ compressor processing capacity is reduced when fewer beds can adsorb CO₂
+
+    ♡ ISRU water variables were renamed to include water after the atmosphere ISRU system was added
 
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ 
+    ♡ decide if deploying pipes should draw power even when no pipe is already extracting
+
+    ♡ decide how much power retraction requires and what happens if power is lost while pipes are deployed
+
+    ♡ decide if deployed pipes can freeze during low-power or critical-power events !!
+
+    ♡ stop or idle extraction when the raw-water tank is full instead of continuing to operate without storing additional water !!
+
+    ♡ recalculate pipe-status output counts after an offline command changes deploying and extracting pipes to retracting
+
+    ♡ review pipe counter updates when a deployment finishes or a pipe changes direction during the same step
+
+    ♡ decide how much extracted-pipe heat reaches the habitat instead of the subsurface or outside environment
+
+    ♡ decide if four compressors should stay powered when only two can process atmosphere through available sorbent beds
+
+    ♡ add sorbent-bed power and heat requirements
+
+    ♡ allow backup sorbent beds to support processing when primary standby beds are unavailable
+
+    ♡ continue regeneration timers even when compressors are idle or the atmosphere system is not processing new intake
+
+    ♡ figoure out where bypassed CO₂ goes instead of allowing it to leave the tracked mass balance
+
+    ♡ figoure out what happens to extracted N₂, Ar and regenerated CO₂ when their storage tanks are full
+
+    ♡ confirm if the Martian atmosphere ratios should be treated as mass fractions or converted from molar / volume fractions
+
+    ♡ research compressor and sorbent-bed regeneration timing in more detail
 
 ### ----------------------------------------
 
 ## Design Decisions:
-#### 
+#### Why extract water locally?
+    ♡ a 30-person crew creates a large continuing water demand
+
+    ♡ even with water recovery, local extraction reduces dependence on stored water
+
+    ♡ Arcadia Planitia was selected partly because of accessible subsurface water ice
+
+#### Why use retractable heated pipes?
+    ♡ heating allows subsurface ice to be melted for collection
+
+    ♡ retraction protects pipes when they are not needed and automatic deployment allows the system to respond to changing potable-water levels
+
+#### Why give raw ISRU water its own storage area?
+    ♡ extracted water has not yet passed through the Water Processing Assembly
+
+    ♡ separating it from potable water protects water quality
+
+    ♡ dedicated storage makes routing and maintenance easier to understand
+
+#### Why extract N₂ and Ar from the Martian atmosphere?
+    ♡ N₂ and Ar are required to maintain the selected habitat buffer-gas mixture
+
+    ♡ local collection supports long-duration operation without regular gas resupply
+
+#### Why remove CO₂ before storing N₂ and Ar?
+    ♡ Martian atmosphere is mostly CO₂
+
+    ♡ sorbent beds remove most of the CO₂ from the processed stream letting the smaller N₂ and Ar portions to be collected separately
+
+#### Why use multiple sorbent beds?
+    ♡ adsorption must continue while another bed regenerates
+
+    ♡ multiple beds provide cycling capacity and redundancy
+
+    ♡ backup beds reduce the risk of losing all atmospheric processing when a bed is unavailable
+
+#### Why do compressors switch states immediately?
+    ♡ unlike the physical travel time of the water pipes, V1 does not model a mechanical deployment delay for compressors
+
+    ♡ immediate switching keeps the first atmosphere model manageable
 
 ### ----------------------------------------
 
