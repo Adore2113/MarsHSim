@@ -117,6 +117,49 @@
         - crew heat energy this step:
             crew heat output in kW × step duration in hours
 
+### Crew Water Use:
+    ♡ base nourishment water: ~ 2.35 kg/person/day
+    ♡ includes drinking and food preparation
+    ♡ base hygiene water: ~ 1.5 kg/person/day
+    ♡ base black water: ~ 1.8 kg/person/day
+    ♡ nourishment and hygiene water use the activity-state water multiplier
+    
+    ♡ black-water production does not currently use the activity multiplier
+    
+    ♡ nourishment and hygiene water are removed from potable-water storage
+    
+    ♡ 75 % of hygiene water is routed to gray-water storage
+
+    ♡ calculation:
+        - nourishment water this step:
+            (2.35 kg/day × crew count × water multiplier × step duration in hours) ÷ 24
+
+        - hygiene water this step:
+            (1.5 kg/day × crew count × water multiplier × step duration in hours) ÷ 24
+
+        - potable water used:
+            nourishment water + hygiene water
+
+        - black water this step:
+            (1.8 kg/day × crew count × step duration in hours) ÷ 24
+
+        - gray water recovered:
+            hygiene water × 0.75
+
+### Habitability and Crew Wellbeing:
+
+    ♡ private Crew Quarters provide a place to sleep, work, relax and be alone
+
+    ♡ personal room controls and visual customization gives familiarity and a sense of control
+
+    ♡ distinct room identities support navigation, familiarity and choice
+
+    ♡ shared living, creative, media, exercise, quiet and reflection spaces gives different social and sensory options
+
+    ♡ wellness lighting supports crew wellbeing during extended low-sunlight periods and dust storms
+
+    ♡ future crew reports will include both complaints and positive feedback
+
 ### ----------------------------------------
 
 ### Crew Staffing:
