@@ -72,6 +72,51 @@
 
     ♡ V1 uses one shared crew_activity state for the entire crew meaning all 30 crew currently use the same activity multipliers during a timestep
 
+### Atmosphere Metabolism:
+
+    ♡ base O₂ decrease: 0.00011 kPa/person/hour
+    ♡ base CO₂ increase: 0.0000967 kPa/person/hour
+    ♡ the activity state scales both values
+
+    ♡ calculation:
+        - step duration in hours:
+            step duration in minutes ÷ 60
+
+        - O₂ consumed this step:
+            0.00011 kPa × crew count × O₂ activity multiplier × step duration in hours
+
+        - CO₂ produced this step:
+            0.0000967 kPa × crew count × CO₂ activity multiplier × step duration in hours
+
+    ♡ the approximate 1 kg CO₂/person/day research note is background support, while V1 directly changes cabin CO₂ in kPa
+
+### Crew Humidity:
+    ♡ base breath vapor: ~ 1.0 kg/person/day
+    ♡ base skin vapor: ~ 0.8 kg/person/day
+    ♡ breath and skin vapor use separate activity multipliers and are added to the habitat humidity balance
+
+    ♡ calculation:
+        - breath vapor this step:
+            (1.0 kg/day × crew count × breath-vapor multiplier × step duration in hours) ÷ 24
+
+        - skin vapor this step:
+            (0.8 kg/day × crew count × skin-vapor multiplier × step duration in hours) ÷ 24
+
+        - total crew vapor this step:
+            breath vapor + skin vapor
+
+### Crew Heat:
+    ♡ crew heat depends on activity state
+    ♡ watts are converted to kilowatts before being added to the thermal system
+    ♡ conversion: 1,000 W = 1 kW
+
+    ♡ calculation:
+        - crew heat output:
+            heat per person in W × crew count ÷ 1,000
+
+        - crew heat energy this step:
+            crew heat output in kW × step duration in hours
+
 ### ----------------------------------------
 
 ### Crew Staffing:
