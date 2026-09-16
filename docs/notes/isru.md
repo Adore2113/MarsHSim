@@ -20,7 +20,64 @@
 ### ----------------------------------------
 
 ## Arcadia Extraction Plan (08/18/2026):
-####
+### ISRU Water:
+    ♡ total heated pipes: 6
+    ♡ maximum pipes online: 6
+    ♡ extracted water is sent to the raw ISRU water tank
+    ♡ raw ISRU water storage is separate from potable and other non-potable water storage
+
+    ♡ water sytem modes:
+        - offline:
+            - ISRU water system is switched off
+            - pipes that are deploying or extracting are commanded to retract
+
+        - idle:
+            - system is switched on, but no pipes are extracting or deploying
+
+        - running:
+            - at least one pipe is extracting or deploying
+
+    ♡ pipe states:
+        - offline:
+            - pipe is fully retracted and not extracting
+
+        - deploying:
+            - pipe is moving into extraction position
+            - deployment time: ~ 25 minutes
+
+        - extracting:
+            - pipe is heating and extracting subsurface ice
+
+        - retracting:
+            - pipe is returning to its protected position
+            - retraction time: ~ 45 minutes
+
+    ♡ automatic pipe staging:
+        - potable water below 1,500 kg:
+            - target pipes online: 6
+            - treated as a water emergency
+
+        - potable water from 1,500 kg - below 2,600 kg:
+            - target pipes online: 4
+
+        - potable water from 2,600 kg - below 3,900 kg:
+            - target pipes online: 3
+
+        - potable water from 3,900 kg - below 5,200 kg:
+            - target pipes online: 2
+
+        - potable water at or above 5,200 kg:
+            - target pipes online: 0
+
+        - low-power mode:
+            - maximum target: 2 pipes
+
+        - critical-power mode:
+            - target pipes online: 0
+
+        - during a water emergency, a retracting pipe can reverse its decision and begin deploying again
+
+        - outside a water emergency, a retracting pipe finishes retracting before it can be selected again
 
 ### ----------------------------------------
 
