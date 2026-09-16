@@ -152,7 +152,7 @@
             - atmosphere system is switched on, but no compressors are extracting
 
         - running:
-            - at least one compressor is extracting Martian atmosphere
+            - at least one compressor is extracting Mars atmosphere
     
     ♡ automatic compressor taging:
         - low-storage thresholds:
@@ -182,6 +182,34 @@
 
         - Ar upper threshold:
             400 kg × 1.5 = 600 kg
+
+#### Mars Atmosphere Ratios:
+    ♡ CO₂ ratio: ~ 0.95
+    ♡ N₂ ratio: ~ 0.027
+    ♡ Ar ratio: ~ 0.016
+    ♡ the remaining ~ 0.007 represents gases not collected by this V1 system
+
+#### Sorbent Beds:
+    ♡ total planned beds: 5
+    ♡ primary beds: 3
+    ♡ backup beds: 2
+    ♡ maximum beds adsorbing at once: 2
+    ♡ CO₂ capture efficiency: ~ 0.85
+    ♡ regeneration time: ~ 60 minutes
+    ♡ bed states:
+        - standby
+        - adsorbing
+        - regenerating
+
+    ♡ adsorbing beds capture CO₂ from the compressed Mars atmosphere before N₂ and Ar are added to storage
+
+    ♡ when a bed reaches capacity, it enters regeneration
+
+    ♡ regenerating beds release their stored CO₂ gradually over the regeneration period
+
+    ♡ released CO₂ is transferred to CO₂ storage up to its remaining capacity
+
+    ♡ fewer available adsorbing beds reduce the amount of raw atmosphere that can be processed
 
 ### ----------------------------------------
 ## Design Evolution:
