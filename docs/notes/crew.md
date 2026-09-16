@@ -1,24 +1,53 @@
 # Crew and Scheduling
 ### General Notes:
-    ♡ Crew Quarters are designed for long term habitation instead of short mission use
+    ♡ crew total: 30
 
-    ♡ each crew member has a private space for sleep, work, relaxation and time alone
+    ♡ each crew member has private space for sleep, work, relaxation and time alone
 
-    ♡ room customization is intended to provide familiarity, personal identity and psychological wellbeing
+    ♡ comfort features remain limited by habitat-wide safety, atmosphere, power, water and thermal requirements
 
-    ♡ comfort features are limited by habitat wide safety, atmosphere, power, water and thermal requirements
+    ♡ Crew Quarter layout and room details are kept in the Social and Shared Living Space Layout file
 
-    ♡ the two unassigned quarters provide temporary housing during maintenance, medical isolation and other crew needs
+    ♡ V1 models the combined metabolic effects of the full crew
+
+    ♡ individual crew schedules, shifts and assignments are planned but are not implemented yet
 
 ### ----------------------------------------
 
 ## Crew and Habitability Plan (updated 08/31/2026):
-#### Metabolism and sleep:
-    ♡ CO₂ about 1 kg/person/day
-    ♡ O₂ a little under that
-    ♡ sleep 21:30-06:00 LMST
-    ♡ lights dim and brighten with that
-    ♡ quarters live in the living layout file
+### Sleep and Lighting Schedule:
+    ♡ overnight sleep period: 21:30-06:00 LMST
+    ♡ scheduled sleep period: 8.5 hours
+    ♡ intended actual sleep: ~ 8 hours
+    ♡ habitat lights begin dimming at 21:30 LMST
+    ♡ habitat lights begin brightening at 06:00 LMST
+    
+    ♡ calculation:
+        - scheduled sleep period:
+            21:30-24:00 = 2.5 hours
+            00:00-06:00 = 6.0 hours
+            2.5 hours + 6.0 hours = 8.5 hours
+
+### Current Crew Activity Model:
+    ♡ current activity states:
+        - normal
+        - sleep
+        - exercise
+        - intense
+
+    ♡ each activity state changes:
+        - O₂ consumption
+        - CO₂ production
+        - breath water vapor
+        - skin water vapor
+        - crew heat
+        - nourishment and hygiene water demand
+
+    ♡ V1 uses one shared crew_activity state for the entire crew
+
+    ♡ this means all 30 crew currently use the same activity multipliers during a timestep
+
+### ----------------------------------------
 
 ### Crew Staffing:
     ♡ command, scheduling / general operations: 3
@@ -38,6 +67,8 @@
 ### ----------------------------------------
 
 ## Future Considerations:
+    ♡ crew temprise needs to be returned!
+
     ♡ crew waste goes to wastewater, to water/nutrient recovery, to treated nutrient concentrate to greenhouse to zoner reservoirs
 
 ### ----------------------------------------
