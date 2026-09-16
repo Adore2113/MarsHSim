@@ -1,4 +1,4 @@
-# Oxygen Generation Assembly
+# O₂ Generation Assembly
 ### General Notes:
     ♡ electrolyzes potable water into O₂ and H₂
 
@@ -61,35 +61,73 @@
     ♡ used for:
         - replacing O₂ consumed by the crew
         - maintaining cabin O₂ near target partial pressure
+        
+### Electrolysis Reaction:
+    ♡ electrolysis sends electrical energy through potable water to split the water molecules into H₂ and O₂
+    
+    ♡ reaction: 2 H₂O to 2 H₂ + O₂
+    
+    ♡ what happens during the reaction:
+        - two H₂O molecules enter the electrolyzer
 
+        - the bonds holding their H₂ and O₂ atoms together brake using electrical energy
 
-### ----------------------------------------
+        - the four H₂ atoms pair together to form two H₂ molecules
 
-### ----------------------------------------
+        - the two O₂ atoms pair together to form one O₂ molecule
 
-## Future Considerations:
-    ♡ 
+        - this means electrolysis produces two H₂ molecules for every one O₂ molecule
 
-### ----------------------------------------
+    ♡ the O₂ is added to the cabin atmosphere
+    ♡ the H₂ is stored for the Sabatier system
+    ♡ the OGA begins with the amount of O₂ pressure it needs to add to the cabin
 
-## Design Decisions:
-#### 
+    ♡ it uses the ideal gas law to convert that O₂ pressure into moles and then into kilograms
+
+    ♡ it then uses the electrolysis reaction ratio to calculate how much H₂ was produced and how much water was consumed
+
+    ♡ values used:
+        - R: 0.008314 kPa·m³/(mol·K)
+        - O₂ molar mass: 32.0 g/mol
+        - H₂ molar mass: 2.016 g/mol
+        - kg per gram: 0.001
+
+    ♡ calculation:
+        - O₂ moles:
+            (O₂ added in kPa × habitat volume in m³) ÷ (R × habitat temperature in K)
+
+        - O₂ mass:
+            O₂ moles × 32.0 g/mol × 0.001 kg/g
+
+        - H₂ mass:
+            O₂ mass × (2 × 2.016 g/mol) ÷ 32.0 g/mol
+
+        - equivalent direct H₂ calculation:
+            (2 × O₂ added in kPa × habitat volume in m³ × 2.016 g/mol) ÷ (R × habitat temperature in K × 1000)
+
+    ♡ why multiply by 2:
+        - electrolysis produces two H₂ molecules for every O₂ molecule
+
+    ♡ why use 2.016:
+        - each H₂ molecule contains two H₂ atoms
+        - each H₂ atom has a molar mass of ~ 1.008 g/mol
+        - H₂ has a molar mass of ~ 2.016 g/mol
 
 ### ----------------------------------------
 
 ### Dev Log Notes:
 ###### 03/09/2026
-    ♡ researched O₂ regeneration and electrolysis w. focus on Oxygen Generation Assembly (OGA), MOXIE like Solid Oxide Electrolysis (SOXE) and Sabatier CO₂ reduction + electrolysis
+    ♡ researched O₂ regeneration and electrolysis w. focus on O₂ Generation Assembly (OGA), MOXIE like Solid Oxide Electrolysis (SOXE) and Sabatier CO₂ reduction + electrolysis
 
     ♡ more research on 02 regen and electrolysis
 
-    ♡ implementing very basic OGA O₂ generation function for now (handling power usage, total pressure updates, hydrogen(h2) production and handling/venting later)  
+    ♡ implementing very basic OGA O₂ generation function for now (handling power usage, total pressure updates, H₂(h2) production and handling/venting later)  
 
 ###### 03/10/2026
 
     ♡ renamed checking_gases function to gas_alerts, moved the CO₂ removal function to before o2_regen
 
-    ♡ adding in the hydrogen that the OGA electrolysis makes and venting it FOR NOW and will do research on how I can use it later on (Sabatier?)
+    ♡ adding in the H₂ that the OGA electrolysis makes and venting it FOR NOW and will do research on how I can use it later on (Sabatier?)
 
     ♡ adding OGA byproduct function in, first calculating 23C to Kelvin b/cI read the gas pressure depends on temp (pressure drops if it goes down) 
 
