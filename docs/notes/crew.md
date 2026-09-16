@@ -72,6 +72,8 @@
 
     ♡ V1 uses one shared crew_activity state for the entire crew meaning all 30 crew currently use the same activity multipliers during a timestep
 
+### ----------------------------------------
+
 ### Atmosphere Metabolism:
 
     ♡ base O₂ decrease: 0.00011 kPa/person/hour
@@ -146,6 +148,8 @@
         - gray water recovered:
             hygiene water × 0.75
 
+### ----------------------------------------
+
 ### Habitability and Crew Wellbeing:
 
     ♡ private Crew Quarters provide a place to sleep, work, relax and be alone
@@ -175,7 +179,21 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-####
+    ♡ crew metabolism was handled with other habitat systems and was moved into its own file for organization and future readability
+
+    ♡ metabolism outputs were organized into a dictionary as the project structure became more consistent
+
+    ♡ moisture contributions were added later when humidity control was implemented
+
+    ♡ the crew sleep period was set to 21:30-06:00 LMST to allow approximately eight hours of actual sleep
+
+    ♡ habitat lighting was connected to the sleep schedule by dimming and brightening at those times
+
+    ♡ an early dashboard plan added a crew information panel and a separate alerts panel
+
+    ♡ the habitat log was expanded to eventually include crew symptoms, complaints, positive feedback and recovery updates
+
+    ♡ early habitat planning focused more heavily on minimum volume and later focused more importance on privacy, environmental control, room identity, comfortable shared areas and mostly long term psychological wellbeing
 
 ### ----------------------------------------
 
@@ -184,9 +202,33 @@
 
     ♡ crew waste goes to wastewater, to water/nutrient recovery, to treated nutrient concentrate to greenhouse to zoner reservoirs
 
-### ----------------------------------------
+    ♡ create individual crew schedules instead of applying one shared activity state to all 30 crew
 
-## Design Decisions:
+    ♡ define work shifts, off-duty periods, exercise, personal time and sleep for each crew member
+
+    ♡ add on-call and emergency scheduling without eliminating protected sleep and recovery time
+
+    ♡ connect maintenance assignments to equipment condition, faults and planned service intervals
+
+    ♡ add crew complaints, symptoms, positive feedback and wellbeing updates to the habitat log
+
+    ♡ develop crew psychology and social friction modeling without reducing wellbeing to a single unrealistic score
+
+    ♡ decide if daily water and vapor rates should divide by 24 hours or the full ~ 24.66-hour Martian sol !!
+
+    ♡ return crew_temp_rise_kwh if downstream systems or logs need crew heat energy as well as heat flow
+
+    ♡ decide where the remaining 25 % of hygiene water goes after 75 % is routed to gray-water storage
+
+    ♡ decide if black-water production should change with activity state
+
+    ♡ consider scheduling nourishment and hygiene events instead of spreading their water demand continuously across every timestep
+
+    ♡ connect treated crew waste to wastewater recovery, nutrient processing, greenhouse nutrient concentrate and zone reservoirs
+
+    ♡ define how the two unassigned Crew Quarters are assigned during maintenance, medical isolation or other temporary needs
+
+### ----------------------------------------
 
 
 ### ----------------------------------------
