@@ -55,11 +55,11 @@
 
         - toilet:
             ♡ 0.5 kg/person/sol
-            ♡ total ≈ 15kg/sol
+            ♡ total ≈ 15k g/sol
         
         - misc:
             ♡ 0.5 kg/person/sol
-            ♡ total ≈ 15kg/sol
+            ♡ total ≈ 15 kg/sol
 
         - steam room (for future reference):
              0.8 kg/person/sol
@@ -70,26 +70,6 @@
         - conservation: 7-10 min
         - low water: 5 min
         - critical / navy style: timed push-button sequence (wet, soap, rinse)
-
-### ----------------------------------------
-
-#### Core Processing Assemblies:
-    ♡ UPA:
-        - processes black water
-        - recovered water is sent back to the recovery system
-        - remaining concentrated waste becomes brine
-    
-    ♡ WPA:
-        - produces potable  recovered water
-        - priority order:
-            - 1. condensate
-            - 2. Sabatier product water
-            - 3. gray water
-            - 4. raw ISRU water
-    
-    ♡ BPA: brine goes to additional recovered water
-
-    ♡ see more at water_process.md
 
 ### ----------------------------------------
 
