@@ -1,24 +1,19 @@
 # Oxygen Generation Assembly
 ### General Notes:
     ♡ electrolyzes potable water into O₂ and H₂
+
+    ♡ O₂ is added to the cabin atmosphere and tracked in kPa
     
-    ♡ O₂ is added to the cabin atmosphere in kPa
+    ♡ H₂ is stored for use by the Sabatier system
+   
+    ♡ excess O₂ is vented if O₂ storage is full
     
-    ♡ H₂ is stored and sent to the Sabatier
-    
-    ♡ extra O₂ above target is stored, vented if storage is full
-    
-    ♡ water used here is subtracted from potable storage by the water system
+    ♡ water consumed by the OGA is subtracted from potable-water storage by the water system
+
+    ♡ V1 models OGA output with gas law and electrolysis calculations instead a fixed mass of O₂ per step
+
 
 ### ----------------------------------------
-
-## Arcadia O₂ Regen Plan (updated 08/30/2026):
-#### Layout
-
-### ----------------------------------------
-
-## Design Evolution:
-####
 
 ### ----------------------------------------
 
