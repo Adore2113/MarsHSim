@@ -12,6 +12,36 @@
 
     ♡ V1 models OGA output with gas law and electrolysis calculations instead a fixed mass of O₂ per step
 
+## Arcadia OGA Plan (updated 08/30/2026):
+### Shared Control Modes:
+    ♡ offline:
+        - OGA is switched off
+        - no O₂ or H₂ is produced
+        - no OGA power or heat
+
+    ♡ idle:
+        - OGA is available, but cabin O₂ is within 0.002 kPa of target
+        - power: ~ 0.15 kW
+        - heat: ~ 0.40 kW
+
+    ♡ running:
+        - OGA adds O₂ up to the amount needed or its step capacity
+        - H₂ is produced from the same electrolysis reaction
+        - running cap: 6.0 kPa O₂ per hour
+        - power: ~ 2.5 kW
+        - heat: ~ 1.2 kW
+
+    ♡ handling limited_water:
+        - potable water is too low to produce the calculated amount of O₂ while preserving the crew reserve and safety backup
+    
+        - no O₂ or H₂ is produced during the step
+        
+        - currently uses 55 % of normal running power and heat
+
+    ♡ water used: 1.11 kg water / kg O₂
+    ♡ H₂ made from the same split
+    ♡ leaves 2.0 kg/crew + 30 kg before OGA can run
+
 
 ### ----------------------------------------
 
