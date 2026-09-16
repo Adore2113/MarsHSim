@@ -211,6 +211,94 @@
 
     ♡ fewer available adsorbing beds reduce the amount of raw atmosphere that can be processed
 
+#### Atmosphere Intake and Separation:
+    ♡ effective compressors are limited by both extracting compressors and beds available to adsorb CO₂
+
+    ♡ calculation:
+        - beds available this step:
+            the smaller of 2 or current adsorbing bed + available primary standby beds
+
+        - effective compressors:
+            the smaller of extracting compressors or beds available this step
+
+        - raw atmosphere intake:
+            20.0 kg/h × effective compressors × step duration in hours
+
+        - average dust effect:
+            sum of extracting-compressor dust factors ÷ number of extracting compressors
+
+        - usable atmosphere intake:
+            raw atmosphere intake × 0.78 × average dust effect
+
+        - N₂ extracted:
+            usable atmosphere intake × 0.027
+
+        - Ar extracted:
+            usable atmosphere intake × 0.016
+
+        - CO₂ entering sorbent processing:
+            usable atmosphere intake × 0.95
+
+#### CO₂ Adsorption and Regeneration
+    ♡ incoming CO₂ is divided equally between adsorbing beds
+
+    ♡ each bed captures only the amount allowed by its efficiency and remaining capacity
+
+    ♡ CO₂ that is not captured is reported as bypassed CO₂
+
+    ♡ calculation:
+        - CO₂ offered to each bed:
+            incoming CO₂ ÷ adsorbing beds
+
+        - capturable CO₂ per bed:
+            CO₂ offered to each bed × 0.85
+
+        - CO₂ absorbed by each bed:
+            the smaller of capturable CO₂ or remaining bed capacity
+
+        - bypassed CO₂:
+            incoming CO₂ - total CO₂ absorbed
+
+        - regeneration release fraction this step:
+            the smaller of 1.0 or step duration in minutes ÷ 60 minutes
+
+        - CO₂ released from a regenerating bed:
+            current bed gas load × regeneration release fraction
+
+#### Gas Storage:
+    ♡ N₂ and Ar are added directly to their storage tanks after separation
+
+    ♡ the amount added is limited by the remaining capacity of each tank
+
+    ♡ CO₂ is added to storage when it is released during sorbent-bed regeneration
+
+    ♡ calculation:
+        - storage space remaining:
+            storage capacity - current stored mass
+
+        - gas added to storage:
+            the smaller of extracted or released gas and storage space remaining
+
+#### Atmosphere Processing Power and Heat:
+    ♡ compressor power: ~ 4.0 kW per extracting compressor
+
+    ♡ heat output: ~ 60 % of compressor electrical power
+
+    ♡ current V1 power and heat calculations include compressors but not separate sorbent-bed loads
+
+    ♡ calculation:
+        - electrical power:
+            4.0 kW × extracting compressors
+
+        - electrical energy used:
+            electrical power × step duration in hours
+
+        - heat output:
+            electrical power × 0.60
+
+        - heat energy added:
+            heat output × step duration in hours
+
 ### ----------------------------------------
 ## Design Evolution:
 ####
