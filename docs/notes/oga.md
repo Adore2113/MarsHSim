@@ -155,6 +155,45 @@
         - O₂ vented:
             stored O₂ mass - O₂ storage capacity
 
+### O₂ Leaks:
+    ♡ current code calculates O₂ leakage after production, storage and venting
+
+    ♡ calculation:
+        - O₂ leakage this step:
+            O₂ leak rate in kPa/h × step duration in hours
+
+        - final cabin O₂:
+            maximum of 0.0 kPa or cabin O₂ after processing - O₂ leakage
+
+### Power and Heat:
+    ♡ offline:
+        - power: 0.0 kW
+        - heat: 0.0 kW
+
+    ♡ idle:
+        - power: ~ 0.15 kW
+        - heat: ~ 0.40 kW
+
+    ♡ running:
+        - power: ~ 2.5 kW
+        - heat: ~ 1.2 kW
+
+    ♡ limited_water:
+        - power: 2.5 kW × 0.55 = 1.375 kW
+        - heat: 1.2 kW × 0.55 = 0.66 kW
+
+    ♡ venting:
+        - adds ~ 1.10 kW when O₂ storage overflows
+
+    ♡ calculation:
+        - electrical energy used:
+            OGA power in kW × step duration in hours
+        
+        - heat energy added:
+            OGA heat in kW × step duration in hours
+
+### ----------------------------------------
+
 ### ----------------------------------------
 
 ### Dev Log Notes:
