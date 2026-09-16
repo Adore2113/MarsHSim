@@ -129,6 +129,61 @@
 
 ### ----------------------------------------
 
+### ISRU Atmosphere:
+    ♡ compressors:
+        - maximum compressors online: 4
+        - compressor efficiency: ~ 0.78
+        - base intake rate: 
+            ~ 20.0 kg/h of raw atmosphere per effective compressor
+
+        - compressor power: 
+            ~ 4.0 kW per extracting compressor
+
+        - compressors have no deployment or mechanical delay state in V1
+
+        - compressors switch between offline and extracting
+
+    ♡ system modes:
+        - offline:
+            - ISRU atmosphere system is switched off
+            - all compressors are set to offline
+
+        - idle:
+            - atmosphere system is switched on, but no compressors are extracting
+
+        - running:
+            - at least one compressor is extracting Martian atmosphere
+    
+    ♡ automatic compressor taging:
+        - low-storage thresholds:
+            - N₂: 600 kg
+            - Ar: 400 kg
+
+        - hysteresis multiplier: 1.5
+        
+        - if N₂ is below 600 kg or Ar is below 400 kg:
+            - target compressors online: 4
+
+        - if N₂ is below 900 kg or Ar is below 600 kg:
+            - target compressors online: 2
+
+        - if both gases are above their hysteresis thresholds:
+            - target compressors online: 0
+
+        - low-power mode:
+            - maximum target: 1 compressor
+
+        - critical-power mode:
+            - target compressors online: 0
+
+    ♡ calculation:
+        - N₂ upper threshold:
+            600 kg × 1.5 = 900 kg
+
+        - Ar upper threshold:
+            400 kg × 1.5 = 600 kg
+
+### ----------------------------------------
 ## Design Evolution:
 ####
 
