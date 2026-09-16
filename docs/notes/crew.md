@@ -13,6 +13,12 @@
 ### ----------------------------------------
 
 ## Crew and Habitability Plan (updated 08/31/2026):
+#### Metabolism and sleep:
+    ♡ CO₂ about 1 kg/person/day
+    ♡ O₂ a little under that
+    ♡ sleep 21:30-06:00 LMST
+    ♡ lights dim and brighten with that
+    ♡ quarters live in the living layout file
 
 ### Crew Staffing:
     ♡ command, scheduling / general operations: 3
@@ -33,7 +39,6 @@
 
 ## Future Considerations:
     ♡ crew waste goes to wastewater, to water/nutrient recovery, to treated nutrient concentrate to greenhouse to zoner reservoirs
-
 
 ### ----------------------------------------
 
