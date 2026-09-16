@@ -226,15 +226,13 @@
 
     ♡ connect treated crew waste to wastewater recovery, nutrient processing, greenhouse nutrient concentrate and zone reservoirs
 
-    ♡ define how the two unassigned Crew Quarters are assigned during maintenance, medical isolation or other temporary needs
-
 ### ----------------------------------------
 
 ## Design Decisions:
 #### Why use 30 crew?
     ♡ 30 people provide enough staffing to cover multiple essential technical, medical, food and operational roles
 
-    ♡ the habitat is also assumed to use extensive automation so a relatively small crew can operate the full system
+    ♡ the habitat is assumed to use extensive automation so a relatively small crew can operate the full system
 
 #### Why give every crew member private quarters?
     ♡ long-term habitation requires more than a place to sleep and lets crew members work, recover, control stimulation and spend time alone
@@ -259,7 +257,6 @@
     ♡ gradual dimming and brightening provide consistent environmental time cues for psychological wellbeing and familiarity
 
     ♡ predictable lighting supports the crew's daily routine
-
 
 ### ----------------------------------------
 
