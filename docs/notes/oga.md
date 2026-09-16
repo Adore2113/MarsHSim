@@ -42,6 +42,26 @@
     ♡ H₂ made from the same split
     ♡ leaves 2.0 kg/crew + 30 kg before OGA can run
 
+#### O₂ / OGA:
+    ♡ hysteresis: ~ 0.002 kPa
+    ♡ maximum O₂ output: ~ 6.0 kPa/h
+    ♡ O₂ target is stored as target_o2_kpa
+    ♡ current logic adds 0.001 kPa control margin to the calculated O₂ deficit
+
+    ♡ calculation:
+        - O₂ required:
+            target O₂ kPa - O₂ kPa after crew metabolism
+
+        - maximum O₂ this step:
+            6.0 kPa/h × step duration in hours
+
+        - O₂ added:
+            the smaller of maximum O₂ this step or O₂ required + 0.001 kPa
+
+    ♡ used for:
+        - replacing O₂ consumed by the crew
+        - maintaining cabin O₂ near target partial pressure
+
 
 ### ----------------------------------------
 
