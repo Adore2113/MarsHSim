@@ -6,32 +6,9 @@
 
 ## Atmosphere Plan ():
 ### Layout:
-
-#### Resource Recovery Room:
-    ♡ shape: rectangle
-    ♡ floor area: ~ 120–140 m²
-    ♡ height: 4.5 m
-    ♡ volume: ~ 270–360 m³
-    ♡ contains:
-        - 3 Sabatier racks (each ~ 0.4 m³)
-        - H₂ buffer from OGA
-        - CO₂ feed / small buffer
-        - condenser and water separator
-        - controls, valves, sensors, MCA interface
-        - maintenance space(~ 1.2 m)
-        - amine bed bay for 8 beds in a row with thermal and vent connections, and a clear service isle (~ 40–50 m²)
-
-    ♡ access:
-        - near OGA and other atmosphere systems
-        - short water line to Water Processing Room
-        - connected to the methane storage bay
-        - connects to the utility hallway
-
-#### Methane Storage Bay:
-    ♡ isolated room / bay for CH₄ tanks
-    ♡ independent ventilation and fire considerations
-    ♡ next to the atmosphere / resource recovery room
-    ♡ methane is never intentionally added to the cabin atmosphere
+    ♡ Atmosphere / Resource Recovery Room: ~ 140 m² / 630 m³
+    ♡ ISRU Atmosphere Room: ~ 80 m² / 360 m³
+    ♡ room sizes live in the Utility / Resource Hub file
 
 ### Gas Tracking:
     ♡ cabin atmosphere:
@@ -53,6 +30,19 @@
     ♡ Major Constituent Analyzer (MCA)
     ♡ Sabatier: sabatier.md (racks are in this room)
     ♡ ISRU atmosphere and sorbent beds: isru_atm.py
+
+#### Buffer gas:
+    ♡ N₂ and Ar hold most of the 65 kPa that is not O₂
+
+    ♡ Ar:
+        - Mars air is ~ 1.6 % Ar
+        - does not react
+    ♡ N₂:
+        - Mars air is ~ 2.7 % N₂
+        - people already live in N₂-rich air
+
+    ♡ ISRU pulls both
+    ♡ how that intake runs lives in the ISRU file
 
 ### ----------------------------------------
 
@@ -115,6 +105,12 @@
     ♡ CH₄ is flammable
 
     ♡ independent ventilation and fire control are simpler in a dedicated bay
+
+#### Why N₂ and Ar together?
+    ♡ both are in Mars air and quiet buffer gases
+    ♡ ISRU can pull both in one intake
+    
+    ♡ they keep total pressure up without making the cabin all O₂
 
 ### ----------------------------------------
 
