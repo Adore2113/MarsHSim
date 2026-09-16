@@ -1,6 +1,6 @@
 # ISRU Atm. and Water
 ### General Notes:
-    ♡ In-Situ Resource Utilization (ISRU) collects local Marts resources to reduce dependence on Earth resupply
+    ♡ In-Situ Resource Utilization (ISRU) collects local Mars resources to reduce dependence on Earth resupply
 
     ♡ the water system extracts subsurface ice and stores it as raw ISRU water
 
@@ -26,7 +26,7 @@
     ♡ extracted water is sent to the raw ISRU water tank
     ♡ raw ISRU water storage is separate from potable and other non-potable water storage
 
-    ♡ water sytem modes:
+    ♡ water system modes:
         - offline:
             - ISRU water system is switched off
             - pipes that are deploying or extracting are commanded to retract
@@ -109,7 +109,7 @@
 #### Water Extraction Power and Heat:
     ♡ heated-pipe power: ~ 8.5 kW per active pipe
     ♡ heat output: ~ 85 % of electrical power
-    ♡ currenly counts extracting and deploying pipes as active for power
+    ♡ currently counts extracting and deploying pipes as active for power
 
     ♡ calculation:
         - active pipes:
@@ -154,7 +154,7 @@
         - running:
             - at least one compressor is extracting Mars atmosphere
     
-    ♡ automatic compressor taging:
+    ♡ automatic compressor staging:
         - low-storage thresholds:
             - N₂: 600 kg
             - Ar: 400 kg
@@ -216,7 +216,7 @@
 
     ♡ calculation:
         - beds available this step:
-            the smaller of 2 or current adsorbing bed + available primary standby beds
+            the smaller of 2 or current adsorbing beds + available primary standby beds
 
         - effective compressors:
             the smaller of extracting compressors or beds available this step
@@ -348,13 +348,15 @@
 
     ♡ continue regeneration timers even when compressors are idle or the atmosphere system is not processing new intake
 
-    ♡ figoure out where bypassed CO₂ goes instead of allowing it to leave the tracked mass balance
+    ♡ figure out where bypassed CO₂ goes instead of allowing it to leave the tracked mass balance
 
-    ♡ figoure out what happens to extracted N₂, Ar and regenerated CO₂ when their storage tanks are full
+    ♡ figure out what happens to extracted N₂, Ar and regenerated CO₂ when their storage tanks are full
 
-    ♡ confirm if the Martian atmosphere ratios should be treated as mass fractions or converted from molar / volume fractions
+    ♡ confirm if the Mars atmosphere ratios should be treated as mass fractions or converted from molar / volume fractions
 
     ♡ research compressor and sorbent-bed regeneration timing in more detail
+
+    ♡ electrostatic dust repulsion (EDS) b/c of the fact that it's passive
 
 ### ----------------------------------------
 
@@ -378,13 +380,13 @@
 
     ♡ dedicated storage makes routing and maintenance easier to understand
 
-#### Why extract N₂ and Ar from the Martian atmosphere?
+#### Why extract N₂ and Ar from the Mars atmosphere?
     ♡ N₂ and Ar are required to maintain the selected habitat buffer-gas mixture
 
     ♡ local collection supports long-duration operation without regular gas resupply
 
 #### Why remove CO₂ before storing N₂ and Ar?
-    ♡ Martian atmosphere is mostly CO₂
+    ♡ Mars atmosphere is mostly CO₂
 
     ♡ sorbent beds remove most of the CO₂ from the processed stream letting the smaller N₂ and Ar portions to be collected separately
 
@@ -423,8 +425,6 @@
 ###### 05/25/2026
     ♡ fixing isru and added modes and pipe retraction and extraction
 
-
-
 ###### 06/20/2026
     ♡ setting up ISRU file for Ar and N₂, which is crucial for no resupply w. a con being power usage
 
@@ -461,3 +461,14 @@
 
 ###### 08/22/2026
     ♡ I considered keeping all the non-potable water tanks together, but I'd like the seperation between the ISRU raw water to have it's own area
+
+###### 09/13/2026
+    ♡ added water ISRU room to handle drawing in Mars atmosphere, removing dust before compression, compressing the intake gas, separating useful atmospheric gases and transferring recovered gases toward habitat storage or use
+
+###### 09/16/2026
+    ♡ while going over oga.md and my code, I realized these things: 
+        - the retract is still 0 kW
+        - pipes can keep drawing heat if low power hits while they are out
+        - full raw tank still “runs” with 0 kg added
+        - bypassed CO₂ is not stored
+        - sorbent beds have no power term
