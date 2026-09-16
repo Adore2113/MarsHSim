@@ -1,9 +1,25 @@
 # ISRU Atm. and Water
 ### General Notes:
+    ♡ In-Situ Resource Utilization (ISRU) collects local Marts resources to reduce dependence on Earth resupply
 
+    ♡ the water system extracts subsurface ice and stores it as raw ISRU water
+
+    ♡ the atmosphere system processes Mars air to collect nitrogen (N₂), argon (Ar) and carbon dioxide (CO₂)
+
+    ♡ both systems respond automatically to habitat storage levels and power mode
+
+    ♡ dust reduces the extraction efficiency of both systems
+
+    ♡ power and capacity numbers are preliminary V1 estimates
+
+    ♡ extracted raw water passes through the Water Processing Assembly before becoming potable
+
+    ♡ collected N₂ and Ar are stored for use by the habitat buffer-gas system
+
+    ♡ CO₂ released during sorbent-bed regeneration is added to CO₂ storage
 ### ----------------------------------------
 
-## _____ Plan ():
+## Arcadia Extraction Plan (08/18/2026):
 ####
 
 ### ----------------------------------------
