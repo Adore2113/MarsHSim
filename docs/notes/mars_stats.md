@@ -257,6 +257,31 @@
         - storm ends today:
             random number from 0.0 to below 1.0 < 0.15
 
+### Weather Status:
+    ♡ clear: opacity below 0.65 tau
+    ♡ dusty: opacity from 0.65 tau to below 1.75 tau
+    ♡ storm: opacity at or above 1.75 tau
+
+    ♡ maximum modeled storm opacity: 5.0 tau
+
+### Equipment Dust Accumulation:
+    ♡ base dust-efficiency loss: 0.007 per sol
+    ♡ online systems accumulate dust 1.25 times faster
+    ♡ dust loss is scaled to the duration of each step
+
+    ♡ calculation:
+        - seconds this step:
+            step duration in minutes × 60
+
+        - sols this step:
+            seconds this step ÷ 88,775.244
+
+        - efficiency loss:
+            base dust rate × equipment multiplier × online multiplier when applicable × sols this step
+
+        - new dust factor:
+            the larger of minimum efficiency or current dust factor - efficiency loss
+
 ### ----------------------------------------
 
 ## Design Evolution:
