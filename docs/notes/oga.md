@@ -8,7 +8,7 @@
    
     ♡ excess O₂ is vented if O₂ storage is full
     
-    ♡ water consumed by the OGA is subtracted from potable-water storage by the water system
+    ♡ water consumed by the OGA is subtracted from potable water storage by the water system
 
     ♡ V1 models OGA output with gas law and electrolysis calculations instead a fixed mass of O₂ per step
 
@@ -112,6 +112,21 @@
         - each H₂ molecule contains two H₂ atoms
         - each H₂ atom has a molar mass of ~ 1.008 g/mol
         - H₂ has a molar mass of ~ 2.016 g/mol
+
+### Water Consumption and Water Lock:
+    ♡ current code value: ~ 1.11 kg water per 1 kg O₂
+    ♡ protected crew water reserve: 2.0 kg/crew
+    ♡ additional safety backup: 30.0 kg
+    ♡ stoichiometric estimate: 
+        ~ 1.125 kg water per 1 kg O₂
+
+    ♡ calculation:
+        - OGA water required:
+            O₂ produced in kg × water required per kg O₂
+        - minimum potable water required before running:
+            OGA water required + (crew count × 2.0 kg) + 30.0 kg
+
+    ♡ if potable water storage is below the calculated minimum, the OGA enters limited_water mode and cancels production for that step
 
 ### ----------------------------------------
 
