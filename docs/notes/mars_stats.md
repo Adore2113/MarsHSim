@@ -1,10 +1,64 @@
 # Time, Seasons, Dust and Weather
 ### General Notes:
+    ♡ time is tracked continuously in mission seconds
+
+    ♡ one Martian sol is divided into 24 LMST hours for display
+
+    ♡ Mars' elliptical orbit is modeled so seasonal timing doesn't progress at a constant angular speed
+
+    ♡ northern seasons are defined by areocentric solar longitude (Lₛ)
+
+    ♡ daylight length changes with season and the habitat's latitude
+
+    ♡ sunlight rises and falls smoothly across the daylight period using a sine wave
+
+    ♡ background atmospheric opacity changes through the dust-storm season
+
+    ♡ dust storms begin and end through random daily rolls
+
+    ♡ equipment dust accumulation reduces radiator, compressor and ISRU-water-pipe efficiency
+
+    ♡ temperature values are handled by the Thermal / Humidity Control system
 
 ### ----------------------------------------
 
-## _____ Plan ():
-####
+## Arcadia Time, Seasons, Dust and Wheather Plan:
+### Mission Time and Sols:
+    ♡ mission time begins at 0 seconds
+    ♡ seconds per sol: 88,775.244
+    ♡ sols per Mars year: 668.599
+    ♡ Mars year duration is calculated from sols per year and seconds per sol
+
+    ♡ calculation:
+        - seconds per Mars year:
+            668.599 sols × 88,775.244 seconds/sol
+
+        - current sol number:
+            whole-number portion of mission time in seconds ÷ 88,775.244
+
+        - time within the current sol:
+            mission time in seconds modulo 88,775.244
+
+        - orbital degrees advanced per second:
+            360° ÷ seconds per Mars year
+
+### LMST Display Time:
+    ♡ each sol is displayed as 24 LMST hours
+    ♡ each LMST hour is longer than one Earth hour because the full Martian sol is longer
+    ♡ the display returns the current sol number, hour and minute
+
+    ♡ calculation:
+        - LMST hour length:
+            88,775.244 seconds ÷ 24
+
+        - LMST minute length:
+            LMST hour length ÷ 60
+
+        - current LMST hour:
+            whole-number portion of current-sol seconds ÷ LMST hour length
+
+        - current LMST minute:
+            whole-number portion of remaining hour seconds ÷ LMST minute length
 
 ### ----------------------------------------
 
