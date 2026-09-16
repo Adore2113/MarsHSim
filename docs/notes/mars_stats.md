@@ -128,7 +128,69 @@
         - northern summer: ~ 178 sols
         - northern autumn: ~ 142 sols
         - northern winter: ~ 154 sols
-        
+
+### ----------------------------------------
+
+### Solar Declination:
+    ♡ solar declination describes how far north or south the Sun appears relative to the equator through the seasons
+
+    ♡ calculation:
+        - 25.19° × sin(Lₛ) = solar declination
+
+### Daylight Length:
+    ♡ daylight length depends on latitude and solar declination
+
+    ♡ the calculated daylight period is centered around the middle of the sol
+
+    ♡ calculation:
+        - Sun visibility value:
+            -tan(latitude) × tan(solar declination)
+
+        - if Sun visibility is at or below -1.0:
+            daylight fraction = 1.0
+
+        - if Sun visibility is at or above 1.0:
+            daylight fraction = 0.0
+
+        - otherwise, daylight fraction:
+            arccos(Sun visibility) ÷ π
+
+        - daylight duration:
+            seconds per sol × daylight fraction
+
+        - night duration:
+            seconds per sol - daylight duration
+
+        - sunrise:
+            night duration ÷ 2
+
+        - sunset:
+            sunrise + daylight duration
+
+### Sunlight Across the Sol:
+    ♡ maximum daylight intensity: ~ 0.57 kW/m²
+    ♡ sunlight is 0.0 before sunrise and after sunset
+    
+    ♡ during daylight, sunlight follows a sine curve
+    ♡ the curve begins at 0.0 at sunrise, reaches 1.0 at the middle of the daylight period and returns to 0.0 at sunset
+
+    ♡ calculation:
+        - progress through daylight:
+            seconds since sunrise ÷ daylight duration
+
+        - sunlight amount:
+            sin(π × progress through daylight)
+
+        - daylight intensity per m²:
+            0.57 kW/m² × sunlight amount
+
+### Low-Sunlight Streak:
+    ♡ low-sunlight threshold: below 0.30 kW/m²
+
+    ♡ if the peak sunlight for the completed sol is below the threshold, the low-sunlight streak increases by one sol
+
+    ♡ otherwise, the streak resets to 0
+    
 ### ----------------------------------------
 
 ## Design Evolution:
