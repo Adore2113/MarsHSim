@@ -15,107 +15,11 @@
 ### ----------------------------------------
 
 ## Arcadia Water System Plan (updated 08/23/2026)
-### Layouts - Four Water Rooms
-
-#### 1. Water Processing Room:
-    ♡ see water_process.md for full details
-    ♡ floor area: ~ 90 m²
-    ♡ height: 4.5 m
-    ♡ access: 
-        - connects to the Wastewater Storage Room
-        - connects to the ISRU Water Room
-        - connects to the utility hallway
-
-    ♡ contains: 
-        - UPA
-        - WPA
-        - BPA
-        - all treatment equipment
-
-#### 2. Wastewater Storage Room:
-    ♡ shape: rectangle
-    ♡ floor area: ~ 80-100 m²
-    ♡ height: 4.5 m
-    ♡ purpose: holds all dirty wastewater
-    ♡ access: 
-        - connects to the Water Processing Room
-        - connects to the utility hallway  
-
-    ♡ contains:
-        - gray water tanks
-        - black water tanks
-        - brine tanks
-        - all tanks vertical and cylindrical in pressurized heated volume
-    
-#### 3. ISRU Water Room:
-    ♡ shape: rectangle
-    ♡ floor area: ~ 40-60 m²
-    ♡ height: 4.5 m
-    ♡ purpose: holding area for untreated Mars water before it enters the WPA
-    ♡ access: 
-        - connects to the Water Processing Room
-        - connects to the utility hallway  
-
-    ♡ contains:
-        - raw ISRU water tank (4,000 kg capacity)
-        - basic monitoring and transfer equipment
-        - vertical cylindrical tanks in pressurized heated volume
-        
-        
-#### 4. Potable Water Storage Room:
-    ♡ shape: rectangle
-    ♡ floor area: ~ 100-120 m²
-    ♡ height: 4.5 m
-    ♡ purpose: cleanest water storage area
-    ♡ access: 
-        - connects to the Water Processing Room
-        - connects to the utility hallway  
-
-    ♡ contains: 
-        - potable water tanks
-        - vertical cylindrical tanks inside the pressurized, heated volume
-
-    ♡ greenhouse keeps only its own local zone reservoirs (~ 2,000 kg total)
-
-#### Total Water System Space:
-    ♡ floor areas:
-        - Water Processing Room: ~ 90 m²
-        - Wastewater Storage Room: ~ 90 m²
-        - ISRU Water Room: ~ 50 m²
-        - Potable Water Storage Room: ~ 110 m²
-        - total: ~ 340 m²
-
-    ♡ volumes:
-        - Water Processing Room: ~ 405 m³
-        - Wastewater Storage Room: ~ 405 m³
-        - ISRU Water Room: ~ 225 m³
-        - Potable Water Storage Room: ~ 495 m³
-        - total: ~ 1,530 m³
-
-    ♡ calculation:
-        - Water Processing Room:
-            90 m² × 4.5 m
-            = ~ 405 m³
-
-        - Wastewater Storage Room:
-            90 m² × 4.5 m
-            = ~ 405 m³
-
-        - ISRU Water Room:
-            50 m² × 4.5 m
-            = ~ 225 m³
-
-        - Potable Water Storage Room:
-            110 m² × 4.5 m
-            = ~ 495 m³
-
-        - total floor area:
-            90 m² + 90 m² + 50 m² + 110 m²
-            = ~ 340 m²
-
-        - total volume:
-            405 m³ + 405 m³ + 225 m³ + 495 m³
-            = ~ 1,530 m³
+#### Rooms:
+    ♡ room sizes live in the Utility / Resource Hub file
+    ♡ four water rooms: ~ 340 m² / 1,530 m³
+    ♡ UPA / WPA / BPA details live in water_process.md
+    ♡ pipe extraction lives in the ISRU file
 
 ### ----------------------------------------
 
@@ -124,7 +28,7 @@
     ♡ gray water storage capacity: 3,500 kg
     ♡ black water storage capacity: 1,800 kg
     ♡ condensate storage capacity: 5,000 kg
-    ♡ brine storage capacity:1000 kg
+    ♡ brine storage capacity: 1,000 kg
     ♡ raw ISRU water: 4,000 kg capacity
     ♡ greenhouse reservoirs (total): ~ 2,000 kg
    
@@ -260,8 +164,6 @@
 ### ----------------------------------------
 
 ### Future Considerations:
-    ♡ electrostatic dust repulsion (EDS) b/c of the fact that it's passive
-
     ♡ scheduled cleaning (possibly automated)
 
     ♡ dust repellent coatings that need to be reapplied over time
@@ -317,7 +219,7 @@
 ###### 03/13/2026
     ♡ figure out how much water(H2O) the OGA and water electrolysis uses every time it runs, I'm going to find the fixed reaction ratio instead of a fixed ratio b/c the amount of O₂ produced are going to change depending on habitat events
 
-    ♡ going to use 1000kg of water to start as a placeholder to finish the OGA functions
+    ♡ going to use 1,000kg of water to start as a placeholder to finish the OGA functions
 
     ♡ going to keep the OGA functions separate instead of one big function w. a comment to sort of group them together, I feel like that will be better for future readability
 
@@ -357,8 +259,6 @@
     ♡ I realized that I didn't have water runoff from the greenhouse, so I implemented that today and also fixed and cleaned up water.py, after including the for now very basic isru system
 
 ###### 05/25/2026
-    ♡ fixing isru and added modes and pipe retraction and extraction
-
     ♡ going over water file, adding hysteresis and updating power used logic to make it more similar to CO₂_scrub.py
 
     ♡ updated power usage in water.py
