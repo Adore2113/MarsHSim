@@ -30,10 +30,37 @@
 
 ### Current Crew Activity Model:
     ♡ current activity states:
-        - normal
-        - sleep
-        - exercise
-        - intense
+        - normal:
+            - O₂: 1.0
+            - CO₂: 1.0
+            - breath vapor: 1.0
+            - skin vapor: 1.0
+            - heat: 120 W/person
+            - nourishment and hygiene water: 1.0
+        
+        - sleep:
+            - O₂: 0.8
+            - CO₂: 0.8
+            - breath vapor: 0.8
+            - skin vapor: 0.4
+            - heat: 83 W/person
+            - nourishment and hygiene water: 0.6
+
+        - exercise:
+            - O₂: 1.5
+            - CO₂: 1.5
+            - breath vapor: 1.4
+            - skin vapor: 2.0
+            - heat: 280 W/person
+            - nourishment and hygiene water: 1.8
+
+        - intense:
+            - O₂: 2.0
+            - CO₂: 2.0
+            - breath vapor: 1.8
+            - skin vapor: 3.0
+            - heat: 350 W/person
+            - nourishment and hygiene water: 2.2
 
     ♡ each activity state changes:
         - O₂ consumption
@@ -43,9 +70,7 @@
         - crew heat
         - nourishment and hygiene water demand
 
-    ♡ V1 uses one shared crew_activity state for the entire crew
-
-    ♡ this means all 30 crew currently use the same activity multipliers during a timestep
+    ♡ V1 uses one shared crew_activity state for the entire crew meaning all 30 crew currently use the same activity multipliers during a timestep
 
 ### ----------------------------------------
 
