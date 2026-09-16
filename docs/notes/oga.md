@@ -70,11 +70,11 @@
     ♡ what happens during the reaction:
         - two H₂O molecules enter the electrolyzer
 
-        - the bonds holding their H₂ and O₂ atoms together brake using electrical energy
+        - the bonds holding their hydrogen and oxygen atoms together breake using electrical energy
 
-        - the four H₂ atoms pair together to form two H₂ molecules
+        - the four hydrogen atoms pair together to form two H₂ molecules
 
-        - the two O₂ atoms pair together to form one O₂ molecule
+        - the two oxygen atoms pair together to form one O₂ molecule
 
         - this means electrolysis produces two H₂ molecules for every one O₂ molecule
 
@@ -109,8 +109,8 @@
         - electrolysis produces two H₂ molecules for every O₂ molecule
 
     ♡ why use 2.016:
-        - each H₂ molecule contains two H₂ atoms
-        - each H₂ atom has a molar mass of ~ 1.008 g/mol
+        - each H₂ molecule contains two hydrogen atoms
+        - each hydrogen atom has a molar mass of ~ 1.008 g/mol
         - H₂ has a molar mass of ~ 2.016 g/mol
 
 ### Water Consumption and Water Lock:
@@ -221,7 +221,7 @@
         - you get twice as many H2 molecules as O2 molecules
 
     ♡ why 2.016:
-        - H2 = 2 H₂ atoms bonded together
+        - H2 = 2 hydrogen atoms bonded together
         - each H₂ atom = ~ 1.008 g/mol
         - H2 = ~ 2.016 g/mol
 
