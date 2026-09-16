@@ -194,6 +194,55 @@
 
 ### ----------------------------------------
 
+## Design Evolution:
+#### O2 / OGA Starting Notes:
+    ♡ NASA references: crew co2 production is around 1kg pp/day
+
+    ♡ pros:
+        - reliable (proven on ISS for many years)
+        - efficient for recycling water into O₂
+        - works well with amine beds and humidity considerations
+        - integrates easily with Sabatier reactor for H₂ utilization
+        - SpaceX: combines O₂ production with making methane rocket fuel with Sabatier + electrolysis
+
+    ♡ cons:
+        - requires water (not really a huge con b/c recycling + local ice mining is a main priority at Arcadia Planitia)
+        - high power demand overall
+        - produces H₂ (can feed Sabatier for methane/O₂ or vent)
+        - big hardware mass when scaled to 30 crew
+
+    ♡ h2_kg = (2 * o2_added_kpa * hab_vol_m3 * 2.016) / (r * temp_k * 1000)
+
+    ♡ r:
+        - 0.008314 in kPa
+
+    ♡ why * 2:
+        - from electrolysis: 2 H2O » 2 H2 + O2
+        - you get twice as many H2 molecules as O2 molecules
+
+    ♡ why 2.016:
+        - H2 = 2 H₂ atoms bonded together
+        - each H₂ atom = ~ 1.008 g/mol
+        - H2 = ~ 2.016 g/mol
+
+    ♡ what it does:
+        - converts O₂ pressure (kPa) into moles of O₂ gas
+        - for every O₂ made, you get H₂ (2 H₂ for 1 O₂)
+        - converts H₂ grams into kg
+
+    ♡ water usage:
+        - about 1.125 kg of water is needed to get 1 kg of O₂
+
+### ----------------------------------------
+
+## Future Considerations:
+    ♡ currently doesn't separately record or report H₂ that exceeds storage capacity
+
+### ----------------------------------------
+
+## Design Decisions:
+#### 
+
 ### ----------------------------------------
 
 ### Dev Log Notes:
@@ -205,7 +254,6 @@
     ♡ implementing very basic OGA O₂ generation function for now (handling power usage, total pressure updates, H₂(h2) production and handling/venting later)  
 
 ###### 03/10/2026
-
     ♡ renamed checking_gases function to gas_alerts, moved the CO₂ removal function to before o2_regen
 
     ♡ adding in the H₂ that the OGA electrolysis makes and venting it FOR NOW and will do research on how I can use it later on (Sabatier?)
@@ -213,7 +261,6 @@
     ♡ adding OGA byproduct function in, first calculating 23C to Kelvin b/cI read the gas pressure depends on temp (pressure drops if it goes down) 
 
 ###### 03/13/2026
-
     ♡ figure out how much water(H2O) the OGA and water electrolysis uses every time it runs, I'm going to find the fixed reaction ratio instead of a fixed ratio b/c the amount of O₂ produced are going to change depending on habitat events
 
     ♡ going to use 1000kg of water to start as a placeholder to finish the OGA functions
@@ -223,15 +270,12 @@
     ♡ finished OGA and water electrolysis for now, moving onto argon and nitrogen
 
 ###### 03/17/2026
-
     ♡ while adding the temp variables to run_oga, I decided to rename a few variables to make reading/going over my code later easier and I also decided to make these functions more efficient overall
 
     ♡ I'm not sure if I already stated this, but the OGA is capped at 0.004 (for now) so that the OGA has to take its time to catch backup so that it doesn't run a huge amount of power and it seems unrealistic
 
 ###### 04/27/2026
-
     ♡ added venting for OGA
 
 ###### 04/30/2026
-
     ♡ updated OGA logic, by removing the pa conversation at all and made r for the universal gas constant in kpa instead
