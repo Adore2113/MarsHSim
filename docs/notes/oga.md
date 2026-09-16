@@ -128,6 +128,33 @@
 
     ♡ if potable water storage is below the calculated minimum, the OGA enters limited_water mode and cancels production for that step
 
+### H₂ Production and Storage:
+    ♡ H₂ is produced at the same time as O₂
+    ♡ H₂ is added to h2_stored_kg for the Sabatier
+    ♡ H₂ storage is capped at h2_storage_capacity_kg
+
+### O₂ Storage and Venting:
+    ♡ O₂ above the cabin target is converted from kPa to kg
+
+    ♡ excess O₂ is added to o2_stored_kg
+    ♡ O₂ storage is capped at o2_storage_capacity_kg
+    ♡ O₂ above storage capacity is reported as o2_vented_kg
+
+    ♡ current code adds ~ 1.10 kW of power when O₂ must be vented
+
+    ♡ calculation:
+        - excess O₂ pressure:
+            new cabin O₂ kPa - target O₂ kPa
+
+        - excess O₂ moles:
+            (excess O₂ kPa × habitat volume in m³) ÷ (R × habitat temperature in K)
+
+        - excess O₂ mass:
+            excess O₂ moles × 32.0 g/mol × 0.001 kg/g
+
+        - O₂ vented:
+            stored O₂ mass - O₂ storage capacity
+
 ### ----------------------------------------
 
 ### Dev Log Notes:
