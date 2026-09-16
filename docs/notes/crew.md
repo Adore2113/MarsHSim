@@ -124,11 +124,11 @@
     ♡ includes drinking and food preparation
     ♡ base hygiene water: ~ 1.5 kg/person/day
     ♡ base black water: ~ 1.8 kg/person/day
-    ♡ nourishment and hygiene water use the activity-state water multiplier
+    ♡ nourishment and hygiene water use the activity state water multiplier
     
-    ♡ black-water production does not currently use the activity multiplier
+    ♡ black water production does not currently use the activity multiplier
     
-    ♡ nourishment and hygiene water are removed from potable-water storage
+    ♡ nourishment and hygiene water are removed from potable water storage
     
     ♡ 75 % of hygiene water is routed to gray-water storage
 
@@ -185,7 +185,7 @@
 
     ♡ moisture contributions were added later when humidity control was implemented
 
-    ♡ the crew sleep period was set to 21:30-06:00 LMST to allow approximately eight hours of actual sleep
+    ♡ the crew sleep period was set to 21:30-06:00 LMST to allow ~ eight hours of actual sleep
 
     ♡ habitat lighting was connected to the sleep schedule by dimming and brightening at those times
 
@@ -230,24 +230,70 @@
 
 ### ----------------------------------------
 
+## Design Decisions:
+#### Why use 30 crew?
+    ♡ 30 people provide enough staffing to cover multiple essential technical, medical, food and operational roles
+
+    ♡ the habitat is also assumed to use extensive automation so a relatively small crew can operate the full system
+
+#### Why give every crew member private quarters?
+    ♡ long-term habitation requires more than a place to sleep and lets crew members work, recover, control stimulation and spend time alone
+
+    ♡ personal control and customization support identity, comfort and psychological wellbeing
+
+    ♡ there are only 30 crew members so it is managable
+
+#### Why use activity multipliers?
+    ♡ sleep, normal activity and exercise don't create the same atmosphere, humidity, heat or water loads
+
+    ♡ multipliers let one base metabolism model respond to different activity levels
+
+    ♡ this keeps V1 manageable while leaving room for individual scheduling later
+
+#### Why use an 8.5-hour sleep period?
+    ♡ the full period includes time for settling down and waking up
+
+    ♡ it's made to allow ~ 8 hours of actual sleep
+
+#### Why connect lighting to the sleep schedule?
+    ♡ gradual dimming and brightening provide consistent environmental time cues for psychological wellbeing and familiarity
+
+    ♡ predictable lighting supports the crew's daily routine
+
 
 ### ----------------------------------------
 
 ### Dev Log Notes:
-###### From v1_scope:
-    ♡ crew receive an 8.5 hour overnight sleep period from 21:30–06:00 LMST, to allow ~ 8 hours of actual sleep
-
-    ♡ habitat lights begin dimming at 21:30 LMST and brighten at 06:00 LMST
-
 ###### 03/09/2026
     ♡ NASA references: crew CO₂ production is ~ 1 kg pp/day
 
 ###### 03/21/2026
-    ♡ going to go w. the crew getting ~ 8 hours of sleep/night so lights will dim at 9:30pm (21:30) and they will brighten at 6:00am, using level of brightness for now
+    ♡ going to give the crew ~ eight hours of sleep each night, so lights will dim at 21:30 and brighten at 06:00; using brightness level for now
 
 ###### 03/28/2026
-    ♡ making crew metabolism into its own file for organization and considering breaking it into smaller functions for quicker/easier readability as I add to the file
+    ♡ making crew metabolism its own file for organization and considering breaking it into smaller functions for quicker and easier readability as I add to the file
 
-###### 07/12/2026
-    ♡ I'm going to be adding crew scheduling, maintenance and a few updates, w. any complaints or any positive feedback from the crew when things are running well
+###### 03/29/2026:
+    ♡ made a crew-metabolism dictionary while improving file organization, naming consistency and code consistency
 
+###### 04/09/2026:
+    ♡ considering an extra lighting option for periods without sunlight to help support crew morale
+
+    ♡ added a wellness-light function because the crew may need additional support during frequent dust storms or several low-sunlight days
+
+###### 04/20/2026:
+    ♡ added moisture variables to the crew-metabolism file and updated temp_system.py
+
+###### 07/04/2026:
+    ♡ adding a habitat log screen so status and alerts can include crew complaints about symptoms from pressure, hunger and other conditions, along with emergency system actions
+
+###### 07/12/2026:
+    o add a crew information panel beside the status panel and a separate alerts panel on the other side
+    
+    ♡ going to add crew scheduling, maintenance updates, crew complaints and positive feedback when systems are running well
+
+###### 07/22/2026:
+    ♡ I need to consider crew psychology in more depth
+
+###### 08/19/2026:
+    ♡ crew waste goes to wastewater, then water and nutrient recovery, then treated nutrient concentrate, and then to greenhouse zone reservoirs
