@@ -12,25 +12,31 @@
 ## CO₂ Scrubbing Plan (updated 08/24/2026):
 
 ### Layout:
-    ♡ bed bay: ~ 50-60 m²
-
-    ♡ shared resource recovery room: ~ 120–140 m²
-
-    ♡ beds and support equipment are part of the atmosphere / resource area
-
-    ♡ see atmosphere.md for room placement and connections
-
-    ♡ full set of 8 beds, manifolds, valves, blowers and aisles fit as a bay inside the resource recovery room at ~ 50-60 m² of floor space for the bed row
+    ♡ amine beds live in the Atmosphere / Resource Recovery Room
+    ♡ room: ~ 140 m² / 630 m³
+    ♡ amine bed bay inside that room: ~ 40-50 m²
+    ♡ room sizes live in the Utility / Resource Hub file
 
 ### Beds:
     ♡ total beds: 8
     ♡ max beds online: 8
     ♡ beds have type: primary or backup
+    ♡ backup beds are preferred when shedding capacity
+
     ♡ each bed tracks: status, CO₂ load, capacity in kg and regen_timer_min
 
     ♡ primary beds are preferred when bringing capacity online
 
-    ♡ backup beds are preferred when shedding capacity
+#### Crew CO₂ (why the beds run):
+    ♡ ~ 0.0029 kPa/person per 5 min
+    ♡ 30 crew: ~ 0.087 kPa/5 min
+    ♡ ~ 0.835 kPa/person per Earth day 
+    ♡ calculation:
+        0.0029 × 288 = ~ 0.087
+
+    ♡ used for:
+        - how fast cabin CO₂ climbs
+        - how many beds need to be online
 
 ### Scrub Efficiency:
     ♡ efficiency depends on current CO₂ level:
