@@ -63,7 +63,7 @@
     ♡ latitude: 47.0°N
     ♡ longitude: 184.0°E
     ♡ latitude is used to calculate seasonal daylight length
-    ♡ longitude is stored but is not currently used by the V1 time or daylight calculations
+    ♡ longitude is stored but isn't currently used by the V1 time or daylight calculations
 
 ### Mars Orbit:
     ♡ axial tilt: 25.19°
@@ -285,18 +285,15 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-    ♡ the first time model assumed a 24-hour day
+    ♡ the first time model assumed a 24 hour day and was updated to use a Martian sol of 24 hours, 39 minutes and 35 seconds
 
-    ♡ it was updated to use a Martian sol of 24 hours, 39 minutes and 35 seconds
-
-    ♡ timekeeping was moved into Mars_time.py as the system expanded
+    ♡ timekeeping was moved into Mars_time.py
 
     ♡ daylight was originally going to use hardcoded percentages
 
     ♡ a sine wave was added so sunlight changes smoothly through the sol
 
-    ♡ latitude, axial tilt, sunrise, sunset and seasonal daylight fraction were added later
-
+    ♡ latitude, axial tilt, sunrise, sunset and seasonal daylight fraction were added
 
     ♡ early seasons used simpler midpoint estimates
 
@@ -312,17 +309,89 @@
 
     ♡ dust began as a general 0.0-1.0 efficiency factor
 
-    ♡ equipment-specific accumulation rates, online multipliers and minimum efficiencies were added later
+    ♡ equipment specific accumulation rates, online multipliers and minimum efficiencies were added
 
 ### ----------------------------------------
 
 ## Future Considerations:
-    ♡ 
+    ♡ use longitude when converting mission time into location specific solar time, if mission time isn't already treated as Arcadia LMST
+
+    ♡ rename get_solar_decline_deg to get_solar_declination_deg for clarity ?
+
+    ♡ confirm the selected starting mean anomaly and its intended starting Lₛ
+
+    ♡ make sure peak_sunlight_today resets once per sol and low-sunlight streak updates only once after the peak is finalized
+
+    ♡ confirm where atmospheric opacity reduces sunlight and solar generation in the engine
+
+    ♡ allow storm tau and severity to change during a storm
+
+    ♡ allow storms to change temperature, solar performance and equipment dust accumulation directly
+
+    ♡ add storm movement, regional versus global scale and more varied duration
+
+    ♡ add wind calculations in a future version
+
+    ♡ research dune migration and longer-term surface changes
+
+    ♡ model changes in sunlight absorption caused by ice and dust
+
+    ♡ add solar array dust accumulation and automated cleaning behavior
+
+    ♡ consider electrostatic dust removal, vibration cleaning, protective covers and automated panel movement
+
+    ♡ add maintenance or cleaning that can restore radiator, compressor and pipe dust factors
+
+    ♡ decide whether backup radiators should accumulate dust more slowly than primary radiators when both have the same status
+
+    ♡ decide whether deploying and retracting ISRU pipes should accumulate dust differently from offline pipes
+
+    ♡ connect storm intensity to the base equipment dust-accumulation rate
+
+    ♡ replace midpoint seasonal temperature assumptions with a more detailed surface-weather model if needed beyond V1
 
 ### ----------------------------------------
 
 ## Design Decisions:
-#### 
+#### Why use mission seconds as the main clock?
+    ♡ one continuous value makes timestep calculations consistent
+
+    ♡ sol number, LMST, season and orbital position can all be derived from mission time and I like how it looks
+
+#### Why display each sol using 24 LMST hours?
+    ♡ it provides a familiar clock format while preserving the full Martian sol length
+
+    ♡ each displayed LMST hour automatically becomes slightly longer than an Earth hour
+
+#### Why model Mars' elliptical orbit?
+    ♡ Mars travels faster near perihelion and slower near aphelion, changing the duration of the seasons affecting solar energy and dust storm timing
+
+#### Why use Newton-Raphson iteration?
+    ♡ Kepler's equation can't be rearranged into one simple direct solution for eccentric anomaly
+
+    ♡ Newton-Raphson quickly improves the estimate by using the current error and slope and felt like the most efficent choice for this (moderate eccentricity allows five iterations to provide a stable V1 result)
+
+#### Why use Lₛ for seasons?
+    ♡ Lₛ describes the actual Mars seasonal position around the Sun
+
+    ♡ it gives consistent boundaries for spring, summer, autumn and winter and provides a useful position for defining dust-storm season
+
+#### Why use a sine wave for daylight?
+    ♡ sunlight should rise gradually after sunrise and fall gradually before sunset
+
+    ♡ a sine wave makes a smooth daily curve without hardcoded hourly percentages, which I wanted to avoid
+
+#### Why use random storm rolls?
+    ♡ season affects storm likelihood but does not make individual storms completely predictable
+
+    ♡ a random daily roll allows different simulation runs to experience different weather
+
+    ♡ roll_for_storm is also a reference to rolling for events in tabletop role playing games, like dnd
+
+#### Why give equipment minimum dust efficiencies?
+    ♡ the floors prevent dust accumulation from reducing equipment output below the selected V1 minimum
+
+    ♡ different equipment types can retain different minimum capability
 
 ### ----------------------------------------
 
@@ -330,7 +399,7 @@
 ###### From v1_scope:
     ♡ dune migration (research this more)
 
-    ♡ sun absorption changes from ice/dust
+    ♡ sun absorption changes from ice / dust
     
     ♡ dust factor ranges from 0.0 - 1.0
 
@@ -373,7 +442,6 @@
 
     ♡ I'm going off of approximate surface temp daily averages for mid-latitude from NASA (Viking 2)
 
-    
     ♡ mission_time_s = current time of day
 
     ♡ dt_min = how long the step lasts
@@ -474,7 +542,7 @@
 ###### 07/20/2026
     ♡ I wanted to have a percentage of how far Mar's is through it's storm season
 
-    ♡ I'm going to add random dust storms right now, while I'm working on season changes and atmospheric opacity, checking if Mar's is in storm season, how far through it it is and also have random wheather b/c predictable wheather is not realistic
+    ♡ I'm going to add random dust storms right now, while I'm working on season changes and atmospheric opacity, checking if Mar's is in storm season, how far through it it is and also have random wheather b/c predictable wheather isn't realistic
 
     ♡ roll_for_storm is both accurate and a nod to dnd
 
