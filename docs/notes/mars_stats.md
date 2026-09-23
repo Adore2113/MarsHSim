@@ -285,7 +285,34 @@
 ### ----------------------------------------
 
 ## Design Evolution:
-####
+    ♡ the first time model assumed a 24-hour day
+
+    ♡ it was updated to use a Martian sol of 24 hours, 39 minutes and 35 seconds
+
+    ♡ timekeeping was moved into Mars_time.py as the system expanded
+
+    ♡ daylight was originally going to use hardcoded percentages
+
+    ♡ a sine wave was added so sunlight changes smoothly through the sol
+
+    ♡ latitude, axial tilt, sunrise, sunset and seasonal daylight fraction were added later
+
+
+    ♡ early seasons used simpler midpoint estimates
+
+    ♡ the orbital model was updated after recognizing that Mars does not move around the Sun at a constant speed
+
+    ♡ Kepler's equation and Newton-Raphson iteration were added to calculate true orbital position
+
+    ♡ atmospheric opacity was added after the seasonal model
+
+    ♡ random storm starts were added so weather would not be completely predictable
+
+    ♡ storm tau remains fixed throughout each storm in V1
+
+    ♡ dust began as a general 0.0-1.0 efficiency factor
+
+    ♡ equipment-specific accumulation rates, online multipliers and minimum efficiencies were added later
 
 ### ----------------------------------------
 

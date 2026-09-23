@@ -120,17 +120,14 @@
             crew heat output in kW × step duration in hours
 
 ### Crew Water Use:
-    ♡ base nourishment water: ~ 2.35 kg/person/day
-    ♡ includes drinking and food preparation
-    ♡ base hygiene water: ~ 1.5 kg/person/day
-    ♡ base black water: ~ 1.8 kg/person/day
-    ♡ nourishment and hygiene water use the activity state water multiplier
+    ♡ base nourishment: ~ 2.35 kg/person/day
+    ♡ base hygiene in crew.py: ~ 1.5 kg/person/day
+    ♡ black water: ~ 1.8 kg/person/day
+    ♡ 75 % of this hygiene stream goes to gray water
+    ♡ this file is body water: 
+        drinking / food and a small hygiene stream
     
-    ♡ black water production does not currently use the activity multiplier
-    
-    ♡ nourishment and hygiene water are removed from potable water storage
-    
-    ♡ 75 % of hygiene water is routed to gray-water storage
+    ♡ showers, laundry and the big kg/sol totals live in hab_water.md
 
     ♡ calculation:
         - nourishment water this step:
