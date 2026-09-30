@@ -12,17 +12,38 @@
 
 ### ----------------------------------------
 
-## Arcadia Living Space Plan (updated 09/09/2026):
+## Arcadia Living Space Plan (updated 09/30/2026):
 #### Totals:
-    ♡ current combined floor area: ~ 2,875 m²
+    ♡ rooms:
+        - floor area: ~ 2,875 m²
+        - volume: ~ 9,651 m³
 
+    ♡ corridors:
+        - floor area: ~ 530 m²
+        - volume: ~ 2,385 m³
+
+    ♡ rooms and corridors together:
+        - floor area: ~ 3,405 m²
+        - volume: ~ 12,036 m³
+
+    ♡ contains:
+        - Kitchen / Dining
+        - Crew Quarters
+        - Shared Living / Social Rooms
+        - Medical and Quiet Areas
+        - Library and Reading Room
+        - Creative / Hobby Studio
+        - living corridors
+
+#### Room Totals:
+    ♡ current combined floor area: ~ 2,875 m²
+    ♡ current calculated volume: ~ 9,651 m³    
     ♡ Kitchen / Dining:
         - floor area: ~ 930 m²
         - volume: ~ 3,460 m³
 
     ♡ Crew Quarters:
         - floor area: ~ 1,120 m²
-        - total private volume: ~ 96.8 m³ each
         - combined volume for all quarters: 
             ~ 3,096 m³ (calculated using the unrounded volume of 96.75 m³/quarter)
 
@@ -41,8 +62,6 @@
     ♡ Creative / Hobby Studio:
         - floor area: ~ 85 m²
         - volume: ~ 340 m³
-
-    ♡ current calculated volume: ~ 9,651 m³
 
 ### ----------------------------------------
 
@@ -617,7 +636,9 @@
     ♡ floor area: ~ 85 m²
     ♡ width: ~ 10.0 m
     ♡ height: ~ 4.0 m
-    ♡ volume: ~ 340 m³    ♡ calculation: ~ 10.0 m × 8.5 m = 85 m²
+    ♡ volume: ~ 340 m³    
+    ♡ calculation: ~ 10.0 m × 8.5 m = 85 m²
+    
     ♡ capacity: 8-11 crew members, including the study pods
 
     ♡ real world size reference:
@@ -746,6 +767,35 @@
         - Crew Quarters and personal domes
 
     ♡ selected rooms include screens, power and data connections, and built-in equipment storage
+
+### ----------------------------------------
+
+#### Living Corridors:
+    ♡ floor area: ~ 530 m²
+    ♡ width: ~ 2.2 m on the main living loop
+    ♡ height: ~ 4.5 m
+    ♡ volume: ~ 2,385 m³
+    ♡ rooms:
+        - floor area: ~ 2,875 m²
+        - volume: ~ 9,651 m³
+
+    ♡ corridors:
+        - floor area: ~ 530 m²
+        - volume: ~ 2,385 m³
+
+    ♡ rooms and corridors together:
+        - floor area: ~ 3,405 m²
+        - volume: ~ 12,036 m³
+
+    ♡ calculation:
+        - ~ 241 m of hallway × 2.2 m ≈ 530 m²
+        - ~ 530 m² × 4.5 m = 2,385 m³
+
+    ♡ includes:
+        - loop to kitchen / dining
+        - access along the two crew-quarter wings
+        - paths to medical / quiet, library and studio
+        - connection toward the greenhouse / food hub
 
 ### ----------------------------------------
 
