@@ -18,11 +18,26 @@
 
 ## Arcadia Utility / Resource Hub (updated 09/14/2026):
 #### Totals:
-    ♡ water rooms: ~ 340 m² / 1,530 m³
-    ♡ ISRU Atmosphere Room: ~ 80 m² / 360 m³
-    ♡ utility rooms for V1: ~ 560 m² / 2,520 m³
-    ♡ Atmosphere / Resource Recovery Room: 
-        ~ 140 m² / 630 m³
+    ♡ rooms:
+        - floor area: ~ 560 m²
+        - volume: ~ 2,520 m³
+
+    ♡ corridors:
+        - floor area: ~ 150 m²
+        - volume: ~ 675 m³
+
+    ♡ rooms and corridors together:
+        - floor area: ~ 710 m²
+        - volume: ~ 3,195 m³
+
+    ♡ contains:
+        - Water Processing Room
+        - Wastewater Storage Room
+        - ISRU Water Room
+        - Potable Water Storage Room
+        - Atmosphere / Resource Recovery Room
+        - ISRU Atmosphere Room
+        - utility corridors
 
 ### ----------------------------------------
 
