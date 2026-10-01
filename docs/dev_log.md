@@ -723,7 +723,6 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
      
      ♡ I updated the list for the greenhouse zones 
 
-
 #### Next Session:
     ♡ continue greenhouse and start by adding ideal_temp
 
@@ -1634,7 +1633,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 
     ♡ adding in three Sabatier systems, potentially more b/c this IS no resupply, but three for now will be okay
 
-    ♡ hectic day, so I will go over more sytems one at a time that have to do w. the atmosphere
+    ♡ hectic day, so I will go over more systems one at a time that have to do w. the atmosphere
 
 #### Next Session:
     ♡ sabatier.py: ch4_leaked_kpa is adding storage leak into cabin ch4_kpa, it should vent to Mars exterior per sabatier.md, not cabin atmosphere
@@ -1654,7 +1653,7 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
 ##      08/24/2026
     ♡ originally I had pictured the greenhouse as a kind of central hub for the entire habitat, but now I'm thinking of having four central hub areas one for a living/social almost wing area, greenhouse/food hub, a resource and utility hub and a power/energy hub, wher the surrounding rooms branch off from those hubs and there are corridors/secondary loops that connect the outer rooms so the crew could move between zones w.out going back through the center always
 
-    ♡ the atmosphere are will be w. the utility/resource area b/c a lot of those sytems have certain connections to the water eqipment and storage so it makes sense that they are kept in closer proximity
+    ♡ the atmosphere are will be w. the utility/resource area b/c a lot of those systems have certain connections to the water eqipment and storage so it makes sense that they are kept in closer proximity
 
     ♡ after entering the total floor area and volume for the utility / resource area, the water rooms seem small compared to the power rooms, but potable holds ~ 10 m³ of water itself, so ~ 110 m² room gives generous tank space, access, and structure, the other gray, black and brine water are smaller, so that space makes sense as well, the raw ISRU water at 4,000kg fits in 40-60 m² and the UPA, WPA and BPA equipment fits in ~ 90 m² with aisles sounds good for a 30 crew plan.. power just seems massive in comparison b/c the secondary battery corridor I made is bigger than my original habitat plan b/c of the amount of space they need.. when I add more rooms to the resource recovery area it will be bigger for sure
 
@@ -1795,4 +1794,38 @@ I've been writing my thoughts and progress here as I go. It's kind of like a dai
     ♡ hallways and connecting space are listed on their own so they don't change the 2,875 m² room total
 
 ##      09/13/2026
-    ♡ 
+    ♡ finalized the living / social hub area layout for v1
+
+    ♡ going over greenhoue and food area
+
+    ♡ although NASA investigated methane post-processing for deeper oxygen loop closures, it would be another subsystem, which I will be something to be implemented in the future
+
+    ♡ added water ISRU room to handle drawing in Martian atmosphere, removing dust before compression, compressing the intake gas, separating useful atmospheric gases and transferring recovered gases toward habitat storage or use
+
+##      09/14/2026
+    ♡ finalized the power / energy hub layout
+
+    ♡ starting thermal.md
+
+
+##      09/15/2026
+    ♡ starting oga.md
+
+
+##      09/16/2026
+    ♡ while going over isru.md and my code, I realized these things: 
+        - the retract is still 0 kW
+        - pipes can keep drawing heat if low power hits while they are out
+        - full raw tank still “runs” with 0 kg added
+        - bypassed CO₂ is not stored
+        - sorbent beds have no power term
+
+    ♡ crew temprise needs to be returned!
+
+##      09/30/2026
+    ♡ adding corridore sizes for living quarters
+
+    ♡ I want to start to seperate my habiat atmosphere from my greenhouse atmosphere, so while I make the changes to my code, I am going to treat the greenhouse seperately, not including it in the total hab_vol, like I have now
+
+##      10/01/2026
+    ♡ I updated the total habitat/settlement size and now my kPa targets need to be changed
