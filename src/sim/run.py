@@ -209,21 +209,23 @@ s0 = Habitat_State(
 
     #-------------------atmosphere-------------------♡
     oga_on = True,
-    base_gas_leak_kpa_per_hour = 0.004,
+    base_gas_leak_kpa_per_hour = 0.00032,
 
      #-------gas leak rates---------♡
-    ar_leak_rate_kpa_per_hr = 0.005,
-    ch4_leak_rate_kpa_per_hr = 0.005,
-    co2_leak_rate_kpa_per_hr = 0.005,
-    h2_leak_rate_kpa_per_hr = 0.025,
-    n2_leak_rate_kpa_per_hr = 0.007,
-    o2_leak_rate_kpa_per_hr = 0.006,
+    ar_leak_rate_kpa_per_hr = 0.00040,
+
+    ch4_leak_rate_kpa_per_hr = 0.0,    # change to rare event
+
+    co2_leak_rate_kpa_per_hr = 0.00040,
+    h2_leak_rate_kpa_per_hr = 0.0020,
+    n2_leak_rate_kpa_per_hr = 0.00056,
+    o2_leak_rate_kpa_per_hr = 0.00048,
 
     #---------gas targets----------♡    
     target_pressure_kpa = 65.0,
     
     target_ar_kpa = 22.6,
-    target_ch4_kpa = 0.05,    
+    target_ch4_kpa = 0.0,    
     target_co2_kpa = 0.4,
     target_h2_kpa = 0.0,
     target_n2_kpa = 22.0,
