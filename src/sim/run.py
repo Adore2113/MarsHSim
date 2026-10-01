@@ -23,10 +23,9 @@ for block_id in range(1, 51):
         "efficiency": 0.85,
     })
 
-
 #-------------------habitat state--------------------♡
 s0 = Habitat_State(
-    hab_vol_m3 = 2000.0,
+    hab_vol_m3 = 30176.0,
     power_mode = "normal",
   
     #-------------time / daylight / dust-------------♡
@@ -45,16 +44,13 @@ s0 = Habitat_State(
     peak_sunlight_today = 0.0,
     low_sunlight_streak_sols = 0,
 
-
     #--------------------lights----------------------♡
     light_level = 0.0,
     wellness_lights_on = False,
 
-
     #---------------------crew-----------------------♡
     crew_count = 30,
     crew_activity = "normal",
-
 
     #------------------greenhouse--------------------♡
     greenhouse_floor_area_m2 = 1326.0,
@@ -176,7 +172,6 @@ s0 = Habitat_State(
     food_support_level = "partial",
     stored_food_still_needed = True,
 
-
     #--------------------thermal---------------------♡
     hab_temp_c = 23.0,
     target_temp_c = 23.0,
@@ -212,18 +207,17 @@ s0 = Habitat_State(
         {"id": 6, "status": "standby", "power_kw": 8.0, "efficiency": 0.98, "type": "backup"},
     ],
 
-
     #-------------------atmosphere-------------------♡
     oga_on = True,
     base_gas_leak_kpa_per_hour = 0.004,
 
      #-------gas leak rates---------♡
-    o2_leak_rate_kpa_per_hr = 0.006,
-    n2_leak_rate_kpa_per_hr = 0.007,
     ar_leak_rate_kpa_per_hr = 0.005,
-    ch4_leak_rate_kpa_per_hr = 0.0,
-    h2_leak_rate_kpa_per_hr = 0.025,
+    ch4_leak_rate_kpa_per_hr = 0.005,
     co2_leak_rate_kpa_per_hr = 0.005,
+    h2_leak_rate_kpa_per_hr = 0.025,
+    n2_leak_rate_kpa_per_hr = 0.007,
+    o2_leak_rate_kpa_per_hr = 0.006,
 
     #---------gas targets----------♡    
     target_pressure_kpa = 65.0,
@@ -312,7 +306,6 @@ s0 = Habitat_State(
     
     solar_absorptivity = 0.68,
 
-
     #---------------------water----------------------♡
     potable_water_storage_kg = 5000.0,
     gray_water_storage_kg = 0.0,
@@ -334,10 +327,8 @@ s0 = Habitat_State(
     bpa_on = True,
     wpa_on = True,
 
-
     #--------------------sabatier--------------------♡
     sabatier_on = True,
-
 
     #-------------------isru water-------------------♡
     isru_water_on = True,
