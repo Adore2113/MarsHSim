@@ -101,11 +101,20 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         
     new_o2_kpa = max(0.0, new_o2_kpa - o2_leak_kpa)
 
+   #---------------handling excess h2---------------♡ 
+    h2_vented_kg = 0.0
+    new_h2_stored_kg = state.h2_stored_kg + h2_produced_kg
+
+    if new_h2_stored_kg > state.h2_storage_capacity_kg:
+        h2_vented_kg = new_h2_stored_kg - state.h2_storage_capacity_kg
+        new_h2_stored_kg = state.h2_storage_capacity_kg
+        oga_power_used_kw += 0.40
+
     #------------dict for updating state-------------♡ 
     oga_updates = {
         "o2_kpa": new_o2_kpa,
         "o2_stored_kg": new_o2_stored_kg,
-        "h2_stored_kg": min(state.h2_storage_capacity_kg, state.h2_stored_kg + h2_produced_kg)
+        "h2_stored_kg": new_h2_stored_kg,
         }
 
     #-----------dict for printing outputs------------♡ 
@@ -122,6 +131,7 @@ def run_oga(state, o2_after_crew_kpa, dt_min):
         
         "oga_limited_by_water": limited_by_water,
         "o2_vented_kg": o2_vented_kg,
+        "h2_vented_kg": h2_vented_kg, 
     }
 
     return oga_updates, oga_outputs
