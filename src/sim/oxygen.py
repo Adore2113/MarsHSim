@@ -13,7 +13,7 @@ o2_molar_mass = 32.0   # grams per mole
 water_kg_per_o2_kg = 1.11   # electrolysis
 
 #------oga operation----------♡
-oga_max_o2_output_kpa_per_hr = 6.0
+oga_max_o2_output_kpa_per_hr = 0.0038
 base_oga_power_kw = 2.5
 base_oga_heat_kw = 1.2
 
