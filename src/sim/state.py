@@ -79,7 +79,6 @@ class Habitat_State:
 
     #-------------------atmosphere-------------------♡
     oga_on: bool
-    base_gas_leak_kpa_per_hour: int
 
     #-------gas leak rates---------♡
     o2_leak_rate_kpa_per_hr: float
