@@ -13,7 +13,7 @@ gas_moved_power_multiplier = 0.4
 base_buffer_gas_heat_kw = 1.5
 gas_moved_heat_multiplier = 0.9 
 mca_update_power_kw = 0.1
-
+max_buffer_add_kpa_per_hr = 0.05
 hysteresis_kpa = 0.09
 safe_usage_ratio = 0.9
 vent_loss_fraction = 0.08
@@ -62,16 +62,21 @@ def run_buffer_gas_control(state, dt_min):
 
     else:
         buffer_gas_mode = "stable"
+
+    if buffer_gas_mode in ("emergency_add", "add"):
+        pressure_to_add_kpa = min(pressure_to_add_kpa, max_buffer_add_kpa_per_hr * hours_per_step,)
     
     #----------------small gas leaks----------------♡  
     n2_leak_kpa = state.n2_leak_rate_kpa_per_hr * hours_per_step
     ar_leak_kpa = state.ar_leak_rate_kpa_per_hr * hours_per_step
+    h2_leak_kpa = state.h2_leak_rate_kpa_per_hr * hours_per_step
 
     new_n2_kpa = max(0.0, new_n2_kpa - n2_leak_kpa)
     new_ar_kpa = max(0.0, new_ar_kpa - ar_leak_kpa)        
+    new_h2_kpa = max(0.0, state.h2_kpa - h2_leak_kpa)
 
   #-----------------adding buffer gas---------------♡  
-    if buffer_gas_mode in ("emergency_add", "add") and pressure_to_add_kpa > 0.04:
+    if buffer_gas_mode in ("emergency_add", "add"):
         left_to_add_kpa = pressure_to_add_kpa
         
         #--------------Nitrogen first---------------♡  
@@ -142,9 +147,9 @@ def run_buffer_gas_control(state, dt_min):
     "ar_kpa": new_ar_kpa,
     "n2_stored_kg": new_n2_stored_kg,
     "ar_stored_kg": new_ar_stored_kg,
+    "h2_kpa": new_h2_kpa,
     }
     
-
     #-----------dict for printing outputs------------♡ 
     buffer_gas_outputs = {
     "buffer_gas_mode": buffer_gas_mode,
@@ -154,6 +159,8 @@ def run_buffer_gas_control(state, dt_min):
 
     "n2_leaked_kpa": n2_leak_kpa,
     "ar_leaked_kpa": ar_leak_kpa,
+
+    "new_h2_kpa": new_h2_kpa,        
 
     "buffer_gas_power_used_kw": buffer_gas_power_used_kw,
     "buffer_gas_energy_used_kwh": buffer_gas_power_used_kw * hours_per_step,
