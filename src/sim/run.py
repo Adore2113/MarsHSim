@@ -260,20 +260,20 @@ s0 = Habitat_State(
     o2_kpa = 20.0,
 
     #--------gas in storage--------♡
-    ar_stored_kg = 400.0,
+    ar_stored_kg = 2000.0,
     ch4_stored_kg = 0.0,
     co2_stored_kg = 20.0, 
     h2_stored_kg = 50.0,    # starting with this for Sabatier testing
-    n2_stored_kg = 800.0,
-    o2_stored_kg = 680.0,
+    n2_stored_kg = 1500.0,
+    o2_stored_kg = 1200.0,
 
     #------gas storage limits------♡
-    ar_storage_capacity_kg = 1200.0,
+    ar_storage_capacity_kg = 5000.0,
     ch4_storage_capacity_kg = 400.0,
     co2_storage_capacity_kg = 500.0,    
     h2_storage_capacity_kg = 300.0,
-    n2_storage_capacity_kg = 2000.0,
-    o2_storage_capacity_kg = 1500.0,
+    n2_storage_capacity_kg = 4000.0,
+    o2_storage_capacity_kg = 3000.0,
 
 
     #------------------amine_beds--------------------♡
@@ -288,7 +288,7 @@ s0 = Habitat_State(
         {"id": 7, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0, "time_online_min": 0.0},
         {"id": 8, "status": "standby", "capacity_kg": 3.0, "co2_load": 0.0, "type": "backup", "regen_timer_min": 0.0, "time_online_min": 0.0},
     ],
-    scrub_per_bed_kpa = 0.0035,
+    scrub_per_bed_kpa = 0.00028,
 
 
     #---------------------power----------------------♡
