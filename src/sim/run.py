@@ -209,7 +209,6 @@ s0 = Habitat_State(
 
     #-------------------atmosphere-------------------♡
     oga_on = True,
-    base_gas_leak_kpa_per_hour = 0.00032,
 
      #-------gas leak rates---------♡
     ar_leak_rate_kpa_per_hr = 0.00040,
@@ -251,12 +250,12 @@ s0 = Habitat_State(
     max_safe_n2_kpa = 30.0,    
     max_safe_o2_kpa = 25.0,
 
-    #------current gas levels------♡
-    ar_kpa = 21.6,
+    #------starting gas levels------♡
+    ar_kpa = 22.6,
     ch4_kpa = 0.0,
     co2_kpa = 0.4,
     h2_kpa = 0.0,    
-    n2_kpa = 18.0,
+    n2_kpa = 22.0,
     o2_kpa = 20.0,
 
     #--------gas in storage--------♡
