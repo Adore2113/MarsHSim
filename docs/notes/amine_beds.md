@@ -32,7 +32,7 @@
     ♡ 30 crew: ~ 0.087 kPa/5 min
     ♡ ~ 0.835 kPa/person per Earth day 
     ♡ calculation:
-        0.0029 × 288 = ~ 0.087
+        0.0029 × 288 = ~ 0.835
 
     ♡ used for:
         - how fast cabin CO₂ climbs
@@ -40,10 +40,10 @@
 
 ### Scrub Efficiency:
     ♡ efficiency depends on current CO₂ level:
-        - ≤ 0.2 kPa → 0.55
-        - 0.2–0.4 kPa → ramps 0.55 → 0.85
-        - 0.4–0.5 kPa → ramps 0.85 → 1.00
-        - > 0.5 kPa → 1.00
+        - ≤ 0.2 kPa - 0.55
+        - 0.2–0.4 kPa - ramps 0.55 - 0.85
+        - 0.4–0.5 kPa - ramps 0.85 - 1.00
+        - > 0.5 kPa - 1.00
 
     ♡ calculation:
         max removal this step =
@@ -59,7 +59,7 @@
 ### Operating Logic:
     ♡ CO₂ above target decides the number of beds actively adsorbing
 
-    ♡ scrubbed CO₂ from the cabin is converted to kg and added to CO₂ storage
+    ♡ scrubbed CO₂ from the cabin is removed, loaded onto online beds, then converted to kg and added to CO₂ storage
 
     ♡ CO₂ released during bed regeneration is also added to CO₂ storage for the Sabatier system
 
@@ -207,9 +207,8 @@
 
     ♡ I will save this for the future, not V1
 
+    ♡ updating co2_scrub.py to stop ONLY using the beds online in the order they are on the list, and the co2_load needs to be implemented like the sorbent beds so the bed switching is actually calculated and based on saturation as well as a backup max absorption bed timer as a fallback, so even though with capacity at 3.0kg per bed, the beds probably won't reach full saturation within the 55 min, so it will still sort of be the same
 
-    ♡ updating co2_scrub.py to stop just using the beds online in the order they are on the list, and the co2_load needs to be implemented like the sorbent beds so the bed switching is actually calculated and based on saturation instead of the automatic 55min timer, so even though with capacity at 3.0kg per bed, the beds probably won't reach full saturation within the 55 min, so it will still sort of be the same
-
-    ♡ updated co2_scrub to have regeneration, standby and online, there are now four beds primary, four beds backup, added kg to capacity in the amine beds list, 
+    ♡ updated co2_scrub to have regeneration, standby and online, there are now four beds primary, four beds backup, added kg to capacity in the amine beds list 
 
     ♡ CO₂ now goes into CO₂ storage
