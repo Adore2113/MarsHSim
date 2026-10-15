@@ -43,8 +43,6 @@ def run_sabatier(state, dt_min):
     co2_consumed_kpa = 0.0
     co2_consumed_kg = 0.0
     ch4_vented_kg = 0.0
-    ch4_pressure_increase_kpa = 0.0
-
 
     new_ch4_stored_kg = state.ch4_stored_kg
     new_ch4_kpa = state.ch4_kpa
@@ -144,7 +142,7 @@ def run_sabatier(state, dt_min):
             
             sabatier_power_used_kw *= 1.25
         
-    #-----------------small gas leaks----------------♡  
+    #-----------------small gas leaks----------------♡ **make this a random emergency event** 
     ch4_leaked_kpa = state.ch4_leak_rate_kpa_per_hr * hours_per_step
     new_ch4_kpa = state.ch4_kpa - ch4_leaked_kpa
    
