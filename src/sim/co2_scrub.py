@@ -60,6 +60,7 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min):
     bed_switch = False
     attempted_removal_kg = 0.0
     regen_released_kg = 0.0
+    beds_started_this_step = 0
 
     amine_bed_power_used_kw = 0.0
     amine_bed_heat_added_kw = 0.0
@@ -135,17 +136,21 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min):
     #----------handling primary beds first-----------♡ 
     if beds_needed_online > 0:
         for bed in new_beds:
-            if beds_needed_online > 0 and bed["status"] == "standby":
+            if beds_needed_online > 0 and beds_started_this_step < 1 and bed["status"] == "standby":
                 if bed["type"] == "primary":
                     bed["status"] = "online"
+                    bed["time_online_min"] = 0.0
                     beds_needed_online -= 1
- 
-        if beds_needed_online > 0:
+                    beds_started_this_step += 1
+                    
+        if beds_needed_online > 0 and beds_started_this_step < 1:
             for bed in new_beds:
-                if beds_needed_online > 0 and bed["status"] == "standby":
+                if beds_needed_online > 0 and beds_started_this_step < 1 and bed["status"] == "standby":
                     if bed["type"] == "backup":
                         bed["status"] = "online"
+                        bed["time_online_min"] = 0.0
                         beds_needed_online -= 1
+                        beds_started_this_step += 1
 
     #----------------switch to standby---------------♡ 
     elif beds_to_deactivate > 0:
@@ -219,24 +224,26 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min):
 
     beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
 
-    #-----------replace fully saturated bed----------♡ 
+    #-----------replace regenerating bed----------♡ 
     beds_needed_online = max(0, target_beds_online - beds_online_count)
  
-    if beds_needed_online > 0:
+    if beds_needed_online > 0 and beds_started_this_step < 1:
         for bed in new_beds:
-            if beds_needed_online > 0 and bed["status"] == "standby":
+            if beds_needed_online > 0 and beds_started_this_step < 1 and bed["status"] == "standby":
                 if bed["type"] == "primary":
                     bed["status"] = "online"
                     bed["time_online_min"] = 0.0
                     beds_needed_online -= 1
+                    beds_started_this_step += 1
 
-        if beds_needed_online > 0:
+        if beds_needed_online > 0 and beds_started_this_step < 1:
             for bed in new_beds:
-                if beds_needed_online > 0 and bed["status"] == "standby":
+                if beds_needed_online > 0 and beds_started_this_step < 1 and bed["status"] == "standby":
                     if bed["type"] == "backup":
                         bed["status"] = "online"
                         bed["time_online_min"] = 0.0
                         beds_needed_online -= 1
+                        beds_started_this_step += 1
 
     beds_online_count = sum(1 for bed in new_beds if bed["status"] == "online")
 
