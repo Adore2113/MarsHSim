@@ -11,7 +11,7 @@ co2_molar_mass = 0.04401    # kg per mole
 #--------amine beds----------♡
 max_beds_online = 8
 bed_regen_time_min = 30.0
-max_adsorption_time_min = 30.0
+max_absorption_time_min = 30.0
 regen_switch_power_multiplier = 1.25
 regen_switch_efficiency_penalty = 0.80
 
@@ -208,7 +208,7 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min):
             bed["time_online_min"] = bed.get("time_online_min", 0.0) + dt_min
 
             saturated = bed["co2_load"] >= bed["capacity_kg"]
-            timed_out = bed["time_online_min"] >= max_adsorption_time_min
+            timed_out = bed["time_online_min"] >= max_absorption_time_min
 
             if saturated or timed_out:
                 bed["status"] = "regenerating"
