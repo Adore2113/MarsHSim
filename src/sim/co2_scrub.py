@@ -24,7 +24,6 @@ heat_per_kpa_removed_kw = 1.8
 
 #------control logic---------♡
 co2_hysteresis_for_off = 0.03
-co2_venting_threshold = 0.90
 #----------------------------------------------------♡
 
 
@@ -285,6 +284,10 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min):
         "beds_online_count": beds_online_count,
         "beds_regenerating_count": sum(1 for bed in new_beds if bed["status"] == "regenerating"),
         "co2_for_scrub_kpa": co2_for_scrub,
+
+        "co2_added_to_storage_kg": co2_added_to_storage_kg,
+        "co2_vented_kg": co2_vented_kg,
+        "co2_storage_full": new_co2_stored_kg >= state.co2_storage_capacity_kg,
  
         "amine_bed_power_used_kw": amine_bed_power_used_kw,
         "amine_bed_energy_used_kwh": amine_bed_power_used_kw * hours_per_step,
