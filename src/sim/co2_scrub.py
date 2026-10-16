@@ -24,6 +24,7 @@ heat_per_kpa_removed_kw = 1.8
 
 #------control logic---------♡
 co2_hysteresis_for_off = 0.03
+co2_venting_threshold = 0.90
 #----------------------------------------------------♡
 
 
@@ -71,7 +72,7 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min):
     for bed in new_beds:
         if bed["status"] == "regenerating":
             timer = bed.get("regen_timer_min", bed_regen_time_min)
-            release_fraction = min(1.0, dt_min / bed_regen_time_min)
+            release_fraction = min(1.0, dt_min / timer) if timer > 0 else 1.0
 
             released_kg = bed["co2_load"] * release_fraction
             bed["co2_load"] = max(0.0, bed["co2_load"] - released_kg)
@@ -116,9 +117,6 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min):
  
     elif co2_above_target_kpa > 0.03:
         target_beds_online = 2
-
-    elif co2_above_target_kpa > 0.012:
-        target_beds_online = 1
 
     else:
         target_beds_online = 1
@@ -198,7 +196,12 @@ def run_co2_scrub(state, co2_after_crew_kpa, co2_after_greenhouse_kpa, dt_min):
         co2_removed_kpa = 0.0
 
     co2_after_scrub_kpa = co2_for_scrub - co2_removed_kpa
-    new_co2_stored_kg = state.co2_stored_kg + regen_released_kg
+
+    #---------add regenerated co2 to storage---------♡
+    available_storage_kg = max(0.0, state.co2_storage_capacity_kg - state.co2_stored_kg)
+    co2_added_to_storage_kg = min(regen_released_kg, available_storage_kg)
+    co2_vented_kg = max(0.0, regen_released_kg - co2_added_to_storage_kg)
+    new_co2_stored_kg = (state.co2_stored_kg + co2_added_to_storage_kg)
 
     #-----distribute loads for the online beds-------♡ 
     if online_beds and co2_removed_kg > 0.0:
