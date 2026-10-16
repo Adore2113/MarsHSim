@@ -4,7 +4,7 @@
 w_per_kw = 1000   # watts to kilowatts
 
 base_o2_drop_kpa = 0.00011
-base_co2_rise_kpa = 0.0000967
+base_co2_rise_kpa = 0.0029
 
 base_breath_vapor_per_day_kg = 1.0
 base_skin_vapor_per_day_kg = 0.8
@@ -22,7 +22,6 @@ crew_activity_states = {
     "exercise": {"o2_drop_multiplier": 1.5, "co2_rise_multiplier": 1.5, "breath_vapor_multiplier": 1.4, "skin_vapor_multiplier": 2.0, "heat_per_person_w": 280,  "water_multiplier": 1.8},  
     "intense": {"o2_drop_multiplier": 2.0, "co2_rise_multiplier": 2.0, "breath_vapor_multiplier": 1.8, "skin_vapor_multiplier": 3.0, "heat_per_person_w": 350, "water_multiplier": 2.2},
     }
-
 
 # -------crew metabolism per default timestep--------♡
 def total_crew_metabolism(state, dt_min):
