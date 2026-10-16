@@ -59,11 +59,13 @@
 ### Operating Logic:
     ♡ CO₂ above target decides the number of beds actively adsorbing
 
-    ♡ scrubbed CO₂ from the cabin is removed, loaded onto online beds, then converted to kg and added to CO₂ storage
+    ♡ scrubbed CO₂ is removed from the cabin, converted from kPa to kg and added directly to CO₂ storage for the Sabatier system
 
-    ♡ CO₂ released during bed regeneration is also added to CO₂ storage for the Sabatier system
+    ♡ each online bed’s CO₂ load is also increased to track how close the bed is to saturation
 
-    ♡ cannot remove more CO₂ than exists above target or than online beds have room for
+    ♡ bed CO₂ load is a saturation tracker and is not additional stored CO₂
+
+    ♡ regeneration resets the bed’s CO₂ load so the captured CO₂ is not counted twice
 
     ♡ hysteresis:
         - co2_hysteresis_for_off = 0.03
@@ -76,7 +78,7 @@
 ### Bed Switching
     ♡ when an online bed reaches capacity it switches to regenerating
 
-    ♡ regen duration: 55 min
+    ♡ regen duration: 30 min
 
     ♡ during regen, CO₂ load is released over time into storage
 
@@ -87,6 +89,19 @@
         - power multiplied by 1.25
 
     ♡ standby beds can be brought online the same step to replace a saturated bed
+
+### CO₂ Storage and Venting:
+    ♡ CO₂ storage capacity: 500 kg
+
+    ♡ newly scrubbed CO₂ is added directly to storage until storage reaches capacity
+
+    ♡ when storage exceeds 90% capacity, controlled venting begins to preserve storage capacity
+
+    ♡ if storage reaches maximum capacity, any additional scrubbed CO₂ is vented outside
+
+    ♡ vented CO₂ is tracked as co2_vented_kg
+
+    ♡ full storage does not stop cabin CO₂ scrubbing
 
 ### Power & Heat
     ♡ base power per online bed: 0.65 kW
